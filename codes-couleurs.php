@@ -1,54 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Liste des codes couleur en HTML | Alexis AMAND - Webmaster &agrave; Valenciennes</title>
-    <meta charset="utf-8">
+
+	<meta charset="utf-8">
+
+    <title>Liste des codes couleur en HTML | Alexis AMAND - Webmaster à Valenciennes</title>
 
     <meta name="description" content=" ">
-
 
     <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/grid_12.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/slider.css">
-   <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
+   	<link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
+   	  	
+   	<link href="css/fontawesome/css/all.css" rel="stylesheet">
+   	
     <script src="js/jquery-1.7.min.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
     
-	<!--[if lt IE 8]>
-       <div style=' clear: both; text-align:center; position: relative;'>
-         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-           <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-        </a>
-      </div>
-    <![endif]-->
-    <!--[if lt IE 9]>
-   		<script type="text/javascript" src="js/html5.js"></script>
-    	<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
-	<![endif]-->
-
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(["setDomains", ["*.www.boitasite.com"]]);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//genealexis.fr/piwik/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', '14']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="//genealexis.fr/piwik/piwik.php?idsite=14" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
-
-
+	<!-- Piwik -->
+	<script type="text/javascript">
+	  var _paq = _paq || [];
+	  _paq.push(["setDomains", ["*.www.boitasite.com"]]);
+	  _paq.push(['trackPageView']);
+	  _paq.push(['enableLinkTracking']);
+	  (function() {
+	    var u="//genealexis.fr/piwik/";
+	    _paq.push(['setTrackerUrl', u+'piwik.php']);
+	    _paq.push(['setSiteId', '14']);
+	    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+	    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	  })();
+	</script>
+	<noscript><p><img src="//genealexis.fr/piwik/piwik.php?idsite=14" style="border:0;" alt="" /></p></noscript>
+	<!-- End Piwik Code -->
 
 </head>
-
-
 
 <body>
    <header> 
@@ -57,147 +45,146 @@
               <h3><a href="index.php"><img src="images/logo.png" alt=""></a></h3>
               <nav>  
                 <ul class="menu">
-                      <li><a href="index.php">Accueil</a></li>
-                      <li><a href="webmaster.php">Création de sites</a></li>
+                      <li><a href="webmaster.php" class="current">Création de sites</a></li>
                       <li><a href="cours.php">Cours à domicile</a></li>
-                      <li class="current"><a href="tutoriels.php">Tutoriels</a></li>
-					  <li><a href="to8.php">TO8</a></li>
+                      <li><a href="tutoriels.php">Tutos</a></li>    
+                      <li><a href="to8.php">TO8</a></li>
+                      <li><a href="thegasp.php">The Gasp</a></li>               
                       <li><a href="contacts.php">Contacts</a></li>
                   </ul>
               </nav>
               <div class="clear"></div>
           </div>
       </div>
-    </header>  
-  <!--==============================content================================-->
+    </header> 
+     
+  	<!--==============================content================================-->
+  	
     <section id="content"></div>
     	<div class="container_12">
 
             <div class="grid_12 box-2">
             	<div>
-                    <h1 class="text-3">Les couleurs <span>en</span> HTML</h1>
-                    
+                    <h1 class="text-3">Les couleurs <span>en</span> HTML</h1>                   
                 </div>
             </div>
 
-
             <div style="clear:both">
 
-                <br />
-
+            <br />
         
-        <h2 style="margin-top:20px;margin-bottom:10px;">Liste des  codes couleurs en html</h2>
-        <form name="form1">
-        <center>
-        
-           
-	<p>Cet outil est un tableau des couleurs HTML dynamiques, vous pouvez obtenir le <strong>code HTML</strong> pour les couleurs simples.	  Cliquez sur n’importe quelle couleur pour obtenir son <strong>code HTML</strong>.	</p><br /> 
+        	<h2 style="margin-top:20px;margin-bottom:10px;">Liste des  codes couleurs en html</h2>
+        	
+        		<form name="form1">
+        		<center>
+                   
+				<p>Cet outil est un tableau des couleurs HTML dynamiques, vous pouvez obtenir le <strong>code HTML</strong> pour les couleurs simples.	  Cliquez sur n’importe quelle couleur pour obtenir son <strong>code HTML</strong>.	</p><br /> 
     
-	<table border="0" cellspacing="0" cellpadding="0">
-	  <tr>
-	    <td>
-	      <table cellspacing=0 cellpadding=0 border="0">
-	        <tr>
-	          <td width="20" height="20" bgcolor="#000000"><a href="#" onClick="document.form1.resultat.value='#000000';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#000033"><a href="#" onClick="document.form1.resultat.value='#000033';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#000066"><a href="#" onClick="document.form1.resultat.value='#000066';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#000099"><a href="#" onClick="document.form1.resultat.value='#000099';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#0000CC"><a href="#" onClick="document.form1.resultat.value='#0000CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#0000FF"><a href="#" onClick="document.form1.resultat.value='#0000FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          </tr>
-	        <tr>
-	          <td width="20" height="20" bgcolor="#003300"><a href="#" onClick="document.form1.resultat.value='#003300';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#003333"><a href="#" onClick="document.form1.resultat.value='#003333';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#003366"><a href="#" onClick="document.form1.resultat.value='#003366';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#003399"><a href="#" onClick="document.form1.resultat.value='#003399';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#0033CC"><a href="#" onClick="document.form1.resultat.value='#0033CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#0033FF"><a href="#" onClick="document.form1.resultat.value='#0033FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          </tr>
-	        <tr>
-	          <td width="20" height="20" bgcolor="#006600"><a href="#" onClick="document.form1.resultat.value='#006600';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#006633"><a href="#" onClick="document.form1.resultat.value='#006633';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#006666"><a href="#" onClick="document.form1.resultat.value='#006666';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#006699"><a href="#" onClick="document.form1.resultat.value='#006699';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#0066CC"><a href="#" onClick="document.form1.resultat.value='#0066CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#0066FF"><a href="#" onClick="document.form1.resultat.value='#0066FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          </tr>
-	        <tr>
-	          <td width="20" height="20" bgcolor="#009900"><a href="#" onClick="document.form1.resultat.value='#009900';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#009933"><a href="#" onClick="document.form1.resultat.value='#009933';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#009966"><a href="#" onClick="document.form1.resultat.value='#009966';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#009999"><a href="#" onClick="document.form1.resultat.value='#009999';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#0099CC"><a href="#" onClick="document.form1.resultat.value='#0099CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#0099FF"><a href="#" onClick="document.form1.resultat.value='#0099FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          </tr>
-	        <tr>
-	          <td width="20" height="20" bgcolor="#00CC00"><a href="#" onClick="document.form1.resultat.value='#00CC00';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#00CC33"><a href="#" onClick="document.form1.resultat.value='#00CC33';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#00CC66"><a href="#" onClick="document.form1.resultat.value='#00CC66';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#00CC99"><a href="#" onClick="document.form1.resultat.value='#00CC99';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#00CCCC"><a href="#" onClick="document.form1.resultat.value='#00CCCC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#00CCFF"><a href="#" onClick="document.form1.resultat.value='#00CCFF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          </tr>
-	        <tr>
-	          <td width="20" height="20" bgcolor="#00FF00"><a href="#" onClick="document.form1.resultat.value='#00FF00';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#00FF33"><a href="#" onClick="document.form1.resultat.value='#00FF33';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#00FF66"><a href="#" onClick="document.form1.resultat.value='#00FF66';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#00FF99"><a href="#" onClick="document.form1.resultat.value='#00FF99';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#00FFCC"><a href="#" onClick="document.form1.resultat.value='#00FFCC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          <td width="20" height="20" bgcolor="#00FFFF"><a href="#" onClick="document.form1.resultat.value='#00FFFF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	          </tr>
-	        </table>
-	      </td>
-	    <td><table cellspacing=0 cellpadding=0  border="0">
-	      <tr>
-	        <td width="20" height="20" bgcolor="#330000"><a href="#" onClick="document.form1.resultat.value='#330000';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#330033"><a href="#" onClick="document.form1.resultat.value='#330033';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#330066"><a href="#" onClick="document.form1.resultat.value='#330066';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#330099"><a href="#" onClick="document.form1.resultat.value='#330099';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#3300CC"><a href="#" onClick="document.form1.resultat.value='#3300CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#3300FF"><a href="#" onClick="document.form1.resultat.value='#3300FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        </tr>
-	      <tr>
-	        <td width="20" height="20" bgcolor="#333300"><a href="#" onClick="document.form1.resultat.value='#333300';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#333333"><a href="#" onClick="document.form1.resultat.value='#333333';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#333366"><a href="#" onClick="document.form1.resultat.value='#333366';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#333399"><a href="#" onClick="document.form1.resultat.value='#333399';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#3333CC"><a href="#" onClick="document.form1.resultat.value='#3333CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#3333FF"><a href="#" onClick="document.form1.resultat.value='#3333FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        </tr>
-	      <tr>
-	        <td width="20" height="20" bgcolor="#336600"><a href="#" onClick="document.form1.resultat.value='#336600';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#336633"><a href="#" onClick="document.form1.resultat.value='#336633';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#336666"><a href="#" onClick="document.form1.resultat.value='#336666';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#336699"><a href="#" onClick="document.form1.resultat.value='#336699';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#3366CC"><a href="#" onClick="document.form1.resultat.value='#3366CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#3366FF"><a href="#" onClick="document.form1.resultat.value='#3366FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        </tr>
-	      <tr>
-	        <td width="20" height="20" bgcolor="#339900"><a href="#" onClick="document.form1.resultat.value='#339900';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#339933"><a href="#" onClick="document.form1.resultat.value='#339933';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#339966"><a href="#" onClick="document.form1.resultat.value='#339966';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#339999"><a href="#" onClick="document.form1.resultat.value='#339999';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#3399CC"><a href="#" onClick="document.form1.resultat.value='#3399CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#3399FF"><a href="#" onClick="document.form1.resultat.value='#3399FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        </tr>
-	      <tr>
-	        <td width="20" height="20" bgcolor="#33CC00"><a href="#" onClick="document.form1.resultat.value='#33CC00';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#33CC33"><a href="#" onClick="document.form1.resultat.value='#33CC33';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#33CC66"><a href="#" onClick="document.form1.resultat.value='#33CC66';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#33CC99"><a href="#" onClick="document.form1.resultat.value='#33CC99';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#33CCCC"><a href="#" onClick="document.form1.resultat.value='#33CCCC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#33CCFF"><a href="#" onClick="document.form1.resultat.value='#33CCFF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        </tr>
-	      <tr>
-	        <td width="20" height="20" bgcolor="#33FF00"><a href="#" onClick="document.form1.resultat.value='#33FF00';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#33FF33"><a href="#" onClick="document.form1.resultat.value='#33FF33';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#33FF66"><a href="#" onClick="document.form1.resultat.value='#33FF66';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#33FF99"><a href="#" onClick="document.form1.resultat.value='#33FF99';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#33FFCC"><a href="#" onClick="document.form1.resultat.value='#33FFCC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        <td width="20" height="20" bgcolor="#33FFFF"><a href="#" onClick="document.form1.resultat.value='#33FFFF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
-	        </tr>
-	      </table>
-	      </td>
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+				    <td>
+				      <table cellspacing=0 cellpadding=0 border="0">
+				        <tr>
+				          <td width="20" height="20" bgcolor="#000000"><a href="#" onClick="document.form1.resultat.value='#000000';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#000033"><a href="#" onClick="document.form1.resultat.value='#000033';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#000066"><a href="#" onClick="document.form1.resultat.value='#000066';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#000099"><a href="#" onClick="document.form1.resultat.value='#000099';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#0000CC"><a href="#" onClick="document.form1.resultat.value='#0000CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#0000FF"><a href="#" onClick="document.form1.resultat.value='#0000FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          </tr>
+				        <tr>
+				          <td width="20" height="20" bgcolor="#003300"><a href="#" onClick="document.form1.resultat.value='#003300';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#003333"><a href="#" onClick="document.form1.resultat.value='#003333';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#003366"><a href="#" onClick="document.form1.resultat.value='#003366';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#003399"><a href="#" onClick="document.form1.resultat.value='#003399';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#0033CC"><a href="#" onClick="document.form1.resultat.value='#0033CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#0033FF"><a href="#" onClick="document.form1.resultat.value='#0033FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          </tr>
+				        <tr>
+				          <td width="20" height="20" bgcolor="#006600"><a href="#" onClick="document.form1.resultat.value='#006600';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#006633"><a href="#" onClick="document.form1.resultat.value='#006633';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#006666"><a href="#" onClick="document.form1.resultat.value='#006666';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#006699"><a href="#" onClick="document.form1.resultat.value='#006699';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#0066CC"><a href="#" onClick="document.form1.resultat.value='#0066CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#0066FF"><a href="#" onClick="document.form1.resultat.value='#0066FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          </tr>
+				        <tr>
+				          <td width="20" height="20" bgcolor="#009900"><a href="#" onClick="document.form1.resultat.value='#009900';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#009933"><a href="#" onClick="document.form1.resultat.value='#009933';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#009966"><a href="#" onClick="document.form1.resultat.value='#009966';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#009999"><a href="#" onClick="document.form1.resultat.value='#009999';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#0099CC"><a href="#" onClick="document.form1.resultat.value='#0099CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#0099FF"><a href="#" onClick="document.form1.resultat.value='#0099FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          </tr>
+				        <tr>
+				          <td width="20" height="20" bgcolor="#00CC00"><a href="#" onClick="document.form1.resultat.value='#00CC00';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#00CC33"><a href="#" onClick="document.form1.resultat.value='#00CC33';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#00CC66"><a href="#" onClick="document.form1.resultat.value='#00CC66';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#00CC99"><a href="#" onClick="document.form1.resultat.value='#00CC99';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#00CCCC"><a href="#" onClick="document.form1.resultat.value='#00CCCC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#00CCFF"><a href="#" onClick="document.form1.resultat.value='#00CCFF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          </tr>
+				        <tr>
+				          <td width="20" height="20" bgcolor="#00FF00"><a href="#" onClick="document.form1.resultat.value='#00FF00';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#00FF33"><a href="#" onClick="document.form1.resultat.value='#00FF33';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#00FF66"><a href="#" onClick="document.form1.resultat.value='#00FF66';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#00FF99"><a href="#" onClick="document.form1.resultat.value='#00FF99';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#00FFCC"><a href="#" onClick="document.form1.resultat.value='#00FFCC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          <td width="20" height="20" bgcolor="#00FFFF"><a href="#" onClick="document.form1.resultat.value='#00FFFF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				          </tr>
+				        </table>
+				    </td>
+				    <td><table cellspacing=0 cellpadding=0  border="0">
+				      <tr>
+				        <td width="20" height="20" bgcolor="#330000"><a href="#" onClick="document.form1.resultat.value='#330000';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#330033"><a href="#" onClick="document.form1.resultat.value='#330033';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#330066"><a href="#" onClick="document.form1.resultat.value='#330066';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#330099"><a href="#" onClick="document.form1.resultat.value='#330099';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#3300CC"><a href="#" onClick="document.form1.resultat.value='#3300CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#3300FF"><a href="#" onClick="document.form1.resultat.value='#3300FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        </tr>
+				      <tr>
+				        <td width="20" height="20" bgcolor="#333300"><a href="#" onClick="document.form1.resultat.value='#333300';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#333333"><a href="#" onClick="document.form1.resultat.value='#333333';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#333366"><a href="#" onClick="document.form1.resultat.value='#333366';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#333399"><a href="#" onClick="document.form1.resultat.value='#333399';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#3333CC"><a href="#" onClick="document.form1.resultat.value='#3333CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#3333FF"><a href="#" onClick="document.form1.resultat.value='#3333FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        </tr>
+				      <tr>
+				        <td width="20" height="20" bgcolor="#336600"><a href="#" onClick="document.form1.resultat.value='#336600';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#336633"><a href="#" onClick="document.form1.resultat.value='#336633';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#336666"><a href="#" onClick="document.form1.resultat.value='#336666';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#336699"><a href="#" onClick="document.form1.resultat.value='#336699';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#3366CC"><a href="#" onClick="document.form1.resultat.value='#3366CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#3366FF"><a href="#" onClick="document.form1.resultat.value='#3366FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        </tr>
+				      <tr>
+				        <td width="20" height="20" bgcolor="#339900"><a href="#" onClick="document.form1.resultat.value='#339900';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#339933"><a href="#" onClick="document.form1.resultat.value='#339933';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#339966"><a href="#" onClick="document.form1.resultat.value='#339966';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#339999"><a href="#" onClick="document.form1.resultat.value='#339999';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#3399CC"><a href="#" onClick="document.form1.resultat.value='#3399CC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#3399FF"><a href="#" onClick="document.form1.resultat.value='#3399FF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        </tr>
+				      <tr>
+				        <td width="20" height="20" bgcolor="#33CC00"><a href="#" onClick="document.form1.resultat.value='#33CC00';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#33CC33"><a href="#" onClick="document.form1.resultat.value='#33CC33';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#33CC66"><a href="#" onClick="document.form1.resultat.value='#33CC66';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#33CC99"><a href="#" onClick="document.form1.resultat.value='#33CC99';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#33CCCC"><a href="#" onClick="document.form1.resultat.value='#33CCCC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#33CCFF"><a href="#" onClick="document.form1.resultat.value='#33CCFF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        </tr>
+				      <tr>
+				        <td width="20" height="20" bgcolor="#33FF00"><a href="#" onClick="document.form1.resultat.value='#33FF00';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#33FF33"><a href="#" onClick="document.form1.resultat.value='#33FF33';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#33FF66"><a href="#" onClick="document.form1.resultat.value='#33FF66';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#33FF99"><a href="#" onClick="document.form1.resultat.value='#33FF99';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#33FFCC"><a href="#" onClick="document.form1.resultat.value='#33FFCC';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        <td width="20" height="20" bgcolor="#33FFFF"><a href="#" onClick="document.form1.resultat.value='#33FFFF';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
+				        </tr>
+				      </table>
+	      			</td>
 	    <td><table cellspacing=0 cellpadding=0  border="0">
 	      <tr>
 	        <td width="20" height="20" bgcolor="#660000"><a href="#" onClick="document.form1.resultat.value='#660000';return false"><img src="images/dummy.gif" alt="couleur" width="20" height="20" border="0"></a></td>
@@ -1171,17 +1158,26 @@
             <div class="clear"></div>
         </div>
     </section> 
-<!--==============================footer=================================-->
-  <footer>
-      
-      <div style="width:960px;margin-left:auto;margin-right:auto;">
+    
+	<!--==============================footer=================================-->
 
-          <p>© 2016-2018 Alexis AMAND</p>
-          <div class="soc-icons"><span>Follow Moi:</span><a href="https://twitter.com/alexisamand"><img src="images/icon-1.jpg" alt=""></a><a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/?ref=settings"><img src="images/icon-2.jpg" alt=""></a><a href="https://plus.google.com/117361709952417935347"><img src="images/icon-3.jpg" alt=""></a></div>
-
-       </div>
-       
-  </footer>	
-
+	<footer>
+		<div style="width:960px;margin-left:auto;margin-right:auto;font-family: Verdana, Geneva, sans-serif;">
+			
+	        <div style="width:50%;float:left;margin-bottom:25px;text-align:center;font-size: 0.8em;">
+	        Alexis AMAND<br />Développeur Web<br />---<br />06.62.63.79.21<br />alexis.amand@gmail.com<br />
+			</div>
+			
+			<div style="width:50%;float:left;margin-bottom:25px;text-align:center;font-family: Verdana, Geneva, sans-serif;font-size: 0.8em;">
+	        <span>Follow Moi:</span><br /><br />
+	        <a href="https://twitter.com/alexisamand"><img src="images/icon-1.jpg" alt=""></a>
+	        <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><img src="images/icon-2.jpg" alt=""></a>
+			</div>
+			
+			<div style="text-align:center;clear:both;font-size: 0.7em;">© 2016-2020 - Alexis AMAND</div>
+			
+		</div>
+			
+	</footer>
+  
 </body>
-</html>

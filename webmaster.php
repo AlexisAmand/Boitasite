@@ -1,72 +1,54 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Création de sites web | Alexis AMAND - Webmaster &agrave; Valenciennes</title>
-    <meta charset="utf-8" />
 
+	<meta charset="utf-8" />
+
+    <title>Création de sites web | Alexis AMAND - Webmaster à Valenciennes</title>
+   
     <meta name="description" content="Webmaster à Valenciennes, Alexis AMAND propose de développer votre visibilité sur internet grâce à la création d'un site web. Site dynamique et responsive à l'image de votre activité que vous soyez professionnel, particulier ou association.">
-
-
 
     <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/grid_12.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/slider.css">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css">
-
-   <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
+   	<link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
+   	
     <script src="js/jquery-1.7.min.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
-
-
     
-	<!--[if lt IE 8]>
-       <div style=' clear: both; text-align:center; position: relative;'>
-         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-           <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-        </a>
-      </div>
-    <![endif]-->
-    <!--[if lt IE 9]>
-   		<script type="text/javascript" src="js/html5.js"></script>
-    	<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
-	<![endif]-->
-
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(["setDomains", ["*.www.boitasite.com"]]);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//genealexis.fr/piwik/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', '14']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="//genealexis.fr/piwik/piwik.php?idsite=14" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
-
+	<!-- Piwik -->
+	<script type="text/javascript">
+	  var _paq = _paq || [];
+	  _paq.push(["setDomains", ["*.www.boitasite.com"]]);
+	  _paq.push(['trackPageView']);
+	  _paq.push(['enableLinkTracking']);
+	  (function() {
+	    var u="//genealexis.fr/piwik/";
+	    _paq.push(['setTrackerUrl', u+'piwik.php']);
+	    _paq.push(['setSiteId', '14']);
+	    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+	    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	  })();
+	</script>
+	<noscript><p><img src="//genealexis.fr/piwik/piwik.php?idsite=14" style="border:0;" alt="" /></p></noscript>
+	<!-- End Piwik Code -->
 
 </head>
-
-
 
 <body>
    <header> 
        <div> 
           <div>                 	
+              <h3><a href="index.php"><img src="images/logo.png" alt=""></a></h3>
               <nav>  
                 <ul class="menu">
-                      <li><a href="index.php">Accueil</a></li>
-                      <li class="current"><a href="webmaster.php">Création de sites</a></li>
+                      <!-- >li class="current"><a href="index.php">Accueil</a></li -->
+                      <li><a href="webmaster.php" class="current">Création de sites</a></li>
                       <li><a href="cours.php">Cours à domicile</a></li>
-                      <li><a href="tutoriels.php">Tutoriels</a></li>
+                      <li><a href="tutoriels.php">Tutos</a></li>    
                       <li><a href="to8.php">TO8</a></li>
+                      <li><a href="thegasp.php">The Gasp</a></li>               
                       <li><a href="contacts.php">Contacts</a></li>
                   </ul>
               </nav>
@@ -74,54 +56,205 @@
           </div>
       </div>
     </header>  
-
-    <section class="container">
     
-    <div class="row">
+  	<!--==============================content================================-->
+  	
+    <section id="content"></div>
+    	<div class="container_12">
 
-<div class="col col-sm-8">
+            <div class="grid_12 box-2">
+            	<div>
+                    <h1 class="text-3">Création de <span>site</span> web</h1>                       
+                </div>
+            </div>
 
-<p class="text-justify">Vous êtes à la recherche d'une solution facile pour créer votre site web, et ainsi faire progresser votre entreprise et propulser votre site Web en première page de Google ? Si vous vous poser cette question, vous demandez sans doute également quelles sont les bonnes pratiques pour être visibles sur les moteurs de recherche et être en première page des moteurs de recherche ?</p>
+            <div style="clear:both">
 
-<h3>Combien ça coûte ?</h3>
+			<br />
 
-<h3>Quelques réalisation</h3>
+			<p>Vous êtes à la recherche d'une solution facile pour créer votre site web, et ainsi faire progresser votre entreprise et propulser votre site Web en première page de Google ? Si vous vous poser cette question, vous demandez sans doute également quelles sont les bonnes pratiques pour être visibles sur les moteurs de recherche et être en première page des moteurs de recherche ?</p>   
 
-<img src="images/sites.jpg" style="width:100%;">
+        	<div style="text-align:center;margin-top:45px;margin-bottom:45px;">
+            <a href="contacts.php" class="button">Ne cherchez plus ! Contactez moi pour plus d'informations !</a>
+            </div>
 
-</div>
+			<h2 style="margin-top:20px;margin-bottom:10px;">Combien ça coûte ?</h2>
 
-<div class="col col-sm-4">
+            	<p>Ce tableau est donné à titre indicatif, chaque projet est différent et fera l'objet d'une étude personnalisée.</p>
 
-    <div class="card border-success mb-3" style="max-width: 20rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-    <h4 class="card-title">Success card title</h4>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
+	            <br />
+	
+	            <table align="center">
+	                <tr>
+	                    <td>&nbsp;</td>
+	                    <td>pack blog</td>
+	                    <td>Pack start</td>
+	                    <td>Pack vitrine</td>
+	                    <td>Pack expert</td>
+	                </tr>
+	                <tr>
+	                    <td>Hébergement du site</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                </tr>
+	                <tr>
+	                    <td>Nom de domaine</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                </tr>
+	                <tr>
+	                    <td>Nombre de pages</td>
+	                    <td>illimité</td>
+	                    <td>3</td>
+	                    <td>10</td>
+	                    <td>illimité</td>
+	                </tr>
+	                <tr>
+	                    <td>Charte graphique personnalisée</td>
+	                    <td>?</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                </tr>
+	                <tr>
+	                    <td>Page de contact</td>
+	                    <td>-</td>
+	                    <td>-</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                </tr>
+	                <tr>
+	                    <td>Page supplémentaire</td>
+	                    <td>-</td>
+	                    <td>(en option)</td>
+	                    <td>(en option)</td>
+	                    <td>-</td>
+	                </tr>
+	                <tr>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                </tr>
+	                <tr>
+	                    <td>Référencement naturel</td>
+	                    <td>(en option)</td>
+	                    <td>(en option)</td>
+	                    <td>(en option)</td>
+	                    <td>+</td>
+	                </tr>
+	                <tr>
+	                    <td>Indexation dans Google</td>
+	                    <td>(en option)</td>
+	                    <td>(en option)</td>
+	                    <td>(en option)</td>
+	                    <td>+</td>
+	                </tr>
+	                <tr>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                </tr>
+	                <tr>
+	                    <td>Backoffice pour gérer votre site</td>
+	                    <td>-</td>
+	                    <td>-</td>
+	                    <td>-</td>
+	                    <td>+</td>
+	                </tr>
+	                <tr>
+	                    <td>Gestion des statistiques</td>
+	                    <td>(en option)</td>
+	                    <td>(en option)</td>
+	                    <td>(en option)</td>
+	                    <td>+</td>
+	                </tr>
+	                <tr>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                </tr>
+	                <tr>
+	                    <td>Mise en ligne du site</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                </tr>
+	                <tr>
+	                    <td>Respect des normes du W3C</td>
+	                    <td>-</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                    <td>+</td>
+	                </tr>
+	                <tr>
+	                    <td>&nbsp;</td>
+	                    <td>99 €</td>
+	                    <td>560 €</td>
+	                    <td>990 €</td>
+	                    <td>1450 €</td>
+	                </tr>
+	            </table>
+	            
+            	<p>&nbsp;</p>
 
-</div>
+            <h2 style="margin-top:20px;margin-bottom:10px;">Quelques réalisations...</h2><br />
 
-</div>
+            	<div style="text-align:center;">
+	                <img src="images/img1.jpg" alt="" style="border:7px solid white;margin:10px 10px 10px 10px;">
+	                <img src="images/img2.jpg" alt="" style="border:7px solid white;margin:10px 10px 10px 10px;">
+	                <img src="images/img3.jpg" alt="" style="border:7px solid white;margin:10px 10px 10px 10px;">
+	                <img src="images/img4.jpg" alt="" style="border:7px solid white;margin:10px 10px 10px 10px;">
+				</div>
+				
+				<div style="text-align:center;">
+	                <img src="images/img5.jpg" alt="" style="border:7px solid white;margin:10px 10px 10px 10px;">
+	                <img src="images/img6.jpg" alt="" style="border:7px solid white;margin:10px 10px 10px 10px;">
+	                <img src="images/img7.jpg" alt="" style="border:7px solid white;margin:10px 10px 10px 10px;">
+	                <img src="images/img8.jpg" alt="" style="border:7px solid white;margin:10px 10px 10px 10px;">
+				</div>    
 
+				<div style="text-align:center;">
+	                <img src="images/img9.jpg" alt="" style="border:7px solid white;margin:10px 10px 10px 10px;">
+	                <img src="images/img10.jpg" alt="" style="border:7px solid white;margin:10px 10px 10px 10px;">
+	                <img src="images/img11.jpg" alt="" style="border:7px solid white;margin:10px 10px 10px 10px;">
+	                <img src="images/img12.jpg" alt="" style="border:7px solid white;margin:10px 10px 10px 10px;">              
+            	</div>
+            	      
+            </div>    
+            <div class="clear"></div>
+        </div>
     </section> 
+    
+	<!--==============================footer=================================-->
 
-  <footer>
-      
-
-
-          <p>© 2016-2018 Alexis AMAND</p>
-        
-
-       </div>
-       
-  </footer>	
-
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
+	<footer>
+		<div style="width:960px;margin-left:auto;margin-right:auto;font-family: Verdana, Geneva, sans-serif;">
+			
+	        <div style="width:50%;float:left;margin-bottom:25px;text-align:center;font-size: 0.8em;">
+	        Alexis AMAND<br />Développeur Web<br />---<br />06.62.63.79.21<br />alexis.amand@gmail.com<br />
+			</div>
+			
+			<div style="width:50%;float:left;margin-bottom:25px;text-align:center;font-family: Verdana, Geneva, sans-serif;font-size: 0.8em;">
+	        <span>Follow Moi:</span><br /><br />
+	        <a href="https://twitter.com/alexisamand"><img src="images/icon-1.jpg" alt=""></a>
+	        <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><img src="images/icon-2.jpg" alt=""></a>
+			</div>
+			
+			<div style="text-align:center;clear:both;font-size: 0.7em;">© 2016-2020 - Alexis AMAND</div>
+			
+		</div>
+			
+	</footer>
+  
 </body>
-</html>

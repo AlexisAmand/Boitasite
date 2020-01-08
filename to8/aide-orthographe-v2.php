@@ -4,7 +4,7 @@
     <title>Aide à l'orthographe version 2 pour micro-ordinateurs Thomson</title>
     <meta charset="utf-8">
 
-    <meta name="description" content="Le jeu éducatif Aide à l'orthographe version 2 pour micro-ordinateurs Thomson">
+    <meta name="description" content=" ">
 
 
     <link rel="stylesheet" type="text/css" media="screen" href="../css/reset.css">
@@ -149,8 +149,8 @@
       
       <div style="width:960px;margin-left:auto;margin-right:auto;">
 
-          <p>© 2016-2018 Alexis AMAND</p>
-          <div class="soc-icons"><span>Follow Moi:</span><a href="https://twitter.com/alexisamand"><img src="../images/icon-1.jpg" alt=""></a><a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/?ref=settings"><img src="../images/icon-2.jpg" alt=""></a><a href="https://plus.google.com/117361709952417935347"><img src="../images/icon-3.jpg" alt=""></a></div>
+          <p>© 2016 Alexis AMAND</p>
+          <div class="soc-icons"><span>Follow Us:</span><a href="https://twitter.com/alexisamand"><img src="../images/icon-1.jpg" alt=""></a><a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/?ref=settings"><img src="../images/icon-2.jpg" alt=""></a><a href="https://plus.google.com/117361709952417935347"><img src="../images/icon-3.jpg" alt=""></a></div>
 
        </div>
        
