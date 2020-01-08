@@ -88,9 +88,11 @@
 			<h2 style="margin-top:20px;margin-bottom:10px;">Le langage PHP</h2>
 
 				<ul>
+					<li><a href="pdf/php/PHP_v1.pdf" title="#">Programmer en PHP (via Alcôve)</li>
+					<li><a href="pdf/php/cours-php-5.pdf" title="Cours sur la version 5 du langage PHP">Cours de PHP 5.0</a></li> 
 					<li><a href="pdf/php/Documentation-PHP-4-3-0.pdf" title="Documentation officielle de la version 4.3 de PHP">Manuel PHP 4.3.0 (Documentation officielle)</a></li>
 					<li><a href="pdf/php/introduction-php.pdf" title="Introduction à la version 4 du langage PHP">Introduction à PHP 4 (Université de Genève)</a></li>
-					<li><a href="pdf/php/cours-php-5.pdf" title="Cours sur la version 5 du langage PHP">Cours de PHP 5.0</a></li>    
+					   
 	            </ul>
                 
 			<h2 style="margin-top:20px;margin-bottom:10px;">Le langage SQL</h2>
