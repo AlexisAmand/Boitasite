@@ -99,6 +99,7 @@
 		    	<p><strong>8 janvier 2020: </strong></p>
 			    <ul>
 			        <li>Le projet est maintenant sur <a href="https://github.com/AlexisAmand/The-Gasp">GitHub</a></li>
+					<li>Une version JavaScript, utilisable via un navigateur, est en cours de développement</a></li>
 			    </ul>
 		
 			    <p><strong>11 juin 2018: </strong></p>
