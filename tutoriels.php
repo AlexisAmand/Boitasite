@@ -4,7 +4,7 @@
 
 	<meta charset="utf-8">
 
-    <title>Cours et tutoriels d'informatique | Alexis AMAND - Webmaster à Valenciennes</title>
+    <title>Cours et tutoriels d'informatique | Alexis AMAND - développement web et SEO à Valenciennes</title>
     
     <meta name="description" content="Tutoriels et cours d'informatique sur les langages de programmation, l'uml, les logiciels et la création de sites en consultation et téléchargement gratuit">
 
@@ -40,7 +40,7 @@
    <header> 
        <div> 
           <div>                 	
-              <h3><a href="index.php"><img src="images/logo.png" alt=""></a></h3>
+              <h3><a href="index.php"><img src="images/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a></h3>
               <nav>  
                 <ul class="menu">
                       <li><a href="webmaster.php">Création de sites</a></li>

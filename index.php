@@ -4,7 +4,7 @@
        
     <meta charset="utf-8">
     
-    <title>Création de site web et SEO | Alexis AMAND - Webmaster à Valenciennes</title>
+    <title>Création de site web et SEO | Alexis AMAND - développement web et SEO à Valenciennes</title>
 
     <meta name="description" content="Agence de création de site web pour les TPE, artisans, entrepreneurs et associations - Rédaction, responsive web design, référencement, SEO, je prends tout en charge ! Contactez-moi.">
 
@@ -43,7 +43,7 @@
    <header> 
        <div> 
           <div>                 	
-              <h3><a href="index.php"><img src="images/logo.png" alt=""></a></h3>
+              <h3><a href="index.php"><img src="images/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a></h3>
               <nav>  
                 <ul class="menu">
                       <li><a href="webmaster.php">Création de sites</a></li>

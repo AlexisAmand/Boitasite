@@ -4,7 +4,7 @@
     <title>Manuel du mmoniteur Thomson pour micro-ordinateurs</title>
     <meta charset="utf-8">
 
-    <meta name="description" content=" ">
+    <meta name="description" content="Le manuel du moniteur des micro-ordinateurs Thomson TO8 dans les années 80">
 
 
     <link rel="stylesheet" type="text/css" media="screen" href="../css/reset.css">
@@ -86,7 +86,7 @@
    <header> 
        <div> 
           <div>                 	
-              <h3><a href="../index.php"><img src="../images/logo.png" alt=""></a></h3>
+              <h3><img src="../images/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a></h3>
               <nav>  
                 <ul class="menu">
                       <li><a href="../index.php">Accueil</a></li>

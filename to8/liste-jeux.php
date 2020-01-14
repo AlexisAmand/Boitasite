@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Manuel du jeu "Saphir" pour ordinateurs Thomson</title>
+    <title>Liste de jeux pour ordinateurs Thomson</title>
     <meta charset="utf-8">
 
-    <meta name="description" content=" ">
+    <meta name="description" content="liste de jeux pour les micro-ordinateurs Thomson TO8 dans les années 80">
 
 
     <link rel="stylesheet" type="text/css" media="screen" href="../css/reset.css">
@@ -87,7 +87,7 @@
    <header> 
        <div> 
           <div>                 	
-              <h3><a href="../index.php"><img src="../images/logo.png" alt=""></a></h3>
+              <h3><img src="../images/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a></h3>
               <nav>  
                 <ul class="menu">
                       <li><a href="../index.php">Accueil</a></li>

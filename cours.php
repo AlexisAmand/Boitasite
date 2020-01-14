@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
 
-    <title>Cours d'informatique à domicile | Alexis AMAND - Webmaster à Valenciennes</title>
+    <title>Cours d'informatique à domicile | Alexis AMAND - développement web et SEO à Valenciennes</title>
 
     <meta name="description" content="Cours informatique à domicile et dépannage d'ordinateur sur Valenciennes et son arrondissement">
 
@@ -40,7 +40,7 @@
    <header> 
        <div> 
           <div>                 	
-              <h3><a href="index.php"><img src="images/logo.png" alt=""></a></h3>
+              <h3><a href="index.php"><img src="images/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a></h3>
               <nav>  
                 <ul class="menu">
                       <li><a href="webmaster.php">Création de sites</a></li>

@@ -4,7 +4,7 @@
 
 	<meta charset="utf-8">
 
-    <title>Le micro-ordinateur Thomson TO8 | Alexis AMAND - Webmaster à Valenciennes</title>
+    <title>Le micro-ordinateur Thomson TO8 | Alexis AMAND - développement web et SEO à Valenciennes</title>
     
     <meta name="description" content="A la découverte du TO8 de Thomson, un micro ordinateur qui est apparu en 1986.">
 
@@ -53,7 +53,7 @@
    <header> 
        <div> 
           <div>                 	
-              <h3><a href="index.php"><img src="images/logo.png" alt=""></a></h3>
+              <h3><a href="index.php"><img src="images/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a></h3>
               <nav>  
                 <ul class="menu">
                       <li><a href="webmaster.php">Création de sites</a></li>

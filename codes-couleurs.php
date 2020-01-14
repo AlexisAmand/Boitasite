@@ -4,7 +4,7 @@
 
 	<meta charset="utf-8">
 
-    <title>Liste des codes couleur en HTML | Alexis AMAND - Webmaster à Valenciennes</title>
+    <title>Liste des codes couleur en HTML | Alexis AMAND - développement web et SEO à Valenciennes</title>
 
     <meta name="description" content=" ">
 
@@ -42,7 +42,7 @@
    <header> 
        <div> 
           <div>                 	
-              <h3><a href="index.php"><img src="images/logo.png" alt=""></a></h3>
+              <h3><a href="index.php"><img src="images/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a></h3>
               <nav>  
                 <ul class="menu">
                       <li><a href="webmaster.php" class="current">Création de sites</a></li>

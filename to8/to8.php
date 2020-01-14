@@ -5,7 +5,7 @@
     <title>Le micro-ordinateur Thomson TO8</title>
     <meta charset="utf-8">
 
-    <meta name="description" content="">
+    <meta name="description" content="A la découverte des micro-ordinateurs Thomson TO8">
 
     <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/grid_12.css">
@@ -70,7 +70,7 @@
    <header> 
        <div> 
           <div>                 	
-              <h3><a href="index.php"><img src="images/logo.png" alt=""></a></h3>
+              <h3><a href="index.php"><img src="images/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a></h3>
               <nav>  
                 <ul class="menu">
                       <li><a href="index.php">Accueil</a></li>

@@ -86,7 +86,7 @@
    <header> 
        <div> 
           <div>                 	
-              <h3><a href="../index.php"><img src="../images/logo.png" alt=""></a></h3>
+              <h3><img src="../images/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a></h3>
               <nav>  
                 <ul class="menu">
                       <li><a href="../index.php">Accueil</a></li>
