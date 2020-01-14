@@ -88,14 +88,19 @@
 		    <h2 style="margin-top:20px;margin-bottom:10px;">Téléchargement et installation</h2>
 		
 			    <ul>
-			        <li>Téléchargez THE GASP en cliquant sur <a href="#">ce lien</a>.</li>
+			        <li>Téléchargez THE GASP en cliquant sur <a href="thegasp.zip">ce lien</a>.</li>
 			        <li>Décompressez le fichier dans le répertoire de votre choix.</li>
 			        <li>Exécutez le fichier setup.exe et suivez les instructions.</li>
 			        <li>Jouez !</li>
 			    </ul>
 
 		    <h2 style="margin-top:20px;margin-bottom:10px;">Actualités</h2>
-		    	    
+				  
+				<p><strong>11 janvier 2020: </strong></p>
+			    <ul>
+					<li>La version est JavaScript est dispo : <a href="http://thegasp.genealexis.fr/">http://thegasp.genealexis.fr/</a></li>
+			    </ul>
+
 		    	<p><strong>8 janvier 2020: </strong></p>
 			    <ul>
 			        <li>Le projet est maintenant sur <a href="https://github.com/AlexisAmand/The-Gasp">GitHub</a></li>
