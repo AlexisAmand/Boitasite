@@ -91,39 +91,39 @@
                         <td>Tarifs (TTC)</td></tr>
                         <tr>
                         <td>Cours d'informatique à votre domicile</td>
-                        <td>17 €/h</td>
+                        <td>26 €/h</td>
                         </tr>
                         <tr>
                         <td>R&eacute;installation de votre système d'exploitation Linux ou Windows, seul les CD des systèmes linux sont fournis.</td>
-                        <td>75 €</td>
+                        <td> - </td>
                         </tr>
                         <tr>
                         <td>Remise &agrave; z&eacute;ro de votre ordinateur pour lui redonner la configuration d'usine</td>
-                        <td>75 €</td>
+                        <td> - </td>
                         </tr>
                         <tr>
                         <td>Installation et configuration de votre "box internet" (LiveBox, DartyBox, BBox, ...etc.)</td>
-                        <td>40 €</td>
+                        <td> - </td>
                         </tr>
                         <tr>
                         <td>R&eacute;cup&eacute;ration de vos donn&eacute;es</td>
-                        <td>74 €</td>
+                        <td> - </td>
                         </tr>
                         <tr>
-                        <td height="20"   >Installation de votre nouveau PC</td>
-                        <td height="20">40 €</td>
+                        <td>Installation de votre nouveau PC</td>
+                        <td> - </td>
                         </tr>
                         <tr>
-                        <td height="20">Installation et configuration de votre imprimante/scanner</td>
-                        <td height="20">40 €</td>
+                        <td>Installation et configuration de votre imprimante/scanner</td>
+                        <td> - </td>
                         </tr>
                         <tr>
-                        <td height="20"   >Installation et param&eacute;trage de vos périphériques (webcams, disques externes,etc.)</td>
-                        <td height="20">40 €</td>
+                        <td>Installation et param&eacute;trage de vos périphériques (webcams, disques externes,etc.)</td>
+                        <td> - </td>
                         </tr>
                         <tr>
-                        <td height="20"   >S&eacute;curisation de votre connexion + logiciels pour le net (antivirus, messagerie, navigateur,etc.)</td>
-                        <td height="20">40 €</td>
+                        <td>S&eacute;curisation de votre connexion + logiciels pour le net (antivirus, messagerie, navigateur,etc.)</td>
+                        <td> - </td>
                         </tr>
                     </table>
 

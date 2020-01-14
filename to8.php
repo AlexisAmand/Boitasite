@@ -190,7 +190,7 @@
 	                    <li><a href="to8/pdf/svm-034.pdf" title="publicité pour le TO8 parue dans la revue Science & Vie Micro n°34">
 	                    Scienve & Vie Micro n°34 - Décembre 1986 : "Une place de 1ere dans le train de l'avenir" (pdf)</a></li>
 	                    <li><a href="to8/pdf/svm-039.pdf" title="publicité pour le TO8 parue dans la revue Science & Vie Micro n°39">
-	                    Scienve & Vie Micro n°39 - Mai 19876 : "Promotion sur la gamme TO8 chez Videoshop" (pdf)</a></li>
+	                    Scienve & Vie Micro n°39 - Mai 1986 : "Promotion sur la gamme TO8 chez Videoshop" (pdf)</a></li>
 	                    <li>js-42-page-67.pdf : Une place de 1ere dans le train de l'informatique</li>                                
 	                </ul>
 	

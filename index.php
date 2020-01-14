@@ -110,7 +110,7 @@
 				<img src="images/thegasp.png" alt="">
                 <div class="extra-wrap">
                 	<h2>The Gasp</h2>
-                    <p>The Gasp est un petit jeu développé en VBnet. Il s'agit d'une adaption d'un listing paru dans la presse spécialisée dans les années 80. Saurez-vous retourner toutes les cartes ? <a href="#">[En savoir plus...]</a></p>
+                    <p>The Gasp est un petit jeu développé en VBnet. Il s'agit d'une adaption d'un listing paru dans la presse spécialisée dans les années 80. Saurez-vous retourner toutes les cartes ? <a href="thegasp.php">[En savoir plus...]</a></p>
                 </div>
             </div>  
 
@@ -118,7 +118,7 @@
 				<img src="images/publiged.png" alt="">
                 <div class="extra-wrap">
                 	<h2>PubliGED</h2>
-                    <p>PubliGED est un projet de création d'un CMS dédié à la Généalogie. Actuellement en financement participatif sur Tipeee, il a pour but de permettre aux utilisateurs de créer publier facilement leur généalogie via leur propre site web. <a href="#">[En savoir plus...]</a></p>
+                    <p>PubliGED est un projet de création d'un CMS dédié à la Généalogie. Actuellement en financement participatif sur Tipeee, il a pour but de permettre aux utilisateurs de créer publier facilement leur généalogie via leur propre site web. <a href="https://fr.tipeee.com/genealexis">[En savoir plus...]</a></p>
                 </div>
             </div>  
             
