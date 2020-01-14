@@ -114,7 +114,7 @@
 		<div style="width:960px;margin-left:auto;margin-right:auto;font-family: Verdana, Geneva, sans-serif;">
 			
 	        <div style="width:50%;float:left;margin-bottom:25px;text-align:center;font-size: 0.8em;">
-	        Alexis AMAND<br />Développeur Web<br />---<br />06.62.63.79.21<br />alexis.amand@gmail.com<br />
+	        Alexis AMAND<br />Développement Web et SEO<br />---<br />06.62.63.79.21<br />alexis.amand@gmail.com<br />
 			</div>
 			
 			<div style="width:50%;float:left;margin-bottom:25px;text-align:center;font-family: Verdana, Geneva, sans-serif;font-size: 0.8em;">

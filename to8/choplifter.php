@@ -140,17 +140,26 @@
             <div class="clear"></div>
         </div>
     </section> 
-<!--==============================footer=================================-->
-    <footer>
-      
-      <div style="width:960px;margin-left:auto;margin-right:auto;">
+	<!--==============================footer=================================-->
 
-          <p>© 2016 Alexis AMAND</p>
-          <div class="soc-icons"><span>Follow Us:</span><a href="https://twitter.com/alexisamand"><img src="../images/icon-1.jpg" alt=""></a><a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/?ref=settings"><img src="../images/icon-2.jpg" alt=""></a><a href="https://plus.google.com/117361709952417935347"><img src="../images/icon-3.jpg" alt=""></a></div>
-
-       </div>
-       
-  </footer>	
-
+	<footer>
+		<div style="width:960px;margin-left:auto;margin-right:auto;font-family: Verdana, Geneva, sans-serif;">
+			
+	        <div style="width:50%;float:left;margin-bottom:25px;text-align:center;font-size: 0.8em;">
+	        Alexis AMAND<br />Développement Web et SEO<br />---<br />06.62.63.79.21<br />alexis.amand@gmail.com<br />
+			</div>
+			
+			<div style="width:50%;float:left;margin-bottom:25px;text-align:center;font-family: Verdana, Geneva, sans-serif;font-size: 0.8em;">
+	        <span>Follow Moi:</span><br /><br />
+	        <a href="https://twitter.com/alexisamand"><img src="images/icon-1.jpg" alt=""></a>
+	        <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><img src="images/icon-2.jpg" alt=""></a>
+			</div>
+			
+			<div style="text-align:center;clear:both;font-size: 0.7em;">© 2016-2020 - Alexis AMAND</div>
+			
+		</div>
+			
+	</footer>
+  
 </body>
 </html>
