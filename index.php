@@ -50,7 +50,7 @@
                       <li><a href="cours.php">Cours à domicile</a></li>
                       <li><a href="tutoriels.php">Tutos</a></li>    
                       <li><a href="to8.php">TO8</a></li>
-                      <li><a href="thegasp.php">The Gasp</a></li>               
+                      <li><a href="http://thegasp.genealexis.fr" title="Le Gasp, casse-tête gratuit jouable en ligne">Le Gasp</a></li>                
                       <li><a href="contacts.php">Contacts</a></li>
                   </ul>
               </nav>
@@ -61,7 +61,7 @@
     
     <!--==============================content================================-->
   
-    <section id="content"></div>
+    <section id="content">
     	<div class="container_12">
 
             <div class="grid_12 box-2">
@@ -109,8 +109,8 @@
             <div class="grid_6 box-1">
 				<img src="images/thegasp.png" alt="">
                 <div class="extra-wrap">
-                	<h2>The Gasp</h2>
-                    <p>The Gasp est un petit jeu développé en VBnet. Il s'agit d'une adaption d'un listing paru dans la presse spécialisée dans les années 80. Saurez-vous retourner toutes les cartes ? <a href="thegasp.php">[En savoir plus...]</a></p>
+                	<h2>Le Gasp</h2>
+                    <p>Le Gasp est un petit jeu développé en JavaScript. Il s'agit d'une adaption d'un listing paru dans la presse spécialisée dans les années 80. Saurez-vous retourner toutes les cartes ? <a href="http://thegasp.genealexis.fr">[En savoir plus...]</a></p>
                 </div>
             </div>  
 

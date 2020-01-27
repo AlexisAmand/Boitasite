@@ -54,7 +54,7 @@
                       <li><a href="cours.php">Cours à domicile</a></li>
                       <li><a href="tutoriels.php">Tutos</a></li>    
                       <li><a href="to8.php">TO8</a></li>
-                      <li><a href="thegasp.php">The Gasp</a></li>               
+                      <li><a href="http://thegasp.genealexis.fr" title="Le Gasp, casse-tête gratuit jouable en ligne">Le Gasp</a></li>                
                       <li><a href="contacts.php" class="current">Contacts</a></li>
                   </ul>
               </nav>
@@ -65,7 +65,7 @@
     
   	<!--==============================content================================-->
   	
-    <section id="content"></div>
+    <section id="content">
     	<div class="container_12">
 
             <div class="grid_12 box-2">

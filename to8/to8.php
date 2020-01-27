@@ -73,12 +73,12 @@
               <h3><a href="index.php"><img src="images/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a></h3>
               <nav>  
                 <ul class="menu">
-                      <li><a href="index.php">Accueil</a></li>
-                      <li><a href="webmaster.php">Création de sites</a></li>
-                      <li><a href="cours.php">Cours à domicile</a></li>
-                      <li><a href="tutoriels.php">Tutoriels</a></li>
-                      <li class="current"><a href="to8.php">TO8</a></li>
-                      <li><a href="contacts.php">Contacts</a></li>
+                      <li><a href="../webmaster.php">Création de sites</a></li>
+                      <li><a href="../cours.php">Cours à domicile</a></li>
+                      <li><a href="../tutoriels.php" class="current">Tutos</a></li>    
+                      <li><a href="../to8.php" class="current">TO8</a></li>
+                      <li><a href="http://thegasp.genealexis.fr" title="Le Gasp, casse-tête gratuit jouable en ligne">Le Gasp</a></li>                
+                      <li><a href="../contacts.php">Contacts</a></li>
                   </ul>
               </nav>
               <div class="clear"></div>
@@ -86,7 +86,7 @@
       </div>
     </header>  
   <!--==============================content================================-->
-    <section id="content"></div>
+    <section id="content">
     	<div class="container_12">
 
 
