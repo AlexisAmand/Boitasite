@@ -46,7 +46,7 @@
               <nav>  
                 <ul class="menu">
                       <li><a href="webmaster.php" class="current">Création de sites</a></li>
-                      <li><a href="cours.php">Cours à domicile</a></li>
+                      <li><a href="seo.php">SEO</a></li>
                       <li><a href="tutoriels.php">Tutos</a></li>    
                       <li><a href="to8.php">TO8</a></li>
                       <li><a href="http://thegasp.genealexis.fr" title="Le Gasp, casse-tête gratuit jouable en ligne">Le Gasp</a></li>                

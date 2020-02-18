@@ -2,27 +2,20 @@
 <html lang="fr">
 <head>
 
-	<meta charset="utf-8">
+    <meta charset="utf-8">
 
-    <title>Me contacter | Alexis AMAND - développement web et SEO à Valenciennes</title>
-    
-    <meta name="description" content=" ">
+    <title>Référencement naturel (SEO) de votre site | Alexis AMAND - développement web et SEO à Valenciennes</title>
+
+    <meta name="description" content="Quelles sont les bonnes pratiques pour être visible et être bonne position sur les moteurs de recherche">
 
     <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/grid_12.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/slider.css">
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
-   
+    
     <script src="js/jquery-1.7.min.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
-    
-	<style type="text/css">
-        .auto-style1 {
-            margin-right: 40px;
-            text-align: center;
-        }
-    </style>
     
 	<!-- Piwik -->
 	<script type="text/javascript">
@@ -51,56 +44,46 @@
               <nav>  
                 <ul class="menu">
                       <li><a href="webmaster.php">Création de sites</a></li>
-                      <li><a href="seo.php">SEO</a></li>
+                      <li><a href="seo.php" class="current">SEO</a></li>
                       <li><a href="tutoriels.php">Tutos</a></li>    
                       <li><a href="to8.php">TO8</a></li>
                       <li><a href="http://thegasp.genealexis.fr" title="Le Gasp, casse-tête gratuit jouable en ligne">Le Gasp</a></li>                
-                      <li><a href="contacts.php" class="current">Contacts</a></li>
+                      <li><a href="contacts.php">Contacts</a></li>
                   </ul>
               </nav>
               <div class="clear"></div>
           </div>
       </div>
-    </header>  
-    
+    </header>
+      
   	<!--==============================content================================-->
   	
-    <section id="content">
+    <section id="content" style="min-height:calc(100vh - 307px);">
     	<div class="container_12">
 
             <div class="grid_12 box-2">
             	<div>
-                    <h1 class="text-3">Pour <span>me</span> contacter</h1>                  
+                    <h1 class="text-3">Référencement <span>natur</span>el (SEO)</h1>                  
                 </div>
             </div>
 
             <div style="clear:both">
 
-        	<div class="grid_8">          	
-                <div class="auto-style1">
-                    <br/>
-                	<p>Vous vous posez des questions?<br/>
-                     Vous avez des envies, des besoins et des idées ?<br/>
-                     Le monde de l’internet et des ordinateur est trop compliqué pour vous ?</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <img src="images/wifi.png">
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p> 
-                    <br/>
-                    <p>N'hésitez pas à me contacter en m'envoyant un message à <a href="mailto:amand.alexis@bbox.fr">amand.alexis@bbox.fr</a> </p>
-                    <p>ou en m&#39;envoyant un SMS au 06.62.63.79.21</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p> 
-                    <br />
-                    <p>Si vous préférez, je suis également disponible sur les réseaux <a href="https://www.facebook.com/alexisamand">Facebook</a> et <a href="http://www.twitter.com/alexisamand">Twitter</a> !</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-				</div>
+            <p></p><br />
+
+                <img src="images/wordcloud.jpg" style="float:right;width:350px;margin-left:25px;">
+
+                <h2 style="margin-top:20px;margin-bottom:10px;">C'est que le SEO ?</h2>
+
+                <p>SEO est un acronyme qui signifie "Search Engine Optimisation". Pour résumer, il s'agit de toutes les techniques qui permettent d'optimiser la visibilité des pages de otre site et leur position dans les résultats de recherche des moteurs (SERP), c'est ce qu'on appelle le <strong>référencement naturel</strong>. L'idée, c'est d'aider les robots qui parcourent votre site dans le but de l'indexer à comprendre sa thématique et le contenu des pages.</p>
+
+                <h2 style="margin-top:20px;margin-bottom:10px;">En quoi ça vous concerne ?</h2>
+
+                <p>Si vous êtes ici, peut-être que vous vous demandez quelles sont les bonnes pratiques pour être visible sur les moteurs de recherche, être en top des pages de résultats et ainsi augmenter votre chiffre d'affaire ? N'hésitez pas, contactez moi, et nous verrons ce que nous pouvons faire ensemble.</p>
+
             </div>
 
-			<div class="clear"></div>
-
+        <div class="clear"></div>
         </div>
     </section> 
     
@@ -126,4 +109,3 @@
 	</footer>
   
 </body>
-</html>
