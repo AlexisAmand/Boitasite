@@ -71,7 +71,7 @@
 
             <p></p><br />
 
-                <img src="images/wordcloud.jpg" style="float:right;width:350px;margin-left:25px;">
+                <img src="images/wordcloud.jpg" style="float:right;width:350px;margin-left:25px;margin-top: 29px;">
 
                 <h2 style="margin-top:20px;margin-bottom:10px;">C'est que le SEO ?</h2>
 
