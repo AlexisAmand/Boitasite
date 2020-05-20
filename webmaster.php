@@ -64,7 +64,7 @@
 
             <div class="grid_12 box-2">
             	<div>
-                    <h1 class="text-3">Création de <span>site</span> web</h1>                       
+                    <h1 class="text-3">Création de <span>sites</span> web</h1>                       
                 </div>
             </div>
 
