@@ -6,26 +6,16 @@
 
     <meta name="description" content="Description du jeu Androïdes, édité par Infogrames, qui était disponible sur les ordinateurs Thomson dans les années 80">
 
-
     <link rel="stylesheet" type="text/css" media="screen" href="../css/reset.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/grid_12.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/slider.css">
-   <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
+
     <script src="../js/jquery-1.7.min.js"></script>
     <script src="../js/jquery.easing.1.3.js"></script>
     
-	<!--[if lt IE 8]>
-       <div style=' clear: both; text-align:center; position: relative;'>
-         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-           <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-        </a>
-      </div>
-    <![endif]-->
-    <!--[if lt IE 9]>
-   		<script type="text/javascript" src="../js/html5.js"></script>
-    	<link rel="stylesheet" type="text/css" media="screen" href="../css/ie.css">
-	<![endif]-->
+    <script defer src="https://friconix.com/cdn/friconix.js"> </script>
 
      <!-- zoom avec Jquery -->
 
@@ -38,15 +28,11 @@
     
     $(document).ready(function() {
 
-	/* This is basic - uses default settings */
+  
 	
-	$("a#single_image").fancybox();
+	 
 	
-	/* Using custom settings */
-	
-	$("a#inline").fancybox({
-		'hideOnContentClick': true
-	});
+
 	
 	$(document).ready(function() {
   $('.accordeon').hide(); // on cache tous les textes (blocs ayant la classe accordeon)
@@ -107,68 +93,34 @@
 
             <div class="grid_12 box-2">
                 <img src="images/logo-to8.jpg" style="width:100%;">
-            	<div>
-                    <h1 class="text-3">Le jeu <span>Androïdes</span> pour TO8</h1>
-                    
-                    
-                </div>
+                <div><h1 class="text-3">Adden<span>tum</span> TO8</h1></div>
             </div>
 
             <div style="clear:both">
 
             <br />
-            
-         
 
             <h2 style="margin-top:20px;margin-bottom:10px;">Le jeu</h2>
 
-
-
-            
             <p>Rien ne va plus dans les entrepôts depuis qu'ils ont remplacé le vieux chien de garde par des robots très perfectionnés.<br />
             Votre but, récupérer tous les colis sans qu'ils vous rattrapent. Cela sera très difficile, mais bonne chance quand même.
             <br /><br />Le jeu était édité par Infogrames.
             <br/><br />Les captures qui suivent ont été réalisées avec <a href="http://www.mess.org/" title="Le site de l'émulateur MESS">l'émulateur MESS</a>.</p>
 
+            <br />
 
+            <img src="images/androide/androide_01.jpg" width="300px" alt="capture d'écran du jeu pour thomson TO8 Androïdes" style="margin-bottom:14px;margin-left:7px;margin-right:7px;"/>
 
-        
+            <img src="images/androide/androide_02.jpg" width="300px" alt="capture d'écran du jeu pour thomson TO8 Androïdes" style="margin-bottom:14px;margin-left:7px;margin-right:7px;"/>
 
-                <br />
+            <img src="images/androide/androide_03.jpg" width="300px" alt="capture d'écran du jeu pour thomson TO8 Androïdes" style="margin-bottom:14px;margin-left:7px;margin-right:7px;"/>
 
-    
-                <img src="images/androide/androide_01.jpg" width="300px" alt="capture d'écran du jeu pour thomson TO8 Androïdes" style="margin-bottom:14px;margin-left:7px;margin-right:7px;"/>
-
-                <img src="images/androide/androide_02.jpg" width="300px" alt="capture d'écran du jeu pour thomson TO8 Androïdes" style="margin-bottom:14px;margin-left:7px;margin-right:7px;"/>
-
-                <img src="images/androide/androide_03.jpg" width="300px" alt="capture d'écran du jeu pour thomson TO8 Androïdes" style="margin-bottom:14px;margin-left:7px;margin-right:7px;"/>
-
-    
-                   
-            </div>    
+            </div>
             <div class="clear"></div>
         </div>
-    </section> 
-	<!--==============================footer=================================-->
-
-	<footer>
-		<div style="width:960px;margin-left:auto;margin-right:auto;font-family: Verdana, Geneva, sans-serif;">
-			
-	        <div style="width:50%;float:left;margin-bottom:25px;text-align:center;font-size: 0.8em;">
-	        Alexis AMAND<br />Développement Web et SEO<br />---<br />06.62.63.79.21<br />alexis.amand@gmail.com<br />
-			</div>
-			
-			<div style="width:50%;float:left;margin-bottom:25px;text-align:center;font-family: Verdana, Geneva, sans-serif;font-size: 0.8em;">
-	        <span>Follow Moi:</span><br /><br />
-	        <a href="https://twitter.com/alexisamand"><img src="images/icon-1.jpg" alt=""></a>
-	        <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><img src="images/icon-2.jpg" alt=""></a>
-			</div>
-			
-			<div style="text-align:center;clear:both;font-size: 0.7em;">© 2016-2020 - Alexis AMAND</div>
-			
-		</div>
-			
-	</footer>
+    </section>
+  
+    <?php include('../include/footer.inc'); ?>
   
 </body>
 </html>

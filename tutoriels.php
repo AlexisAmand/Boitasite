@@ -15,7 +15,9 @@
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
    	   
     <script src="js/jquery-1.7.min.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	
+	<script defer src="https://friconix.com/cdn/friconix.js"> </script>
     
 	<!-- Piwik -->
 	<script type="text/javascript">
@@ -169,26 +171,7 @@
         </div>
     </section> 
     
-	<!--==============================footer=================================-->
-
-	<footer>
-		<div style="width:960px;margin-left:auto;margin-right:auto;font-family: Verdana, Geneva, sans-serif;">
-			
-	        <div style="width:50%;float:left;margin-bottom:25px;text-align:center;font-size: 0.8em;">
-	        Alexis AMAND<br />Développement Web et SEO<br />---<br />06.62.63.79.21<br />alexis.amand@gmail.com<br />
-			</div>
-			
-			<div style="width:50%;float:left;margin-bottom:25px;text-align:center;font-family: Verdana, Geneva, sans-serif;font-size: 0.8em;">
-	        <span>Follow Moi:</span><br /><br />
-	        <a href="https://twitter.com/alexisamand"><img src="images/icon-1.jpg" alt=""></a>
-	        <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><img src="images/icon-2.jpg" alt=""></a>
-			</div>
-			
-			<div style="text-align:center;clear:both;font-size: 0.7em;">© 2016-2020 - Alexis AMAND</div>
-			
-		</div>
-			
-	</footer>
+	<?php include('include/footer.inc'); ?>
   
 </body>
 </html>
