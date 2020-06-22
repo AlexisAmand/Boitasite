@@ -1,55 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <title>Le jeu Entropie pour micro-ordinateurs Thomson TO8</title>
-    <meta charset="utf-8">
 
-    <meta name="description" content="Description du jeu Entropie, édité par Infogrames, qui était disponible sur les ordinateurs Thomson dans les années 80">
+  <meta charset="utf-8">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="../css/grid_12.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="../css/slider.css">
-    <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
+  <title>Le jeu Entropie pour micro-ordinateurs Thomson | A la découverte du Thomson TO8</title>
+  <meta name="description" content="Description du jeu Entropie, édité par Infogrames, qui était disponible sur les ordinateurs Thomson dans les années 80">
 
-    <script src="../js/jquery-1.7.min.js"></script>
-    <script src="../js/jquery.easing.1.3.js"></script>
-    
-    <script defer src="https://friconix.com/cdn/friconix.js"> </script>
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/reset.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/grid_12.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/slider.css">
+  <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
 
-     <!-- zoom avec Jquery -->
+  <script src="../js/jquery-1.7.min.js"></script>
+  <script src="../js/jquery.easing.1.3.js"></script>
+  <script defer src="https://friconix.com/cdn/friconix.js"> </script>
 
-    <script type="text/javascript" src="../fancybox/jquery.fancybox.pack.js"></script>
-    <link rel="stylesheet" href="../fancybox/jquery.fancybox.css" type="text/css" media="screen" />
-    
-
-	
-    <script type="text/javascript">
-    
-    $(document).ready(function() {
-
-  
-	
-	 
-	
-	$(document).ready(function() {
-  $('.accordeon').hide(); // on cache tous les textes (blocs ayant la classe accordeon)
-  $('h4').click(function() { // si on clique sur un titre (ici tous les &eacute;l&eacute;ments contenu en les balises h4)
-    $(this).next('div:hidden').slideDown() // on deroule le div cach&eacute; qui suit directement le titre
-    .siblings('div:visible').slideUp(); // et on cache les div similaires qui etait visible
-  });
-});
-
-	
-});
-</script>
-
-<?php include('include/matomo.inc'); ?>
-
+  <?php include('../include/matomo.inc'); ?>
 
 </head>
-
-
 
 <body>
    <header> 

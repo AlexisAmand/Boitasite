@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     
     <title>Création de site web et SEO | Alexis AMAND - développement web et SEO à Valenciennes</title>
-
     <meta name="description" content="Agence de création de site web pour les TPE, artisans, entrepreneurs et associations - Rédaction, responsive web design, référencement, SEO, je prends tout en charge ! Contactez-moi.">
 
     <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css">
@@ -16,7 +15,6 @@
       
     <script src="js/jquery-1.7.min.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
-
     <script defer src="https://friconix.com/cdn/friconix.js"> </script>
     
     <meta name="google-site-verification" content="CT6-MJGUD82ligpXoIBjdglp4CyBIFXPum0LuBbcsD4" />

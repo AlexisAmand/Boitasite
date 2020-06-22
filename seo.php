@@ -5,7 +5,6 @@
     <meta charset="utf-8">
 
     <title>Référencement naturel (SEO) de votre site | Alexis AMAND - développement web et SEO à Valenciennes</title>
-
     <meta name="description" content="Quelles sont les bonnes pratiques pour être visible et être bonne position sur les moteurs de recherche">
 
     <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css">

@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 
     <title>Cours et tutoriels d'informatique | Alexis AMAND - développement web et SEO à Valenciennes</title>
-    
     <meta name="description" content="Tutoriels et cours d'informatique sur les langages de programmation, l'uml, les logiciels et la création de sites en consultation et téléchargement gratuit">
 
     <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css">
@@ -16,7 +15,6 @@
    	   
     <script src="js/jquery-1.7.min.js"></script>
 	<script src="js/jquery.easing.1.3.js"></script>
-	
 	<script defer src="https://friconix.com/cdn/friconix.js"> </script>
     
 	<?php include('include/matomo.inc'); ?>

@@ -4,8 +4,7 @@
 
 	<meta charset="utf-8" />
 
-    <title>Création de sites web à Valenciennes | Alexis AMAND - développement web et SEO</title>
-   
+    <title>Création de sites web à Valenciennes  | Alexis AMAND - développement web et SEO à Valenciennes</title>
     <meta name="description" content="Webmaster à Valenciennes, Alexis AMAND propose de développer votre visibilité sur internet (SEO) grace à la création d'un site web. Site dynamique et responsive à l'image de votre activité que vous soyez professionnel, particulier ou association.">
 
     <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css">

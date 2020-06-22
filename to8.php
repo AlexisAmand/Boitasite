@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 
     <title>Le micro-ordinateur Thomson TO8 | Alexis AMAND - développement web et SEO à Valenciennes</title>
-    
     <meta name="description" content="A la découverte du TO8 de Thomson, un micro ordinateur qui est apparu en 1986.">
 
     <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css">
@@ -16,22 +15,8 @@
         
     <script src="js/jquery-1.7.min.js"></script>
 	<script src="js/jquery.easing.1.3.js"></script>
-	
 	<script defer src="https://friconix.com/cdn/friconix.js"> </script>
     
-     <!-- zoom avec Jquery -->
-
-    <script type="text/javascript" src="fancybox/jquery.fancybox.pack.js"></script>
-    <link rel="stylesheet" href="fancybox/jquery.fancybox.css" type="text/css" media="screen" />
-    	
-	<script type="text/javascript">
-	    
-	    $(document).ready(function() 
-		{
-			 	
-		});
-	</script>
-
 	<?php include('include/matomo.inc'); ?>
 
 </head>

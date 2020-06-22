@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 
     <title>Liste des codes couleur en HTML | Alexis AMAND - développement web et SEO à Valenciennes</title>
-
     <meta name="description" content=" ">
 
     <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css">
@@ -18,7 +17,6 @@
    	
     <script src="js/jquery-1.7.min.js"></script>
 	<script src="js/jquery.easing.1.3.js"></script>
-	
 	<script defer src="https://friconix.com/cdn/friconix.js"> </script>
     
 	<?php include('include/matomo.inc'); ?>
