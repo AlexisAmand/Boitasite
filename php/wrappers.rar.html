@@ -1,0 +1,299 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>RAR</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="wrappers.ssh2.html">« ssh2://</a></li>
+      <li style="float: right;"><a href="wrappers.audio.html">ogg:// »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="wrappers.html">Liste des protocoles et des gestionnaires support&eacute;s</a></li>
+    <li>RAR</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="wrappers.rar" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">rar://</h1>
+  <p class="refpurpose"><span class="refname">rar://</span> &mdash; <span class="dc-title">RAR</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-wrappers.rar-description">
+  <h3 class="title">Description</h3>
+  <p class="para">
+   Ce gestionnaire prend le chemin encodé URL vers l&#039;archive RAR (relatif ou absolu),
+   puis, optionnellement, un astérisque (<code class="literal">*</code>), optionnellement suivi
+   d&#039;un signe dièse (<code class="literal">#</code>), et, toujours optionnellement, un nom d&#039;entrée
+   encodé URL, tel que stocké dans l&#039;archive. Le fait de spécifier un nom d&#039;entrée
+   nécessite la présence du signe dièse ; la présence d&#039;un slash au début du nom de
+   l&#039;entrée est optionnelle.
+  </p>
+  
+  <p class="simpara">
+   Ce gestionnaire peut ouvrir à la fois des fichiers et des dossiers. Lors de
+   l&#039;ouverture de dossiers, l&#039;astérisque force les noms des dossiers à être retournés
+   non encodés. S&#039;il n&#039;est pas spécifié, ils seront retournés sous la forme encodée
+   URL - ceci permet au gestionnaire d&#039;être utilisé correctement avec les fonctionnalités
+   internes comme <a href="class.recursivedirectoryiterator.html" class="classname">RecursiveDirectoryIterator</a> en présence de noms de fichiers
+   qui semblent être encodés URL.
+  </p>
+  
+  <p class="simpara">
+   Si le signe dièse et le nom de l&#039;entrée ne sont pas inclus, la racine de l&#039;archive
+   sera affichée. Cet affichage est différent des dossiers réguliers dans le sens où
+   le flux résultant ne contiendra pas d&#039;information comme la date et heure de modification,
+   puisque la racine du dossier n&#039;est pas stockée comme une entrée individuelle dans l&#039;archive.
+   L&#039;utilisation de ce gestionnaire avec <span class="type"><a href="class.recursivedirectoryiterator.html" class="type RecursiveDirectoryIterator">RecursiveDirectoryIterator</a></span> nécessite
+   la présence du signe dièse dans l&#039;URL lors de l&#039;accès à la racine, afin de construire
+   correctement les URLs des fils.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Ce gestionnaire n&#039;est pas activé par défaut</strong><br />
+   <span class="simpara">
+    Afin d&#039;utiliser le gestionnaire <var class="filename">rar://</var>, vous devez
+    installer l&#039;extension <a href="https://pecl.php.net/package/rar" class="link external">&raquo;&nbsp;rar</a>
+    disponible depuis <a href="https://pecl.php.net/" class="link external">&raquo;&nbsp;PECL</a>.
+   </span>
+  </p></blockquote>
+  <p class="simpara">
+   <var class="filename">rar://</var> est disponible depuis PECL rar 3.0.0
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 usage" id="refsect1-wrappers.rar-usage"> 
+  <h3 class="title">Utilisation</h3>
+  <ul class="itemizedlist">
+   <li class="listitem"><span class="simpara"><var class="filename">rar://&lt;url encoded archive name&gt;[*][#[&lt;url encoded entry name&gt;]]</var></span></li>
+  </ul>
+ </div>
+ 
+
+ <div class="refsect1 options" id="refsect1-wrappers.rar-options">
+  <h3 class="title">Options</h3>
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Résumé du gestionnaire</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Attribut</th>
+       <th>Supporté</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>Restreint par <a href="filesystem.configuration.html#ini.allow-url-fopen" class="link">allow_url_fopen</a></td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Restreint par <a href="filesystem.configuration.html#ini.allow-url-include" class="link">allow_url_include</a></td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Autorise la lecture</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Autorise l&#039;écriture</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Autorise l&#039;ajout</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Autorise la lecture et l&#039;écriture silmutanément</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Support de la fonction <span class="function"><a href="function.stat.html" class="function">stat()</a></span></td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Support de la fonction <span class="function"><a href="function.unlink.html" class="function">unlink()</a></span></td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Support de la fonction <span class="function"><a href="function.rename.html" class="function">rename()</a></span></td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Support de la fonction <span class="function"><a href="function.mkdir.html" class="function">mkdir()</a></span></td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Support de la fonction <span class="function"><a href="function.rmdir.html" class="function">rmdir()</a></span></td>
+       <td>Non</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+
+  
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Options de contexte</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Nom</th>
+       <th>Utilisation</th>
+       <th>Défaut</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td><code class="literal">open_password</code></td>
+       <td>
+        Le mot de passe utilisé pour crypter les en-têtes de l&#039;archive,
+        s&#039;il y en a. WinRAR cryptera tous les fichiers avec le même mot de
+        passe que les en-têtes lorsque celui-ci est présent, donc, pour les archives
+        avec des en-têtes encryptés, <code class="literal">file_password</code> sera ignoré.
+       </td>
+       <td class="empty">&nbsp;</td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">file_password</code></td>
+       <td>
+        Le mot de passe utilisé pour crypter un fichier, s&#039;il y en a.
+        Si les en-têtes sont aussi cryptés, cette option sera ignorée et le
+        mot de passe de l&#039;option <code class="literal">open_password</code> sera
+        privilégié. La raison pour laquelle il y a 2 options est le souhait
+        de pouvoir couvrir la possibilité de supporter les archives avec
+        différents mots de passe pour les en-têtes et les fichiers.
+        Notez que si l&#039;en-tête de l&#039;archive n&#039;est pas crypté, l&#039;option
+        <code class="literal">open_password</code> sera ignorée et cette option
+        doit être utilisée à la place.
+       </td>
+       <td class="empty">&nbsp;</td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">volume_callback</code></td>
+       <td>
+        Une fonction de rappel pour déterminer le chemin des volumes manquants.
+        Reportez-vous à la méthode <span class="methodname"><a href="rararchive.open.html" class="methodname">RarArchive::open()</a></span> pour plus
+        d&#039;informations.
+       </td>
+       <td class="empty">&nbsp;</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+ 
+
+ <div class="refsect1 examples" id="refsect1-wrappers.rar-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="context.http.example-post">
+   <p><strong>Exemple #1 Parcours d&#039;une archive RAR</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">MyRecDirIt&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">RecursiveDirectoryIterator&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">current</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">rawurldecode</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getSubPathName</span><span style="color: #007700">())&nbsp;.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span><span style="color: #0000BB">is_dir</span><span style="color: #007700">(</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">current</span><span style="color: #007700">())?</span><span style="color: #DD0000">"&nbsp;[DIR]"</span><span style="color: #007700">:</span><span style="color: #DD0000">""</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #0000BB">$f&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"rar://"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">rawurlencode</span><span style="color: #007700">(</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">__FILE__</span><span style="color: #007700">))&nbsp;.<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">DIRECTORY_SEPARATOR&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'dirs_and_extra_headers.rar#'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$it&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">RecursiveTreeIterator</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">MyRecDirIt</span><span style="color: #007700">(</span><span style="color: #0000BB">$f</span><span style="color: #007700">));<br /><br />foreach&nbsp;(</span><span style="color: #0000BB">$it&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+|-allow_everyone_ni [DIR]
+|-file1.txt
+|-file2_אּ.txt
+|-with_streams.txt
+\-אּ [DIR]
+  |-אּ\%2Fempty%2E [DIR]
+  | \-אּ\%2Fempty%2E\file7.txt
+  |-אּ\empty [DIR]
+  |-אּ\file3.txt
+  |-אּ\file4_אּ.txt
+  \-אּ\אּ_2 [DIR]
+    |-אּ\אּ_2\file5.txt
+    \-אּ\אּ_2\file6_אּ.txt
+</pre></div>
+   </div>
+  </div>
+  <div class="example" id="context.http.example-fetch-ignore-redirect">
+   <p><strong>Exemple #2 Ouverture d&#039;un fichier crypté (en-tête crypté)</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$stream&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"rar://"&nbsp;</span><span style="color: #007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">rawurlencode</span><span style="color: #007700">(</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">__FILE__</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span style="color: #0000BB">DIRECTORY_SEPARATOR&nbsp;</span><span style="color: #007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'encrypted_headers.rar'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'#encfile1.txt'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"r"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">stream_context_create</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'rar'&nbsp;</span><span style="color: #007700">=&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'open_password'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'samplepassword'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />&nbsp;&nbsp;&nbsp;&nbsp;);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">stream_get_contents</span><span style="color: #007700">(</span><span style="color: #0000BB">$stream</span><span style="color: #007700">));<br /></span><span style="color: #FF8000">/*&nbsp;Les&nbsp;dates&nbsp;de&nbsp;création&nbsp;et&nbsp;de&nbsp;dernier&nbsp;accès&nbsp;sont&nbsp;optionnelles&nbsp;avec&nbsp;WinRAR,<br />&nbsp;*&nbsp;ce&nbsp;qui&nbsp;explique&nbsp;que&nbsp;la&nbsp;plupart&nbsp;des&nbsp;fichiers&nbsp;ne&nbsp;les&nbsp;aient&nbsp;pas&nbsp;*/<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">fstat</span><span style="color: #007700">(</span><span style="color: #0000BB">$stream</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+string(26) &quot;Encrypted file 1 contents.&quot;
+Array
+(
+    [0] =&gt; 0
+    [1] =&gt; 0
+    [2] =&gt; 33206
+    [3] =&gt; 1
+    [4] =&gt; 0
+    [5] =&gt; 0
+    [6] =&gt; 0
+    [7] =&gt; 26
+    [8] =&gt; 0
+    [9] =&gt; 1259550052
+    [10] =&gt; 0
+    [11] =&gt; -1
+    [12] =&gt; -1
+    [dev] =&gt; 0
+    [ino] =&gt; 0
+    [mode] =&gt; 33206
+    [nlink] =&gt; 1
+    [uid] =&gt; 0
+    [gid] =&gt; 0
+    [rdev] =&gt; 0
+    [size] =&gt; 26
+    [atime] =&gt; 0
+    [mtime] =&gt; 1259550052
+    [ctime] =&gt; 0
+    [blksize] =&gt; -1
+    [blocks] =&gt; -1
+)
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+</div></div></div></body></html>

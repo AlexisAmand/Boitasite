@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Signe un CSR avec un autre certificat (ou lui-m&ecirc;me) et g&eacute;n&egrave;re un certificat</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.openssl-csr-new.html">« openssl_csr_new</a></li>
+      <li style="float: right;"><a href="function.openssl-decrypt.html">openssl_decrypt »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.openssl.html">Fonctions OpenSSL</a></li>
+    <li>Signe un CSR avec un autre certificat (ou lui-m&ecirc;me) et g&eacute;n&egrave;re un certificat</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.openssl-csr-sign" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">openssl_csr_sign</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">openssl_csr_sign</span> &mdash; <span class="dc-title">Signe un CSR avec un autre certificat (ou lui-même) et génère un certificat</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.openssl-csr-sign-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>openssl_csr_sign</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$csr</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$cacert</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$priv_key</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$days</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$configargs</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$serial</code><span class="initializer"> = 0</span></span>
+  ]] ) : <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>openssl_csr_sign()</strong></span> génère une ressource de certificat x509
+   depuis la CSR donnée.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+<span class="simpara">
+    Vous devez avoir un fichier <var class="filename">openssl.cnf</var> valide et
+    installé pour que cette fonction opère correctement.
+    Voir les notes se trouvant dans la <a href="openssl.installation.html" class="link">section
+    concernant l&#039;installation</a> pour plus d&#039;informations.
+</span>
+</p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.openssl-csr-sign-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">csr</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une CSR générée précédemment par <span class="function"><a href="function.openssl-csr-new.html" class="function">openssl_csr_new()</a></span>. mais ce paramètre peut aussi être une
+       Ca peut aussi être le chemin vers une CSR encodée au format PEM, et spécifiée avec 
+       <var class="filename">file://path/to/csr</var> ou une chaîne exportée par 
+       <span class="function"><a href="function.openssl-csr-export.html" class="function">openssl_csr_export()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">cacert</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le certificat généré sera signé par le certificat <code class="parameter">cacert</code>. 
+       Si <code class="parameter">cacert</code> vaut <strong><code>NULL</code></strong>, le certificat généré sera autosigné. 
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">priv_key</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">priv_key</code> est la clé privée qui correspond au certificat
+       <code class="parameter">cacert</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">days</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">days</code> spécifie la durée pour laquelle le certificat
+       est valide, en nombre de jours.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">configargs</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Vous pouvez affiner la signature CSR avec <code class="parameter">configargs</code>.
+       Voir la fonction <span class="function"><a href="function.openssl-csr-new.html" class="function">openssl_csr_new()</a></span> pour plus d&#039;informations sur 
+       <code class="parameter">configargs</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">serial</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un numéro de série optionnel pour le certificat émis. S&#039;il n&#039;est pas spécifié,
+       il vaudra 0.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.openssl-csr-sign-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne la ressource de certificat x509 en cas de succès, <strong><code>FALSE</code></strong> sinon.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.openssl-csr-sign-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-915">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>openssl_csr_sign()</strong></span> - signer une
+     CSR (comment être votre propre Autorité de Certification)</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Supposons&nbsp;que&nbsp;ce&nbsp;script&nbsp;est&nbsp;configuré&nbsp;pour&nbsp;recevoir&nbsp;des&nbsp;CSR&nbsp;qui&nbsp;ont<br />//&nbsp;été&nbsp;collés&nbsp;dans&nbsp;un&nbsp;champ&nbsp;textarea&nbsp;depuis&nbsp;une&nbsp;autre&nbsp;page<br /></span><span style="color: #0000BB">$csrdata&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$_POST</span><span style="color: #007700">[</span><span style="color: #DD0000">"CSR"</span><span style="color: #007700">];<br /><br /></span><span style="color: #FF8000">//&nbsp;Nous&nbsp;allons&nbsp;signer&nbsp;la&nbsp;requête&nbsp;avec&nbsp;notre&nbsp;propre&nbsp;certificat,&nbsp;en&nbsp;tant&nbsp;<br />//&nbsp;qu'"autorité&nbsp;de&nbsp;certification".&nbsp;Vous&nbsp;pouvez&nbsp;utiliser&nbsp;n'importe&nbsp;quel<br />//&nbsp;certificat&nbsp;pour&nbsp;en&nbsp;signer&nbsp;un&nbsp;autre,&nbsp;mais&nbsp;le&nbsp;processus&nbsp;est&nbsp;inutile&nbsp;à&nbsp;moins<br />//&nbsp;que&nbsp;le&nbsp;certificat&nbsp;de&nbsp;signature&nbsp;n'ait&nbsp;la&nbsp;confiance&nbsp;des&nbsp;utilisateurs<br />//&nbsp;qui&nbsp;utiliseront&nbsp;le&nbsp;nouveau&nbsp;certificat&nbsp;signé.<br /><br />//&nbsp;Nous&nbsp;avons&nbsp;besoin&nbsp;de&nbsp;notre&nbsp;certificat&nbsp;et&nbsp;de&nbsp;la&nbsp;clé&nbsp;privée<br /></span><span style="color: #0000BB">$cacert&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"file://path/to/ca.crt"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$privkey&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"file://path/to/ca.key"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"la_cle_secrete_de_votre_certificat"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$usercert&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">openssl_csr_sign</span><span style="color: #007700">(</span><span style="color: #0000BB">$csrdata</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$cacert</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$privkey</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">365</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'digest_alg'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'sha256'</span><span style="color: #007700">)&nbsp;);<br /><br /></span><span style="color: #FF8000">//&nbsp;Affichons&nbsp;maintenant&nbsp;le&nbsp;certificat&nbsp;généré,&nbsp;de&nbsp;façon&nbsp;à&nbsp;ce&nbsp;que&nbsp;l'utilisateur<br />//&nbsp;puisse&nbsp;le&nbsp;copier/coller&nbsp;dans&nbsp;sa&nbsp;configuration&nbsp;locale&nbsp;(comme&nbsp;un<br />//&nbsp;fichier&nbsp;qui&nbsp;contient&nbsp;les&nbsp;certificats&nbsp;de&nbsp;son&nbsp;serveur&nbsp;SSL)<br /></span><span style="color: #0000BB">openssl_x509_export</span><span style="color: #007700">(</span><span style="color: #0000BB">$usercert</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$certout</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$certout</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;toutes&nbsp;les&nbsp;erreurs&nbsp;survenues<br /></span><span style="color: #007700">while&nbsp;((</span><span style="color: #0000BB">$e&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">openssl_error_string</span><span style="color: #007700">())&nbsp;!==&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$e&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

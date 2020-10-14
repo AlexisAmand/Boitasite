@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Incompatibilit&eacute;s</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd.config.html">« Configuration &agrave; l'ex&eacute;cution</a></li>
+      <li style="float: right;"><a href="mysqlnd.persist.html">Les connexions persistantes »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.mysqlnd.html">Mysqlnd</a></li>
+    <li>Incompatibilit&eacute;s</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd.incompatibilities" class="chapter">
+ <h1>Incompatibilités</h1>
+
+ <p class="para">
+  MySQL Native Driver est dans la plupart des cas compatible avec MySQL Client Library
+  (<code class="literal">libmysql</code>). Cette section détaille les incompatibilités.
+ </p>
+ <ul class="itemizedlist">
+  <li class="listitem">
+   <p class="para">
+    Les valeurs de type <code class="literal">bit</code> sont retournées comme des chaines binaires
+    (e.g. &quot;\0&quot; or &quot;\x1F&quot;) avec <code class="literal">libmysql</code> mais comme des chaines décimales
+    (e.g. &quot;0&quot; or &quot;31&quot;) avec <code class="literal">mysqlnd</code>. Si vous voulez être compatible avec les
+    deux librairies, retournez toujours les champs bit comme des nombres, avec des requêtes
+    MySQL comme:
+    <code class="literal">SELECT bit + 0 FROM table</code>.
+   </p>
+  </li>
+ </ul>
+</div>
+</div></div></body></html>

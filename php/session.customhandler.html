@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Gestion personnalis&eacute;e des sessions</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="session.idpassing.html">« Passer l'identifiant de session (session ID)</a></li>
+      <li style="float: right;"><a href="session.upload-progress.html">Progression d'un t&eacute;l&eacute;versement (upload) en session »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="session.examples.html">Exemples</a></li>
+    <li>Gestion personnalis&eacute;e des sessions</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="session.customhandler" class="section">
+  <h2 class="title">Gestion personnalisée des sessions</h2>
+  <p class="para">
+   Pour implémenter un stockage en base de données, ou toute autre méthode,
+   vous aurez besoin de la fonction <span class="function"><a href="function.session-set-save-handler.html" class="function">session_set_save_handler()</a></span> pour
+   paramétrer vos propres fonctions de stockage. Depuis PHP 5.4.0, vous pouvez créer des
+   gestionnaires de session en utilisant l&#039;interface <a href="class.sessionhandlerinterface.html" class="classname">SessionHandlerInterface</a>
+   ou en étendant les gestionnaires internes de PHP en héritant de la classe
+   <a href="class.sessionhandler.html" class="classname">SessionHandler</a>.
+  </p>
+  <p class="para">
+   Les fonctions de rappel précisées dans <span class="function"><a href="function.session-set-save-handler.html" class="function">session_set_save_handler()</a></span> sont
+   des méthodes appelées par PHP pendant le cycle de vie de la session: <code class="parameter">open</code>,
+   <code class="parameter">read</code>, <code class="parameter">write</code> et <code class="parameter">close</code>
+   ainsi que les fonctions de ménage <code class="parameter">destroy</code> pour supprimer une session
+   et <code class="parameter">gc</code> pour une collecte périodique des gabarits.
+  </p>
+  <p class="para">
+   Ainsi, PHP a toujours besoin d&#039;un gestionnaire de sessions. Par défaut il s&#039;agit du gestionnaire
+   interne &#039;files&#039;. Un gestionnaire personnalisé peut être indiqué au moyen de
+   <span class="function"><a href="function.session-set-save-handler.html" class="function">session_set_save_handler()</a></span>. D&#039;autres gestionnaires alternatifs peuvent être proposés
+   par des extensions PHP, comme <code class="parameter">sqlite</code>, <code class="parameter">memcache</code>
+   et <code class="parameter">memcached</code> et peuvent être utilisés via
+   <a href="session.configuration.html#ini.session.save-handler" class="link">session.save_handler</a>.
+  </p>
+  <p class="para">
+   Lorsque la session démarre, PHP appelera en interne la fonction <code class="parameter">open</code> du gestionnaire, suivie de
+   <code class="parameter">read</code> qui doit alors retourner une chaine encodée exactement comme elle a été passée lors du stockage.
+   Une fois que la fonction de rappel de <code class="parameter">read</code> a retourné sa chaine, PHP va alors la décoder
+   et peupler la super-globale <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var> en conséquence.
+  </p>
+  <p class="para">
+   Lorsque PHP se termine, (ou lorsque <span class="function"><a href="function.session-write-close.html" class="function">session_write_close()</a></span> est appelée), il va en
+   interne encoder le contenu de <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var> et le passer avec l&#039;ID de session à la
+   fonction <code class="parameter">write</code>. Après <code class="parameter">write</code>, PHP invoquera <code class="parameter">close</code>.
+  </p>
+  <p class="para">
+   Lorsqu&#039;une session est détruite, PHP appelera <code class="parameter">destroy</code> avec l&#039;ID de session.
+  </p>
+  <p class="para">
+   PHP appelera la fonction de rappel <code class="parameter">gc</code> de temps en temps pour nettoyer
+   les sessions expirées en fonction de leur
+   temps de vie maximum. Cet appel devrait mener à la destruction des enregistrements dans
+   le support de stockage qui n&#039;ont été accédés depuis <code class="parameter">$lifetime</code>.
+  </p>
+ </div></div></div></body></html>

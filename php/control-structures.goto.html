@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>goto</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.include-once.html">« include_once</a></li>
+      <li style="float: right;"><a href="language.functions.html">Les fonctions »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.control-structures.html">Les structures de contr&ocirc;le</a></li>
+    <li>goto</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="control-structures.goto" class="sect1">
+ <h2 class="title"><code class="literal">goto</code></h2>
+ <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7)</p>
+ <p class="para">
+  <div class="mediaobject">
+   
+   <div class="imageobject">
+    <img src="images/0baa1b9fae6aec55bbb73037f3016001-xkcd-goto.png" alt="Quelle est la chose la plus bizarre lors de l'utilisation de goto ?" width="740" height="201" />
+   </div>
+  </div>
+  Image fournie par <a href="http://xkcd.com/292" class="link external">&raquo;&nbsp;xkcd</a>
+ </p>
+ <p class="para">
+  L&#039;opérateur <code class="literal">goto</code> peut être utilisé pour 
+  continuer l&#039;exécution du script à un autre point du programme. 
+  La cible est spécifiée par un label, suivi de deux-point, et 
+  l&#039;instruction <code class="literal">goto</code> est ensuite suivie de ce label.
+  <code class="literal">goto</code> n&#039;est pas totalement sans limitations. 
+  L&#039;étiquette cible doit être dans le même contexte et fichier, ce qui signifie
+  qu&#039;il n&#039;est pas possible de changer de méthode ou de fonction,
+  ni de se rendre dans une autre fonction. Vous pouvez sortir d&#039;une
+  fonction, et l&#039;utilisation courante est alors de se servir de
+  <code class="literal">goto</code> comme un <code class="literal">break</code>. 
+ </p>
+ <p class="para">
+  <div class="example" id="example-140">
+   <p><strong>Exemple #1 Exemple avec <code class="literal">goto</code></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">goto&nbsp;</span><span style="color: #0000BB">a</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #DD0000">'Foo'</span><span style="color: #007700">;<br />&nbsp;<br /></span><span style="color: #0000BB">a</span><span style="color: #007700">:<br />echo&nbsp;</span><span style="color: #DD0000">'Bar'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Bar
+</pre></div>
+   </div>
+  </div>
+ </p>
+ <p class="para">
+  <div class="example" id="example-141">
+   <p><strong>Exemple #2 Exemple de boucle avec <code class="literal">goto</code></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">for(</span><span style="color: #0000BB">$i</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">,</span><span style="color: #0000BB">$j</span><span style="color: #007700">=</span><span style="color: #0000BB">50</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">100</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;while(</span><span style="color: #0000BB">$j</span><span style="color: #007700">--)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if(</span><span style="color: #0000BB">$j</span><span style="color: #007700">==</span><span style="color: #0000BB">17</span><span style="color: #007700">)&nbsp;goto&nbsp;</span><span style="color: #0000BB">end</span><span style="color: #007700">;&nbsp;<br />&nbsp;&nbsp;}&nbsp;&nbsp;<br />}<br />echo&nbsp;</span><span style="color: #DD0000">"i&nbsp;=&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">end</span><span style="color: #007700">:<br />echo&nbsp;</span><span style="color: #DD0000">'j&nbsp;hit&nbsp;17'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+j hit 17
+</pre></div>
+   </div>
+  </div>
+ </p>
+ <p class="para">
+  <div class="example" id="example-142">
+   <p><strong>Exemple #3 Ce <code class="literal">goto</code> ne fonctionne pas</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">goto&nbsp;</span><span style="color: #0000BB">loop</span><span style="color: #007700">;<br />for(</span><span style="color: #0000BB">$i</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">,</span><span style="color: #0000BB">$j</span><span style="color: #007700">=</span><span style="color: #0000BB">50</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">100</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;while(</span><span style="color: #0000BB">$j</span><span style="color: #007700">--)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">loop</span><span style="color: #007700">:<br />&nbsp;&nbsp;}<br />}<br />echo&nbsp;</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$i</span><span style="color: #DD0000">&nbsp;=&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Fatal error: &#039;goto&#039; into loop or switch statement is disallowed in
+script on line 2
+</pre></div>
+   </div>
+  </div>
+ </p>
+ <blockquote class="note"><p><strong class="note">Note</strong>: 
+  <p class="para">
+   L&#039;opérateur <code class="literal">goto</code> est disponible depuis PHP 5.3.
+  </p>
+ </p></blockquote>
+</div></div></div></body></html>

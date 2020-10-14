@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Introduction</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="book.phar.html">« Phar</a></li>
+      <li style="float: right;"><a href="phar.setup.html">Installation/Configuration »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.phar.html">Phar</a></li>
+    <li>Introduction</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="intro.phar" class="preface">
+  <h1 class="title">Introduction</h1>
+  <p class="para">
+   L&#039;extension phar fournit un moyen de mettre une application PHP complète dans un fichier unique 
+   appelé un &quot;phar&quot; (PHP Archive) pour une installation et une configuration aisées.
+   En plus de ce service, l&#039;extension fournit aussi une classe d&#039;abstraction de format de fichier
+   pour créer et manipuler des fichiers tar et zip à travers la classe
+   <a href="class.phardata.html" class="classname">PharData</a>, tout comme
+   PDO fournit une interface unifiée pour accéder à des bases de données différentes. Mais à l&#039;inverse de PDO,
+   qui ne peut pas transposer les données d&#039;une base à l&#039;autre, Phar a la possibilité de convertir des fichiers tar,
+   zip et phar avec une simple ligne de code. Regardez
+   <span class="function"><a href="phar.converttoexecutable.html" class="function">Phar::convertToExecutable()</a></span> pour avoir un exemple.
+  </p>
+  <p class="para">
+   Qu&#039;est-ce que phar? Les archives phar sont en fait un moyen pratique de grouper 
+   plusieurs fichiers en un seul. Ainsi, une archive phar permet de distribuer une
+   application PHP complète dans un fichier unique et de l&#039;exécuter à partir de ce fichier
+   sans pour autant l&#039;extraire sur le disque. De plus, des archives phar peuvent être exécutées
+   par PHP aussi facilement que n&#039;importe quel autre fichier, aussi bien en ligne de commande que via
+   un serveur web. Phar est une sorte de clé USB pour les applications PHP.
+  </p>
+  <p class="para">
+   Phar implémente cette fonctionnalité via <a href="book.stream.html" class="link">un 
+   flux</a>.  Normalement, pour utiliser un fichier externe à partir d&#039;un script PHP, vous
+   devez utiliser la fonction <span class="function"><a href="function.include.html" class="function">include</a></span>.
+  </p>
+  <p class="para">
+   <div class="example" id="example-682">
+    <p><strong>Exemple #1 Utiliser un fichier externe</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;</span><span style="color: #007700">include&nbsp;</span><span style="color: #DD0000">'/chemin/vers/le/fichier/externe.php'</span><span style="color: #007700">;<br />&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   On peut considérer que PHP traduit en fait
+   <code class="literal">/chemin/vers/le/fichier/externe.php</code> en un
+   flux <code class="literal">file:///chemin/vers/le/fichier/externe.php</code>, et qu&#039;il
+   utilise de façon cachée les fonctions de flux de fichiers plats pour accéder
+   à des fichiers locaux.
+  </p>
+  <p class="para">
+   Pour utiliser un fichier nommé <code class="literal">fichier.php</code> contenu dans une archive phar
+   <code class="literal">/chemin/vers/monphar.phar</code>,
+   la syntaxe est quasi similaire à la syntaxe <code class="literal">file://</code> ci-dessus.
+  </p>
+  <p class="para">
+   <div class="example" id="example-683">
+    <p><strong>Exemple #2 Utilier un fichier contenu dans une archive phar</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;</span><span style="color: #007700">include&nbsp;</span><span style="color: #DD0000">'phar:///chemin/vers/monphar.phar/fichier.php'</span><span style="color: #007700">;<br />&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   En fait, on peut traiter une archive phar comme s&#039;il s&#039;agissait d&#039;un disque externe, en utilisant
+   n&#039;importe laquelle des fonctions relatives à <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span>, <span class="function"><a href="function.opendir.html" class="function">opendir()</a></span> et
+   <span class="function"><a href="function.mkdir.html" class="function">mkdir()</a></span> pour lire, changer ou créer des nouveaux fichiers ou répertoires au sein de
+   l&#039;archive phar. Celà permet à des applications PHP complètes d&#039;être distribuées dans un seul fichier
+   et d&#039;être exécutées à partir de celui-ci
+  </p>
+  <p class="para">
+   L&#039;utilisation la plus courant d&#039;une archive phar est de distribuer une application complète
+   en un seul fichier. Par exemple, l&#039;installeur PEAR qui est inclus avec les versions de PHP
+   est distribué grâce à une archive phar. pour utiliser l&#039;archive phar ainsi distribuée, celle-ci
+   peut-être exécutée via la ligne de commande ou via un navigateur web.
+  </p>
+  <p class="para">
+   Les archives phar peuvent être distribuées sous forme de fichiers <code class="literal">tar</code>,
+   de fichiers <code class="literal">zip</code> ou de fichiers <code class="literal">phar</code> spécialement conçus
+   pour l&#039;extensions phar. Chaque format de fichier a ses avantages et ses inconvénients. Les fichiers
+   zip et tar peuvent être extraits par n&#039;importe quel outil tiers qui peut lire le format, mais 
+   requièrent l&#039;extension phar pour être exécutés par PHP. Le format de fichier phar est unique et dédié
+   à l&#039;extension phar et peut être créé uniquement par celle-ci ou par le paquet PEAR
+   <a href="https://pear.php.net/package/PHP_Archive" class="link external">&raquo;&nbsp;PHP_Archive</a>, mais a l&#039;avantage de ne pas 
+   nécessiter l&#039;installation de l&#039;extension phar pour que l&#039;application empaquetée puisse être exécutée.
+  </p>
+  <p class="para">
+   En d&#039;autres mots, même avec l&#039;extension phar désactivée, il est possible d&#039;exécuter ou d&#039;inclure
+   une archive basée sur phar. Accéder à des fichiers individuels au sein d&#039;une archive phar n&#039;est 
+   possible qu&#039;avec l&#039;extension phar à moins que l&#039;archive phar n&#039;ait été créée par PHP_Archive.
+  </p>
+  <p class="para">
+   L&#039;extension phar est aussi capable de convertir une archive phar à partir d&#039;un tar vers un fichier zip 
+   ou phar en une seule commande :
+  </p>
+  <p class="para">
+   <div class="example" id="example-684">
+    <p><strong>Exemple #3 Convertir une archive phar au format tar</strong></p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;$phar&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">(</span><span style="color: #DD0000">'monphar.phar'</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #0000BB">$pgz&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$phar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">convertToExecutable</span><span style="color: #007700">(</span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">TAR</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">GZ</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;produit&nbsp;monphar.phar.tar.gz<br />&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Phar peut compresser des fichiers individuels ou une archive entière en
+   utilisant la compression <a href="book.zlib.html" class="link">gzip</a> ou
+   <a href="book.bzip2.html" class="link">bzip2</a>, et peut vérifier l&#039;intégrité de l&#039;archive
+   automatiquement en utilisant des fonctions de signature MD5, SHA-1, SHA-256 ou SHA-512.
+  </p>
+  <p class="para">
+   Enfin, l&#039;extension phar est orientée sécurité, elle désactive par défaut les accès 
+   en écriture sur les archives phar exécutables et requiert la désactivation au niveau système
+   du paramètre <code class="literal">phar.readonly</code> du php.ini pour créer ou modifier des archives phar.
+   Des archives tar et zip sans le marqueur exécutable peuvent toujours être créées ou modifiées
+   en utilisant la classe <a href="class.phardata.html" class="classname">PharData</a>.
+  </p>
+  <p class="para">
+   Si vous créez des applications dans le but de les distribuer, vous devriez lire
+   <a href="phar.creating.html" class="link">Comment créer des archives Phar</a>. Si vous voulez
+   davantage d&#039;informations sur les différences entre les formats de fichier que phar supporte,
+   vous devriez lire <a href="phar.fileformat.html" class="link">Phar, Tar et Zip</a>.
+  </p>
+  <p class="para">
+   Si vous utilisez des applications phar, il y a des astuces très utiles dans
+   <a href="phar.using.html" class="link">Comment utiliser des archives Phar</a>
+  </p>
+  <p class="para">
+   Le mot <code class="literal">phar</code> est la contraction de <code class="literal">PHP</code> et de
+   <code class="literal">Archive</code>  et est grandement inspiré
+   du mot <code class="literal">jar</code> (Java Archive) familier aux développeurs Java.
+  </p>
+  <p class="para">
+   L&#039;implémentation des archives Phar est basée sur le paquet PEAR
+   <a href="https://pear.php.net/package/PHP_Archive" class="link external">&raquo;&nbsp;PHP_Archive</a>, et
+   les détails d&#039;implémentations sont les mêmes, bien que l&#039;extension Phar
+   soit plus puissante. En plus, celle-ci permet à la plupart des applications
+   PHP d&#039;être exécutées sans modification alors que les archives basées sur PHP_Archive
+   requièrent souvent beaucoup de modifications pour fonctionner.
+  </p>
+ </div></div></div></body></html>

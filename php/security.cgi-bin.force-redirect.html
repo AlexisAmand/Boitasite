@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Cas 2 : Utilisation de la directive de compilation
+     cgi.force_redirect</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="security.cgi-bin.default.html">« Cas 1 : Seuls les fichiers publics sont servis</a></li>
+      <li style="float: right;"><a href="security.cgi-bin.doc-root.html">Cas 3 : Utilisation du &quot;doc_root&quot; ou du &quot;user_dir&quot; »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="security.cgi-bin.html">Binaires CGI</a></li>
+    <li>Cas 2 : Utilisation de la directive de compilation
+     cgi.force_redirect</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="security.cgi-bin.force-redirect" class="sect1">
+    <h2 class="title">
+     Cas 2 : Utilisation de la directive de compilation
+     <code class="literal">cgi.force_redirect</code>
+    </h2>
+    <p class="simpara">
+     La directive de configuration <a href="ini.core.html#ini.cgi.force-redirect" class="link">cgi.force_redirect</a>
+     évite qu&#039;un appel direct à un script PHP avec une URL comme <var class="filename">http://my.host/cgi-bin/php/secretdir/script.php</var> ne soit possible.
+     À la place, PHP analysera le fichier uniquement s&#039;il y a eu redirection.
+    </p>
+    <p class="simpara">
+     Habituellement, la redirection est effectuée grâce aux directives suivantes dans la
+     configuration du serveur Apache :
+    </p>
+    <div class="example-contents">
+<div class="apache-confcode"><pre class="apache-confcode">Action php-script /cgi-bin/php
+AddHandler php-script .php</pre>
+</div>
+    </div>
+
+    <p class="simpara">
+     Cette option a uniquement été testée avec Apache, et
+     compte sur Apache pour affecter la variable d&#039;environnement non-standard
+     <var class="envar">REDIRECT_STATUS</var> pour les requêtes redirigées.
+     Dans le cas où votre serveur web ne supporte aucune manière d&#039;indiquer si la requête a été
+     redirigée ou non, vous ne pourrez pas utiliser cette option de
+     compilation. Vous devrez alors utiliser une des autres méthodes
+     d&#039;exploitation de la version binaire CGI de PHP, comme exposé ci-dessous.
+    </p>
+   </div></div></div></body></html>

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>A propos de la persistence des &eacute;v&eacute;nements</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="event.flags.html">« Les drapeaux d'&eacute;v&eacute;nements</a></li>
+      <li style="float: right;"><a href="event.callbacks.html">Fonctions de rappel des &eacute;v&eacute;nements »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.event.html">Event</a></li>
+    <li>A propos de la persistence des &eacute;v&eacute;nements</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="event.persistence" class="chapter">
+ <h1>A propos de la persistence des événements</h1>
+
+ <p class="para">
+  Par défaut, dès qu&#039;un événement en attente devient actif (car son descripteur
+  de fichier est prêt à être lu ou écrit, ou parce que son délai d&#039;attente
+  maximal est atteint), il n&#039;est plus en attente dès lors que sa fonction
+  de rappel est exécutée. Aussi, pour rendre de nouveau l&#039;événement en attente,
+  une façon est d&#039;appeler la méthode <span class="methodname"><a href="event.add.html" class="methodname">Event::add()</a></span>
+  dans la fonction de rappel.
+ </p>
+ <p class="para">
+  Si le drapeau <strong><code>Event::PERSIST</code></strong> est défini sur l&#039;événement,
+  alors il est <em class="emphasis">persistent</em>. Cela signifie que
+  l&#039;événement reste en attente y compris lorsque sa fonction de rappel
+  est activée. La méthode <span class="methodname"><a href="event.del.html" class="methodname">Event::del()</a></span> peut être
+  appelé pour le passer en non-attente.
+ </p>
+ <p class="para">
+  Le délai maximal d&#039;attente sur un événement persistent est réinitialisé
+  dès lors que sa fonction de rappel est exécutée.
+  Aussi, si un événement a comme drapeaux <strong><code>Event::READ</code></strong>
+  <code class="literal">|</code> <strong><code>Event::PERSIST</code></strong> et un
+  délai d&#039;attente fixé à 5 secondes, l&#039;événement devient actif :
+ </p>
+ <ol type="1">
+  <li class="listitem">
+   <p class="para">
+    Lorsque le socket ou le descripteur de fichier est prêt pour la lecture.
+   </p>
+  </li>
+  <li class="listitem">
+   <p class="para">
+    Lorsque 5 secondes ont passé depuis la dernière activation de l&#039;événement.
+   </p>
+  </li>
+ </ol>
+ <p class="para">
+  Voir aussi
+  <a href="http://www.wangafu.net/~nickm/libevent-book/Ref4_event.html#_about_event_persistence" class="link external">&raquo;&nbsp;
+  la programmation réseau rapide, portable et non-bloquante avec Libevent ;
+  A propos des événements persistents</a>
+ </p>
+</div>
+</div></div></body></html>

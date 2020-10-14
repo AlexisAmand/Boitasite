@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Astuces SQL</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-ms.quickstart.connectionpooling.html">« &Eacute;tat de la connexion</a></li>
+      <li style="float: right;"><a href="mysqlnd-ms.quickstart.transactions.html">Transactions locales »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-ms.quickstart.html">Exemples et d&eacute;marrage rapide</a></li>
+    <li>Astuces SQL</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-ms.quickstart.sqlhints" class="section">
+  <h2 class="title">Astuces SQL</h2>
+  <p class="para">
+   Les astuces SQL peuvent être utilisées pour forcer le plugin à choisir un serveur particulier
+   dans le pool. Ceci peut aider à palier aux problèmes de bascule entre les connexions
+   oude changement d&#039;état des connexions.
+  </p>
+  <p class="para">
+   Les astuces SQL sont des commentaires de la syntaxe SQL. Comme ils sont supposés être ignorés,
+   ils n&#039;interfèrent pas avec les serveurs MySQL, le proxy MySQL ou même un pare-feu.
+  </p>
+  <p class="para">
+   Trois astuces SQL sont supportées par le plugin : 
+   <strong><code>MYSQLND_MS_MASTER_SWITCH</code></strong> indique au plugin d&#039;exécuter une
+   requête sur le maitre, <strong><code>MYSQLND_MS_SLAVE_SWITCH</code></strong> force
+   l&#039;utilisation de l&#039;esclave et <strong><code>MYSQLND_MS_LAST_USED_SWITCH</code></strong>
+   exécutera la requête sur le même serveur que celui utilisé pour exécuter la
+   requête précédente.
+  </p>
+  <p class="para">
+   Le plugin scanne le début de la requête pour rechercher une astuce SQL en commentaires.
+   Les astuces SQL ne doivent être écrites qu&#039;au début d&#039;une requête pour être
+   reconnues.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2165">
+    <p><strong>Exemple #1 Configuration du plugin avec un esclave et un maitre</strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">{
+    &quot;myapp&quot;: {
+        &quot;master&quot;: {
+            &quot;master_0&quot;: {
+                &quot;host&quot;: &quot;localhost&quot;,
+                &quot;socket&quot;: &quot;\/tmp\/mysql.sock&quot;
+            }
+        },
+        &quot;slave&quot;: {
+            &quot;slave_0&quot;: {
+                &quot;host&quot;: &quot;192.168.2.27&quot;,
+                &quot;port&quot;: &quot;3306&quot;
+            }
+        }
+    }
+}</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2166">
+    <p><strong>Exemple #2 Astuces SQL pour éviter les bascules de connexion</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"myapp"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Evidemment,&nbsp;votre&nbsp;propre&nbsp;gestion&nbsp;des&nbsp;erreurs&nbsp;serait&nbsp;meilleure...&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">()));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Connexion&nbsp;1,&nbsp;la&nbsp;connexion&nbsp;a&nbsp;utilisé&nbsp;des&nbsp;variables&nbsp;SQL,&nbsp;pas&nbsp;de&nbsp;SELECT,&nbsp;donc&nbsp;maitre&nbsp;utilisé&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SET&nbsp;@myrole='master'"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Connexion&nbsp;1,&nbsp;exécutée&nbsp;sur&nbsp;le&nbsp;maitre&nbsp;à&nbsp;cause&nbsp;de&nbsp;l'astuce&nbsp;SQL&nbsp;présente&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!(</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"/*%s*/SELECT&nbsp;@myrole&nbsp;AS&nbsp;_role"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_LAST_USED_SWITCH</span><span style="color: #007700">))))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">);<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"@myrole&nbsp;=&nbsp;'%s'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'_role'</span><span style="color: #007700">]);<br />}<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+@myrole = &#039;master&#039;
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   Dans l&#039;exemple ci-dessus, <strong><code>MYSQLND_MS_LAST_USED_SWITCH</code></strong> est utilisée
+   pour éviter la bascule du maitre vers un esclave lors de l&#039;exécution de la requête <code class="literal">SELECT</code>.
+  </p>
+  <p class="para">
+   Les astuces SQL peuvent aussi être utilisée pour lancer une requête <code class="literal">SELECT</code>
+   sur le maitre. Par exemple, lorsque les esclaves sont derrière le maitre et que vous
+   voulez selectionner des données fraiches.
+  </p>
+  <p class="para">
+   En version 1.2.0 le concept d&#039;un niveau de service a été ajouté pour faire face aux cas
+   où les données courantes sont demandées. Utiliser un niveau de service requiert moins
+   d&#039;attention et les astuce SQL ne sont plus obligatoires. Voyez les sections plus bas pour
+   plus d&#039;informations.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2167">
+    <p><strong>Exemple #3 Latence de réplication</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"myapp"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Evidemment,&nbsp;votre&nbsp;propre&nbsp;gestion&nbsp;des&nbsp;erreurs&nbsp;serait&nbsp;meilleure...&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">()));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Force&nbsp;l'utilisation&nbsp;du&nbsp;maitre,&nbsp;le&nbsp;maitre&nbsp;a&nbsp;toujours&nbsp;des&nbsp;données&nbsp;fraiches&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"/*%s*/SELECT&nbsp;critical_data&nbsp;FROM&nbsp;important_table"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_MASTER_SWITCH</span><span style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+    
+   </div>
+  </p>
+  <p class="para">
+   Autre exemple concrêt : créer des tables sur un esclave. Si aucune astuce SQL n&#039;est fournie,
+   le plugin va envoyer les <code class="literal">CREATE</code> et <code class="literal">INSERT</code>
+   vers le maitre. L&#039;astuce <strong><code>MYSQLND_MS_SLAVE_SWITCH</code></strong> peut alors être
+   utilisée pour forcer l&#039;utilisation d&#039;un esclave.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2168">
+    <p><strong>Exemple #4 Création de table sur un esclave</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"myapp"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Evidemment,&nbsp;votre&nbsp;propre&nbsp;gestion&nbsp;des&nbsp;erreurs&nbsp;serait&nbsp;meilleure...&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">()));<br />}<br /><br /><br /></span><span style="color: #FF8000">/*&nbsp;Force&nbsp;l'utilisation&nbsp;d'un&nbsp;esclave&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"/*%s*/CREATE&nbsp;TABLE&nbsp;slave_reporting(id&nbsp;INT)"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_SLAVE_SWITCH</span><span style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">);<br />}<br /></span><span style="color: #FF8000">/*&nbsp;Continue&nbsp;en&nbsp;utilisant&nbsp;cette&nbsp;connexion&nbsp;à&nbsp;l'esclave&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"/*%s*/INSERT&nbsp;INTO&nbsp;slave_reporting(id)&nbsp;VALUES&nbsp;(1),&nbsp;(2),&nbsp;(3)"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_LAST_USED_SWITCH</span><span style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">);<br />}<br /></span><span style="color: #FF8000">/*&nbsp;N'utilisez&nbsp;pas&nbsp;MYSQLND_MS_SLAVE_SWITCH&nbsp;qui&nbsp;autoriserait&nbsp;la&nbsp;bascule&nbsp;vers&nbsp;un&nbsp;autre&nbsp;esclave&nbsp;!&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"/*%s*/SELECT&nbsp;COUNT(*)&nbsp;AS&nbsp;_num&nbsp;FROM&nbsp;slave_reporting"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_LAST_USED_SWITCH</span><span style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"There&nbsp;are&nbsp;%d&nbsp;rows&nbsp;in&nbsp;the&nbsp;table&nbsp;'slave_reporting'"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'_num'</span><span style="color: #007700">]);<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+    
+   </div>
+  </p>
+  <p class="para">
+   L&#039;astuce SQL <strong><code>MYSQLND_MS_LAST_USED</code></strong> interdit la bascule de connexion
+   et force l&#039;utilisation de la connexion de la requête précédente.   
+  </p>
+ </div></div></div></body></html>

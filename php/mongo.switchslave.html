@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Choisit un nouvel secondaire pour les lectures slaveOkay</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongo.setslaveokay.html">« Mongo::setSlaveOkay</a></li>
+      <li style="float: right;"><a href="ref.mongo.html">Fonctions Mongo »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mongo.html">Mongo</a></li>
+    <li>Choisit un nouvel secondaire pour les lectures slaveOkay</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongo.switchslave" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Mongo::switchSlave</h1>
+  <p class="verinfo">(PECL mongo &gt;=1.1.0)</p><p class="refpurpose"><span class="refname">Mongo::switchSlave</span> &mdash; <span class="dc-title">Choisit un nouvel secondaire pour les lectures slaveOkay</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongo.switchslave-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>Mongo::switchSlave</strong></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">string</span></div>
+
+
+  <p class="para rdfs-comment">
+   Cette méthode choisit de façon aléatoire un secondaire pour une
+   connexion afin d&#039;y effectuer les lectures. Elle est appelée automatiquement
+   par le driver et ne devrait pas être appelée manuellement. Elle
+   appelle la méthode <span class="function"><a href="mongoclient.gethosts.html" class="function">MongoClient::getHosts()</a></span> (pour rafraichir les statuts
+   des hôtes) et la méthode <span class="function"><strong>MongoClient::getSlave()</strong></span> (pour récupérer la valeur retournée).
+  </p>
+
+  <p class="para">
+   Reportez-vous à la <a href="mongo.queries.html" class="link">section sur les requêtes</a>
+   de ce manuel pour plus d&#039;informations sur la distribution de lecture aux secondaires.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongo.switchslave-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">Cette fonction ne contient aucun paramètre.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongo.switchslave-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne l&#039;adresse du secondaire utilisé par cette connexion pour les lectures.
+   Elle devrait être la même que celle choisie précédemment de façon aléatoire.
+   La méthode devrait retourner qu&#039;une seule adresse si un seul serveur secondaire
+   (ou un seul primaire) est disponible.
+  </p>
+  <p class="para">
+   Par exemple, si vous avez 3 membres dans le jeu de réplication avec un
+   primaire, un secondaire et un arbitraire, cette méthode devrait toujours
+   retourner l&#039;adresse du secondaire. Si le secondaire devient indisponible,
+   cette méthode devrait toujours retourner l&#039;adresse du primaire. Si le primaire
+   devient aussi indisponible, cette méthode lancera une exception, sachant qu&#039;un
+   serveur arbitraire ne peut gérer les lectures.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mongo.switchslave-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Lance une exception <a href="class.mongoexception.html" class="classname">MongoException</a> (code erreur 15) si
+   la méthode est appelée sur une connexion non connue du jeu de réplication.
+   Elle lancera également une exception <a href="class.mongoexception.html" class="classname">MongoException</a>
+   si aucun serveur de réplication n&#039;est trouvé (primaire ou secondaire)
+   pour la lecture (code erreur 16).
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-mongo.switchslave-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>1.2.11</td>
+       <td>
+        Lance une alerte de niveau <strong><code>E_DEPRECATED</code></strong>
+        lorsqu&#039;utilisé.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mongo.switchslave-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member"><a href="mongo.readpreferences.html" class="xref">Pr&eacute;f&eacute;rences de lecture</a></li>
+  </ul>
+ </div>
+
+
+</div></div></div></body></html>

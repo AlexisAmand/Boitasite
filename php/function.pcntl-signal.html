@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Installe un gestionnaire de signaux</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.pcntl-signal-get-handler.html">« pcntl_signal_get_handler</a></li>
+      <li style="float: right;"><a href="function.pcntl-sigprocmask.html">pcntl_sigprocmask »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.pcntl.html">Fonctions PCNTL</a></li>
+    <li>Installe un gestionnaire de signaux</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.pcntl-signal" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pcntl_signal</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.1.0, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">pcntl_signal</span> &mdash; <span class="dc-title">Installe un gestionnaire de signaux</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.pcntl-signal-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>pcntl_signal</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$signo</code></span>
+   , <span class="methodparam"><span class="type"><span class="type callable|int">callable|int</span></span> <code class="parameter">$handler</code></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$restart_syscalls</code><span class="initializer"> = <strong><code>TRUE</code></strong></span></span>
+  ] ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>pcntl_signal()</strong></span> installe un nouveau gestionnaire
+   de signaux ou remplace le gestionnaire de signaux courant
+   pour le signal indiqué par le paramètre
+   <code class="parameter">signo</code>.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.pcntl-signal-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">signo</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le numéro du signal.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">handler</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le gestionnaire de signaux. Peut être un <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span>,
+       qui sera appelé pour gérer le signal, ou bien l&#039;une des deux
+       constantes globales <strong><code>SIG_IGN</code></strong> ou <strong><code>SIG_DFL</code></strong>,
+       qui vont, respectivement, ignorer le signal ou restaurer le gestionnaire
+       de signaux par défaut.
+      </p>
+      <p class="para">
+       Si un <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> est fourni, il doit implémenter la signature
+       suivante :
+      </p>
+      <p class="para">
+       <div class="methodsynopsis dc-description">
+        <span class="methodname"><span class="replaceable">handler</span></span>
+         ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$signo</code></span>
+        , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$signinfo</code></span>
+        ) : <span class="type"><span class="type void">void</span></span></div>
+
+       <dl>
+
+        
+         <dt>
+<code class="parameter">signo</code></dt>
+
+         <dd>
+
+          <span class="simpara">
+           Le signal à gérer.
+          </span>
+         </dd>
+
+        
+        
+         <dt>
+<code class="parameter">siginfo</code></dt>
+
+         <dd>
+
+          <span class="simpara">
+           Si le système d&#039;exploitation supporte les structures siginfo_t, ceci sera un <a href="language.types.array.html" class="link">tableau</a> d&#039;informations du signal qui dépendent du signal.
+          </span>
+         </dd>
+
+        
+       </dl>
+
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       <p class="para">
+        Notez que lorsque vous configurez le gestionnaire avec une méthode d&#039;objet,
+        le compteur de référence de l&#039;objet est incrémenté, ce qui le rend persistant
+        jusqu&#039;à ce que vous changiez le gestionnaire de signaux pour un autre, ou que
+        le script se termine.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">restart_syscalls</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le paramètre optionnel <code class="parameter">restart_syscalls</code>
+       spécifie si l&#039;appel système de redémarrage (restarting) doit être utilisé
+       lorsque ce signal arrive.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.pcntl-signal-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 changelog" id="refsect1-function.pcntl-signal-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.1.0</td>
+       <td>
+        À partir de PHP 7.1.0 le gestionnaire de la fonction de rappel est doté d&#039;un
+        second argument qui contient le signingo de ce signal spécifique. Ces données
+        sont seulement fournies si le système d&#039;exploitation a la structure signinfo_t.
+        Si le système d&#039;exploitation n&#039;implémente pas siginfo_t NULL est fournit.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.pcntl-signal-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-3936">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>pcntl_signal()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;l'usage&nbsp;des&nbsp;ticks&nbsp;est&nbsp;nécessaire<br /></span><span style="color: #007700">declare(</span><span style="color: #0000BB">ticks&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;gestionnaire&nbsp;de&nbsp;signaux&nbsp;système<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">sig_handler</span><span style="color: #007700">(</span><span style="color: #0000BB">$signo</span><span style="color: #007700">)<br />{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch&nbsp;(</span><span style="color: #0000BB">$signo</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">SIGTERM</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;gestion&nbsp;de&nbsp;l'extinction<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">exit;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">SIGHUP</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;gestion&nbsp;du&nbsp;redémarrage<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">SIGUSR1</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Reçu&nbsp;le&nbsp;signe&nbsp;SIGUSR1...\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;gestion&nbsp;des&nbsp;autres&nbsp;signaux<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">}<br /><br />}<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Installation&nbsp;du&nbsp;gestionnaire&nbsp;de&nbsp;signaux...\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Installation&nbsp;des&nbsp;gestionnaires&nbsp;de&nbsp;signaux<br /></span><span style="color: #0000BB">pcntl_signal</span><span style="color: #007700">(</span><span style="color: #0000BB">SIGTERM</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"sig_handler"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">pcntl_signal</span><span style="color: #007700">(</span><span style="color: #0000BB">SIGHUP</span><span style="color: #007700">,&nbsp;&nbsp;</span><span style="color: #DD0000">"sig_handler"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">pcntl_signal</span><span style="color: #007700">(</span><span style="color: #0000BB">SIGUSR1</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"sig_handler"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;ou&nbsp;bien&nbsp;utilisez&nbsp;un&nbsp;objet<br />//&nbsp;pcntl_signal(SIGUSR1,&nbsp;array($obj,&nbsp;"faire_quelque_chose"));<br /><br /></span><span style="color: #007700">echo</span><span style="color: #DD0000">"Génération&nbsp;d'un&nbsp;signal&nbsp;SIGUSR1&nbsp;à&nbsp;moi-même...\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;envoi&nbsp;de&nbsp;SIGUSR1&nbsp;à&nbsp;l'identifiant&nbsp;de&nbsp;processus&nbsp;courant<br />//&nbsp;les&nbsp;fonctions&nbsp;posix_*&nbsp;nécéssite&nbsp;l'extension&nbsp;posix<br /></span><span style="color: #0000BB">posix_kill</span><span style="color: #007700">(</span><span style="color: #0000BB">posix_getpid</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">SIGUSR1</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Fait\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 notes" id="refsect1-function.pcntl-signal-notes">
+  <h3 class="title">Notes</h3>
+  <p class="para">
+   La fonction <span class="function"><strong>pcntl_signal()</strong></span> ne place pas dans une pile
+   les gestionnaires de signaux, mais les remplace.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-function.pcntl-signal-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.pcntl-fork.html" class="function" rel="rdfs-seeAlso">pcntl_fork()</a> - Duplique le process courant</span></li>
+    <li class="member"><span class="function"><a href="function.pcntl-waitpid.html" class="function" rel="rdfs-seeAlso">pcntl_waitpid()</a> - Attend la fin de l'ex&eacute;cution d'un processus fils</span></li>
+   </ul>
+  </p>
+ </div>
+
+ 
+</div></div></div></body></html>

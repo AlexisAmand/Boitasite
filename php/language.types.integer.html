@@ -1,0 +1,309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Les entiers</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.types.boolean.html">« Bool&eacute;en</a></li>
+      <li style="float: right;"><a href="language.types.float.html">Nombres &agrave; virgules flottantes »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.types.html">Les types</a></li>
+    <li>Les entiers</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.types.integer" class="sect1">
+ <h2 class="title">Les entiers</h2>
+
+ <p class="simpara">
+  Un <a href="language.types.integer.html" class="link">entier</a> est un nombre appartenant à l&#039;ensemble
+  ℤ = {..., -2, -1, 0, 1, 2, ...}.
+ </p>
+
+ <p class="para">
+  Voir aussi :
+ </p>
+
+ <ul class="itemizedlist">
+  <li class="listitem">
+   <span class="simpara">
+    <a href="book.gmp.html" class="link">Les entiers de longueur arbitraire / GMP</a>
+   </span>
+  </li>
+  <li class="listitem">
+   <span class="simpara">
+    <a href="language.types.float.html" class="link">Les nombres à virgule flottante</a>
+   </span>
+  </li>
+  <li class="listitem">
+   <span class="simpara">
+    <a href="book.bc.html" class="link">Les précisions arbitraires / BCMath</a>
+   </span>
+  </li>
+ </ul>
+
+ <div class="sect2" id="language.types.integer.syntax">
+  <h3 class="title">Syntaxe</h3>
+
+  <p class="simpara">
+   Les entiers peuvent être spécifiés en notation décimale (base 10), hexadécimale
+   (base 16), octale (base 8), ou binaire (base 2).
+   L&#039;<a href="language.operators.arithmetic.html" class="link">opérateur de négation</a>
+   peut être utilisé pour désigner un <a href="language.types.integer.html" class="link">entier</a> négatif.
+  </p>
+
+  <p class="para">
+   Les <a href="language.types.integer.html" class="link">entier</a> littéraux binaires sont disponibles à partir de PHP 5.4.0.
+  </p>
+
+  <p class="para">
+   Pour utiliser la notation octale, précédez le nombre d&#039;un <code class="literal">0</code> (zéro).
+   Pour utiliser la notation hexadécimale, précédez le nombre de <code class="literal">0x</code>.
+   Pour utiliser la notation binaire, précédez le nombre de <code class="literal">0b</code>.
+  </p>
+
+  <p class="para">
+   À partir de PHP 7.4.0, les entiers litérals peuvent contenir des underscores
+   (<code class="literal">_</code>) entre les chiffres, pour une meilleure lisibilité
+   des litérals. Ces underscores sont supprimés par le scanner de PHP.
+  </p>
+
+  <div class="example" id="example-45">
+   <p><strong>Exemple #1 Les entiers littéraux</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1234</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;un&nbsp;nombre&nbsp;décimal<br /></span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0123</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;un&nbsp;nombre&nbsp;octal&nbsp;(équivalent&nbsp;à&nbsp;83&nbsp;en&nbsp;décimal)<br /></span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0x1A</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;un&nbsp;nombre&nbsp;héxadecimal&nbsp;(équivalent&nbsp;à&nbsp;26&nbsp;en&nbsp;décimal)<br /></span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0b11111111</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;un&nbsp;nombre&nbsp;binaire&nbsp;(équivalent&nbsp;à&nbsp;255&nbsp;en&nbsp;decimal)<br /></span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1_234_567</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;un&nbsp;nombre&nbsp;décimal&nbsp;(à&nbsp;partir&nbsp;de&nbsp;PHP&nbsp;7.4.0)<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   Formellement, la structure d&#039;un <a href="language.types.integer.html" class="link">entier</a> littéral est à partir de PHP 7.4.0
+   (auparavant, les underscores n&#039;étaient pas autorisé) :
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="cdata"><pre>
+decimal     : [1-9][0-9]*(_[0-9]+)*
+            | 0
+
+hexadecimal : 0[xX][0-9a-fA-F]+(_[0-9a-fA-F]+)*
+
+octal       : 0[0-7]+(_[0-7]+)*
+
+binary      : 0[bB][01]+(_[01]+)*
+
+integer     : decimal
+            | hexadecimal
+            | octal
+            | binary
+</pre></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   La taille d&#039;un <a href="language.types.integer.html" class="link">entier</a> est dépendant de la plate-forme, cependant,
+   une valeur maximale d&#039;environ 2 milliards est habituelle (cela correspond
+   à 32 bits signés). Les plateformes 64-bit ont habituellement une valeur
+   maximale d&#039;environ 9E18, sauf pour Windows antérieur à PHP 7, qui est
+   toujours en 32 bit. PHP ne supporte pas les <a href="language.types.integer.html" class="link">entier</a>s non-signés.
+   La taille d&#039;un <a href="language.types.integer.html" class="link">entier</a> peut être déterminée en utilisant la constante
+   <strong><code>PHP_INT_SIZE</code></strong>, la valeur maximale, en utilisant
+   la constante <strong><code>PHP_INT_MAX</code></strong> à partir de PHP 5.0.5,
+   et la valeur minimale en utilisant la constante
+   <strong><code>PHP_INT_MIN</code></strong> à partir de PHP 7.0.0.
+  </p>
+
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Antérieur à PHP 7, si un nombre invalide était fourni dans un <a href="language.types.integer.html" class="link">entier</a>
+    octal (i.e. 8 ou 9), le reste du nombre était ignoré.
+    À partir de PHP 7, une erreur d&#039;analyse est émise. 
+   </p>  
+  </div>
+ </div>
+
+ <div class="sect2" id="language.types.integer.overflow">
+  <h3 class="title">Débordement d&#039;entier</h3>
+
+  <p class="para">
+   Si PHP rencontre un nombre supérieur au maximal d&#039;un <a href="language.types.integer.html" class="link">entier</a>, il sera
+   interprété comme un <a href="language.types.float.html" class="link">nombre décimal</a>. De la même façon, une opération qui résulte en
+   un nombre en dehors de l&#039;intervalles du type <a href="language.types.integer.html" class="link">entier</a> retournera un <a href="language.types.float.html" class="link">nombre décimal</a>.
+  </p>
+
+  <div class="example" id="example-46">
+   <p><strong>Exemple #2 Dépassement d&#039;entier sur un système 32-bit</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$large_number&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">2147483647</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$large_number</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;int(2147483647)<br /><br /></span><span style="color: #0000BB">$large_number&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">2147483648</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$large_number</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;float(2147483648)<br /><br /></span><span style="color: #0000BB">$million&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1000000</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$large_number&nbsp;</span><span style="color: #007700">=&nbsp;&nbsp;</span><span style="color: #0000BB">50000&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB">$million</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$large_number</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;float(50000000000)<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <div class="example" id="example-47">
+   <p><strong>Exemple #3 Dépassement d&#039;entier sur un système 64-bit</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$large_number&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">9223372036854775807</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$large_number</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;int(9223372036854775807)<br /><br /></span><span style="color: #0000BB">$large_number&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">9223372036854775808</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$large_number</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;float(9.2233720368548E+18)<br /><br /></span><span style="color: #0000BB">$million&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1000000</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$large_number&nbsp;</span><span style="color: #007700">=&nbsp;&nbsp;</span><span style="color: #0000BB">50000000000000&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB">$million</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$large_number</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;float(5.0E+19)<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  
+  <p class="para">
+   Il n&#039;y a pas d&#039;opérateur de division d&#039;<a href="language.types.integer.html" class="link">entier</a> en PHP.
+   <code class="literal">1/2</code> donne le <a href="language.types.float.html" class="link">nombre décimal</a> (<code class="literal">0.5</code>).
+   La valeur peut être transtypé en un <a href="language.types.integer.html" class="link">entier</a> pour l&#039;arrondir vers zéro, ou
+   en utilisant la fonction <span class="function"><a href="function.round.html" class="function">round()</a></span> pour avoir un contrôle
+   plus fin sur la façon dont l&#039;arrondi est exécuté.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <span class="simpara">
+    À partir de PHP 7.0.0, la fonction <span class="function"><a href="function.intdiv.html" class="function">intdiv()</a></span> est disponible
+    pour la division d&#039;entier.
+   </span>
+  </p></blockquote>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">25</span><span style="color: #007700">/</span><span style="color: #0000BB">7</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;float(3.5714285714286)&nbsp;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">((int)&nbsp;(</span><span style="color: #0000BB">25</span><span style="color: #007700">/</span><span style="color: #0000BB">7</span><span style="color: #007700">));&nbsp;</span><span style="color: #FF8000">//&nbsp;int(3)<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">25</span><span style="color: #007700">/</span><span style="color: #0000BB">7</span><span style="color: #007700">));&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;float(4)&nbsp;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="sect2" id="language.types.integer.casting">
+  <h3 class="title">Conversion en entier</h3>
+
+  <p class="simpara">
+   Pour convertir explicitement une valeur en un <a href="language.types.integer.html" class="link">entier</a>, utiliser soit
+   le mot-clé <code class="literal">(int)</code>, soit <code class="literal">(integer)</code>.
+   Cependant, dans la plupart des cas, ce mot-clé n&#039;est pas nécessaire
+   vu qu&#039;une valeur sera automatiquement convertie si un opérateur, une
+   fonction ou une structure de contrôle demande un <a href="language.types.integer.html" class="link">entier</a> en guise
+   d&#039;argument. Une valeur peut également être convertie en un <a href="language.types.integer.html" class="link">entier</a>
+   en utilisant la fonction <span class="function"><a href="function.intval.html" class="function">intval()</a></span>.
+  </p>
+  
+  <p class="simpara">
+   Si une <a href="language.types.resource.html" class="link">ressource</a> est convertie vers un <a href="language.types.integer.html" class="link">entier</a>, alors
+   le résultat sera l&#039;identifiant unique de la <a href="language.types.resource.html" class="link">ressource</a> assigné 
+   par PHP à l&#039;exécution.
+  </p>
+
+
+  <p class="simpara">
+   Voir aussi <a href="language.types.type-juggling.html" class="link">le transtypage</a>.
+  </p>
+
+  <div class="sect3" id="language.types.integer.casting.from-boolean">
+   <h4 class="title">Depuis un <a href="language.types.boolean.html" class="link">booléen</a></h4>
+
+   <p class="simpara">
+    <strong><code>FALSE</code></strong> correspond à <code class="literal">0</code> (zéro), et <strong><code>TRUE</code></strong> correspond à
+    <code class="literal">1</code> (un).
+   </p>
+  </div>
+
+  <div class="sect3" id="language.types.integer.casting.from-float">
+   <h4 class="title">
+    Depuis <a href="language.types.float.html" class="link">un nombre à virgule flottante</a>
+   </h4> 
+
+   <p class="simpara">
+    Lorsque l&#039;on convertit un <a href="language.types.float.html" class="link">nombre décimal</a> en un <a href="language.types.integer.html" class="link">entier</a>, le nombre sera arrondi
+    <em class="emphasis">vers zéro</em>.
+   </p>
+
+   <p class="para">
+    Si le nombre à virgule flottante est au delà des limites des <a href="language.types.integer.html" class="link">entier</a>s (habituellement,
+    <code class="literal">+/- 2.15e+9 = 2^31</code> sur les plate-formes 32-bit et
+    <code class="literal">+/- 9.22e+18 = 2^63</code> sur les plate-formes 64-bit autre que Windows antérieur à PHP 7),
+    le résultat sera indéfini, sachant que le <a href="language.types.float.html" class="link">nombre décimal</a> n&#039;a pas une précision
+    suffisante pour donner un résultat <a href="language.types.integer.html" class="link">entier</a> exact. Aucune alerte n&#039;est émise lorsque
+    ce comportement survient !
+   </p>
+
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <p class="para">
+     À partir de PHP 7.0.0, au lieu d&#039;être indéfini et dépendant de la plateforme,
+     NaN et Infinity seront toujours égal à zéro lors d&#039;une conversion en <a href="language.types.integer.html" class="link">entier</a>.
+    </p>
+   </p></blockquote>
+
+   <div class="warning"><strong class="warning">Avertissement</strong>
+    <p class="para">
+     Ne convertissez jamais une fraction inconnue en un <a href="language.types.integer.html" class="link">entier</a>, ceci peut
+     engendrer des résultats inattendus.
+    </p>
+
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;(int)&nbsp;(&nbsp;(</span><span style="color: #0000BB">0.1</span><span style="color: #007700">+</span><span style="color: #0000BB">0.7</span><span style="color: #007700">)&nbsp;*&nbsp;</span><span style="color: #0000BB">10&nbsp;</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;7&nbsp;!<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+
+    <p class="para">
+     Voir aussi la section sur <a href="language.types.float.html#warn.float-precision" class="link">les alertes
+     concernant la précision des nombres à virgule flottante</a>.
+    </p>
+   </div>
+  </div>
+
+  <div class="sect3" id="language.types.integer.casting.from-string">
+   <h4 class="title">Depuis des chaînes de caractères</h4>
+
+   <p class="simpara">
+    Voir la section sur la <a href="language.types.string.html#language.types.string.conversion" class="link">
+    conversion des chaînes en nombres</a>
+   </p>
+  </div>
+  
+  <div class="sect3" id="language.types.integer.casting-from-null">
+   <h4 class="title">Depuis <span class="type"><a href="language.types.null.html" class="type NULL">NULL</a></span></h4>
+
+   <p class="simpara">
+    <strong><code>NULL</code></strong> est toujours converti en zéro (<code class="literal">0</code>).
+   </p>
+  </div>
+
+  <div class="sect3" id="language.types.integer.casting.from-other">
+   <h4 class="title">Depuis d&#039;autres types</h4>
+
+   <div class="caution"><strong class="caution">Attention</strong>
+    <p class="simpara">
+     Le comportement de la conversion en <a href="language.types.integer.html" class="link">entier</a> est indéfini depuis les autres types.
+     Ne rapporter <em class="emphasis">aucun</em> comportement observé, sachant qu&#039;ils peuvent
+     changer sans avertissement.
+    </p>
+   </div>
+  </div>
+
+ </div>
+</div></div></div></body></html>

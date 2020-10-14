@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Options internes</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="regexp.reference.alternation.html">« Alternatives</a></li>
+      <li style="float: right;"><a href="regexp.reference.subpatterns.html">Sous-masques »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="reference.pcre.pattern.syntax.html">Fonctionnement des expressions rationnelles</a></li>
+    <li>Options internes</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="regexp.reference.internal-options" class="section">
+  <h2 class="title">Options internes</h2>
+  <p class="para">
+   Les options <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_CASELESS</a>,
+   <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_MULTILINE</a>,
+   <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_DOTALL</a>,
+   <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_UNGREEDY</a>,
+   <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_EXTRA</a>,
+   <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_EXTENDED</a> et
+   PCRE_DUPNAMES peuvent être changées à l&#039;intérieur du masque
+   lui-même, avec des séquences mises entre
+   &quot;<code class="literal">(?</code>&quot; et &quot;<code class="literal">)</code>&quot;.
+   Les options sont :
+   <table class="doctable table">
+    <caption><strong>Options internes</strong></caption>
+    
+     <tbody class="tbody">
+      <tr>
+       <td><code class="literal">i</code></td>
+       <td>pour <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_CASELESS</a></td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">m</code></td>
+       <td>pour <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_MULTILINE</a></td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">s</code></td>
+       <td>pour <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_DOTALL</a></td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">x</code></td>
+       <td>pour <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_EXTENDED</a></td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">U</code></td>
+       <td>pour <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_UNGREEDY</a></td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">X</code></td>
+       <td>Pour <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_EXTRA</a> (plus supporté à partir de PHP 7.3.0)</td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">J</code></td>
+       <td>Pour <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_INFO_JCHANGED</a></td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+  <p class="para">
+   Par exemple, <code class="literal">(?im)</code> rend le masque insensible à
+   la casse, et multilignes. Il est possible d&#039;annuler ces options en les
+   faisant précéder par un signe <code class="literal">-</code> : par
+   exemple <code class="literal">(?im-sx)</code>, ajoutera les options
+   <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_CASELESS</a>
+   et <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_MULTILINE</a>, 
+   mais annulera les options
+   <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_DOTALL</a>
+   et <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_EXTENDED</a>.
+   Si une option apparaît avant et après le signe moins, l&#039;option
+   sera annulée.
+  </p>
+  <p class="para">
+   Lorsqu&#039;une modification d&#039;option survient au degré le plus haut (et donc, pas dans
+   les parenthèses du sous-masque), les modifications sont appliquées dans le reste
+   du masque qui suit. Donc, <code class="literal">/ab(?i)c/</code> valide uniquement
+   &quot;abc&quot; et &quot;abC&quot;.
+  </p>
+  <p class="para">
+   Si une option intervient dans un sous-masque, le comportement est différent.
+   C&#039;est un changement de comportement apparu en Perl 5.005. Une option à
+   l&#039;intérieur d&#039;un sous-masque n&#039;affecte que cette partie du masque, ce
+   qui fait que <code class="literal">(a(?i)b)c</code>
+   acceptera <code class="literal">abc</code> et <code class="literal">aBc</code>, 
+   mais aucune autre chaîne (en supposant que <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_CASELESS</a> n&#039;est pas
+   utilisé). Cela signifie que les options permettent d&#039;avoir
+   différentes configurations de recherche pour différentes
+   parties du masque.Une séquence d&#039;options dans une alternative affecte toute
+   l&#039;alternative. Par exemple :
+   
+   <code class="literal">(a(?i)b|c)</code>
+   
+   accepte &quot;<code class="literal">ab</code>&quot;, &quot;<code class="literal">aB</code>&quot;, &quot;<code class="literal">c</code>&quot;,
+   et &quot;<code class="literal">C</code>&quot;, même si, comme dans le cas de
+   &quot;<code class="literal">C</code>&quot;, la première alternative qui porte
+   l&#039;option n&#039;est pas prise en compte. Sinon, cela risque d&#039;introduire
+   des comportements très étranges
+  </p>
+  <p class="para">
+   Les options spécifiques à PCRE telles
+   <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_UNGREEDY</a> et
+   <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_EXTRA</a> peuvent
+   être modifiées de la même manière, en utilisant respectivement les caractères
+   U et X. L&#039;option <code class="literal">(?X)</code> est particulière,
+   car elle doit toujours intervenir avant toutes les autres options,
+   même au niveau du masque entier. Il vaut mieux l&#039;activer au
+   début du masque.
+  </p>
+ </div></div></div></body></html>

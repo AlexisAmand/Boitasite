@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Configure le gestionnaire de caract&egrave;res</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.xml-set-processing-instruction-handler.html">« xml_set_processing_instruction_handler</a></li>
+      <li style="float: right;"><a href="function.xml-set-unparsed-entity-decl-handler.html">xml_set_unparsed_entity_decl_handler »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.xml.html">Fonctions d'analyse de fichier XML</a></li>
+    <li>Configure le gestionnaire de caract&egrave;res</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.xml-set-start-namespace-decl-handler" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">xml_set_start_namespace_decl_handler</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.5, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">xml_set_start_namespace_decl_handler</span> &mdash; <span class="dc-title">Configure le gestionnaire de caractères</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.xml-set-start-namespace-decl-handler-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>xml_set_start_namespace_decl_handler</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$parser</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> <code class="parameter">$handler</code></span>
+   ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Définit le gestionnaire à appeler lorsque l&#039;espace de noms est déclaré.
+   Les déclarations d&#039;espace de noms surviennent dans les balises de départ.
+   Mais le gestionnaire de départ, appelé lors de la déclaration de l&#039;espace
+   de noms, est appelé avant le gestionnaire de la balise de départ pour
+   chaque espace de noms déclaré dans cette balise.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.xml-set-start-namespace-decl-handler-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">parser</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une référence vers l&#039;analyseur XML.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">handler</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">handler</code> est une chaîne contenant le nom
+       d&#039;une fonction devant exister lorsque la fonction
+       <span class="function"><a href="function.xml-parse.html" class="function">xml_parse()</a></span> est appelé pour l&#039;analyseur
+       <code class="parameter">parser</code>.
+      </p>
+      <p class="para">
+       La fonction nommée par le paramètre <code class="parameter">handler</code>
+       doit accepter 3 paramètres, et doit retourner une valeur entière.
+       Si la valeur retournée par le gestionnaire vaut <strong><code>FALSE</code></strong> (ce qui sera
+       le cas lorsqu&#039;aucune valeur n&#039;est retourné), l&#039;analyseur XML arrêtera
+       l&#039;analyse et la fonction <span class="function"><a href="function.xml-get-error-code.html" class="function">xml_get_error_code()</a></span> retournera
+       <strong><code>XML_ERROR_EXTERNAL_ENTITY_HANDLING</code></strong>.
+       <div class="methodsynopsis dc-description">
+        <span class="methodname"><span class="replaceable">handler</span></span>
+         ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$parser</code></span>
+        , <span class="methodparam"><span class="type">string</span> <code class="parameter">$prefix</code></span>
+        , <span class="methodparam"><span class="type">string</span> <code class="parameter">$uri</code></span>
+        )</div>
+
+       <dl>
+
+        
+         <dt>
+<code class="parameter">parser</code></dt>
+
+         <dd>
+
+          <span class="simpara">
+           Le premier paramètre, <code class="parameter">parser</code>, est une référence
+           à l&#039;analyseur XML appelée par le gestionnaire.
+          </span>
+         </dd>
+
+        
+        
+         <dt>
+<code class="parameter">prefix</code></dt>
+
+         <dd>
+
+          <span class="simpara">
+           Le préfixe est une <a href="language.types.string.html" class="link">chaîne de caractères</a> utilisée pour référencer
+           l&#039;espace de noms d&#039;un objet XML.
+          </span>
+         </dd>
+
+        
+        
+         <dt>
+<code class="parameter">uri</code></dt>
+
+         <dd>
+
+          <span class="simpara">
+           Identifiant de ressource uniforme (URI) d&#039;un
+           espace de noms.
+          </span>
+         </dd>
+
+        
+       </dl>
+
+      </p>
+      <p class="para">
+       Si une chaîne vide, ou la valeur <strong><code>FALSE</code></strong>, est passée en guise de fonction
+       pour le gestionnaire, il sera désactivé.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">
+ À la place d&#039;un nom de fonction, un tableau contenant une référence d&#039;objet et un nom de méthode peut aussi
+ être utilisé.
+</span></p></blockquote>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.xml-set-start-namespace-decl-handler-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.xml-set-start-namespace-decl-handler-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.xml-set-end-namespace-decl-handler.html" class="function" rel="rdfs-seeAlso">xml_set_end_namespace_decl_handler()</a> - Configure le gestionnaire XML de donn&eacute;es</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lighttpd 1.4 sur les syst&egrave;mes Unix</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="install.unix.nginx.html">« Nginx 1.4.x sur les syst&egrave;mes Unix</a></li>
+      <li style="float: right;"><a href="install.unix.sun.html">Installation sous Netscape et iPlanet Enterprise Serveur sur un syst&egrave;me Sun Solaris »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="install.unix.html">Installation sur les syst&egrave;mes UNIX</a></li>
+    <li>Lighttpd 1.4 sur les syst&egrave;mes Unix</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="install.unix.lighttpd-14" class="sect1">
+ <h2 class="title">Lighttpd 1.4 sur les systèmes Unix</h2>
+
+ <p class="para">
+  Cette section contient des informations spécifiques sur l&#039;installation
+  de PHP avec Lighttpd 1.4 sur les systèmes Unix.
+ </p>
+
+ <p class="para">
+  Reportez-vous à <a href="http://trac.lighttpd.net/trac/" class="link external">&raquo;&nbsp;Lighttpd</a>
+  pour une installation correcte de Lighttpd avant de continuer.
+ </p>
+ 
+ <p class="para">
+  Fastcgi est le SAPI préféré pour connecter PHP et Lighttpd. Fastcgi active
+  automatiquement php-cgi depuis PHP 5.3.0, mais pour les versions antérieures,
+  vous devez configurer PHP avec l&#039;option de compilation --enable-fastcgi.
+  Pour vous assurez de l&#039;activation de fastcgi, le résultat de la commande
+  <code class="literal">php -v</code> doit contenir <code class="literal">PHP 5.2.5 (cgi-fcgi)</code>.
+  Avant PHP 5.2.3, fastcgi était activé dans le binaire PHP (php-cgi n&#039;existait pas).
+ </p>
+ 
+ <div class="sect2" id="install.unix.lighttpd-14.lighttpd-spawn">
+  <h3 class="title">Appel de PHP par Lighttpd</h3>
+
+  <p class="para">
+   Pour configurer Lighttpd afin qu&#039;il se connecte à PHP et appelle le processus
+   fastcgi, vous devez éditez le fichier lighttpd.conf. Une connexion par sockets
+   est la solution préférée pour les systèmes locaux.
+  </p>
+
+  <div class="example" id="install.unix.nginx.extract.php">
+   <p><strong>Exemple #1 Portion du fichier lighttpd.conf</strong></p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+server.modules += ( &quot;mod_fastcgi&quot; )
+
+fastcgi.server = ( &quot;.php&quot; =&gt;
+  ((
+    &quot;socket&quot; =&gt; &quot;/tmp/php.socket&quot;,
+    &quot;bin-path&quot; =&gt; &quot;/usr/local/bin/php-cgi&quot;,
+    &quot;bin-environment&quot; =&gt; (
+      &quot;PHP_FCGI_CHILDREN&quot; =&gt; &quot;16&quot;,
+      &quot;PHP_FCGI_MAX_REQUESTS&quot; =&gt; &quot;10000&quot;
+    ),
+    &quot;min-procs&quot; =&gt; 1,
+    &quot;max-procs&quot; =&gt; 1,
+    &quot;idle-timeout&quot; =&gt; 20
+  ))
+)
+</pre></div>
+
+   </div>
+  </div>
+
+  <p class="para">
+   La directive bin-path permet à lighttpd d&#039;appeler le processus fastcgi
+   dynamiquement. PHP appellera les fils suivant la variable d&#039;environnement
+   PHP_FCGI_CHILDREN. La directive <code class="literal">&quot;bin-environment&quot;</code> définit l&#039;environnement
+   pour les processus appelés. PHP terminera un processus fils lorsque le
+   nombre de requêtes spécifié par PHP_FCGI_MAX_REQUESTS a été atteint.
+   Les directives <code class="literal">&quot;min-procs&quot;</code> et <code class="literal">&quot;max-procs&quot;</code> peuvent généralement être ignorées
+   avec PHP. PHP gère ces propres fils et caches opcode comme APC qui partage
+   uniquement les fils gérés par PHP. Si <code class="literal">&quot;min-procs&quot;</code> est défini à quelque chose
+   de supérieur à 1, le nombre total de réponses PHP sera multiplié par
+   PHP_FCGI_CHILDREN (2 min-procs * 16 fils, donne 32 réponses).
+  </p>
+ </div>
+
+ <div class="sect2" id="install.unix.lighttpd-14.spawn-fcgi">
+  <h3 class="title">Appel avec spawn-fcgi</h3>
+
+  <p class="para">
+   Lighttpd fournit un programme appelé spawn-fcgi afin de rendre plus facile
+   les appels des processus fastcgi.
+  </p>
+ </div>
+
+ <div class="sect2" id="install.unix.lighttpd-14.spawn-php">
+  <h3 class="title">Appel de php-cgi</h3>
+
+  <p class="para">
+   Il est possible d&#039;appeler des processus sans spawn-fcgi, avec un
+   minimum de configuration. La variable d&#039;environnement PHP_FCGI_CHILDREN
+   contrôle le nombre de fils que PHP appelle pour gérer les demandes.
+   La variable d&#039;environnement PHP_FCGI_MAX_REQUESTS détermine la durée de
+   vie, en nombre de requêtes, de chaque fils. Voici un script bash simple
+   qui permet d&#039;aider les appels aux répondeurs PHP.
+  </p>
+     
+  <div class="example" id="install.unix.nginx.build.php">
+   <p><strong>Exemple #2 Appel des répondeurs FastCGI</strong></p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+#!/bin/sh
+
+# Localisation du binaire php-cgi
+PHP=/usr/local/bin/php-cgi
+
+# Localisation  du fichier PID
+PHP_PID=/tmp/php.pid
+
+# Liaison à une adresse
+#FCGI_BIND_ADDRESS=10.0.1.1:10000
+# Liaison à un socket du domaine
+FCGI_BIND_ADDRESS=/tmp/php.sock
+
+PHP_FCGI_CHILDREN=16
+PHP_FCGI_MAX_REQUESTS=10000
+
+env -i PHP_FCGI_CHILDREN=$PHP_FCGI_CHILDREN \
+       PHP_FCGI_MAX_REQUESTS=$PHP_FCGI_MAX_REQUESTS \
+       $PHP -b $FCGI_BIND_ADDRESS &amp;
+
+echo $! &gt; &quot;$PHP_PID&quot;
+
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+ <div class="sect2" id="install.unix.lighttpd-14.remote-fcgi">
+  <h3 class="title">Connexion à des instances FCGI distantes</h3>
+
+  <p class="para">
+   Les instances Fastcgi peuvent être appelées sur plusieurs machines distantes
+   afin de répartir les applications.
+  </p>
+   
+  <div class="example" id="install.unix.nginx.configure.php">
+   <p><strong>Exemple #3 Connexion à des instances distantes de php-fastcgi</strong></p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+fastcgi.server = ( &quot;.php&quot; =&gt;
+   (( &quot;host&quot; =&gt; &quot;10.0.0.2&quot;, &quot;port&quot; =&gt; 1030 ),
+    ( &quot;host&quot; =&gt; &quot;10.0.0.3&quot;, &quot;port&quot; =&gt; 1030 ))
+)
+</pre></div>
+   </div>
+  </div>
+ </div>
+</div></div></div></body></html>

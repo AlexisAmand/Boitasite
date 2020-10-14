@@ -1,0 +1,297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>D&eacute;finit une option pour le gestionnaire multiple cURL</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.curl-multi-select.html">« curl_multi_select</a></li>
+      <li style="float: right;"><a href="function.curl-multi-strerror.html">curl_multi_strerror »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.curl.html">Fonctions cURL</a></li>
+    <li>D&eacute;finit une option pour le gestionnaire multiple cURL</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.curl-multi-setopt" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">curl_multi_setopt</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.5.0, PHP 7)</p><p class="refpurpose"><span class="refname">curl_multi_setopt</span> &mdash; <span class="dc-title">Définit une option pour le gestionnaire multiple cURL</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.curl-multi-setopt-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>curl_multi_setopt</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$mh</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$option</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>
+   ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   
+  </p>
+  
+  
+<div class="warning"><strong class="warning">Avertissement</strong>
+<p class="simpara">
+ Cette fonction est actuellement non documentée ; seule la liste des arguments est disponible.
+</p>
+</div>
+
+  
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.curl-multi-setopt-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">mh</code></dt>
+
+    <dd>
+
+     <p class="para">
+      
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">option</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Une des constantes <strong><code>CURLMOPT_*</code></strong>.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">value</code></dt>
+
+    <dd>
+
+     <p class="para">
+      La valeur à définir pour le paramètre
+      <code class="parameter">option</code>.
+     </p>
+     <p class="para">
+      <code class="parameter">value</code> doit être un <span class="type"><a href="language.types.integer.html" class="type int">int</a></span>
+      pour les valeurs suivantes du paramètres
+      <code class="parameter">option</code> :
+      <table class="doctable informaltable">
+       
+        <thead>
+         <tr>
+          <th>Option</th>
+          <th>Définit le paramètre <code class="parameter">value</code> à</th>
+         </tr>
+
+        </thead>
+
+        <tbody class="tbody">
+         <tr>
+          <td style="vertical-align: top;"><strong><code>CURLMOPT_PIPELINING</code></strong></td>
+          <td style="vertical-align: top;">
+           1 pour activer, 0 pour désactiver. L&#039;activation du pipelining
+           sur un gestionnaire multiple va faire qu&#039;il va tenter de réaliser
+           un pipelining HTTP autant que possible pour les transferts utilisant
+           ce gestionnaire. Cela signifie que, si vous ajouter un second gestionnaire
+           qui peut utiliser une connexion exis
+           À partir de cURL 7.43.0, la valeur est un masque de bit, et il est possible de passer 2 pour tenter de multiplex
+           le nouveau transfert via une connexion HTTP/2 existante si possible.
+           Passer 3 ordonne à cURL de demander pour le pipelining et le multiplexing
+           indépendant l&#039;un de l&#039;autre.
+           À partir de cURL 7.62.0, définir le bit de pipelining n&#039;a aucun effet.
+           Au lieu d&#039;entier litérals, les constantes CURLPIPE_* peuvent être utilisé
+           si disponible.
+          </td>
+         </tr>
+
+         <tr>
+          <td style="vertical-align: top;"><strong><code>CURLMOPT_MAXCONNECTS</code></strong></td>
+          <td style="vertical-align: top;">
+           Nombre maximal de connexions ouvertes simultanément que libcurl peut
+           mettre en cache.
+           Par défaut, la taille sera élargit pour rentrer quatre fois le nombre de
+           gestionnaires ajouté grâce à <span class="function"><a href="function.curl-multi-add-handle.html" class="function">curl_multi_add_handle()</a></span>.
+           Lorsque le cache est complet, curl ferme la plus ancienne connexion du cache,
+           afin d&#039;éviter que le nombre de connexions ouvertes n&#039;augmente.
+          </td>
+         </tr>
+
+         <tr>
+           <td style="vertical-align: top;"><strong><code>CURLMOPT_CHUNK_LENGTH_PENALTY_SIZE</code></strong></td>
+           <td style="vertical-align: top;">
+            Passe un nombre qui définit le seuil de la longeur des tranches pour
+            le pipelining en octets.
+           </td>
+          </tr>
+
+          <tr>
+           <td style="vertical-align: top;"><strong><code>CURLMOPT_CONTENT_LENGTH_PENALTY_SIZE</code></strong></td>
+           <td style="vertical-align: top;">
+            Passe un nombre qui définit le seuil de la taille pour les pénalités
+            de pipelining en octets.
+           </td>
+          </tr>
+
+          <tr>
+           <td style="vertical-align: top;"><strong><code>CURLMOPT_MAX_HOST_CONNECTIONS</code></strong></td>
+           <td style="vertical-align: top;">
+            Passe un nombre qui définit le nombre maximal de connexion à un hôte unique.
+           </td>
+          </tr>
+
+          <tr>
+           <td style="vertical-align: top;"><strong><code>CURLMOPT_MAX_PIPELINE_LENGTH</code></strong></td>
+           <td style="vertical-align: top;">
+            Passe un nombre qui définit le nombre maximal de requête dans une pipeline.
+           </td>
+          </tr>
+
+          <tr>
+           <td style="vertical-align: top;"><strong><code>CURLMOPT_MAX_TOTAL_CONNECTIONS</code></strong></td>
+           <td style="vertical-align: top;">
+            Passe un nombre qui définit le nombre maximal de connexions simultanées
+            ouvertes.
+           </td>
+          </tr>
+
+          <tr>
+           <td style="vertical-align: top;"><strong><code>CURLMOPT_PUSHFUNCTION</code></strong></td>
+           <td style="vertical-align: top;">
+            Passe une fonction de rappel qui sera déclaré pour gérer les pushs serveurs
+            et devrait avoir la signature suivante :
+            <div class="methodsynopsis dc-description">
+             <span class="methodname"><span class="replaceable">pushfunction</span></span>
+              ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$parent_ch</code></span>
+             , <span class="methodparam"><span class="type">resource</span> <code class="parameter">$pushed_ch</code></span>
+             , <span class="methodparam"><span class="type">array</span> <code class="parameter">$headers</code></span>
+             ) : <span class="type">int</span></div>
+
+            <dl>
+
+             
+              <dt>
+<code class="parameter">parent_ch</code></dt>
+
+              <dd>
+
+               <p class="para">
+                Le gestionnaire cURL parent (la requête que le client a faite).
+               </p>
+              </dd>
+
+             
+             
+              <dt>
+<code class="parameter">pushed_ch</code></dt>
+
+              <dd>
+
+               <p class="para">
+                Un nouveau gestionnaire cURL pour les requêtes pushé.
+               </p>
+              </dd>
+
+             
+             
+              <dt>
+<code class="parameter">headers</code></dt>
+
+              <dd>
+
+               <p class="para">
+                Les en-têtes de promise de push.
+               </p>
+              </dd>
+
+             
+            </dl>
+
+            La fonction de push est supposé de retourner soit
+            <strong><code>CURL_PUSH_OK</code></strong> si il peut gérer le push, ou
+            <strong><code>CURL_PUSH_DENY</code></strong> pour le rejeter.
+           </td>
+          </tr>
+
+        </tbody>
+       
+      </table>
+
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.curl-multi-setopt-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.curl-multi-setopt-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.1.0</td>
+       <td>
+        Ajout de <strong><code>CURLMOPT_PUSHFUNCTION</code></strong>.
+       </td>
+      </tr>
+
+      <tr>
+       <td>7.0.7</td>
+       <td>
+        Ajout de <strong><code>CURLMOPT_CHUNK_LENGTH_PENALTY_SIZE</code></strong>,
+        <strong><code>CURLMOPT_CONTENT_LENGTH_PENALTY_SIZE</code></strong>,
+        <strong><code>CURLMOPT_MAX_HOST_CONNECTIONS</code></strong>,
+        <strong><code>CURLMOPT_MAX_PIPELINE_LENGTH</code></strong> et
+        <strong><code>CURLMOPT_MAX_TOTAL_CONNECTIONS</code></strong>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

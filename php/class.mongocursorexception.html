@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>La classe MongoCursorException</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongoresultexception.getdocument.html">« MongoResultException::getDocument</a></li>
+      <li style="float: right;"><a href="mongocursorexception.gethost.html">MongoCursorException::getHost »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mongo.exceptions.html">Exceptions</a></li>
+    <li>La classe MongoCursorException</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="class.mongocursorexception" class="reference">
+
+ <h1 class="title">La classe <a href="class.mongocursorexception.html" class="classname">MongoCursorException</a></h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(PECL mongo &gt;= 1.0.0)</p>
+
+  
+  <div class="section" id="mongocursorexception.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    Émise lors d&#039;un accès incorrect à un curseur ou lors de la réception
+    d&#039;une erreur au moment de la réponse. Notez que cette exception peut être
+    émise par n&#039;importe quelle requête de base de données qui reçoit une réponse,
+    et pas uniquement les requêtes. Les commandes d&#039;écriture, et toutes les autres
+    opérations qui envoient des informations à la base de données et attendent une
+    réponse peuvent émettre une exception de type <strong class="classname">MongoCursorException</strong>.
+    La seule exception à ce principe est <code class="literal">new MongoClient()</code> (création d&#039;une
+    nouvelle connexion), qui n&#039;émet que des exceptions de type
+    <a href="class.mongoconnectionexception.html" class="classname">MongoConnectionException</a>.
+   </p>
+
+   <p class="para">
+    Cette exception retourne un message d&#039;erreur spécifique pour aider dans le diagnostique
+    du problème ainsi qu&#039;un code erreur numérique associé avec la cause de l&#039;exception.
+   </p>
+
+   <p class="para">
+    Par exemple, supposez que vous tentiez d&#039;insérer 2 documents avec le même _id :
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"_id"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">),&nbsp;array(</span><span style="color: #DD0000">"w"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"_id"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">),&nbsp;array(</span><span style="color: #DD0000">"w"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br />}<br />catch&nbsp;(</span><span style="color: #0000BB">MongoCursorException&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"message&nbsp;d'erreur&nbsp;:&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">().</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"code&nbsp;de&nbsp;l'erreur&nbsp;:&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getCode</span><span style="color: #007700">().</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    Ceci affichera quelque chose comme :
+    <div class="example-contents">
+<div class="txtcode"><pre class="txtcode">message d&#039;erreur : E11000 duplicate key error index: foo.bar.$_id_  dup key: { : 1 }
+code de l&#039;erreur : 11000</pre>
+</div>
+    </div>
+
+    Notez que le code erreur MongoDB (11000) est utilisé pour le code erreur PHP. Le driver
+    PHP utilise le code erreur natif lorsque c&#039;est possible.
+   </p>
+
+   <p class="para">
+    Voici une liste des erreurs, codes et causes survenant le plus fréquemment.
+    Les erreurs exactes sont en italiquue, les erreurs dont le message varie 
+    sont décrites en oblique.
+   </p>
+
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">cannot modify cursor after beginning iteration</code>
+     </p>
+     <p class="para">
+      Code : 0
+     </p>
+     <p class="para">
+      Vous appelez une méthode qui affecte la requête après l&#039;exécuter. Remettez à zéro
+      le curseur et rééssayez.
+     </p>
+     <p class="para">
+      Un exemple :
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$cursor&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getNext</span><span style="color: #007700">());<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;getNext()&nbsp;requête&nbsp;la&nbsp;base&nbsp;de&nbsp;données,&nbsp;il&nbsp;est&nbsp;trop&nbsp;tard&nbsp;pour&nbsp;définir&nbsp;une&nbsp;limite<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">limit</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />}<br />catch&nbsp;(</span><span style="color: #0000BB">MongoCursorException&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"message&nbsp;d'erreur&nbsp;:&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">().</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"code&nbsp;de&nbsp;l'erreur&nbsp;:&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getCode</span><span style="color: #007700">().</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Ceci&nbsp;fonctionnera&nbsp;:<br /></span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getNext</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">reset</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">limit</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+     </p>
+    </li>
+    
+    <li class="listitem">
+     <p class="para">
+      Get next batch send errors
+     </p>
+     <p class="para">
+      Code : 1
+     </p>
+     <p class="para">
+      Ne peut envoyer la requête à la base. Vérifiez l&#039;état su serveur et du réseau.
+     </p>
+    </li>
+    
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">cursor not found</code>
+     </p>
+     <p class="para">
+      Code : 2
+     </p>
+     <p class="para">
+      Le pilote a tenté de récupérer plus de données depuis la base, mais celle-ci n&#039;avait
+      pas assez d&#039;enregistrements. Ceci signifie en général que le curseur a expiré coté serveur
+      après quelques minutes d&#039;inactivité, la base va détruire un curseur. (Voyez
+      <span class="function"><a href="mongocursor.immortal.html" class="function">MongoCursor::immortal()</a></span> pour plus d&#039;informations).
+     </p>
+     <p class="para">
+      Un exemple :
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$cursor&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getNext</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;attendre&nbsp;pendant&nbsp;15&nbsp;minutes<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">sleep</span><span style="color: #007700">(</span><span style="color: #0000BB">60</span><span style="color: #007700">*</span><span style="color: #0000BB">15</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">hasNext</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getNext</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />catch&nbsp;(</span><span style="color: #0000BB">MongoCursorException&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"message&nbsp;d'erreur&nbsp;:&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">().</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"code&nbsp;de&nbsp;l'erreur&nbsp;:&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getCode</span><span style="color: #007700">().</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+     </p>
+    </li>
+
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">cursor-&gt;buf.pos is null</code>
+     </p>
+     <p class="para">
+      Code : 3
+     </p>
+     <p class="para">
+      Ceci peut indiquer que vous n&#039;avez plus de RAM de disponible ou
+      bien d&#039;autres circonstances extraordinaires.
+     </p>
+    </li>
+
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">couldn&#039;t get response header</code>
+     </p>
+     <p class="para">
+      Code : 4
+     </p>
+     <p class="para">
+      Une erreur commune si la base de données ou le réseau n&#039;est plus disponible.
+      Cela signifie que le driver ne peut récupérer une réponse depuis la connexion.
+     </p>
+    </li>
+
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">no db response</code>
+     </p>
+     <p class="para">
+      Code : 5
+     </p>
+     <p class="para">
+      Ceci n&#039;est pas toujours une erreur, par exemple, la commande
+      &quot;shutdown&quot; émise à la base de données ne retourne aucune réponse.
+      Cependant, si vous attendez une réponse, cela signifie que
+      la base de données n&#039;a pas réussi à la fournir.
+     </p>
+    </li>
+    
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">bad response length: %d, did the db assert?</code>
+     </p>
+     <p class="para">
+      Code : 6
+     </p>
+     <p class="para">
+      Ceci signifie que la base de données dit que sa réponse est 
+      inférieure à 0. Cela signifie généralement qu&#039;une erreur
+      réseau ou une corruption de la base de données est survenue.
+     </p>
+    </li>
+    
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">incomplete header</code>
+     </p>
+     <p class="para">
+      Code : 7
+     </p>
+     <p class="para">
+      Très peu commun. Apparait si la réponse de la base commence de manière correcte, mais
+      échoue en plein milieu. Probablement un problème réseau.
+     </p>
+    </li>
+
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">incomplete response</code>
+     </p>
+      <p class="para">
+      Code : 8
+     </p>
+     <p class="para">
+      Très rare. Survient si la réponse de la base de données a commencé avec succès,
+      mais s&#039;est interrompue avant la fin. Probablement un problème réseau.
+     </p>
+    </li>
+    
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">couldn&#039;t find a response</code>
+     </p>
+     <p class="para">
+      Code : 9
+     </p>
+     <p class="para">
+      Si la réponse est en cache mais ne peut être trouvée.
+     </p>
+    </li>
+
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">error getting socket</code>
+     </p>
+     <p class="para">
+      Code : 10
+     </p>
+     <p class="para">
+      Le socket a été fermé ou a rencontré un problème. Le pilote devrait se reconnecter
+      automatiquement (si possible) lors de l&#039;opération suivante.
+     </p>
+    </li>
+
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">couldn&#039;t find reply, please try again</code>
+     </p>
+     <p class="para">
+      Code : 11
+     </p>
+     <p class="para">
+      Le pilote sauvegarde toutes les réponses de la base qu&#039;il ne peut associer immédiatement
+      à une requête. Cette exception arrive lorsque le pilote a déja passé la réponse à
+      votre requête mais ne peut la trouver dans son cache.
+     </p>
+    </li>
+    
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">error getting database response: errstr</code>
+     </p>
+     <p class="para">
+      <code class="literal">WSA error getting database response: errstr</code>
+     </p>
+     <p class="para">
+      &quot;errstr&quot; est une erreur IO, repporté directement depuis le socket C
+      du sous-système. Sous Windows, le message d&#039;erreur est préfixé par &quot;WSA&quot;.
+     </p>
+    </li>
+    
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">Timeout error</code>
+     </p>
+     <p class="para">
+      Code : 13
+     </p>
+     <p class="para">
+      Erreur lors de l&#039;attente qu&#039;une requête s&#039;exécute.
+     </p>
+    </li>
+
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">couldn&#039;t send query: &lt;various&gt;</code>
+     </p>
+     <p class="para">
+      Code : 14
+     </p>
+     <p class="para">
+      Erreur de socket C à l&#039;envoi.
+     </p>
+    </li>
+
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">max number of retries exhausted, couldn&#039;t send query</code>
+     </p>
+     <p class="para">
+      Code : 19
+     </p>
+     <p class="para">
+      Le driver retentera automatiquement les requêtes (et non les commandes)
+      un nombre de fois défini si la première tentative échoue pour certaines raisons.
+      Ceci peut produire quelques exceptions lors du jeu de réplication (alors que d&#039;autres
+      passeront normalement), ainsi que quelques erreurs réseaux.
+     </p>
+     <p class="para">
+      Ceci peut aussi survenir en raison du driver qui n&#039;arrive pas à se reconnecter
+      à la base de données (si, par exemple, la base de données n&#039;est plus joignable).
+     </p>
+     <p class="para">
+      Version 1.2.2+.
+     </p>
+    </li>
+   </ul>
+  </div>
+  
+  <div class="section">
+   <h2 class="title">Erreur de la base de données</h2>
+   <p class="para">
+    Les erreurs de la base devraient toujours déclencher une
+    <strong class="classname">MongoCursorExceptions</strong>. Les
+    messages d&#039;erreur et les codes sont envoyés directement depuis la base et devraient se
+    retrouver dans le journal de la base de données.
+   </p>
+
+   <p class="para">
+    Voici quelques erreurs classiques de base de données:
+   </p>
+
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">E11000 duplicate key error index: foo.bar.$X  dup key: { /* ... */ }</code>
+     </p>
+     <p class="para">
+      Code: 11000
+     </p>
+     <p class="para">
+      Erreur de clé dupliquée.
+     </p>
+    </li>
+
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">not master</code>
+     </p>
+     <p class="para">
+      Codes: 10107, 13435, and 10058
+     </p>
+     <p class="para">
+      Erreurs not master, pipée vers la base. Chacune causera une déconnection du pilote
+      et sa recherche d&#039;un nouveau primaire. L&#039;erreur en failover peut ne pas être de type
+      &quot;not master&quot;, en fonction du déclenchement du changement de primaire.
+     </p>
+    </li>
+   </ul>
+
+  </div>
+  
+
+  <div class="section" id="mongocursorexception.synopsis">
+   <h2 class="title">Synopsis de la classe</h2>
+
+   
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+
+    
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">MongoCursorException</strong>
+     </span>
+     <span class="ooclass">
+      <span class="modifier">extends</span>
+      <a href="class.mongoexception.html" class="classname">MongoException</a>
+     </span>
+     {</div>
+    
+
+   }</div>
+   
+
+  </div>
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+<h2>Sommaire</h2><ul class="chunklist chunklist_reference"><li><a href="mongocursorexception.gethost.html">MongoCursorException::getHost</a> — R&eacute;cup&egrave;re le nom de l'h&ocirc;te sur lequel une erreur est survenue</li></ul>
+</div>
+</div></div></body></html>

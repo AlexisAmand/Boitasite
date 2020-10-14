@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Classes de caract&egrave;res</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="regexp.reference.dot.html">« Point</a></li>
+      <li style="float: right;"><a href="regexp.reference.alternation.html">Alternatives »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="reference.pcre.pattern.syntax.html">Fonctionnement des expressions rationnelles</a></li>
+    <li>Classes de caract&egrave;res</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="regexp.reference.character-classes" class="section">
+  <h2 class="title">Classes de caractères</h2>
+  <p class="para">
+   Un crochet ouvrant <code class="literal">[</code> introduit une classe de
+   caractères, et le crochet fermant <code class="literal">]</code>la
+   conclut. Le crochet fermant n&#039;a pas de signification en lui-même.
+   Si le crochet fermant est nécessaire à l&#039;intérieur
+   d&#039;une classe de caractères, il faut qu&#039;il soit le premier
+   caractère (après un <code class="literal">^</code> éventuel)
+   ou protégé avec un antislash.
+  </p>
+  <p class="para">
+   Une classe de caractères remplace un seul caractère
+   dans la chaîne sujet, à moins que le premier
+   caractère de la classe soit un accent circonflexe
+   <code class="literal">^</code>, qui représente une négation :
+   le caractère ne doit pas se trouver dans la classe. Si
+   <code class="literal">^</code> est nécessaire dans la classe, il
+   suffit qu&#039;il ne soit pas le premier caractère, ou bien
+   qu&#039;il soit protégé par un antislash.
+  </p>
+  <p class="para">
+   Par exemple, le caractère <code class="literal">[aeiou]</code> remplace
+   n&#039;importe quelle voyelle minuscule, tandis que <code class="literal">[^aeiou]</code>
+   remplace n&#039;importe quelle caractère qui n&#039;est pas une voyelle
+   minuscule. <code class="literal">^</code> est une notation pratique pour
+   spécifier des caractères qui sont dans une classe,
+   en ne citant que ceux qui n&#039;y sont pas. Le comportement est inchangé.
+  </p>
+  <p class="para">
+   Avec l&#039;option d&#039;insensibilité à la casse, toutes les lettres
+   d&#039;une classe de caractères représentent en même temps
+   la majuscule et la minuscule. Par exemple, <code class="literal">[aeiou]</code>
+   représentera &quot;<code class="literal">A</code>&quot; ou &quot;<code class="literal">a</code>&quot;, et
+   <code class="literal">[^aeiou]</code> n&#039;acceptera pas &quot;<code class="literal">A</code>&quot;,
+   tandis que sans l&#039;option, elle l&#039;accepterait.
+  </p>
+  <p class="para">
+   Le caractère de nouvelle ligne n&#039;est pas traité de
+   manière spéciale dans les classes de caractères,
+   quelque soit l&#039;option <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_DOTALL</a>
+   ou <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_MULTILINE</a>. Une classe
+   telle que <code class="literal">[^a]</code> acceptera toujours une nouvelle ligne.
+  </p>
+  <p class="para">
+   Le signe moins (<code class="literal">-</code>) est utilisé pour
+   spécifier un intervalle de caractères, dans
+   une classe. Par exemple, <code class="literal">[d-m]</code> remplace toutes
+   les lettres entre d et m inclus. Si le caractère moins est
+   requis dans une classe, il faut le protéger avec un antislash,
+   ou le faire apparaître à une position où il ne pourra
+   pas être interprété comme une indication d&#039;intervalle,
+   c&#039;est-à-dire au début ou à la fin de la classe.
+  </p>
+  <p class="para">
+   Il n&#039;est pas possible d&#039;avoir le caractère crochet fermant
+   &quot;<code class="literal">]</code>&quot; comme fin d&#039;intervalle. Un masque tel que
+   <code class="literal">[W-]46]</code> est compris comme la classe de caractères
+   contenant deux caractères (&quot;W&quot; et &quot;-&quot;) suivie de la chaîne
+   littérale &quot;46]&quot;, ce qui fait qu&#039;il va accepter
+   &quot;<code class="literal">W46]</code>&quot; ou  &quot;<code class="literal">-46]</code>&quot;. Cependant, si
+   &quot;<code class="literal">]</code>&quot; est protégé avec un antislash, le
+   masque <code class="literal">[W-\]46]</code> est interprété comme
+   une classe d&#039;un seul caractère, contenant un intervalle de
+   caractères. La valeur octale ou hexadécimale de
+   &quot;<code class="literal">]</code>&quot; peut aussi être utilisée pour déterminer
+   les limites de l&#039;intervalle.
+  </p>
+  <p class="para">
+   Les intervalles travaillent sur des séquences ASCII. 
+   Ils peuvent aussi être précisés avec des valeurs numériques :
+   par exemple &quot;<code class="literal">[\000-\037]</code>&quot;.
+   Si cet intervalle inclut des lettres utilisées avec une
+   option d&#039;insensibilité de casse, les majuscules ou minuscules
+   correspondantes seront aussi incluses. Par exemple,
+   &quot;<code class="literal">[W-c]</code>&quot; est équivalent à
+   &quot;<code class="literal">[][\^_`wxyzabc]</code>&quot;, avec l&#039;option
+   d&#039;insensibilité de casse. Si la table locale de
+   caractères est &quot;fr&quot;, &quot;<code class="literal">[\xc8-\xcb]</code>&quot;
+   correspond aux caractères accentués.
+  </p>
+  <p class="para">
+   Les types de caractères <code class="literal">\d</code>,
+   <code class="literal">\D</code>, <code class="literal">\S</code>, <code class="literal">\s</code>,
+   <code class="literal">\w</code>, <code class="literal">\W</code> peuvent aussi intervenir
+   dans les classes de caractères. Par exemple,
+   &quot;<code class="literal">[][\^_`wxyzabc][\dABCDEF]</code>&quot; acceptera n&#039;importe
+   quel caractère hexadécimal. Un accent circonflexe peut
+   aussi être utilisé pour spécifier adroitement
+   des ensembles de caractères plus restrictifs : par exemple
+   <code class="literal">[^\W_]</code> accepte toutes les lettres et les chiffres,
+   mais pas les soulignés.
+  </p>
+  <p class="para">
+   Tous les caractères non alphanumériques autres que 
+   <code class="literal">\, -, ^</code> (placés en début de chaîne) 
+   et <code class="literal">]</code> n&#039;ont pas de signification 
+   particulière, mais ils ne perdront rien à être protégés.
+   Le délimiteur de motif est toujours spécial, et doit être 
+   protégé lorsqu&#039;il est utilisé à l&#039;intérieur d&#039;une expression.
+  </p>
+  <p class="para">
+   Perl supporte la notation POSIX pour les classes de caractères.
+   Elles utilisent des noms entourés par <code class="literal">[:</code> et
+   <code class="literal">:]</code>. PCRE supporte également cette notation. Par exemple,
+   <code class="literal">[01[:alpha:]%]</code> trouve &quot;0&quot;, &quot;1&quot;, toute lettre,
+   ou encore le caractère &quot;%&quot;. Les noms de classe supportés sont :
+   <table class="doctable table">
+    <caption><strong>Classes de caractères</strong></caption>
+    
+     <tbody class="tbody">
+      <tr>
+       <td><code class="literal">alnum</code></td>
+       <td>lettres et chiffres</td></tr>
+
+      <tr>
+       <td><code class="literal">alpha</code></td>
+       <td>lettres</td></tr>
+
+      <tr>
+       <td><code class="literal">ascii</code></td>
+       <td>codes caractères 0 - 127</td></tr>
+
+      <tr>
+       <td><code class="literal">blank</code></td>
+       <td>espace ou tabulation uniquement</td></tr>
+
+      <tr>
+       <td><code class="literal">cntrl</code></td>
+       <td>caractères de contrôle</td></tr>
+
+      <tr>
+       <td><code class="literal">digit</code></td>
+       <td>chiffres décimales (identique à \d)</td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">graph</code></td>
+       <td>caractères d&#039;impression, excluant les espaces</td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">lower</code></td>
+       <td>lettres en minuscule</td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">print</code></td>
+       <td>caractères d&#039;impression, incluant les espaces</td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">punct</code></td>
+       <td>caractères d&#039;impression, excluant les lettres et les chiffres</td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">space</code></td>
+       <td>espace blanc (pas tout à fait identique à \s)</td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">upper</code></td>
+       <td>lettres en majuscule</td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">word</code></td>
+       <td>caractères composant un mot (identique à \w)</td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">xdigit</code></td>
+       <td>chiffres hexadécimaux</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+   Les caractères d&#039;espacement (<code class="literal">space</code>) sont HT (9), LF (10), VT (11), FF (12), CR (13),
+   et l&#039;espace (32). Notez que cette liste inclut le caractère VT (code 11). Ceci rend la classe
+   &quot;space&quot; différente de <code class="literal">\s</code>, qui n&#039;inclut pas ce caractère VT (pour une raison de compatibilité
+   Perl).
+  </p>
+  <p class="para">
+   La classe <code class="literal">word</code> est une extension Perl, et <code class="literal">blank</code>
+   est une extension GNU de Perl 5.8. La négation est une autre extension Perl ; elle est indiquée
+   par le caractère <code class="literal">^</code> après un double-point. Par exemple,
+   <code class="literal">[12[:^digit:]]</code> trouve &quot;1&quot;, &quot;2&quot;, mais aussi tout caractère qui n&#039;est pas un chiffre.
+  </p>
+  <p class="para">
+   En mode UTF-8, les caractères dont les valeurs sont supérieures à 128 ne seront trouvés par
+   aucune des classes de caractères POSIX.
+   À partir de PHP 5.3.0 et libpcre 8.10 certains charactères de classes ont été
+   modifié pour utiliser des charactères de propriétés Unicode, dans ce cas les
+   restrictions mentionnées ne s&#039;applique pas.
+   Référez-vous au <a href="http://www.pcre.org/pcre.txt" class="link external">&raquo;&nbsp;manuel PCRE(3)</a> pour plus de détails.
+  </p>
+  <p class="para">
+   Les propriétés des charactères Unicode peuvent apparaitre à l&#039;intérieur d&#039;une
+   classe de charactère. Ils ne peuvent pas faire partie d&#039;une étendue.
+   Le charactère moins (tirret) après une classe de charactère Unicode satisfera littéralement.
+   Essayer de terminer une étendue avec une propriété de charactère Unicode résultera en un avertissement.
+  </p>
+ </div></div></div></body></html>

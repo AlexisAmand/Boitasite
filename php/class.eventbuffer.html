@@ -1,0 +1,671 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>La classe EventBuffer</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="eventbase.stop.html">« EventBase::stop</a></li>
+      <li style="float: right;"><a href="eventbuffer.add.html">EventBuffer::add »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.event.html">Event</a></li>
+    <li>La classe EventBuffer</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="class.eventbuffer" class="reference">
+ <h1 class="title">La classe EventBuffer</h1>
+ 
+ <div class="partintro"><p class="verinfo">(PECL event &gt;= 1.5.0)</p>
+
+  <div class="section" id="eventbuffer.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    La classe <strong class="classname">EventBuffer</strong> représente
+    &quot;evbuffer&quot; de Libevent, un utilitaire pour les I/O bufferisés.
+   </p>
+   <p class="para">
+    Les buffers d&#039;événements sont générallement utiles pour réaliser la
+    partie buffer d&#039;un réseau I/O bufferisé.
+   </p>
+  </div>
+
+  <div class="section" id="eventbuffer.synopsis">
+   <h2 class="title">Synopsis de la classe</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass">
+     
+    </div>
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">EventBuffer</strong>
+     </span>
+     {</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Constants */</div>
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.eventbuffer.html#eventbuffer.constants.eol-any"><var class="varname">EOL_ANY</var></a></var>
+     <span class="initializer"> = 0</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.eventbuffer.html#eventbuffer.constants.eol-crlf"><var class="varname">EOL_CRLF</var></a></var>
+     <span class="initializer"> = 1</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.eventbuffer.html#eventbuffer.constants.eol-crlf-strict"><var class="varname">EOL_CRLF_STRICT</var></a></var>
+     <span class="initializer"> = 2</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.eventbuffer.html#eventbuffer.constants.eol-lf"><var class="varname">EOL_LF</var></a></var>
+     <span class="initializer"> = 3</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.eventbuffer.html#eventbuffer.constants.ptr-set"><var class="varname">PTR_SET</var></a></var>
+     <span class="initializer"> = 0</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.eventbuffer.html#eventbuffer.constants.ptr-add"><var class="varname">PTR_ADD</var></a></var>
+     <span class="initializer"> = 1</span>
+    ;</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Propriétés */</div>
+    <div class="fieldsynopsis">
+     <span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">int</span>
+      <var class="varname"><a href="class.eventbuffer.html#eventbuffer.props.length">$<var class="varname">length</var></a></var>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">public</span>
+     <span class="modifier">readonly</span>
+     <span class="type">int</span>
+      <var class="varname"><a href="class.eventbuffer.html#eventbuffer.props.contiguous-space">$<var class="varname">contiguous_space</var></a></var>
+    ;</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Méthodes */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.add.html" class="methodname">add</a></span>
+    ( <span class="methodparam">
+    <span class="type">string</span>
+     <code class="parameter">$data</code>
+   </span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.addbuffer.html" class="methodname">addBuffer</a></span>
+    ( <span class="methodparam">
+    <span class="type"><a href="class.eventbuffer.html" class="type EventBuffer">EventBuffer</a></span>
+     <code class="parameter">$buf</code>
+   </span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.appendfrom.html" class="methodname">appendFrom</a></span>
+    ( <span class="methodparam">
+    <span class="type"><a href="class.eventbuffer.html" class="type EventBuffer">EventBuffer</a></span>
+     <code class="parameter">$buf</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$len</code>
+   </span>
+   ) : <span class="type">int</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="methodname"><a href="eventbuffer.construct.html" class="methodname">__construct</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.copyout.html" class="methodname">copyout</a></span>
+    ( <span class="methodparam">
+    <span class="type">string</span>
+     <code class="parameter reference">&$data</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$max_bytes</code>
+   </span>
+   ) : <span class="type">int</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.drain.html" class="methodname">drain</a></span>
+    ( <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$len</code>
+   </span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.enablelocking.html" class="methodname">enableLocking</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.expand.html" class="methodname">expand</a></span>
+    ( <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$len</code>
+   </span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.freeze.html" class="methodname">freeze</a></span>
+    ( <span class="methodparam">
+    <span class="type">bool</span>
+     <code class="parameter">$at_front</code>
+   </span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.lock.html" class="methodname">lock</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.prepend.html" class="methodname">prepend</a></span>
+    ( <span class="methodparam">
+    <span class="type">string</span>
+     <code class="parameter">$data</code>
+   </span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.prependbuffer.html" class="methodname">prependBuffer</a></span>
+    ( <span class="methodparam">
+    <span class="type"><a href="class.eventbuffer.html" class="type EventBuffer">EventBuffer</a></span>
+     <code class="parameter">$buf</code>
+   </span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.pullup.html" class="methodname">pullup</a></span>
+    ( <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$size</code>
+   </span>
+   ) : <span class="type">string</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.read.html" class="methodname">read</a></span>
+    ( <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$max_bytes</code>
+   </span>
+   ) : <span class="type">string</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.read.html" class="methodname">read</a></span>
+    ( <span class="methodparam">
+    <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span>
+     <code class="parameter">$fd</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$howmuch</code>
+   </span>
+   ) : <span class="type">int</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.readline.html" class="methodname">readLine</a></span>
+    ( <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$eol_style</code>
+   </span>
+   ) : <span class="type">string</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.search.html" class="methodname">search</a></span>
+    ( <span class="methodparam">
+    <span class="type">string</span>
+     <code class="parameter">$what</code>
+   </span>
+   [, <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$start</code>
+    <span class="initializer"> = -1</span>
+   </span>
+   [, <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$end</code>
+    <span class="initializer"> = -1</span>
+   </span>
+  ]] ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.searcheol.html" class="methodname">searchEol</a></span>
+    ([ <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$start</code>
+    <span class="initializer"> = -1</span>
+   </span>
+   [, <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$eol_style</code>
+    <span class="initializer"> = 
+     <strong><code>EventBuffer::EOL_ANY</code></strong>
+    </span>
+   </span>
+  ]] ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.substr.html" class="methodname">substr</a></span>
+    ( <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$start</code>
+   </span>
+   [, <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$length</code>
+   </span>
+  ] ) : <span class="type">string</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.unfreeze.html" class="methodname">unfreeze</a></span>
+    ( <span class="methodparam">
+    <span class="type">bool</span>
+     <code class="parameter">$at_front</code>
+   </span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.unlock.html" class="methodname">unlock</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbuffer.write.html" class="methodname">write</a></span>
+    ( <span class="methodparam">
+    <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span>
+     <code class="parameter">$fd</code>
+   </span>
+   [, <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$howmuch</code>
+   </span>
+  ] ) : <span class="type">int</span></div>
+
+   }</div>
+
+  </div>
+
+  <div class="section" id="eventbuffer.props">
+   <h2 class="title">Propriétés</h2>
+   <dl>
+
+    
+     <dt id="eventbuffer.props.length">
+      <var class="varname">length</var>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Le nombre d&#039;octets stockés dans un buffer d&#039;événement.
+      </p>
+     </dd>
+
+    
+    
+     <dt id="eventbuffer.props.contiguous-space">
+      <var class="varname">contiguous_space</var>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Le nombre d&#039;octets stockés de façon contigues au début du buffer.
+       Les octets dans un buffer peuvent être stockés dans plusieurs parties
+       séparées de la mémoire ; cette propriété retourne le nombre d&#039;octets
+       actuellement stockés dans la première partie.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </div>
+
+
+  <div class="section" id="eventbuffer.constants">
+   <h2 class="title">Constantes pré-définies</h2>
+   <dl>
+
+    
+     <dt id="eventbuffer.constants.eol-any">
+      <strong><code>EventBuffer::EOL_ANY</code></strong>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       La fin de ligne est une séquence de nombre représentent un retour charriot
+       et une nouvelle ligne. Ce format n&#039;est pas très utile ; il existe encore
+       seulement pour des raisons de compatibilité ascendante.
+      </p>
+     </dd>
+
+    
+    
+     <dt id="eventbuffer.constants.eol-crlf">
+      <strong><code>EventBuffer::EOL_CRLF</code></strong>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       La fin de ligne est un retour charriot optionnel, suivi par une nouvelle
+       ligne. (En d&#039;autres termes, c&#039;est soit <code class="literal">&quot;\r\n&quot;</code>,
+       soit <code class="literal">&quot;\n&quot;</code>). Ce format est utile pour analyser
+       les protocoles Internet basés sur du texte ; le standard veut qu&#039;on
+       utilise <code class="literal">&quot;\r\n&quot;</code> mais quelques clients fournissent
+       seulement <code class="literal">&quot;\n&quot;</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt id="eventbuffer.constants.eol-crlf-strict">
+      <strong><code>EventBuffer::EOL_CRLF_STRICT</code></strong>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       La fin de ligne est un simple retour charriot, suivant par une
+       simple nouvelle ligne (aussi connu comme <code class="literal">&quot;\r\n&quot;</code>.
+       Les valeurs ASCII sont <strong><code>0x0D</code></strong> <strong><code>0x0A</code></strong>).
+      </p>
+     </dd>
+
+    
+    
+     <dt id="eventbuffer.constants.eol-lf">
+      <strong><code>EventBuffer::EOL_LF</code></strong>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       La fin de ligne est un simple caractère de nouvelle ligne (aussi connu
+       comme <code class="literal">&quot;\n&quot;</code>. La valeur ASCII est <strong><code>0x0A</code></strong>).
+      </p>
+     </dd>
+
+    
+    
+     <dt id="eventbuffer.constants.ptr-set">
+      <strong><code>EventBuffer::PTR_SET</code></strong>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Drapeau utilisé comme argument de la méthode
+       <span class="methodname"><strong>EventBuffer::setPosition()</strong></span>. Si ce drapeau est spécifié,
+       la position du pointeur est déplacé à une position absolue du buffer.
+      </p>
+     </dd>
+
+    
+    
+     <dt id="eventbuffer.constants.ptr-add">
+      <strong><code>EventBuffer::PTR_ADD</code></strong>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Identique à <strong><code>EventBuffer::PTR_SET</code></strong>,
+       sauf que ce drapeau fait que la méthode
+       <span class="methodname"><strong>EventBuffer::setPosition()</strong></span>
+       se déplace à une position en arrière par rapport au numéro
+       d&#039;octers spécifié (au lieu de définir une position absolue).
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </div>
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Sommaire</h2><ul class="chunklist chunklist_reference"><li><a href="eventbuffer.add.html">EventBuffer::add</a> — Ajoute des donn&eacute;es &agrave; la fin du tampon d'&eacute;v&eacute;nement</li><li><a href="eventbuffer.addbuffer.html">EventBuffer::addBuffer</a> — D&eacute;place toutes les donn&eacute;es du tampon fourni dans l'instance courante EventBuffer</li><li><a href="eventbuffer.appendfrom.html">EventBuffer::appendFrom</a> — D&eacute;place le nombre d'octets fourni depuis un tampon source vers la fin du tampon courant</li><li><a href="eventbuffer.construct.html">EventBuffer::__construct</a> — Construit un objet EventBuffer</li><li><a href="eventbuffer.copyout.html">EventBuffer::copyout</a> — Copie le nombre d'octets sp&eacute;cifi&eacute; depuis le d&eacute;but du tampon</li><li><a href="eventbuffer.drain.html">EventBuffer::drain</a> — Supprime un nombre sp&eacute;cifi&eacute; d'octets depuis le d&eacute;but du tampon
+   sans copier les donn&eacute;es</li><li><a href="eventbuffer.enablelocking.html">EventBuffer::enableLocking</a> — Description</li><li><a href="eventbuffer.expand.html">EventBuffer::expand</a> — R&eacute;serve de l'espace dans le tampon</li><li><a href="eventbuffer.freeze.html">EventBuffer::freeze</a> — Permet d'emp&eacute;cher les appels qui tentent de modifier un
+   tampon d'&eacute;v&eacute;nements de r&eacute;ussir</li><li><a href="eventbuffer.lock.html">EventBuffer::lock</a> — Acqui&egrave;re un verrou sur le buffer</li><li><a href="eventbuffer.prepend.html">EventBuffer::prepend</a> — Ajoute des donn&eacute;es au d&eacute;but du buffer</li><li><a href="eventbuffer.prependbuffer.html">EventBuffer::prependBuffer</a> — D&eacute;place toutes les donn&eacute;es depuis le buffer source vers le d&eacute;but
+   du buffer courant</li><li><a href="eventbuffer.pullup.html">EventBuffer::pullup</a> — Lin&eacute;arise les donn&eacute;es du buffer et retourne le contenu du
+   buffer sous la forme d'une cha&icirc;ne</li><li><a href="eventbuffer.read.html">EventBuffer::read</a> — Lit les donn&eacute;es d'un evbuffer, et vide les octets lus</li><li><a href="eventbuffer.readfrom.html">EventBuffer::readFrom</a> — Lit des donn&eacute;es depuis un fichier et les place &agrave; la fin du tampon</li><li><a href="eventbuffer.readline.html">EventBuffer::readLine</a> — Extrait une ligne depuis le d&eacute;but du tampon</li><li><a href="eventbuffer.search.html">EventBuffer::search</a> — Recherche dans le tampon une occurrence d'une cha&icirc;ne</li><li><a href="eventbuffer.searcheol.html">EventBuffer::searchEol</a> — Cherche dans le tampon une occurrence de fin de ligne</li><li><a href="eventbuffer.substr.html">EventBuffer::substr</a> — Soustrait une portion des donn&eacute;es du tampon</li><li><a href="eventbuffer.unfreeze.html">EventBuffer::unfreeze</a> — R&eacute;-active les appels qui permettent de modifier un buffer d'&eacute;v&eacute;nements</li><li><a href="eventbuffer.unlock.html">EventBuffer::unlock</a> — Lib&egrave;re un verrou acquis avec EventBuffer::lock</li><li><a href="eventbuffer.write.html">EventBuffer::write</a> — Ecrit le contenu du buffer dans un fichier ou dans un socket</li></ul>
+</div>
+</div></div></body></html>

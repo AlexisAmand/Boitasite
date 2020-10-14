@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Si la requ&ecirc;te doit r&eacute;cup&eacute;rer des r&eacute;sultats partiels depuis mongos si un partage est inaccessible</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongocursor.next.html">« MongoCursor::next</a></li>
+      <li style="float: right;"><a href="mongocursor.reset.html">MongoCursor::reset »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mongocursor.html">MongoCursor</a></li>
+    <li>Si la requ&ecirc;te doit r&eacute;cup&eacute;rer des r&eacute;sultats partiels depuis mongos si un partage est inaccessible</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongocursor.partial" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">MongoCursor::partial</h1>
+  <p class="verinfo">(PECL mongo &gt;=1.2.0)</p><p class="refpurpose"><span class="refname">MongoCursor::partial</span> &mdash; <span class="dc-title">Si la requête doit récupérer des résultats partiels depuis <em class="emphasis">mongos</em> si un partage est inaccessible</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongocursor.partial-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>MongoCursor::partial</strong></span>
+    ([ <span class="methodparam"><span class="type">bool</span> <code class="parameter">$okay</code><span class="initializer"> = <strong><code>TRUE</code></strong></span></span>
+  ] ) : <span class="type"><a href="class.mongocursor.html" class="type MongoCursor">MongoCursor</a></span></div>
+
+  <p class="para rdfs-comment">
+   Cette option permet à <em class="emphasis">mongos</em> d&#039;envoyer des résultats
+   partiels de requête si un partage est inaccessible. Ceci n&#039;est valable que
+   lors d&#039;une exécution sur un cluster MongoDB partagé, et lors d&#039;une connexion
+   à un <em class="emphasis">mongos</em>.
+  </p>
+  <p class="para">
+   Si un partage devient inaccessible et qu&#039;une requête doit être envoyée
+   sur ce partage, <em class="emphasis">mongos</em> retournera les résultats
+   (s&#039;il y en a) depuis les partages déjà contactés, puis, un message d&#039;erreur
+   indiquant qu&#039;il n&#039;a pu atteindre le partage (une exeception
+   <a href="class.mongocursorexception.html" class="classname">MongoCursorException</a> en PHP). Si vous voulez récupérer
+   tous les résultats que <em class="emphasis">mongos</em> peut fournir sans émission
+   d&#039;une exception, vous pouvez utiliser cette méthode. Notez que cela signifie
+   que vous n&#039;aurez aucune indication quant au fait qu&#039;un partage n&#039;est pas
+   accessible dans la réponse.
+  </p>
+  <p class="para">
+   Cette méthode n&#039;a aucun effet sur la requête si tous les partages sont
+   disponibles. Ce drapeau a été implémenté en MongoDB version 1.7.5, aussi,
+   vous ne pouvez vous en service qu&#039;à partir de cette version et supérieure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongocursor.partial-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+
+      <code class="parameter">okay</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Si nous souhaitons recevoir des résultats partiels.
+      </p>
+     </dd>
+
+       
+   </dl>
+
+  </p>
+ </div>
+ 
+
+ <div class="refsect1 returnvalues" id="refsect1-mongocursor.partial-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>  
+  <p class="para">
+   Retourne ce curseur.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mongocursor.partial-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Émets une exception <a href="class.mongocursorexception.html" class="classname">MongoCursorException</a> si
+   le curseur à commencer son itération.
+  </p>
+ </div>
+
+</div></div></div></body></html>

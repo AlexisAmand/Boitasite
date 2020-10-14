@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne une explication de la requ&ecirc;te, souvent utile pour le d&eacute;boguage et l'optimisation</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongocursor.doquery.html">« MongoCursor::doQuery</a></li>
+      <li style="float: right;"><a href="mongocursor.fields.html">MongoCursor::fields »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mongocursor.html">MongoCursor</a></li>
+    <li>Retourne une explication de la requ&ecirc;te, souvent utile pour le d&eacute;boguage et l'optimisation</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongocursor.explain" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">MongoCursor::explain</h1>
+  <p class="verinfo">(PECL mongo &gt;=0.9.2)</p><p class="refpurpose"><span class="refname">MongoCursor::explain</span> &mdash; <span class="dc-title">Retourne une explication de la requête, souvent utile pour le déboguage et l&#039;optimisation</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongocursor.explain-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>MongoCursor::explain</strong></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">array</span></div>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongocursor.explain-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">Cette fonction ne contient aucun paramètre.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongocursor.explain-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>  
+  <p class="para">
+   Retourne une explication de la requête
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mongocursor.explain-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1593">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>MongoCursor::explain()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$cursor&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"x"</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">1</span><span style="color: #007700">),&nbsp;array(</span><span style="color: #DD0000">"y"</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">sort</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"z"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">))-&gt;</span><span style="color: #0000BB">limit</span><span style="color: #007700">(</span><span style="color: #0000BB">4</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">skip</span><span style="color: #007700">(</span><span style="color: #0000BB">5</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">explain</span><span style="color: #007700">());<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+array(8) {
+  [&quot;cursor&quot;]=&gt;
+  string(15) &quot;BtreeCursor x_1&quot;
+  [&quot;startKey&quot;]=&gt;
+  array(1) {
+    [&quot;x&quot;]=&gt;
+    int(1)
+  }
+  [&quot;endKey&quot;]=&gt;
+  array(1) {
+    [&quot;x&quot;]=&gt;
+    int(1)
+  }
+  [&quot;nscanned&quot;]=&gt;
+  float(4)
+  [&quot;n&quot;]=&gt;
+  int(4)
+  [&quot;scanAndOrder&quot;]=&gt;
+  int(1)
+  [&quot;millis&quot;]=&gt;
+  int(3)
+  [&quot;allPlans&quot;]=&gt;
+  array(2) {
+    [0]=&gt;
+    array(3) {
+      [&quot;cursor&quot;]=&gt;
+      string(15) &quot;BtreeCursor x_1&quot;
+      [&quot;startKey&quot;]=&gt;
+      array(1) {
+        [&quot;x&quot;]=&gt;
+        int(1)
+      }
+      [&quot;endKey&quot;]=&gt;
+      array(1) {
+        [&quot;x&quot;]=&gt;
+        int(1)
+      }
+    }
+    [1]=&gt;
+    array(3) {
+      [&quot;cursor&quot;]=&gt;
+      string(11) &quot;BasicCursor&quot;
+      [&quot;startKey&quot;]=&gt;
+      array(0) {
+      }
+      [&quot;endKey&quot;]=&gt;
+      array(0) {
+      }
+    }
+  }
+}
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mongocursor.explain-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Lance une exception <a href="class.mongoconnectionexception.html" class="classname">MongoConnectionException</a> si
+   la base de données ne peut être atteinte.
+  </p>
+ </div>
+
+ 
+  <div class="refsect1 seealso" id="refsect1-mongocursor.explain-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   Documentation de MongoDB <a href="https://docs.mongodb.com/manual/reference/method/cursor.explain/" class="link external">&raquo;&nbsp;
+   concernant explain</a>.
+  </p>
+ </div>
+
+</div></div></div></body></html>

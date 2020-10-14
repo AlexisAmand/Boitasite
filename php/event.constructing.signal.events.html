@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Construction d'un &eacute;v&eacute;nement de type signal</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="event.callbacks.html">« Fonctions de rappel des &eacute;v&eacute;nements</a></li>
+      <li style="float: right;"><a href="class.event.html">Event »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.event.html">Event</a></li>
+    <li>Construction d'un &eacute;v&eacute;nement de type signal</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="event.constructing.signal.events" class="chapter">
+ <h1>Construction d&#039;un événement de type signal</h1>
+
+ <p class="para">
+  Un événement peut aussi surveiller les signaux de style POSIX.
+  Pour construire un gestionnaire pour un signal, utilisez la méthode
+  <span class="methodname"><a href="event.construct.html" class="methodname">Event::__construct()</a></span> avec le drapeau
+  <strong><code>Event::SIGNAL</code></strong> ou la méthode factorielle
+  <span class="methodname"><a href="event.signal.html" class="methodname">Event::signal()</a></span>.
+ </p>
+ <div class="example" id="example-4901">
+  <p><strong>Exemple #1 Gestion d&#039;un signal <code class="literal">SIGTERM</code></strong></p>
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*<br />Lancez&nbsp;cet&nbsp;exemple&nbsp;dans&nbsp;un&nbsp;terminal&nbsp;:<br /><br />$&nbsp;php&nbsp;examples/signal.php<br /><br />Dans&nbsp;un&nbsp;autre&nbsp;terminal,&nbsp;trouvez&nbsp;le&nbsp;pid,&nbsp;et&nbsp;lancez&nbsp;le&nbsp;signal&nbsp;SIGTERM,&nbsp;i.e.:<br /><br />$&nbsp;ps&nbsp;aux&nbsp;|&nbsp;grep&nbsp;examp<br />ruslan&nbsp;&nbsp;&nbsp;&nbsp;3976&nbsp;&nbsp;0.2&nbsp;&nbsp;0.0&nbsp;139896&nbsp;11256&nbsp;pts/1&nbsp;&nbsp;&nbsp;&nbsp;S+&nbsp;&nbsp;&nbsp;10:25&nbsp;&nbsp;&nbsp;0:00&nbsp;php&nbsp;examples/signal.php<br />ruslan&nbsp;&nbsp;&nbsp;&nbsp;3978&nbsp;&nbsp;0.0&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;9572&nbsp;&nbsp;&nbsp;864&nbsp;pts/2&nbsp;&nbsp;&nbsp;&nbsp;S+&nbsp;&nbsp;&nbsp;10:26&nbsp;&nbsp;&nbsp;0:00&nbsp;grep&nbsp;--color=auto&nbsp;examp<br />$&nbsp;kill&nbsp;-TERM&nbsp;3976<br /><br />Dans&nbsp;le&nbsp;premier&nbsp;terminal,&nbsp;vous&nbsp;devriez&nbsp;attraper&nbsp;ceci&nbsp;:<br /><br />Caught&nbsp;signal&nbsp;15<br />*/<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">MyEventSignal&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;</span><span style="color: #0000BB">$base</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$ev</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">__construct</span><span style="color: #007700">(</span><span style="color: #0000BB">$base</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">base&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$base</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ev&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">Event</span><span style="color: #007700">::</span><span style="color: #0000BB">signal</span><span style="color: #007700">(</span><span style="color: #0000BB">$base</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SIGTERM</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #0000BB">$this</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'eventSighandler'</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ev</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">eventSighandler</span><span style="color: #007700">(</span><span style="color: #0000BB">$no</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Caught&nbsp;signal&nbsp;</span><span style="color: #0000BB">$no</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">base</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">exit</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #0000BB">$base&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">EventBase</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$c&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MyEventSignal</span><span style="color: #007700">(</span><span style="color: #0000BB">$base</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$base</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loop</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+  </div>
+
+ </div>
+ <p class="para">
+  Notez que les fonctions de rappel d&#039;un signal sont exécutées dans la
+  boucle d&#039;événement après que le signal ne soit survenu, aussi,
+  il est plus sécurité pour le signal d&#039;appeler des fonctions depuis la boucle
+  que vous n&#039;êtez pas supposé d&#039;appeler depuis un gestionnaire de signaux
+  POSIX classique.
+ </p>
+ <p class="para"/>
+ <p class="para">
+  Voir aussi la
+  <a href="http://www.wangafu.net/~nickm/libevent-book/Ref4_event.html#_constructing_signal_events" class="link external">&raquo;&nbsp;
+  programmation réseau facile, protable et non bloquante avec Libevent ; Construction
+  d&#039;un événement de type signal</a>.
+ </p>
+</div>
+</div></div></body></html>

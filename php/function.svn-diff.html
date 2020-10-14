@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Compare deux chemins, r&eacute;cursivement</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.svn-delete.html">« svn_delete</a></li>
+      <li style="float: right;"><a href="function.svn-export.html">svn_export »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.svn.html">Fonctions SVN</a></li>
+    <li>Compare deux chemins, r&eacute;cursivement</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.svn-diff" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">svn_diff</h1>
+  <p class="verinfo">(PECL svn &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">svn_diff</span> &mdash; <span class="dc-title">Compare deux chemins, récursivement</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.svn-diff-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>svn_diff</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$path1</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$rev1</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$path2</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$rev2</code></span>
+   ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Compare deux chemins, <code class="parameter">path1</code> et
+   <code class="parameter">path2</code>, récursivement.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Ce n&#039;est pas un véritable utilitaire de comparaison. Seuls les fichiers
+    locaux qui sont versionnés peuvent être comparés : les autres fichiers
+    échoueront.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.svn-diff-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">path1</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Premier chemin. Peut être une URL vers un fichier/dossier d&#039;un
+       référentiel SVN ou un chemin vers un fichier/dossier local.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">Les chemins relatifs peuvent être résolus
+    si le dossier de travail courant est l&#039;un de ceux qui contiennent le binaire PHP.
+    Pour utiliser le dossier de travail, utilisez la fonction <span class="function"><a href="function.realpath.html" class="function">realpath()</a></span>,
+    ou l&#039;instruction dirname(__FILE__).</span></p></blockquote>
+      <div class="warning"><strong class="warning">Avertissement</strong>
+       <p class="simpara">
+        Si un chemin vers un fichier local n&#039;a que des antislashs et aucun
+        slashs, cette extension échouera. Remplacez toujours tous les
+        antislashs avec des slashs lorsque vous utilisez cette fonction.
+       </p>
+      </div>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">rev1</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Numéro de révision du premier chemin. Utilisez la constante
+       <strong><code>SVN_REVISON_HEAD</code></strong> pour spécifier la révision
+       la plus récente.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">path2</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Deuxième chemin à comparer. Voir le paramètre
+       <code class="parameter">path1</code> pour la description.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">rev2</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Numéro de révision du second chemin. Voir le paramètre
+       <code class="parameter">rev1</code> pour la description.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.svn-diff-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau contenant 2 flux : le premier représente la sortie
+   de la comparaison, et le second contient les erreurs. Les flux peuvent
+   être lus en utilisant la fonction <span class="function"><a href="function.fread.html" class="function">fread()</a></span>. Retourne
+   <strong><code>FALSE</code></strong> ou <strong><code>NULL</code></strong> si une erreur survient.
+  </p>
+  <p class="para">
+   La sortie du comparateur peut, par défaut, être au format de comparaison
+   unifié Subversion, mais un
+   <a href="http://svnbook.red-bean.com/en/1.2/svn.advanced.externaldifftools.html" class="link external">&raquo;&nbsp;moteur externe de
+    comparaison</a> peut être utilisé, suivant la configuration SVN.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.svn-diff-notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><strong class="warning">Avertissement</strong><p class="simpara">
+ Cette fonction est <em class="emphasis">EXPERIMENTALE</em>. Le comportement de cette fonction, son nom, et toute la
+ documentation autour de cette fonction peut changer sans préavis dans une prochaine version de PHP.
+ Cette fonction doit être utilisée à vos risques et périls.
+</p></div>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.svn-diff-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-5245">
+    <p><strong>Exemple #1 Exemple d&#039;utilisation</strong></p>
+    <div class="example-contents"><p>
+     Cet exemple montre une utilisation basique de cette fonction et récupère
+     le contenu depuis les flux :
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">list(</span><span style="color: #0000BB">$diff</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$errors</span><span style="color: #007700">)&nbsp;=&nbsp;</span><span style="color: #0000BB">svn_diff</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'http://www.example.com/svnroot/trunk/foo'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SVN_REVISION_HEAD</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'http://www.example.com/svnroot/branches/dev/foo'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SVN_REVISION_HEAD<br /></span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$diff</span><span style="color: #007700">)&nbsp;exit;<br /></span><span style="color: #0000BB">$contents&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">;<br />while&nbsp;(!</span><span style="color: #0000BB">feof</span><span style="color: #007700">(</span><span style="color: #0000BB">$diff</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$contents&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #0000BB">fread</span><span style="color: #007700">(</span><span style="color: #0000BB">$diff</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">8192</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$diff</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$errors</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$contents</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Index: http://www.example.com/svnroot/trunk/foo
+===================================================================
+--- http://www.example.com/svnroot/trunk/foo        (.../foo) (revision 23)
++++ http://www.example.com/svnroot/branches/dev/foo (.../foo) (revision 27)
+ // further diff output
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5246">
+    <p><strong>Exemple #2 Comparaison de deux révisions d&#039;un chemin du référentiel</strong></p>
+    <div class="example-contents"><p>
+     Cet exemple implémente un gestionnaire permettant
+     à un utilisateur de comparer facilement deux révisions d&#039;un élément
+     en utilisant un chemin de référentiel externe (la syntaxe par défaut est verbeuse) :
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">svn_diff_same_item</span><span style="color: #007700">(</span><span style="color: #0000BB">$path</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rev1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rev2</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">svn_diff</span><span style="color: #007700">(</span><span style="color: #0000BB">$path</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rev1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$path</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rev2</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5247">
+    <p><strong>Exemple #3 Comparaison, plus portable, de deux fichiers locaux</strong></p>
+    <div class="example-contents"><p>
+     Cet exemple implémente un gestionnaire permettant de comparer
+     deux fichiers locaux, de façon plus portable en gérant le problème de
+     <span class="function"><a href="function.realpath.html" class="function">realpath()</a></span> et le bogue sur les antislashs :
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">svn_diff_local</span><span style="color: #007700">(</span><span style="color: #0000BB">$path1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rev1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$path2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rev2</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$path1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">str_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">'\\'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">realpath</span><span style="color: #007700">(</span><span style="color: #0000BB">$path1</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$path2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">str_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">'\\'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">realpath</span><span style="color: #007700">(</span><span style="color: #0000BB">$path2</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">svn_diff</span><span style="color: #007700">(</span><span style="color: #0000BB">$path1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rev1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$path2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rev2</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.svn-diff-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="http://svnbook.red-bean.com/en/1.2/svn.ref.svn.c.diff.html" class="link external">&raquo;&nbsp;Documentation SVN sur la commande <code class="literal">&quot;svn diff&quot;</code></a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

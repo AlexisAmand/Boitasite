@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Modifications dans le support des bases de donn&eacute;es</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration51.datetime.html">« Support des dates et heures</a></li>
+      <li style="float: right;"><a href="migration51.errorcheck.html">V&eacute;rifier E_STRICT »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration51.html">Migration de PHP 5.0.x &agrave; PHP 5.1.x</a></li>
+    <li>Modifications dans le support des bases de donn&eacute;es</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration51.databases" class="section">
+  <h2 class="title">Modifications dans le support des bases de données</h2>
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     <a href="migration51.databases.html#migration51.databases-pdo" class="link">extension PDO</a>
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <a href="migration51.databases.html#migration51.databases-mysql" class="link">Support de MySQL</a>
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <a href="migration51.databases.html#migration51.databases-sqlite" class="link">Support de SQLite</a>
+    </p>
+   </li>
+  </ul>
+
+  <div class="section" id="migration51.databases-pdo">
+   <h2 class="title">Extension PDO</h2>
+   <p class="para">
+    Les <a href="intro.pdo.html" class="link">PHP Data Objects (PDO)</a> ont été introduits
+    comme extension PECL en PHP 5.0, et sont devenus partie intégrale de la
+    distribution PHP en version 5.1.0. L&#039;extension PDO propose une interface
+    constante pour accéder aux bases de données, et est utilisée avec des
+    pilotes PDO. Chaque pilote assure le relais avec une base de données
+    spécifique, mais l&#039;envoi de requête et la réception des données sont
+    fait depuis les fonctions PDO. Le pilote est choisi avec la fonction
+    <span class="function"><a href="pdo.construct.html" class="function">PDO::__construct()</a></span>.
+   </p>
+   <p class="para">
+    Notez que l&#039;extension PDO et ses pilotes sont conçus pour être des
+    extensions partagées. Cela permet des mises à jour simples des pilotes
+    à partir de PECL, sans forcer la recompilation de PHP.
+   </p>
+   <p class="para">
+    Au moment de la publication de PHP 5.1.x, PDO est fin prêt pour une
+    utilisation grand public, et peut être adopté dans la plupart des
+    situations. Cependant, il faut bien comprendre que PDO et ses pilotes
+    sont relativement jeunes, et manquent encore de certaines fonctionnalités
+    spécifiques à une base de données. Faites votre évaluation complète de
+    PDO avant de l&#039;adopter pour un projet.
+   </p>
+   <p class="para">
+    L&#039;ancien code aura besoin des extensions spécifiques de base de données,
+    qui sont toujours entretenues.
+   </p>
+  </div>
+
+  <div class="section" id="migration51.databases-mysql">
+   <h2 class="title">Support de MySQL</h2>
+   <p class="para">
+    En PHP 4, le support MySQL 3 était automatique. Avec les versions 5.0 de
+    PHP, il y a maintenant 2 extensions MySQL, qui portent les noms de
+    &#039;mysql&#039; et &#039;mysqli&#039; : elles sont été conçues pour supporter
+    MySQL &lt; 4.1 et MySQL 4.1 et plus récent, respectivement. Avec
+    l&#039;introduction de PDO, qui fournit une interface rapide avec toutes
+    les bases de données supportées par PHP, le pilote PDO_MYSQL peut supporter
+    toutes les versions de MySQL (MySQL 3, 4 or 5) avec du code PHP écrit
+    avec PDO, en fonction de la version de la bibliothèque de MySQL compilée
+    avec PHP. Les anciennes extensions MySQL restent en place pour assurer la
+    compatibilité ascendante, mais elles ne sont plus activées par défaut.
+   </p>
+  </div>
+
+  <div class="section" id="migration51.databases-sqlite">
+   <h2 class="title">Support de SQLite</h2>
+   <p class="para">
+    En PHP 5.0.x, le support de SQLite 2 a été ajouté dans la distribution,
+    et a été placé en PECL pour PHP 4.3 et 4.4. Avec l&#039;introduction de PDO,
+    l&#039;extension sqlite se dédouble pour servir aussi de pilote PDO. Cela
+    est dû au fait que l&#039;extension PDO de PHP 5.1.x dépend de PDO.
+   </p>
+   <p class="para">
+    PHP 5.1.x inclut un grand nombre d&#039;interface alternatives pour sqlite :
+   </p>
+   <p class="para">
+    L&#039;extension sqlite fournit une approche classique procédurale et POO, telle
+    que celle qui a été utilisée dans les anciennes versions de PDO. Elle
+    fournit aussi un pilote &#039;sqlite2&#039;, qui permet d&#039;accéder au code SQLite2,
+    en utilisant PDO.
+   </p>
+   <p class="para">
+    PDO_SQLITE fournit un pilote &#039;sqlite&#039; version 3. SQLite version 3 est
+    nettement supérieur à SQLite version 2, mais les formats de fichiers
+    des deux versions sont incompatibles.
+   </p>
+   <p class="para">
+    Si votre projet basé sur SQLite est déjà écrit, et fonctionne avec
+    d&#039;anciennes versions de PHP, vous pouvez continuer à utiliser ext/sqlite
+    sans problème, mais vous devez explicitement activer PDO et sqlite.
+    Les nouveaux projets doivent utiliser PDO et le pilote &#039;sqlite&#039; version 3,
+    car il est plus rapide que le pilote SQLite 2, dispose d&#039;un verrou efficace,
+    supporte les commandes préparées et les colonnes binaires natives.
+   </p>
+   <p class="para">
+    Vous devez activer PDO pour utiliser l&#039;extension SQLite. Si vous voulez
+    compiler PDO comme extension partagée, alors l&#039;extension SQLite doit être
+    aussi une extension partagée. C&#039;est la même chose pour le pilote PDO.
+   </p>
+  </div>
+ </div></div></div></body></html>

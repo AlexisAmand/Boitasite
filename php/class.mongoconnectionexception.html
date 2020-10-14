@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>La classe MongoConnectionException</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="class.mongocursortimeoutexception.html">« MongoCursorTimeoutException</a></li>
+      <li style="float: right;"><a href="class.mongogridfsexception.html">MongoGridFSException »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mongo.exceptions.html">Exceptions</a></li>
+    <li>La classe MongoConnectionException</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="class.mongoconnectionexception" class="reference">
+ 
+ <h1 class="title">La classe <a href="class.mongoconnectionexception.html" class="classname">MongoConnectionException</a></h1>
+ 
+ 
+ <div class="partintro"><p class="verinfo">(PECL mongo &gt;= 1.0.0)</p>
+  
+  
+  <div class="section" id="mongoconnectionexception.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    Émise lorsque le pilote échoue à se connecter à la base de
+    données.
+   </p>
+   
+   <p class="para">
+    Il y a plusieurs messages d&#039;erreur possibles afin de vous aider à analyser
+    un problème de connexion. Les voici :
+   </p>
+   
+   <ul class="itemizedlist">
+    
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">No candidate servers found</code>
+     </p>
+     <p class="para">
+      Lancé lorsque le driver ne peut établir une connexion à MongoDB
+      (rempli les ReadPreferences, si spécifié).
+     </p>
+    </li>
+    
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">No server name given.</code>
+     </p>
+     <p class="para">
+      Cette erreur survient si vous passez une chaine vide comme
+      nom de serveur, peut à cause d&#039;une faute dans la variable
+      de connexion, i.e. &quot;$servr&quot; au lieu de &quot;$server&quot;.
+     </p>
+    </li>
+    
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">
+       failed to get left host [hostname] or port [portnum]
+       from [server].
+      </code>
+     </p>
+     <p class="para">
+      Ceci indique que le premier ou le second serveur, respectivement
+      &quot;server1,server2&quot; dans la chaîne de connexion, est mal formé.
+      &quot;[hostname]&quot; et &quot;[portnum]&quot; doivent correspondre aux éxigences du driver.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">Operation in progress</code>
+     </p>
+     <p class="para">
+      Délai d&#039;attente expiré lors de la connexion à la base de données.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">Transport endpoint is not connected</code>
+     </p>
+     <p class="para">
+      En général cela signifie que la chaine de connexion est incorrecte, le pilote ne trouve
+      pas le serveur de base de données.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">couldn&#039;t determine master</code>
+     </p>
+     <p class="para">
+      Aucun serveur du jeu de réplication n&#039;a été identifié comme primaire.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">couldn&#039;t get host info for [server]</code>
+     </p>
+     <p class="para">
+      Ceci indique que les DNS n&#039;ont pas réussis à résoudre l&#039;adresse
+      du serveur que vous avez fourni. Vérifier la chaîne fournie.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">Invalid Argument</code>
+     </p>
+     <p class="para">
+      Ceci peut être dû lorsque vous tentez d&#039;accéder à une machine qui fonctionne
+      mais dont la base de données n&#039;est pas en marche. Assurez-vous que la base de
+      données est en fonctionnement avant de tenter de vous y connecter.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      <code class="literal">Permission denied</code>
+     </p>
+     <p class="para">
+      Ceci signifie que le socket ne peut être ouvert en raison d&#039;un problème sur les
+      permissions. Sur les systèmes à base de Red Hat, ceci peut être dû
+      à une configuration par défaut qui n&#039;autorise pas Apache à créer des connexions
+      réseaux. Vous pouvez résoudre ce problème en exécutant la commande suivante :
+      <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">$ /usr/sbin/setsebool -P httpd_can_network_connect 1</pre>
+</div>
+      </div>
+
+      puis, relancez Apache.
+     </p>
+    </li>
+   </ul>
+   
+   <p class="para">
+    Si le message d&#039;erreur que vous recevez n&#039;est pas listé ci-dessus,
+    c&#039;est probablement une erreur qui provient du socket C, et vous pouvez
+    chercher sur le web pour trouver les causes du problème.
+   </p>
+  </div>
+  
+  
+  <div class="section" id="mongoconnectionexception.synopsis">
+   <h2 class="title">Synopsis de la classe</h2>
+   
+   
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+
+    
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">MongoConnectionException</strong>
+     </span>
+     <span class="ooclass">
+      <span class="modifier">extends</span>
+      <a href="class.mongoexception.html" class="classname">MongoException</a>
+     </span>
+     {</div>
+    
+    
+   }</div>
+   
+
+  </div>
+
+ </div>
+
+</div>
+</div></div></body></html>

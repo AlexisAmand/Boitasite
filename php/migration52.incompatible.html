@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Changements incompatibles avec les versions pr&eacute;c&eacute;dentes</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration52.changes.html">« Ce qui a chang&eacute; en PHP 5.2.x</a></li>
+      <li style="float: right;"><a href="migration52.error-messages.html">Nouveaux messages d'erreurs »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration52.html">Migration de PHP 5.1.x &agrave; PHP 5.2.x</a></li>
+    <li>Changements incompatibles avec les versions pr&eacute;c&eacute;dentes</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration52.incompatible" class="section">
+  <h2 class="title">Changements incompatibles avec les versions précédentes</h2>
+  <p class="para">
+   Même si la majorité du code PHP 5 devrait fonctionner sans modification,
+   il est recommandé de surveiller les points suivants, qui introduisent
+   des incompatibilités avec les versions précédentes.
+  </p>
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     La fonction <span class="function"><a href="function.getrusage.html" class="function">getrusage()</a></span> retourne <strong><code>NULL</code></strong> quand on lui passe
+     des arguments incorrects depuis PHP 5.2.1.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><a href="ziparchive.setcommentname.html" class="function">ZipArchive::setCommentName()</a></span>
+     retourne <strong><code>TRUE</code></strong> en cas de succès depuis PHP 5.2.1.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><a href="ziparchive.setcommentindex.html" class="function">ZipArchive::setCommentIndex()</a></span>
+     retourne <strong><code>TRUE</code></strong> en cas de succès depuis PHP 5.2.1.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><strong>SplFileObject::getFilename()</strong></span> retourne
+     le nom du fichier, et non plus le chemin relatif jusqu&#039;au fichier,
+     depuis PHP 5.2.1.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Changement de priorité de la constante d&#039;environnement <var class="varname">PHPRC</var>
+     sur Windows 32.
+    </span>
+    <span class="simpara">
+     La variable d&#039;environnement <var class="varname">PHPRC</var> a la priorité sur la valeur
+     enregistrée dans la base de registre Windows.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     CLI SAPI ne cherche plus dans cwd le fichier <var class="filename">php.ini</var> ni le fichier
+     <var class="filename">php-cli.ini</var>
+    </span>
+    <span class="simpara">
+     En PHP 5.1.x, une fonctionnalité non-documentée a été ajoutée à la version CLI de PHP, pour
+     rechercher dans le dossier courant un fichier de configuration PHP, menant à des comportements
+     inattendus, si des fichiers inopinés étaient trouvés. Cette fonctionnalité a été supprimée
+     en PHP 5.2.0, et PHP ne cherche plus dans le dossier de travail courant le fichier
+     <var class="filename">php.ini</var> ni le fichier <var class="filename">php-cli.ini</var>. Voyez aussi la section sur la
+     <a href="features.commandline.html" class="link">ligne de commande</a> du manuel.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Ajout d&#039;une alerte lors de calcul de modulo 0
+    </span>
+    <span class="simpara">
+     Dans les versions précédentes de PHP, effectuer un calcul de modulo 0
+     ne donnait aucun message d&#039;alerte, mais retournait la valeur inattendue <strong><code>FALSE</code></strong>.
+     Depuis PHP 5.2.0, cette tentative conduit à l&#039;émission d&#039;une alerte de type
+     <strong><code>E_WARNING</code></strong>, comme lorsque des divisions par zéro sont effectuées.
+    </span>
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">print&nbsp;</span><span style="color: #0000BB">10&nbsp;</span><span style="color: #007700">%&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">/*&nbsp;Warning:&nbsp;&nbsp;Division&nbsp;by&nbsp;zero&nbsp;in&nbsp;filename&nbsp;on&nbsp;line&nbsp;n&nbsp;*/<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Désormais, <a href="language.oop5.magic.html#object.tostring" class="link">__toString()</a> est appelé à chaque fois que c&#039;est possible.
+    </span>
+    <span class="simpara">
+     La méthode magique <a href="language.oop5.magic.html#object.tostring" class="link">__toString()</a> est maintenant appelée dans tout
+     contexte de chaîne, c&#039;est à dire à chaque fois qu&#039;un objet est utilisé comme chaîne
+     de caractères.
+    </span>
+    <span class="simpara">
+     Le comportement par défaut qui retournait une chaîne représentant l&#039;identifiant de
+     l&#039;objet a été abandonné en PHP 5.2.0. Il était devenu problématique, car un identifiant
+     d&#039;objet ne peut pas être considéré comme unique. Ce changement implique que votre
+     application est erronée si elle utilise les identifiants d&#039;objets comme valeur de
+     retour. Une tentative d&#039;utilisation de cette valeur comme chaîne de caractères
+     produit maintenant une erreur fatale.
+    </span>
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">foo&nbsp;</span><span style="color: #007700">{}<br /></span><span style="color: #0000BB">$foo&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">;<br />print&nbsp;</span><span style="color: #0000BB">$foo</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">/*&nbsp;Catchable&nbsp;fatal&nbsp;error:&nbsp;&nbsp;Object&nbsp;of&nbsp;class&nbsp;foo&nbsp;could<br />&nbsp;&nbsp;&nbsp;not&nbsp;be&nbsp;converted&nbsp;to&nbsp;string&nbsp;in&nbsp;filename&nbsp;on&nbsp;line&nbsp;n&nbsp;*/<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+    <span class="simpara">
+     Même avec <a href="language.oop5.magic.html#object.tostring" class="link">__toString()</a>, les objets ne peuvent pas être utilisés
+     comme des index ou des clés de tableaux. Nous envisageons d&#039;ajouter un support
+     natif de hachage ultérieurement, mais pour les versions 5.2.x, vous devrez
+     fournir votre propre système, ou bien utiliser la nouvelle fonction SPL
+     <span class="function"><a href="function.spl-object-hash.html" class="function">spl_object_hash()</a></span>.
+    </span>
+    <span class="simpara">
+     <a href="language.oop5.magic.html#object.tostring" class="link">__toString()</a> ne peut pas émettre d&#039;exception.
+    </span>
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">foo&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">__toString</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;new&nbsp;</span><span style="color: #0000BB">Exception</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;new&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Fatal&nbsp;error:&nbsp;&nbsp;Method&nbsp;foo::__toString()&nbsp;must<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;not&nbsp;throw&nbsp;an&nbsp;exception&nbsp;in&nbsp;filename&nbsp;on&nbsp;line&nbsp;n&nbsp;*/<br /></span><span style="color: #007700">}&nbsp;catch(</span><span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Abandon des fonctions de classes statiques et abstraites.
+    </span>
+    <span class="simpara">
+     A cause d&#039;une inattention, PHP 5.0.x et 5.1.x permettaient les méthodes statiques
+     abstraites dans les classes. Depuis PHP 5.2.x, seules les interfaces peuvent en avoir.
+    </span>
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">abstract&nbsp;class&nbsp;</span><span style="color: #0000BB">foo&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;abstract&nbsp;static&nbsp;function&nbsp;</span><span style="color: #0000BB">bar</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Strict&nbsp;Standards:&nbsp;&nbsp;Static&nbsp;function&nbsp;foo::bar()<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;should&nbsp;not&nbsp;be&nbsp;abstract&nbsp;in&nbsp;filename&nbsp;on&nbsp;line&nbsp;n&nbsp;*/<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     L&#039;<a href="ref.oci8.html" class="link">extension Oracle</a> nécessite au moins la version 10 d&#039;Oracle, sous
+     Windows.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Ajout du support de la RFC2397 (flux <code class="literal">data:</code>).
+    </span>
+    <span class="simpara">
+     L&#039;introduction du flux de type &#039;data&#039; peut conduire à un changement de comportement
+     sous Windows. Si vous travaillez avec un système de fichiers <acronym>NTFS</acronym>,
+     que vous utilisez vos propres meta-flux dans vos applications, et que vous
+     avez déjà baptisé l&#039;un des fichiers du nom de &#039;data:&#039;, accessible sans aucune
+     information de chemin, sachez qu&#039;il ne fonctionnera plus. Le correctif est d&#039;utiliser
+     le protocole &#039;file:&#039; pour y accéder.
+    </span>
+    <span class="simpara">
+     Voyez aussi la <a href="http://www.faqs.org/rfcs/rfc2397" class="link external">&raquo;&nbsp;RFC 2397</a>
+    </span>
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;lorsque&nbsp;allow_url_include&nbsp;vaut&nbsp;OFF&nbsp;(valeur&nbsp;par&nbsp;défaut)&nbsp;*/<br /></span><span style="color: #007700">include&nbsp;</span><span style="color: #DD0000">"data:;base64,PD9waHAgcGhwaW5mbygpOz8+"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">/*&nbsp;Warning:&nbsp;&nbsp;include():&nbsp;URL&nbsp;file-access&nbsp;is&nbsp;disabled<br />&nbsp;&nbsp;&nbsp;in&nbsp;the&nbsp;server&nbsp;configuration&nbsp;in&nbsp;filename&nbsp;on&nbsp;line&nbsp;n&nbsp;*/<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Régression dans le masque <code class="literal">glob()</code>
+    </span>
+    <span class="simpara">
+     Dans la version 5.2.4, une mise à jour de sécurité a provoqué une régression
+     des masques de la forme &quot;/foo/*/bar/*&quot;. Depuis la version 5.2.5, au lieu d&#039;émettre
+     une alerte, la fonction <code class="literal">glob()</code> retourne <strong><code>FALSE</code></strong>
+     lorsque les restrictions <code class="literal">openbase_dir</code> sont violées.
+    </span>
+   </li>
+  </ul>
+ </div></div></div></body></html>

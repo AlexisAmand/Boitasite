@@ -1,0 +1,413 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Configuration &agrave; l'ex&eacute;cution</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="oci8.test.html">« Test</a></li>
+      <li style="float: right;"><a href="oci8.constants.html">Constantes pr&eacute;-d&eacute;finies »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="oci8.setup.html">Installation/Configuration</a></li>
+    <li>Configuration &agrave; l'ex&eacute;cution</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="oci8.configuration" class="section">
+ <h2 class="title">Configuration à l&#039;exécution</h2>
+ <p class="simpara">Le comportement de ces fonctions est
+affecté par la configuration dans le fichier <var class="filename">php.ini</var>.</p>
+ <p class="para">
+  <table class="doctable table">
+   <caption><strong>Options de configuration OCI8</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Nom</th>
+      <th>Défaut</th>
+      <th>Modifiable</th>
+      <th>Historique</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td><a href="oci8.configuration.html#ini.oci8.connection-class" class="link">oci8.connection_class</a></td>
+      <td>&quot;&quot;</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponible depuis PHP 5.3 (PECL OCI8 1.3).</td>
+     </tr>
+
+     <tr>
+      <td><a href="oci8.configuration.html#ini.oci8.default-prefetch" class="link">oci8.default_prefetch</a></td>
+      <td>&quot;100&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.1.2 (PECL OCI8 1.1).</td>
+     </tr>
+
+     <tr>
+      <td><a href="oci8.configuration.html#ini.oci8.events" class="link">oci8.events</a></td>
+      <td>Off</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.3 (PECL OCI8 1.3).</td>
+     </tr>
+
+     <tr>
+      <td><a href="oci8.configuration.html#ini.oci8.max-persistent" class="link">oci8.max_persistent</a></td>
+      <td>&quot;-1&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.1.2 (PECL OCI8 1.1).</td>
+     </tr>
+
+     <tr>
+      <td><a href="oci8.configuration.html#ini.oci8.old-oci-close-semantics" class="link">oci8.old_oci_close_semantics</a></td>
+      <td>Off</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.1.2 (PECL OCI8 1.1).</td>
+     </tr>
+
+     <tr>
+      <td><a href="oci8.configuration.html#ini.oci8.persistent-timeout" class="link">oci8.persistent_timeout</a></td>
+      <td>&quot;-1&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.1.2 (PECL OCI8 1.1).</td>
+     </tr>
+
+     <tr>
+      <td><a href="oci8.configuration.html#ini.oci8.ping-interval" class="link">oci8.ping_interval</a></td>
+      <td>&quot;60&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.1.2 (PECL OCI8 1.1).</td>
+     </tr>
+
+     <tr>
+      <td><a href="oci8.configuration.html#ini.oci8.privileged-connect" class="link">oci8.privileged_connect</a></td>
+      <td>Off</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.1.2 (PECL OCI8 1.1).</td>
+     </tr>
+
+     <tr>
+      <td><a href="oci8.configuration.html#ini.oci8.statement-cache-size" class="link">oci8.statement_cache_size</a></td>
+      <td>&quot;20&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.1.2 (PECL OCI8 1.1).</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </p>
+ 
+ <p class="para">Voici un éclaircissement sur
+l&#039;utilisation des directives de configuration.</p>
+ 
+ <p class="para">
+  <dl>
+
+   
+    <dt id="ini.oci8.connection-class">
+     <code class="parameter">oci8.connection_class</code>
+     <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Le texte défini par l&#039;utilisateur est utilisé par les connexions du
+      pool de connexions résidantes de la base de données Oracle 11<em class="emphasis">g</em>
+      pour partitionner le pool. Cela permet aux connexions persistantes
+      OCI8 d&#039;une application de réutiliser les sessions à la base de données
+      depuis un script précédent, permettant ainsi une meilleure efficacité.
+      Lorsqu&#039;une application utilise un processus de base de données précédemment
+      utilisé avec une classe de connexion différente, les configurations
+      de la session, comme le format de la date par défaut d&#039;Oracle,
+      seront réinitialisées. Ce comportement permet d&#039;éviter de partager
+      accidentellement des informations entre les différentes applications.
+     </p>
+     <p class="para">
+      La valeur peut être définie au moment de l&#039;exécution grâce à la fonction
+      <span class="function"><a href="function.ini-set.html" class="function">ini_set()</a></span>, appelée avant la connexion.
+     </p>
+     <p class="para">
+      Pour utiliser DRCP, OCI8 doit être lié avec les bibliothèques Oracle 11<em class="emphasis">g</em>
+      et la base de données doit être Oracle 11<em class="emphasis">g</em>. Le pool de connexion doit 
+      être activé dans la base de données, l&#039;option de configuration
+      <code class="literal">oci8.connection_class</code> doit valoir la même chaîne
+      pour tous les serveurs web utilisant la même application, et la chaîne
+      de connexion OCI8 doit spécifier d&#039;utiliser un serveur utilisant un pool.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.oci8.default-prefetch">
+     <code class="parameter">oci8.default_prefetch</code>
+     <span class="type"><a href="language.types.integer.html" class="type int">int</a></span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Cette option définit le numbre par défaut de lignes supplémentaires
+      qui seront récupérées et mises en cache automatiquement chaque fois
+      qu&#039;une requête de bas niveau récupérant des données depuis la base
+      de données sera effectuée. Le fait de définir une valeur de
+      <code class="literal">0</code> permet de désactiver cette fonctionnalité.
+     </p>
+     <p class="para">
+      La valeur de pré-chargement n&#039;altère pas le nombre de lignes que des
+      fonctions comme <span class="function"><a href="function.oci-fetch-array.html" class="function">oci_fetch_array()</a></span> retourneront à
+      l&#039;utilisateur ; le pré-chargement et la mise en cache de lignes
+      est géré en interne par OCI8.
+     </p>
+     <p class="para">
+      La valeur peut être définie pour chaque requête, en exécutant la fonction
+      <span class="function"><a href="function.oci-set-prefetch.html" class="function">oci_set_prefetch()</a></span> avant l&#039;exécution de la requête.
+     </p>
+     <p class="para">
+      En PHP 5.3 (PECL OCI8 1.3.4), la valeur par défaut est passée de
+      <code class="literal">10</code> à <code class="literal">100</code>.
+     </p>
+     <p class="para">
+      En PHP 5.3.2 (PECL OCI8 1.4), la valeur minimale autorisée
+      a été réduite de <code class="literal">1</code> à <code class="literal">0</code>,
+      permettant ainsi la désactivation du pré-chargement.
+     </p>
+     <p class="para">
+      Lors de l&#039;utilisation de Orable 12<em class="emphasis">c</em> ou ultérieur, la valeur de 
+      pré-chargement définie par PHP peut être suchargée par le fichier de 
+      configuration du client oracle : <code class="literal">oraaccess.xml</code>. 
+      Consulter la documentation d&#039;Oracle pour plus d&#039;informations.
+     </p>
+     <blockquote class="note"><p><strong class="note">Note</strong>: 
+      <span class="simpara">
+       Si vous entrez une valeur trop important, cela peut conduire à
+       une amélioration des performances, au détriment
+       de l&#039;utilisation mémoire. Pour des requêtes qui retournent un
+       grand nombre de données, le gain de performance peut être vraiment
+       significatif.
+      </span>
+     </p></blockquote>
+    </dd>
+
+   
+   
+    <dt id="ini.oci8.events">
+     <code class="parameter">oci8.events</code>
+     <span class="type"><a href="language.types.boolean.html" class="type boolean">boolean</a></span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Définir à <code class="literal">On</code> cette option permet à PHP d&#039;être
+      notifié des événements de base de données FAN (<code class="literal">Fast Application
+      Notification</code>).
+     </p>
+     <p class="para">
+      Sans FAN, lorsqu&#039;une instance de la base de données ou bien un noeud
+      de machines échoue brutalement, les applications PHP peuvent se bloquer
+      en attendant une réponse de la base de données, jusqu&#039;au bout du délai
+      d&#039;expiration TCP. Avec les événements FAN, les applications PHP sont
+      notifiées rapidement des erreurs qui affectent les connexions à la base de
+      données. L&#039;extension OCI8 nettoiera les connexions inutilisables
+      dans le cache des connexions persistantes.
+     </p>
+     <p class="para">
+      Lorsque vous utilisez <code class="literal">On</code> comme valeur, la base de données
+      doit également être configurée pour émettre les événements FAN.
+     </p>
+     <p class="para">
+      Le support de FAN est disponible lorsque OCI8 est lié à des bibliothèques
+      Oracle 10<em class="emphasis">g</em>R2 (et suivants) et connecté à une base de données Oracle
+      10<em class="emphasis">g</em>R2 (et suivants).
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.oci8.max-persistent">
+     <code class="parameter">oci8.max_persistent</code>
+     <span class="type"><a href="language.types.integer.html" class="type int">int</a></span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Le nombre maximal de connexions persistantes OCI8 par processus PHP.
+      Le fait de définir cette option à -1 signifie qu&#039;il n&#039;y a aucune limite.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.oci8.old-oci-close-semantics">
+     <code class="parameter">oci8.old_oci_close_semantics</code>
+     <span class="type"><a href="language.types.boolean.html" class="type boolean">boolean</a></span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Cette option contrôle le comportement de la fonction <span class="function"><a href="function.oci-close.html" class="function">oci_close()</a></span>.
+      Activer cette option signifie que <span class="function"><a href="function.oci-close.html" class="function">oci_close()</a></span> ne fera rien du tout ;
+      la connexion ne sera pas fermée tant que la fin du script ne sera pas atteinte. Ceci est uniquement
+      pour assurer une compatibilité ascendante. Si vous pensez que vous devez activer
+      cette option, vous êtes <em class="emphasis">vivement encouragé</em> à
+      effacer les appels à la fonction <span class="function"><a href="function.oci-close.html" class="function">oci_close()</a></span> de votre application
+      au lieu d&#039;activer cette option.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.oci8.persistent-timeout">
+     <code class="parameter">oci8.persistent_timeout</code>
+     <span class="type"><a href="language.types.integer.html" class="type int">int</a></span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Le délai maximal (en secondes) q&#039;un processus PHP donné est autorisé
+      à maintenir une connexion persistante. Le fait de définir cette option
+      à -1 signifie que les connexions persistantes seront toujours maintenues
+      tant que le processus PHP ne se termine ou bien que la connexion est explicitement
+      fermée à l&#039;aide de la fonction <span class="function"><a href="function.oci-close.html" class="function">oci_close()</a></span>.
+     </p>
+     <blockquote class="note"><p><strong class="note">Note</strong>: 
+      <span class="simpara">
+       En PHP, l&#039;expiration des ressources persistantes ne produit
+       aucune alerte. Elle survient lorsque PHP termine un script et
+       vérifie le timestamp de la dernière utilisation de la ressource.
+       Aussi, le paradoxe veut que les connexions persistantes ne peuvent
+       être closes que lors d&#039;une quelconque activité (non nécessaire
+       en OCI8) dans le processus PHP. S&#039;il y a plus d&#039;un processus
+       PHP, alors chacun d&#039;eux doivent être activés manuellement
+       afin de lancer l&#039;expiration de leurs propres ressources.
+       L&#039;introduction du pool de connexions persistantes (DRCP) en
+       Oracle 11<em class="emphasis">g</em> résolve les problèmes de mémoire et de ressources, que
+       les options <code class="literal">oci8.max_persistent</code> et
+       <code class="literal">oci8.persistent_timeout</code> ont tenté précédemment
+       de résoudre.
+      </span>
+     </p></blockquote>
+     <blockquote class="note"><p><strong class="note">Note</strong>: 
+      <span class="simpara">
+       En PHP 5.3 (PECL OCI8 1.3), les connexions persistantes peuvent être
+       fermées avec la fonction <span class="function"><a href="function.oci-close.html" class="function">oci_close()</a></span>.
+      </span>
+     </p></blockquote>
+    </dd>
+
+   
+   
+    <dt id="ini.oci8.ping-interval">
+     <code class="parameter">oci8.ping_interval</code>
+     <span class="type"><a href="language.types.integer.html" class="type int">int</a></span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Le délai maximal (en secondes) à attendre avant d&#039;envoyer un ping durant
+      <span class="function"><a href="function.oci-pconnect.html" class="function">oci_pconnect()</a></span>. Lorsque définie à 0, les connexions
+      persistantes seront vérifiées à chaque réutilisation. Pour désactiver
+      complètement les ping, définissez cette option à -1.
+     </p>
+     <blockquote class="note"><p><strong class="note">Note</strong>: 
+      <span class="simpara">
+       Le fait de désactiver les pings rend les appels à <span class="function"><a href="function.oci-pconnect.html" class="function">oci_pconnect()</a></span>
+       hautement rentables, mais cela empêche PHP de détecter les problèmes de connexion,
+       comme les problèmes de réseau, ou si le serveur Oracle a été éteint depuis la
+       connexion de PHP, tant que la connexion n&#039;est pas utilisée plus tard dans le script.
+       Consultez la documentation de la fonction
+       <span class="function"><a href="function.oci-pconnect.html" class="function">oci_pconnect()</a></span> pour plus d&#039;informations.
+      </span>
+     </p></blockquote>
+    </dd>
+
+   
+   
+    <dt id="ini.oci8.privileged-connect">
+     <code class="parameter">oci8.privileged_connect</code>
+     <span class="type"><a href="language.types.boolean.html" class="type boolean">boolean</a></span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Cette option active les connexions privilégiées en utilisant les droits externes
+      (<strong><code>OCI_SYSOPER</code></strong>, <strong><code>OCI_SYSDBA</code></strong>).
+     </p>
+     <blockquote class="note"><p><strong class="note">Note</strong>: 
+      <span class="simpara">
+       Le fait de définir cette valeur à <code class="literal">On</code>
+       permet aux scripts du serveur web exécutant les privilèges utilisateurs
+       systèmes appropriés de se connecter à la base de données en utilisant
+       ces privilèges, sans avoir besoin de fournir un mot de passe à la
+       base de données. Ceci peut avoir des conséquences au niveau de la
+       sécurité.
+      </span>
+     </p></blockquote>
+    </dd>
+
+   
+   
+    <dt id="ini.oci8.statement-cache-size">
+     <code class="parameter">oci8.statement_cache_size</code>
+     <span class="type"><a href="language.types.integer.html" class="type int">int</a></span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Cette option active la mise en cache des requêtes, et spécifie le nombre de requêtes
+      à mettre en cache. Pour désactiver la mise en cache des requêtes, définissez cette
+      option à 0.
+     </p>
+     <p class="para">
+      La mise en cache des requêtes permet de ne plus avoir besoin de transmettre
+      le texte de la requête à la base de données, mais aussi, de ne plus
+      avoir besoin de transmettre de méta-données sur la requête à PHP.
+      Ceci permet d&#039;accroître significativement les performances systèmes
+      dans les applications, en ré-utilisant les requêtes durant toute
+      la vie de la connexion. Des &quot;curseurs&quot; de base de données
+      peuvent également aider si l&#039;on part du principe que des requêtes seront
+      ré-utilisées.
+     </p>
+     <p class="para">
+      Définissez cette valeur à la taille de votre jeux de requêtes courantes
+      utilisées par votre application. Le fait de définir une valeur trop petite
+      peut faire que vos requêtes seront supprimées du cache avant qu&#039;elles ne
+      soient utilisées.
+     </p>
+     <p class="para">
+      Cette option est la plus utilisée avec les connexions persistantes.
+     </p>
+     <p class="para">
+      Avec la base de données Oracle 12<em class="emphasis">c</em>, cette valeur 
+      peut être surchargée et automatiquement ajustée par le fichier 
+      <code class="literal">oraaccess.xml</code> du client Oracle. Voir la documentation 
+      d&#039;Oracle pour plus d&#039;explications.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </p>
+</div></div></div></body></html>

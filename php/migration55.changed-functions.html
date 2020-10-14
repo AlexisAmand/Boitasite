@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Fonctions modifi&eacute;es</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration55.deprecated.html">« Fonctionnalit&eacute;s devenues obsol&egrave;tes en PHP 5.5.x</a></li>
+      <li style="float: right;"><a href="migration55.new-functions.html">Nouvelles fonctions »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration55.html">Migration de PHP 5.4.x &agrave; PHP 5.5.x</a></li>
+    <li>Fonctions modifi&eacute;es</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration55.changed-functions" class="sect1">
+  <h2 class="title">Fonctions modifiées</h2>
+
+  <div class="sect2" id="migration55.changed-functions.core">
+   <h3 class="title">PHP Core</h3>
+
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      La fonction <span class="function"><a href="function.set-error-handler.html" class="function">set_error_handler()</a></span> peut désormais être appelée
+      avec <strong><code>NULL</code></strong> comme argument pour réinitialiser le gestionnaire d&#039;erreur.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Lorsqu&#039;appelées avec <strong><code>NULL</code></strong>, la fonction <span class="function"><a href="function.set-error-handler.html" class="function">set_error_handler()</a></span> et
+      la fonction <span class="function"><a href="function.set-exception-handler.html" class="function">set_exception_handler()</a></span> retournent désormais le
+      gestionnaire d&#039;erreur ou d&#039;exception, respectivement.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <span class="function"><a href="function.json-encode.html" class="function">json_encode()</a></span> accepte maintenant le paramètre
+      <code class="parameter">depth</code>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Le comportement de la fonction <span class="function"><a href="function.pack.html" class="function">pack()</a></span> et de la fonction
+      <span class="function"><a href="function.unpack.html" class="function">unpack()</a></span> avec les codes format &quot;a&quot; et &quot;A&quot; a changé.
+      <a href="migration55.incompatible.html#migration55.incompatible.pack" class="link">Des notes détaillées sur ces
+       modifications sont disponibles.</a>
+     </span>
+    </li>
+   </ul>
+  </div>
+
+  <div class="sect2" id="migration55.changed-functions.intl">
+   <h3 class="title"><a href="book.intl.html" class="link">intl</a></h3>
+
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      La méthode <span class="methodname"><a href="messageformatter.format.html" class="methodname">MessageFormatter::format()</a></span> ainsi que les
+      fonctions associées acceptent maintenant les arguments nommés en plus
+      des arguments numériques, lorsque PHP est lié à ICU 4.8 ou supérieur.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      La méthode <span class="methodname"><a href="messageformatter.format.html" class="methodname">MessageFormatter::format()</a></span> ainsi que les
+      fonctions associées ne produisent plus d&#039;erreur lorsque le nombre d&#039;arguments
+      fournis n&#039;est pas suffisant. Au lieu de cela, les marqueurs ne seront pas
+      substitués.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Les méthodes <span class="methodname"><a href="messageformatter.format.html" class="methodname">MessageFormatter::format()</a></span> et
+      <span class="methodname"><a href="messageformatter.parse.html" class="methodname">MessageFormatter::parse()</a></span> ne sont plus limitées à
+      une précision à la seconde lors de l&#039;utilisation de durées.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      La méthode <span class="methodname"><a href="intldateformatter.create.html" class="methodname">IntlDateFormatter::__construct()</a></span> et la fonction
+      <span class="function"><a href="intldateformatter.create.html" class="function">datefmt_create()</a></span> acceptent maintenant des objets
+      <a href="class.intltimezone.html" class="classname">IntlTimeZone</a> et <a href="class.datetimezone.html" class="classname">DateTimeZone</a> pour l&#039;argument
+      <code class="parameter">timezone</code> et des objets <a href="class.intlcalendar.html" class="classname">IntlCalendar</a>
+      pour l&#039;argument <code class="parameter">calendar</code>. De plus, si le fuseau horaire
+      est omis et que le paramètre <code class="parameter">calendar</code> ne spécifie pas
+      une durée temporelle, le fuseau horaire par défaut de PHP, issu de la directive
+      <span class="function"><a href="function.date-default-timezone-get.html" class="function">date_default_timezone_get()</a></span> sera alors utilisé
+      au lieu du fuseau horaire par défaut d&#039;ICU.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      La méthode <span class="methodname"><a href="intldateformatter.getcalendar.html" class="methodname">IntlDateFormatter::getCalendar()</a></span> et la fonction
+      <span class="function"><a href="intldateformatter.getcalendar.html" class="function">datefmt_get_calendar()</a></span> retournent <strong><code>FALSE</code></strong> si l&#039;objet
+      <a href="class.intldateformatter.html" class="classname">IntlDateFormatter</a> a été créé avec une instance
+      <a href="class.intlcalendar.html" class="classname">IntlCalendar</a> au lieu d&#039;une des constantes de
+      <a href="class.intldateformatter.html" class="classname">IntlDateFormatter</a>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      La méthode <span class="methodname"><a href="intldateformatter.setcalendar.html" class="methodname">IntlDateFormatter::setCalendar()</a></span> et la fonction
+      <span class="function"><a href="intldateformatter.setcalendar.html" class="function">datefmt_set_calendar()</a></span> acceptent désormais des objets
+      <a href="class.intlcalendar.html" class="classname">IntlCalendar</a> en plus des constantes de
+      <a href="class.intldateformatter.html" class="classname">IntlDateFormatter</a>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      La méthode <span class="methodname"><a href="intldateformatter.format.html" class="methodname">IntlDateFormatter::format()</a></span> et la fonction
+      <span class="function"><a href="intldateformatter.format.html" class="function">datefmt_format()</a></span> acceptent désormais les objets
+      <a href="class.intlcalendar.html" class="classname">IntlCalendar</a>.
+     </span>
+    </li>
+   </ul>
+  </div>
+ </div></div></div></body></html>

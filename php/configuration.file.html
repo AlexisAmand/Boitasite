@@ -1,0 +1,281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Le fichier de configuration</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="configuration.html">« Configuration &agrave; l'ex&eacute;cution</a></li>
+      <li style="float: right;"><a href="configuration.file.per-user.html">Fichiers .user.ini »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="configuration.html">Configuration &agrave; l'ex&eacute;cution</a></li>
+    <li>Le fichier de configuration</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="configuration.file" class="sect1">
+  <h2 class="title">Le fichier de configuration</h2>
+  
+  <p class="simpara">
+   Le fichier de configuration (<var class="filename">php.ini</var>) est lu par PHP au démarrage. Si vous
+   avez compilé PHP en module, le fichier n&#039;est lu qu&#039;une seule
+   fois, au lancement du serveur web. Pour les versions
+   <acronym title="Common Gateway Interface">CGI</acronym> et <acronym title="Command Line Interpreter/Interface">CLI</acronym> le fichier est lu à
+   chaque invocation.
+  </p>
+  <p class="para">
+   Le <var class="filename">php.ini</var> est cherché dans ces endroits (et dans cet ordre) :
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      L&#039;endroit spécifique du module SAPI (la directive <code class="literal">PHPIniDir</code>
+      d&#039;Apache 2, l&#039;option de la ligne de commande <code class="literal">-c</code> en CGI et en CLI,
+      le paramètre <code class="literal">php_ini</code> en NSAPI)
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      La variable d&#039;environnement <var class="varname">PHPRC</var>. Avant PHP 5.2.0,
+      cette variable était récupérée après la clé de registre mentionnée ci-dessous.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Depuis PHP 5.2.0, l&#039;endroit où se trouve le fichier <code class="literal">php.ini</code>
+      peut être définis pour différentes versions de PHP.
+      La racine des clés de registre dépend de l&#039;architecture 32 ou 64 bit de l&#039;OS et de PHP.
+      Pour un OS et PHP 32 bit ou un OS et PHP 64 bit, utiliser 
+      <code class="literal">[HKEY_LOCAL_MACHINE\SOFTWARE\PHP]</code> pour PHP 32 bit 
+      sur un OS 64 bit, utiliser 
+      <code class="literal">[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\PHP]</code>
+      à la place.
+      Pour une installation avec la même architecture, les clés de registre suivantes sont cherchées dans cet ordre :
+      <code class="literal">[HKEY_LOCAL_MACHINE\SOFTWARE\PHP\x.y.z]</code>,
+      <code class="literal">[HKEY_LOCAL_MACHINE\SOFTWARE\PHP\x.y]</code> and
+      <code class="literal">[HKEY_LOCAL_MACHINE\SOFTWARE\PHP\x]</code>, où
+      x, y et z signifie les versions majeures, mineures et normales.
+      Pour une architecture 32 bit de PHP sur un OS 64 bit, les clés de 
+      registre suivantes sont cherchées dans cet ordre :
+      <code class="literal">[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6421Node\PHP\x.y.z]</code>,
+      <code class="literal">[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6421Node\PHP\x.y]</code> and
+      <code class="literal">[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6421Node\PHP\x]</code>, où
+      x, y et z signifie les versions majeures, mineures et normales.
+      S&#039;il y a une valeur pour <code class="literal">IniFilePath</code> dans ces clés,
+      la première trouvée sera utilisée comme endroit où se trouve le fichier
+      <code class="literal">php.ini</code> (uniquement sous Windows).
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">[HKEY_LOCAL_MACHINE\SOFTWARE\PHP]</code> ou
+      <code class="literal">[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\PHP]</code>, valeur de
+      <code class="literal">IniFilePath</code> (uniquement sous Windows).
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Le dossier courant de travail (sauf pour CLI)
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Le dossier du serveur web (pour les modules SAPI), ou le dossier contenant PHP
+      (autrement sous Windows)
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Le dossier Windows (<var class="filename">C:\windows</var>
+      ou <var class="filename">C:\winnt</var>) (pour Windows), ou
+      l&#039;option de compilation <code class="literal">--with-config-file-path</code> lors de la compilation
+     </span>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   Si le fichier <var class="filename">php-SAPI.ini</var> existe (où SAPI utilise SAPI, donc le
+   nom du fichier est e.g. <var class="filename">php-cli.ini</var> ou
+   <var class="filename">php-apache.ini</var>), il sera utilisé à la place du <var class="filename">php.ini</var>.
+   Le nom SAPI peut être déterminé en utilisant la fonction <span class="function"><a href="function.php-sapi-name.html" class="function">php_sapi_name()</a></span>.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Le serveur web Apache change ce dossier en dossier root au démarrage, ce qui fait
+    que PHP essaye de lire <var class="filename">php.ini</var> depuis le système de fichiers racine s&#039;il existe.
+   </p>
+  </p></blockquote>
+  <p class="para">
+   Les variables d&#039;environnements peuvent être utilisées dans le fichier
+   <var class="filename">php.ini</var> comme ci-dessous.
+  </p>
+  <p class="para">
+   <div class="example" id="example-36">
+    <p><strong>Exemple #1 Les variables d&#039;environnement dans un fichier <var class="filename">php.ini</var></strong></p>
+     <div class="example-contents">
+<div class="inicode"><pre class="inicode">; PHP_MEMORY_LIMIT est repris depuis l&#039;environnement
+memory_limit = ${PHP_MEMORY_LIMIT}</pre>
+</div>
+     </div>
+
+    </div>
+  </p>
+  
+  <p class="para">
+   Les directives <var class="filename">php.ini</var> sont directement documentées, par extensions,
+   sur les pages respectives du manuel de ces extensions. La
+   <a href="ini.html" class="link">liste des directives internes</a> est disponible
+   en annexe. Il est probable que toutes les directives PHP ne sont pas documentées
+   dans le manuel. Pour une liste complète des directives disponibles dans votre version de PHP,
+   merci de lire les commentaires de votre propre fichier <var class="filename">php.ini</var>. 
+   Vous pouvez également trouver la 
+   <a href="https://git.php.net/?p=php-src.git;a=blob;f=php.ini-production;hb=HEAD" class="link external">&raquo;&nbsp;dernière version du <var class="filename">php.ini</var></a>
+   sur Git.
+  </p>
+  <p class="para">
+   <div class="example" id="example-37">
+    <p><strong>Exemple #2 Extrait du <var class="filename">php.ini</var></strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">; tout texte sur une ligne, situé après un point-virgule &quot;;&quot; est ignoré
+[php] ; les marqueurs de section (texte entre crochets) sont aussi ignorés
+; Les valeurs booléennes peuvent être spécifiées comme ceci :
+;    true, on, yes
+; ou false, off, no, none
+register_globals = off
+track_errors = yes
+
+; vous pouvez placer les chaînes de caractères entre guillemets
+include_path = &quot;.:/usr/local/lib/php&quot;
+
+; Les antislash sont traités comme n&#039;importe quel caractère
+include_path = &quot;.;c:\php\lib&quot;</pre>
+</div>
+    </div>
+
+    
+   </div>
+  </p>
+  <p class="para">
+   Depuis PHP 5.1.0, il est possible de se référer à des variables .ini
+   depuis des fichiers .ini. Par exemple : <code class="literal">open_basedir = ${open_basedir}
+   &quot;:/new/dir&quot;</code>.
+  </p>
+    <div class="sect2" id="configuration.file.scan">
+   <h3 class="title">Lire un répertoire</h3>
+
+   <p class="para">
+    Il est possible de configurer PHP pour lire les fichiers .ini présent dans un dossier.
+    après la lecture de <var class="filename">php.ini</var>. Cela est réglé lors de la compilation avec l&#039;argument 
+    <strong class="option configure">--with-config-file-scan-dir</strong>. Dans
+    PHP 5.2.0 et ultérieur, le dossier à lire peut être modifié lors de l&#039;exécution
+    par la définition de la variable d&#039;environnement  <var class="varname">PHP_INI_SCAN_DIR</var>.
+   </p>
+
+   <p class="para">
+    Il est possible de lire plusieurs dossiers en les séparant avec un
+    séparateur de chemin spécifique à la plateforme (<code class="literal">;</code> pour Windows, NetWare
+    et RISC OS; <code class="literal">:</code> pour toutes les autres plateforme; la valeur utilisée par PHP est
+    disponible dans la contante <strong><code>PATH_SEPARATOR</code></strong>).
+    Si un dossier vide est fourni dans 
+    <var class="varname">PHP_INI_SCAN_DIR</var>, PHP
+    lira également le dossier fournis à la compilation via
+    <strong class="option configure">--with-config-file-scan-dir</strong>.
+   </p>
+
+   <p class="para">
+    Dans chaque répertoire, PHP lira tous les fichiers terminant par
+    <code class="literal">.ini</code> dans l&#039;ordre alphabétique. Une liste des fichiers qui
+    ont été chargé et dans quel ordre est disponible en appelant la fonction
+    <span class="function"><a href="function.php-ini-scanned-files.html" class="function">php_ini_scanned_files()</a></span>, ou en exécutant PHP avec l&#039;option
+    <strong class="option unknown">--ini</strong>.
+   </p>
+
+   <div class="informalexample">
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Assuming PHP is configured with --with-config-file-scan-dir=/etc/php.d,
+and that the path separator is :...
+
+$ php
+  PHP va charger tous les fichiers présent dans /etc/php.d/*.ini comme fichier 
+  de configuration.
+
+$ PHP_INI_SCAN_DIR=/usr/local/etc/php.d php
+  PHP va charger tous les fichiers présent dans /usr/local/etc/php.d/*.ini 
+  comme fichier de configuration.
+
+$ PHP_INI_SCAN_DIR=:/usr/local/etc/php.d php
+  PHP va charger tous les fichiers présent dans /etc/php.d/*.ini, puis
+  /usr/local/etc/php.d/*.ini comme fichier de configuration.
+
+$ PHP_INI_SCAN_DIR=/usr/local/etc/php.d: php
+  PHP va charger tous les fichiers présent dans /usr/local/etc/php.d/*.ini, puis dans
+  /etc/php.d/*.ini comme fichier de configuration.
+</pre></div>
+    </div>
+   </div>
+  </div>
+  <div class="sect2" id="configuration.file.changelog">
+   <h3 class="title">Historique</h3>
+
+   <p class="para">
+    <table class="doctable informaltable">
+     
+      <thead>
+       <tr>
+        <th>Version</th>
+        <th>Description</th>
+       </tr>
+
+      </thead>
+
+      <tbody class="tbody">
+       <tr>
+        <td>7.0.0</td>
+        <td>
+         Les marqueurs croisillons (<code class="literal">#</code>) ne sont plus reconnus 
+         comme des commentaires.
+        </td>
+       </tr>
+
+       <tr>
+        <td>5.3.0</td>
+        <td>
+         Les marqueurs croisillons  (<code class="literal">#</code>) ne doivent plus être 
+         utilisés comme commentaires et vont lever un avertissement pour 
+         dépréciation si utilisé.
+        </td>
+       </tr>
+
+       <tr>
+        <td>5.2.0</td>
+        <td>
+         La variable d&#039;environnement  <var class="varname">PHP_INI_SCAN_DIR</var> peut être
+         définie pour remplacer la valeur définie par le script de configuration.
+        </td>
+       </tr>
+
+       <tr>
+        <td>5.1.0</td>
+        <td>
+         Il est possible de faire référence à des variables existantes de .ini 
+         à l&#039;intérieur de fichier .ini.
+        </td>
+       </tr>
+
+      </tbody>
+     
+    </table>
+
+   </p>
+  </div>
+ </div></div></div></body></html>

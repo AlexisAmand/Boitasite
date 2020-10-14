@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Le format de fichier Phar</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="phar.fileformat.zip.html">« Les phars bas&eacute;s sur Zip</a></li>
+      <li style="float: right;"><a href="phar.fileformat.flags.html">Drapeaux &quot;bitmapp&eacute;s&quot; globaux du Phar »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="phar.fileformat.html">Qu'est-ce qui fait d'un phar un phar et pas un tar ou un zip ?</a></li>
+    <li>Le format de fichier Phar</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="phar.fileformat.phar" class="section">
+  <h2 class="title">Le format de fichier Phar</h2>
+  <p class="para">
+   Le format de fichier phar est composé de conteneur/manifeste/contenu/signature, et stocke
+   les informations cruciales de ce qui est contenu dans l&#039;archive phar dans son
+   <code class="literal">manifeste</code>.
+  </p>
+  <p class="para">
+   Le manifeste Phar est un format hautement optimisé qui permet la spécification fichier par fichier
+   de la compression, des permissions et même des métadonnées utilisateur tels que l&#039;utilisateur ou le
+   groupe propriétaire. Toutes les valeurs de plus d&#039;un octet sont stockées sous forme petit-boutiste,
+   A l&#039;exception de la version de l&#039;API qui est stockée pour des raisons historiques en 3 morceaux
+   grand-boutistes.
+  </p>
+  <p class="para">
+   Tous les drapeaux non utilisés sont réservés pour un usage futur et ne doivent pas être utilisés
+   pour stocker des informations personnalisées. Utilisez les métadonnées par fichier pour stocker
+   des métadonnées personnalisées sur des fichiers particuliers.
+  </p>
+  <p class="para">
+   Le format de fichier basique du manifeste d&#039;une archive Phar est le suivant :
+  </p>
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Format global du manifeste Phar</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Taille en octets</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>4 octets</td>
+       <td>Longueur du manifeste en octets (limitée à 1 Mo)</td>
+      </tr>
+
+      <tr>
+       <td>4 octets</td>
+       <td>Nombre de fichiers dans le Phar</td>
+      </tr>
+
+      <tr>
+       <td>2 octets</td>
+       <td>Version de l&#039;API du manifest Phar (à ce jour 1.0.0)</td>
+      </tr>
+
+      <tr>
+       <td>4 octets</td>
+       <td>Drapeaux &quot;bitmappés&quot; globaux du Phar</td>
+      </tr>
+
+      <tr>
+       <td>4 octets</td>
+       <td>Longueur de l&#039;alias Phar</td>
+      </tr>
+
+      <tr>
+       <td>??</td>
+       <td>L&#039;alias Phar (longueur basée sur la valeur précédente)</td>
+      </tr>
+
+      <tr>
+       <td>4 octets</td>
+       <td>Longueur des métadonnées Phar (<code class="literal">0</code> si aucune)</td>
+      </tr>
+
+      <tr>
+       <td>??</td>
+       <td>métadonnées Phar sérialisées, stockées dans un format <span class="function"><a href="function.serialize.html" class="function">serialize()</a></span></td>
+      </tr>
+
+      <tr>
+       <td>au moins 24 * nombre d&#039;octets des entrées</td>
+       <td>Entrées pour chaque fichier</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div></div></div></body></html>

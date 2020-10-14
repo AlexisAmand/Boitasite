@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>XA/Distributed transactions</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-ms.supportedclusters.html">« Clusters support&eacute;s</a></li>
+      <li style="float: right;"><a href="mysqlnd-ms.setup.html">Installation/Configuration »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-ms.concepts.html">Concepts</a></li>
+    <li>XA/Distributed transactions</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-ms.concept_xa_trx" class="section">
+  <h2 class="title">XA/Distributed transactions</h2>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Nécessité de version</strong><br />
+   <p class="para">
+    Les fonctions relatives à XA ont été introduites en
+    <code class="literal">PECL/mysqlnd_ms</code> version 1.6.0-alpha.
+   </p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Ce que les premiers adaptateurs voulaient</strong><br />
+   <p class="para">
+    Cette fonctionalité est actuellement en cours de développement. Il peut
+    y avoir des problèmes et/ou des limitations dans la fonctionalité. Ne
+    pas utiliser en environnement de production, malgré le fait que les premiers
+    tests indiquent une qualité satisfaisante.
+   </p>
+   <p class="para">
+    Merci de contacter l&#039;équipe de développement si vous êtes intéressé par
+    cette fonctionalité. Nous sommes à la recherche de retours utilisateurs
+    pour compléter la fonctionalité.
+   </p>
+   <p class="para">
+    Voici une liste des restrictions actuelles de la fonctionalité.
+     <ul class="itemizedlist">
+      <li class="listitem">
+       <p class="para">
+        Cette fonctionalité n&#039;est pour l&#039;instant pas compatible avec le 
+        support MySQL Fabric. Ceci devrait s&#039;arranger d&#039;ici peu.
+       </p>
+       <p class="para">
+        Les identifiants de transaction XA sont actuellement restreints
+        à des nombres. Cette limitation devrait bientôt disparaître ; ce
+        n&#039;est qu&#039;une simplification induite lors de l&#039;implémentation
+        initiale.
+       </p>
+      </li>
+    </ul>
+   </p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Restrictions du serveur MySQL</strong><br />
+   <p class="para">
+    Le support XA par le serveur MySQL a quelques limitations. La plus notable
+    est que le binaire d&#039;historisation du serveur peut rater des modifications
+    effectuées par les transactions XA en cas de certaines erreurs. Veuillez
+    vous rapporter au manuel de MySQL pour plus de détails.
+   </p>
+  </p></blockquote>
+  <p class="para">
+   Les transactions distribuées/XA peuvent impliquer plusieurs serveurs MySQL.
+   Aussi, elles peuvent paraître comme un outil parfait pour les clusters
+   partagés MySQL, par exemple, les clusters gérés avec MySQL Fabric.
+   <code class="literal">PECL/mysqlnd_ms</code> cache la plupart des commandes SQL qui
+   contrôlent les transactions XA, et réalise automatiquement des tâches
+   administratives en cas d&#039;erreur, pour fournir à l&#039;utilisateur une API
+   compréhensive. Les utilisateurs doivent configurer le plugin avec prudence,
+   et faire attention aux restrictions des serveurs avant d&#039;utiliser cette fonctionalité.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2212">
+    <p><strong>Exemple #1 Masque général pour les transactions XA</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"myapp"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;On&nbsp;commence&nbsp;!&nbsp;*/<br /></span><span style="color: #0000BB">mysqlnd_ms_xa_begin</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1&nbsp;</span><span style="color: #FF8000">/*&nbsp;xa&nbsp;id&nbsp;*/</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Exécution&nbsp;de&nbsp;plusieurs&nbsp;requêtes&nbsp;sur&nbsp;divers&nbsp;serveurs&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"UPDATE&nbsp;some_table&nbsp;SET&nbsp;col_a&nbsp;=&nbsp;1"</span><span style="color: #007700">);<br />...<br /><br /></span><span style="color: #FF8000">/*&nbsp;Validaiton&nbsp;!&nbsp;*/<br /></span><span style="color: #0000BB">mysqlnd_ms_xa_commit</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Les transactions XA utilisent un protocole de validation en deux phases.
+   Ce protocole est bloquant. Pendant la première phase, les serveurs participants
+   commencent une transaction et le client réalise son travail. Cette phase est
+   suivie par une seconde phase de vote. Pendant le vote, les serveurs font d&#039;abord
+   la promesse ferme qu&#039;ils sont prêts à réaliser le travail y compris s&#039;il
+   survient une erreur innatendue. Si un serveur crash pendant cette phase, il
+   va appeler de nouveau la transaction interrompue après son redémarrage, et
+   va attendre que le client décide si la transaction doit être validée ou annulée.
+  </p>
+  <p class="para">
+   Si un client qui a initié une transaction globale crash après que l&#039;appel
+   aux serveurs participants demandant leurs promesses de validation ne soit
+   réalisé, alors les serveurs doivent attendre une décision. Les serveurs ne
+   sont pas autorisés à prendre de façon unilatérale une décision sur la transaction.
+  </p>
+  <p class="para">
+   Un crash du client, une déconnection d&#039;un participant, un crash serveur ou
+   une erreur serveur durant la première phase n&#039;est pas critique. Dans la plupart
+   des cas, le serveur va oublier la transaction XA et réaliser une annulation.
+   De plus, le plugin va tenter de contacter un maximum de participants pour les
+   informer d&#039;annuler immédiatement le travail. Il n&#039;est pas possible de désactiver
+   cette annulation implicite réalisée par <code class="literal">PECL/mysqlnd_ms</code> dans le
+   cas d&#039;erreurs survenues pendant la première phase du protocole. Ce comportement
+   a été décidé afin de conserver une implémentation simple.
+  </p>
+  <p class="para">
+   Une erreur pendant la seconde phase du protocole de validation peut engendrer
+   une situation plus sévère. Dans tous les cas, les serveurs ne vont pas
+   oublier la transactions en cours (mais pas terminées). Le plugin ne va pas
+   tenter de résoudre ce problème immédiatement, mais va attendre le passage
+   en arrière plan du collecteur de données incorrectes pour s&#039;assurer de la
+   progression du protocole de validation. Il est supposé que cette solution prend
+   un temps signification, car il inclue le temps d&#039;attente d&#039;un serveur participant
+   pour redémarrer après un crash. Cette durée passée peut être plus longue
+   qu&#039;un développeur et un utilisateur peuvent prétendre lors d&#039;une tentative
+   de validation d&#039;une transaction globale avec la fonction <span class="function"><a href="function.mysqlnd-ms-xa-commit.html" class="function">mysqlnd_ms_xa_commit()</a></span>.
+   Aussi, la fonction va retourner avec une transation globale non terminée qui
+   va continuer de demander toute l&#039;attention. Faites attention à ce moment précis,
+   tout n&#039;est pas propre, sachant que la transaction globale peut toujours être
+   validée ou annulée plus tard.
+  </p>
+  <p class="para">
+   Les erreurs pendant la seconde phase peuvent être annulées, gérées par vous même,
+   ou résolues par la logique du collecteur de données incorrectes. Les ignorer n&#039;est
+   pas recommandé, sachant que vous pouvez avoir des transactions globales non terminées
+   sur vos serveurs qui bloquent les ressources indéfiniement. La gestion de ces erreurs
+   nécessite de connaître les participants, vérifier leurs statuts, et leur envoyer les
+   requêtes SQL appropriées. Il n&#039;existe pas d&#039;appel API permettant de retrouver
+   ces informations. Vous devez configurer un stockage de statuts et y enregistrer
+   les actions du plugin pour retrouver l&#039;information.
+  </p>
+  <p class="para">
+   Veuillez lire la section de
+   <a href="mysqlnd-ms.quickstart.xa_transactions.html" class="link">démarrage rapide</a>
+   ainsi que les <a href="mysqlnd-ms.plugin-ini-json.html#ini.mysqlnd-ms-plugin-config-v2.xa.state-store" class="link">
+   options du fichier de configuration</a> pour un exemple de configuration
+   d&#039;un stockage de statuts. En plus de configurer un stockage de statuts,
+   vous devez configurer quelques tables SQL. Les définitions de ces tables sont
+   fournies dans la description des options de configuration du plugin.
+  </p>
+  <p class="para">
+   La mise en place et la configuration d&#039;un stockage de statut est également
+   un prérequis à l&#039;utilisation du collecteur de données incorrectes interne
+   pour les transactions XA qui échoue pendant la seconde phase de la validation.
+   L&#039;enregistrement des informations sur les transactions XA entrantes est une
+   tâche supplémentaire inévitable. Cette tâche consiste à mettre à jour le stockage
+   de statuts après chaque opération qui modifie le statut de la transaction globale
+   (démarrage, validation, annulation, erreurs et arrêt), après chaque ajout de
+   participants (hôte, optionnellement, nom d&#039;utilisateur et mot de passe de connexion)
+   ainsi que toutes modifications de statuts des participants. Notez que, suivant
+   la configuration, et votre politique de sécurité, ces enregistrements peuvent
+   être très sensibles. Il est recommandé de restreindre l&#039;accès au stockage de
+   statuts. A moins que le stockage de statuts devienne surchargé, l&#039;enregistrement
+   des informations de statut contribue à la charge globale mais son impact
+   reste très limité.
+  </p>
+  <p class="para">
+   Il est possible que les efforts que vous prendrez pour implémenter vos propres
+   routines pour gérer les transactions XA en échec pendant la seconde phase de validation
+   excèdent les bénéfices de l&#039;utilisation de la fonctionalité XA de
+   <code class="literal">PECL/mysqlnd_ms</code>. Aussi, le manuel n&#039;abordera que l&#039;utilisation
+   du collecteur de données incorrectes interne.
+  </p>
+  <p class="para">
+   Le collecteur de données incorrectes peut être lancé manuellement et automatiquement
+   en arrière plan. Vous pouvez vouloir utiliser la fonction <span class="function"><a href="function.mysqlnd-ms-xa-gc.html" class="function">mysqlnd_ms_xa_gc()</a></span>
+   immédiatement après un échec de validation pour tenter de résoudre le souci, mais
+   réouvrir les transactions globales aussi tôt que possible. Vous pouvez aussi décider de
+   désactiver le collecteur de données incorrectes automatique d&#039;arrière plan,
+   implémenter vos propres règles d&#039;appel au collecteur de données incorrectes interne,
+   et l&#039;appeler lorsque vous le souhaitez.
+  </p>
+  <p class="para">
+   Par défaut, le plugin va démarrer le collecteur de données incorrectes en suivant
+   une probabilité définie par la méthode <code class="literal">RSHUTDOWN</code> interne à l&#039;extension.
+   Le requête d&#039;arrêt est appelé après la fin de votre script. Le moment du démarrage
+   du collecteur de données incorrectes est déterminé en calculant une valeur aléatoire
+   comprise dans l&#039;intervalle <code class="literal">1...1000</code> et en la comparant avec
+   l&#039;option de configuration
+   <a href="mysqlnd-ms.plugin-ini-json.html#ini.mysqlnd-ms-plugin-config-v2.xa.gc" class="link"><code class="literal">probability</code></a>
+   (défaut : 5). Si l&#039;option de configuration est supérieure ou égale à la valeur aléatoire,
+   le collecteur de données incorrectes sera lancé.
+  </p>
+  <p class="para">
+   Une fois démarré, le collecteur de données incorrectes agira jusqu&#039;à
+    <code class="literal">max_transactions_per_run</code> (défaut : 100) enregistrements
+   de transactions globales. Les enregistrements incluent les transactions
+   terminées avec succès, mais aussi, les transactions XA non terminées. Les enregistrements
+   pour les transactions terminées avec succès sont supprimés, et on tente de résoudre
+   les transactions non terminées. Il n&#039;y a aucune statistique permettant de trouver
+   la balance juste entre la conservation de l&#039;exécution courte du collecteur de données
+   incorrectes en limitant le nombre de transactions considérées par exécution, et
+   le fait d&#039;éviter l&#039;échec du collecteur de données incorrectes faisant qu&#039;un grand
+   nombre d&#039;enregistrements ne soit réalisé.
+  </p>
+  <p class="para">
+   Pour chaque transaction XA en échec, le collecteur de données incorrectes va tenter
+   <code class="literal">max_retries</code> (défaut : 5) fois de la terminer. Après cela,
+   <code class="literal">PECL/mysqlnd_ms</code> va rendre la main. Il y a deux raisons à cela.
+   Soit un serveur participant a crashé, et est devenu inaccessible pendant les
+   <code class="literal">max_retries</code> invocations du collecteur de données incorrectes, ou
+   bien, il y a un cas où le collecteur de données incorrectes internes ne peut
+   pas faire face. Le dernier cas peut être considéré comme un bogue. Cependant, vous
+   pouvez forcer manuellement plusieurs exécutions du collecteur de données incorrectes
+   en appelant la fonction <span class="function"><a href="function.mysqlnd-ms-xa-gc.html" class="function">mysqlnd_ms_xa_gc()</a></span> avec le jeu de
+   paramètres approprié. Si l&#039;exécution de ces fonctions échoue dans la résolution
+   de la situation, alors le problème doit être réglé par un opérateur.
+  </p>
+  <p class="para">
+   La fonction <span class="function"><a href="function.mysqlnd-ms-get-stats.html" class="function">mysqlnd_ms_get_stats()</a></span>
+   fournit quelques statistiques sur le nombre de transactions XA qui ont été démarrées,
+   validées, échouées ou annulées.
+  </p>
+
+ </div></div></div></body></html>

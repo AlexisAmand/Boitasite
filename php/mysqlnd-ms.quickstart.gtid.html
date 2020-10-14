@@ -1,0 +1,387 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>ID de transaction globale</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-ms.quickstart.qos-consistency.html">« Niveau de service et consistence</a></li>
+      <li style="float: right;"><a href="mysqlnd-ms.quickstart.cache.html">Int&eacute;gration du cache »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-ms.quickstart.html">Exemples et d&eacute;marrage rapide</a></li>
+    <li>ID de transaction globale</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-ms.quickstart.gtid" class="section">
+  <h2 class="title">ID de transaction globale</h2>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Version requise</strong><br />
+   <p class="para">
+    L&#039;injection d&#039;identifiant de transaction globale côté client a été ajoutée avec
+    mysqlnd_ms version 1.2.0-alpha. Ce n&#039;est pas requis pour les clusters synchrones,
+    comme MySQL Cluster. Utilisez le avec des clusters asynchrones, comme la réplication
+    MySQL.
+   </p>
+   <p class="para">
+    Depuis la version admissible MySQL 5.6.5-m8, le serveur MySQL fournit des 
+    identifiants de transaction globale. Cette fonctionnalité est supportée par 
+    <code class="literal">PECL/mysqlnd_ms</code> 1.3.0-alpha ou supérieure. Toutefois, le jeu de 
+    fonctionnalités inclus dans la version finale de MySQL 5.6 est insuffisant 
+    pour supporter toutes les idées discutées ici. Veuillez vous référer à la 
+    <a href="mysqlnd-ms.gtid.html" class="link">section sur les concepts</a> pour plus 
+    de détails.
+   </p>
+  </p></blockquote>
+  <p class="para">
+   <code class="literal">PECL/mysqlnd_ms</code> peut soit utiliser sa propre émulation des identifiants
+   de transaction globale, soit la fonctionnalité interne du serveur
+   MySQL 5.6.5-m8 ou supérieure. D&#039;un point de vue développeur, ces différentes
+   approches offrent les mêmes fonctionnalités au niveau des niveaux de service
+   fournis par PECL/mysqlnd_ms. Leurs différences sont abordées dans la
+   <a href="mysqlnd-ms.gtid.html" class="link">section sur les concepts</a>.
+  </p>
+  <p class="para">
+   La section sur le démarrage rapide montre l&#039;utilisation de l&#039;émulation de l&#039;identifiant
+   de transaction globale côté client interne à <code class="literal">PECL/mysqlnd_ms</code> avant de montrer
+   son homologue côté serveur. Cet ordre assure que l&#039;idée originelle soit abordée
+   en premier lieu.
+  </p>
+  <p class="para">
+   <em class="emphasis">Idée et émulation côté client</em>
+  </p>
+  <p class="para">
+   Dans sa forme de base, un identifiant de transaction globale (GTID) est un compteur dans
+   une table sur le maitre. Le compteur est incrémenté chaque fois qu&#039;une transaction est
+   commitée sur le maitre. Les esclaves répliquent la table. Le compteur a deux rôles.
+   Dans le cas d&#039;un échec du maitre, il aide l&#039;administrateur à identifier l&#039;esclave le
+   plus récent pour le promouvoir nouveau maitre. L&#039;esclave le plus récent est celui qui
+   possède la plus grande valeur de l&#039;identifiant. L&#039;application peut utiliser le GTID pour
+   chercher les esclaves ayant répliqué une certaine écriture identifiée par le GTID.
+  </p>
+  <p class="para">
+   <code class="literal">PECL/mysqlnd_ms</code> peut injecter du SQL pour toute transaction comitée afin d&#039;incrémenter le GTID.
+   Le GTID est accessible par l&#039;application pour identifier une opération d&#039;écriture. Ceci permet
+   au plugin d&#039;assurer le niveau de service consistence de session en requêtant les esclaves qui
+   ont répliqué la donnée. La charge de lecture est donc supprimée du maitre.
+  </p>
+  <p class="para">
+   l&#039;émulation GTID coté client a quelques limites, lisez attentivement la
+   <a href="mysqlnd-ms.gtid.html" class="link">section sur les concepts</a> pour bien comprendre les
+   principes et les idées avant de l&#039;utiliser en production.
+  </p>
+  <p class="para">
+   D&#039;abord, créez une table compteur sur votre maitre et insérez-y un enregistrement. Le
+   plugin ne créer pas la table. Les administrateurs doivent s&#039;assurer qu&#039;elle existe. En
+   fonction du mode de rapport d&#039;erreur, le plugin ignorera éventuellement silencieusement
+   l&#039;absence de table, ou s&#039;arrêtera brusquement.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2182">
+    <p><strong>Exemple #1 Creation de la table de compteur sur le maitre</strong></p>
+    <div class="example-contents">
+<div class="sqlcode"><pre class="sqlcode">CREATE TABLE `trx` (
+  `trx_id` int(11) DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+INSERT INTO `trx`(`trx_id`) VALUES (1);</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Dans le fichier de configuration, utilisez <code class="literal">on_commit</code> pour insérer
+   le SQL qui mettra à jour le GTID, section <code class="literal">global_transaction_id_injection</code>.
+   Assurez vous que le nom de table pour la commande <code class="literal">UPDATE</code> est
+   pleinement qualifié. Dans l&#039;exemple, <code class="literal">test.trx</code> est utilisé pour
+   faire référence à la table <code class="literal">trx</code> dans la base <code class="literal">test</code>.
+   Le nom pleinement qualifié est important car la connexion sur laquelle la requête sera
+   éxecutée peut changer et représenter une base différente. Assuez-vous aussi des droits de
+   l&#039;utilisateur qui ouvre la connexion pour l&#039;éxecution de commandes <code class="literal">UPDATE</code>.
+  </p>
+  <p class="para">
+   Activez le rapport d&#039;erreurs concernant l&#039;injection de GTID.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2183">
+    <p><strong>Exemple #2 Plugin config: SQL pour l&#039;injection GTID coté client</strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">{
+    &quot;myapp&quot;: {
+        &quot;master&quot;: {
+            &quot;master_0&quot;: {
+                &quot;host&quot;: &quot;localhost&quot;,
+                &quot;socket&quot;: &quot;\/tmp\/mysql.sock&quot;
+            }
+        },
+        &quot;slave&quot;: {
+            &quot;slave_0&quot;: {
+                &quot;host&quot;: &quot;127.0.0.1&quot;,
+                &quot;port&quot;: &quot;3306&quot;
+            }
+        },
+        &quot;global_transaction_id_injection&quot;:{
+            &quot;on_commit&quot;:&quot;UPDATE test.trx SET trx_id = trx_id + 1&quot;,
+            &quot;report_error&quot;:true
+        }
+    }
+}</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2184">
+    <p><strong>Exemple #3 Injection GTID transparente</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"myapp"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Utilisez&nbsp;ici&nbsp;votre&nbsp;propre&nbsp;gestion&nbsp;des&nbsp;erreurs...&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">()));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;auto&nbsp;commit&nbsp;mode,&nbsp;transaction&nbsp;sur&nbsp;le&nbsp;maitre,&nbsp;GTID&nbsp;doit&nbsp;être&nbsp;incrémenté&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;IF&nbsp;EXISTS&nbsp;test"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;auto&nbsp;commit&nbsp;mode,&nbsp;transaction&nbsp;sur&nbsp;le&nbsp;maitre,&nbsp;GTID&nbsp;doit&nbsp;être&nbsp;incrémenté&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;test(id&nbsp;INT)"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;auto&nbsp;commit&nbsp;mode,&nbsp;transaction&nbsp;sur&nbsp;le&nbsp;maitre,&nbsp;GTID&nbsp;doit&nbsp;être&nbsp;incrémenté&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;test(id)&nbsp;VALUES&nbsp;(1)"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;auto&nbsp;commit&nbsp;mode,&nbsp;lecture&nbsp;sur&nbsp;esclave,&nbsp;pas&nbsp;d'incrémentation&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!(</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;id&nbsp;FROM&nbsp;test"</span><span style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(1) {
+  [&quot;id&quot;]=&gt;
+  string(1) &quot;1&quot;
+}
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   L&#039;exemple lance 3 requêtes en mode autocommit sur le maitre, causant 3 transactions
+   sur le maitre. Pour châque requête, le plugin injectera l&#039;<code class="literal">UPDATE</code>
+   configuré de manière transparente avant d&#039;exécuter la requête utilisateur. Lorsque le
+   script se termine, le GTID a été incrémenté de 3 sur le maitre.
+  </p>
+  <p class="para">
+   La 4ème requête exécutée dans l&#039;exemple, un <code class="literal">SELECT</code>, ne déclenche pas
+   l&#039;incrémentation. Seules les écritures sur le maitre déclenchent l&#039;incrémentation.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>SQL pour GTID: Solution efficace demandée!</strong><br />
+   <p class="para">
+    Le SQL utilisé pour le GTID n&#039;est pas efficace. Il est conçu pour être lisible, pas
+    performant. Considérez une solution plus robuste et reportez-la, nous l&#039;incluerons
+    dans le manuel.
+   </p>
+  </p></blockquote>
+  <p class="para">
+   <div class="example" id="example-2185">
+    <p><strong>Exemple #4 Plugin config: SQL pour récupérer le GTID</strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">{
+    &quot;myapp&quot;: {
+        &quot;master&quot;: {
+            &quot;master_0&quot;: {
+                &quot;host&quot;: &quot;localhost&quot;,
+                &quot;socket&quot;: &quot;\/tmp\/mysql.sock&quot;
+            }
+        },
+        &quot;slave&quot;: {
+            &quot;slave_0&quot;: {
+                &quot;host&quot;: &quot;127.0.0.1&quot;,
+                &quot;port&quot;: &quot;3306&quot;
+            }
+        },
+        &quot;global_transaction_id_injection&quot;:{
+            &quot;on_commit&quot;:&quot;UPDATE test.trx SET trx_id = trx_id + 1&quot;,
+            &quot;fetch_last_gtid&quot; : &quot;SELECT MAX(trx_id) FROM test.trx&quot;,
+            &quot;report_error&quot;:true
+        }
+    }
+}</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2186">
+    <p><strong>Exemple #5 Obtenir le GTID après l&#039;injection</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"myapp"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Utilisez&nbsp;ici&nbsp;votre&nbsp;propre&nbsp;gestion&nbsp;des&nbsp;erreurs...&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">()));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;auto&nbsp;commit&nbsp;mode,&nbsp;transaction&nbsp;sur&nbsp;le&nbsp;maitre,&nbsp;GTID&nbsp;doit&nbsp;être&nbsp;incrémenté&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;IF&nbsp;EXISTS&nbsp;test"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"GTID&nbsp;after&nbsp;transaction&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqlnd_ms_get_last_gtid</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/*&nbsp;auto&nbsp;commit&nbsp;mode,&nbsp;transaction&nbsp;sur&nbsp;le&nbsp;maitre,&nbsp;GTID&nbsp;doit&nbsp;être&nbsp;incrémenté&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;test(id&nbsp;INT)"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"GTID&nbsp;après&nbsp;transaction&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqlnd_ms_get_last_gtid</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+GTID après transaction 7
+GTID après transaction 8
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   Les applications peuvent demander à mysqlnd_ms le GTID correspondant à la dernière
+   écriture. La fonction <span class="function"><a href="function.mysqlnd-ms-get-last-gtid.html" class="function">mysqlnd_ms_get_last_gtid()</a></span> retourne le
+   GTID obtenu lors de l&#039;éxecution d&#039;une requête SQL depuis l&#039;entrée
+   <code class="literal">fetch_last_gtid</code> de la section
+   <code class="literal">global_transaction_id_injection</code> du fichier de configuration.
+   La fonction doit être appelée après que le GTIF ait été incrémenté.
+  </p>
+  <p class="para">
+   Les applications ne doivent pas exécuter le SQL elles-mêmes car elles risquent alors
+   de causer une incrémentation accidentelle du GTID. Aussi, si la fonction est utilisée,
+   il est plus simple de migrer une application.
+  </p>
+  <p class="para">
+   Le guide de démarrage rapide montre une requête SQL qui retourne un GTID supérieur ou
+   égal à celui crée pour la requête précédente. Il s&#039;agit du GTID de la requête précédente
+   si aucun client ne l&#039;ont incrémenté entre temps jusqu&#039;au <code class="literal">SELECT</code> le
+   récupérant, sinon, il est plus élevé.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2187">
+    <p><strong>Exemple #6 Plugin config: Vérifier un certain GTID</strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">{
+    &quot;myapp&quot;: {
+        &quot;master&quot;: {
+            &quot;master_0&quot;: {
+                &quot;host&quot;: &quot;localhost&quot;,
+                &quot;socket&quot;: &quot;\/tmp\/mysql.sock&quot;
+            }
+        },
+        &quot;slave&quot;: {
+            &quot;slave_0&quot;: {
+                &quot;host&quot;: &quot;127.0.0.1&quot;,
+                &quot;port&quot;: &quot;3306&quot;
+            }
+        },
+        &quot;global_transaction_id_injection&quot;:{
+            &quot;on_commit&quot;:&quot;UPDATE test.trx SET trx_id = trx_id + 1&quot;,
+            &quot;fetch_last_gtid&quot; : &quot;SELECT MAX(trx_id) FROM test.trx&quot;,
+            &quot;check_for_gtid&quot; : &quot;SELECT trx_id FROM test.trx WHERE trx_id &gt;= #GTID&quot;,
+            &quot;report_error&quot;:true
+        }
+    }
+}</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2188">
+    <p><strong>Exemple #7 Consistence de session et GTID combinés</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"myapp"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Utilisez&nbsp;ici&nbsp;votre&nbsp;propre&nbsp;gestion&nbsp;des&nbsp;erreurs...&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">()));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;auto&nbsp;commit&nbsp;mode,&nbsp;transaction&nbsp;sur&nbsp;le&nbsp;maitre,&nbsp;GTID&nbsp;doit&nbsp;être&nbsp;incrémenté&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(&nbsp;&nbsp;&nbsp;!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;IF&nbsp;EXISTS&nbsp;test"</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;test(id&nbsp;INT)"</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;test(id)&nbsp;VALUES&nbsp;(1)"</span><span style="color: #007700">)<br />)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;GTID&nbsp;comme&nbsp;identifiant&nbsp;pour&nbsp;la&nbsp;dernière&nbsp;écriture&nbsp;*/<br /></span><span style="color: #0000BB">$gtid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqlnd_ms_get_last_gtid</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Consistence&nbsp;de&nbsp;session&nbsp;("lit&nbsp;tes&nbsp;écritures"):&nbsp;essaye&nbsp;de&nbsp;lire&nbsp;depuis&nbsp;les&nbsp;esclaves,&nbsp;pas&nbsp;seulement&nbsp;le&nbsp;maitre&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">mysqlnd_ms_set_qos</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_QOS_CONSISTENCY_SESSION</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_QOS_OPTION_GTID</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$gtid</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[006]&nbsp;[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Exécute&nbsp;sur&nbsp;le&nbsp;maitre&nbsp;ou&nbsp;un&nbsp;des&nbsp;esclaves&nbsp;ayant&nbsp;la&nbsp;donnée&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!(</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;id&nbsp;FROM&nbsp;test"</span><span style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Un GTID retourné par <span class="function"><a href="function.mysqlnd-ms-get-last-gtid.html" class="function">mysqlnd_ms_get_last_gtid()</a></span>
+   peut être utilisé comme option dans le niveau de service consistence de
+   session, indiqué au moyen de <span class="function"><a href="function.mysqlnd-ms-set-qos.html" class="function">mysqlnd_ms_set_qos()</a></span>.
+   Dans l&#039;exemple, le plugin exécute la requête <code class="literal">SELECT</code>
+   soit sur le maitre, soit sur l&#039;esclave qui possède la donnée répliquée.
+  </p>
+  <p class="para">
+   PECL mysqlnd_ms va vérifier de manière transparente chaque esclave configuré
+   pour savoir s&#039;il possède la donnée répliquée de l&#039;<code class="literal">INSERT</code>
+   au moyen de la table des GTID. La vérification utilise la requête SQL indiquée
+   par l&#039;option <code class="literal">check_for_gtid</code> de la section
+   <code class="literal">global_transaction_id_injection</code> du fichier de configuration.
+   Notez qu&#039;il s&#039;agit s&#039;une opération lente et couteuse, les applications doivent
+   l&#039;utiliser à bon escient si la charge en lecture sur le maitre devient trop
+   importante.
+  </p>
+  <p class="para">
+   <em class="emphasis">Utilisation de la fonctionalité d&#039;identifiant de transaction globale côté serveur</em>
+  </p>
+<blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Support serveur insuffisant dans MySQL 5.6</strong><br />
+   <p class="para">
+    Le greffon a été développé sur la base d&#039;une version de pre-production de 
+    MySQL 5.6. Or il s&#039;avère que les versions MySQL 5.6 publiées finalement ne 
+    fournissent pas des clients avec assez d&#039;informations pour imposer la 
+    consistence des sessions basés sur les GTIDs. Veuillez vous référer à la 
+    <a href="mysqlnd-ms.gtid.html" class="link">section sur les concepts</a> pour plus 
+    de détails.
+   </p>
+  </p></blockquote>
+  <p class="para">
+   Depuis MySQL 5.6.5-m8, le système de réplication MySQL utilise des identifiants
+   globaux de transaction côté serveur. Ces identifiants de transaction sont
+   automatiquement générés et maintenus par le serveur. Les utilisateurs n&#039;ont pas
+   à s&#039;inquiéter de les maintenir. Il n&#039;y a besoin d&#039;avoir des tables de disponible
+   à l&#039;avance, ou de configuration sur le <code class="literal">on_commit</code>. L&#039;émulation
+   côté client n&#039;est plus nécessaire non plus.
+  </p>
+  <p class="para">
+   Les clients peuvent continuer d&#039;utiliser l&#039;identifiant de transaction globale
+   dans un but de consistence des sessions lors des opérations de lecture sur
+   les esclaves de réplication MySQL dans certains cas mais pas dans tous! 
+   L&#039;algorithme fonctionne tel que décrit ci-après.
+   Des requêtes SQL différentes doivent être configurées pour
+   <code class="literal">fetch_last_gtid</code> et <code class="literal">check_for_gtid</code>.
+   Ces requêtes sont fournies ci-dessous. Notez que MySQL 5.6.5-m8 est une version
+   de développement. Les détails sur l&#039;implémentation serveur peuvent changer dans le
+   futur et nécessite une adoption des requêtes SQL utilisées.
+  </p>
+  <p class="para">
+   En utilisant la configuration suivante, n&#039;importe quelle fonctionalité décrite ci-dessous
+   peut être utilisée en plus de la fonctionalité des identifiants de transaction globale
+   côté serveur.
+   <span class="function"><a href="function.mysqlnd-ms-get-last-gtid.html" class="function">mysqlnd_ms_get_last_gtid()</a></span> et <span class="function"><a href="function.mysqlnd-ms-set-qos.html" class="function">mysqlnd_ms_set_qos()</a></span>
+   continuent de fonctionner tel que décrit. La seule différente est que le serveur
+   n&#039;utilise plus qu&#039;une simple séquence de numéro mais une chaîne contenant
+   un identifiant de serveur et une séquence de numéro. Aussi, les utilisateurs ne peuvent
+   plus déduire un ordre depuis les GTIDs retournés par la fonction
+   <span class="function"><a href="function.mysqlnd-ms-get-last-gtid.html" class="function">mysqlnd_ms_get_last_gtid()</a></span>.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2189">
+    <p><strong>Exemple #8 Configuration du plugin : utilisation de la fonctionalité GTID interne à MySQL 5.6.5-m8</strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">{
+    &quot;myapp&quot;: {
+        &quot;master&quot;: {
+            &quot;master_0&quot;: {
+                &quot;host&quot;: &quot;localhost&quot;,
+                &quot;socket&quot;: &quot;\/tmp\/mysql.sock&quot;
+            }
+        },
+        &quot;slave&quot;: {
+            &quot;slave_0&quot;: {
+                &quot;host&quot;: &quot;127.0.0.1&quot;,
+                &quot;port&quot;: &quot;3306&quot;
+            }
+        },
+        &quot;global_transaction_id_injection&quot;:{
+            &quot;fetch_last_gtid&quot; : &quot;SELECT @@GLOBAL.GTID_DONE AS trx_id FROM DUAL&quot;,
+            &quot;check_for_gtid&quot; : &quot;SELECT GTID_SUBSET(&#039;#GTID&#039;, @@GLOBAL.GTID_DONE) AS trx_id FROM DUAL&quot;,
+            &quot;report_error&quot;:true
+        }
+    }
+}</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  
+ </div></div></div></body></html>

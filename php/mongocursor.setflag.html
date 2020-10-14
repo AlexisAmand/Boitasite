@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>D&eacute;finit des drapeaux dans le cas o&ugrave; aucune m&eacute;thode d&eacute;di&eacute;e n'est disponible</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongocursor.rewind.html">« MongoCursor::rewind</a></li>
+      <li style="float: right;"><a href="mongocursor.setreadpreference.html">MongoCursor::setReadPreference »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mongocursor.html">MongoCursor</a></li>
+    <li>D&eacute;finit des drapeaux dans le cas o&ugrave; aucune m&eacute;thode d&eacute;di&eacute;e n'est disponible</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongocursor.setflag" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">MongoCursor::setFlag</h1>
+  <p class="verinfo">(PECL mongo &gt;=1.2.11)</p><p class="refpurpose"><span class="refname">MongoCursor::setFlag</span> &mdash; <span class="dc-title">Définit des drapeaux dans le cas où aucune méthode dédiée n&#039;est disponible</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-mongocursor.setflag-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>MongoCursor::setFlag</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$flag</code></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$set</code><span class="initializer"> = <strong><code>TRUE</code></strong></span></span>
+  ] ) : <span class="type"><a href="class.mongocursor.html" class="type MongoCursor">MongoCursor</a></span></div>
+
+  <p class="para rdfs-comment">
+   La classe <a href="class.mongocursor.html" class="classname">MongoCursor</a> possède plusieurs méthodes
+   pour définir des drapeaux sur l&#039;objet de requête. Cette méthode est
+   disponible dans le cas où le protocole MongoDB se voit ajouter un nouveau
+   drapeau, et que le driver n&#039;a pas été mis à jour avec une nouvelle
+   méthode permettant de le définir. Dans tous les cas, la méthode doit
+   être préférée. Voir la section &quot;Voir aussi&quot; pour les méthodes disponibles.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-mongocursor.setflag-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+
+      <code class="parameter">flag</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Le drapeau à définir. Vous ne pouvez pas définir le drapeau n°6
+       (EXHAUST) sachant que le driver ne sait pas comment le gérer.
+       Vous recevrez une alerte si vous tentez d&#039;utiliser ce drapeau.
+       Pour avoir une liste des drapeaux disponibles, référez-vous à la
+       <a href="https://docs.mongodb.com/meta-driver/latest/legacy/mongodb-wire-protocol/#MongoWireProtocol-OPQUERY" class="link external">&raquo;&nbsp;documentation</a>
+       du protocole.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+
+      <code class="parameter">set</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Si le drapeau doit être défini (<strong><code>TRUE</code></strong>) ou supprimé (<strong><code>FALSE</code></strong>).
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+ 
+ 
+ <div class="refsect1 returnvalues" id="refsect1-mongocursor.setflag-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>  
+  <p class="para">
+   Retourne le curseur.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 errors" id="refsect1-mongocursor.setflag-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Affiche une alerte lorsque l&#039;on tente de définir un drapeau non-supporté.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-mongocursor.setflag-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>1.4.0</td>
+       <td>
+        Ajout du support du drapeau n°3 (OPLOG_REPLAY). Les versions
+        antérieures à 1.4.0 émettront une alerte indiquant que le drapeau
+        n&#039;est pas supporté..
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-mongocursor.setflag-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1597">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>MongoCursor::setFlag()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">'mongodb://localhost:13000'</span><span style="color: #007700">,&nbsp;array(&nbsp;</span><span style="color: #DD0000">'replSet'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'seta'&nbsp;</span><span style="color: #007700">)&nbsp;);<br /></span><span style="color: #0000BB">$c&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">local</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">selectCollection</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">'oplog.rs'&nbsp;</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$cursor&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">(&nbsp;array(&nbsp;</span><span style="color: #DD0000">'ns'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'demo.article'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'op'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'i'&nbsp;</span><span style="color: #007700">)&nbsp;);<br /></span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setFlag</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true&nbsp;</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;définit&nbsp;le&nbsp;drapeau&nbsp;tailable<br /></span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setFlag</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true&nbsp;</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;définit&nbsp;le&nbsp;drapeau&nbsp;"await&nbsp;data"<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-mongocursor.setflag-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="mongocursor.tailable.html" class="function" rel="rdfs-seeAlso">MongoCursor::tailable()</a> - D&eacute;finit si le curseur doit &ecirc;tre conserv&eacute; ouvert apr&egrave;s la r&eacute;cup&eacute;ration du dernier r&eacute;sultat</span></li>
+    <li class="member"><span class="function"><a href="mongocursor.immortal.html" class="function" rel="rdfs-seeAlso">MongoCursor::immortal()</a> - D&eacute;finit si le curseur doit s'interrompre apr&egrave;s un certain d&eacute;lai</span></li>
+    <li class="member"><span class="function"><a href="mongocursor.awaitdata.html" class="function" rel="rdfs-seeAlso">MongoCursor::awaitData()</a> - D&eacute;finit si le curseur doit attendre un curseur tailable pour retourner plus de donn&eacute;es</span></li>
+    <li class="member"><span class="function"><a href="mongocursor.partial.html" class="function" rel="rdfs-seeAlso">MongoCursor::partial()</a> - Si la requ&ecirc;te doit r&eacute;cup&eacute;rer des r&eacute;sultats partiels depuis mongos si un partage est inaccessible</span></li>
+    <li class="member">La documentation coeur de MongoDB sur <a href="https://docs.mongodb.com/meta-driver/latest/legacy/mongodb-wire-protocol/#MongoWireProtocol-OPQUERY" class="link external">&raquo;&nbsp;les drapeaux du protocole de requête</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

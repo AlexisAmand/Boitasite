@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Active/d&eacute;sactive la r&eacute;cup&eacute;ration des exceptions</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="yaf-dispatcher.autorender.html">« Yaf_Dispatcher::autoRender</a></li>
+      <li style="float: right;"><a href="yaf-dispatcher.construct.html">Yaf_Dispatcher::__construct »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.yaf-dispatcher.html">Yaf_Dispatcher</a></li>
+    <li>Active/d&eacute;sactive la r&eacute;cup&eacute;ration des exceptions</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="yaf-dispatcher.catchexception" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Yaf_Dispatcher::catchException</h1>
+  <p class="verinfo">(Yaf &gt;=1.0.0)</p><p class="refpurpose"><span class="refname">Yaf_Dispatcher::catchException</span> &mdash; <span class="dc-title">Active/désactive la récupération des exceptions</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-yaf-dispatcher.catchexception-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>Yaf_Dispatcher::catchException</strong></span>
+    ([ <span class="methodparam"><span class="type">bool</span> <code class="parameter">$flag</code></span>
+  ] ) : <span class="type"><a href="class.yaf-dispatcher.html" class="type Yaf_Dispatcher">Yaf_Dispatcher</a></span></div>
+
+  <p class="para rdfs-comment">
+   Lorsque application.dispatcher.throwException est actif (vous pouvez aussi
+   appeler la méthode <span class="methodname"><strong>Yaf_Dispatcher::throwException(TRUE)()</strong></span>
+   pourl&#039;activer), Yaf émettra une exception lorsqu&#039;une erreur survient au lieu
+   d&#039;émettre une erreur.
+  </p>
+  <p class="para">
+   Si vous activez <span class="methodname"><strong>Yaf_Dispatcher::catchException()</strong></span>
+   (peut aussi être activé via
+   <a href="yaf.appconfig.html#configuration.yaf.dispatcher.catchexception" class="link">application.dispatcher.catchException</a>),
+   toutes les exceptions non-capturées le seront par
+   la méthode ErrorController::error si vous en avez définie une.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-yaf-dispatcher.catchexception-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">flag</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Un booléen.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-yaf-dispatcher.catchexception-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-yaf-dispatcher.catchexception-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-4555">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>Yaf_Dispatcher::catchException()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+/*&nbsp;if&nbsp;you&nbsp;defined&nbsp;a&nbsp;ErrorController&nbsp;like&nbsp;following&nbsp;*/<br /><span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">ErrorController&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">Yaf_Controller_Abstract&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/**&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;vous&nbsp;pouvez&nbsp;aussi&nbsp;appeler&nbsp;Yaf_Request_Abstract::getException&nbsp;pour&nbsp;récupérer<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;les&nbsp;exceptions&nbsp;non-capturées.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">errorAction</span><span style="color: #007700">(</span><span style="color: #0000BB">$exception</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Une&nbsp;erreur&nbsp;survient&nbsp;!&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">switch&nbsp;(</span><span style="color: #0000BB">$exception</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getCode</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">YAF_ERR_NOTFOUND_MODULE</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">YAF_ERR_NOTFOUND_CONTROLLER</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">YAF_ERR_NOTFOUND_ACTION</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #0000BB">YAF_ERR_NOTFOUND_VIEW</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">404</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">":"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$exception</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$message&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$exception</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">":"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$exception</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+/* Maintenant, si une erreur survient, en supposant un accès à un controlleur existant pas (ou vous pouvez lancer une exception vous-même) : */
+404:Could not find controller script **/application/controllers/No-exists-controller.php
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-yaf-dispatcher.catchexception-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="methodname"><a href="yaf-dispatcher.throwexception.html" class="methodname" rel="rdfs-seeAlso">Yaf_Dispatcher::throwException()</a> - Active/d&eacute;sactive le lancement d'exceptions</span></li>
+   <li class="member"><span class="methodname"><a href="yaf-dispatcher.seterrorhandler.html" class="methodname" rel="rdfs-seeAlso">Yaf_Dispatcher::setErrorHandler()</a> - D&eacute;finit un gestionnaire d'erreur personnalis&eacute;</span></li>
+  </ul>
+ </div>
+
+
+</div></div></div></body></html>

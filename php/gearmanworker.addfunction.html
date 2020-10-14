@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Enregistre et ajoute une fonction de rappel</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="class.gearmanworker.html">« GearmanWorker</a></li>
+      <li style="float: right;"><a href="gearmanworker.addoptions.html">GearmanWorker::addOptions »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.gearmanworker.html">GearmanWorker</a></li>
+    <li>Enregistre et ajoute une fonction de rappel</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="gearmanworker.addfunction" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">GearmanWorker::addFunction</h1>
+  <p class="verinfo">(PECL gearman &gt;= 0.5.0)</p><p class="refpurpose"><span class="refname">GearmanWorker::addFunction</span> &mdash; <span class="dc-title">Enregistre et ajoute une fonction de rappel</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-gearmanworker.addfunction-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>GearmanWorker::addFunction</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$function_name</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> <code class="parameter">$function</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter reference">&$context</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$timeout</code></span>
+  ]] ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Enregistre une fonction de rappel avec le serveur de travaux
+   et spécifie un rappel correspondant à cette fonction. Optionnellement,
+   fixe des données de contexte de l&#039;application à utiliser lorsque
+   la fonction de rappel est appelée, ainsi qu&#039;un délai maximal d&#039;exécution.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-gearmanworker.addfunction-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">function_name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nom de la fonction à enregistrer avec le serveur de travaux
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">function</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une fonction de rappel à appeler lorsqu&#039;un travail est soumis
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">context</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une référence à des données de contexte de l&#039;application
+       qui peuvent être modifiées par la fonction de l&#039;agent.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">timeout</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un intervalle de temps, en secondes.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-gearmanworker.addfunction-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-gearmanworker.addfunction-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-4985">
+    <p><strong>Exemple #1 Agent simple qui utilise des données de contexte de l&#039;application</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">#&nbsp;Crée&nbsp;un&nbsp;agent&nbsp;Gearman<br /></span><span style="color: #0000BB">$worker</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">GearmanWorker</span><span style="color: #007700">();&nbsp;<br /><br /></span><span style="color: #FF8000">#&nbsp;Ajoute&nbsp;le&nbsp;serveur&nbsp;par&nbsp;défaut&nbsp;(localhost)<br /></span><span style="color: #0000BB">$worker</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addServer</span><span style="color: #007700">();&nbsp;<br /><br /></span><span style="color: #FF8000">#&nbsp;Définit&nbsp;une&nbsp;variable&nbsp;qui&nbsp;contient&nbsp;les&nbsp;données&nbsp;de&nbsp;l'application<br /></span><span style="color: #0000BB">$count</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;<br /><br /></span><span style="color: #FF8000">#&nbsp;Ajoute&nbsp;la&nbsp;fonction&nbsp;"reverse"<br /></span><span style="color: #0000BB">$worker</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addFunction</span><span style="color: #007700">(</span><span style="color: #DD0000">"reverse"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"reverse_cb"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$count</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">#&nbsp;Démarre&nbsp;l'agent<br /></span><span style="color: #007700">while&nbsp;(</span><span style="color: #0000BB">$worker</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">work</span><span style="color: #007700">());<br /><br />function&nbsp;</span><span style="color: #0000BB">reverse_cb</span><span style="color: #007700">(</span><span style="color: #0000BB">$job</span><span style="color: #007700">,&nbsp;&amp;</span><span style="color: #0000BB">$count</span><span style="color: #007700">)&nbsp;<br />{&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$count</span><span style="color: #007700">++;&nbsp;<br />&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$count</span><span style="color: #DD0000">:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">strrev</span><span style="color: #007700">(</span><span style="color: #0000BB">$job</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">workload</span><span style="color: #007700">());&nbsp;<br />}&nbsp;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Exécution d&#039;un client qui soumet 2 travaux pour la fonction reverse affichera
+     quelque chose comme :
+    </p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+1: olleh
+2: dlrow
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-gearmanworker.addfunction-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="gearmanclient.do.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::do()</a> - Ex&eacute;cute une seule t&acirc;che et retourne le r&eacute;sultat (obsol&egrave;te)</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

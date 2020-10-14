@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Envoie une cha&icirc;ne au serveur PostgreSQL</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.pg-prepare.html">« pg_prepare</a></li>
+      <li style="float: right;"><a href="function.pg-query-params.html">pg_query_params »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.pgsql.html">Fonctions PostgreSQL</a></li>
+    <li>Envoie une cha&icirc;ne au serveur PostgreSQL</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.pg-put-line" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_put_line</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.3, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">pg_put_line</span> &mdash; <span class="dc-title">
+   Envoie une chaîne au serveur PostgreSQL
+  </span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.pg-put-line-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>pg_put_line</strong></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <code class="parameter">$connection</code></span>
+   ], <span class="methodparam"><span class="type">string</span> <code class="parameter">$data</code></span>
+   ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>pg_put_line()</strong></span> envoie une chaîne (terminée
+   par <strong><code>NULL</code></strong>) au serveur PostgreSQL. Ceci est nécessaire en conjonction avec
+   une commande <code class="literal">COPY FROM</code> PostgreSQL.
+  </p>
+  <p class="para"><code class="literal">COPY</code> est un chargement très rapide des données
+   supporté par PostgreSQL. Les données sont passées sans être analysées et
+   dans une simple transaction.
+  </p>
+  <p class="para">
+   Une alternative plutôt que d&#039;utiliser la commande brute
+   <span class="function"><strong>pg_put_line()</strong></span> est d&#039;utiliser
+   <span class="function"><a href="function.pg-copy-from.html" class="function">pg_copy_from()</a></span>. C&#039;est une interface bien plus simple.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Notez que l&#039;application doit explicitement ajouter les deux caractères
+    &quot;\.&quot; à la fin de la chaîne pour indiquer au serveur qu&#039;elle a finit
+    d&#039;envoyer des données, avant d&#039;appeler <span class="function"><a href="function.pg-end-copy.html" class="function">pg_end_copy()</a></span>.
+   </p>
+  </p></blockquote>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    L&#039;utilisation de <span class="function"><strong>pg_put_line()</strong></span> cause sur la plupart des
+    objets de grande taille à échouer, incluant <span class="function"><a href="function.pg-lo-read.html" class="function">pg_lo_read()</a></span>
+    et <span class="function"><a href="function.pg-lo-tell.html" class="function">pg_lo_tell()</a></span>. Vous pouvez utiliser
+    <span class="function"><a href="function.pg-copy-from.html" class="function">pg_copy_from()</a></span> et <span class="function"><a href="function.pg-copy-to.html" class="function">pg_copy_to()</a></span> à la
+    place.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.pg-put-line-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">connection</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La ressource de connexion de la base de données PostgreSQL. Lorsque
+       <code class="parameter">connection</code> n&#039;est pas présent, la connexion par
+       défaut est utilisée. La connexion par défaut est la dernière connexion
+       faite par <span class="function"><a href="function.pg-connect.html" class="function">pg_connect()</a></span> ou <span class="function"><a href="function.pg-pconnect.html" class="function">pg_pconnect()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">data</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une ligne de texte à envoyer directement au serveur PostgreSQL. Un
+       caractère d&#039;arrêt <strong><code>NULL</code></strong> est automatiquement ajouté.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.pg-put-line-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.pg-put-line-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2527">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>pg_put_line()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_pconnect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=foo"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"create&nbsp;table&nbsp;bar&nbsp;(a&nbsp;int4,&nbsp;b&nbsp;char(16),&nbsp;d&nbsp;float8)"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"copy&nbsp;bar&nbsp;from&nbsp;stdin"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">pg_put_line</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"3\tBonjour&nbsp;le&nbsp;monde\t4.5\n"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">pg_put_line</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"4\tAurevoir&nbsp;le&nbsp;monde\t7.11\n"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">pg_put_line</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"\\.\n"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">pg_end_copy</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.pg-put-line-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.pg-end-copy.html" class="function" rel="rdfs-seeAlso">pg_end_copy()</a> - Synchronise avec le serveur PostgreSQL</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

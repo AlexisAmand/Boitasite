@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Utiliser des codes anciens avec les nouvelles versions de PHP</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="tutorial.forms.html">« Utiliser un formulaire</a></li>
+      <li style="float: right;"><a href="tutorial.whatsnext.html">Et apr&egrave;s ? »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="tutorial.html">Une introduction &agrave; PHP</a></li>
+    <li>Utiliser des codes anciens avec les nouvelles versions de PHP</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="tutorial.oldcode" class="section">
+   <h2 class="title">Utiliser des codes anciens avec les nouvelles versions de PHP</h2>
+   <p class="para">
+    Maintenant que PHP est devenu un langage de script populaire, il
+    existe de nombreuses ressources qui vous proposent des portions de
+    code que vous pouvez réutiliser dans vos codes. Pour la plupart,
+    les développeurs de PHP ont tâché d&#039;assurer la compatibilité
+    ascendante, ce qui fait que de nombreux scripts écrits pour les
+    anciennes versions sont aussi valables pour les nouvelles versions
+    de PHP, idéalement sans modification. En pratique, certaines
+    modifications doivent être apportées.
+   </p>
+   <p class="para">
+    Les deux modifications récentes les plus importantes qui affectent les anciens
+    codes sont :
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       Les anciennes variables <var class="varname">$HTTP_*_VARS</var> ne sont plus disponible depuis PHP 5.4.0. Les nouveaux
+       <a href="language.variables.superglobals.html" class="link">tableaux superglobaux</a>
+       ont été introduits en
+       <a href="https://www.php.net/releases/4_1_0.php" class="link external">&raquo;&nbsp;PHP 4.1.0</a>. Ce sont les variables suivantes :
+       <var class="varname"><a href="reserved.variables.get.html" class="classname">$_GET</a></var>, <var class="varname"><a href="reserved.variables.post.html" class="classname">$_POST</a></var>,
+       <var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES</a></var>, <var class="varname"><a href="reserved.variables.cookies.html" class="classname">$_COOKIE</a></var>,
+       <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER</a></var>,  <var class="varname"><a href="reserved.variables.environment.html" class="classname">$_ENV</a></var>,
+       <var class="varname"><a href="reserved.variables.request.html" class="classname">$_REQUEST</a></var> et <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var>.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       Les variables externes ne sont plus enregistrées dans l&#039;environnement
+       par défaut. En d&#039;autres termes, depuis PHP
+       <a href="https://www.php.net/releases/4_2_0.php" class="link external">&raquo;&nbsp;4.2.0</a>, la directive
+       PHP <a href="ini.core.html#ini.register-globals" class="link">register_globals</a> vaut
+       <em class="emphasis">off</em> par défaut dans le <var class="filename">php.ini</var>. La méthode recommandée
+       pour accéder à ces valeurs est via les tableaux superglobaux mentionnés
+       ci-dessus. Les anciens scripts, livres et tutoriels continuent de
+       considérer que cette directive devrait être à <code class="literal">on</code>. Lorsque
+       cette directive est à <code class="literal">on</code>, vous pouvez utiliser la variable
+       <var class="varname">$id</var>, si l&#039;URL
+       <code class="literal">http://www.example.com/foo.php?id=42</code>
+       a été appelée. Quelle que soit la valeur de la directive,
+       <var class="varname"><a href="reserved.variables.get.html" class="classname">$_GET['id']</a></var> est toujours disponible.
+      </span>
+     </li>
+    </ul>
+    Pour plus de détails sur ces modifications, reportez-vous à la section sur les
+    <a href="language.variables.predefined.html" class="link">variables pré-définies</a>.
+   </p>
+  </div></div></div></body></html>

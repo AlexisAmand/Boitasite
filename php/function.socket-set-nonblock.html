@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>S&eacute;lectionne le mode non bloquant d'un pointeur de fichier</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.socket-set-block.html">« socket_set_block</a></li>
+      <li style="float: right;"><a href="function.socket-set-option.html">socket_set_option »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.sockets.html">Fonctions sur les sockets</a></li>
+    <li>S&eacute;lectionne le mode non bloquant d'un pointeur de fichier</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.socket-set-nonblock" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">socket_set_nonblock</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.1.0, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">socket_set_nonblock</span> &mdash; <span class="dc-title">Sélectionne le mode non bloquant d&#039;un pointeur de fichier</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.socket-set-nonblock-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>socket_set_nonblock</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$socket</code></span>
+   ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   La fonction <span class="function"><strong>socket_set_nonblock()</strong></span> configure l&#039;option
+   <strong><code>O_NONBLOCK</code></strong> pour le socket spécifié par le paramètre
+   <code class="parameter">socket</code>.
+  </p>
+  <p class="para">
+   Lorsqu&#039;une opération (e.g. réception, envoie, connexion, acceptation, ...)
+   est effectuée sur un socket non-bloquant, le script ne se met pas en pause
+   tant qu&#039;elle reçoit un signal. Au lieu de cela, si l&#039;opération doit résulter en
+   un blocage, la fonction appelée échouera.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.socket-set-nonblock-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">socket</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une ressource de socket valide, créée par la fonction
+       <span class="function"><a href="function.socket-create.html" class="function">socket_create()</a></span> ou la fonction
+       <span class="function"><a href="function.socket-accept.html" class="function">socket_accept()</a></span>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.socket-set-nonblock-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.socket-set-nonblock-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-5183">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>socket_set_nonblock()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$socket&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">socket_create_listen</span><span style="color: #007700">(</span><span style="color: #0000BB">1223</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">socket_set_nonblock</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">socket_accept</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Cet exemple crée un socket écoutant toutes les interfaces sur port 1223 et
+     définit le socket en mode <strong><code>O_NONBLOCK</code></strong>.
+     <span class="function"><a href="function.socket-accept.html" class="function">socket_accept()</a></span> échouera immédiatement s&#039;il y a une connexion
+     en attente exactement à ce moment là.
+    </p></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.socket-set-nonblock-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.socket-set-block.html" class="function" rel="rdfs-seeAlso">socket_set_block()</a> - Met le socket en mode bloquant</span></li>
+    <li class="member"><span class="function"><a href="function.socket-set-option.html" class="function" rel="rdfs-seeAlso">socket_set_option()</a> - Modifie les options de socket</span></li>
+    <li class="member"><span class="function"><a href="function.stream-set-blocking.html" class="function" rel="rdfs-seeAlso">stream_set_blocking()</a> - Configure le mode bloquant d'un flux</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

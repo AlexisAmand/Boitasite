@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>R&eacute;cup&egrave;re le code erreur de la derni&egrave;re erreur survenue</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.cubrid-error-code-facility.html">« cubrid_error_code_facility</a></li>
+      <li style="float: right;"><a href="function.cubrid-error-msg.html">cubrid_error_msg »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.cubrid.html">Fonctions CUBRID</a></li>
+    <li>R&eacute;cup&egrave;re le code erreur de la derni&egrave;re erreur survenue</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.cubrid-error-code" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">cubrid_error_code</h1>
+  <p class="verinfo">(PECL CUBRID &gt;= 8.3.0)</p><p class="refpurpose"><span class="refname">cubrid_error_code</span> &mdash; <span class="dc-title">Récupère le code erreur de la dernière erreur survenue</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.cubrid-error-code-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>cubrid_error_code</strong></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   La fonction <span class="function"><strong>cubrid_error_code()</strong></span> est utilisée pour récupérer le code
+   erreur survenue lors de l&#039;exécution de l&#039;API. Habituellement, elle récupère
+   le code erreur lorsque l&#039;API retourne <strong><code>FALSE</code></strong>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.cubrid-error-code-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">Cette fonction ne contient aucun paramètre.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.cubrid-error-code-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Le code erreur de la dernière erreur survenue, ou <code class="literal">0</code> (zéro)
+   si aucune erreur n&#039;est survenue. 
+  </p>
+  <p class="para">
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.cubrid-error-code-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1101">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>cubrid_error_code()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">cubrid_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">33000</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"demodb"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$req&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">cubrid_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;*&nbsp;FROM&nbsp;code&nbsp;WHERE&nbsp;s_name=?"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$req&nbsp;</span><span style="color: #007700">=&nbsp;@</span><span style="color: #0000BB">cubrid_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$req</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$req</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Error&nbsp;facility:&nbsp;%d\nError&nbsp;code:&nbsp;%d\nError&nbsp;msg:&nbsp;%s\n"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">cubrid_error_code_facility</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">cubrid_error_code</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">cubrid_error_msg</span><span style="color: #007700">());<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">cubrid_disconnect</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Error facility: 4
+Error code: -30015
+Error msg: Some parameter not binded
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+ 
+<div class="refsect1 seealso" id="refsect1-function.cubrid-error-code-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+   <li class="member"><span class="function"><a href="function.cubrid-error-code-facility.html" class="function" rel="rdfs-seeAlso">cubrid_error_code_facility()</a> - R&eacute;cup&egrave;re le niveau du code erreur</span></li>
+   <li class="member"><span class="function"><a href="function.cubrid-error-msg.html" class="function" rel="rdfs-seeAlso">cubrid_error_msg()</a> - R&eacute;cup&egrave;re le message d'erreur de la derni&egrave;re erreur survenue</span></li>
+   </ul>
+  </p>
+  </div>
+
+
+</div></div></div></body></html>

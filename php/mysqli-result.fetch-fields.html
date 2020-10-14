@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne un tableau d'objets repr&eacute;sentant les champs dans le r&eacute;sultat</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqli-result.fetch-field.html">« mysqli_result::fetch_field</a></li>
+      <li style="float: right;"><a href="mysqli-result.fetch-object.html">mysqli_result::fetch_object »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mysqli-result.html">mysqli_result</a></li>
+    <li>Retourne un tableau d'objets repr&eacute;sentant les champs dans le r&eacute;sultat</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqli-result.fetch-fields" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli_result::fetch_fields</h1>
+  <h1 class="refname">mysqli_fetch_fields</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">mysqli_result::fetch_fields</span> -- <span class="refname">mysqli_fetch_fields</span> &mdash; <span class="dc-title">Retourne un tableau d&#039;objets représentant les champs dans le résultat</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli-result.fetch-fields-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Style orienté objet</p>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mysqli-result.fetch-field.html" class="methodname">mysqli_result::fetch_field</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">object</span></div>
+
+  <p class="para rdfs-comment">Style procédural</p>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><a href="mysqli-result.fetch-field.html" class="methodname">mysqli_fetch_field</a></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mysqli-result.html" class="type mysqli_result">mysqli_result</a></span> <code class="parameter">$result</code></span>
+   ) : <span class="type">object</span></div>
+
+
+  <p class="para rdfs-comment">
+   Cette fonction fonctionne comme <span class="function"><a href="mysqli-result.fetch-field.html" class="function">mysqli_fetch_field()</a></span>
+   à la différence que, au lieu de retourner un objet à la fois
+   pour chaque champ, les colonnes sont retournées en tant
+   que tableau d&#039;objets.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqli-result.fetch-fields-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<code class="parameter">
+    result</code></dt>
+<dd>
+<p class="para">Style procédural uniquement : Un
+    identifiant de jeu de résultats retourné par la fonction <span class="function"><a href="mysqli.query.html" class="function">mysqli_query()</a></span>,
+    <span class="function"><a href="mysqli.store-result.html" class="function">mysqli_store_result()</a></span> ou <span class="function"><a href="mysqli.use-result.html" class="function">mysqli_use_result()</a></span>.
+</p></dd>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli-result.fetch-fields-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau d&#039;objets qui contient les métadonnées d&#039;un champ ou <strong><code>FALSE</code></strong>
+   si aucune métadonnée n&#039;est disponible pour ce champ.
+  </p>
+  <p class="para">
+  <table class="doctable table">
+   <caption><strong>Propriétés de l&#039;objet</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Propriété</th>
+      <th>Description</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>name</td>
+      <td>Le nom de la colonne</td>
+     </tr>
+
+     <tr>
+      <td>orgname</td>
+      <td>Le nom original de la colonne si un alias a été spécifié</td>
+     </tr>
+
+     <tr>
+      <td>table</td>
+      <td>Le nom de la table à laquelle ce champ appartient (s&#039;il n&#039;a pas été calculé)</td>
+     </tr>
+
+     <tr>
+      <td>orgtable</td>
+      <td>Le nom original de la table si un alias a été spécifié</td>
+     </tr>
+
+     <tr>
+      <td>max_length</td>
+      <td>La longueur maximale du champ pour le jeu de résultats</td>
+     </tr>
+
+     <tr>
+      <td>length</td>
+      <td>
+       La largeur du champ, en octets, telle que spécifiée dans la définition de la table.
+       Notez que ce nombre (octets) peut différer de la valeur de votre définition de
+       table (caractères), en fonction du jeu de caractères que vous utilisez.  
+       Par exemple, le jeu de caractères utf8 contient 3 octets par caractère, donc
+       varchar(10) renverra une longueur de 30 pour utf8 (10*3), mais 10 pour latin1 (10*1).
+      </td>
+     </tr>
+
+     <tr>
+      <td>charsetnr</td>
+      <td>Le numéro (id) du jeu de caractères pour ce champs</td>
+     </tr>
+
+     <tr>
+      <td>flags</td>
+      <td>Un entier représentant le bit-flags pour ce champs</td>
+     </tr>
+
+     <tr>
+      <td>type</td>
+      <td>Le type de données utilisées pour ce champs</td>
+     </tr>
+
+     <tr>
+      <td>decimals</td>
+      <td>Le nombre de décimales utilisées (pour les champs de type entier)</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli-result.fetch-fields-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1892">
+   <p><strong>Exemple #1 Style orienté objet</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"127.0.0.1"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"root"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"foofoo"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"sakila"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;vérification&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_errno</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_error</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br />foreach&nbsp;(array(</span><span style="color: #DD0000">'latin1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'utf8'</span><span style="color: #007700">)&nbsp;as&nbsp;</span><span style="color: #0000BB">$charset</span><span style="color: #007700">)&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Définir&nbsp;le&nbsp;jeu&nbsp;de&nbsp;charactère,&nbsp;pour&nbsp;montrer&nbsp;son&nbsp;impact&nbsp;sur&nbsp;certaines&nbsp;valeurs&nbsp;(par&nbsp;exemple,&nbsp;longeurs&nbsp;en&nbsp;octets)<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set_charset</span><span style="color: #007700">(</span><span style="color: #0000BB">$charset</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;actor_id,&nbsp;last_name&nbsp;from&nbsp;actor&nbsp;ORDER&nbsp;BY&nbsp;actor_id"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"============================\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Jeu&nbsp;de&nbsp;charactères&nbsp;:&nbsp;</span><span style="color: #0000BB">$charset</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"============================\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">))&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Récupère&nbsp;les&nbsp;informations&nbsp;des&nbsp;champs&nbsp;pour&nbsp;toutes&nbsp;les&nbsp;colonnes&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$finfo&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_fields</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$finfo&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Table:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">table</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Max.&nbsp;Len:&nbsp;&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">max_length</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Length:&nbsp;&nbsp;&nbsp;&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">length</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"charsetnr:&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">charsetnr</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Flags:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">flags</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%d\n\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">type</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-1893">
+   <p><strong>Exemple #2 Style procédural</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"127.0.0.1"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"sakila"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;vérification&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br />foreach&nbsp;(array(</span><span style="color: #DD0000">'latin1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'utf8'</span><span style="color: #007700">)&nbsp;as&nbsp;</span><span style="color: #0000BB">$charset</span><span style="color: #007700">)&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Définir&nbsp;le&nbsp;jeu&nbsp;de&nbsp;charactère,&nbsp;pour&nbsp;montrer&nbsp;son&nbsp;impact&nbsp;sur&nbsp;certaines&nbsp;valeurs&nbsp;(par&nbsp;exemple,&nbsp;longeurs&nbsp;en&nbsp;octets)<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">mysqli_set_charset</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$charset</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;actor_id,&nbsp;last_name&nbsp;from&nbsp;actor&nbsp;ORDER&nbsp;BY&nbsp;actor_id"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"============================\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Jeu&nbsp;de&nbsp;charactères&nbsp;:&nbsp;</span><span style="color: #0000BB">$charset</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"============================\n"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">))&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Récupère&nbsp;les&nbsp;informations&nbsp;des&nbsp;champs&nbsp;pour&nbsp;toutes&nbsp;les&nbsp;colonnes&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$finfo&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_fetch_fields</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$finfo&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Table:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">table</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Max.&nbsp;Len:&nbsp;&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">max_length</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Length:&nbsp;&nbsp;&nbsp;&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">length</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"charsetnr:&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">charsetnr</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Flags:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%d\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">flags</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%d\n\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">type</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">mysqli_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #0000BB">mysqli_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>Les exemples ci-dessus vont afficher :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+============================
+Jeu de charactères : latin1
+============================
+Name:      actor_id
+Table:     actor
+Max. Len:  3
+Length:    5
+charsetnr: 63
+Flags:     49699
+Type:      2
+
+Name:      last_name
+Table:     actor
+Max. Len:  12
+Length:    45
+charsetnr: 8
+Flags:     20489
+Type:      253
+
+============================
+Jeu de charactères : utf8
+============================
+Name:      actor_id
+Table:     actor
+Max. Len:  3
+Length:    5
+charsetnr: 63
+Flags:     49699
+Type:      2
+
+Name:      last_name
+Table:     actor
+Max. Len:  12
+Length:    135
+charsetnr: 33
+Flags:     20489
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqli-result.fetch-fields-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="mysqli-result.field-count.html" class="function" rel="rdfs-seeAlso">mysqli_num_fields()</a> - R&eacute;cup&egrave;re le nombre de champs dans un r&eacute;sultat</span></li>
+    <li class="member"><span class="function"><a href="mysqli-result.fetch-field-direct.html" class="function" rel="rdfs-seeAlso">mysqli_fetch_field_direct()</a> - R&eacute;cup&egrave;re les m&eacute;tadonn&eacute;es d'un champ unique</span></li>
+    <li class="member"><span class="function"><a href="mysqli-result.fetch-field.html" class="function" rel="rdfs-seeAlso">mysqli_fetch_field()</a> - Retourne le prochain champs dans le jeu de r&eacute;sultats</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

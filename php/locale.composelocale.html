@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne un identifiant de locale correct</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="locale.canonicalize.html">« Locale::canonicalize</a></li>
+      <li style="float: right;"><a href="locale.filtermatches.html">Locale::filterMatches »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.locale.html">Locale</a></li>
+    <li>Retourne un identifiant de locale correct</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="locale.composelocale" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Locale::composeLocale</h1>
+  <h1 class="refname">locale_compose</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PECL intl &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">Locale::composeLocale</span> -- <span class="refname">locale_compose</span> &mdash; <span class="dc-title">Retourne un identifiant de locale correct</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-locale.composelocale-description">
+  <h3 class="title">Description</h3>
+  <p class="para">
+   Style orienté objet
+  </p>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="modifier">static</span>
+   
+   <span class="methodname"><strong>Locale::composeLocale</strong></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter">$subtags</code></span>
+   ) : <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   Style procédural
+  </p>
+  <div class="methodsynopsis dc-description">
+   
+   <span class="methodname"><strong>locale_compose</strong></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter">$subtags</code></span>
+   ) : <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   Retourne un identifiant de locale correct, ordonné et délimité, avec les
+   clés pour identifier les particularités régionales, et les valeurs 
+   associées à ces sous-locales.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-locale.composelocale-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">subtags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un tableau contenant la liste des paires clé-valeurs, où les clés
+       représentent les identifiants de sous-locales, et leur valeur
+       associées.
+       <blockquote class="note"><p><strong class="note">Note</strong>: 
+        <p class="para">
+         Les sous-tags &#039;variant&#039; et &#039;private&#039; peuvent prendre jusqu&#039;à 15 valeurs
+         alors que &#039;extlang&#039; ne peut prendre qu&#039;un maximum de 3 valeurs. Les
+         variantes sont autorisées avec un suffixe allant de 0 à 14. Par conséquent,
+         les clés du tableau sont variant0, variant1, ...,variant14. Dans l&#039;identifiant
+         de locale retourné, les sous-tags sont ordonnés par suffixe, avec
+         variant0 suivi de variant1 suivi de variant2, etc.
+        </p>
+        <p class="para">
+         Les valeurs multiples de &#039;variant&#039;, &#039;private&#039; et &#039;extlang&#039; peuvent être
+         spécifiées sous forme de tableau avec leur clé spécifique (e.g. &#039;variant&#039;) 
+         ou bien sous forme de clé multiples (e.g. &#039;variant0&#039;, &#039;variant1&#039;, etc.).
+        </p>
+       </p></blockquote>
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ 
+ <div class="refsect1 returnvalues" id="refsect1-locale.composelocale-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   The corresponding locale identifier.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-locale.composelocale-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-2968">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>locale_compose()</strong></span>, procédural</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$arr&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'language'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'en'&nbsp;</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'script'&nbsp;&nbsp;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'Hans'&nbsp;</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'region'&nbsp;&nbsp;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'CN'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'variant2'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'rozaj'&nbsp;</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'variant1'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'nedis'&nbsp;</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'private1'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'prv1'&nbsp;</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'private2'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'prv2'<br /></span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">locale_compose</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$arr&nbsp;</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-2969">
+   <p><strong>Exemple #2 Exemple avec <span class="function"><strong>locale_compose()</strong></span>, POO</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$arr&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'language'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'en'&nbsp;</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'script'&nbsp;&nbsp;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'Hans'&nbsp;</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'region'&nbsp;&nbsp;</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'CN'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'variant2'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'rozaj'&nbsp;</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'variant1'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'nedis'&nbsp;</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'private1'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'prv1'&nbsp;</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'private2'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'prv2'<br /></span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">Locale</span><span style="color: #007700">::</span><span style="color: #0000BB">composeLocale</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$arr&nbsp;</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">L&#039;exemple ci-dessus va afficher :</p>
+  <div class="example-contents screen">
+<div class="cdata"><pre>
+Locale: en_Hans_CN_nedis_rozaj_x_prv1_prv2
+</pre></div>
+  </div>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-locale.composelocale-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="locale.parselocale.html" class="function" rel="rdfs-seeAlso">locale_parse()</a> - Retourne les sous-&eacute;l&eacute;ments de la locale</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

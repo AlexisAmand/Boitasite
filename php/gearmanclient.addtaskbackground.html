@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ajoute une t&acirc;che d'arri&egrave;re-plan pour une ex&eacute;cution en parall&egrave;le</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="gearmanclient.addtask.html">« GearmanClient::addTask</a></li>
+      <li style="float: right;"><a href="gearmanclient.addtaskhigh.html">GearmanClient::addTaskHigh »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.gearmanclient.html">GearmanClient</a></li>
+    <li>Ajoute une t&acirc;che d'arri&egrave;re-plan pour une ex&eacute;cution en parall&egrave;le</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="gearmanclient.addtaskbackground" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">GearmanClient::addTaskBackground</h1>
+  <p class="verinfo">(PECL gearman &gt;= 0.5.0)</p><p class="refpurpose"><span class="refname">GearmanClient::addTaskBackground</span> &mdash; <span class="dc-title">Ajoute une tâche d&#039;arrière-plan pour une exécution en parallèle</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-gearmanclient.addtaskbackground-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>GearmanClient::addTaskBackground</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$function_name</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$workload</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter reference">&$context</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$unique</code></span>
+  ]] ) : <span class="type"><a href="class.gearmantask.html" class="type GearmanTask">GearmanTask</a></span></div>
+
+  <p class="para rdfs-comment">
+   Ajoute une tâche d&#039;arrière-plan pour une exécution en parallèle d&#039;autres tâches.
+   Appelez cette méthode pour toutes les tâches à exécuter en parallèle, puis, appelez
+   la méthode <span class="methodname"><a href="gearmanclient.runtasks.html" class="methodname">GearmanClient::runTasks()</a></span> pour réaliser les tâches.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-gearmanclient.addtaskbackground-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">function_name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une fonction enregistrée que le travailleur va exécuter
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">workload</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Données linéarisées à analyser
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">context</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Contexte de l&#039;application à associer avec une tâche
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">unique</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un identifiant unique utilisé pour identifier une tâche particulière
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-gearmanclient.addtaskbackground-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Un objet <a href="class.gearmantask.html" class="classname">GearmanTask</a> ou <strong><code>FALSE</code></strong> si la tâche
+   n&#039;a pu être ajoutée.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-gearmanclient.addtaskbackground-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-4974">
+    <p><strong>Exemple #1 2 tâches dont une en arrière-plan</strong></p>
+    <div class="example-contents"><p>
+     Cet exemple montre la différence entre l&#039;exécution en arrière-plan
+     et une exécution normale. Le client ajoute 2 tâches qui doivent exécuter
+     la même fonction, mais une a été ajoutée avec la méthode
+     <span class="methodname"><strong>addTaskBackground()</strong></span>. Une fonction de rappel est définie
+     afin de surveiller la progression du travail. Un agent simple avec un délai artificiel
+     rapporte la progression et le client la traite via la fonction de rappel.
+     2 agents sont exécutés dans cet exemple. Notez que la tâche en arrière-plan
+     n&#039;est pas affichée par le client.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">#&nbsp;Le&nbsp;script&nbsp;client<br /><br />#&nbsp;Crée&nbsp;un&nbsp;client&nbsp;Gearman<br /></span><span style="color: #0000BB">$gmc</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">GearmanClient</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">#&nbsp;Ajoute&nbsp;un&nbsp;serveur&nbsp;de&nbsp;travaux&nbsp;par&nbsp;défaut<br /></span><span style="color: #0000BB">$gmc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addServer</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">#&nbsp;Définit&nbsp;2&nbsp;fonctions&nbsp;de&nbsp;rappel&nbsp;afin&nbsp;de&nbsp;surveiller&nbsp;la&nbsp;progression<br /></span><span style="color: #0000BB">$gmc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setCompleteCallback</span><span style="color: #007700">(</span><span style="color: #DD0000">"reverse_complete"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$gmc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setStatusCallback</span><span style="color: #007700">(</span><span style="color: #DD0000">"reverse_status"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">#&nbsp;Ajoute&nbsp;une&nbsp;tâche&nbsp;pour&nbsp;la&nbsp;fonction&nbsp;"reverse"<br /></span><span style="color: #0000BB">$task</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$gmc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTask</span><span style="color: #007700">(</span><span style="color: #DD0000">"reverse"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Hello&nbsp;World!"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"1"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">#&nbsp;Ajoute&nbsp;une&nbsp;autre&nbsp;tâche,&nbsp;mais&nbsp;cette&nbsp;fois,&nbsp;en&nbsp;arrière-plan<br /></span><span style="color: #0000BB">$task</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$gmc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTaskBackground</span><span style="color: #007700">(</span><span style="color: #DD0000">"reverse"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"!dlroW&nbsp;olleH"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"2"</span><span style="color: #007700">);<br /><br />if&nbsp;(!&nbsp;</span><span style="color: #0000BB">$gmc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runTasks</span><span style="color: #007700">())<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"ERREUR&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$gmc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /><br />echo&nbsp;</span><span style="color: #DD0000">"FAIT\n"</span><span style="color: #007700">;<br /><br />function&nbsp;</span><span style="color: #0000BB">reverse_status</span><span style="color: #007700">(</span><span style="color: #0000BB">$task</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"STATUT&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unique</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">",&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">jobHandle</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"&nbsp;-&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">taskNumerator</span><span style="color: #007700">()&nbsp;.&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"/"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">taskDenominator</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br />function&nbsp;</span><span style="color: #0000BB">reverse_complete</span><span style="color: #007700">(</span><span style="color: #0000BB">$task</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"TERMINÉ&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unique</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">",&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">data</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">#&nbsp;Le&nbsp;script&nbsp;de&nbsp;l'agent<br /><br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"Début\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">#&nbsp;Crée&nbsp;un&nbsp;agent.<br /></span><span style="color: #0000BB">$gmworker</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">GearmanWorker</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">#&nbsp;Ajoute&nbsp;un&nbsp;serveur&nbsp;par&nbsp;défaut&nbsp;(localhost).<br /></span><span style="color: #0000BB">$gmworker</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addServer</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">#&nbsp;Enregistre&nbsp;la&nbsp;fonction&nbsp;"reverse"&nbsp;sur&nbsp;ce&nbsp;serveur.<br /></span><span style="color: #0000BB">$gmworker</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addFunction</span><span style="color: #007700">(</span><span style="color: #DD0000">"reverse"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"reverse_fn"</span><span style="color: #007700">);<br /><br />print&nbsp;</span><span style="color: #DD0000">"Attente&nbsp;d'un&nbsp;travail...\n"</span><span style="color: #007700">;<br />while(</span><span style="color: #0000BB">$gmworker</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">work</span><span style="color: #007700">())<br />{<br />&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$gmworker</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">returnCode</span><span style="color: #007700">()&nbsp;!=&nbsp;</span><span style="color: #0000BB">GEARMAN_SUCCESS</span><span style="color: #007700">)<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"return_code:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$gmworker</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">returnCode</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;}<br />}<br /><br />function&nbsp;</span><span style="color: #0000BB">reverse_fn</span><span style="color: #007700">(</span><span style="color: #0000BB">$job</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Travail&nbsp;reçu&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$job</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">handle</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$workload&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$job</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">workload</span><span style="color: #007700">();<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$workload_size&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$job</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">workloadSize</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Charge&nbsp;de&nbsp;l'agent&nbsp;:&nbsp;</span><span style="color: #0000BB">$workload</span><span style="color: #DD0000">&nbsp;(</span><span style="color: #0000BB">$workload_size</span><span style="color: #DD0000">)\n"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">#&nbsp;Cette&nbsp;boucle&nbsp;n'est&nbsp;pas&nbsp;nécessaire,&nbsp;mais&nbsp;permet&nbsp;de&nbsp;comprendre&nbsp;le&nbsp;fonctionnement<br />&nbsp;&nbsp;</span><span style="color: #007700">for&nbsp;(</span><span style="color: #0000BB">$x</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$x&nbsp;</span><span style="color: #007700">&lt;&nbsp;</span><span style="color: #0000BB">$workload_size</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$x</span><span style="color: #007700">++)<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Envoi&nbsp;du&nbsp;statut&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;(</span><span style="color: #0000BB">$x&nbsp;</span><span style="color: #007700">+&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">"/</span><span style="color: #0000BB">$workload_size</span><span style="color: #DD0000">&nbsp;complete\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$job</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">sendStatus</span><span style="color: #007700">(</span><span style="color: #0000BB">$x</span><span style="color: #007700">+</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$workload_size</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$job</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">sendData</span><span style="color: #007700">(</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$workload</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$x</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">sleep</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">strrev</span><span style="color: #007700">(</span><span style="color: #0000BB">$workload</span><span style="color: #007700">);<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Résultat&nbsp;:&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">#&nbsp;On&nbsp;retourne&nbsp;au&nbsp;client&nbsp;ce&nbsp;que&nbsp;l'on&nbsp;veut.<br />&nbsp;&nbsp;</span><span style="color: #007700">return&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     L&#039;agent affiche, pour les 2 travaux :
+    </p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Travail reçu : H:foo.local:65
+Charge de l&#039;agent : !dlroW olleH (12)
+1/12 complete
+Travail reçu : H:foo.local:66
+Charge de l&#039;agent : Hello World! (12)
+Envoi du statut : 1/12 complete
+Envoi du statut : 2/12 complete
+Envoi du statut : 2/12 complete
+Envoi du statut : 3/12 complete
+Envoi du statut : 3/12 complete
+Envoi du statut : 4/12 complete
+Envoi du statut : 4/12 complete
+Envoi du statut : 5/12 complete
+Envoi du statut : 5/12 complete
+Envoi du statut : 6/12 complete
+Envoi du statut : 6/12 complete
+Envoi du statut : 7/12 complete
+Envoi du statut : 7/12 complete
+Envoi du statut : 8/12 complete
+Envoi du statut : 8/12 complete
+Envoi du statut : 9/12 complete
+Envoi du statut : 9/12 complete
+Envoi du statut : 10/12 complete
+Envoi du statut : 10/12 complete
+Envoi du statut : 11/12 complete
+Envoi du statut : 11/12 complete
+Envoi du statut : 12/12 complete
+Envoi du statut : 12/12 complete
+Résultat : !dlroW olleH
+Résultat : Hello World!
+</pre></div>
+    </div>
+    <div class="example-contents"><p>
+     Affichage du client :
+    </p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+STATUT : 1, H:foo.local:66 - 1/12
+STATUT : 1, H:foo.local:66 - 2/12
+STATUT : 1, H:foo.local:66 - 3/12
+STATUT : 1, H:foo.local:66 - 4/12
+STATUT : 1, H:foo.local:66 - 5/12
+STATUT : 1, H:foo.local:66 - 6/12
+STATUT : 1, H:foo.local:66 - 7/12
+STATUT : 1, H:foo.local:66 - 8/12
+STATUT : 1, H:foo.local:66 - 9/12
+STATUT : 1, H:foo.local:66 - 10/12
+STATUT : 1, H:foo.local:66 - 11/12
+STATUT : 1, H:foo.local:66 - 12/12
+TERMINÉ : 1, !dlroW olleH
+FAIT
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-gearmanclient.addtaskbackground-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtask.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTask()</a> - Ajoute une t&acirc;che &agrave; ex&eacute;cuter en parall&egrave;le</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtaskhigh.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskHigh()</a> - Ajoute une t&acirc;che de forte priorit&eacute; &agrave; effectuer en parall&egrave;le</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtasklow.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskLow()</a> - Ajoute une t&acirc;che de faible priorit&eacute; &agrave; effectuer en parall&egrave;le</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtaskhighbackground.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskHighBackground()</a> - Ajoute une t&acirc;che de fond de forte priorit&eacute; &agrave; effectuer en parall&egrave;le</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtasklowbackground.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskLowBackground()</a> - Ajoute une t&acirc;che de fond de faible priorit&eacute; &agrave; effectuer en parall&egrave;le</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.runtasks.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::runTasks()</a> - Ex&eacute;cute une liste de t&acirc;ches en parall&egrave;le</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Introduction</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="book.wincache.html">« WinCache</a></li>
+      <li style="float: right;"><a href="wincache.setup.html">Installation/Configuration »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.wincache.html">WinCache</a></li>
+    <li>Introduction</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="intro.wincache" class="preface">
+  <h1 class="title">Introduction</h1>
+  <p class="para">
+   L&#039;extension Windows Cache pour PHP est un accélérateur PHP qui est utilisé pour augmenter la 
+   vitesse des applications PHP sous Windows et Windows Server. Une fois l&#039;extension Windows Cache
+   activée et chargée par le moteur PHP, les applications PHP peuvent tirer parti des 
+   fonctionnalités sans aucune modification de code.
+  </p>
+  <p class="para">
+   L&#039;extension Windows Cache comprend 5 types de caches. Ce qui suit décrit le but de chaque type
+   de cache et les avantages qu&#039;il procure.
+  </p>
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     <em class="emphasis">Cache d&#039;Opcode PHP</em> - PHP est un moteur de traitement de script, qui lit
+     un flux d&#039;entrée de données qui contient du texte et / ou des instructions PHP et produit un 
+     autre flux de données, le plus souvent au format HTML. Cela signifie que sur un serveur Web 
+     le moteur PHP lit, analyse, compile et exécute un script PHP à chaque fois qu&#039;il est demandé 
+     par un client Web. Les operations de lecture, d&#039;analyse et de compilation ajoute une charge
+     supplémentaire sur le processeur (CPU) et sur le système de fichiers, ce qui affecte la 
+     performance globale d&#039;une application web PHP. Le cache de bytecode PHP (Opcode) est utilisé 
+     pour stocker le bytecode du script compilé dans la mémoire partagée pour qu&#039;il puisse être
+     ré-utilisé par le moteur PHP lors des exécutions suivantes du même script.
+    </p>
+    <p class="para">
+     Support pour le cache d&#039;Opcode a été retiré dans <code class="literal">Wincache 2.0.0</code>,
+     tout les utilisateurs qui souhaitent avoir un opcache devraient utiliser l&#039;extension
+     <a href="book.opcache.html" class="link">OPcache</a> qui est inclus avec PHP à partir de PHP 5.5.0.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <em class="emphasis">Cache de fichiers</em> - Même avec le cache d&#039;opcode PHP activé, le moteur PHP
+     doit accèder aux fichiers de script sur un système de fichiers. Lorsque les scripts PHP sont
+     stockés sur le système de fichiers d&#039;un ordinateur distant, les opérations sur ces fichiers
+     introduisent une surcharge importante des performances. L&#039;extension de Cache Windows pour PHP 
+     inclut un cache de fichier qui est utilisé pour stocker le contenu des fichiers de scripts PHP
+     dans la mémoire partagée, ce qui réduit le nombre d&#039;opérations effectuées par le moteur PHP
+     sur le système de fichiers.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <em class="emphasis">Cache de résolution des chemins de fichier</em> - Les scripts PHP incluent ou
+     fonctionnent très souvent avec des fichiers en utilisant des chemins relatifs. Chaque chemin 
+     de fichier doit être normalisé en un chemin de fichier absolu par le moteur PHP. Quand une 
+     application PHP utilise de nombreux fichiers PHP et y accède par des chemins relatifs, 
+     l&#039;opération de résolution des chemins peut impacter négativement les performances de l&#039;application. 
+     L&#039;extension de Cache Windows pour PHP fournit un cache de résolution des chemins de fichier, qui 
+     est utilisé pour stocker les correspondances entre les chemins de fichier relatifs et absolus, 
+     réduisant ainsi le nombre de résolutions que le moteur PHP devra effectuer.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <em class="emphasis">Cache utilisateur (disponible depuis la version 1.1.0)</em> - Les scripts PHP 
+     peuvent tirer profit du cache de mémoire partagée en utilisant l&#039;API de cache utilisateur. Les objets PHP 
+     et les variables peuvent être stockées dans le cache utilisateur et réutilisés lors des requêtes suivantes.
+     Ce cache peut être utilisé pour améliorer les performances des scripts PHP et pour partager les données entre
+     plusieurs processus PHP. 
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <em class="emphasis">Gestionnaire de session (disponible depuis la version 1.1.0)</em> - Le gestionnaire de session 
+     WinCache peut être utilisé pour stocker les données de session PHP dans le cache de la mémoire partagée. Cela 
+     évite des opérations sur le système de fichiers pour la lecture et l&#039;écriture des données de session, ce qui 
+     améliore les performances lorsque un montant important de données est stocké dans la session PHP.
+    </p>
+   </li>
+  </ul>
+ </div></div></div></body></html>

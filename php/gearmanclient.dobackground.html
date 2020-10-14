@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ex&eacute;cute une t&acirc;che en arri&egrave;re-plan</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="gearmanclient.do.html">« GearmanClient::do</a></li>
+      <li style="float: right;"><a href="gearmanclient.dohigh.html">GearmanClient::doHigh »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.gearmanclient.html">GearmanClient</a></li>
+    <li>Ex&eacute;cute une t&acirc;che en arri&egrave;re-plan</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="gearmanclient.dobackground" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">GearmanClient::doBackground</h1>
+  <p class="verinfo">(PECL gearman &gt;= 0.5.0)</p><p class="refpurpose"><span class="refname">GearmanClient::doBackground</span> &mdash; <span class="dc-title">Exécute une tâche en arrière-plan</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-gearmanclient.dobackground-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>GearmanClient::doBackground</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$function_name</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$workload</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$unique</code></span>
+  ] ) : <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   Exécute une tâche en arrière-plan, retourne le gestionnaire de travaux
+   qui pourra être utilisé pour récupérer le statut de la tâche en cours.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-gearmanclient.dobackground-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">function_name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une fonction enregistrée que le travailleur va exécuter
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">workload</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Données linéarisées à analyser
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">unique</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un identifiant unique utilisé pour identifier une tâche particulière
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-gearmanclient.dobackground-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Le gestionnaire de travaux pour la tâche soumise.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-gearmanclient.dobackground-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-4980">
+    <p><strong>Exemple #1 Soumet et surveille un travail en arrière-plan</strong></p>
+    <div class="example-contents"><p>
+     L&#039;agent de cet exemple a un délai artificiel introduit pour simuler
+     un travail dont l&#039;exécution prend beaucoup de temps. Le script du
+     client vérifie périodiquement le statut du travail en cours.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;Crée&nbsp;un&nbsp;client&nbsp;*/<br /></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">GearmanClient</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;Ajoute&nbsp;un&nbsp;serveur&nbsp;par&nbsp;défaut&nbsp;*/<br /></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addServer</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;Exécute&nbsp;le&nbsp;client&nbsp;*/<br /></span><span style="color: #0000BB">$job_handle&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">doBackground</span><span style="color: #007700">(</span><span style="color: #DD0000">"reverse"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"this&nbsp;is&nbsp;a&nbsp;test"</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">returnCode</span><span style="color: #007700">()&nbsp;!=&nbsp;</span><span style="color: #0000BB">GEARMAN_SUCCESS</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Code&nbsp;retour&nbsp;erroné\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;exit;<br />}<br /><br /></span><span style="color: #0000BB">$done&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">;<br />do<br />{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">sleep</span><span style="color: #007700">(</span><span style="color: #0000BB">3</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$stat&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">jobStatus</span><span style="color: #007700">(</span><span style="color: #0000BB">$job_handle</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;if&nbsp;(!</span><span style="color: #0000BB">$stat</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">])&nbsp;</span><span style="color: #FF8000">//&nbsp;the&nbsp;job&nbsp;is&nbsp;known&nbsp;so&nbsp;it&nbsp;is&nbsp;not&nbsp;done<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$done&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Exécution&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;(</span><span style="color: #0000BB">$stat</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]&nbsp;?&nbsp;</span><span style="color: #DD0000">"true"&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">"false"</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">",&nbsp;numérateur&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$stat</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">",&nbsp;dénominateur&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$stat</span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br />while(!</span><span style="color: #0000BB">$done</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"fait&nbsp;!\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Exécution : true, numérateur : 3, dénominateur : 14
+Exécution : true, numérateur : 6, dénominateur : 14
+Exécution : true, numérateur : 9, dénominateur : 14
+Exécution : true, numérateur : 12, dénominateur : 14
+Exécution : false, numérateur : 0, dénominateur : 0
+fait !
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-gearmanclient.dobackground-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="gearmanclient.donormal.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::doNormal()</a> - Ex&eacute;cute une t&acirc;che et retourne le r&eacute;sultat</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.dohigh.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::doHigh()</a> - Ex&eacute;cute une seule t&acirc;che en priorit&eacute; haute</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.dolow.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::doLow()</a> - Ex&eacute;cute une seule t&acirc;che en priorit&eacute; basse</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.dohighbackground.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::doHighBackground()</a> - Ex&eacute;cute une t&acirc;che en priorit&eacute; haute en arri&egrave;re plan</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.dolowbackground.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::doLowBackground()</a> - Ex&eacute;cute une t&acirc;che en priorit&eacute; basse en arri&egrave;re-plan</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

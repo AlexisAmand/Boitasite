@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>R&eacute;f&eacute;rences arri&egrave;res</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="regexp.reference.repetition.html">« R&eacute;p&eacute;titions</a></li>
+      <li style="float: right;"><a href="regexp.reference.assertions.html">Assertions »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="reference.pcre.pattern.syntax.html">Fonctionnement des expressions rationnelles</a></li>
+    <li>R&eacute;f&eacute;rences arri&egrave;res</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="regexp.reference.back-references" class="section">
+  <h2 class="title">Références arrières </h2>
+  <p class="para">
+   En dehors des classes de caractères, un antislash suivi
+   d&#039;un nombre plus grand que 0 (et possiblement plusieurs chiffres)
+   est une référence arrière (c&#039;est à
+   dire vers la gauche) dans le masque, en supposant qu&#039;il y ait
+   suffisamment de sous-masques capturants précédents.
+  </p>
+  <p class="para">
+   Cependant, si le nombre décimal suivant l&#039;antislash est
+   plus petit que 10, il sera toujours considéré
+   comme une référence arrière, et cela
+   générera une erreur si le nombre de captures
+   n&#039;est pas suffisant. En d&#039;autres termes, il faut qu&#039;il existe
+   suffisamment de parenthèses ouvrantes à gauche
+   de la référence, surtout si la référence
+   est inférieure à 10. Une &quot;référence arrière vers l&#039;avant&quot; peut avoir du sens
+   lorsqu&#039;une répétition est isolée et que le sous masque à droite a participé
+   dans l&#039;itération précédente. Reportez-vous à la section &quot;antislash&quot;
+   pour avoir de plus amples détails à propos du nombre de
+   chiffres qui suivent l&#039;antislash.
+  </p>
+  <p class="para">
+   La référence arrière remplace ce qui a
+   été capturé par un sous-masque dans le
+   masque courant, plutôt que remplacer le sous-masque
+   lui-même. Ainsi
+   
+   <code class="literal">(calme|rapide) et \1ment</code>
+   
+   trouvera &quot;<code class="literal">calme et calmement</code>&quot;
+   et &quot;<code class="literal">rapide et rapidement</code>&quot;, mais pas
+   &quot;<code class="literal">calme et rapidement</code>&quot;. Si la recherche tient
+   compte de la casse, alors la casse de la chaîne
+   capturée sera importante. Par exemple,
+   
+   <code class="literal">((?i)rah)\s+\1</code>
+   
+   trouve &quot;<code class="literal">rah rah</code>&quot;
+   et &quot;<code class="literal">RAH RAH</code>&quot;, mais pas &quot;<code class="literal">RAH rah</code>&quot;,
+   même si le sous-masque capturant initial ne tenait pas compte
+   de la casse.
+  </p>
+  <p class="para">
+   Il peut y avoir plusieurs références arrières dans
+   le même sous-masque. Si un sous-masque n&#039;a pas été
+   utilisé dans une recherche, alors les références
+   arrières échoueront. Par exemple
+   
+   <code class="literal">(a|(bc))\2</code>
+   
+   ne réussira jamais si la chaîne sujet commence par
+   &quot;<code class="literal">a</code>&quot; plutôt que par &quot;<code class="literal">bc</code>&quot;.
+   Étant donné qu&#039;il peut y avoir jusqu&#039;à 99 références
+   arrières, tous les chiffres après l&#039;antislash sont
+   considérés comment faisant potentiellement partie de
+   la référence arrière. Si le masque recherche un
+   chiffre après la référence, alors il faut
+   impérativement utiliser des délimiteurs pour terminer
+   la référence arrière.
+   Si l&#039;option <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_EXTENDED</a>
+   est activée, on peut utiliser un espace.
+   Sinon, un commentaire vide fait l&#039;affaire.
+  </p>
+  <p class="para">
+   Une référence arrière qui intervient à l&#039;intérieur de
+   parenthèses auxquelles elle fait référence
+   échouera dès que le sous-masque sera utilisé. Par exemple,
+   
+   <code class="literal">(a\1)</code>
+   
+   échouera toujours. Cependant, ces
+   références peuvent être utiles dans les
+   sous-masques répétitifs. Par exemple, le masque
+   &quot;<code class="literal">(a|b\1)+</code>&quot; pourra convenir pour &quot;<code class="literal">a</code>&quot;,
+   &quot;<code class="literal">aba</code>&quot;, &quot;<code class="literal">ababba</code>&quot;, etc.
+   À chaque itération du sous-masque, la référence
+   arrière utilise le résultat du dernier sous-masque.
+   Pour que cela fonctionne, il faut que la première
+   itération n&#039;ait pas besoin d&#039;utiliser la référence
+   arrière. Cela arrive avec les alternatives, comme dans
+   l&#039;exemple ci-dessus, ou avec un quantificateur de minimum 0.
+  </p>
+  <p class="para">
+   À partir de PHP 5.2.2, la séquence d&#039;échappement <code class="literal">\g</code>
+   peut être utilisée pour le référencement absolu et relatif des
+   sous-masques. Cette séquence doit être suivie par un nombre non-signé
+   ou négatif, entouré optionnellement par des accolades. La séquence
+   <code class="literal">\1</code>, <code class="literal">\g1</code> et <code class="literal">\g{1}</code>
+   sont identiques. L&#039;utilisation de ce masque avec un nombre non-signé peut
+   aider à ne pas le confondre lors de l&#039;utilisation de nombre suivi d&#039;un
+   anti-slash. Cette séquence aide à distinguer les références arrières
+   lors de l&#039;utilisation de caractères octales et rend également plus facile
+   d&#039;avoir une référence arrière suivie par un nombre litéral, i.e.
+   <code class="literal">\g{2}1</code>.
+  </p>
+  <p class="para">
+   L&#039;utilisation de la séquence <code class="literal">\g</code> avec un nombre négatif
+   indique une référence relative. Par exemple, <code class="literal">(foo)(bar)\g{-1}</code>
+   trouvera la séquence &quot;foobarbar&quot; et <code class="literal">(foo)(bar)\g{-2}</code> trouvera
+   la séquence &quot;foobarfoo&quot;. Ceci peut être pratique dans ce gros masque
+   comme alternative afin de conserver une trace du nombre de sous-masques
+   afin de référencer un sous-masque précédant spécifique.
+  </p>
+  <p class="para">
+   Les références arrières du sous-masque nommé peuvent être
+   utilisées sous la forme <code class="literal">(?P=name)</code> ou,
+   depuis PHP 5.2.2, via <code class="literal">\k&lt;name&gt;</code>
+   ou <code class="literal">\k&#039;name&#039;</code>. De plus, PHP 5.2.4 a ajouté le support
+   de <code class="literal">\k{name}</code> et de <code class="literal">\g{name}</code>, et PHP 5.2.7
+   pour <code class="literal">\g&lt;name&gt;</code> et <code class="literal">\g&#039;name&#039;</code>.
+  </p>
+ </div></div></div></body></html>

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>D&eacute;finition des entr&eacute;es du manifeste Phar</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="phar.fileformat.flags.html">« Drapeaux &quot;bitmapp&eacute;s&quot; globaux du Phar</a></li>
+      <li style="float: right;"><a href="phar.fileformat.signature.html">Phar Signature format »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="phar.fileformat.html">Qu'est-ce qui fait d'un phar un phar et pas un tar ou un zip ?</a></li>
+    <li>D&eacute;finition des entr&eacute;es du manifeste Phar</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="phar.fileformat.manifestfile" class="section">
+  <h2 class="title">Définition des entrées du manifeste Phar</h2>
+  <p class="para">
+   Chaque fichier du manifeste contient les informations suivantes :
+  </p>
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Entrée du manifeste Phar</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Taille en octets</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>4 octets</td>
+       <td>Longueur du nom de fichier en octets</td>
+      </tr>
+
+      <tr>
+       <td>??</td>
+       <td>Nom de fichier (longueur basée sur la valeur précédente)</td>
+      </tr>
+
+      <tr>
+       <td>4 octets</td>
+       <td>Taille du fichier décompressé en octets</td>
+      </tr>
+
+      <tr>
+       <td>4 octets</td>
+       <td>Timestamp Unix du fichier</td>
+      </tr>
+
+      <tr>
+       <td>4 octets</td>
+       <td>Taille du fichier compressé en octets</td>
+      </tr>
+
+      <tr>
+       <td>4 octets</td>
+       <td>Somme de contrôle CRC32 du contenu décompressé du fichier</td>
+      </tr>
+
+      <tr>
+       <td>4 octets</td>
+       <td>Drapeaux bitmappés spécifiques au fichier</td>
+      </tr>
+
+      <tr>
+       <td>4 octets</td>
+       <td>Longueur des métadonnées du fichier sérialisées (<code class="literal">0</code> si aucune)</td>
+      </tr>
+
+      <tr>
+       <td>??</td>
+       <td>métadonnées du fichier sérialisées, stockées dans un format <span class="function"><a href="function.serialize.html" class="function">serialize()</a></span></td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+  <p class="para">
+   A noter qu&#039;à partir de l&#039;API 1.1.1, les répertoires vides sont stockés comme des noms de fichier
+   avec un slash final comme <code class="literal">mon/repertoire/</code>
+  </p>
+  <p class="para">
+   Les valeurs reconnues de drapeaux bitmappés spécifiques au fichier sont :
+  </p>
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Valeurs reconnues de bitmap</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Valeur</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td><code class="literal">0x000001FF</code></td>
+       <td>
+        Ces bits sont réservés pour définir des permissions spécifiques au fichier.
+        Celles-ci sont utilisées pour <span class="function"><a href="function.fstat.html" class="function">fstat()</a></span>
+        et peuvent être utilisées pour recréer les permissions souhaitées en cas d&#039;extraction.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">0x00001000</code></td>
+       <td>
+        Si présent, le fichier est compressé grâce à zlib
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">0x00002000</code></td>
+       <td>
+        Si présent, le fichier est compressé grâce à bzip
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div></div></div></body></html>

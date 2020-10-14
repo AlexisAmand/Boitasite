@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>D&eacute;truit une session</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.session-decode.html">« session_decode</a></li>
+      <li style="float: right;"><a href="function.session-encode.html">session_encode »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.session.html">Fonctions Session</a></li>
+    <li>D&eacute;truit une session</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.session-destroy" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">session_destroy</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">session_destroy</span> &mdash; <span class="dc-title">Détruit une session</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.session-destroy-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>session_destroy</strong></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">bool</span></div>
+
+  <p class="simpara">
+   <span class="function"><strong>session_destroy()</strong></span> détruit toutes les données
+   associées à la session courante. Cette fonction ne détruit pas
+   les variables globales associées à la session, de même, elle ne
+   détruit pas le cookie de session. Pour accéder à nouveau aux variables
+   de session, la fonction <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span> doit être 
+   appelée de nouveau.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <span class="simpara">
+    Vous n&#039;avez pas besoin d&#039;appeler <span class="function"><strong>session_destroy()</strong></span>
+    depuis le programme généralement.
+    Nettoyer le tableau $_SESSION plutôt que de détruire les données de session.
+   </span>
+  </p></blockquote>
+  <p class="para">
+   Pour détruire complètement une session,
+   l&#039;identifiant de la session doit également être effacé. Si un cookie est utilisé
+   pour propager l&#039;identifiant de session (comportement par défaut), alors le cookie
+   de session doit être effacé. La fonction <span class="function"><a href="function.setcookie.html" class="function">setcookie()</a></span>
+   peut être utilisée pour cela.
+  </p>
+  <p class="para">
+   Quand <a href="session.configuration.html#ini.session.use-strict-mode" class="link">session.use_strict_mode</a>
+   est activé. Vous n&#039;avez pas besoin d&#039;effacer le cookies d&#039;ID de session
+   obsolète car le module de session n&#039;accepte pas les cookies d&#039;ID de sessions
+   quand il n&#039;y a pas données associer avec ces ID de sessions et définira un
+   nouvel cookie d&#039;ID de session.
+   Activer <a href="session.configuration.html#ini.session.use-strict-mode" class="link">session.use_strict_mode</a>
+   est recommandé pour tous les sites.
+  </p>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    La suppression immédiate d&#039;une session peut causer des résultats inattendus.
+    Quand il y a des requêtes simultanées, les autres connexions peuvent
+    soudainement perdre des données de session. Par exemple des requêtes
+    depuis JavaScript et/ou des requêtes depuis des liens URL.
+   </p>
+   <p class="para">
+    Bien que le module de session actuel n&#039;accepte pas un cookie d&#039;ID de session
+    vide, mais la suppression immédiate de session peut provoquer un cookie
+    d&#039;ID de session vide à cause d&#039;une condition de concurrence côté client 
+    (navigateur). Ceci provoquera la création de beaucoup d&#039;ID de session
+    inutile par le client.
+   </p>
+   <p class="para">
+    Pour éviter ceci, vous devez définir un horodatage à $_SESSION et
+    refuser l&#039;accès à toutes les dates ultérieures. Ou assurer vous que votre
+    application n&#039;a pas de requêtes simultanées. Ceci s&#039;applique aussi à
+    <span class="function"><a href="function.session-regenerate-id.html" class="function">session_regenerate_id()</a></span>.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.session-destroy-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.session-destroy-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-5380">
+    <p><strong>Exemple #1 Destruction d&#039;une session avec <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Initialisation&nbsp;de&nbsp;la&nbsp;session.<br />//&nbsp;Si&nbsp;vous&nbsp;utilisez&nbsp;un&nbsp;autre&nbsp;nom<br />//&nbsp;session_name("autrenom")<br /></span><span style="color: #0000BB">session_start</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;Détruit&nbsp;toutes&nbsp;les&nbsp;variables&nbsp;de&nbsp;session<br /></span><span style="color: #0000BB">$_SESSION&nbsp;</span><span style="color: #007700">=&nbsp;array();<br /><br /></span><span style="color: #FF8000">//&nbsp;Si&nbsp;vous&nbsp;voulez&nbsp;détruire&nbsp;complètement&nbsp;la&nbsp;session,&nbsp;effacez&nbsp;également<br />//&nbsp;le&nbsp;cookie&nbsp;de&nbsp;session.<br />//&nbsp;Note&nbsp;:&nbsp;cela&nbsp;détruira&nbsp;la&nbsp;session&nbsp;et&nbsp;pas&nbsp;seulement&nbsp;les&nbsp;données&nbsp;de&nbsp;session&nbsp;!<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">ini_get</span><span style="color: #007700">(</span><span style="color: #DD0000">"session.use_cookies"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$params&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">session_get_cookie_params</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">setcookie</span><span style="color: #007700">(</span><span style="color: #0000BB">session_name</span><span style="color: #007700">(),&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">time</span><span style="color: #007700">()&nbsp;-&nbsp;</span><span style="color: #0000BB">42000</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$params</span><span style="color: #007700">[</span><span style="color: #DD0000">"path"</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$params</span><span style="color: #007700">[</span><span style="color: #DD0000">"domain"</span><span style="color: #007700">],<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$params</span><span style="color: #007700">[</span><span style="color: #DD0000">"secure"</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$params</span><span style="color: #007700">[</span><span style="color: #DD0000">"httponly"</span><span style="color: #007700">]<br />&nbsp;&nbsp;&nbsp;&nbsp;);<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Finalement,&nbsp;on&nbsp;détruit&nbsp;la&nbsp;session.<br /></span><span style="color: #0000BB">session_destroy</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.session-destroy-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Utilisez uniquement la fonction <span class="function"><a href="function.session-unset.html" class="function">session_unset()</a></span>
+    pour l&#039;ancien code obsolète qui n&#039;utilise pas les variables
+    <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var>.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.session-destroy-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="session.configuration.html#ini.session.use-strict-mode" class="link">session.use_strict_mode</a></li>
+    <li class="member"><span class="function"><a href="function.session-reset.html" class="function" rel="rdfs-seeAlso">session_reset()</a> - R&eacute;initialise le tableau de session avec les valeurs originales</span></li>
+    <li class="member"><span class="function"><a href="function.session-regenerate-id.html" class="function" rel="rdfs-seeAlso">session_regenerate_id()</a> - Remplace l'identifiant de session courant par un nouveau</span></li>
+    <li class="member"><span class="function"><a href="function.unset.html" class="function" rel="rdfs-seeAlso">unset()</a> - D&eacute;truit une variable</span></li>
+    <li class="member"><span class="function"><a href="function.setcookie.html" class="function" rel="rdfs-seeAlso">setcookie()</a> - Envoie un cookie</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

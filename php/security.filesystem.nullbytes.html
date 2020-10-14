@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Issue lors de l'utilisation des octets nuls</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="security.filesystem.html">« S&eacute;curit&eacute; des fichiers</a></li>
+      <li style="float: right;"><a href="security.database.html">S&eacute;curit&eacute; des bases de donn&eacute;es »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="security.filesystem.html">S&eacute;curit&eacute; des fichiers</a></li>
+    <li>Issue lors de l'utilisation des octets nuls</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="security.filesystem.nullbytes" class="sect1">
+  <h2 class="title">Issue lors de l&#039;utilisation des octets nuls</h2>
+  <p class="simpara">
+   Comme <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> utilise des fonctions C pour les opérations sous-jacentes,
+   notamment au niveau du système de fichiers, il peut gérer les octets nuls
+   d&#039;une façon inattendue. Sachant que les octets nuls dénotent la
+   fin d&#039;une chaîne de caractères en C, certaines fonctions vont donc
+   considérer ces chaînes jusqu&#039;à la première occurrence d&#039;un octet nul.
+
+   L&#039;exemple suivant présente un code vulnérable qui montre ce problème :
+  </p>
+  <div class="example" id="example-380">
+   <p><strong>Exemple #1 Script vulnérable aux octets nuls</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'file'</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;"../../etc/passwd\0"<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">file_exists</span><span style="color: #007700">(</span><span style="color: #DD0000">'/home/wwwrun/'</span><span style="color: #007700">.</span><span style="color: #0000BB">$file</span><span style="color: #007700">.</span><span style="color: #DD0000">'.php'</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;file_exists&nbsp;retournera&nbsp;true&nbsp;sachant&nbsp;que&nbsp;le&nbsp;fichier&nbsp;/home/wwwrun/../../etc/passwd&nbsp;existe<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">include&nbsp;</span><span style="color: #DD0000">'/home/wwwrun/'</span><span style="color: #007700">.</span><span style="color: #0000BB">$file</span><span style="color: #007700">.</span><span style="color: #DD0000">'.php'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;le&nbsp;fichier&nbsp;/etc/passwd&nbsp;sera&nbsp;inclu<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+ </div>
+
+</div>
+<p class="para">
+ Ainsi, toute chaîne utilisée dans des opérations sur le système de fichiers
+ doit toujours être validée proprement. Voici une meilleure solution de
+ l&#039;exemple précédent :
+</p>
+<div class="example" id="example-381">
+ <p><strong>Exemple #2 Validation correcte de l&#039;entrée</strong></p>
+ <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'file'</span><span style="color: #007700">];<br /><br /></span><span style="color: #FF8000">//&nbsp;Whitelisting&nbsp;possible&nbsp;values<br /></span><span style="color: #007700">switch&nbsp;(</span><span style="color: #0000BB">$file</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #DD0000">'main'</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #DD0000">'foo'</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #DD0000">'bar'</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;include&nbsp;</span><span style="color: #DD0000">'/home/wwwrun/include/'</span><span style="color: #007700">.</span><span style="color: #0000BB">$file</span><span style="color: #007700">.</span><span style="color: #DD0000">'.php'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;default:<br />&nbsp;&nbsp;&nbsp;include&nbsp;</span><span style="color: #DD0000">'/home/wwwrun/include/main.php'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div></div></div></body></html>

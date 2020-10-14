@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>R&eacute;cup&egrave;re les donn&eacute;es du champ depuis la ligne actuellement s&eacute;lectionn&eacute;e</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.sqlsrv-get-config.html">« sqlsrv_get_config</a></li>
+      <li style="float: right;"><a href="function.sqlsrv-has-rows.html">sqlsrv_has_rows »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.sqlsrv.html">Fonctions SQLSRV</a></li>
+    <li>R&eacute;cup&egrave;re les donn&eacute;es du champ depuis la ligne actuellement s&eacute;lectionn&eacute;e</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.sqlsrv-get-field" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlsrv_get_field</h1>
+  <p class="verinfo">(No version information available, might only be in Git)</p><p class="refpurpose"><span class="refname">sqlsrv_get_field</span> &mdash; <span class="dc-title">Récupère les données du champ depuis la ligne actuellement sélectionnée</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.sqlsrv-get-field-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>sqlsrv_get_field</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$stmt</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$fieldIndex</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$getAsType</code></span>
+  ] ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+
+  <p class="para rdfs-comment">
+   Récupère les données du champ depuis la ligne actuellement sélectionnée.
+   Les champs doivent être lus dans l&#039;ordre. Leurs indices commencent à 0.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.sqlsrv-get-field-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">stmt</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une ressource de requête retournée par la fonction
+       <span class="function"><a href="function.sqlsrv-query.html" class="function">sqlsrv_query()</a></span> ou la fonction
+       <span class="function"><a href="function.sqlsrv-execute.html" class="function">sqlsrv_execute()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">fieldIndex</code></dt>
+
+     <dd>
+
+      <p class="para">
+       L&#039;index du champ à récupérer. Les indices des champs commencent à 0.
+       Les champs doit être lus dans l&#039;ordre, i.e. si vous accédez au champ
+       d&#039;indice 1, alors le champ d&#039;indice 0 ne sera plus disponible.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">getAsType</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le type de données PHP pour les données du champ retourné. Si ce paramètre
+       n&#039;est pas défini, les données du champ seront retournées sous la forme
+       d&#039;un type de données PHP par défaut. Pour plus d&#039;informations sur les
+       types de données PHP par défaut, reportez-vous à la section sur
+       <a href="http://msdn.microsoft.com/en-us/library/cc296193.aspx" class="link external">&raquo;&nbsp;les types de données PHP par défaut</a>
+       de la documentation Microsoft SQLSRV.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.sqlsrv-get-field-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne les données depuis le champ spécifié en cas de succès.
+   Retourne <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.sqlsrv-get-field-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2606">
+    <p><strong>Exemple #1 <span class="function"><strong>sqlsrv_get_field()</strong></span> example</strong></p>
+    <div class="example-contents"><p>
+     L&#039;exemple suivant montre la façon de récupérer une ligne avec la
+     fonction <span class="function"><a href="function.sqlsrv-fetch.html" class="function">sqlsrv_fetch()</a></span> et récupère
+     les champs de la ligne avec la fonction <span class="function"><strong>sqlsrv_get_field()</strong></span>.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$serverName&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"serverName\sqlexpress"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$connectionInfo&nbsp;</span><span style="color: #007700">=&nbsp;array(&nbsp;</span><span style="color: #DD0000">"Database"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"dbName"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"UID"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"PWD"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlsrv_connect</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$serverName</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$connectionInfo</span><span style="color: #007700">);<br />if(&nbsp;</span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;die(&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">sqlsrv_errors</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;Name,&nbsp;Comment&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM&nbsp;Table_1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;ReviewID=1"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlsrv_query</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br />if(&nbsp;</span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;die(&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">sqlsrv_errors</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Rend&nbsp;disponible&nbsp;la&nbsp;première&nbsp;(et&nbsp;dans&nbsp;ce&nbsp;cas,&nbsp;la&nbsp;seule)&nbsp;ligne&nbsp;du&nbsp;jeu&nbsp;de&nbsp;résultats&nbsp;pour&nbsp;lecture.<br /></span><span style="color: #007700">if(&nbsp;</span><span style="color: #0000BB">sqlsrv_fetch</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">)&nbsp;===&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;die(&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">sqlsrv_errors</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Récupère&nbsp;les&nbsp;champs&nbsp;de&nbsp;la&nbsp;ligne.&nbsp;Les&nbsp;indices&nbsp;commencent&nbsp;à&nbsp;0&nbsp;et&nbsp;doivent&nbsp;être&nbsp;récupérés&nbsp;dans&nbsp;l'ordre.<br />//&nbsp;La&nbsp;récupération&nbsp;des&nbsp;champs&nbsp;de&nbsp;la&nbsp;ligne&nbsp;par&nbsp;leurs&nbsp;noms&nbsp;n'est&nbsp;pas&nbsp;supportée&nbsp;par&nbsp;la&nbsp;fonction&nbsp;sqlsrv_get_field.<br /></span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlsrv_get_field</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$name</span><span style="color: #DD0000">:&nbsp;"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$comment&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlsrv_get_field</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$comment</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-function.sqlsrv-get-field-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.sqlsrv-fetch.html" class="function" rel="rdfs-seeAlso">sqlsrv_fetch()</a> - Rend la prochaine ligne d'un jeu de r&eacute;sultats disponible pour lecture</span></li>
+    <li class="member"><span class="function"><a href="function.sqlsrv-fetch-array.html" class="function" rel="rdfs-seeAlso">sqlsrv_fetch_array()</a> - Retourne une ligne sous la forme d'un tableau</span></li>
+    <li class="member"><span class="function"><a href="function.sqlsrv-fetch-object.html" class="function" rel="rdfs-seeAlso">sqlsrv_fetch_object()</a> - R&eacute;cup&egrave;re la prochaine ligne de donn&eacute;es du jeu de r&eacute;sultats sous la forme d'un objet</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

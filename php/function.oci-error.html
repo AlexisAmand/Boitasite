@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne la derni&egrave;re erreur Oracle</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.oci-define-by-name.html">« oci_define_by_name</a></li>
+      <li style="float: right;"><a href="function.oci-execute.html">oci_execute »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.oci8.html">Fonctions OCI8</a></li>
+    <li>Retourne la derni&egrave;re erreur Oracle</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.oci-error" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">oci_error</h1>
+  <p class="verinfo">(PHP 5, PHP 7, PECL OCI8 &gt;= 1.1.0)</p><p class="refpurpose"><span class="refname">oci_error</span> &mdash; <span class="dc-title">Retourne la dernière erreur Oracle</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.oci-error-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>oci_error</strong></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <code class="parameter">$resource</code></span>
+  ] ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Retourne la dernière erreur Oracle.
+  </p>
+  <p class="para">
+   La fonction doit être appelée immédiatement après qu&#039;une erreur survient.
+   Les erreurs sont réinitialisées après une requête réussie.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.oci-error-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">resource</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Pour la plupart des erreurs, le paramètre <code class="parameter">resource</code>
+       représente une ressource de connexion. Pour les erreurs de connexion avec les fonctions
+       <span class="function"><a href="function.oci-connect.html" class="function">oci_connect()</a></span>, <span class="function"><a href="function.oci-new-connect.html" class="function">oci_new_connect()</a></span> ou
+       <span class="function"><a href="function.oci-pconnect.html" class="function">oci_pconnect()</a></span>, ne passez aucun paramètre.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.oci-error-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Si aucune erreur n&#039;est trouvée, <span class="function"><strong>oci_error()</strong></span> retourne
+   <strong><code>FALSE</code></strong>. Sinon, <span class="function"><strong>oci_error()</strong></span> retourne l&#039;information concernant
+   l&#039;erreur sous la forme d&#039;un tableau associatif.
+  </p>
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Description du tableau retourné par <span class="function"><strong>oci_error()</strong></span></strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Clé du tableau</th>
+       <th>Type</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td><code class="literal">code</code></td>
+       <td><span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span></td>
+       <td>
+        Le numéro d&#039;erreur Oracle.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">message</code></td>
+       <td><span class="type"><a href="language.types.string.html" class="type string">string</a></span></td>
+       <td>
+        Le texte de l&#039;erreur Oracle.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">offset</code></td>
+       <td><span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span></td>
+       <td>
+        L&#039;octet de position de l&#039;erreur dans la requête SQL. S&#039;il n&#039;y a
+        pas de requête, <code class="literal">0</code> sera placé comme valeur.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">sqltext</code></td>
+       <td><span class="type"><a href="language.types.string.html" class="type string">string</a></span></td>
+       <td>
+        Le texte de la requête SQL. S&#039;il n&#039;y a pas de requête,
+        ce sera une chaîne vide.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.oci-error-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2389">
+    <p><strong>Exemple #1 Exemple d&#039;affichage d&#039;un message d&#039;erreur Oracle après une erreur 
+     de connexion</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"hr"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"welcome"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"localhost/XE"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$e&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Pour&nbsp;les&nbsp;erreurs&nbsp;oci_connect,&nbsp;ne&nbsp;passez&nbsp;pas&nbsp;de&nbsp;gestionnaire&nbsp;de&nbsp;connexion<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">'message'</span><span style="color: #007700">]),&nbsp;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2390">
+    <p><strong>Exemple #2 Exemple d&#039;affichage d&#039;un message d&#039;erreur Oracle après une erreur 
+     d&#039;analyse</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$stid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"select&nbsp;'&nbsp;from&nbsp;dual"</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Notez&nbsp;l'erreur&nbsp;avec&nbsp;les&nbsp;guillemets<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$stid</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$e&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Pour&nbsp;les&nbsp;erreurs&nbsp;oci_parse,&nbsp;passez&nbsp;le&nbsp;gestionnaire&nbsp;de&nbsp;connexion<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">'message'</span><span style="color: #007700">]),&nbsp;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2391">
+    <p><strong>Exemple #3 Exemple d&#039;affichage d&#039;un message d&#039;erreur Oracle après une erreur 
+     d&#039;exécution rencontré dans une requête SQL</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$stid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"select&nbsp;does_not_exist&nbsp;from&nbsp;dual"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$r&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$r</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$e&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Pour&nbsp;les&nbsp;erreurs&nbsp;oci_execute,&nbsp;passez&nbsp;le&nbsp;gestionnaire&nbsp;de&nbsp;connexion<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">print&nbsp;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">'message'</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"\n&lt;pre&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">'sqltext'</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"\n%"</span><span style="color: #007700">.(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">'offset'</span><span style="color: #007700">]+</span><span style="color: #0000BB">1</span><span style="color: #007700">).</span><span style="color: #DD0000">"s"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"^"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;&nbsp;</span><span style="color: #DD0000">"\n&lt;/pre&gt;\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+</div></div></div></body></html>

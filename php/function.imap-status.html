@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne les informations de statut sur une bo&icirc;te aux lettres</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.imap-sort.html">« imap_sort</a></li>
+      <li style="float: right;"><a href="function.imap-subscribe.html">imap_subscribe »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.imap.html">Fonctions IMAP</a></li>
+    <li>Retourne les informations de statut sur une bo&icirc;te aux lettres</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.imap-status" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_status</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">imap_status</span> &mdash; <span class="dc-title">Retourne les informations de statut sur une boîte aux lettres</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.imap-status-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>imap_status</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$imap_stream</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$mailbox</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$options</code></span>
+   ) : <span class="type">object</span></div>
+
+  <p class="para rdfs-comment">
+   Retourne les informations de statut sur la boîte aux lettres <code class="parameter">mailbox</code>.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.imap-status-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<code class="parameter">
+    imap_stream</code></dt>
+<dd>
+<p class="para">Un flux IMAP retourné par la fonction
+    <span class="function"><a href="function.imap-open.html" class="function">imap_open()</a></span>.</p></dd>
+
+    
+     <dt>
+<code class="parameter">mailbox</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nom de la boîte aux lettres, voir la documentation de la fonction
+       <span class="function"><a href="function.imap-open.html" class="function">imap_open()</a></span> pour plus de détails
+      </p>
+      <div class="warning"><strong class="warning">Avertissement</strong><p class="simpara">
+    Passer des données qui ne sont pas digne de confiance à ce paramètre est <em class="emphasis">dangereux</em>, sauf si,
+    <a href="imap.configuration.html#ini.imap.enable-insecure-rsh" class="link">imap.enable_insecure_rsh</a> est désactivé.
+</p></div>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">options</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Les drapeaux valides sont :
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>SA_MESSAGES</code></strong> - met la valeur de
+          <var class="varname">$status->messages</var> au nombre de messages dans la boîte aux lettres.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>SA_RECENT</code></strong> - met la valeur de <var class="varname">$status->recent</var>
+          au nombre de messages récents dans la boîte aux lettres.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>SA_UNSEEN</code></strong> - met la valeur de <var class="varname">$status->unseen</var>
+          au nombre de messages non lus dans la boîte aux lettres.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>SA_UIDNEXT</code></strong> - met la valeur de <var class="varname">$status->uidnext</var>
+          à la prochaine valeur d&#039;uid qui sera utilisée.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>SA_UIDVALIDITY</code></strong> - met la valeur de 
+          <var class="varname">$status->uidvalidity</var> à une constante, qui change lorsque l&#039;uid de
+          la boîte aux lettres n&#039;est plus valide.
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>SA_ALL</code></strong> - fixe toutes les valeurs précédentes.
+         </span>
+        </li>
+       </ul>
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.imap-status-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne un objet contenant les informations sur le
+   statut. L&#039;objet a les propriétés suivantes : <code class="literal">messages</code>,
+   <code class="literal">recent</code>, <code class="literal">unseen</code>,
+   <code class="literal">uidnext</code>, et <code class="literal">uidvalidity</code>.
+  </p>
+  <p class="para">
+   <code class="literal">flags</code> est également défini, qui contient un masque
+   contenant une des constantes ci-dessus.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.imap-status-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-3674">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>imap_status()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mbox&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imap_open</span><span style="color: #007700">(</span><span style="color: #DD0000">"{imap.example.com}"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">OP_HALFOPEN</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Connexion&nbsp;impossible&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">imap_last_error</span><span style="color: #007700">());<br /><br /></span><span style="color: #0000BB">$status&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imap_status</span><span style="color: #007700">(</span><span style="color: #0000BB">$mbox</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"{imap.example.org}INBOX"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SA_ALL</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$status</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Messages&nbsp;:&nbsp;&nbsp;&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$status</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">messages&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Récent&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$status</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">recent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Non&nbsp;lu&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$status</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unseen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Prochain&nbsp;UID:&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$status</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">uidnext&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Validité&nbsp;de&nbsp;l'UID:"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$status</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">uidvalidity&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"imap_status&nbsp;a&nbsp;échoué&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">imap_last_error</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">imap_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$mbox</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div></div></div></body></html>

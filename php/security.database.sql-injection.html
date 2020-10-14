@@ -1,0 +1,328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Injection SQL</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="security.database.storage.html">« Mod&egrave;le de stockage avec chiffrement</a></li>
+      <li style="float: right;"><a href="security.errors.html">Rapport d'erreurs »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="security.database.html">S&eacute;curit&eacute; des bases de donn&eacute;es</a></li>
+    <li>Injection SQL</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="security.database.sql-injection" class="sect1">
+  <h2 class="title">Injection SQL</h2>
+  <p class="simpara">
+   De nombreux développeurs web ne sont pas conscients des possibilités
+   de manipulation des requêtes SQL, et supposent que les requêtes SQL
+   sont des commandes sûres. Cela signifie qu&#039;une requête SQL est
+   capable de contourner les contrôles et vérifications, comme les
+   identifications, et parfois, les requêtes SQL ont accès aux commandes
+   d&#039;administration.
+  </p>
+  <p class="simpara">
+   L&#039;injection SQL directe est une technique où un pirate modifie une requête
+   SQL existante pour afficher des données cachées, ou pour écraser des
+   valeurs importantes, ou encore exécuter des commandes dangereuses pour la
+   base. Cela se fait lorsque l&#039;application prend les données envoyées par
+   l&#039;internaute, et l&#039;utilise directement pour construire une requête SQL. Les
+   exemples ci-dessous sont basés sur une histoire vraie, malheureusement.
+  </p>
+  <p class="para">
+   Avec le manque de vérification des données de l&#039;internaute et la connexion
+   au serveur avec des droits de super utilisateur, le pirate peut créer des
+   utilisateurs, et créer un autre super utilisateur.
+   <div class="example" id="example-384">
+    <p><strong>Exemple #1 
+     Séparation des résultats en pages, et créer des administrateurs
+     (PostgreSQL et MySQL)
+    </strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$offset&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$argv</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;Attention,&nbsp;aucune&nbsp;validation!<br /></span><span style="color: #0000BB">$query&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;name&nbsp;FROM&nbsp;products&nbsp;ORDER&nbsp;BY&nbsp;name&nbsp;LIMIT&nbsp;20&nbsp;OFFSET&nbsp;</span><span style="color: #0000BB">$offset</span><span style="color: #DD0000">;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+    Un utilisateur normal clique sur les boutons &#039;suivant&#039; et &#039;précédent&#039;,
+    qui sont alors placés dans la variable <var class="varname">$offset</var>,
+    encodée dans l&#039;<acronym title="Uniform Resource Locator">URL</acronym>. Le script s&#039;attend à ce que la variable
+    <var class="varname">$offset</var> soit alors un nombre décimal. Cependant,
+    il est possible de modifier l&#039;<acronym title="Uniform Resource Locator">URL</acronym> en ajoutant une nouvelle valeur,
+    au format <acronym title="Uniform Resource Locator">URL</acronym>, comme ceci :
+    <div class="example" id="example-385">
+     <p><strong>Exemple #2 Exemple d&#039;injection SQL</strong></p>
+     <div class="example-contents">
+<div class="cdata"><pre>
+0;
+insert into pg_shadow(usename,usesysid,usesuper,usecatupd,passwd)
+    select &#039;crack&#039;, usesysid, &#039;t&#039;,&#039;t&#039;,&#039;crack&#039;
+    from pg_shadow where usename=&#039;postgres&#039;;
+--
+</pre></div>
+     </div>
+
+    </div>
+    Si cela arrive, le script va créer un nouveau super utilisateur.
+    Notez que la valeur <code class="literal">0;</code> sert à terminer la requête
+    originale et la terminer correctement.
+   </p>
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <p class="para">
+     C&#039;est une technique répandue que de forcer l&#039;analyseur SQL à ignorer le
+     reste de la requête, en utilisant les symboles <code class="literal">--</code> pour
+     mettre en commentaires.
+    </p>
+   </p></blockquote>
+   <p class="para">
+    Un moyen disponible pour accéder aux mots de passe est de contourner
+    la recherche de page. Ce que le pirate doit faire, c&#039;est simplement
+    voir si une variable du formulaire est utilisée dans la requête, et
+    si elle est mal gérée. Ces variables peuvent avoir été configurées
+    dans une page précédente pour être utilisées dans les clauses
+    <code class="literal">WHERE, ORDER BY, LIMIT</code> et <code class="literal">OFFSET</code> des
+    requêtes <code class="literal">SELECT</code>. Si votre base de données supporte
+    les commandes <code class="literal">UNION</code>, le pirate peut essayer d&#039;ajouter
+    une requête entière pour lister les mots de passe dans n&#039;importe quelle
+    table. Utiliser la technique des mots de passe chiffrés est fortement
+    recommandé.
+    <div class="example" id="example-386">
+     <p><strong>Exemple #3 
+      Liste d&#039;articles ... et ajout de mot de passe
+     </strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$query&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;name,&nbsp;inserted,&nbsp;size&nbsp;FROM&nbsp;products<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;size&nbsp;=&nbsp;'</span><span style="color: #0000BB">$size</span><span style="color: #DD0000">'"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   La partie statique de la requête, combinée avec une autre
+   requête <code class="literal">SELECT</code>, va révéler les mots de passe :
+   <div class="example" id="example-387">
+    <p><strong>Exemple #4 Révélation des mots de passe</strong></p>
+    <div class="example-contents">
+<div class="cdata"><pre>
+&lt;?php
+&#039;
+union select &#039;1&#039;, concat(uname||&#039;-&#039;||passwd) as name, &#039;1971-01-01&#039;, &#039;0&#039; from usertable;
+--
+?&gt;
+</pre></div>
+    </div>
+
+   </div>
+   Si cette requête, exploitant les <code class="literal">&#039;</code> et
+   <code class="literal">--</code> est affectée à une variable utilisée dans
+   <var class="varname">$query</var>, une injection SQL va se produire.
+   </p>
+   <p class="para">
+    Les commandes <code class="literal">UPDATE</code> sont aussi sujettes à des
+    attaques de votre base de données. Ces requêtes peuvent aussi introduire
+    toute une nouvelle requête dans votre commande initiale. Mais en plus,
+    le pirate peut jouer sur la commande <code class="literal">SET</code>. Dans ce cas,
+    il doit connaître un peu votre base de données. Cela peut se deviner
+    en examinant les noms de variables dans les formulaires, ou simplement,
+    en testant les cas les plus classiques. Il n&#039;y a pas beaucoup de
+    conventions de noms pour stocker des noms d&#039;utilisateurs et des mots de
+    passe.
+    <div class="example" id="example-388">
+     <p><strong>Exemple #5 Modifier un mot de passe ... et gain de droits!</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$query</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"UPDATE&nbsp;usertable&nbsp;SET&nbsp;pwd='</span><span style="color: #0000BB">$pwd</span><span style="color: #DD0000">'&nbsp;WHERE&nbsp;uid='</span><span style="color: #0000BB">$uid</span><span style="color: #DD0000">';"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   Mais un internaute fourbe peut envoyer une valeur telle que
+   <code class="literal">&#039; or uid like&#039;%admin%</code> dans <var class="varname">$uid</var>
+   pour modifier le mot de passe utilisateur, ou simplement, utiliser la
+   variable <var class="varname">$pwd</var> avec la valeur
+   <code class="literal">hehehe&#039;, trusted=100, admin=&#039;yes</code>
+   pour obtenir des droits supplémentaires. La requête devient alors :
+   <div class="example" id="example-389">
+    <p><strong>Exemple #6 Une requête et son injection</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;$uid&nbsp;==&nbsp;'&nbsp;or&nbsp;uid&nbsp;like&nbsp;'%admin%<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"UPDATE&nbsp;usertable&nbsp;SET&nbsp;pwd='...'&nbsp;WHERE&nbsp;uid=''&nbsp;or&nbsp;uid&nbsp;like&nbsp;'%admin%';"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;$pwd:&nbsp;hehehe',&nbsp;trusted=100,&nbsp;admin='yes<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"UPDATE&nbsp;usertable&nbsp;SET&nbsp;pwd='hehehe',&nbsp;trusted=100,&nbsp;admin='yes'&nbsp;WHERE<br />...;"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   </p>
+   <p class="para">
+    C&#039;est un exemple terrible d&#039;acquisition de droits d&#039;administrateur sur un
+    serveur de base de données.
+    <div class="example" id="example-390">
+     <p><strong>Exemple #7 Attaque d&#039;un serveur de bases de données (MSSQL Server)</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$query&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;*&nbsp;FROM&nbsp;products&nbsp;WHERE&nbsp;id&nbsp;LIKE&nbsp;'%</span><span style="color: #0000BB">$prod</span><span style="color: #DD0000">%'"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mssql_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   Si le pirate injecte la valeur
+   <code class="literal">a%&#039; exec master..xp_cmdshell &#039;net user test testpass /ADD&#039;  --</code>
+   dans la variable <var class="varname">$prod</var>, alors la requête
+   <var class="varname">$query</var> devient :
+   <div class="example" id="example-391">
+    <p><strong>Exemple #8 Attaque d&#039;un serveur de base de données (MSSQL Server) - 2</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$query&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;*&nbsp;FROM&nbsp;products<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;id&nbsp;LIKE&nbsp;'%a%'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exec&nbsp;master..xp_cmdshell&nbsp;'net&nbsp;user&nbsp;test&nbsp;testpass&nbsp;/ADD'&nbsp;--%'"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mssql_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   MSSQL Server exécute les requêtes SQL en lot, y compris la commande
+   d&#039;ajout d&#039;un nouvel utilisateur à la base de données locale. Si cette
+   application fonctionnait en tant que <code class="literal">sa</code> et que le
+   service MSSQLSERVER disposait de niveau de droits suffisant, le pirate
+   dispose désormais d&#039;un compte avec accès au serveur.
+   </p>
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <p class="para">
+     Certains des exemples ci-dessus sont spécifiques à certains serveurs de
+     bases de données. Cela n&#039;empêche pas des attaques similaires d&#039;être
+     possibles sur d&#039;autres produits. Votre base de données sera alors
+     vulnérable d&#039;une autre manière.
+    </p>
+   </p></blockquote>
+   <p class="para">
+    <div class="mediaobject">
+     
+     <div class="imageobject">
+      <img src="images/fa7c5b5f326e3c4a6cc9db19e7edbaf0-xkcd-bobby-tables.png" alt="Un exemple concernant l'injection SQL" width="666" height="205" />
+     </div>
+    </div>
+    Image de <a href="http://xkcd.com/327" class="link external">&raquo;&nbsp;xkcd</a>
+   </p>
+   
+   <div class="sect2" id="security.database.avoiding">
+    <h3 class="title">Techniques de contournement</h3>
+    <p class="simpara">
+     Bien qu&#039;il semble évident qu&#039;un pirate doit posséder quelques connaissances
+     de l&#039;architecture de la base de données afin de conduire avec succès une
+     attaque, il est souvent très simple de les obtenir. Par exemple, si la
+     base de données fait partie d&#039;un paquet open source ou disponible publiquement,
+     ces informations sont complètement ouvertes et disponibles. Ces informations
+     peuvent aussi être divulgués pour des codes sources fermés - y compris si
+     ce code est encodé, occulté, ou compilé - aux travers des messages d&#039;erreurs.
+     D&#039;autres méthodes consistent à deviner l&#039;utilisateur de table commune ainsi
+     que des noms des colonnes. Par exemple, un formulaire d&#039;identification
+     qui utilise la table &#039;users&#039; avec les colonnes de noms
+     &#039;id&#039;, &#039;username&#039;, et &#039;password&#039;.
+    </p>
+    <p class="simpara">
+     Ces attaques sont généralement basées sur l&#039;exploitation de code qui
+     n&#039;est pas écrit de manière sécuritaire. N&#039;ayez aucune confiance dans
+     les données qui proviennent de l&#039;utilisateur, même si cela provient d&#039;un
+     menu déroulant, d&#039;un champ caché ou d&#039;un cookie. Le premier exemple montre
+     comment une requête peut causer un désastre.
+    </p>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       Ne nous connectez jamais sur une base de données en tant que super
+       utilisateur ou propriétaire de la base. Utilisez toujours un utilisateur
+       adapté, avec des droits très limités.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       Utilisez des requêtes préparées avec des variables liées. Elles sont
+       disponibles avec <a href="pdo.prepared-statements.html" class="link">PDO</a>,
+       <a href="mysqli.quickstart.prepared-statements.html" class="link">MySQLi</a>
+       ainsi que d&#039;autres bibliotèques.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       Vérifiez que les données ont bien le type attendu. <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> dispose
+       d&#039;un éventail de fonction de validation large, depuis les plus
+       simples, de la section <a href="ref.var.html" class="link">Variables</a> et
+       la section <a href="ref.ctype.html" class="link">Caractères</a>
+       (e.g. <span class="function"><a href="function.is-numeric.html" class="function">is_numeric()</a></span>, <span class="function"><a href="function.ctype-digit.html" class="function">ctype_digit()</a></span>
+       respectivement) aux fonctions avancées de
+       <a href="ref.pcre.html" class="link">Expression rationnelle Perl</a>.
+      </span>
+     </li>
+     <li class="listitem">
+      <p class="para">
+       Si l&#039;application attend une entrée numérique, vérifiez vos données
+       avec la fonction <span class="function"><a href="function.ctype-digit.html" class="function">ctype_digit()</a></span>, ou bien modifiez
+       automatiquement le type avec la fonction <span class="function"><a href="function.settype.html" class="function">settype()</a></span>,
+       ou encore avec <span class="function"><a href="function.sprintf.html" class="function">sprintf()</a></span>.
+       <div class="example" id="example-392">
+        <p><strong>Exemple #9 Une navigation de fiches plus sécuritaire</strong></p>
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />settype</span><span style="color: #007700">(</span><span style="color: #0000BB">$offset</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'integer'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;name&nbsp;FROM&nbsp;products&nbsp;ORDER&nbsp;BY&nbsp;name&nbsp;LIMIT&nbsp;20&nbsp;OFFSET&nbsp;</span><span style="color: #0000BB">$offset</span><span style="color: #DD0000">;"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;notez&nbsp;que&nbsp;%d&nbsp;dans&nbsp;la&nbsp;chaîne&nbsp;de&nbsp;format&nbsp;:&nbsp;%s&nbsp;serait&nbsp;inutile<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;name&nbsp;FROM&nbsp;products&nbsp;ORDER&nbsp;BY&nbsp;name&nbsp;LIMIT&nbsp;20&nbsp;OFFSET&nbsp;%d;"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$offset</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+       </div>
+
+      </div>
+     </p>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Si la couche de base de données ne suppose pas les variables liées,
+      alors, mettez entre guillemets toutes les valeurs non numériques qui sont
+      passées à la base de données avec la fonction spécifique à la base de
+      données d&#039;échappement de caractères (e.g.
+      <span class="function"><a href="function.mysql-real-escape-string.html" class="function">mysql_real_escape_string()</a></span>,
+      <span class="function"><a href="function.sqlite-escape-string.html" class="function">sqlite_escape_string()</a></span>, etc.).
+      Les fonctions génériques comme <span class="function"><a href="function.addslashes.html" class="function">addslashes()</a></span> sont utiles
+      uniquement dans un environnement très spécifique (i.e. MySQL avec un jeu
+      de caractères sur un seul octet avec <var class="varname">NO_BACKSLASH_ESCAPES</var>
+      désactivé), aussi, il est préférable de ne pas les utiliser.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      N&#039;affichez jamais d&#039;informations spécifiques à la base, et notamment
+      des informations concernant le schéma. Voyez aussi la section
+      <a href="security.errors.html" class="link">Rapport d&#039;erreur</a> et le chapitre
+      <a href="ref.errorfunc.html" class="link">Gestion des erreurs</a>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Vous pouvez avoir des procédures stockées et des curseurs prédéfinis qui
+      font que les utilisateurs n&#039;ont pas un accès direct aux tables ou vues,
+      mais cette solution a d&#039;autres impacts.
+     </span>
+    </li>
+   </ul>
+   <p class="simpara">
+    À côté de ces conseils, il est recommandé d&#039;enregistrer vos requêtes, soit
+    dans vos scripts, soit dans la base elle-même, si elle le supporte.
+    Évidemment, cet enregistrement ne sera pas capable d&#039;empêcher une attaque,
+    mais vous permettra de retrouver la requête qui a fauté. L&#039;historique
+    n&#039;est pas très utile par lui-même, mais au niveau des informations qu&#039;il
+    contient. Plus vous avez de détails, mieux c&#039;est.
+   </p>
+   </div>
+ </div></div></div></body></html>

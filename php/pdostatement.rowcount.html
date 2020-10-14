@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne le nombre de lignes affect&eacute;es par le dernier 
+   appel &agrave; la fonction PDOStatement::execute()</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="pdostatement.nextrowset.html">« PDOStatement::nextRowset</a></li>
+      <li style="float: right;"><a href="pdostatement.setattribute.html">PDOStatement::setAttribute »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.pdostatement.html">PDOStatement</a></li>
+    <li>Retourne le nombre de lignes affect&eacute;es par le dernier 
+   appel &agrave; la fonction PDOStatement::execute()</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="pdostatement.rowcount" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">PDOStatement::rowCount</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7, PECL pdo &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">PDOStatement::rowCount</span> &mdash; <span class="dc-title">
+   Retourne le nombre de lignes affectées par le dernier 
+   appel à la fonction PDOStatement::execute()
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-pdostatement.rowcount-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>PDOStatement::rowCount</strong></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">int</span></div>
+
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>PDOStatement::rowCount()</strong></span> retourne le nombre de lignes
+   affectées par la dernière requête DELETE, INSERT ou UPDATE exécutée par
+   l&#039;objet <code class="literal">PDOStatement</code> correspondant. 
+  </p>
+  <p class="para">
+   Si la dernière requête SQL exécutée par l&#039;objet <code class="literal">PDOStatement</code>
+   associé est une requête de type SELECT, quelques bases de données
+   retourneront le nombre de lignes retournées par cette requête. Néanmoins, 
+   ce comportement n&#039;est pas garanti pour toutes les bases de données
+   et ne devrait pas être exécuté pour des applications portables.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Cette méthode retourne toujours &quot;0&quot; (zéro) avec le pilote SQLite,
+    et avec le pilote PostgreSQL uniquement quand l&#039;attribut de déclaration
+    <strong><code>PDO::ATTR_CURSOR</code></strong> est définie à
+    <strong><code>PDO::CURSOR_SCROLL</code></strong>.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-pdostatement.rowcount-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne le nombre de lignes.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-pdostatement.rowcount-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-1048">
+    <p><strong>Exemple #1 Retourne le nombre de lignes effacées</strong></p>
+    <div class="example-contents"><p>
+     <span class="function"><strong>PDOStatement::rowCount()</strong></span> retourne
+     le nombre de lignes affectées par une requête DELETE, INSERT,
+     ou UPDATE.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Effacement&nbsp;de&nbsp;toutes&nbsp;les&nbsp;lignes&nbsp;de&nbsp;la&nbsp;table&nbsp;FRUIT&nbsp;*/<br /></span><span style="color: #0000BB">$del&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">'DELETE&nbsp;FROM&nbsp;fruit'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$del</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;Retourne&nbsp;le&nbsp;nombre&nbsp;de&nbsp;lignes&nbsp;effacées&nbsp;*/<br /></span><span style="color: #007700">print(</span><span style="color: #DD0000">"Retourne&nbsp;le&nbsp;nombre&nbsp;de&nbsp;lignes&nbsp;effacées&nbsp;:\n"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$count&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$del</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">rowCount</span><span style="color: #007700">();<br />print(</span><span style="color: #DD0000">"Effacement&nbsp;de&nbsp;</span><span style="color: #0000BB">$count</span><span style="color: #DD0000">&nbsp;lignes.\n"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+ <div class="cdata"><pre>
+Retourne le nombre de lignes effacées :
+Effacement de 9 lignes.
+</pre></div>
+    </div>
+    </div>
+    <div class="example" id="example-1049">
+     <p><strong>Exemple #2 Comptage des lignes retournées par une requête SELECT</strong></p>
+     <div class="example-contents"><p>
+      Pour la plupart des bases de données, <span class="function"><strong>PDOStatement::rowCount()</strong></span>
+      ne retourne pas le nombre de lignes affectées par une requête SELECT.
+      À la place, utilisez <span class="function"><a href="pdo.query.html" class="function">PDO::query()</a></span> pour faire une requête
+      SELECT COUNT(*), puis utilisez <span class="function"><a href="pdostatement.fetchcolumn.html" class="function">PDOStatement::fetchColumn()</a></span>
+      pour récupérer le nombre de lignes retournées. Votre application peut ainsi
+      effectuer la bonne action.
+     </p></div>
+     <div class="example-contents">
+  <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;COUNT(*)&nbsp;FROM&nbsp;fruit&nbsp;WHERE&nbsp;calories&nbsp;&gt;&nbsp;100"</span><span style="color: #007700">;<br />if&nbsp;(</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">))&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Récupère&nbsp;le&nbsp;nombre&nbsp;de&nbsp;lignes&nbsp;qui&nbsp;correspond&nbsp;à&nbsp;la&nbsp;requête&nbsp;SELECT&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetchColumn</span><span style="color: #007700">()&nbsp;&gt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Effectue&nbsp;la&nbsp;vraie&nbsp;requête&nbsp;SELECT&nbsp;et&nbsp;travaille&nbsp;sur&nbsp;le&nbsp;résultat&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;nom&nbsp;FROM&nbsp;fruit&nbsp;WHERE&nbsp;calories&nbsp;&gt;&nbsp;100"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">)&nbsp;as&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"Nom&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'NOM'</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Aucune&nbsp;ligne&nbsp;ne&nbsp;correspond&nbsp;--&nbsp;faire&nbsp;quelque&nbsp;chose&nbsp;d'autre&nbsp;*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"Aucune&nbsp;ligne&nbsp;ne&nbsp;correspond&nbsp;à&nbsp;la&nbsp;requête."</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+apple
+banana
+orange
+pear
+</pre></div>
+     </div>
+    </div>
+   </p>
+  </div>
+
+
+  <div class="refsect1 seealso" id="refsect1-pdostatement.rowcount-seealso">
+   <h3 class="title">Voir aussi</h3>
+   <p class="para">
+    <ul class="simplelist">
+    <li class="member"><span class="function"><a href="pdostatement.columncount.html" class="function" rel="rdfs-seeAlso">PDOStatement::columnCount()</a> - Retourne le nombre de colonnes dans le jeu de r&eacute;sultats</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.fetchcolumn.html" class="function" rel="rdfs-seeAlso">PDOStatement::fetchColumn()</a> - Retourne une colonne depuis la ligne suivante d'un jeu de r&eacute;sultats</span></li>
+    <li class="member"><span class="function"><a href="pdo.query.html" class="function" rel="rdfs-seeAlso">PDO::query()</a> - Ex&eacute;cute une requ&ecirc;te SQL, retourne un jeu de r&eacute;sultats en tant 
+   qu'objet PDOStatement</span></li>
+    </ul>
+   </p>
+  </div>
+
+</div></div></div></body></html>

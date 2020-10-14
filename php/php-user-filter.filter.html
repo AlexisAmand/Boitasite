@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Appel&eacute; lors de l'application d'un filtre</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="class.php-user-filter.html">« php_user_filter</a></li>
+      <li style="float: right;"><a href="php-user-filter.onclose.html">php_user_filter::onClose »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.php-user-filter.html">php_user_filter</a></li>
+    <li>Appel&eacute; lors de l'application d'un filtre</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="php-user-filter.filter" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_user_filter::filter</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">php_user_filter::filter</span> &mdash; <span class="dc-title">Appelé lors de l&#039;application d&#039;un filtre</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-php-user-filter.filter-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>php_user_filter::filter</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$in</code></span>
+   , <span class="methodparam"><span class="type">resource</span> <code class="parameter">$out</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter reference">&$consumed</code></span>
+   , <span class="methodparam"><span class="type">bool</span> <code class="parameter">$closing</code></span>
+   ) : <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   Cette méthode est appelée lorsque les données sont lues depuis le flux
+   attaché, ou écrites sur le flux attaché (lors de l&#039;utilisation de la fonction
+   <span class="function"><a href="function.fread.html" class="function">fread()</a></span> ou la fonction <span class="function"><a href="function.fwrite.html" class="function">fwrite()</a></span>).
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-php-user-filter.filter-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">in</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Le paramètre <code class="parameter">in</code> est une ressource pointant vers
+      un <code class="literal">bucket brigade</code> qui contient un ou plusieurs
+      objets <code class="literal">bucket</code> contenant les données à filtrer.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">out</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Le paramètre <code class="parameter">out</code> est une ressource pointant
+      vers un second <code class="literal">bucket brigade</code> dans lequel vos
+      <code class="literal">bucket</code> modifiés doivent être placés.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">consumed</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Le paramètre <code class="parameter">consumed</code>, qui doit <em class="emphasis">toujours</em>
+      être déclaré par référence, doit être incrémenté par la longueur
+      des données filtrés par votre filtre. Dans la plupart des cas, cela
+      signifie que vous devez incrémenter le paramètre <code class="parameter">consumed</code>
+      par <code class="literal">$bucket-&gt;datalen</code> pour chaque <code class="literal">$bucket</code>.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">closing</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Si le flux est dans un processus de fermeture (et donc, c&#039;est la
+      dernière passe via la chaîne de filtrage), le paramètre
+      <code class="parameter">closing</code> sera défini à <strong><code>TRUE</code></strong>.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-php-user-filter.filter-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   La méthode <span class="methodname"><strong>filter()</strong></span> doit retourner au final
+   une de ces trois valeurs.
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Valeur retournée</th>
+       <th>Signification</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td><strong><code>PSFS_PASS_ON</code></strong></td>
+       <td>
+        Le processus de filtrage s&#039;est terminé avec succès, et les
+        données sont disponibles dans le paramètre
+        <code class="parameter">out</code> <code class="literal">bucket brigade</code>.
+       </td>
+      </tr>
+
+      <tr>
+       <td><strong><code>PSFS_FEED_ME</code></strong></td>
+       <td>
+        Le processus de filtrage s&#039;est terminé avec succès, cependant,
+        aucune donnée n&#039;est disponible pour être retourné.
+        Plus de données sont requis depuis le flux ou avant filtrage.
+       </td>
+      </tr>
+
+      <tr>
+       <td><strong><code>PSFS_ERR_FATAL</code></strong> (défaut)</td>
+       <td>
+        Le filtre a rencontré une erreur fatale et ne peut continuer.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+
+</div></div></div></body></html>

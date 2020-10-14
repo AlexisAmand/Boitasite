@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Niveaux de service et consistence</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-ms.filter.html">« Les filtres</a></li>
+      <li style="float: right;"><a href="mysqlnd-ms.gtid.html">Identifiants de transaction »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-ms.concepts.html">Concepts</a></li>
+    <li>Niveaux de service et consistence</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-ms.qos-consistency" class="section">
+  <h2 class="title">Niveaux de service et consistence</h2>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Version requise</strong><br />
+   <p class="para">
+    Les niveaux de service ont été ajoutés dans mysqlnd_ms version 1.2.0-alpha.
+    <span class="function"><a href="function.mysqlnd-ms-set-qos.html" class="function">mysqlnd_ms_set_qos()</a></span> requiert PHP 5.4.0 ou plus récent.
+   </p>
+  </p></blockquote>
+  <p class="para">
+   Le plugin peut être utilisé avec différents types de clusters MySQL.
+   Différents clusters vont délivrer différents niveaux de service à l&#039;application.
+   Les niveaux de services peuvent être classés par niveau de concistence des données
+   qu&#039;ils proposent. Le plugin reconnait:
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">eventual consistency</span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">session consistency</span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">strong consistency</span>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   En fonction de la manière dont le cluster est utilisé, il est possible d&#039;avoir des
+   niveaux de service plus hauts que celui par défaut. Par exemple, une lecture depuis
+   un esclave MySQL asynchrone est éventuellement consistente. Ainsi, on peut dire que
+   le niveau de consistence d&#039;un cluster de réplication MySQL est éventuelle, cependant,
+   si le maitre est seulement utilisé pour lire et écrire durant une session, on a
+   une consistence de session (&quot;lit tes écritures&quot;). PECL mysqlnd 1.2.0 abstrait les détails
+   concernant le choix d&#039;un noeud approprié de la couche de service sur-jascente
+   de l&#039;utilisateur.
+  </p>
+  <p class="para">
+   Les niveaux de service peuvent être ajoutés via le filtre qualify-of-service dans le
+   <a href="mysqlnd-ms.plugin-ini-json.html" class="link">fichier de configuration des plugins</a>
+   et pendant l&#039;exécution au moyen de la fonction <span class="function"><a href="function.mysqlnd-ms-set-qos.html" class="function">mysqlnd_ms_set_qos()</a></span>.
+  </p>
+  <p class="para">
+   Les différents niveaux de service sont définis comme suit.
+  </p>
+  <p class="para">
+   La consistence éventuelle est le niveau de service par défaut proposé par un cluster
+   asynchrone comme la réplication MySQL classique. Une opération de lecture sur un noeud
+   peut éventuellement retourner une données à jour, ou pas. La consistence est éventuelle.
+  </p>
+  <p class="para">
+   La consistence de session est proposée lorsque le client peut toujours lire ses écritures.
+   Un cluster de réplication MySQL asynchrone peut fournir la consistence de session si les
+   clients utilisent toujours le maitre après la première écriture ou n&#039;interrogent jamais
+   un esclave qui n&#039;a pas encore répliqué la donnée écrite.
+  </p>
+  <p class="para">
+   Le plugin voit la consistence forte comme le fait que tout client puisse toujours voir
+   des données écrites des autres clients. C&#039;est le cas par défaut avec le cluster MySQL
+   ou tout autre type de cluster proposant une distribution synchrone des données.
+  </p>
+  <p class="para">
+   <em class="emphasis">Paramètres des niveaux de service</em>
+  </p>
+  <p class="para">
+   Les consistences éventuelle et de session acceptent des paramètres.
+  </p>
+  <p class="para">
+   La consistence éventuelle est le service proposé par la réplication classique MySQL.
+   Par défaut, tous les noeuds peuvent être éligibles à la lecture. Un paramètre optionnel
+   <code class="literal">age</code> peut être utilisé pour filtrer les noeuds qui ont un certain retard
+   en secondes sur le maitre. Le plugin utilise <code class="literal">SHOW SLAVE STATUS</code>
+   pour mesurer le retard. Voyez le manuel de référence de MySQL pour plus d&#039;informations sur
+   la précision et la fiabilité de la commande <code class="literal">SHOW SLAVE STATUS</code>.
+  </p>
+  <p class="para">
+   La consistence de session (&quot;lit tes écritures&quot;) accepte un paramètre optionnel
+   <code class="literal">GTID</code> permettant d&#039;autoriser la lecture pas seulement sur le maitre, mais
+   aussi sur un esclave qui a répliqué la donnée, par son identifiant de transaction.
+   Ainsi, dans la réplication asynchrone, les lectures peuvent être équilibrées sur des esclaves
+   tout en assurant une consistence au niveau session.
+  </p>
+  <p class="para">
+   Vous devez utiliser pour cela
+   <a href="mysqlnd-ms.gtid.html" class="link">L&#039;injection d&#039;identifiant de transaction coté client</a>.
+  </p>
+  <p class="para">
+   <em class="emphasis">Avantages de la nouvelle approche</em>
+  </p>
+  <p class="para">
+   La nouvelle approche dépasse l&#039;utilisation d&#039;astuces SQL et l&#039;option
+   <code class="literal">master_on_write</code> sur certains axes. Si une application qui tourne avec
+   une réplication MySQL asynchrone ne peut accepter de données non fraiches sur certaines
+   lectures, il est plus simple de laisser le plugin choisir le noeud approprié que de
+   préfixer toutes ses requêtes d&#039;astuces SQL pour forcer l&#039;utilisation du maitre. Aussi,
+   le plugin peut selectionner des esclaves dans ce cas.
+  </p>
+  <p class="para">
+   L&#039;option <code class="literal">master_on_write</code> fait en sorte que le plugin choisisse le maitre
+   après la première écriture (consistence de session). Dans certains cas, la consistence de
+   session pourrait n&#039;être utile que pour certaines lectures, et non toute la session courante.
+   De ce fait, <code class="literal">master_on_write</code> pourrait engendrer plus de lectures sur le
+   maitre que nécessaire. Dans de tels cas, il est mieux de vouloir un niveau de consistence plus
+   haut que celui par défaut, juste pour certaines lectures le nécessitant. Une fois les lectures
+   passées, le niveau de consistence peut retomber à la normale. Changer de niveau de service
+   n&#039;est possible qu&#039;avec <span class="function"><a href="function.mysqlnd-ms-set-qos.html" class="function">mysqlnd_ms_set_qos()</a></span>.
+  </p>
+  <p class="para">
+   <em class="emphasis">Considerations de performance</em>
+  </p>
+  <p class="para">
+   Une réplication MySQL ne peut indiquer aux clients quels esclaves sont capables de délivrer
+   tel ou tel niveau de consistence. Ainsi, dans certains cas, les clients doivent requêter
+   les esclaves pour connaitre leur statut. PECL mysqlnd_ms exécute de manière transparente
+   les requêtes necéssaires, mais cette opération est lourde, elle est exécutée si la
+   consistence éventuelle est combinée avec une limite d&#039;âge (retard de l&#039;esclave), ou si
+   la consistence de session est combinée avec un identifiant de transaction.
+  </p>
+  <p class="para">
+   Si la concistence éventuelle est combinée avec une limite d&#039;âge, le plugin selectionne
+   le noeud pour chaque requête. Si c&#039;est une écriture, tous les maitres sont candidats, les
+   esclaves ne sont pas vérifiés. Si c&#039;est une lecture, le plugin exécute
+   <code class="literal">SHOW SLAVE STATUS</code> sur tous les esclaves, les candidats sont ceux qui
+   répondent <code class="literal">Slave_IO_Running=Yes</code>,
+   <code class="literal">Slave_SQL_Running=Yes</code> et qui ont
+   <code class="literal">Seconds_Behind_Master</code> inférieur ou égal à l&#039;âge maximum demandé.
+   Dans le cas d&#039;une erreur SQL, le plugin envoie un message d&#039;erreur mais ne considère pas
+   la connexion comme mauvaise, l&#039;erreur ne permet pas au plugin d&#039;écarter tel ou tel noeud.
+  </p>
+  <p class="para">
+   Si la consistence de session est combinée à un identifiant de transaction global, le plugin
+   exécute la requête SQL avec <code class="literal">fetch_last_gtid</code> équivalant à la section
+   <code class="literal">global_transaction_id_injection</code> du fichier de configuration du plugin.
+  </p>
+  <p class="para">
+   En version 1.2.0, aucune optimisation supplémentaire n&#039;est effectuée concernant les requêtes
+   en arrière plan. Les versions futures pourraient embarquer de telles optimisation, en fonction
+   des demandes utilisateur.
+  </p>
+  <p class="para">
+   Si aucun paramètre ou option n&#039;est précisé, aucun SQL n&#039;est nécessaire. Dans ce cas, le plugin
+   considère tous les noeuds comme suit.
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">Consistence éventuelle, pas d&#039;option passée: tous les maitres, tous les esclaves</span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">Consistence de session, pas d&#039;options passée: tous les maitres</span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">Consistence forte (pas d&#039;option possible): tous les maitres</span>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   <em class="emphasis">Etranglement</em>
+  </p>
+  <p class="para">
+   La qualité d&#039;un filtre de service peut être combinée avec
+   <a href="mysqlnd-ms.gtid.html" class="link">les identifiants globaux de transaction</a>
+   pour limiter les clients. L&#039;étranglement va réduire la charge en écriture
+   sur le maître en ralentissant les clients. Si une consistence de
+   session est demandée, et que les identifiants globaux de session
+   sont utilisés pour vérifier le statut d&#039;un esclave, la vérification
+   peut être effectuée de deux façons différentes. Par défaut, un esclave
+   est vérifiée et écartée immédiatement s&#039;il ne correspond pas aux critères
+   d&#039;une consistence de session. Alternativement, le plugin peut attendre
+   pour attrapper un esclave pour le maître qu&#039;une consistence de session
+   soit possible. Pour activer l&#039;étranglement, vous devez définir
+   l&#039;option de configuration
+   <a href="mysqlnd-ms.plugin-ini-json.html#ini.mysqlnd-ms-plugin-config-v2.gtid" class="link">wait_for_gtid_timeout</a>.
+  </p>
+ </div></div></div></body></html>

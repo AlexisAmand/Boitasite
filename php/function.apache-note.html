@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Affiche ou affecte la table des notes d'Apache</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.apache-lookup-uri.html">« apache_lookup_uri</a></li>
+      <li style="float: right;"><a href="function.apache-request-headers.html">apache_request_headers »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.apache.html">Fonctions Apache</a></li>
+    <li>Affiche ou affecte la table des notes d'Apache</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.apache-note" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">apache_note</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">apache_note</span> &mdash; <span class="dc-title">Affiche ou affecte la table des notes d&#039;Apache</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.apache-note-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>apache_note</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$note_name</code></span>
+   ) : <span class="type">string</span></div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>apache_note</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$note_name</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$note_value</code></span>
+   ) : <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   Cette fonction est une abstraction des commandes <code class="literal">table_get</code> et
+   <code class="literal">table_set</code> d&#039;Apache. Elle édite la table des notes qui existe lors d&#039;une
+   requête. Le but de cette table est de permettre aux modules Apache de communiquer.
+  </p>
+  <p class="para">
+   L&#039;utilité de la fonction <span class="function"><strong>apache_note()</strong></span> est de passer des informations
+   d&#039;un module vers un autre, durant la même requête.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.apache-note-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">note_name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nom de la note.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">note_value</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La valeur de la note.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.apache-note-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Si la fonction est appelée avec un argument, elle renvoie
+   la valeur courante de la variable <code class="literal">note_name</code>. Si
+   elle est appelée avec deux arguments,
+   elle affecte à la note <code class="literal">note_name</code>
+   la valeur <code class="literal">note_value</code> et elle
+   retournera la valeur précédente de la variable <code class="literal">note_name</code>.
+   Si la note ne peut être récupérée, <strong><code>FALSE</code></strong> est retourné.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.apache-note-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-5366">
+    <p><strong>Exemple #1 Passage d&#039;informations entre PHP et Perl</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />apache_note</span><span style="color: #007700">(</span><span style="color: #DD0000">'name'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'Fredrik&nbsp;Ekengren'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Appel&nbsp;du&nbsp;script&nbsp;Perl<br /></span><span style="color: #0000BB">virtual</span><span style="color: #007700">(</span><span style="color: #DD0000">"/perl/some_script.pl"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">apache_note</span><span style="color: #007700">(</span><span style="color: #DD0000">"resultdata"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents">
+<div class="perlcode"><pre class="perlcode"># Récupération de l&#039;objet de demande Apache
+my $r = Apache-&gt;request()-&gt;main();
+
+# Récupération des données passées
+my $name = $r-&gt;notes(&#039;name&#039;);
+
+# Des traitements
+
+# Envoi du résultat vers PHP
+$r-&gt;notes(&#039;resultdata&#039;, $result);</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5367">
+    <p><strong>Exemple #2 Valeurs d&#039;identification dans le fichier access.log</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />apache_note</span><span style="color: #007700">(</span><span style="color: #DD0000">'sessionID'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">session_id</span><span style="color: #007700">());<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents">
+<div class="apachecode"><pre class="apachecode"># &quot;%{sessionID}n&quot; peut être utilisé dans la directive LogFormat</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.apache-note-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.virtual.html" class="function" rel="rdfs-seeAlso">virtual()</a> - Effectue une sous-requ&ecirc;te Apache</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

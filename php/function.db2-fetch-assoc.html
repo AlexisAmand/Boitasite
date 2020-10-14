@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne un tableau, index&eacute; par nom de colonne, repr&eacute;sentant une ligne du jeu
+   de r&eacute;sultats</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.db2-fetch-array.html">« db2_fetch_array</a></li>
+      <li style="float: right;"><a href="function.db2-fetch-both.html">db2_fetch_both »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.ibm-db2.html">Fonctions IBM DB2</a></li>
+    <li>Retourne un tableau, index&eacute; par nom de colonne, repr&eacute;sentant une ligne du jeu
+   de r&eacute;sultats</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.db2-fetch-assoc" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">db2_fetch_assoc</h1>
+  <p class="verinfo">(PECL ibm_db2 &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">db2_fetch_assoc</span> &mdash; <span class="dc-title">
+   Retourne un tableau, indexé par nom de colonne, représentant une ligne du jeu
+   de résultats
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.db2-fetch-assoc-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>db2_fetch_assoc</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$stmt</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$row_number</code><span class="initializer"> = -1</span></span>
+  ] ) : <span class="type">array</span></div>
+
+
+  <p class="para rdfs-comment">
+   Retourne un tableau, indexé par nom de colonne, représentant une ligne du jeu
+   de résultats.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.db2-fetch-assoc-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">stmt</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une ressource <code class="literal">stmt</code> valide contenant le jeu de
+       résultats.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">row_number</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Demande une ligne spécifique indexée numériquement qui commence par la
+       valeur 1 au jeu de résultat. En fournissant ce paramètre, vous
+       obtiendrez une alerte PHP si le jeu de résultat
+       utilise une curseur d&#039;avancement seul.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.db2-fetch-assoc-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau associatif avec les valeurs des colonnes indexées par
+   le nom des colonnes représentant la ligne suivante ou la ligne demandée dans le
+   jeu de résultats. Retourne <strong><code>FALSE</code></strong> s&#039;il n&#039;y a pas de ligne disponible dans
+   le jeu de résultats ou si la ligne demandée par
+   <code class="parameter">row_number</code> n&#039;existe pas dans le jeu de résultats.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.db2-fetch-assoc-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-1259">
+    <p><strong>Exemple #1 Itère avec un curseur d&#039;avancement seul</strong></p>
+    <div class="example-contents"><p>
+     Si vous appelez <span class="function"><strong>db2_fetch_assoc()</strong></span> sans le numéro d&#039;une
+     ligne spécifique, la ligne suivante sera automatiquement récupérée dans le
+     jeu de résultats.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;nom,&nbsp;race,&nbsp;poids&nbsp;FROM&nbsp;animaux&nbsp;ORDER&nbsp;BY&nbsp;race"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /><br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"%-5d&nbsp;%-16s&nbsp;%-32s&nbsp;%10s\n"</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'ID'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'NOM'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'RACE'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'POIDS'</span><span style="color: #007700">]);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+0     Pook             chat                                   3.20
+5     Rickety Ride     chèvre                                 9.70
+2     Smarty           cheval                               350.00
+</pre></div>
+    </div>
+   </div>
+
+   <div class="example" id="example-1260">
+    <p><strong>Exemple #2 Récupération de lignes spécifiques avec <span class="function"><strong>db2_fetch_assoc()</strong></span>
+     provenant d&#039;un curseur flottant</strong></p>
+    <div class="example-contents"><p>
+     Si votre jeu de résultats utilise un curseur flottant, vous pouvez
+     appeler la fonction <span class="function"><strong>db2_fetch_assoc()</strong></span> avec un numéro
+     de ligne spécifique. L&#039;exemple suivant récupère chaque ligne paire dans
+     le jeu de résultats, commençant avec la deuxième ligne.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;nom,&nbsp;race,&nbsp;poids&nbsp;FROM&nbsp;animaux&nbsp;ORDER&nbsp;BY&nbsp;race"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'cursor'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">DB2_SCROLLABLE</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">$i</span><span style="color: #007700">=</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"%-5d&nbsp;%-16s&nbsp;%-32s&nbsp;%10s\n"</span><span style="color: #007700">,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'ID'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'NOM'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'RACE'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'POIDS'</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">+&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+0     Pook             chat                                   3.20
+5     Rickety Ride     chèvre                                 9.70
+2     Smarty           cheval                               350.00
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.db2-fetch-assoc-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.db2-fetch-array.html" class="function" rel="rdfs-seeAlso">db2_fetch_array()</a> - Retourne un tableau, index&eacute; par la position des colonnes, repr&eacute;sentant une
+   ligne du jeu de r&eacute;sultats</span></li>
+    <li class="member"><span class="function"><a href="function.db2-fetch-both.html" class="function" rel="rdfs-seeAlso">db2_fetch_both()</a> - Retourne un tableau, index&eacute; par nom de colonne et position, repr&eacute;sentant
+   une ligne du jeu de r&eacute;sultats</span></li>
+    <li class="member"><span class="function"><a href="function.db2-fetch-object.html" class="function" rel="rdfs-seeAlso">db2_fetch_object()</a> - Retourne un objet avec les propri&eacute;t&eacute;s repr&eacute;sentant des colonnes dans la
+   ligne extraite</span></li>
+    <li class="member"><span class="function"><a href="function.db2-fetch-row.html" class="function" rel="rdfs-seeAlso">db2_fetch_row()</a> - Modifie le pointeur du jeu de r&eacute;sultat &agrave; la prochaine ligne ou &agrave; la ligne
+   demand&eacute;e</span></li>
+    <li class="member"><span class="function"><a href="function.db2-result.html" class="function" rel="rdfs-seeAlso">db2_result()</a> - Retourne une colonne d'une ligne d'un jeu de r&eacute;sultats</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

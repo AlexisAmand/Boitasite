@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Trouve la position de la premi&egrave;re occurrence d'une cha&icirc;ne dans une autre</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.iconv-strlen.html">« iconv_strlen</a></li>
+      <li style="float: right;"><a href="function.iconv-strrpos.html">iconv_strrpos »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.iconv.html">Fonctions iconv</a></li>
+    <li>Trouve la position de la premi&egrave;re occurrence d'une cha&icirc;ne dans une autre</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.iconv-strpos" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">iconv_strpos</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">iconv_strpos</span> &mdash; <span class="dc-title">Trouve la position de la première occurrence d&#039;une chaîne dans une autre</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.iconv-strpos-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>iconv_strpos</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$haystack</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$needle</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$offset</code><span class="initializer"> = 0</span></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$charset</code><span class="initializer"> = ini_get(&quot;iconv.internal_encoding&quot;)</span></span>
+  ]] ) : <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   Trouve la position de la première occurrence de <code class="parameter">needle</code>
+   dans <code class="parameter">haystack</code>.
+  </p>
+  <p class="para">
+   À l&#039;opposé de <span class="function"><a href="function.strpos.html" class="function">strpos()</a></span>, la valeur retournée par
+   <span class="function"><strong>iconv_strpos()</strong></span> est le nombre de caractères
+   se trouvant avant <code class="parameter">needle</code>, plutôt que la position en octets où <code class="parameter">needle</code> a été trouvé.
+   Les caractères sont comptés en se basant sur le jeux de caractères spécifié par
+   <code class="parameter">charset</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.iconv-strpos-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">haystack</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La <a href="language.types.string.html" class="link">chaîne de caractères</a> entière.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">needle</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La <a href="language.types.string.html" class="link">chaîne de caractères</a> à chercher.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">offset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le paramètre optionnel <code class="parameter">offset</code> spécifie la position
+       à partir de laquelle la recherche doit commencer.
+       Si la position est négative, elle est compté depuis la fin de la <a href="language.types.string.html" class="link">chaîne de caractères</a>
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">charset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Si le paramètre <code class="parameter">charset</code> est omis,
+       <code class="parameter">string</code> sera encodé en accord avec
+       <a href="iconv.configuration.html" class="link">iconv.internal_encoding</a>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+  <p class="para">
+   Si <code class="parameter">haystack</code> ou <code class="parameter">needle</code> ne
+   sont pas des chaînes de caractères, ils sont convertis en entiers et
+   appliqués en tant que valeur ordinale d&#039;un caractère.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.iconv-strpos-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne la position numérique de la première occurrence de
+   <code class="parameter">needle</code> dans <code class="parameter">haystack</code>.
+  </p>
+  <p class="para">
+   Si <code class="parameter">needle</code> n&#039;est pas trouvé,
+   <span class="function"><strong>iconv_strpos()</strong></span> retournera <strong><code>FALSE</code></strong>.
+  </p>
+  <div class="warning"><strong class="warning">Avertissement</strong><p class="simpara">
+ Cette fonction peut retourner <strong><code>FALSE</code></strong>, mais elle peut aussi retourner une valeur équivalent à <strong><code>FALSE</code></strong>.
+ Veuillez lire la section sur les <a href="language.types.boolean.html" class="link">booléens</a> pour plus d&#039;informations.
+ Utilisez l&#039;<a href="language.operators.comparison.html" class="link">opérateur ===</a>
+ pour tester la valeur de retour exacte de cette fonction.
+</p></div>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.iconv-strpos-changelog">
+  <h3 class="title">Historique</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Version</th>
+      <th>Description</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>7.1.0</td>
+      <td>
+       Suppport pour les <code class="parameter">offset</code>s négatifs a été ajouté.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.iconv-strpos-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.strpos.html" class="function" rel="rdfs-seeAlso">strpos()</a> - Cherche la position de la premi&egrave;re occurrence dans une cha&icirc;ne</span></li>
+    <li class="member"><span class="function"><a href="function.iconv-strrpos.html" class="function" rel="rdfs-seeAlso">iconv_strrpos()</a> - Trouve la position de la derni&egrave;re occurrence d'un &eacute;l&eacute;ment dans une cha&icirc;ne</span></li>
+    <li class="member"><span class="function"><a href="function.mb-strpos.html" class="function" rel="rdfs-seeAlso">mb_strpos()</a> - Rep&egrave;re la premi&egrave;re occurrence d'un caract&egrave;re dans une cha&icirc;ne</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

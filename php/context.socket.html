@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Liste des options de contexte des sockets</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="context.html">« Options et param&egrave;tres de contexte</a></li>
+      <li style="float: right;"><a href="context.http.html">Options de contexte HTTP »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="context.html">Options et param&egrave;tres de contexte</a></li>
+    <li>Liste des options de contexte des sockets</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="context.socket" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Options de contexte des sockets</h1>
+  <p class="refpurpose"><span class="refname">Options de contexte des sockets</span> &mdash; <span class="dc-title">Liste des options de contexte des sockets</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-context.socket-description">
+  <h3 class="title">Description</h3>
+  <p class="para">
+   Les options de contexte des sockets sont disponibles pour tous les
+   gestionnaires fonctionnant via les sockets, comme
+   <code class="literal">tcp</code>, <code class="literal">http</code> et
+   <code class="literal">ftp</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 options" id="refsect1-context.socket-options">
+  <h3 class="title">Options</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt id="context.socket.bindto"><code class="parameter">bindto</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Utilisé pour spécifier l&#039;adresse IP (soit IPv4 ou IPv6), et/ou
+       le numéro du port que PHP utilisera pour accéder au réseau.
+       La syntaxe est <code class="literal">ip:port</code> pour les adresses IPv4,
+       et <code class="literal">[ip]:port</code> pour les adresses IPv6.
+       Le fait de définir l&#039;IP ou le port à <code class="literal">0</code> permettra
+       au système de choisir lui-même le port et/ou l&#039;IP.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       <p class="para">
+        Vu que FTP crée 2 sockets de connexion lors d&#039;une opération normale,
+        le numéro du port ne peut être spécifié en utilisant cette option.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+    
+     <dt id="context.socket.backlog"><code class="parameter">backlog</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Utilisé pour limiter le nombre de connexions actives
+       dans la liste d&#039;attente du socket.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       <p class="para">
+        Ceci n&#039;est applicable qu&#039;à la fonction
+        <span class="function"><a href="function.stream-socket-server.html" class="function">stream_socket_server()</a></span>.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+    
+     <dt id="context.socket.ipv6_v6only"><code class="parameter">ipv6_v6only</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Substitue le système d&#039;exploitation par défaut concernant le mappage d&#039;IPv4 dans IPv6.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       <p class="para">
+        Ceci est important en particulier lorsque vous essayez d&#039;écouter sur 
+        les adresses IPv4 séparément alors qu&#039;il existe une liaison sur <code class="literal">[::]</code>.
+       </p>
+       <p class="para">
+        Ceci n&#039;est applicable qu&#039;à la fonction  <span class="function"><a href="function.stream-socket-server.html" class="function">stream_socket_server()</a></span>.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+    
+     <dt id="context.socket.so_reuseport"><code class="parameter">so_reuseport</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Permet plusieurs liaisons d&#039;une même paire ip:port, même à partir de processus distinct.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       <p class="para">
+        Ceci n&#039;est applicable qu&#039;à la fonction <span class="function"><a href="function.stream-socket-server.html" class="function">stream_socket_server()</a></span>.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+    
+     <dt id="context.socket.so_broadcast"><code class="parameter">so_broadcast</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Permet d&#039;envoyer et de recevoir des données vers/à partir d&#039;adresses de diffusion.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       <p class="para">
+        Ceci n&#039;est applicable qu&#039;à la fonction  <span class="function"><a href="function.stream-socket-server.html" class="function">stream_socket_server()</a></span>.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+    
+     <dt id="context.socket.tcp_nodelay"><code class="parameter">tcp_nodelay</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Mettre la valeur a <strong><code>TRUE</code></strong> définira <code class="literal">SOL_TCP,NO_DELAY=1</code>
+       correctement, ce qui désactivera l&#039;algorithme TCP Nagle.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-context.socket-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.1.0</td>
+       <td>
+        Ajout du paramètre <code class="parameter">tcp_nodelay</code>.
+       </td>
+      </tr>
+
+      <tr>
+       <td>7.0.1</td>
+       <td>
+        Ajout du paramètre <code class="parameter">ipv6_v6only</code>.
+       </td>
+      </tr>
+
+      <tr>
+       <td>7.0.0</td>
+       <td>
+        Ajout du paramètre <code class="parameter">so_broadcast</code>.
+       </td>
+      </tr>
+
+      <tr>
+       <td>7.0.0</td>
+       <td>
+        Ajout du paramètre <code class="parameter">so_reuseport</code>.
+       </td>
+      </tr>
+
+      <tr>
+       <td>5.3.3</td>
+       <td>
+        Ajout du paramètre <code class="parameter">backlog</code>.
+       </td>
+      </tr>
+
+      <tr>
+       <td>5.1.0</td>
+       <td>
+        Ajout du paramètre <code class="parameter">bindto</code>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-context.socket-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-357">
+    <p><strong>Exemple #1 Exemple d&#039;utilisation du paramètre <code class="parameter">bindto</code></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Connexion&nbsp;à&nbsp;Internet&nbsp;en&nbsp;utilisant&nbsp;l'IP&nbsp;'192.168.0.100'<br /></span><span style="color: #0000BB">$opts&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'socket'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'bindto'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'192.168.0.100:0'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;),<br />);<br /><br /><br /></span><span style="color: #FF8000">//&nbsp;Connexion&nbsp;à&nbsp;Internet&nbsp;en&nbsp;utilisant&nbsp;l'IP&nbsp;'192.168.0.100'&nbsp;et&nbsp;le&nbsp;port&nbsp;'7000'<br /></span><span style="color: #0000BB">$opts&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'socket'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'bindto'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'192.168.0.100:7000'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;),<br />);<br /><br /><br /></span><span style="color: #FF8000">//&nbsp;Connexion&nbsp;à&nbsp;Internet&nbsp;en&nbsp;utilisant&nbsp;l'adresse&nbsp;IPv6&nbsp;'2001:db8::1'<br />//&nbsp;et&nbsp;le&nbsp;port&nbsp;'7000'<br /></span><span style="color: #0000BB">$opts&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'socket'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'bindto'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'[2001:db8::1]:7000'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;),<br />);<br /><br /><br /><br /></span><span style="color: #FF8000">//&nbsp;Connexion&nbsp;à&nbsp;Internet&nbsp;en&nbsp;utilisant&nbsp;le&nbsp;port&nbsp;'7000'<br /></span><span style="color: #0000BB">$opts&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'socket'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'bindto'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'0:7000'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;),<br />);<br /><br /><br /></span><span style="color: #FF8000">//&nbsp;Création&nbsp;du&nbsp;contexte...<br /></span><span style="color: #0000BB">$context&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stream_context_create</span><span style="color: #007700">(</span><span style="color: #0000BB">$opts</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;...et&nbsp;l'utilise&nbsp;pour&nbsp;récupérer&nbsp;les&nbsp;données<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">'http://www.example.com'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$context</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

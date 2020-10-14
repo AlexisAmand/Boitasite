@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lie un param&egrave;tre &agrave; un nom de variable sp&eacute;cifique</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="pdostatement.bindcolumn.html">« PDOStatement::bindColumn</a></li>
+      <li style="float: right;"><a href="pdostatement.bindvalue.html">PDOStatement::bindValue »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.pdostatement.html">PDOStatement</a></li>
+    <li>Lie un param&egrave;tre &agrave; un nom de variable sp&eacute;cifique</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="pdostatement.bindparam" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">PDOStatement::bindParam</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7, PECL pdo &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">PDOStatement::bindParam</span> &mdash; <span class="dc-title">
+   Lie un paramètre à un nom de variable spécifique
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-pdostatement.bindparam-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>PDOStatement::bindParam</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$parameter</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter reference">&$variable</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$data_type</code><span class="initializer"> = PDO::PARAM_STR</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$length</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$driver_options</code></span>
+  ]]] ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Lie une variable PHP à un marqueur nommé ou interrogatif correspondant dans une
+   requête SQL utilisée pour préparer la requête. Contrairement à
+   <span class="function"><a href="pdostatement.bindvalue.html" class="function">PDOStatement::bindValue()</a></span>, la variable est liée en tant que
+   référence et ne sera évaluée qu&#039;au moment de l&#039;appel à la fonction
+   <span class="function"><a href="pdostatement.execute.html" class="function">PDOStatement::execute()</a></span>.
+  </p>
+  <p class="para">
+   La plupart des paramètres sont des paramètres d&#039;entrées, et sont utilisés
+   en lecture seule pour construire la requête (mais peuvent néanmoins être
+   transtypé en fonction de <code class="parameter">data_type</code>). Quelques drivers
+   supportent l&#039;invocation de procédures stockées qui retournent des données en
+   tant que paramètres de sortie, et quelques autres en tant que paramètres
+   entrées / sorties qui sont envoyés ensemble et sont mis à jour pour les
+   recevoir.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-pdostatement.bindparam-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">parameter</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Identifiant. Pour une requête préparée utilisant
+       des marqueurs nommés, ce sera le nom du paramètre
+       sous la forme <var class="varname">:name</var>. Pour
+       une requête préparée utilisant les marqueurs interrogatifs,
+       ce sera la position indexé +1 du paramètre.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">variable</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Nom de la variable PHP à lier au paramètre de la requête SQL.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">data_type</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Type explicite de données pour le paramètre utilisant la constante
+       <a href="pdo.constants.html" class="link"><code class="literal">PDO::PARAM_*</code>
+        constants</a>.
+       Pour retourner un paramètre INOUT depuis une procédure
+       stockée, utilisez l&#039;opérateur OR pour définir l&#039;octet PDO::PARAM_INPUT_OUTPUT
+       pour le paramètre <code class="parameter">data_type</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">length</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Longueur du type de données. Pour indiquer qu&#039;un
+       paramètre est un paramètre OUT depuis une procédure stockée,
+       vous devez explicitement définir la longueur.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">driver_options</code></dt>
+
+     <dd>
+
+      <p class="para">
+
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-pdostatement.bindparam-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-pdostatement.bindparam-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1021">
+   <p><strong>Exemple #1 
+     Exécution d&#039;une requête préparée avec des emplacements nommés
+   </strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Exécution&nbsp;d'une&nbsp;requête&nbsp;préparée&nbsp;en&nbsp;liant&nbsp;des&nbsp;variables&nbsp;PHP&nbsp;*/<br /></span><span style="color: #0000BB">$calories&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">150</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$couleur&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'rouge'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$sth&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">'SELECT&nbsp;nom,&nbsp;couleur,&nbsp;calories<br />&nbsp;&nbsp;&nbsp;&nbsp;FROM&nbsp;fruit<br />&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;calories&nbsp;&lt;&nbsp;:calories&nbsp;AND&nbsp;couleur&nbsp;=&nbsp;:couleur'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #DD0000">':calories'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$calories</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">PARAM_INT</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #DD0000">':couleur'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$couleur</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">PARAM_STR</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">12</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <div class="example" id="example-1022">
+   <p><strong>Exemple #2 
+     Exécution d&#039;une requête préparée avec des marqueurs de
+     positionnement
+   </strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Exécution&nbsp;d'une&nbsp;requête&nbsp;préparée&nbsp;en&nbsp;liant&nbsp;des&nbsp;variables&nbsp;PHP&nbsp;*/<br /></span><span style="color: #0000BB">$calories&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">150</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$couleur&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'rouge'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$sth&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">'SELECT&nbsp;nom,&nbsp;couleur,&nbsp;calories<br />&nbsp;&nbsp;&nbsp;&nbsp;FROM&nbsp;fruit<br />&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;calories&nbsp;&lt;&nbsp;?&nbsp;AND&nbsp;couleur&nbsp;=&nbsp;?'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$calories</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">PARAM_INT</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$couleur</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">PARAM_STR</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">12</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-1023">
+   <p><strong>Exemple #3 Appel une procédure stockée avec un paramètre INOUT</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Appel&nbsp;une&nbsp;procédure&nbsp;stockée&nbsp;avec&nbsp;un&nbsp;paramètre&nbsp;INOUT&nbsp;*/<br /></span><span style="color: #0000BB">$couleur&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'rouge'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$sth&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">'CALL&nbsp;puree_fruit(?)'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$couleur</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">PARAM_STR</span><span style="color: #007700">|</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">PARAM_INPUT_OUTPUT</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">12</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$sth</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br />print(</span><span style="color: #DD0000">"Après&nbsp;avoir&nbsp;pressé&nbsp;le&nbsp;fruit,&nbsp;la&nbsp;couleur&nbsp;est&nbsp;:&nbsp;</span><span style="color: #0000BB">$couleur</span><span style="color: #DD0000">"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-pdostatement.bindparam-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="pdo.prepare.html" class="function" rel="rdfs-seeAlso">PDO::prepare()</a> - Pr&eacute;pare une requ&ecirc;te &agrave; l'ex&eacute;cution et retourne un objet</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.execute.html" class="function" rel="rdfs-seeAlso">PDOStatement::execute()</a> - Ex&eacute;cute une requ&ecirc;te pr&eacute;par&eacute;e</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.bindvalue.html" class="function" rel="rdfs-seeAlso">PDOStatement::bindValue()</a> - Associe une valeur &agrave; un param&egrave;tre</span></li>
+   </ul>
+  </p>
+
+ </div>
+
+</div></div></div></body></html>

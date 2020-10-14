@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>&Eacute;tat de la connexion</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-ms.quickstart.usage.html">« Ex&eacute;cuter des requ&ecirc;tes</a></li>
+      <li style="float: right;"><a href="mysqlnd-ms.quickstart.sqlhints.html">Astuces SQL »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-ms.quickstart.html">Exemples et d&eacute;marrage rapide</a></li>
+    <li>&Eacute;tat de la connexion</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-ms.quickstart.connectionpooling" class="section">
+  <h2 class="title">État de la connexion</h2>
+  <p class="para">
+   Le plugin change la sémantique d&#039;une connexion MySQL pour PHP. Une connexion n&#039;est
+   plus liée à un serveur MySQL unique, mais à un pool de connexions. Le pool est
+   représenté par au moins une connexion maitre et zéro ou plusieurs connexions esclaves.
+  </p>
+  <p class="para">
+   Chaque connexion dans le pool possède son propre état.Par exemple, les variables SQL
+   utilisateurs, les tables temporaires et les transactions font partie de l&#039;état.
+   Voyez la liste complète dans
+   <a href="mysqlnd-ms.pooling.html" class="link">pools de connexions et bascule</a>.
+   Si le plugin décide de basculer de connexion pour l&#039;équilibre de la charge, l&#039;application
+   pourrait se retrouver avec des connexions d&#039;états différents. Les applications doivent
+   faire attention à ce point.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2163">
+    <p><strong>Exemple #1 Config du plugin avec un maitre et un esclave</strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">{
+    &quot;myapp&quot;: {
+        &quot;master&quot;: {
+            &quot;master_0&quot;: {
+                &quot;host&quot;: &quot;localhost&quot;,
+                &quot;socket&quot;: &quot;\/tmp\/mysql.sock&quot;
+            }
+        },
+        &quot;slave&quot;: {
+            &quot;slave_0&quot;: {
+                &quot;host&quot;: &quot;192.168.2.27&quot;,
+                &quot;port&quot;: &quot;3306&quot;
+            }
+        }
+    }
+}</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2164">
+    <p><strong>Exemple #2 Problème possible : État de la connexion et variables SQL utilisateurs</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"myapp"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Evidemment,&nbsp;votre&nbsp;propre&nbsp;gestion&nbsp;des&nbsp;erreurs&nbsp;serait&nbsp;meilleure...&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">()));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Connexion&nbsp;1,&nbsp;la&nbsp;connexion&nbsp;a&nbsp;utilisé&nbsp;des&nbsp;variables&nbsp;SQL,&nbsp;pas&nbsp;de&nbsp;SELECT,&nbsp;donc&nbsp;maitre&nbsp;utilisé&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SET&nbsp;@myrole='master'"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Connexion&nbsp;2,&nbsp;sur&nbsp;un&nbsp;esclave&nbsp;car&nbsp;de&nbsp;type&nbsp;SELECT&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!(</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;@myrole&nbsp;AS&nbsp;_role"</span><span style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">);<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"@myrole&nbsp;=&nbsp;'%s'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'_role'</span><span style="color: #007700">]);<br />}<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+@myrole = &#039;&#039;
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   L&#039;exemple ouvre une conneXion équilibrée et exécute deux requêtes. La première
+   <code class="literal">SET @myrole=&#039;master&#039;</code> n&#039;est pas de type <code class="literal">SELECT</code>,
+   elle est donc exécutée sur une connexion à un maitre (ici il n&#039;y en a qu&#039;un seul).
+   La requête change une variable SQL qui est donc liée à la connexion. L&#039;état de
+   la connexion au maitre vient donc de changer.
+  </p>
+  <p class="para">
+   La requête suivante, <code class="literal">SELECT @myrole AS _role</code> est lancée sur un
+   esclave car elle est de type lecture seule (select). La connexion à l&#039;esclave ne possède
+   elle, aucune variable SQL affectée, son état est donc différent de celui de la
+   connexion au maitre. Le script affiche donc en réponse
+   <code class="literal">@myrole = &#039;&#039;</code>.
+  </p>
+  <p class="para">
+   Il est de la responsabilité du développeur de l&#039;application de prendre garde aux états 
+   des connexions balancées. Le plugin ne surveille pas toutes les activités des connexions,
+   ceci serait beaucoup trop couteux en temps CPU.
+  </p>
+  <p class="para">
+   Ces problèmes peuvent être contournés grâce aux astuces SQL.
+  </p>
+ </div></div></div></body></html>

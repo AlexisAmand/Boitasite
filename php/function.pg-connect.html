@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>&Eacute;tablit une connexion PostgreSQL</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.pg-connect-poll.html">« pg_connect_poll</a></li>
+      <li style="float: right;"><a href="function.pg-connection-busy.html">pg_connection_busy »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.pgsql.html">Fonctions PostgreSQL</a></li>
+    <li>&Eacute;tablit une connexion PostgreSQL</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.pg-connect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_connect</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">pg_connect</span> &mdash; <span class="dc-title">
+   Établit une connexion PostgreSQL
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.pg-connect-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>pg_connect</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$connection_string</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$connect_type</code></span>
+  ] ) : <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>pg_connect()</strong></span> ouvre une connexion à une base de données
+   PostgreSQL grâce à la chaîne de connexion
+   <code class="parameter">connection_string</code>.
+  </p>
+  <p class="para">
+   Si un deuxième appel à <span class="function"><strong>pg_connect()</strong></span> est
+   fait avec les mêmes arguments, aucune nouvelle connexion ne sera
+   établie à moins que vous ne passiez <strong><code>PGSQL_CONNECT_FORCE_NEW</code></strong>
+   à <code class="parameter">connect_type</code>, mais la connexion précédente sera
+   retournée.
+  </p>
+  <p class="para">
+   L&#039;ancienne syntaxe 
+   <strong class="command">$conn = pg_connect(&quot;host&quot;, &quot;port&quot;, &quot;options&quot;, &quot;tty&quot;, &quot;dbname&quot;)</strong> 
+   est obsolète.
+  </p>
+ </div>
+
+
+<div class="refsect1 parameters" id="refsect1-function.pg-connect-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">connection_string</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La chaîne <code class="parameter">connection_string</code> peut être vide pour
+       utiliser tous les paramètres par défaut ou elle peut contenir un ou
+       plusieurs paramètres de configuration séparés par des espaces.
+       Chaque paramètre de configuration est sous la forme <code class="literal">code =
+       valeur</code>. Les espaces autour du signe égal sont optionnels.
+       Pour écrire une valeur vide ou une valeur contenant des espaces,
+       entourez cette valeur avec des apostrophes, par exemple : <code class="literal">code =
+       &#039;une valeur&#039;</code>. Les apostrophes et les antislashs à l&#039;intérieur
+       de la valeur doivent être échappés par un antislash, c&#039;est-à-dire
+       \&#039; et \\.
+      </p>
+      <p class="para">
+       Les mots-clé actuellement reconnus sont :
+       <code class="parameter">host</code>, <code class="parameter">hostaddr</code>,
+       <code class="parameter">port</code>,
+       <code class="parameter">dbname</code> (valeur par défaut: <code class="parameter">user</code>),
+       <code class="parameter">user</code>,
+       <code class="parameter">password</code>,
+       <code class="parameter">connect_timeout</code>,
+       <code class="parameter">options</code>, <code class="parameter">tty</code> (ignoré),
+       <code class="parameter">sslmode</code>,
+       <code class="parameter">requiressl</code> (obsolète, utilisez
+       <code class="parameter">sslmode</code>) et
+       <code class="parameter">service</code>. La liste de ces arguments dépend de
+       la version de votre serveur PostgreSQL.
+      </p>
+      <p class="para">
+       Le paramètre <code class="parameter">options</code> peut être utilisé pour passer des paramètres
+       pour la ligne de commande invoquant le serveur.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">connect_type</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Si <strong><code>PGSQL_CONNECT_FORCE_NEW</code></strong> est passé en argument,
+       alors une nouvelle connexion sera créée, même si la chaîne
+       <code class="parameter">connection_string</code> est identique à celle de la
+       connexion existante.
+      </p>
+      <p class="para">
+       Si <strong><code>PGSQL_CONNECT_ASYNC</code></strong> est fourni, la connexion
+       sera établie de façon asynchrone. Le statut de la connexion peut être
+       vérifié via la fonction <span class="function"><a href="function.pg-connect-poll.html" class="function">pg_connect_poll()</a></span> ou via la
+       fonction <span class="function"><a href="function.pg-connection-status.html" class="function">pg_connection_status()</a></span>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.pg-connect-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Ressource de connexion PostgreSQL en cas de succès, <strong><code>FALSE</code></strong> en cas d&#039;échec.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 changelog" id="refsect1-function.pg-connect-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.6.0</td>
+       <td>
+        Le support de la constante <strong><code>PGSQL_CONNECT_ASYNC</code></strong>
+        pour le paramètre <code class="parameter">connect_type</code> a été ajouté.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.pg-connect-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2467">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>pg_connect()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dbconn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=marie"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;connexion&nbsp;à&nbsp;une&nbsp;base&nbsp;de&nbsp;données&nbsp;nommée&nbsp;"marie"<br /><br /></span><span style="color: #0000BB">$dbconn2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"host=localhost&nbsp;port=5432&nbsp;dbname=marie"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;connexion&nbsp;à&nbsp;une&nbsp;base&nbsp;de&nbsp;données&nbsp;nommée&nbsp;"marie"&nbsp;sur&nbsp;l'hôte&nbsp;"localhost"&nbsp;sur&nbsp;le&nbsp;port&nbsp;"5432"<br /><br /></span><span style="color: #0000BB">$dbconn3&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"host=mouton&nbsp;port=5432&nbsp;dbname=marie&nbsp;user=agneau&nbsp;password=foo"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;connexion&nbsp;à&nbsp;une&nbsp;base&nbsp;de&nbsp;données&nbsp;nommée&nbsp;"marie"&nbsp;sur&nbsp;l'hôte&nbsp;"mouton"&nbsp;avec&nbsp;un<br />//&nbsp;nom&nbsp;d'utilisateur&nbsp;et&nbsp;un&nbsp;mot&nbsp;de&nbsp;passe<br /><br /></span><span style="color: #0000BB">$conn_string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"host=mouton&nbsp;port=5432&nbsp;dbname=test&nbsp;user=agneau&nbsp;password=bar"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$dbconn4&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_string</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;connexion&nbsp;à&nbsp;une&nbsp;base&nbsp;de&nbsp;données&nbsp;nommée&nbsp;"test"&nbsp;sur&nbsp;l'hôte&nbsp;"mouton"&nbsp;avec&nbsp;un<br />//&nbsp;nom&nbsp;d'utilisateur&nbsp;et&nbsp;un&nbsp;mot&nbsp;de&nbsp;passe<br /><br /></span><span style="color: #0000BB">$dbconn5&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"host=localhost&nbsp;options='--client_encoding=UTF8'"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//connexion&nbsp;à&nbsp;la&nbsp;base&nbsp;sur&nbsp;"localhost"&nbsp;et&nbsp;passage&nbsp;d'un&nbsp;paramètre&nbsp;de&nbsp;la&nbsp;ligne&nbsp;de<br />//&nbsp;commande&nbsp;concernant&nbsp;l'encodage&nbsp;UTF-8<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.pg-connect-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.pg-pconnect.html" class="function" rel="rdfs-seeAlso">pg_pconnect()</a> - &Eacute;tablit une connexion PostgreSQL persistante</span></li>
+    <li class="member"><span class="function"><a href="function.pg-close.html" class="function" rel="rdfs-seeAlso">pg_close()</a> - Termine une connexion PostgreSQL</span></li>
+    <li class="member"><span class="function"><a href="function.pg-host.html" class="function" rel="rdfs-seeAlso">pg_host()</a> - Retourne le nom d'h&ocirc;te</span></li>
+    <li class="member"><span class="function"><a href="function.pg-port.html" class="function" rel="rdfs-seeAlso">pg_port()</a> - Retourne le num&eacute;ro de port</span></li>
+    <li class="member"><span class="function"><a href="function.pg-tty.html" class="function" rel="rdfs-seeAlso">pg_tty()</a> - Retourne le nom de TTY associ&eacute; &agrave; la connexion</span></li>
+    <li class="member"><span class="function"><a href="function.pg-options.html" class="function" rel="rdfs-seeAlso">pg_options()</a> - Retourne les options PostgreSQL</span></li>
+    <li class="member"><span class="function"><a href="function.pg-dbname.html" class="function" rel="rdfs-seeAlso">pg_dbname()</a> - Retourne le nom de la base de donn&eacute;es PostgreSQL</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

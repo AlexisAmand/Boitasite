@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne le SQLSTATE associ&eacute; avec la derni&egrave;re op&eacute;ration sur la base de donn&eacute;es</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="pdo.construct.html">« PDO::__construct</a></li>
+      <li style="float: right;"><a href="pdo.errorinfo.html">PDO::errorInfo »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.pdo.html">PDO</a></li>
+    <li>Retourne le SQLSTATE associ&eacute; avec la derni&egrave;re op&eacute;ration sur la base de donn&eacute;es</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="pdo.errorcode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">PDO::errorCode</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7, PECL pdo &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">PDO::errorCode</span> &mdash; <span class="dc-title">
+   Retourne le SQLSTATE associé avec la dernière opération sur la base de données
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-pdo.errorcode-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>PDO::errorCode</strong></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">string</span></div>
+
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-pdo.errorcode-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   <span class="function"><strong>PDO::errorCode()</strong></span> retourne un SQLSTATE,
+   un identifiant alphanumérique de cinq caractères défini dans le standard ANSI SQL.
+   Brièvement, un SQLSTATE consiste en une valeur de classe de deux caractères suivi
+   par une valeur de sous-classe de trois caractères. Une valeur de classe de 01 indique
+   une alerte et est accompagnée par un code de retour SQL_SUCCESS_WITH_INFO.
+   Les valeurs de classes autre que &#039;01&#039;, mis à part la classe &#039;IM&#039;, indiquent une erreur.
+   La classe &#039;IM&#039; est spécifique aux alertes et aux erreurs qui sont issues de l&#039;implémentation
+   elle-même de PDO (ou peut-être ODBC, si vous utilisez le driver ODBC).
+   La valeur de sous-classe &#039;000&#039; dans n&#039;importe quelle classe, indique qu&#039;il n&#039;y a pas de
+   sous-classe pour cet SQLSTATE.
+  </p>
+  <p class="para">
+   <span class="function"><strong>PDO::errorCode()</strong></span> retourne uniquement les codes erreurs 
+   pour les opérations exécutées directement sur le gestionnaire de la base de données.
+   Si vous créez un objet <a href="class.pdostatement.html" class="classname">PDOStatement</a> avec la fonction 
+   <span class="function"><a href="pdo.prepare.html" class="function">PDO::prepare()</a></span> ou la fonction 
+   <span class="function"><a href="pdo.query.html" class="function">PDO::query()</a></span> et que vous invoquez une erreur
+   sur le gestionnaire de requête, <span class="function"><strong>PDO::errorCode()</strong></span> ne
+   retournera pas cette erreur. Vous devez appeler
+   <span class="function"><a href="pdostatement.errorcode.html" class="function">PDOStatement::errorCode()</a></span> pour retourner le code erreur
+   pour une opération exécutée sur un gestionnaire de requête particulier.
+  </p>
+  <p class="para">
+   Retourne <strong><code>NULL</code></strong> si aucune opération n&#039;a été exécutée sur la base de données.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-pdo.errorcode-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-1008">
+    <p><strong>Exemple #1 Récupération d&#039;un code SQLSTATE</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Provoque&nbsp;une&nbsp;erreur&nbsp;--&nbsp;la&nbsp;table&nbsp;BONES&nbsp;n'existe&nbsp;pas&nbsp;*/<br /></span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">exec</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;bones(skull)&nbsp;VALUES&nbsp;('lucy')"</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"\nPDO::errorCode():&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errorCode</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+PDO::errorCode(): 42S02
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-pdo.errorcode-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="pdo.errorinfo.html" class="function" rel="rdfs-seeAlso">PDO::errorInfo()</a> - Retourne les informations associ&eacute;es &agrave; l'erreur lors de la 
+   derni&egrave;re op&eacute;ration sur la base de donn&eacute;es</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.errorcode.html" class="function" rel="rdfs-seeAlso">PDOStatement::errorCode()</a> - R&eacute;cup&egrave;re les informations sur l'erreur associ&eacute;e lors de la derni&egrave;re op&eacute;ration sur la requ&ecirc;te</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.errorinfo.html" class="function" rel="rdfs-seeAlso">PDOStatement::errorInfo()</a> - R&eacute;cup&egrave;re les informations sur l'erreur associ&eacute;e lors de la derni&egrave;re op&eacute;ration sur la requ&ecirc;te</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

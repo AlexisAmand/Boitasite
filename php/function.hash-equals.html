@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Comparaison de cha&icirc;nes r&eacute;sistante aux attaques temporelles</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.hash-copy.html">« hash_copy</a></li>
+      <li style="float: right;"><a href="function.hash-file.html">hash_file »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.hash.html">Fonctions Hash</a></li>
+    <li>Comparaison de cha&icirc;nes r&eacute;sistante aux attaques temporelles</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.hash-equals" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">hash_equals</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.6.0, PHP 7)</p><p class="refpurpose"><span class="refname">hash_equals</span> &mdash; <span class="dc-title">Comparaison de chaînes résistante aux attaques temporelles</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.hash-equals-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>hash_equals</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$known_string</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$user_string</code></span>
+   ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Compare deux chaînes en utilisant la même durée qu&#039;elles soient égales ou non.
+  </p>
+  <p class="para">
+   Cette fonction devrait être utilisée pour limiter les attaques temporelles ; par exemple,
+   lors d&#039;un test de mots de passe hashés avec <span class="function"><a href="function.crypt.html" class="function">crypt()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.hash-equals-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">known_string</code></dt>
+
+    <dd>
+
+     <p class="para">
+       La <span class="type"><a href="language.types.string.html" class="type string">string</a></span> de longueur connue servant de référence pour la  comparaison
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">user_string</code></dt>
+
+    <dd>
+
+     <p class="para">
+      La chaîne fournie par l&#039;utilisateur
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.hash-equals-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+    Retourne <strong><code>TRUE</code></strong> si les deux chaînes sont égales, <strong><code>FALSE</code></strong> sinon.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-function.hash-equals-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Emets une alerte de type <strong><code>E_WARNING</code></strong> quand l&#039;un ou l&#039;autre des
+   paramètres passés n&#039;est pas une chaîne.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.hash-equals-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-876">
+    <p><strong>Exemple #1 Exemple <span class="methodname"></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$expected&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span style="color: #DD0000">'12345'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'$2a$07$usesomesillystringforsalt$'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$correct&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span style="color: #DD0000">'12345'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'$2a$07$usesomesillystringforsalt$'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$incorrect&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span style="color: #DD0000">'apple'</span><span style="color: #007700">,&nbsp;&nbsp;</span><span style="color: #DD0000">'$2a$07$usesomesillystringforsalt$'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">hash_equals</span><span style="color: #007700">(</span><span style="color: #0000BB">$expected</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$correct</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">hash_equals</span><span style="color: #007700">(</span><span style="color: #0000BB">$expected</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$incorrect</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+bool(true)
+bool(false)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.hash-equals-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Les deux arguments doivent être de même longueur pour être comparés avec succès.
+    Quand des arguments de longueur différente sont passés, <strong><code>FALSE</code></strong> est retourné immédiatement et
+    la longueur de la chaîne connue peut être dévoilée en cas d&#039;attaque temporelle.
+   </p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Il est important de passer la chaîne fournie par l&#039;utilisateur en second
+    paramètre plutôt qu&#039;en premier.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+</div></div></div></body></html>

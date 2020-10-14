@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Sous-masques</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="regexp.reference.internal-options.html">« Options internes</a></li>
+      <li style="float: right;"><a href="regexp.reference.repetition.html">R&eacute;p&eacute;titions »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="reference.pcre.pattern.syntax.html">Fonctionnement des expressions rationnelles</a></li>
+    <li>Sous-masques</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="regexp.reference.subpatterns" class="section">
+  <h2 class="title">Sous-masques</h2>
+  <p class="para">
+   Les sous-masques sont délimités par des parenthèses,
+   et peuvent être imbriqués. Ajouter des sous-masques a deux
+   utilités :
+  </p>
+   <ol type="1">
+   <li class="listitem">
+    <p class="para">
+     Localiser un ensemble d&#039;alternatives. Par exemple, le motif
+     <code class="literal">cat(aract|erpillar|)</code> trouve un des mots &quot;cat&quot;,
+     &quot;cataract&quot;, ou &quot;caterpillar&quot;. Sans les parenthèses, cela trouverait
+     &quot;cataract&quot;, &quot;erpillar&quot; ou la chaine vide.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     Cela configure le sous-masque comme capturant. Lorsque tout le motif
+     correspond, la portion de la sous-chaine qui correspond au sous-masque
+     est passé à l&#039;appelant grâce à l&#039;argument <em class="emphasis">ovector</em>
+     de <span class="function"><strong>pcre_exec()</strong></span>. Les parenthèses ouvrantes sont comptées
+     depuis la gauche vers la droite (commençant à 1) jusqu&#039;à obtenir le nombre
+     des sous-masques capturants.
+    </p>
+   </li>
+  </ol>
+  <p class="para">
+   Par exemple, soit la chaîne sujet &quot;<code class="literal">le roi soleil</code>&quot;
+   qui est utilisée avec le masque suivant :
+   <code class="literal">Le ((roi|prince) (soleil|charmant))</code>, les sous-masques
+   capturés sont &quot;<code class="literal">roi soleil</code>&quot;, &quot;<code class="literal">roi</code>&quot;,
+   et &quot;<code class="literal">soleil</code>&quot;, numérotés respectivement 1, 2, et 3.
+  </p>
+  <p class="para">
+   L&#039;ubiquité des parenthèses n&#039;est pas toujours simple
+   d&#039;emploi. Il y a des moments où regrouper des sous-masques
+   est nécessaire, sans pour autant capturer la valeur trouvée.
+   Si une parenthèse ouvrante est suivie de &quot;<code class="literal">?:</code>&quot;,
+   le sous-masque ne capture pas la chaîne assortie, et ne sera pas
+   compté lors de la numérotation des captures. Par exemple,
+   avec la chaîne &quot;<code class="literal">le prince charmant</code>&quot;, utilisé
+   avec le masque
+   
+   <code class="literal">Le (( ?:roi|prince) (soleil|charmant))</code>
+   
+   les chaînes capturées seront &quot;<code class="literal">prince charmant</code>&quot;
+   et &quot;<code class="literal">charmant</code>&quot;, numérotés respectivement 1
+   et 2. Le nombre maximal de chaînes capturées est de 65535. Il ce peut qu&#039;il
+   soit impossible de compiler un marque aussi large, toutefois, ceci dépend des
+   options de configuration de libpcre.
+  </p>
+  <p class="para">
+   En guise de raccourci, si n&#039;importe quelle option de configuration
+   est requise au début des sous-masques non-capturants, les lettres
+   d&#039;option peuvent apparaître entre le signe <code class="literal">&quot;?&quot;</code>
+   et le signe <code class="literal">&quot;:&quot;</code>. Ainsi, les 2 masques
+  </p>
+  
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="cdata"><pre>
+(?i:samedi|dimanche)
+(?:(?i)samedi|dimanche)
+</pre></div>
+   </div>
+
+  </div>
+  
+  <p class="para">
+   captureront exactement les mêmes chaînes. Du fait que les branches
+   alternatives sont testées de la gauche vers la droite, et que les
+   options ne sont pas réinitialisées tant que le sous masque n&#039;est pas
+   atteint, une option de configuration d&#039;une branche n&#039;affecte pas
+   les branches sous-jacentes ; ainsi, les 2 masques ci-dessus
+   captureront <code class="literal">&quot;SAMEDI&quot;</code>, mais aussi 
+   <code class="literal">&quot;Samedi&quot;</code>.
+  </p>
+  <p class="para">
+   Il est possible de nommer un sous-masque en utilisant la syntaxe
+   <code class="literal">(?P&lt;name&gt;pattern)</code>. Ce sous-masque sera alors
+   indexé dans le tableau de concordance par sa position, ainsi 
+   que par son nom. PHP 5.2.2 a introduit 2 nouvelles syntaxes :
+   <code class="literal">(?&lt;name&gt;pattern)</code> et
+   <code class="literal">(?&#039;name&#039;pattern)</code>.
+  </p>
+  
+  <p class="para">
+   Quelques fois, il est nécessaire d&#039;avoir plusieurs correspondances en alternant
+   les sous groupes dans une expression régulière. Normallement, chacun recevra son
+   propre nombre de références arrières même si seulement un d&#039;entre eux ne peut
+   correspondre. Pour éviter cela, la syntaxe <code class="literal">(?|</code> permet d&#039;autoriser
+   les nombres dupliqués. Soit l&#039;expression ci-après utilisée avec la chaine
+   <code class="literal">Sunday</code>:
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="cdata"><pre>(?:(Sat)ur|(Sun))day</pre></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   Ici <code class="literal">Sun</code>est stocké dans la référence arrière 2, alors que la référence
+   arrière 1 est vide. La correspondance mène donc à <code class="literal">Sat</code> dans la référence
+   arrière 1 alors que la référence arrière 2 n&#039;existe pas. Changer le masque en utilisant
+   <code class="literal">(?|</code> résoud ce problème:
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="cdata"><pre>(?|(Sat)ur|(Sun))day</pre></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   Avec ce masque, à la fois <code class="literal">Sun</code> et <code class="literal">Sat</code>
+   seront stockés dans la référence arrière 1.
+  </p>
+ </div></div></div></body></html>

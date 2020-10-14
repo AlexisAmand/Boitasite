@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Commence &agrave; v&eacute;rifier les &eacute;v&eacute;nements et &agrave; appeler les fonctions de rappel de la boucle</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="evloop.resume.html">« EvLoop::resume</a></li>
+      <li style="float: right;"><a href="evloop.signal.html">EvLoop::signal »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.evloop.html">EvLoop</a></li>
+    <li>Commence &agrave; v&eacute;rifier les &eacute;v&eacute;nements et &agrave; appeler les fonctions de rappel de la boucle</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="evloop.run" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">EvLoop::run</h1>
+  <p class="verinfo">(PECL ev &gt;= 0.2.0)</p><p class="refpurpose"><span class="refname">EvLoop::run</span> &mdash; <span class="dc-title">Commence à vérifier les événements et à appeler les fonctions de rappel de la boucle</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-evloop.run-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><strong>EvLoop::run</strong></span>
+    ([ <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$flags</code>
+    <span class="initializer"> = 0</span>
+   </span>
+  ] ) : <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">
+   Commence à vérifier les événements et à appeler les fonctions de rappel
+   pour la boucle d&#039;événement courant. La méthode s&#039;arrête lorsqu&#039;une
+   fonction de rappel appèle la méthode <span class="methodname"><a href="ev.stop.html" class="methodname">Ev::stop()</a></span>
+   ou que les drapeaux sont différents de zéro (auquel cas, la valeur
+   retournée est <strong><code>TRUE</code></strong>) ou lorsqu&#039;il ny&#039; a aucun watcher actif qui référence
+   la boucle (<span class="methodname"><a href="evwatcher.keepalive.html" class="methodname">EvWatcher::keepalive()</a></span> vaut <strong><code>TRUE</code></strong>),
+   auqeul cas, la valeur retournée sera <strong><code>FALSE</code></strong>.
+   La valeur retournée peut générallement être interprétée comme
+   <em class="emphasis">si <strong><code>TRUE</code></strong>, il y a encore des travaux à faire</em>.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-evloop.run-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+
+     <code class="parameter">flags</code>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Le paramètre optionnel <code class="parameter">flags</code>
+      peut prendre une des valeurs suivantes :
+      <table class="doctable table">
+       <caption><strong>
+        Liste des valeurs possibles pour <code class="parameter">flags</code>
+       </strong></caption>
+       
+        <thead>
+         <tr>
+          <th>
+           <code class="parameter">flags</code>
+          </th>
+          <th>Description</th>
+         </tr>
+
+        </thead>
+
+        <tbody class="tbody">
+         <tr>
+          <td>
+           <strong><code>0</code></strong>
+          </td>
+          <td>Le comportement par défaut, décrit ci-dessus</td>
+         </tr>
+
+         <tr>
+          <td>
+           <strong><code>Ev::RUN_ONCE</code></strong>
+          </td>
+          <td>Ne bloquer pas plus d&#039;un événement (attend, mais ne boucle pas)</td>
+         </tr>
+
+         <tr>
+          <td>
+           <strong><code>Ev::RUN_NOWAIT</code></strong>
+          </td>
+          <td>Aucun blocage (récupère, gère les événements, mais n&#039;attend pas)</td>
+         </tr>
+
+        </tbody>
+       
+      </table>
+
+     </p>
+     <p class="para">
+      Voir les
+      <a href="class.ev.html#ev.constants.run-flags" class="link">constantes des drapeaux
+       d&#039;exécution</a>.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-evloop.run-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Aucune valeur n&#039;est retournée.
+  </p>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-evloop.run-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member">
+    <span class="methodname"><a href="evloop.stop.html" class="methodname" rel="rdfs-seeAlso">EvLoop::stop()</a> - Stoppe la boucle d'&eacute;v&eacute;nement</span>
+   </li>
+   <li class="member">
+    <span class="methodname"><a href="ev.run.html" class="methodname" rel="rdfs-seeAlso">Ev::run()</a> - Commence la v&eacute;rification des &eacute;v&eacute;nements et appelle les fonctions
+   de rappels pour la boucle par d&eacute;faut</span>
+   </li>
+  </ul>
+ </div>
+
+</div></div></div></body></html>

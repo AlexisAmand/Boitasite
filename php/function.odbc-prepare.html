@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Pr&eacute;pare une commande pour l'ex&eacute;cution</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.odbc-pconnect.html">« odbc_pconnect</a></li>
+      <li style="float: right;"><a href="function.odbc-primarykeys.html">odbc_primarykeys »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.uodbc.html">Fonctions ODBC</a></li>
+    <li>Pr&eacute;pare une commande pour l'ex&eacute;cution</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.odbc-prepare" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">odbc_prepare</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">odbc_prepare</span> &mdash; <span class="dc-title">Prépare une commande pour l&#039;exécution</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.odbc-prepare-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>odbc_prepare</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$connection_id</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$query_string</code></span>
+   ) : <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">
+   Prépare une commande pour l&#039;exécution. L&#039;identifiant peut être utilisé plus
+   tard pour exécuter la commande avec <span class="function"><a href="function.odbc-execute.html" class="function">odbc_execute()</a></span>.
+  </p>
+  <p class="para">
+   Quelques bases de données (comme IBM DB2, MS SQL Server et Oracle)
+   supportent les procédures stockées qui acceptent les types de paramètres
+   IN, INOUT et OUT comme définis dans les spécifications ODBC. Cependant,
+   le driver unifié ODBC supporte actuellement uniquement le type de paramètres
+   IN pour les procédures stockées.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.odbc-prepare-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">connection_id</code></dt>
+
+     <dd>
+
+      <p class="para">L&#039;identifiant de connexion ODBC,
+voir la documentation de la fonction <span class="function"><a href="function.odbc-connect.html" class="function">odbc_connect()</a></span> pour plus
+de détails.</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">query_string</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La requête à préparer.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.odbc-prepare-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un identifiant de résultat ODBC si la commande SQL a été
+   préparée avec succès. Retourne <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.odbc-prepare-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-976">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>odbc_prepare()</strong></span> et <span class="function"><a href="function.odbc-execute.html" class="function">odbc_execute()</a></span></strong></p>
+    <div class="example-contents"><p>
+     Dans le code suivant, <var class="varname">$res</var> ne sera
+     valide uniquement si les trois paramètres pour <code class="literal">myproc</code>
+     sont des paramètres IN :
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$b&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$c&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CALL&nbsp;myproc(?,?,?)'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$res&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Si vous devez appeler une procédure stockée utilisant des paramètres
+   INOUT ou OUT, il est recommandé d&#039;utiliser l&#039;extension native de votre
+   base de données
+   (par exemple <a href="ref.oci8.html" class="link">oci8</a> pour Oracle).
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.odbc-prepare-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.odbc-execute.html" class="function" rel="rdfs-seeAlso">odbc_execute()</a> - Ex&eacute;cute une requ&ecirc;te SQL pr&eacute;par&eacute;e</span></li>
+   </ul>
+   </p>
+  </div>
+
+ 
+</div></div></div></body></html>

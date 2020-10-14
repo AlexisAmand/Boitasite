@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lit le phar ex&eacute;cut&eacute; et charge son manifeste</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="phar.loadphar.html">« Phar::loadPhar</a></li>
+      <li style="float: right;"><a href="phar.mount.html">Phar::mount »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.phar.html">Phar</a></li>
+    <li>Lit le phar ex&eacute;cut&eacute; et charge son manifeste</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="phar.mapphar" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Phar::mapPhar</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PECL phar &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">Phar::mapPhar</span> &mdash; <span class="dc-title">Lit le phar exécuté et charge son manifeste</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-phar.mapphar-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="modifier">static</span> <span class="methodname"><strong>Phar::mapPhar</strong></span>
+    ([ <span class="methodparam"><span class="type">string</span> <code class="parameter">$alias</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$dataoffset</code><span class="initializer"> = 0</span></span>
+  ]] ) : <span class="type">bool</span></div>
+
+
+  <p class="para rdfs-comment">
+   Cette méthode statique peut être utilisée seulement au sein du conteneur de chargement
+   d&#039;une archive Phar pour initialiser le phar quand il est exécuté directement ou quand il
+   est inclus dans un autre script.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-phar.mapphar-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">alias</code></dt>
+
+     <dd>
+
+      <p class="para">
+       L&#039;alias qui peut être utilisé dans l&#039;URL <code class="literal">phar://</code> pour se
+       référer à l&#039;archive plutôt que d&#039;utiliser son chemin complet.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">dataoffset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Variable inutilisée, présente par souci de compatibilité 
+       avec la bibliothèque PHP_Archive de PEAR.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-phar.mapphar-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-phar.mapphar-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Une exception <a href="class.pharexception.html" class="classname">PharException</a> est levée si la méthode n&#039;est pas appelée
+   directement au sein de l&#039;exécution de PHP, si aucun jeton __HALT_COMPILER(); n&#039;est trouvé dans le
+   fichier source actuel ou si le fichier ne peut pas être ouvert en lecture.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-phar.mapphar-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-719">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>Phar::mapPhar()</strong></span></strong></p>
+    <div class="example-contents"><p>
+     mapPhar ne doit être utilisé qu&#039;au sein du conteneur de chargement d&#039;un phar. Utilisez
+     loadPhar pour charger un phar externe en mémoire.
+    </p></div>
+    <div class="example-contents"><p>
+     Voici un exemple de conteneur de chargement Phar qui utilise mapPhar.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">__autoload</span><span style="color: #007700">(</span><span style="color: #0000BB">$class</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;include&nbsp;</span><span style="color: #DD0000">'phar://mon.phar/'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">str_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">'_'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$class</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">'.php'</span><span style="color: #007700">;<br />}<br />try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">mapPhar</span><span style="color: #007700">(</span><span style="color: #DD0000">'mon.phar'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;include&nbsp;</span><span style="color: #DD0000">'phar://mon.phar/demarrage.php'</span><span style="color: #007700">;<br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">PharException&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Ne&nbsp;peut&nbsp;pas&nbsp;initialiser&nbsp;le&nbsp;Phar'</span><span style="color: #007700">);<br />}<br />__HALT_COMPILER();</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-phar.mapphar-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="phar.loadphar.html" class="function" rel="rdfs-seeAlso">Phar::loadPhar()</a> - Charge n'importe quelle archive phar avec un alias</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div></div></div></body></html>

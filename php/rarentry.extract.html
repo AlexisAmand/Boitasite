@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Extrait une entr&eacute;e d'une archive</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="class.rarentry.html">« RarEntry</a></li>
+      <li style="float: right;"><a href="rarentry.getattr.html">RarEntry::getAttr »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.rarentry.html">RarEntry</a></li>
+    <li>Extrait une entr&eacute;e d'une archive</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="rarentry.extract" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">RarEntry::extract</h1>
+  <p class="verinfo">(PECL rar &gt;= 0.1)</p><p class="refpurpose"><span class="refname">RarEntry::extract</span> &mdash; <span class="dc-title">Extrait une entrée d&#039;une archive</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-rarentry.extract-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>RarEntry::extract</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$dir</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$filepath</code><span class="initializer"> = &quot;&quot;</span></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$password</code><span class="initializer"> = NULL</span></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$extended_data</code><span class="initializer"> = <strong><code>FALSE</code></strong></span></span>
+  ]]] ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="methodname"><strong>RarEntry::extract()</strong></span> extrait une entrée de données.
+   Ceci va créer un nouveau fichier dans le dossier spécifié par le paramètre
+   <code class="parameter">dir</code> portant un nom identique au nom de l&#039;entrée,
+   tant que le second argument n&#039;est pas spécifié. Voir ci-dessous pour plus
+   d&#039;informations.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-rarentry.extract-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">dir</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Chemin vers le dossier où le fichier extrait devra être créé.
+       Ce paramètre sera utilisé uniquement si le paramètre
+       <code class="parameter">filepath</code> n&#039;est pas fourni. Si ces 2 paramètres
+       sont vides, l&#039;extraction se fera dans le dossier courant.
+      </p>
+     </dd>
+
+    
+    
+    
+     <dt>
+<code class="parameter">filepath</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Chemin (relatif ou absolut) contenant le dossier et le nom du fichier à extraire.
+       Ce paramètre écrase à la fois le paramètre <code class="parameter">dir</code>
+       et le nom original du fichier.
+      </p>
+     </dd>
+
+    
+    
+    
+     <dt>
+<code class="parameter">password</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le mot de passe à utiliser pour décrypter cette entrée. Si l&#039;entrée n&#039;est pas crypté,
+       cette valeur ne sera pas utilisée et peut être omise. Si ce paramètre est omis et que
+       l&#039;entrée est cryptée, le mot de passe fourni à la fonction <span class="function"><a href="rararchive.open.html" class="function">rar_open()</a></span>,
+       si il existe, sera utilisé. Si un mauvais mot de passe est fourni, soit explicitement
+       ou implicitement via la fonction <span class="function"><a href="rararchive.open.html" class="function">rar_open()</a></span>, la vérification CRC
+       échouera et cette méthode échouera, en retournant <strong><code>FALSE</code></strong>.
+       Si aucun mot de passe n&#039;est fourni alors qu&#039;il est nécessaire, cette méthode échouera
+       en retournant <strong><code>FALSE</code></strong>. Vous pouvez vérifier si une entrée est cryptée avec la méthode
+       <span class="methodname"><a href="rarentry.isencrypted.html" class="methodname">RarEntry::isEncrypted()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+    
+     <dt>
+<code class="parameter">extended_data</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Si vaut <strong><code>TRUE</code></strong>, les informations étendues comme NTFS ACLs
+       et les informations sur le propriétaire Unix seront
+       définies dans les fichiers extraits, si ils sont bien définies
+       dans l&#039;archives.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Avant la version 2.0.0, cette fonction ne gérait pas les chemins relatifs
+    correctement. Utilisez la fonction <span class="function"><a href="function.realpath.html" class="function">realpath()</a></span> comme contournement.
+   </p>
+  </div>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-rarentry.extract-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 changelog" id="refsect1-rarentry.extract-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>3.0.0</td>
+       <td>
+        Le paramètre <code class="parameter">extended_data</code> a été ajouté.
+       </td>
+      </tr>
+
+      <tr>
+       <td>3.0.0</td>
+       <td>
+        Support des archives RAR contenant des entrées portant le même nom.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-rarentry.extract-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-794">
+    <p><strong>Exemple #1 Exemple avec <span class="methodname"><strong>RarEntry::extract()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$rar_file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'example.rar'</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Échec&nbsp;lors&nbsp;de&nbsp;l'ouverture&nbsp;de&nbsp;l'archive&nbsp;RAR"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$entry&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_entry_get</span><span style="color: #007700">(</span><span style="color: #0000BB">$rar_file</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'Dir/file.txt'</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"L'entrée&nbsp;demandée&nbsp;n'existe&nbsp;pas&nbsp;!"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$entry</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">extract</span><span style="color: #007700">(</span><span style="color: #DD0000">'/dir/to'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;Création&nbsp;de&nbsp;/dir/to/Dir/file.txt<br /></span><span style="color: #0000BB">$entry</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">extract</span><span style="color: #007700">(</span><span style="color: #0000BB">false</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/dir/to/new_name.txt'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;Création&nbsp;de&nbsp;/dir/to/new_name.txt<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-795">
+    <p><strong>Exemple #2 Comment extraire tous les fichiers d&#039;une archive :</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;Exemple&nbsp;fourni&nbsp;par&nbsp;Erik&nbsp;Jenssen&nbsp;aka&nbsp;erix&nbsp;*/<br /><br /></span><span style="color: #0000BB">$filename&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"foobar.rar"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$filepath&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"/home/foo/bar/"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$rar_file&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_open</span><span style="color: #007700">(</span><span style="color: #0000BB">$filepath</span><span style="color: #007700">.</span><span style="color: #0000BB">$filename</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$list&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_list</span><span style="color: #007700">(</span><span style="color: #0000BB">$rar_file</span><span style="color: #007700">);<br />foreach(</span><span style="color: #0000BB">$list&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$file</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$entry&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">rar_entry_get</span><span style="color: #007700">(</span><span style="color: #0000BB">$rar_file</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$file</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$entry</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">extract</span><span style="color: #007700">(</span><span style="color: #DD0000">"."</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;Extraction&nbsp;dans&nbsp;le&nbsp;dossier&nbsp;courant<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">rar_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$rar_file</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-rarentry.extract-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="rarentry.getstream.html" class="methodname" rel="rdfs-seeAlso">RarEntry::getStream()</a> - R&eacute;cup&egrave;re le gestion de fichier pour une entr&eacute;e</span></li>
+    <li class="member">Le gestionnaire <a href="wrappers.rar.html" class="link"><code class="literal">rar://</code></a></li>
+   </ul>
+  </p>
+ </div>
+
+ 
+</div></div></div></body></html>

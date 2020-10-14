@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Re&ccedil;oit un message depuis une file de messages</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.msg-queue-exists.html">« msg_queue_exists</a></li>
+      <li style="float: right;"><a href="function.msg-remove-queue.html">msg_remove_queue »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.sem.html">Fonctions S&eacute;maphore</a></li>
+    <li>Re&ccedil;oit un message depuis une file de messages</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.msg-receive" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">msg_receive</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">msg_receive</span> &mdash; <span class="dc-title">Reçoit un message depuis une file de messages</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.msg-receive-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>msg_receive</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$queue</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$desiredmsgtype</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter reference">&$msgtype</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$maxsize</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter reference">&$message</code></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$unserialize</code><span class="initializer"> = <strong><code>TRUE</code></strong></span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = 0</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter reference">&$errorcode</code></span>
+  ]]] ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>msg_receive()</strong></span> reçoit le premier message de la
+   file <code class="parameter">queue</code>, le type est spécifié par
+   <code class="parameter">desiredmsgtype</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.msg-receive-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">queue</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Descripteur de ressource de file d&#039;attente de messages
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">desiredmsgtype</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Si <code class="parameter">desiredmsgtype</code> vaut 0, le premier message
+       de la file est retourné. Si <code class="parameter">desiredmsgtype</code> vaut
+       plus que 0, alors le premier message de ce type sera retourné.
+       Si <code class="parameter">desiredmsgtype</code> vaut moins que 0, le premier
+       message de la file ayant un type inférieur ou égal à la valeur absolue
+       de <code class="parameter">desiredmsgtype</code> sera retourné. Si aucun message
+       ne correspond aux critères, votre script attendra la venue d&#039;un tel
+       message dans la file. Vous pouvez éviter ce blocage en précisant l&#039;option
+       <strong><code>MSG_IPC_NOWAIT</code></strong> dans le paramètre
+       <code class="parameter">flags</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">msgtype</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le type de message qui a été reçu sera stocké dans ce paramètre.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">maxsize</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La taille maximale de message est fixée par
+       <code class="parameter">maxsize</code> ; si le message de la file est plus grand
+       que cette taille, la fonction échouera (à moins que vous
+       n&#039;utilisiez une option <code class="parameter">flags</code>, décrite ci-dessous).
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">message</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le message reçu sera stocké dans le paramètre <code class="parameter">message</code>,
+       à moins qu&#039;il n&#039;y ait eu des erreurs de réception du message.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">unserialize</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Quand c&#039;est le cas, le message est traité comme s&#039;il avait été linéarisé
+       avec le même mécanisme que le module de session. Le message sera alors
+       délinéarisé, puis retourné au script. Cela vous permettra de recevoir
+       facilement des tableaux ou des objets complexes dans votre script, émis
+       par d&#039;autres scripts PHP, ou, si vous utilisez WDDX, depuis n&#039;importe
+       quelle source compatible WDDX.
+      </p>
+      <p class="para">
+       Si <code class="parameter">unserialize</code> vaut <strong><code>FALSE</code></strong>,
+       le message sera retourné intact, et sans modifier les valeurs binaires.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le paramètre <code class="parameter">flags</code> permet de passer des options
+       pour configurer les appels msgrcv. Par défaut, il vaut 0, mais vous pouvez
+       spécifier une ou plusieurs options en les combinant avec l&#039;opérateur OR).
+       <table class="doctable table">
+        <caption><strong>Options de la fonction <span class="function"><strong>msg_receive()</strong></span></strong></caption>
+        
+         <tbody class="tbody">
+          <tr>
+           <td><strong><code>MSG_IPC_NOWAIT</code></strong></td>
+           <td>S&#039;il n&#039;y a pas de message du type
+            <code class="parameter">desiredmsgtype</code>, retourne immédiatement
+            et n&#039;attend pas. La fonction échouera et retournera un entier
+            correspondant à <strong><code>MSG_ENOMSG</code></strong>.
+           </td>
+          </tr>
+
+          <tr>
+           <td><strong><code>MSG_EXCEPT</code></strong></td>
+           <td>En utilisant cette option en combinaison avec
+           un type <code class="parameter">desiredmsgtype</code> supérieur à 0, la 
+           fonction va lire le premier message qui n&#039;est pas
+           du type demandé par <code class="parameter">desiredmsgtype</code>.</td>
+          </tr>
+
+          <tr>
+           <td><strong><code>MSG_NOERROR</code></strong></td>
+           <td>
+            Si le message est plus grand que <code class="parameter">maxsize</code>,
+            cette option va tronquer le message à la taille de
+            <code class="parameter">maxsize</code> et ne signalera pas d&#039;erreur.
+           </td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">errorcode</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Si la fonction échoue, le paramètre optionnel
+       <code class="parameter">errorcode</code> sera défini à la valeur
+       de la variable système errno.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.msg-receive-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+  <p class="para">
+   Lors de la réception réussie d&#039;un message, la file est mise à jour
+   comme ceci : <code class="literal">msg_lrpid</code> prend la valeur de l&#039;identifiant
+   de processus du processus appelant, <code class="literal">msg_qnum</code> est décrémenté de
+   1 et <code class="literal">msg_rtime</code> prend la date et l&#039;heure courante.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.msg-receive-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.msg-remove-queue.html" class="function" rel="rdfs-seeAlso">msg_remove_queue()</a> - D&eacute;truit une file de messages</span></li>
+    <li class="member"><span class="function"><a href="function.msg-send.html" class="function" rel="rdfs-seeAlso">msg_send()</a> - Envoie un message dans une file</span></li>
+    <li class="member"><span class="function"><a href="function.msg-stat-queue.html" class="function" rel="rdfs-seeAlso">msg_stat_queue()</a> - Retourne des informations sur la file de messages</span></li>
+    <li class="member"><span class="function"><a href="function.msg-set-queue.html" class="function" rel="rdfs-seeAlso">msg_set_queue()</a> - Modifie des informations dans la file de messages</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

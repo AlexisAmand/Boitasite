@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>gestionnaires d'&eacute;v&eacute;nements</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="xml.constants.html">« Constantes pr&eacute;-d&eacute;finies</a></li>
+      <li style="float: right;"><a href="xml.case-folding.html">Probl&egrave;mes de casse »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.xml.html">Analyseur syntaxique XML</a></li>
+    <li>gestionnaires d'&eacute;v&eacute;nements</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="xml.eventhandlers" class="article">
+ <h1>gestionnaires d&#039;événements</h1>
+
+ <p class="para">
+  Les gestionnaires d&#039;événements XML sont :
+  <table class="doctable table">
+   <caption><strong>Les gestionnaires d&#039;événements XML supportés</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Fonction PHP de configuration du gestionnaire</th>
+      <th>Description de l&#039;événement</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td><span class="function"><a href="function.xml-set-element-handler.html" class="function">xml_set_element_handler()</a></span></td>
+      <td>
+       Un événement est généré
+       à chaque fois que l&#039;analyseur XML rencontre une balise de
+       début ou de fin. Deux gestionnaires sont disponibles : un
+       pour le début, et un pour la fin.
+      </td>
+     </tr>
+
+     <tr>
+      <td>
+       <span class="function"><a href="function.xml-set-character-data-handler.html" class="function">xml_set_character_data_handler()</a></span>
+      </td>
+      <td>
+       <code class="literal">&quot;Character data&quot;</code> correspond grosso modo à tout ce qui n&#039;est
+       pas une balise XML, y compris les espaces entre les balises. Notez
+       bien que l&#039;analyseur XML n&#039;ajoute ou n&#039;efface aucun espace, et que
+       c&#039;est à l&#039;application (c&#039;est-à-dire vous) de
+       décider de la signification de ces espaces.
+      </td>
+     </tr>
+
+     <tr>
+      <td>
+       <span class="function"><a href="function.xml-set-processing-instruction-handler.html" class="function">xml_set_processing_instruction_handler()</a></span>
+      </td>
+      <td>
+       Les programmeurs PHP sont habitués aux instructions
+       exécutables (<code class="literal">processing instructions</code> ou PIs).
+       &lt;?php ?&gt; est une instruction exécutable où
+       <span class="replaceable">php</span> est appelé programme cible.
+       Ces instructions sont gérées de manière spécifique,
+       (sauf le programme cible <code class="literal">&quot;XML&quot;</code> qui est réservé).
+      </td>
+     </tr>
+
+     <tr>
+      <td><span class="function"><a href="function.xml-set-default-handler.html" class="function">xml_set_default_handler()</a></span></td>
+      <td>
+       Tout ce qui n&#039;a pas trouvé de gestionnaire est transmis
+       au gestionnaire par défaut. Vous retrouverez par exemple,
+       les déclarations de type de document dans ce gestionnaire.
+      </td>
+     </tr>
+
+     <tr>
+      <td>
+       <span class="function"><a href="function.xml-set-unparsed-entity-decl-handler.html" class="function">xml_set_unparsed_entity_decl_handler()</a></span>
+      </td>
+      <td>
+       Ce gestionnaire est appelé pour gérer les
+       déclaration des entités non analysées (NDATA).
+      </td>
+     </tr>
+
+     <tr>
+      <td>
+       <span class="function"><a href="function.xml-set-notation-decl-handler.html" class="function">xml_set_notation_decl_handler()</a></span>
+      </td>
+      <td>
+       Ce gestionnaire est appelé pour déclarer les notations.
+      </td>
+     </tr>
+
+     <tr>
+      <td>
+       <span class="function"><a href="function.xml-set-external-entity-ref-handler.html" class="function">xml_set_external_entity_ref_handler()</a></span>
+      </td>
+      <td>
+       Ce gestionnaire est appelé lorsque l&#039;analyseur XML trouve une
+       référence à une entité générale externe. Cela peut être une
+       référence à un fichier ou à une URL. Reportez-vous à
+       <a href="example.xml-external-entity.html" class="link">entité externe</a>
+       pour un exemple.
+      </td>
+     </tr>
+
+     <tr>
+      <td>
+       <span class="function"><a href="function.xml-set-start-namespace-decl-handler.html" class="function">xml_set_start_namespace_decl_handler()</a></span>
+      </td>
+      <td>
+       Ce gestionnaire est appelé pour le début de la déclaration d&#039;un espace de noms.
+      </td>
+     </tr>
+
+     <tr>
+      <td>
+       <span class="function"><a href="function.xml-set-end-namespace-decl-handler.html" class="function">xml_set_end_namespace_decl_handler()</a></span>
+      </td>
+      <td>
+       Ce gestionnaire est appelé pour la déclaration de fin d&#039;espace de noms.
+       Notez que cet évennement n&#039;est <em class="emphasis">pas</em> déclenché de LibXML.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </p>
+</div>
+</div></div></body></html>

@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Phar Signature format</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="phar.fileformat.manifestfile.html">« D&eacute;finition des entr&eacute;es du manifeste Phar</a></li>
+      <li style="float: right;"><a href="class.phar.html">Phar »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="phar.fileformat.html">Qu'est-ce qui fait d'un phar un phar et pas un tar ou un zip ?</a></li>
+    <li>Phar Signature format</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="phar.fileformat.signature" class="section">
+  <h2 class="title">Phar Signature format</h2>
+  <p class="para">
+   Les Phar qui contiennent une signature ont toujours la signature ajoutée à la fin du Phar,
+   après le chargeur, le manifeste et le contenu.
+   Les types de signature supportés à ce jour sont MD5, SHA1, SHA256 and SHA512.
+  </p>
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Format de signature</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Longueur en octets</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>16 ou 20 octets</td>
+       <td>
+        La signature actuelle, 20 octets pour une SHA1,
+        16 octets pour une MD5, 32 octets pour une SHA256,
+        et 64 octets pour une SHA512.
+       </td>
+      </tr>
+
+      <tr>
+       <td>4 octets</td>
+       <td>
+        Les drapeaux de signature.  <code class="literal">0x0001</code> est utilisé pour
+        définir une signature MD5, <code class="literal">0x0002</code> pour une SHA1,
+        <code class="literal">0x0004</code> pour une SHA256 et <code class="literal">0x0008</code>
+        pour une SHA512. Le support des signatures SHA256 et SHA512 a été introduit
+        avec l&#039;API version 1.1.0.
+       </td>
+      </tr>
+
+      <tr>
+       <td>4 octets</td>
+       <td>
+        <code class="literal">GBMB</code> magique utilisé pour définir la présence d&#039;une signature.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div></div></div></body></html>

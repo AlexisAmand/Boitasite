@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ajoute une t&acirc;che &agrave; ex&eacute;cuter en parall&egrave;le</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="gearmanclient.addservers.html">« GearmanClient::addServers</a></li>
+      <li style="float: right;"><a href="gearmanclient.addtaskbackground.html">GearmanClient::addTaskBackground »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.gearmanclient.html">GearmanClient</a></li>
+    <li>Ajoute une t&acirc;che &agrave; ex&eacute;cuter en parall&egrave;le</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="gearmanclient.addtask" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">GearmanClient::addTask</h1>
+  <p class="verinfo">(PECL gearman &gt;= 0.5.0)</p><p class="refpurpose"><span class="refname">GearmanClient::addTask</span> &mdash; <span class="dc-title">Ajoute une tâche à exécuter en parallèle</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-gearmanclient.addtask-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>GearmanClient::addTask</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$function_name</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$workload</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter reference">&$context</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$unique</code></span>
+  ]] ) : <span class="type"><a href="class.gearmantask.html" class="type GearmanTask">GearmanTask</a></span></div>
+
+  <p class="para rdfs-comment">
+   Ajoute une tâche à exécuter en parallèle d&#039;autres tâches. Appelez cette
+   méthode pour toutes les tâches à exécuter en parallèle, puis, appelez
+   la méthode <span class="methodname"><a href="gearmanclient.runtasks.html" class="methodname">GearmanClient::runTasks()</a></span> pour exécuter les
+   tâches. Notez qu&#039;il est nécessaire d&#039;avoir assez d&#039;agents disponibles pour exécuter
+   en parallèle toutes les tâches.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-gearmanclient.addtask-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">function_name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une fonction enregistrée que le travailleur va exécuter
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">workload</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Données linéarisées à analyser
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">context</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Contexte de l&#039;application à associer avec une tâche
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">unique</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un identifiant unique utilisé pour identifier une tâche particulière
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-gearmanclient.addtask-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Un objet <a href="class.gearmantask.html" class="classname">GearmanTask</a> ou <strong><code>FALSE</code></strong>
+   si l tâche n&#039;a pu être ajoutée.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-gearmanclient.addtask-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-4972">
+    <p><strong>Exemple #1 Ajout de 2 tâches</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">#&nbsp;Crée&nbsp;un&nbsp;client&nbsp;gearman<br /></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">GearmanClient</span><span style="color: #007700">();&nbsp;<br /><br /></span><span style="color: #FF8000">#&nbsp;Ajoute&nbsp;le&nbsp;serveur&nbsp;de&nbsp;travaux&nbsp;par&nbsp;défaut<br /></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addServer</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">#&nbsp;Défini&nbsp;une&nbsp;fonction&nbsp;à&nbsp;appeler&nbsp;lorsque&nbsp;le&nbsp;travail&nbsp;est&nbsp;terminé<br /></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setCompleteCallback</span><span style="color: #007700">(</span><span style="color: #DD0000">"complete"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">#&nbsp;Ajoute&nbsp;une&nbsp;tâche&nbsp;exécutant&nbsp;la&nbsp;fonction&nbsp;"reverse"&nbsp;sur&nbsp;la&nbsp;chaîne&nbsp;"Hello&nbsp;World!"<br /></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTask</span><span style="color: #007700">(</span><span style="color: #DD0000">"reverse"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Hello&nbsp;World!"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"1"</span><span style="color: #007700">);&nbsp;<br /><br /></span><span style="color: #FF8000">#&nbsp;Ajoute&nbsp;une&nbsp;autre&nbsp;tâche&nbsp;exécutant&nbsp;la&nbsp;fonction&nbsp;"reverse"&nbsp;sur&nbsp;la&nbsp;chaîne&nbsp;"!dlroW&nbsp;olleH"<br /></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTask</span><span style="color: #007700">(</span><span style="color: #DD0000">"reverse"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"!dlroW&nbsp;olleH"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"2"</span><span style="color: #007700">);&nbsp;<br /><br /></span><span style="color: #FF8000">#&nbsp;Exécute&nbsp;les&nbsp;tâches<br /></span><span style="color: #0000BB">$gmclient</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runTasks</span><span style="color: #007700">();&nbsp;<br /><br />function&nbsp;</span><span style="color: #0000BB">complete</span><span style="color: #007700">(</span><span style="color: #0000BB">$task</span><span style="color: #007700">)&nbsp;<br />{&nbsp;<br />&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"Terminé&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unique</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">",&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">data</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Terminé : 2, Hello World!
+Terminé : 1, !dlroW olleH
+</pre></div>
+    </div>
+   </div>
+   <div class="example" id="example-4973">
+    <p><strong>Exemple #2 Ajout de 2 tâches en passant le contexte de l&#039;application</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$client&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">GearmanClient</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addServer</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">#&nbsp;Défini&nbsp;une&nbsp;fonction&nbsp;à&nbsp;appeler&nbsp;lorsque&nbsp;le&nbsp;travail&nbsp;est&nbsp;terminé<br /></span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setCompleteCallback</span><span style="color: #007700">(</span><span style="color: #DD0000">"reverse_complete"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">#&nbsp;Ajout&nbsp;de&nbsp;quelques&nbsp;tâches&nbsp;contenant&nbsp;un&nbsp;marqueur&nbsp;à&nbsp;l'emplacement&nbsp;duquel&nbsp;le&nbsp;résultat&nbsp;doit&nbsp;être&nbsp;placé<br /></span><span style="color: #0000BB">$results&nbsp;</span><span style="color: #007700">=&nbsp;array();<br /></span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTask</span><span style="color: #007700">(</span><span style="color: #DD0000">"reverse"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Hello&nbsp;World!"</span><span style="color: #007700">,&nbsp;&amp;</span><span style="color: #0000BB">$results</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"t1"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTask</span><span style="color: #007700">(</span><span style="color: #DD0000">"reverse"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"!dlroW&nbsp;olleH"</span><span style="color: #007700">,&nbsp;&amp;</span><span style="color: #0000BB">$results</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"t2"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$client</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">runTasks</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">#&nbsp;Le&nbsp;résultat&nbsp;doit&nbsp;être&nbsp;maintenant&nbsp;contenu&nbsp;dans&nbsp;les&nbsp;fonctions&nbsp;de&nbsp;rappel<br /></span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">$results&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$id&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$id&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">":&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">[</span><span style="color: #DD0000">'handle'</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">",&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /><br />function&nbsp;</span><span style="color: #0000BB">reverse_complete</span><span style="color: #007700">(</span><span style="color: #0000BB">$task</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$results</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$results</span><span style="color: #007700">[</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unique</span><span style="color: #007700">()]&nbsp;=&nbsp;array(</span><span style="color: #DD0000">"handle"</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">jobHandle</span><span style="color: #007700">(),&nbsp;</span><span style="color: #DD0000">"data"</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">$task</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">data</span><span style="color: #007700">());<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+t2: H.foo:21, Hello World!
+t1: H:foo:22, !dlroW olleH
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-gearmanclient.addtask-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtaskhigh.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskHigh()</a> - Ajoute une t&acirc;che de forte priorit&eacute; &agrave; effectuer en parall&egrave;le</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtasklow.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskLow()</a> - Ajoute une t&acirc;che de faible priorit&eacute; &agrave; effectuer en parall&egrave;le</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtaskbackground.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskBackground()</a> - Ajoute une t&acirc;che d'arri&egrave;re-plan pour une ex&eacute;cution en parall&egrave;le</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtaskhighbackground.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskHighBackground()</a> - Ajoute une t&acirc;che de fond de forte priorit&eacute; &agrave; effectuer en parall&egrave;le</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.addtasklowbackground.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::addTaskLowBackground()</a> - Ajoute une t&acirc;che de fond de faible priorit&eacute; &agrave; effectuer en parall&egrave;le</span></li>
+    <li class="member"><span class="methodname"><a href="gearmanclient.runtasks.html" class="methodname" rel="rdfs-seeAlso">GearmanClient::runTasks()</a> - Ex&eacute;cute une liste de t&acirc;ches en parall&egrave;le</span></li>
+   </ul>
+  </p>
+ </div>
+
+ 
+</div></div></div></body></html>

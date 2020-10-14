@@ -1,0 +1,503 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Exemples</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="sdo-das-xml.constants.html">« Constantes pr&eacute;-d&eacute;finies</a></li>
+      <li style="float: right;"><a href="ref.sdo-das-xml.html">Fonctions SDO DAS XML »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.sdo-das-xml.html">SDO DAS XML</a></li>
+    <li>Exemples</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="sdo-das-xml.examples" class="chapter">
+ <h1>Exemples</h1>
+
+   <p class="para">
+    La plupart des exemples suivants sont basés sur l&#039;<a href="sdo.sample.sequence.html" class="link">exemple de la lettre</a> décrite dans la
+    <a href="ref.sdo.html" class="link">documentation SDO</a>. Les exemples assument
+    que le Schéma XML pour la lettre est contenu dans un fichier
+    <var class="filename">lettre.xsd</var> et que l&#039;instance de la lettre est dans le
+    fichier <var class="filename">lettre.xml</var>. Ces deux fichiers sont reproduits
+    ici :
+   </p>
+   <p class="para">
+    <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+  xmlns:letter=&quot;http://letterSchema&quot;
+  targetNamespace=&quot;http://letterSchema&quot;&gt;
+  &lt;xsd:element name=&quot;letters&quot; type=&quot;letter:FormLetter&quot;/&gt;
+  &lt;xsd:complexType name=&quot;FormLetter&quot; mixed=&quot;true&quot;&gt;
+    &lt;xsd:sequence&gt;
+      &lt;xsd:element name=&quot;date&quot; minOccurs=&quot;0&quot; type=&quot;xsd:string&quot;/&gt;
+      &lt;xsd:element name=&quot;firstName&quot; minOccurs=&quot;0&quot; type=&quot;xsd:string&quot;/&gt;
+      &lt;xsd:element name=&quot;lastName&quot; minOccurs=&quot;0&quot; type=&quot;xsd:string&quot;/&gt;
+    &lt;/xsd:sequence&gt;
+  &lt;/xsd:complexType&gt;
+&lt;/xsd:schema&gt;</pre>
+</div>
+    </div>
+
+   </p>
+
+   <p class="para">
+    <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">&lt;letter:letters xmlns:letter=&quot;http://letterSchema&quot;&gt;
+  &lt;date&gt;March 1, 2005&lt;/date&gt;
+  Mutual of Omaha
+  Wild Kingdom, USA
+  Dear
+  &lt;firstName&gt;Casy&lt;/firstName&gt;
+  &lt;lastName&gt;Crocodile&lt;/lastName&gt;
+  Please buy more shark repellent.
+  Your premium is past due.
+&lt;/letter:letters&gt;</pre>
+</div>
+    </div>
+
+   </p>
+
+   <div class="example" id="example-6106">
+    <p><strong>Exemple #1 Chargement, modification et sauvegarde d&#039;un document XML</strong></p>
+    <div class="example-contents"><p>
+     L&#039;exemple suivant montre comment un document XML peut être chargé
+     provenant d&#039;un fichier, altéré et récrit.
+    </p></div>
+
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/**<br />*&nbsp;Charge,&nbsp;met&nbsp;à&nbsp;jour&nbsp;et&nbsp;sauvegarde&nbsp;un&nbsp;document&nbsp;XML<br />&nbsp;*/<br /></span><span style="color: #007700">try&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$xmldas&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">SDO_DAS_XML</span><span style="color: #007700">::</span><span style="color: #0000BB">create</span><span style="color: #007700">(</span><span style="color: #DD0000">"letter.xsd"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$document&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loadFile</span><span style="color: #007700">(</span><span style="color: #DD0000">"letter.xml"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$root_data_object&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$document</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getRootDataObject</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$root_data_object</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">date&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"September&nbsp;03,&nbsp;2004"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$root_data_object</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">firstName&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Anantoju"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$root_data_object</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">lastName&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Madhu"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">saveFile</span><span style="color: #007700">(</span><span style="color: #0000BB">$document</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"letter-out.xml"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"New&nbsp;file&nbsp;has&nbsp;been&nbsp;written:\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">"letter-out.xml"</span><span style="color: #007700">);<br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">SDO_Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;print(</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">());<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+
+    <div class="example-contents"><p>
+     Une instance du XML DAS est la première obtenue de la méthode
+     <span class="function"><a href="sdo-das-xml.create.html" class="function">SDO_DAS_XML::create()</a></span> qui est une méthode statique de
+     la classe <strong class="classname">SDO_DAS_XML</strong>. L&#039;emplacement du xsd
+     est passé en paramètre. Une fois que nous avons une instance de XML
+     DAS initialisée avec un schéma donné, nous pouvons l&#039;utiliser
+     pour charger l&#039;instance du document en utilisant la méthode
+     <span class="function"><strong>loadFile()</strong></span>. Il y a aussi la méthode
+     <span class="function"><strong>loadString()</strong></span> si vous voulez charger une instance
+     de document XML provenant d&#039;une chaîne de caractères.
+     Si l&#039;instance du document se charge correctement, un objet de type
+     <strong class="classname">SDO_DAS_XML_Document</strong> sera retourné sur lequel vous
+     pourrez appeler la méthode <span class="function"><strong>getRootDataObject()</strong></span> pour
+     obtenir l&#039;objet de données SDO qui est la racine de votre graphique de
+     données SDO. Vous pouvez alors utiliser les opérations SDO pour changer
+     le graphique SDO. Dans cet exemple, nous modifions les propriétés
+     <var class="varname">date</var>, <var class="varname">prenom</var> et
+     <var class="varname">nomFamille</var>. Ensuite, nous utilisons la méthode
+     <span class="function"><strong>saveFile()</strong></span> pour écrire les changements dans
+     un fichier système. La méthode saveFile a un argument optionnel qui,
+     s&#039;il est spécifié, fera que le XML DAS va formate le code XML en utilisant
+     cet argument pour indenter chaque changement dans le niveau du document.
+    </p></div>
+
+    <div class="example-contents"><p>
+     Ceci va écrit ce qui suit dans le fichier <var class="filename">letter-out.xml</var>.
+    </p></div>
+
+    <div class="example-contents">
+     <div class="xmlcode"><pre class="xmlcode">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;FormLetter xmlns=&quot;http://letterSchema&quot; xsi:type=&quot;FormLetter&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+  &lt;date&gt;September 03, 2004&lt;/date&gt;
+  Mutual of Omaha
+  Wild Kingdom, USA
+  Dear
+  &lt;firstName&gt;Anantoju&lt;/firstName&gt;
+  &lt;lastName&gt;Madhu&lt;/lastName&gt;
+  Please buy more shark repellent.
+  Your premium is past due.
+&lt;/FormLetter&gt;</pre>
+</div>
+   </div>
+
+   </div>
+
+   <div class="example" id="example-6107">
+
+    <p><strong>Exemple #2 Création d&#039;un nouveau document XML</strong></p>
+    <div class="example-contents"><p>
+     L&#039;exemple précédent charge le document depuis un fichier.
+     Cet exemple montre comment créer un graphique de données
+     SDO en mémoire. Dans cet exemple, il est sauvegardé dans une
+     chaîne XML. En outre, vu que la lettre contient à la fois du contenu structuré
+     et non-structuré, on utilise
+     l&#039;<a href="sdo.sample.sequence.html" class="link">API séquence</a>
+     pour assigner les propriétés pour construire le graphique des données.
+    </p></div>
+
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/**<br />*&nbsp;Création&nbsp;d'un&nbsp;document&nbsp;XML<br />*/<br /></span><span style="color: #007700">try&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$xmldas&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">SDO_DAS_XML</span><span style="color: #007700">::</span><span style="color: #0000BB">create</span><span style="color: #007700">(</span><span style="color: #DD0000">"letter.xsd"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$doc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">createDocument</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$rdo&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getRootDataObject</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$seq&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$rdo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getSequence</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$seq</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #DD0000">"April&nbsp;09,&nbsp;2005"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'date'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$seq</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #DD0000">"Acme&nbsp;Inc.&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$seq</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #DD0000">"United&nbsp;Kingdom.&nbsp;"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$seq</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #DD0000">"Dear"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$seq</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #DD0000">"Tarun"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"firstName"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$seq</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #DD0000">"Nayaraaa"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"lastName"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$rdo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">lastName&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Nayar"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$seq</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #DD0000">"Please&nbsp;note&nbsp;that&nbsp;your&nbsp;order&nbsp;number&nbsp;"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$seq</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #0000BB">12345</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$seq</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #DD0000">"&nbsp;has&nbsp;been&nbsp;dispatched&nbsp;today.&nbsp;Thanks&nbsp;for&nbsp;your&nbsp;business&nbsp;with&nbsp;us."</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(</span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">saveString</span><span style="color: #007700">(</span><span style="color: #0000BB">$doc</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">SDO_Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(</span><span style="color: #0000BB">$e</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;}<br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">SDO_Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;print(</span><span style="color: #DD0000">"Problem&nbsp;creating&nbsp;an&nbsp;XML&nbsp;document:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">());<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+
+   </div>
+
+   <p class="para">
+    La méthode <span class="function"><strong>createDocument()</strong></span> du XLM DAS
+    retourne un objet document avec une donnée racine simple correspondant
+    à un élément du document vide. Le nom de l&#039;élément du document
+    est connu du fichier de schéma. S&#039;il y a le moindre doute quant à la valeur
+    de l&#039;élément du document, par exemple lorsque plus d&#039;un schéma
+    a été chargé dans le même XML DAS, le nom de l&#039;élément et l&#039;URI de
+    l&#039;espace de noms peuvent être passés à la méthode
+    <span class="function"><strong>createDocument()</strong></span>.
+   </p>
+
+   <p class="para">
+    Ceci affichera (les retours à la ligne ont été insérés pour une meilleure lisibilité) :
+   </p>
+
+   <div class="example-contents">
+     <div class="xmlcode"><pre class="xmlcode">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;FormLetter xmlns=&quot;http://letterSchema&quot; xsi:type=&quot;FormLetter&quot; 
+xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+&lt;date&gt;April 09, 2005&lt;/date&gt;
+Acme Inc. United Kingdom. 
+Dear
+&lt;firstName&gt;Tarun&lt;/firstName&gt;
+&lt;lastName&gt;Nayar&lt;/lastName&gt;
+Please note that your order number 12345 has been 
+dispatched today. Thanks for your business with us.
+&lt;/FormLetter&gt;</pre>
+</div>
+   </div>
+
+
+
+   <div class="example" id="example-6108">
+
+    <p><strong>Exemple #3 Définition des propriétés du document XML</strong></p>
+    <div class="example-contents"><p>
+     Ce troisième exemple montre comment définir la version XML
+     ainsi que l&#039;encodage de l&#039;objet document. Ceci sera utilisé
+     lors de l&#039;écriture du document XML. Si aucune déclaration XML
+     n&#039;est désirée (peut-être voulez-vous générer du XML sous
+     la forme d&#039;une chaîne à incorporer quelque part), alors, vous
+     pouvez utiliser la méthode <span class="function"><strong>setXMLDeclaration()</strong></span>
+     pour supprimer la déclaration.
+    </p></div>
+
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/**<br />*&nbsp;Illustration&nbsp;des&nbsp;appels&nbsp;qui&nbsp;contrôlent&nbsp;la&nbsp;déclaration&nbsp;XML<br />*/<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$xmldas&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">SDO_DAS_XML</span><span style="color: #007700">::</span><span style="color: #0000BB">create</span><span style="color: #007700">(</span><span style="color: #DD0000">"letter.xsd"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$document&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loadFile</span><span style="color: #007700">(</span><span style="color: #DD0000">"letter.xml"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$document</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setXMLVersion</span><span style="color: #007700">(</span><span style="color: #DD0000">"1.1"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$document</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setEncoding</span><span style="color: #007700">(</span><span style="color: #DD0000">"ISO-8859-1"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;print(</span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">saveString</span><span style="color: #007700">(</span><span style="color: #0000BB">$document</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+
+    <div class="example-contents"><p>
+     La version et l&#039;encodage du XML sont définis dans la déclaration XML
+     en haut du document XML.
+    </p></div>
+
+    <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">&lt;?xml version=&quot;1.1&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+.../...</pre>
+</div>
+   </div>
+
+   </div>
+   <div class="example" id="example-6109">
+    <p><strong>Exemple #4 Utilisation d&#039;un type ouvert</strong></p>
+    <div class="example-contents"><p>
+     Ce quatrième exemple illustre l&#039;utilisation d&#039;un type ouvert SDO
+     ainsi que l&#039;utilisation de la méthode
+     <span class="function"><strong>createDataObject()</strong></span>. Pour cet exemple, nous
+     utilisons les deux schémas suivants :
+   </p></div>
+   <div class="example-contents"><p>
+    <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">&lt;schema
+  xmlns=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+
+  &lt;element name=&quot;jungle&quot;&gt;
+    &lt;complexType&gt;
+      &lt;sequence&gt;
+        &lt;any minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+      &lt;/sequence&gt;
+    &lt;/complexType&gt;
+  &lt;/element&gt;
+
+&lt;/schema&gt;</pre>
+</div>
+    </div>
+
+   </p></div>
+
+   <div class="example-contents"><p>
+    Notez la présence de l&#039;élément <var class="varname">any</var>
+    dans la définition. Ce premier schéma définit
+    le type complexe <var class="varname">jungle</var>
+    qui contient une séquence de n&#039;importe quel autre type.
+    Les autres types que cet exemple utilise, sont définis
+    dans un second fichier de schéma :
+   </p></div>
+   <div class="example-contents"><p>
+    <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">&lt;schema xmlns= &quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+
+   &lt;complexType name=&quot;snakeType&quot;&gt;
+     &lt;sequence&gt;
+       &lt;element name= &quot;name&quot; type=&quot;string&quot;/&gt;
+       &lt;element name= &quot;length&quot; type=&quot;positiveInteger&quot; /&gt;
+     &lt;/sequence&gt;
+   &lt;/complexType&gt;
+
+   &lt;complexType name=&quot;bearType&quot;&gt;
+     &lt;sequence&gt;
+       &lt;element name= &quot;name&quot; type=&quot;string&quot;/&gt;
+       &lt;element name= &quot;weight&quot; type=&quot;positiveInteger&quot; /&gt;
+     &lt;/sequence&gt;
+   &lt;/complexType&gt;
+
+   &lt;complexType name=&quot;pantherType&quot;&gt;
+     &lt;sequence&gt;
+       &lt;element name= &quot;name&quot; type=&quot;string&quot;/&gt;
+       &lt;element name= &quot;colour&quot; type=&quot;string&quot; /&gt;
+     &lt;/sequence&gt;
+   &lt;/complexType&gt;
+
+&lt;/schema&gt;</pre>
+</div>
+    </div>
+
+   </p></div>
+
+   <div class="example-contents"><p>
+    Voici l&#039;exemple de code PHP qui utilise ces deux fichiers de schéma :
+   </p></div>
+
+   <div class="example-contents"><p>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/**<br />*&nbsp;Illustration&nbsp;de&nbsp;types&nbsp;ouverts&nbsp;et&nbsp;de&nbsp;l'utilisaton&nbsp;de&nbsp;la&nbsp;méthode&nbsp;addTypes()<br />*/<br /><br /></span><span style="color: #0000BB">$xmldas&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">SDO_DAS_XML</span><span style="color: #007700">::</span><span style="color: #0000BB">create</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTypes</span><span style="color: #007700">(</span><span style="color: #DD0000">"jungle.xsd"</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;ceci&nbsp;est&nbsp;un&nbsp;type&nbsp;ouvert,&nbsp;i.e.&nbsp;la&nbsp;xsd&nbsp;spécifiée&nbsp;peut&nbsp;contenir&nbsp;le&nbsp;type&nbsp;"any"<br /></span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addTypes</span><span style="color: #007700">(</span><span style="color: #DD0000">'animalTypes.xsd'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$baloo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">createDataObject</span><span style="color: #007700">(</span><span style="color: #DD0000">''</span><span style="color: #007700">,</span><span style="color: #DD0000">'bearType'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$baloo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Baloo"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$baloo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">weight&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">800</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$bagheera&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">createDataObject</span><span style="color: #007700">(</span><span style="color: #DD0000">''</span><span style="color: #007700">,</span><span style="color: #DD0000">'pantherType'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$bagheera</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Bagheera"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$bagheera</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">colour&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'inky&nbsp;black'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$kaa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">createDataObject</span><span style="color: #007700">(</span><span style="color: #DD0000">''</span><span style="color: #007700">,</span><span style="color: #DD0000">'snakeType'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$kaa</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Kaa"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$kaa</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">25</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$document&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">createDocument</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$do&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$document</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getRootDataObject</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$do</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bear&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$baloo</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$do</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">panther&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$bagheera</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$do</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">snake&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$kaa</span><span style="color: #007700">;<br /><br />print(</span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">saveString</span><span style="color: #007700">(</span><span style="color: #0000BB">$document</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </p></div>
+   <div class="example-contents"><p>
+    Ces deux fichiers de schéma sont chargés dans le XML DAS avec les méthodes
+    <span class="function"><strong>create()</strong></span> et <span class="function"><strong>addTypes()</strong></span>.
+    La méthode <span class="function"><strong>createDataObject()</strong></span> est utilisée pour
+    créer les trois objets de données. Dans chaque cas, l&#039;URI de l&#039;espace de noms
+    et le nom du type sont passés à la méthode <span class="function"><strong>createDataObject()</strong></span> :
+    dans cet exemple, l&#039;URI de l&#039;espace de nom est vide car aucun espace de noms
+    n&#039;est utilisé dans ce schéma. Une fois que les trois objets - représentant
+    un ours, une panthère et un serpent - ont été créés, un objet document est créé
+    avec la méthode <span class="function"><strong>createDocument()</strong></span>. Dans ce cas,
+    il n&#039;y a aucune ambiguïté sur l&#039;élément document - vu que le second fichier de
+    schéma définit uniquement des types complexes, l&#039;élément document ne
+    peut être que l&#039;élément global <var class="varname">jungle</var> défini dans
+    le premier schéma. Ce document aura un objet racine simple correspondant
+    à un élément document <var class="varname">jungle</var> vide.
+    Vu que c&#039;est un type ouvert, les propriétés peuvent y être ajoutées.
+    Lorsque la première assignation est effectuée avec <var class="varname">$do->bear</var>,
+    une propriété <var class="varname">bear</var> est ajoutée à l&#039;objet racine :
+    de la même façon que pour les deux assignations suivantes.
+    Lorsque le document est écrit via la méthode
+    <span class="function"><strong>saveString()</strong></span>, le document résultant sera :
+   </p></div>
+
+   <div class="example-contents"><p>
+    <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;jungle xsi:type=&quot;jungle&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+  &lt;bear xsi:type=&quot;bearType&quot;&gt;
+    &lt;name&gt;Baloo&lt;/name&gt;
+    &lt;weight&gt;800&lt;/weight&gt;
+  &lt;/bear&gt;
+  &lt;panther xsi:type=&quot;pantherType&quot;&gt;
+    &lt;name&gt;Bagheera&lt;/name&gt;
+    &lt;colour&gt;inky black&lt;/colour&gt;
+  &lt;/panther&gt;
+  &lt;snake xsi:type=&quot;snakeType&quot;&gt;
+    &lt;name&gt;Kaa&lt;/name&gt;
+    &lt;length&gt;25&lt;/length&gt;
+  &lt;/snake&gt;
+&lt;/jungle&gt;</pre>
+</div>
+    </div>
+
+   </p></div>
+   </div>
+
+   <div class="example" id="example-6110">
+
+    <p><strong>Exemple #5 Trouver ce que vous voulez dans un document</strong></p>
+    <div class="example-contents"><p>
+     Cet exemple illustre comment trouver un nom d&#039;élément et l&#039;espace
+     de noms d&#039;un élément du document depuis un objet XML Document, le
+     type SDO et l&#039;espace de noms depuis l&#039;élément racine de données XML.
+     Ceci peut être difficile à comprendre, car il y a 4 méthodes à appeler :
+     deux peuvent être exécutées sur l&#039;objet Document, et deux sur n&#039;importe
+     quelle donnée y compris l&#039;objet racine. Parce que les règles qui définissent
+     la façon dont le modèle SDO est dérivé du modèle XML, lorsque l&#039;objet
+     de données concerné est l&#039;objet racine qui représente l&#039;objet document
+     pour le document, seulement trois valeurs possibles peuvent revenir
+     de l&#039;appels des quatre méthodes.
+    </p></div>
+    <div class="example-contents"><p>
+     Les deux appels de méthodes qui peuvent être exécutés sur le document sont
+     <span class="function"><strong>getRootElementName()</strong></span> et <span class="function"><strong>getRootEelementURI()</strong></span>.
+     Elles retournent respectivement le nom de l&#039;élément et l&#039;espace de noms de l&#039;élément document.
+    </p></div>
+    <div class="example-contents"><p>
+     Les deux appels de méthodes qui peuvent être exécutés sur tous les objets
+     de données sont <span class="function"><strong>getTypeName()</strong></span> et
+     <span class="function"><strong>getTypeNamespaceURI()</strong></span>.
+     Elles retournent respectivement le nom du type SDO et l&#039;espace de noms du type de l&#039;objet de données.
+    </p></div>
+    <div class="example-contents"><p>
+     Dans tous les cas, l&#039;appel à la méthode <span class="function"><strong>getRootElementURI()</strong></span>
+     sur l&#039;objet document retournera la même valeur que l&#039;appel à la méthode
+     <span class="function"><strong>getNamespaceURI()</strong></span> sur l&#039;objet racine.
+     Les informations sont toutes dérivées depuis les premières lignes du fichier
+     schéma, où il y a trois sortes distinctes d&#039;informations.
+     Pour illustrer ceci, voici les premières lignes du fichier
+     letter.xsd qui nous avons utilisé plus haut.
+    </p></div>
+
+    <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+            xmlns:letter=&quot;http://letterSchema&quot;
+            targetNamespace=&quot;http://letterSchema&quot;&gt;
+
+  &lt;xsd:element name=&quot;letters&quot; type=&quot;letter:FormLetter&quot;/&gt;
+
+  &lt;xsd:complexType name=&quot;FormLetter&quot; mixed=&quot;true&quot;&gt;
+    .../...</pre>
+</div>
+    </div>
+
+ 
+   <div class="example-contents"><p>
+     Les trois valeurs importantes sont :
+    <ul class="itemizedlist">
+    <li class="listitem">
+    <p class="para">
+    <var class="varname">letters</var>, le nom de l&#039;élément document
+   </p>
+  </li>
+  <li class="listitem">
+   <p class="para">
+    <var class="varname">FormLetter</var>, le nom du type complexe de l&#039;élément document.
+    C&#039;est également le nom du type SDO de l&#039;objet racine.
+   </p>
+  </li>
+  <li class="listitem">
+   <p class="para">
+    <var class="varname">http://letterSchema</var>, l&#039;espace de noms auquel l&#039;élément document appartient.
+    C&#039;est également l&#039;URI de l&#039;espace de noms du type SDO de l&#039;objet racine.
+   </p>
+  </li>
+ </ul>
+ C&#039;est une partie des règles XML-SDO qui, lorsque le modèle SDO
+ est construit depuis le fichier schéma, sont utilisé pour récupérer
+ le nom du type et l&#039;URI de l&#039;espace de noms des types SDO pour
+ l&#039;élément racine pour les types complexes de l&#039;élément document,
+ lorsqu&#039;ils existent. Dans cet exemple, le nom du type de l&#039;objet
+ racine est FormLetter. Dans le cas où il n&#039;y a pas de définition de
+ type complexe séparé pour l&#039;élément document, lorsque le type
+ est défini en ligne et qu&#039;il est anonyme, le nom du type SDO
+ sera le même que le nom de l&#039;élément.
+</p></div>
+<div class="example-contents"><p>
+ Le programme suivant charge le document lettre et vérifie les valeurs
+ retournées de chaque des quatre appels.
+   </p></div>
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$xmldas&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">SDO_DAS_XML</span><span style="color: #007700">::</span><span style="color: #0000BB">create</span><span style="color: #007700">(</span><span style="color: #DD0000">"letter.xsd"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$document&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loadFile</span><span style="color: #007700">(</span><span style="color: #DD0000">"letter.xml"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$root_do&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$document</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getRootDataObject</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/**<br />*&nbsp;Le&nbsp;"root&nbsp;element&nbsp;name"&nbsp;est&nbsp;le&nbsp;nom&nbsp;de&nbsp;l'élément&nbsp;de&nbsp;l'élément&nbsp;document<br />*&nbsp;dans&nbsp;ce&nbsp;cas&nbsp;'letters'<br />*&nbsp;Ceci&nbsp;correspond&nbsp;à&nbsp;l'attribut&nbsp;'name'&nbsp;de&nbsp;l'élément&nbsp;document&nbsp;dans&nbsp;le&nbsp;fichier&nbsp;xsd&nbsp;et&nbsp;correspond<br />*&nbsp;au&nbsp;nom&nbsp;de&nbsp;l'élément&nbsp;depuis&nbsp;le&nbsp;XML<br />*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"Le&nbsp;nom&nbsp;de&nbsp;l'élément&nbsp;document&nbsp;est&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$document</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getRootElementName</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">assert</span><span style="color: #007700">(</span><span style="color: #0000BB">$document</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getRootElementName</span><span style="color: #007700">()&nbsp;==&nbsp;</span><span style="color: #DD0000">'letters'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;une&nbsp;propriété&nbsp;du&nbsp;document<br /><br />/**<br />*&nbsp;Le&nbsp;"root&nbsp;element&nbsp;URI"&nbsp;est&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;du&nbsp;nom&nbsp;de&nbsp;l'élément&nbsp;de&nbsp;l'élément&nbsp;document<br />*&nbsp;dans&nbsp;ce&nbsp;cas&nbsp;'http://letterSchema'&nbsp;vu&nbsp;que&nbsp;'letters'&nbsp;est&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms.<br />*&nbsp;Il&nbsp;est&nbsp;récupéré&nbsp;depuis&nbsp;le&nbsp;xsd&nbsp;et&nbsp;correspond&nbsp;à&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;récupéré&nbsp;du&nbsp;XML<br />*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"L'élément&nbsp;document&nbsp;est&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$document</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getRootElementURI</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">assert</span><span style="color: #007700">(</span><span style="color: #0000BB">$document</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getRootElementURI</span><span style="color: #007700">()&nbsp;==&nbsp;</span><span style="color: #DD0000">'http://letterSchema'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;une&nbsp;propriété&nbsp;du&nbsp;document<br /><br />/**<br />*&nbsp;Le&nbsp;nom&nbsp;du&nbsp;type&nbsp;est&nbsp;récupéré&nbsp;depuis&nbsp;le&nbsp;modèle&nbsp;SDO<br />*&nbsp;Les&nbsp;règles&nbsp;XML-SDO&nbsp;utilisées&nbsp;pour&nbsp;cela&nbsp;sont&nbsp;:<br />*&nbsp;&nbsp;&nbsp;Le&nbsp;nom&nbsp;du&nbsp;type&nbsp;complexe&nbsp;s'il&nbsp;existe&nbsp;(ici,&nbsp;c'est&nbsp;le&nbsp;cas)<br />*&nbsp;&nbsp;&nbsp;Le&nbsp;nom&nbsp;de&nbsp;l'élément&nbsp;document&nbsp;s'il&nbsp;n'y&nbsp;a&nbsp;pas&nbsp;de&nbsp;type&nbsp;complexe<br />*&nbsp;Il&nbsp;est&nbsp;récupéré&nbsp;depuis&nbsp;le&nbsp;xsd<br />*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"Le&nbsp;nom&nbsp;du&nbsp;type&nbsp;de&nbsp;l'objet&nbsp;racine&nbsp;est&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$root_do</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getTypeName</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">assert</span><span style="color: #007700">(</span><span style="color: #0000BB">$root_do</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getTypeName</span><span style="color: #007700">()&nbsp;==&nbsp;</span><span style="color: #DD0000">'FormLetter'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/**<br />*&nbsp;Le&nbsp;type&nbsp;de&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;est&nbsp;récupéré&nbsp;depuis&nbsp;le&nbsp;modèle&nbsp;SDO<br />*&nbsp;Les&nbsp;règles&nbsp;XML-SDO&nbsp;assurent&nbsp;que&nbsp;ce&nbsp;sera&nbsp;toujours&nbsp;le&nbsp;même&nbsp;que&nbsp;l'URI&nbsp;de<br />*&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;de&nbsp;l'élément&nbsp;document<br />*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"L'URI&nbsp;de&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;de&nbsp;l'objet&nbsp;racine&nbsp;est&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$root_do</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getTypeNamespaceURI</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">assert</span><span style="color: #007700">(</span><span style="color: #0000BB">$root_do</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getTypeNamespaceURI</span><span style="color: #007700">()&nbsp;==&nbsp;</span><span style="color: #DD0000">'http://letterSchema'</span><span style="color: #007700">);&nbsp;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Ce programme affichera :
+   </p></div>
+   <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">Le nom de l&#039;élément document est letters
+L&#039;élément document est dans l&#039;espace de noms http://letterSchema
+Le nom du type de l&#039;objet racine est FormLetter
+L&#039;URI de l&#039;espace de noms de l&#039;objet racine est http://letterSchema</pre>
+</div>
+   </div>
+
+
+   </div>
+
+   <div class="example" id="example-6111">
+
+    <p><strong>Exemple #6 Affichage du modèle SDO</strong></p>
+    <div class="example-contents"><p>
+     Le XML DAS fournit une signification simple pour voir quels types et
+     propriétés ont été chargés. L&#039;instruction PHP <code class="literal">&quot;print&quot;</code> ou <code class="literal">&quot;echo&quot;</code>
+     affichera les types et les propriétés.
+    </p></div>
+
+    <div class="example-contents">
+     <div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/**<br />*&nbsp;Affichage&nbsp;du&nbsp;modèle<br />*/<br /><br /></span><span style="color: #0000BB">$xmldas&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">SDO_DAS_XML</span><span style="color: #007700">::</span><span style="color: #0000BB">create</span><span style="color: #007700">(</span><span style="color: #DD0000">"letter.xsd"</span><span style="color: #007700">);<br />print&nbsp;</span><span style="color: #0000BB">$xmldas</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+
+    <div class="example-contents"><p>
+     L&#039;affichage de ce programme sera :
+   </p></div>
+   <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">object(SDO_XML_DAS)#1 {
+18 types have been defined. The types and their properties are::
+1. commonj.sdo:BigDecimal
+2. commonj.sdo:BigInteger
+3. commonj.sdo:Boolean
+4. commonj.sdo:Byte
+5. commonj.sdo:Bytes
+6. commonj.sdo:ChangeSummary
+7. commonj.sdo:Character
+8. commonj.sdo:DataObject
+9. commonj.sdo:Date
+10. commonj.sdo:Double
+11. commonj.sdo:Float
+12. commonj.sdo:Integer
+13. commonj.sdo:Long
+14. commonj.sdo:Short
+15. commonj.sdo:String
+16. commonj.sdo:URI
+17. http://letterSchema:FormLetter
+    - date (commonj.sdo:String)
+    - firstName (commonj.sdo:String)
+    - lastName (commonj.sdo:String)
+18. http://letterSchema:RootType
+    - letters (http://letterSchema:FormLetter)</pre>
+</div>
+   </div>
+
+
+   </div>
+
+</div>
+</div></div></body></html>

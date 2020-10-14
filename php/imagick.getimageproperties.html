@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne les propri&eacute;t&eacute;s EXIF de l'image</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="imagick.getimageprofiles.html">« Imagick::getImageProfiles</a></li>
+      <li style="float: right;"><a href="imagick.getimageproperty.html">Imagick::getImageProperty »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.imagick.html">Imagick</a></li>
+    <li>Retourne les propri&eacute;t&eacute;s EXIF de l'image</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="imagick.getimageproperties" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Imagick::getImageProperties</h1>
+  <p class="verinfo">(PECL imagick 2.0.0)</p><p class="refpurpose"><span class="refname">Imagick::getImageProperties</span> &mdash; <span class="dc-title">Retourne les propriétés EXIF de l&#039;image</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-imagick.getimageproperties-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>Imagick::getImageProperties</strong></span>
+    ([ <span class="methodparam"><span class="type">string</span> <code class="parameter">$pattern</code><span class="initializer"> = &quot;*&quot;</span></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$include_values</code><span class="initializer"> = <strong><code>TRUE</code></strong></span></span>
+  ]] ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Retourne toutes les propriétés de l&#039;image, qui satisfont un modèle.
+   Si <strong><code>FALSE</code></strong> est passé comme second paramètre, seul les noms des propriétés
+   sont retournés. Cette méthode n&#039;est disponible que si Imagick a été compilé avec ImageMagick version 6.3.6 ou supérieur.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-imagick.getimageproperties-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">pattern</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le modèle pour les noms de propriétés.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">include_values</code></dt>
+
+     <dd>
+
+      <p class="para">
+       S&#039;il faut retourner uniquement les noms des
+       propriétés. Si <strong><code>FALSE</code></strong> est fourni, alors seul 
+       le noms des propriétés seront retournées.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-imagick.getimageproperties-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau contenant les propriétés de l&#039;image,
+   ou leurs noms.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-imagick.getimageproperties-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-3437">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>Imagick::getImageProperties()</strong></span></strong></p>
+    <div class="example-contents"><p>
+     Exemple d&#039;extraction d&#039;informations EXIF.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;Crée&nbsp;un&nbsp;objet&nbsp;*/<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">imagick</span><span style="color: #007700">(</span><span style="color: #DD0000">"/path/to/example.jpg"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Lit&nbsp;les&nbsp;informations&nbsp;EXIF&nbsp;*/<br /></span><span style="color: #0000BB">$exifArray&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$im</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getImageProperties</span><span style="color: #007700">(</span><span style="color: #DD0000">"exif:*"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Passe&nbsp;en&nbsp;revue&nbsp;les&nbsp;propriétés&nbsp;EXIF&nbsp;*/<br /></span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">$exifArray&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$property</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"</span><span style="color: #007700">{</span><span style="color: #0000BB">$name</span><span style="color: #007700">}</span><span style="color: #DD0000">&nbsp;=&gt;&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$property</span><span style="color: #007700">}</span><span style="color: #DD0000">&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">;&nbsp;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Gestion de la m&eacute;moire</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd.notes.html">« Notes</a></li>
+      <li style="float: right;"><a href="mysqlnd.plugin.html">API du plugin du driver natif MySQL »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.mysqlnd.html">Mysqlnd</a></li>
+    <li>Gestion de la m&eacute;moire</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd.memory" class="chapter">
+ <h1>Gestion de la mémoire</h1>
+
+ <p class="para">
+  <em class="emphasis">Introduction</em>
+ </p>
+ <p class="para">
+  Le driver natif MySQL gère la mémoire d&#039;une façon différente que la bibliothèque
+  client MySQL. Les bibliothèques diffèrent dans la façon dont la mémoire
+  est allouée et libérée, dans la façon dont la mémoire est allouée par
+  morceau pendant la lecture des résultats depuis MySQL, quelles options
+  de débogage et de développement existent, et comment les résultats lus
+  depuis MySQL sont liés aux variables utilisateurs PHP.
+ </p>
+ <p class="para">
+  Les notes suivantes sont une introduction et un résumé destinés aux utilisateurs
+  intéressés par la compréhension du driver natif MySQL d&#039;un point de vue du
+  code C.
+ </p>
+ <p class="para">
+  <em class="emphasis">Fonctions utilisées dans la gestion mémoire</em>
+ </p>
+ <p class="para">
+  Toutes les allocations et les dé-allocations sont réalisées en utilisant les fonctions
+  de gestion de la mémoire de PHP. Toutefois, la consommation mémoire
+  de mysqlnd peut être surveillée en utilisant des appels APIs PHP, comme
+  <span class="function"><a href="function.memory-get-usage.html" class="function">memory_get_usage()</a></span>. En raison du fait que la mémoire
+  est allouée et libérée en utilisant la gestion mémoire de PHP, les modifications
+  peut ne pas être immédiatement visibles au niveau du système opérant.
+  Le gestionnaire de mémoire PHP fonctionne comme un proxy qui peut avoir un peu
+  de délai dans la libération mémoire du système. Aussi, la comparaison de l&#039;utilisation
+  mémoire du driver natif MySQL et de la bibliothèque cliente MySQL devient
+  difficile. La bibliothèque cliente MySQL appelle directement le gestionnaire mémoire
+  du système opérant, et donc, les effets peuvent être vus immédiatement au niveau
+  du système opérant.
+ </p>
+ <p class="para">
+  Toutes les limitations mémoire réalisées par PHP affectent également le driver
+  natif MySQL. Ceci peut causer des erreurs de dépassement mémoire lors de la récupération
+  de jeux de résultats trop importants, excédant la taille de la mémoire restante
+  disponible pour PHP. En raison du fait que la bibliothèque cliente MySQL n&#039;utilise
+  pas les fonctions de gestion mémoire de PHP, elle ne prend en compte aucune limitation
+  mémoire définie par PHP. Si vous utilisez la bibliothèque cliente MySQL, suivant
+  le modèle de déploiement, l&#039;empreinte mémoire du processus PHP peut s&#039;accroitre
+  et dépasser la limite mémoire imposée par PHP. De plus, les scripts PHP peuvent
+  analyser des jeux de résultats plus importants, allouant ainsi plus de mémoire
+  pour le jeu de résultats que le contrôle du moteur PHP ne l&#039;autorise.
+ </p>
+ <p class="para">
+  Les fonctions de gestion mémoire de PHP sont appelées par le drvier natif MySQL
+  via un gestionnaire léger. Entre autres, ce gestionnaire rend le débogage facile.
+ </p>
+ <p class="para">
+   <em class="emphasis">Gestion des jeux de résultats</em>
+ </p>
+ <p class="para">
+  Les différents serveurs MySQL et les différents clients APIs se différencient
+  suivant la <a href="mysqli.quickstart.statements.html" class="link">mise en mémoire tampon ou
+  non</a> des jeux de résultats. Les jeux de résultats qui ne sont pas mis en mémoire
+  tampon sont transférés ligne par ligne depuis MySQL vers le client, et le client va
+  parcourir les résultats. Les résultats qui sont mis en mémoire tampon sont récupérés
+  en entier par la bibliothèque cliente avant de les passer au client.
+ </p>
+ <p class="para">
+  Le driver natif MySQL utilise des flux PHP pour la communication réseau avec
+  le serveur MySQL. Les résultats envoyés par MySQL sont récupérés depuis la mémoire
+  tampon des flux réseau PHP dansla mémoire tampon de résultats de mysqlnd.
+  La mémoire tampon de résultats est composée de zvals. Dans une étape suivante,
+  les résultats sont rendus disponibles au script PHP. Le transfert final depuis la
+  mémoire tampon des résultats dans les variables PHP impacte la consommation mémoire
+  et cela devient très visible lors de l&#039;utilisation de jeux de résultats mis en mémoire
+  tampon.
+ </p>
+ <p class="para">
+  Par défaut, le driver natif MySQL tente de ne pas conserver en mémoire
+  deux fois les résultats mis en mémoire tampon. Les résultats sont conservés
+  qu&#039;une seule fois dans la mémoire tampon interne de résultats, ainsi que dans leur
+  zvals. Lorsque les résultats sont récupérés dans les variables PHP par le script
+  PHP, les variables vont référencer la mémoire tampon interne de résultats.
+  Les résultats de requêtes de base de données ne sont pas copiées et
+  sont conservées en mémoire seulement une fois. Lorsqu&#039;un utilisateur modifie
+  le contenu d&#039;une variable contenant un résultat de base de données, une opération
+  de copie-sur-lecture doit être effectuée pour éviter le changer la mémoire tampon
+  interne de résultat référencée. Le contenu de la mémoire tampon ne doit pas être modifié
+  parce que l&#039;utilisateur peut décider de lire le jeu de résultat une seconde fois.
+  L&#039;opération de copie-sur-lecture est implémentée en utilisant un gestionnaire de liste
+  de référence additionnel, ainsi que l&#039;utilisation des compteurs de référence zvals
+  standart. L&#039;opération de copie-sur-lecture doit également être effectuée si l&#039;utilisateur
+  lit un jeu de résultats dans les variables PHP et libère un jeu de résultat avant
+  que les variables ne soient supprimées.
+ </p>
+ <p class="para">
+  D&#039;une manière générale, ce mécanisme fonctionne bien pour les scripts qui lisent
+  un jeu de résultats une seule fois, et ne modifie pas les variables contenant
+  les résultats. Son inconvénient majeur est la surcharge mémoire causée par
+  le gestionnaire de référence additionnelle, qui vient principalement du fait
+  que les variables utilisateurs contenant les résultats ne peuvent être entièrement
+  libérées tant que le gestionnaire de référence mysqlnd n&#039;arrête pas de les référencer.
+  Le driver natif MySQL supprime la référence aux variables utilisateurs lorsque
+  le jeu de résultat est libéré ou qu&#039;une opération de copie-sur-lecture
+  est effectuée. Un observateur peut voir la consommation mémoire totale croître
+  tant que le jeu de résultat n&#039;est pas libéré. Utilisez les
+  <a href="mysqlnd.stats.html" class="link">statistiques</a> pour vérifier si un script
+  libère le jeu de résultats explicitement, ou si le driver le libère implicitement,
+  faisant ainsi que la mémoire soit utilisée plus longtemps que nécessaire.
+  Les statistiques peuvent aussi vous aider à voir les opérations de copie-sur-lecture.
+ </p>
+ <p class="para">
+  Un script PHP lisant beaucoup de petites lignes d&#039;un jeu de résultat mis en mémoire tampon
+  en utilisant des lignes de code comme <code class="literal">while ($row = $res-&gt;fetch_assoc()) { ... }</code>
+  peut optimiser la consommation mémoire en demandant une copie plutôt que 
+  des références. Malgré le fait que demander des copies signifie conserver deux
+  fois le résultat en mémoire, cela autorise PHP à libérer la copie contenue dans
+  <code class="literal">$row</code> sachant que le jeu de résultats est en train d&#039;être parcouru
+  et avant de libérer le jeu de résultats lui-même. Sur un serveur chargé,
+  l&#039;optimisation de l&#039;utilisation mémoire peut améliorer la performance système
+  globale bien que pour un script individuel, l&#039;approche de la copie peut être plus
+  lente en raison des opérations supplémentaires d&#039;allocation et de copie mémoire.
+ </p>
+ <p class="para">
+  Le mode copie peut être forcé en utilisant l&#039;option de configuration
+  <a href="mysqlnd.config.html#ini.mysqlnd.fetch_data_copy" class="link">mysqlnd.fetch_data_copy</a>=1.
+ </p>
+ <p class="para">
+   <em class="emphasis">Surveillance et débogage</em>
+ </p>
+ <p class="para">
+  Il existe plusieurs façons de surveiller l&#039;utilisation mémoire du driver natif MySQL.
+  Si le but est d&#039;obtenir une vue rapide haut niveau, ou de vérifier la mémoire
+  efficiente des scripts PHP, alors vérifiez les <a href="mysqlnd.stats.html" class="link">statistiques</a>
+  collectées par la bibliothèque. Elles vous permettent, par exemple,
+  de voir les requêtes SQL qui génèrent plus de résultats que d&#039;analyses par un script PHP.
+ </p>
+ <p class="para">
+  La trace de <a href="mysqlnd.config.html#ini.mysqlnd.debug" class="link">débogage</a> dans l&#039;historisation
+  peut être configurée pour enregistrer les appels au gestionnaire mémoire. Ceci peut vous
+  aider à voir quand la mémoire est allouée ou libérée. Cependant, la taille des
+  morceaux mémoire demandés peut ne pas y être listée.
+ </p>
+ <p class="para">
+  Les versions récentes du driver natif MySQL tentent d&#039;émuler des situations
+  de dépassement mémoire aléatoire. Ceci est seulement utile aux développeurs C
+  de la bibliothèque, ou aux développeurs du <a href="mysqlnd.plugin.html" class="link">plugin</a>
+  mysqlnd. Veuillez chercher dans le code source pour les options de configuration
+  de PHP correspondant, ainsi que pour obtenir plus de détails sur ce mécanisme.
+  Cette fonctionalité est considérée comme privée, et peut être modifiée à tout moment
+  sans aucun avertissement.
+ </p>
+
+</div>
+</div></div></body></html>

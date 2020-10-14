@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Renvoie le chemin du dossier parent</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.delete.html">« delete</a></li>
+      <li style="float: right;"><a href="function.disk-free-space.html">disk_free_space »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes de fichiers</a></li>
+    <li>Renvoie le chemin du dossier parent</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.dirname" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dirname</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">dirname</span> &mdash; <span class="dc-title">Renvoie le chemin du dossier parent</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.dirname-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>dirname</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$path</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$levels</code><span class="initializer"> = 1</span></span>
+  ] ) : <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   Renvoie le chemin parent d&#039;un chemin représentant un fichier
+   ou un dossier, qui correspond à <code class="parameter">levels</code> niveau(x) plus
+   haut que le dossier courant.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    <span class="function"><strong>dirname()</strong></span> agit naïvement sur la chaine en entrée et
+    n&#039;est pas au courant du système de fichiers courant ou d&#039;éventuels
+    composantes comme &quot;<code class="literal">..</code>&quot;.
+   </p>
+  </p></blockquote>
+  <div class="caution"><strong class="caution">Attention</strong>
+   <p class="para">
+    <span class="function"><strong>dirname()</strong></span> est sensible à la locale, donc si le chemin possède
+    des caractères multi-octets, la locale qui convient doit être enregistrée
+    au moyen de la fonction <span class="function"><a href="function.setlocale.html" class="function">setlocale()</a></span>.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.dirname-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">path</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un chemin.
+      </p>
+      <p class="para">
+       Sous Windows, les slash (<code class="literal">/</code>) et antislash
+       (<code class="literal">\</code>) sont utilisés comme séparateurs
+       de dossier. Dans les autres environnements, seul le slash
+       (<code class="literal">/</code>) est utilisé.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">levels</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nombre de dossiers parents plus haut.
+      </p>
+      <p class="para">
+       Doit être un entier supérieur à 0.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.dirname-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne le dossier parent du chemin. S&#039;il n&#039;y a pas de slash dans le chemin
+   <code class="parameter">path</code>, un point (&#039;<code class="literal">.</code>&#039;) sera
+   retourné, indiquant le dossier courant. Sinon, la chaîne retournée
+   sera le chemin <code class="parameter">path</code> dont on aura supprimé tous
+   les <code class="literal">/component</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.dirname-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.0.0</td>
+       <td>
+        Ajout du paramètre optionnel <code class="parameter">levels</code>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.dirname-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2784">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>dirname()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #DD0000">"/etc/passwd"</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #DD0000">"/etc/"</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #DD0000">"."</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #DD0000">"C:\\"</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #DD0000">"/usr/local/lib"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">);</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+/etc
+/ (ou \ sous Windows)
+.
+C:\
+/usr
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.dirname-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.basename.html" class="function" rel="rdfs-seeAlso">basename()</a> - Retourne le nom de la composante finale d'un chemin</span></li>
+    <li class="member"><span class="function"><a href="function.pathinfo.html" class="function" rel="rdfs-seeAlso">pathinfo()</a> - Retourne des informations sur un chemin syst&egrave;me</span></li>
+    <li class="member"><span class="function"><a href="function.realpath.html" class="function" rel="rdfs-seeAlso">realpath()</a> - Retourne le chemin canonique absolu</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

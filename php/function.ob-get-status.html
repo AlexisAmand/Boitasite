@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lit le statut du tampon de sortie</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.ob-get-level.html">« ob_get_level</a></li>
+      <li style="float: right;"><a href="function.ob-gzhandler.html">ob_gzhandler »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.outcontrol.html">Fonctions de bufferisation de sortie</a></li>
+    <li>Lit le statut du tampon de sortie</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.ob-get-status" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ob_get_status</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">ob_get_status</span> &mdash; <span class="dc-title">Lit le statut du tampon de sortie</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.ob-get-status-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>ob_get_status</strong></span>
+    ([ <span class="methodparam"><span class="type">bool</span>  <code class="parameter">$full_status</code> <span class="initializer"> = FALSE</span></span>
+  ] ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>ob_get_status()</strong></span> retourne les informations sur le statut
+   du tampon d&#039;affichage de haut niveau ou de tous les tampons d&#039;affichage si
+   <code class="parameter">full_status</code> est défini à <strong><code>TRUE</code></strong>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ob-get-status-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">full_status</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <strong><code>TRUE</code></strong> pour retourner tous les tampons d&#039;affichage. Si vaut <strong><code>FALSE</code></strong>
+       ou non défini, seul le statut du tampon d&#039;affichage de haut niveau
+       sera retourné.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ob-get-status-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Si la fonction est appelée sans le paramètre <code class="parameter">full_status</code>
+   ou avec le paramètre <code class="parameter">full_status</code> = <strong><code>FALSE</code></strong>, un tableau simple avec
+   les éléments suivants sera retourné :
+   <div class="informalexample">
+    <div class="example-contents screen">
+<div class="returnvaluescode"><pre class="returnvaluescode">Array
+(
+    [level] =&gt; 2
+    [type] =&gt; 0
+    [status] =&gt; 0
+    [name] =&gt; URL-Rewriter
+    [del] =&gt; 1
+)</pre>
+</div>
+    </div>
+   </div>
+   <table class="segmentedlist">
+    <caption><strong>Résultats simples pour la fonction <span class="function"><strong>ob_get_status()</strong></span></strong></caption>
+    <thead><tr><th>Clé</th>
+    <th>Valeur</th>
+    </tr></thead><tbody><tr class="seglistitem">
+     <td class="seg">level</td>
+     <td class="seg">Niveau de sortie désiré</td>
+    </tr>
+    <tr class="seglistitem">
+     <td class="seg">type</td>
+     <td class="seg"><code class="literal">PHP_OUTPUT_HANDLER_INTERNAL (0)</code> ou <code class="literal">PHP_OUTPUT_HANDLER_USER (1)</code></td>
+    </tr>
+    <tr class="seglistitem">
+     <td class="seg">status</td>
+     <td class="seg">Un parmi <code class="literal">PHP_OUTPUT_HANDLER_START</code> (0), <code class="literal">PHP_OUTPUT_HANDLER_CONT</code> (1) ou <code class="literal">PHP_OUTPUT_HANDLER_END</code> (2)</td>
+    </tr>
+    <tr class="seglistitem">
+     <td class="seg">name</td>
+     <td class="seg">Nom du gestionnaire de sortie actif ou &#039; default output handler&#039; si aucun n&#039;est défini</td>
+    </tr>
+    <tr class="seglistitem">
+     <td class="seg">del</td>
+     <td class="seg">Flag d&#039;effacement tel que défini par <span class="function"><a href="function.ob-start.html" class="function">ob_start()</a></span></td>
+    </tr>
+   </tbody></table>
+  </p>
+  <p class="para">
+   Si la fonction est appelée avec le paramètre <code class="parameter">full_status</code>
+   défini à <strong><code>TRUE</code></strong>, un tableau avec un élément par tampon de sortie actif est
+   retourné. Le niveau de sortie est utilisé en tant que clé du tableau de
+   niveau élevé et chaque élément du tableau est un autre tableau contenant les
+   informations sur le statut du niveau du tampon actif.
+   <div class="informalexample">
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [0] =&gt; Array
+        (
+            [chunk_size] =&gt; 0
+            [size] =&gt; 40960
+            [block_size] =&gt; 10240
+            [type] =&gt; 1
+            [status] =&gt; 0
+            [name] =&gt; default output handler
+            [del] =&gt; 1
+        )
+
+    [1] =&gt; Array
+        (
+            [chunk_size] =&gt; 0
+            [size] =&gt; 40960
+            [block_size] =&gt; 10240
+            [type] =&gt; 0
+            [buffer_size] =&gt; 0
+            [status] =&gt; 0
+            [name] =&gt; URL-Rewriter
+            [del] =&gt; 1
+        )
+
+)
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   La sortie complète contient les éléments suivants :
+   <table class="segmentedlist">
+    <caption><strong>Résultats complets pour la fonction <span class="function"><strong>ob_get_status()</strong></span></strong></caption>
+    <thead><tr><th>Clé</th>
+    <th>Valeur</th>
+    </tr></thead><tbody><tr class="seglistitem">
+     <td class="seg">chunk_size</td>
+     <td class="seg">Taille telle que définie par la fonction <span class="function"><a href="function.ob-start.html" class="function">ob_start()</a></span></td>
+    </tr>
+    <tr class="seglistitem">
+     <td class="seg">size</td>
+     <td class="seg">...</td></tr>
+    <tr class="seglistitem">
+     <td class="seg">blocksize</td>
+     <td class="seg">...</td>
+    </tr>
+   </tbody></table>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ob-get-status-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ob-get-level.html" class="function" rel="rdfs-seeAlso">ob_get_level()</a> - Retourne le nombre de niveaux d'imbrications du syst&egrave;me de temporisation de sortie</span></li>
+    <li class="member"><span class="function"><a href="function.ob-list-handlers.html" class="function" rel="rdfs-seeAlso">ob_list_handlers()</a> - Liste les gestionnaires d'affichage utilis&eacute;s</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Utilisation des variables super-globales</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="security.errors.html">« Rapport d'erreurs</a></li>
+      <li style="float: right;"><a href="security.variables.html">Donn&eacute;es transmises par les internautes »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="security.html">S&eacute;curit&eacute;</a></li>
+    <li>Utilisation des variables super-globales</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="security.globals" class="chapter">
+ <h1>Utilisation des variables super-globales</h1>
+
+ <div class="warning"><strong class="warning">Avertissement</strong><p class="simpara">
+ Cette fonctionnalité est <em class="emphasis">OBSOLÈTE</em> à partir de PHP 5.3.0 et a été
+ <em class="emphasis">SUPPRIMÉE</em> à partir de PHP 5.4.0.
+</p></div>
+ <p class="para">
+  L&#039;une des évolutions les plus controversées de <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> a été
+  le changement de valeur par défaut de la directive <acronym title="PHP: Hypertext Preprocessor">PHP</acronym>
+  <a href="ini.core.html#ini.register-globals" class="link">register_globals</a>, qui est
+  passée de On à Off en <acronym title="PHP: Hypertext Preprocessor">PHP</acronym>
+  <a href="https://www.php.net/releases/4_2_0.php" class="link external">&raquo;&nbsp;4.2.0</a>.
+  Beaucoup d&#039;applications dépendaient de cette directive, et de nombreux
+  programmeurs ne savaient même pas qu&#039;elle existait, et supposaient
+  que c&#039;était le fonctionnement normal de <acronym title="PHP: Hypertext Preprocessor">PHP</acronym>. Cette page explique
+  comment on peut écrire du code peu sécuritaire en utilisant
+  cette directive. Gardez bien en tête que cette directive,
+  par elle-même, n&#039;est pas un trou de sécurité, mais qu&#039;elle
+  facilite leur création.
+ </p>
+ <p class="para">
+  Lorsqu&#039;elle est activée, register_globals
+  va injecter vos scripts avec toutes sortes de variables,
+  comme les variables issues des formulaires <acronym title="Hyper Text Markup Language">HTML</acronym>. Ceci, couplé au fait
+  que <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> ne requiert pas d&#039;initialisation de variable signifie que la
+  programmation de script peu sûr est possible. Ce fut une décision
+  difficile de la communauté <acronym title="PHP: Hypertext Preprocessor">PHP</acronym>, mais finalement, il a été décidé
+  de désactiver par défaut cette variable. Lorsqu&#039;elle est active,
+  le programmeur ne sait pas exactement d&#039;où provient le contenu de la
+  variable, et ne peut que faire des suppositions. Les variables internes
+  définies dans le script sont mélangées avec les données envoyées par les
+  utilisateurs, et en désactivant register_globals,
+  on empêche cela. Voyons avec un exemple le fonctionnement de
+  register_globals :
+ </p>
+ <p class="para">
+  <div class="example" id="example-396">
+   <p><strong>Exemple #1 Exemple de mauvaise utilisation de register_globals</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;$authorized&nbsp;=&nbsp;true&nbsp;uniquement&nbsp;si&nbsp;l'utilisateur&nbsp;est&nbsp;identifié<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">authenticated_user</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$authorized&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Comme&nbsp;nous&nbsp;n'avons&nbsp;pas&nbsp;initialisé&nbsp;$authorized&nbsp;avec&nbsp;false,&nbsp;cette&nbsp;dernière<br />//&nbsp;peut&nbsp;être&nbsp;définie&nbsp;via&nbsp;register_globals,&nbsp;comme&nbsp;avec&nbsp;l'URL&nbsp;GET&nbsp;auth.php?authorized=1<br />//&nbsp;Tout&nbsp;le&nbsp;monde&nbsp;peut&nbsp;facilement&nbsp;être&nbsp;reconnu&nbsp;comme&nbsp;identifié!<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$authorized</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;include&nbsp;</span><span style="color: #DD0000">"/donnees/critiques/data.php"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  Lorsque register_globals est activé, la logique ci-dessus peut être prise
+  en défaut. Lorsque register_globals est désactivée
+  <var class="varname">$authorized</var> ne peut plus être assignée via la requête, et
+  le script est maintenant sûr, même s&#039;il reste recommandé de toujours
+  initialiser ses variables. Par exemple, dans notre programme ci-dessus, nous
+  pourrions ajouter <code class="literal">$authorized = false</code>.  En faisant cela,
+  le script peut fonctionner avec register_globals on ou off, car les
+  utilisateurs seront par défaut non-identifiés.
+ </p>
+ <p class="para">
+  Un autre exemple implique les <a href="ref.session.html" class="link">sessions</a>.
+  Lorsque register_globals est activé, on peut aussi utiliser
+  <var class="varname">$username</var> dans notre exemple, mais, encore une fois, vous
+  devez garder en tête que <var class="varname">$username</var> peut aussi provenir
+  d&#039;autres biais, tels que GET (via l&#039;<acronym title="Uniform Resource Locator">URL</acronym>).
+ </p>
+ <p class="para">
+  <div class="example" id="example-397">
+   <p><strong>Exemple #2 Exemple d&#039;abus de sessions avec register_globals on ou off</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Nous&nbsp;ne&nbsp;savons&nbsp;pas&nbsp;d'où&nbsp;provient&nbsp;$username&nbsp;mais&nbsp;nous&nbsp;savons&nbsp;que<br />//&nbsp;$_SESSION&nbsp;contient&nbsp;les&nbsp;données&nbsp;de&nbsp;session<br /></span><span style="color: #007700">if&nbsp;(isset(</span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">[</span><span style="color: #DD0000">'username'</span><span style="color: #007700">]))&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Bonjour&nbsp;&lt;strong&gt;</span><span style="color: #007700">{</span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">[</span><span style="color: #DD0000">'username'</span><span style="color: #007700">]}</span><span style="color: #DD0000">&lt;/strong&gt;"</span><span style="color: #007700">;<br /><br />}&nbsp;else&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Bonjour&nbsp;&lt;strong&gt;visiteur&lt;/strong&gt;&lt;br&nbsp;/&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Voulez-vous&nbsp;vous&nbsp;identifier?"</span><span style="color: #007700">;<br /><br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  Il est même possible de prendre des mesures préventives, pour
+  être alerté lorsqu&#039;une tentative d&#039;usurpation est faite. Si vous savez
+  à l&#039;avance de quelle variable le nom d&#039;utilisateur doit provenir, vous
+  pouvez vérifier si les données que vous manipulez sont d&#039;une origine
+  contrôlée. Même si cela ne garantit pas que les données ne puissent être
+  falsifiées, cela complique la tache du faussaire. Si vous ne vous
+  préoccupez pas de l&#039;origine des données, vous pouvez utiliser la variable
+  <var class="varname"><a href="reserved.variables.request.html" class="classname">$_REQUEST</a></var> qui contient un mélange de données GET, POST
+  et COOKIE. Voyez aussi la section du manuel concernant les
+  <a href="language.variables.external.html" class="link">variables de sources externes à
+   PHP</a>.
+ </p>
+ <p class="para">
+  <div class="example" id="example-398">
+   <p><strong>Exemple #3 Détection simple de fausses variables</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if&nbsp;(isset(</span><span style="color: #0000BB">$_COOKIE</span><span style="color: #007700">[</span><span style="color: #DD0000">'MAGIC_COOKIE'</span><span style="color: #007700">]))&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;MAGIC_COOKIE&nbsp;provient&nbsp;d'un&nbsp;cookie.<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Assurez-vous&nbsp;de&nbsp;valider&nbsp;les&nbsp;données&nbsp;du&nbsp;cookie!<br /><br /></span><span style="color: #007700">}&nbsp;elseif&nbsp;(isset(</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'MAGIC_COOKIE'</span><span style="color: #007700">])&nbsp;||&nbsp;isset(</span><span style="color: #0000BB">$_POST</span><span style="color: #007700">[</span><span style="color: #DD0000">'MAGIC_COOKIE'</span><span style="color: #007700">]))&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">mail</span><span style="color: #007700">(</span><span style="color: #DD0000">"admin@example.com"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Tentative&nbsp;possible&nbsp;d'attaque"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">'REMOTE_ADDR'</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Alerte&nbsp;sécurité,&nbsp;l'admin&nbsp;a&nbsp;été&nbsp;prévenu."</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;exit;<br /><br />}&nbsp;else&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;MAGIC_COOKIE&nbsp;ne&nbsp;provient&nbsp;pas&nbsp;de&nbsp;REQUEST<br /><br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  Bien sur, désactiver l&#039;option register_globals ne signifie pas que votre
+  code est sécuritaire. Pour chaque donnée reçu, vous devez appliquer un
+  maximum de validations. Vérifiez toujours les données de votre visiteur,
+  et initialisez vos variables! Pour vérifier les variables non-initialisées,
+  voyez la fonction <span class="function"><a href="function.error-reporting.html" class="function">error_reporting()</a></span>, qui peut afficher
+  les erreurs de niveau <strong><code>E_NOTICE</code></strong>.
+ </p>
+ 
+ <p class="para">
+  Pour des informations sur l&#039;émulation de register_globals
+  On ou Off, voyez la <a href="faq.misc.html#faq.misc.registerglobals" class="link">FAQ</a>.
+ </p>
+</div>
+</div></div></body></html>

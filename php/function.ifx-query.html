@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Envoie une requ&ecirc;te Informix</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.ifx-prepare.html">« ifx_prepare</a></li>
+      <li style="float: right;"><a href="function.ifx-textasvarchar.html">ifx_textasvarchar »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.ifx.html">Fonctions Informix</a></li>
+    <li>Envoie une requ&ecirc;te Informix</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.ifx-query" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ifx_query</h1>
+  <p class="verinfo">(PHP 4, PHP 5 &lt; 5.2.1)</p><p class="refpurpose"><span class="refname">ifx_query</span> &mdash; <span class="dc-title">Envoie une requête Informix</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.ifx-query-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>ifx_query</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>
+   , <span class="methodparam"><span class="type">resource</span> <code class="parameter">$link_identifier</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$cursor_type</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$blobidarray</code></span>
+  ]] ) : <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>ifx_query()</strong></span> envoie une requête au serveur
+   actif courant, associé à l&#039;identifiant de connexion
+   <code class="parameter">link_identifier</code>.
+  </p>
+  <p class="para">
+   Pour les requêtes de type SELECT, un pointeur est déclaré, et ouvert.
+   Les autres seront exécutées immédiatement.
+  </p>
+  <p class="para">
+   Pour les autres requêtes, le nombre de lignes affectées (estimé ou exact) est
+    enregistré pour être lu avec <span class="function"><a href="function.ifx-affected-rows.html" class="function">ifx_affected_rows()</a></span>.
+  </p>
+  <p class="para">
+   Si le contenu d&#039;une colonne est de type TEXT (ou BYTE) vous pouvez
+   aussi utiliser les fonctions <code class="literal">ifx_textasvarchar(1)</code> et
+   <code class="literal">ifx_byteasvarchar(1)</code>. Cela vous permettra d&#039;utiliser
+   les colonnes TEXT ( ou BYTE ) comme des colonnes de type VARCHAR (mais
+   plus long, tout de même), et vous n&#039;aurez pas besoin de l&#039;identifiant
+   de BLOB.
+  </p>
+  <p class="para">
+   Avec les fonctions <code class="literal">ifx_textasvarchar(0)</code> et
+   <code class="literal">ifx_byteasvarchar(0)</code> (valeurs par défaut), les
+   requêtes SELECT retourneront des identifiants de BLOB. Ces identifiants
+   peuvent être une chaîne ou un fichier, suivant la configuration
+   (voir plus loin).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ifx-query-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">query</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La requête, sous la forme d&#039;une <a href="language.types.string.html" class="link">chaîne de caractères</a>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">link_identifier</code></dt>
+
+     <dd>
+
+      <p class="para">
+       L&#039;identifiant du lien.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">cursor_def</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Ce paramètre optionnel vous permet de choisir le type de curseur,
+       <code class="literal">scroll</code> et/ou <code class="literal">hold</code>.
+       C&#039;est un masque qui peut être soit <strong><code>IFX_SCROLL</code></strong>,
+       soit <strong><code>IFX_HOLD</code></strong>, ou les deux. Si vous ne
+       fournissez pas ce paramètre, le curseur est un curseur normal séquentiel.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">blobidarray</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Si vous avez une colonne de type BLOB (BYTE ou TEXT) dans une requête de
+       modification, vous pouvez passer un paramètre
+       <code class="parameter">blobidarray</code> qui contiendra les identifiants
+       des BLOB à modifier, et vous devrez remplacer cette colonne par
+       un point d&#039;interrogation (?) dans la requête.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ifx-query-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un identifiant de résultats Informix en cas de succès, ou
+   <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ifx-query-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-1297">
+    <p><strong>Exemple #1 
+     Afficher toutes les lignes de la table &quot;ordres&quot; sous la forme html du serveur IFX
+    </strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />ifx_textasvarchar</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;du&nbsp;mode&nbsp;"text&nbsp;mode"&nbsp;pour&nbsp;les&nbsp;BLOBs<br /></span><span style="color: #0000BB">$res_id&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ifx_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"select&nbsp;*&nbsp;from&nbsp;orders"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">);<br />if&nbsp;(!&nbsp;</span><span style="color: #0000BB">$res_id</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Can't&nbsp;select&nbsp;orders&nbsp;:&nbsp;%s\n&lt;br&nbsp;/&gt;%s&lt;br&nbsp;/&gt;\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">ifx_error</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">ifx_errormsg</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;die;<br />}<br /></span><span style="color: #0000BB">ifx_htmltbl_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$res_id</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"border=\"1\""</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ifx_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$res_id</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-1298">
+    <p><strong>Exemple #2 Insertion de valeurs dans la table &quot;catalogue&quot; IFX</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Créer&nbsp;un&nbsp;identifiant&nbsp;de&nbsp;BLOB&nbsp;pour&nbsp;une&nbsp;colonne&nbsp;de&nbsp;type&nbsp;BYTE&nbsp;et&nbsp;une&nbsp;de&nbsp;type&nbsp;TEXT<br /></span><span style="color: #0000BB">$textid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ifx_create_blob</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Colonne&nbsp;Text&nbsp;en&nbsp;mémoire"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$byteid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ifx_create_blob</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Colonne&nbsp;Byte&nbsp;en&nbsp;mémoire"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Stocke&nbsp;l'identifiant&nbsp;du&nbsp;BLOB&nbsp;dans&nbsp;le&nbsp;tableau&nbsp;BLOBid<br /></span><span style="color: #0000BB">$blobidarray</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #0000BB">$textid</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$blobidarray</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #0000BB">$byteid</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Exécute&nbsp;la&nbsp;requête<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"insert&nbsp;into&nbsp;catalog&nbsp;(stock_num,&nbsp;manu_code,&nbsp;"&nbsp;</span><span style="color: #007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"cat_descr,cat_picture)&nbsp;values(1,'HRO',?,?)"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$res_id&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ifx_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$conn_id</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$blobidarray</span><span style="color: #007700">);<br />if&nbsp;(!&nbsp;</span><span style="color: #0000BB">$res_id</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;...&nbsp;erreur&nbsp;...&nbsp;*/<br /></span><span style="color: #007700">}<br /><br /></span><span style="color: #FF8000">//&nbsp;Libération&nbsp;du&nbsp;résultat<br /></span><span style="color: #0000BB">ifx_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$res_id</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ifx-query-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ifx-connect.html" class="function" rel="rdfs-seeAlso">ifx_connect()</a> - Ouvre une connexion &agrave; un serveur Informix</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Trouve la position du dernier graph&egrave;me, insensible &agrave; la casse</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.grapheme-strpos.html">« grapheme_strpos</a></li>
+      <li style="float: right;"><a href="function.grapheme-strrpos.html">grapheme_strrpos »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.intl.grapheme.html">Fonctions Grapheme</a></li>
+    <li>Trouve la position du dernier graph&egrave;me, insensible &agrave; la casse</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.grapheme-strripos" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">grapheme_strripos</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PECL intl &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">grapheme_strripos</span> &mdash; <span class="dc-title">Trouve la position du dernier graphème, insensible à la casse</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.grapheme-strripos-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Style procédural</p>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>grapheme_strripos</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$haystack</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$needle</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$offset</code><span class="initializer"> = 0</span></span>
+  ] ) : <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   Trouve la position du dernier graphème,  en effectuant une recherche
+   insensible à la casse.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.grapheme-strripos-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">haystack</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La chaîne à étudier. Elle doit être au format UTF-8 valide.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">needle</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La chaîne à rechercher. Elle doit être au format UTF-8 valide.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">offset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le paramètre $offset permet de spécifier la position dans la $haystack
+       de début de recherche, exprimée en graphème (et non pas en octets ou caractères).
+       La position retournée est toujours donnée par rapport au début de
+       $haystack, quelque soit la valeur de $offset.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+   
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.grapheme-strripos-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne l position sous forme d&#039;entier. Si $needle n&#039;est pas trouvé,
+   <span class="function"><strong>grapheme_strripos()</strong></span> retourne <strong><code>FALSE</code></strong>.   
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.grapheme-strripos-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-3118">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>grapheme_strripos()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$char_a_ring_nfd&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"a\xCC\x8A"</span><span style="color: #007700">;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;'LATIN&nbsp;SMALL&nbsp;LETTER&nbsp;A&nbsp;WITH&nbsp;RING&nbsp;ABOVE'&nbsp;(U+00E5)&nbsp;forme&nbsp;normalisée&nbsp;form&nbsp;"D"<br /></span><span style="color: #0000BB">$char_o_diaeresis_nfd&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"o\xCC\x88"</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;'LATIN&nbsp;SMALL&nbsp;LETTER&nbsp;O&nbsp;WITH&nbsp;DIAERESIS'&nbsp;(U+00F6)&nbsp;forme&nbsp;normalisée&nbsp;"D"<br /></span><span style="color: #0000BB">$char_O_diaeresis_nfd&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"O\xCC\x88"</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;'LATIN&nbsp;CAPITAL&nbsp;LETTER&nbsp;O&nbsp;WITH&nbsp;DIAERESIS'&nbsp;(U+00D6)&nbsp;forme&nbsp;normalisée&nbsp;"D"<br /><br /></span><span style="color: #007700">print&nbsp;</span><span style="color: #0000BB">grapheme_strripos</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$char_a_ring_nfd&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$char_o_diaeresis_nfd&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$char_o_diaeresis_nfd</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$char_O_diaeresis_nfd</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">L&#039;exemple ci-dessus va afficher :</p>
+  <div class="example-contents screen">
+<div class="cdata"><pre>
+2
+</pre></div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.grapheme-strripos-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.grapheme-stripos.html" class="function" rel="rdfs-seeAlso">grapheme_stripos()</a> - Trouve la position en graph&egrave;me de la premi&egrave;re occurrence dans une cha&icirc;ne, insensible &agrave; la casse</span></li>
+    <li class="member"><span class="function"><a href="function.grapheme-stristr.html" class="function" rel="rdfs-seeAlso">grapheme_stristr()</a> - Retourne la partie d'une cha&icirc;ne &agrave; partir d'une occurrence</span></li>
+    <li class="member"><span class="function"><a href="function.grapheme-strpos.html" class="function" rel="rdfs-seeAlso">grapheme_strpos()</a> - Trouve la position du premier graph&egrave;me</span></li>
+    <li class="member"><span class="function"><a href="function.grapheme-strrpos.html" class="function" rel="rdfs-seeAlso">grapheme_strrpos()</a> - Trouve la position du dernier graph&egrave;me</span></li>
+    <li class="member"><span class="function"><a href="function.grapheme-strstr.html" class="function" rel="rdfs-seeAlso">grapheme_strstr()</a> - Retourne la partie d'une cha&icirc;ne &agrave; partir d'une occurrence, insensible &agrave; la casse</span></li>
+    <li class="member">
+     <a href="http://unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries" class="link external">&raquo;&nbsp;
+      Unicode Text Segmentation: Grapheme Cluster Boundaries
+     </a>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

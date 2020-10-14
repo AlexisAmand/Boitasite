@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Comparaison entre Phar, Tar et Zip</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="phar.fileformat.stub.html">« Le conteneur de fichier Phar</a></li>
+      <li style="float: right;"><a href="phar.fileformat.tar.html">Les phars bas&eacute;s sur Tar »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="phar.fileformat.html">Qu'est-ce qui fait d'un phar un phar et pas un tar ou un zip ?</a></li>
+    <li>Comparaison entre Phar, Tar et Zip</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="phar.fileformat.comparison" class="section">
+  <h2 class="title">Comparaison entre Phar, Tar et Zip</h2>
+  <p class="para">
+   Quels sont les avantages et les inconvénients de chacun des trois formats supportés
+   par l&#039;extension phar ? Ce tableau tente de répondre à cette question.
+   <table class="doctable table">
+    <caption><strong>Tableau comparatif : Phar, Tar et  Zip</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Fonctionnalité</th>
+       <th>Phar</th>
+       <th>Tar</th>
+       <th>Zip</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>Format de fichier standard</td>
+       <td>Non</td>
+       <td>Oui</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Peut être exécuté sans l&#039;extension Phar
+        <a href="phar.fileformat.comparison.html#phar.fileformat.phartip" class="link">[1]</a>
+       </td>
+       <td>Oui</td>
+       <td>Non</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Compression par fichier</td>
+       <td>Oui</td>
+       <td>Non</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Compression pour toute l&#039;archive</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Validation par signature de toute l&#039;archive</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Oui (PHP 5.3.1+)</td>
+      </tr>
+
+      <tr>
+       <td>Support d&#039;applications spécifiquement Web</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Métadonnées par fichier</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Métadonnées pour toute l&#039;archive</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Création/modification d&#039;archive
+        <a href="phar.fileformat.comparison.html#phar.fileformat.phartip2" class="link">[2]</a>
+       </td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Support complet de toutes les fonctions de flux</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Peut être créée/modifiée même si phar.readonly=1
+        <a href="phar.fileformat.comparison.html#phar.fileformat.phartip3" class="link">[3]</a>
+       </td>
+       <td>Non</td>
+       <td>Oui</td>
+       <td>Oui</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+  <p class="para" id="phar.fileformat.phartip">
+   <div class="tip"><strong class="tip">Astuce</strong>
+    <p class="para">
+     [1] PHP ne peut accéder directement au contenu d&#039;une archive Phar sans que l&#039;extension
+     Phar soit installée si elle utilise un <code class="literal">conteneur</code>
+     qui extrait le contenu de l&#039;archive phar. Le conteneur
+     créé par <span class="function"><a href="phar.createdefaultstub.html" class="function">Phar::createDefaultStub()</a></span> extrait
+     l&#039;archive phar et exécute son contenu à partir d&#039;un répertoire temporaire si
+     aucune extension phar n&#039;est trouvée.
+    </p>
+   </div>
+  </p>
+  <p class="para" id="phar.fileformat.phartip2">
+   <div class="tip"><strong class="tip">Astuce</strong>
+    <p class="para">
+     [2] Tous les accès en écriture nécessitent que <code class="literal">phar.readonly</code> soit
+     désactivé dans le php.ini ou directement via la ligne de commande.
+    </p>
+   </div>
+  </p>
+  <p class="para" id="phar.fileformat.phartip3">
+   <div class="tip"><strong class="tip">Astuce</strong>
+    <p class="para">
+     [3] Seules les archives tar ou zip sans <code class="literal">.phar</code> dans leur
+     nom et sans conteneur exécutable <code class="literal">.phar/stub.php</code>
+     peuvent être créées si phar.readonly=1.
+    </p>
+   </div>
+  </p>
+ </div></div></div></body></html>

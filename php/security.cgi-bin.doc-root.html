@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Cas 3 : Utilisation du &quot;doc_root&quot; ou du &quot;user_dir&quot;</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="security.cgi-bin.force-redirect.html">« Cas 2 : Utilisation de la directive de compilation
+     cgi.force_redirect</a></li>
+      <li style="float: right;"><a href="security.cgi-bin.shell.html">Cas 4 : Ex&eacute;cutable PHP &agrave; l'ext&eacute;rieur de l'arborescence du serveur »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="security.cgi-bin.html">Binaires CGI</a></li>
+    <li>Cas 3 : Utilisation du &quot;doc_root&quot; ou du &quot;user_dir&quot;</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="security.cgi-bin.doc-root" class="sect1">
+    <h2 class="title">Cas 3 : Utilisation du &quot;doc_root&quot; ou du &quot;user_dir&quot;</h2>
+    <p class="simpara">
+     Ajouter un contenu interactif, comme des scripts ou des exécutables, dans les répertoires
+     de documents votre serveur web, est parfois considéré comme une
+     pratique non-sécurisée. Si, à cause d&#039;une erreur de configuration, le script n&#039;est pas
+     exécuté mais affiché comme une page HTML classique,
+     il peut en résulter une fuite de propriété intellectuelle
+     ou d&#039;informations liées à la sécurité, comme, typiquement, des mots de passe.
+     En conséquence, un bon nombre d&#039;administrateurs
+     préfèrent mettre en place un répertoire
+     spécial pour les scripts, qui soit uniquement accessible par le biais
+     du binaire CGI de PHP, ce qui signifie que tous les fichiers de ce répertoire
+     seront interprétés et jamais affichés tels quels.
+    </p>
+    <p class="simpara">
+     De plus, si vous ne pouvez pas utiliser la méthode
+     qui permet de s&#039;assurer que les requêtes ne sont pas redirigées,
+     comme présentée ci-dessus, il est nécessaire de mettre
+     en place un répertoire de scripts &quot;doc_root&quot; différent du
+     répertoire &quot;document root&quot; de votre serveur web.
+    </p>
+    <p class="simpara">
+     Pour indiquer la racine des scripts PHP, vous pouvez utiliser la directive
+     <a href="ini.core.html#ini.doc-root" class="link">doc_root</a> dans le
+     <a href="configuration.file.html" class="link">fichier de configuration</a>,
+     ou vous pouvez affecter la variable d&#039;environnement
+     <var class="envar">PHP_DOCUMENT_ROOT</var>. Si cette information
+     est renseignée, le binaire <acronym title="Common Gateway Interface">CGI</acronym> de PHP construira
+     toujours le nom de fichier à ouvrir avec <code class="parameter">doc_root</code>
+     et le &quot;path information&quot; de la requête, et vous serez donc sûr
+     qu&#039;aucun script ne sera exécuté en dehors du répertoire
+     prédéfini (à l&#039;exception du répertoire
+     désigné par la directive <code class="parameter">user_dir</code> -
+     voir ci-dessous).
+    </p>
+    <p class="simpara">
+     Une autre option possible ici est la directive
+     <a href="ini.core.html#ini.user-dir" class="link">user_dir</a>. Lorsque cette directive n&#039;est pas
+     spécifiée, seuls les fichiers contenus dans le répertoire
+     <code class="parameter">doc_root</code> peuvent être ouverts.
+     Ouvrir un fichier possédant l&#039;url
+     <var class="filename">http://my.host/~user/doc.php</var> ne correspondra
+     pas à l&#039;ouverture d&#039;un fichier sous le répertoire racine de
+     l&#039;utilisateur, mais à l&#039;ouverture du fichier
+     <var class="filename">~user/doc.php</var> sous le répertoire
+     &quot;doc_root&quot; (oui, un nom de répertoire commençant par un tilde
+     [<code class="literal">~</code>]).
+    </p>
+    <p class="simpara">
+     Si la directive &quot;user_dir&quot; est activée, par exemple à la valeur
+     <var class="filename">public_php</var>, une requête
+     du type <var class="filename">http://my.host/~user/doc.php</var>
+     ouvrira un fichier appelé <var class="filename">doc.php</var> dans le
+     répertoire appelé <var class="filename">public_php</var>
+     sous le répertoire racine de l&#039;utilisateur.
+     Si le répertoire racine de l&#039;utilisateur est
+     <var class="filename">/home/user</var>, le fichier exécuté
+     sera <var class="filename">/home/user/public_php/doc.php</var>.
+    </p>
+    <p class="simpara">
+     <code class="parameter">user_dir</code> et <code class="parameter">doc_root</code> sont
+     deux directives totalement indépendantes, et vous pouvez donc
+     contrôler l&#039;accès au répertoire &quot;document root&quot;
+     séparément des répertoires &quot;user directory&quot;.
+    </p>
+   </div></div></div></body></html>

@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Demande un shell interactif</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.ssh2-sftp.html">« ssh2_sftp</a></li>
+      <li style="float: right;"><a href="function.ssh2-tunnel.html">ssh2_tunnel »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.ssh2.html">Fonctions Shell2</a></li>
+    <li>Demande un shell interactif</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.ssh2-shell" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ssh2_shell</h1>
+  <p class="verinfo">(PECL ssh2 &gt;= 0.9.0)</p><p class="refpurpose"><span class="refname">ssh2_shell</span> &mdash; <span class="dc-title">Demande un shell interactif</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.ssh2-shell-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>ssh2_shell</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$session</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$term_type</code><span class="initializer"> = &quot;vanilla&quot;</span></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$env</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$width</code><span class="initializer"> = 80</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$height</code><span class="initializer"> = 25</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$width_height_type</code><span class="initializer"> = SSH2_TERM_UNIT_CHARS</span></span>
+  ]]]]] ) : <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">
+   Ouvre un shell sur le serveur distant et lui alloue un flux.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ssh2-shell-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">session</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un identifiant de connexion SSH, obtenu depuis la fonction
+       <span class="function"><a href="function.ssh2-connect.html" class="function">ssh2_connect()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">term_type</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">term_type</code> doit correspondre à une
+       des entrées du fichier <code class="literal">/etc/termcap</code> du système cible.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">env</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">env</code> doit être passé en tant qu&#039;un tableau associatif
+       de paire nom/valeur à définir dans l&#039;environnement cible.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">width</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Largeur du terminal virtuel.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">height</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Hauteur du terminal virtuel.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">width_height_type</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">width_height_type</code> doit être soit
+       <strong><code>SSH2_TERM_UNIT_CHARS</code></strong>, soit
+       <strong><code>SSH2_TERM_UNIT_PIXELS</code></strong>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ssh2-shell-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ssh2-shell-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-5211">
+    <p><strong>Exemple #1 Exécution d&#039;une commande</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$connection&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ssh2_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'shell.example.com'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">22</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ssh2_auth_password</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'username'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'password'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$stream&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ssh2_shell</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'vt102'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">80</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">24</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SSH2_TERM_UNIT_CHARS</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ssh2-shell-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ssh2-exec.html" class="function" rel="rdfs-seeAlso">ssh2_exec()</a> - Ex&eacute;cute une commande sur un serveur distant</span></li>
+    <li class="member"><span class="function"><a href="function.ssh2-tunnel.html" class="function" rel="rdfs-seeAlso">ssh2_tunnel()</a> - Ouvre un tunnel &agrave; travers un serveur distant</span></li>
+    <li class="member"><span class="function"><a href="function.ssh2-fetch-stream.html" class="function" rel="rdfs-seeAlso">ssh2_fetch_stream()</a> - Parcours un flux &eacute;tendu de donn&eacute;es</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

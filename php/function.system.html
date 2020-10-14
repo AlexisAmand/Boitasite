@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ex&eacute;cute un programme externe et affiche le r&eacute;sultat</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.shell-exec.html">« shell_exec</a></li>
+      <li style="float: right;"><a href="book.parallel.html">parallel »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.exec.html">Fonctions sur l'ex&eacute;cution de programmes externes</a></li>
+    <li>Ex&eacute;cute un programme externe et affiche le r&eacute;sultat</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.system" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">system</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">system</span> &mdash; <span class="dc-title">
+   Exécute un programme externe et affiche le résultat
+   </span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.system-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>system</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$command</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter reference">&$return_var</code></span>
+  ] ) : <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>system()</strong></span> est la version PHP de la fonction C
+   qui exécute la commande <code class="parameter">command</code> et
+   retourne le résultat.
+  </p>
+  <p class="para">
+   L&#039;appel à la fonction <span class="function"><strong>system()</strong></span> tente également
+   d&#039;actualiser le buffer de sortie du serveur web après chaque ligne de sortie
+   si PHP fonctionne en tant que module serveur.
+  </p>
+  <p class="para">
+   Si vous devez exécuter une commande et
+   récupérer tout le résultat sans aucune
+   intervention, utilisez la fonction <span class="function"><a href="function.passthru.html" class="function">passthru()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.system-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">command</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La commande à exécuter.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">return_var</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Si l&#039;argument <code class="parameter">return_var</code> est
+       présent, alors le statut retourné de l&#039;exécution de la commande
+       sera écrit dans cette variable.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.system-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne la dernière ligne de la sortie de la commande en cas de succès, et <strong><code>FALSE</code></strong>
+   si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.system-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-3972">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>system()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'&lt;pre&gt;'</span><span style="color: #007700">;<br /><br />&nbsp;</span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;le&nbsp;résultat&nbsp;de&nbsp;la&nbsp;commande&nbsp;"ls"&nbsp;et&nbsp;retourne<br />&nbsp;//&nbsp;la&nbsp;dernière&nbsp;lignes&nbsp;dans&nbsp;$last_line.&nbsp;Stocke&nbsp;la&nbsp;valeur&nbsp;retournée<br />&nbsp;//&nbsp;par&nbsp;la&nbsp;commande&nbsp;shelle&nbsp;dans&nbsp;$retval.<br />&nbsp;</span><span style="color: #0000BB">$last_line&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">system</span><span style="color: #007700">(</span><span style="color: #DD0000">'ls'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$retval</span><span style="color: #007700">);<br /><br />&nbsp;</span><span style="color: #FF8000">//&nbsp;Affichage&nbsp;d'autres&nbsp;informations<br />&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'<br />&lt;/pre&gt;<br />&lt;hr&nbsp;/&gt;La&nbsp;dernière&nbsp;ligne&nbsp;en&nbsp;sortie&nbsp;de&nbsp;la&nbsp;commande&nbsp;:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$last_line&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'<br />&lt;hr&nbsp;/&gt;Valeur&nbsp;retournée&nbsp;:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$retval</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.system-notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><strong class="warning">Avertissement</strong><p class="para">
+ Si des données provenant des utilisateurs ont la permission d&#039;être passées à cette fonction, utilisez
+ <span class="function"><a href="function.escapeshellarg.html" class="function">escapeshellarg()</a></span> ou <span class="function"><a href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span> pour s&#039;assurer que les utilisateurs
+ ne peuvent pas amener le système à exécuter des commandes arbitraires.
+</p></div>
+  <blockquote class="note"><p><strong class="note">Note</strong>: <p class="para">
+ Si un programme est démarré avec cette fonction et qu&#039;il tourne en arrière plan, la sortie du programme doit
+ être redirigée vers un fichier, ou un autre flux de sortie. À défaut, PHP sera bloqué
+ jusqu&#039;à la fin de l&#039;exécution du programme.
+</p></p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">Lorsque le
+    <a href="features.safe-mode.html" class="link">safe mode</a> est activé, vous pouvez
+    uniquement exécuter des programmes qui se situent dans le dossier défini par
+    <a href="ini.sect.safe-mode.html#ini.safe-mode-exec-dir" class="link">safe_mode_exec_dir</a>.
+    Pour des raisons pratiques, il n&#039;est actuellement pas permis d&#039;&#039;avoir
+    le composant <code class="literal">..</code> dans le chemin de l&#039;exécutable.
+</span></p></blockquote>
+  <div class="warning"><strong class="warning">Avertissement</strong><p class="simpara">Lorsque le <a href="features.safe-mode.html" class="link">safe mode</a> est activé, la chaîne de commande
+    est échappée avec la fonction <span class="function"><a href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span>.
+    Par exemple, <code class="literal">echo y | echo x</code> devient
+    <code class="literal">echo y \| echo x</code>.</p></div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.system-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.exec.html" class="function" rel="rdfs-seeAlso">exec()</a> - Ex&eacute;cute un programme externe</span></li>
+    <li class="member"><span class="function"><a href="function.passthru.html" class="function" rel="rdfs-seeAlso">passthru()</a> - Ex&eacute;cute un programme externe et affiche le r&eacute;sultat brut</span></li>
+    <li class="member"><span class="function"><a href="function.popen.html" class="function" rel="rdfs-seeAlso">popen()</a> - Cr&eacute;e un processus de pointeur de fichier</span></li>
+    <li class="member"><span class="function"><a href="function.escapeshellcmd.html" class="function" rel="rdfs-seeAlso">escapeshellcmd()</a> - Prot&egrave;ge les caract&egrave;res sp&eacute;ciaux du Shell</span></li>
+    <li class="member"><span class="function"><a href="function.pcntl-exec.html" class="function" rel="rdfs-seeAlso">pcntl_exec()</a> - Ex&eacute;cute le programme indiqu&eacute; dans l'espace courant de processus</span></li>
+    <li class="member"><a href="language.operators.execution.html" class="link">les guillemets obliques</a></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

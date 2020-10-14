@@ -1,0 +1,307 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ins&egrave;re plusieurs documents dans la collection</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongocollection.aggregatecursor.html">« MongoCollection::aggregateCursor</a></li>
+      <li style="float: right;"><a href="mongocollection.construct.html">MongoCollection::__construct »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mongocollection.html">MongoCollection</a></li>
+    <li>Ins&egrave;re plusieurs documents dans la collection</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongocollection.batchinsert" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">MongoCollection::batchInsert</h1>
+  <p class="verinfo">(PECL mongo &gt;=0.9.0)</p><p class="refpurpose"><span class="refname">MongoCollection::batchInsert</span> &mdash; <span class="dc-title">Insère plusieurs documents dans la collection</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-mongocollection.batchinsert-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>MongoCollection::batchInsert</strong></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter">$a</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code><span class="initializer"> = array()</span></span>
+  ] ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-mongocollection.batchinsert-parameters">
+  <h3 class="title">Liste de paramètres</h3>    
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+
+      <code class="parameter">a</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Un tableau de tableaux ou d&#039;objets. Si des objets sont utilisés,
+       il ne faut pas que leurs propriétés soient protégées ou privées.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       <p class="para">
+        Si le document à insérer n&#039;a pas de clé <code class="literal">_id</code> ou
+        de propriété, une nouvelle instance <a href="class.mongoid.html" class="classname">MongoId</a>
+        sera créée et utilisée. Voir la méthode <span class="function"><a href="mongocollection.insert.html" class="function">MongoCollection::insert()</a></span>
+        pour plus d&#039;informations quant à ce comportement.
+       </p>
+      </p></blockquote>
+     </dd>
+
+         
+    
+     <dt>
+
+      <code class="parameter">options</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Un tableau d&#039;options pour le lot d&#039;opérations d&#039;insertion.
+       Actuellement, les options valides sont :
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <p class="para">
+          <code class="literal">&quot;continueOnError&quot;</code>
+         </p>
+         <p class="para">
+          Booléen, par défaut, <strong><code>FALSE</code></strong>. Si défini, la base de données n&#039;arrêtera
+          pas une insertion bulk si une d&#039;entre elles échoue (i.e. en raison d&#039;un
+          ID dupliqué). Ceci rend les insertions bulk comme une succession d&#039;insertion
+          simple, sauf que lors d&#039;un appel à la méthode
+          <span class="function"><a href="mongodb.lasterror.html" class="function">MongoDB::lastError()</a></span>, un jeu d&#039;erreurs sera retourné
+          lors de l&#039;échec d&#039;une insertion, et pas seulement la dernière.
+          Si plusieurs erreurs surviennent, seule la plus récente sera rapportée
+          par la méthode <span class="function"><a href="mongodb.lasterror.html" class="function">MongoDB::lastError()</a></span>.
+         </p>
+         <blockquote class="note"><p><strong class="note">Note</strong>: 
+          <p class="para">
+           Veuillez noter que <code class="literal">continueOnError</code> affecte les erreurs
+           côté base de données uniquement. Si vous tentez d&#039;insérer un document
+           qui contient des erreurs (par exemple, il contient une clé dont le nom
+           est vide), alors le document ne sera pas transféré à la base de données
+           car le driver va détecter cette erreur et l&#039;indiquer.
+           <code class="literal">continueOnError</code> n&#039;a aucun effet sur les erreurs détectées
+           dans le document par le driver.
+          </p>
+         </p></blockquote>
+        </li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;fsync&quot;</code></p><p class="para">Booléen, par défaut à <strong><code>FALSE</code></strong>. Si l&#039;historisation est activée, il fonctionne exactement comme <code class="literal">&quot;j&quot;</code>. Si l&#039;historisation n&#039;est pas activée, l&#039;opération en écriture sera bloquante tant qu&#039;elle ne sera pas synchronisé sur les fichiers de base de données du disque. Si vaut <strong><code>TRUE</code></strong>, une insertion reconnue devient implicite, et cette option va écraser la configuration <code class="literal">&quot;w&quot;</code> à <code class="literal">0</code>.</p><blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">Si l&#039;historisation est activée, les utilisateurs sont vivement encouragés à utiliser l&#039;option <code class="literal">&quot;j&quot;</code> au lieu de <code class="literal">&quot;fsync&quot;</code>. N&#039;utilisez pas <code class="literal">&quot;fsync&quot;</code> et <code class="literal">&quot;j&quot;</code> en même temps, ou une erreur sera produite.</span></p></blockquote></li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;j&quot;</code></p><p class="para">Booléen, par défaut à <strong><code>FALSE</code></strong>. Force les opérations en écriture a être bloquantes tant qu&#039;elles ne sont pas synchronisées dans le journal du disque. Si vaut <strong><code>TRUE</code></strong>, une écriture reconnue est implicite, et cette option va écraser la configuration <code class="literal">&quot;w&quot;</code> à <code class="literal">0</code>.</p><blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">Si cette option est utilisée, et que l&#039;historisation est désactivée, MongoDB 2.6+ va lancer une erreur, et l&#039;écriture échouera ; les anciennes versions du serveur vont simplement ignorer cette ooption.</span></p></blockquote></li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;socketTimeoutMS&quot;</code></p><p class="para">Cette option spécifie la durée limite, en millisecondes, pour la communication avec un socket. Si le serveur ne répond pas pendant cette période, une exception <a href="class.mongocursortimeoutexception.html" class="classname">MongoCursorTimeoutException</a> sera émise et il n&#039;y a aucune façon de déterminer si le serveur gère actuellement l&#039;écriture ou non. Une valeur de <code class="literal">-1</code> peut être spécifiée pour bloquer indéfiniement. La valeur par défaut pour <a href="class.mongoclient.html" class="classname">MongoClient</a> est <code class="literal">30000</code> (30 secondes).</p></li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;w&quot;</code></p><p class="para">Voir les <a href="mongo.writeconcerns.html" class="link">préoccupatios d&#039;écriture</a>. La valeur par défaut pour <a href="class.mongoclient.html" class="classname">MongoClient</a> est <code class="literal">1</code>.</p></li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;wTimeoutMS&quot;</code></p><p class="para">Cette option spécifie la durée limite, en millisecondes, pour la reconnaissance des <a href="mongo.writeconcerns.html" class="link">préoccupations d&#039;écriture</a>.Ceci n&#039;est applicable que lorsque <code class="literal">&quot;w&quot;</code> est supérieur à <code class="literal">1</code>, sachant que le délai d&#039;attente maximal est en relation avec la réplication. Si la préoccupation d&#039;écriture n&#039;est pas spécifiée dans la durée limite, une exception <a href="class.mongocursorexception.html" class="classname">MongoCursorException</a> sera émise. Une valeur de <code class="literal">0</code> peut être spécifiée pour un blocage permanent. La valeur par défaut pour <a href="class.mongoclient.html" class="classname">MongoClient</a> est <code class="literal">10000</code> (dix secondes).</p></li>
+       </ul>
+      </p>
+      <p class="para">
+       Les options suivantes sont obsolètes, et ne devraient plus être utilisées :
+       <ul class="itemizedlist">
+        <li class="listitem"><p class="para"><code class="literal">&quot;safe&quot;</code></p><p class="para">Deprecated. Please use the <a href="mongo.writeconcerns.html" class="link">write concern</a> <code class="literal">&quot;w&quot;</code> option.</p></li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;timeout&quot;</code></p><p class="para">Alias obsolète pour <code class="literal">&quot;socketTimeoutMS&quot;</code>.</p></li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;wtimeout&quot;</code></p><p class="para">Alias obsolète pour <code class="literal">&quot;wTimeoutMS&quot;</code>.</p></li>
+       </ul>
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-mongocollection.batchinsert-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>  
+  <p class="para">
+   Si le paramètre <code class="literal">w</code> est défini pour reconnaître l&#039;écriture,
+   retourne un tableau associatif contenant le statut de l&#039;insertion (&quot;ok&quot;) ainsi
+   que toutes les erreurs survenues (&quot;err&quot;). Sinon, retourne <strong><code>TRUE</code></strong> si l&#039;insertion
+   a été envoyée avec succès, <strong><code>FALSE</code></strong> sinon.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 errors" id="refsect1-mongocollection.batchinsert-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Lance une exception <a href="class.mongoexception.html" class="classname">MongoException</a> si les documents
+   insérés sont vides, ou s&#039;ils contiennent une clé de valeur nulle. Tenter d&#039;insérer
+   un objet avec des propriétés protégées et privées causera une erreur de
+   type &quot;clé de valeur nulle&quot;.
+   
+   if any inserted documents are
+   empty or if they contains zero-length keys. Attempting to insert an object
+   with protected and private properties will cause a zero-length key error.
+  </p>
+  <p class="para">Lance une exception <a href="class.mongocursorexception.html" class="classname">MongoCursorException</a> si l&#039;option <code class="literal">&quot;w&quot;</code> est définie, et que l&#039;écriture échoue.</p><p class="para">Lance une exception <a href="class.mongocursortimeoutexception.html" class="classname">MongoCursorTimeoutException</a> si l&#039;option <code class="literal">&quot;w&quot;</code> est définie à une valeur supérieure à 1 et que l&#039;opération prend plus de temps que <var class="varname">MongoCursor::$timeout</var> millisecondes à se terminer. Ceci ne va pas mettre fin à l&#039;opération sur le serveur, ce n&#039;est qu&#039;un délai d&#039;attente maximal côté client. L&#039;unité pour <var class="varname">MongoCollection::$wtimeout</var> est la milliseconde.</p>
+ </div>
+
+ 
+ <div class="refsect1 changelog" id="refsect1-mongocollection.batchinsert-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>1.5.0</td>
+       <td>
+        <p class="para">
+         Ajout de l&#039;option <code class="literal">&quot;wTimeoutMS&quot;</code>, qui remplace
+         <code class="literal">&quot;wtimeout&quot;</code>. Emets une alerte de niveau
+         <strong><code>E_DEPRECATED</code></strong> lorsque <code class="literal">&quot;wtimeout&quot;</code>
+         est utilisée.
+        </p>
+        <p class="para">
+         Ajout de l&#039;option <code class="literal">&quot;socketTimeoutMS&quot;</code>, qui remplace
+         <code class="literal">&quot;timeout&quot;</code>. Emets une alerte de niveau
+         <strong><code>E_DEPRECATED</code></strong> lorsque <code class="literal">&quot;timeout&quot;</code>
+         est utilisée.
+        </p>
+        <p class="para">
+         Emets une alerte de niveau <strong><code>E_DEPRECATED</code></strong> lorsque
+         <code class="literal">&quot;safe&quot;</code> est utilisée.
+        </p>
+       </td>
+      </tr>
+
+      <tr>
+       <td>1.3.4</td>
+       <td>Ajout de l&#039;option <code class="literal">&quot;wtimeout&quot;</code>.</td>
+      </tr>
+
+      <tr>
+       <td>1.3.0</td>
+       <td>Ajout de l&#039;option <code class="literal">&quot;w&quot;</code>.</td>
+      </tr>
+
+      <tr>
+       <td>1.2.7</td>
+       <td>
+        Le drapeau <code class="literal">&quot;continueOnError&quot;</code> a été ajouté.
+       </td>
+      </tr>
+
+      <tr>
+       <td>1.0.9</td>
+       <td>
+        <p class="para">
+         Ajout de la possibilité de passer des entiers à l&#039;option
+         <code class="literal">&quot;safe&quot;</code> (auparavant, seuls les booléens
+         étaient acceptés).
+        </p>
+        <p class="para">
+         Ajout de l&#039;option <code class="literal">&quot;fsync&quot;</code>.
+        </p>
+       </td>
+      </tr>
+
+      <tr>
+       <td>1.0.5</td>
+       <td>
+        Ajout du paramètre <code class="parameter">options</code>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-mongocollection.batchinsert-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1540">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>MongoCollection::batchInsert()</strong></span></strong></p>
+   <div class="example-contents"><p>
+    L&#039;insertion en masse est un moyen rapide d&#039;insérer rapidement de nombreux
+    éléments à la fois dans une base
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$users&nbsp;</span><span style="color: #007700">=&nbsp;array();<br />for&nbsp;(</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">100</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$users</span><span style="color: #007700">[]&nbsp;=&nbsp;array(</span><span style="color: #DD0000">'username'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'user'</span><span style="color: #007700">.</span><span style="color: #0000BB">$i</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'i'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">$mongo&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$collection&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mongo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">my_db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">users</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">drop</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">batchInsert</span><span style="color: #007700">(</span><span style="color: #0000BB">$users</span><span style="color: #007700">);<br /><br />foreach&nbsp;(</span><span style="color: #0000BB">$users&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">[</span><span style="color: #DD0000">'_id'</span><span style="color: #007700">].</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;peuplé&nbsp;via&nbsp;l'instance&nbsp;de&nbsp;MongoId<br /></span><span style="color: #007700">}<br /><br /></span><span style="color: #0000BB">$users&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">sort</span><span style="color: #007700">(array(</span><span style="color: #DD0000">'i'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br />foreach&nbsp;(</span><span style="color: #0000BB">$users&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$user</span><span style="color: #007700">[</span><span style="color: #DD0000">'username'</span><span style="color: #007700">]);<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+4bf43ac68ead0e1971000000
+4bf43ac68ead0e1971010000
+4bf43ac68ead0e1971020000
+...
+string(5) &quot;user1&quot;
+string(5) &quot;user2&quot;
+string(5) &quot;user3&quot;
+...
+</pre></div>
+   </div>
+  </div>
+  
+  <div class="example" id="example-1541">
+   <p><strong>Exemple #2 Exemple avec <span class="function"><strong>MongoCollection::batchInsert()</strong></span> où l&#039;on ignore
+    les erreurs</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$con&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Mongo</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$db&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$con</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">demo</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$doc1&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'_id'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoId</span><span style="color: #007700">(</span><span style="color: #DD0000">'4cb4ab6d7addf98506010001'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'id'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'desc'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"ONE"</span><span style="color: #007700">,<br />);<br /></span><span style="color: #0000BB">$doc2&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'_id'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoId</span><span style="color: #007700">(</span><span style="color: #DD0000">'4cb4ab6d7addf98506010002'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'id'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'desc'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"TWO"</span><span style="color: #007700">,<br />);<br /></span><span style="color: #0000BB">$doc3&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'_id'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoId</span><span style="color: #007700">(</span><span style="color: #DD0000">'4cb4ab6d7addf98506010002'</span><span style="color: #007700">),&nbsp;</span><span style="color: #FF8000">//&nbsp;_id&nbsp;identique&nbsp;au&nbsp;précédent<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'id'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'desc'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"THREE"</span><span style="color: #007700">,<br />);<br /></span><span style="color: #0000BB">$doc4&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'_id'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoId</span><span style="color: #007700">(</span><span style="color: #DD0000">'4cb4ab6d7addf98506010004'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'id'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'desc'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"FOUR"</span><span style="color: #007700">,<br />);<br /><br /></span><span style="color: #0000BB">$c&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">selectCollection</span><span style="color: #007700">(</span><span style="color: #DD0000">'c'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">batchInsert</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #0000BB">$doc1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$doc2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$doc3</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$doc4</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'continueOnError'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">)<br />);<br /><br /></span><span style="color: #0000BB">$docs&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">();<br />foreach&nbsp;(</span><span style="color: #0000BB">$docs&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$doc</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$doc</span><span style="color: #007700">[</span><span style="color: #DD0000">'desc'</span><span style="color: #007700">]);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+string(3) &quot;ONE&quot;
+string(3) &quot;TWO&quot;
+string(4) &quot;FOUR&quot;
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-mongocollection.batchinsert-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="function"><a href="mongocollection.insert.html" class="function" rel="rdfs-seeAlso">MongoCollection::insert()</a> - Ins&egrave;re un document dans la collection</span></li>
+   <li class="member"><span class="function"><a href="mongocollection.update.html" class="function" rel="rdfs-seeAlso">MongoCollection::update()</a> - Modifie les enregistrements</span></li>
+   <li class="member"><span class="function"><a href="mongocollection.find.html" class="function" rel="rdfs-seeAlso">MongoCollection::find()</a> - Interroge une collection, et retourne comme jeu de r&eacute;sultats un objet MongoCursor</span></li>
+   <li class="member"><span class="function"><a href="mongocollection.remove.html" class="function" rel="rdfs-seeAlso">MongoCollection::remove()</a> - Supprime un enregistrement d'une collection</span></li>
+   <li class="member">Documentation interne MongoDB sur <a href="https://docs.mongodb.com/manual/tutorial/insert-documents/" class="link external">&raquo;&nbsp;insert</a>.</li>
+  </ul>
+ </div>
+
+ 
+</div></div></div></body></html>

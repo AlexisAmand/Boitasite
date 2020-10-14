@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>&Eacute;tablit une connexion PostgreSQL persistante</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.pg-parameter-status.html">« pg_parameter_status</a></li>
+      <li style="float: right;"><a href="function.pg-ping.html">pg_ping »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.pgsql.html">Fonctions PostgreSQL</a></li>
+    <li>&Eacute;tablit une connexion PostgreSQL persistante</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.pg-pconnect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_pconnect</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">pg_pconnect</span> &mdash; <span class="dc-title">
+   Établit une connexion PostgreSQL persistante
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.pg-pconnect-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>pg_pconnect</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$connection_string</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$connect_type</code></span>
+  ] ) : <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>pg_pconnect()</strong></span> retourne une ressource de connexion
+   persistante en cas de succès, ou <strong><code>FALSE</code></strong> en cas d&#039;erreur.
+  </p>
+  <p class="para">
+   Si un second appel est fait à <span class="function"><strong>pg_pconnect()</strong></span> avec le même
+   <code class="parameter">connection_string</code> comme étant une connexion
+   existante, la connexion existante sera retournée à moins que vous ne passez
+   <strong><code>PGSQL_CONNECT_FORCE_NEW</code></strong> à
+   <code class="parameter">connect_type</code>.
+  </p>
+  <p class="para">
+   Pour activer les connexions persistantes,  la directive de configuration
+   <a href="pgsql.configuration.html#ini.pgsql.allow-persistent" class="link"><strong class="option unknown">pgsql.allow_persistent</strong></a>
+   du <var class="filename">php.ini</var> doit être mise à &quot;On&quot; (ce qui est sa 
+   valeur par défaut).
+   Le nombre maximal de connexions peut être limité grâce 
+   à la directive de
+   configuration <a href="pgsql.configuration.html#ini.pgsql.max-persistent" class="link"><strong class="option unknown">pgsql.max_persistent</strong></a>
+   dans le fichier <var class="filename">php.ini</var> (par défaut, elle vaut -1, c&#039;est à 
+   dire pas de limite).
+   Le nombre total de connexions peut être configuré avec la directive
+   <a href="pgsql.configuration.html#ini.pgsql.max-links" class="link"><strong class="option unknown">pgsql.max_links</strong></a> du fichier
+   <var class="filename">php.ini</var>.
+  </p>
+  <p class="para">
+   <span class="function"><a href="function.pg-close.html" class="function">pg_close()</a></span> ne refermera pas les connexions persistantes
+   générées par <span class="function"><strong>pg_pconnect()</strong></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.pg-pconnect-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">connection_string</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La chaîne <code class="parameter">connection_string</code> peut être vide pour
+       utiliser tous les paramètres par défaut ou elle peut contenir un ou
+       plusieurs paramètres de configuration séparés par des espaces.
+       Chaque paramètre de configuration est sous la forme <code class="literal">code =
+       valeur</code>. Les espaces autour du signe égal sont optionnels.
+       Pour écrire une valeur vide ou une valeur contenant des espaces,
+       entourez cette valeur avec des apostrophes, par exemple : <code class="literal">code =
+       &#039;une valeur&#039;</code>. Les apostrophes et les antislashs à l&#039;intérieur
+       de la valeur doivent être échappés par un antislash, c&#039;est-à-dire
+       \&#039; et \\.
+      </p>
+      <p class="para">
+       Les mots-clé actuellement reconnus sont :
+       <code class="parameter">host</code>, <code class="parameter">hostaddr</code>,
+       <code class="parameter">port</code>,
+       <code class="parameter">dbname</code>, <code class="parameter">user</code>,
+       <code class="parameter">password</code>,
+       <code class="parameter">connect_timeout</code>,
+       <code class="parameter">options</code>, <code class="parameter">tty</code> (ignoré),
+       <code class="parameter">sslmode</code>,
+       <code class="parameter">requiressl</code> (obsolète, utilisez
+       <code class="parameter">sslmode</code>) et
+       <code class="parameter">service</code>. La liste de ces arguments dépend de
+       la version de votre serveur PostgreSQL.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">connect_type</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Si <strong><code>PGSQL_CONNECT_FORCE_NEW</code></strong> est passé en argument,
+       alors une nouvelle connexion sera créée, même si la chaîne
+       <code class="parameter">connection_string</code> est identique à celle de la
+       connexion existante.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.pg-pconnect-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Ressource de connexion PostgreSQL en cas de succès, <strong><code>FALSE</code></strong> en cas d&#039;échec.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.pg-pconnect-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2523">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>pg_pconnect()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dbconn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_pconnect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=marie"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;connexion&nbsp;à&nbsp;une&nbsp;base&nbsp;de&nbsp;données&nbsp;nommée&nbsp;"marie"<br /><br /></span><span style="color: #0000BB">$dbconn2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_pconnect</span><span style="color: #007700">(</span><span style="color: #DD0000">"host=localhost&nbsp;port=5432&nbsp;dbname=marie"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;connexion&nbsp;à&nbsp;une&nbsp;base&nbsp;de&nbsp;données&nbsp;nommée&nbsp;"marie"&nbsp;sur&nbsp;l'hôte&nbsp;"localhost"&nbsp;sur&nbsp;le&nbsp;port&nbsp;"5432"<br /><br /></span><span style="color: #0000BB">$dbconn3&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_pconnect</span><span style="color: #007700">(</span><span style="color: #DD0000">"host=mouton&nbsp;port=5432&nbsp;dbname=marie&nbsp;user=agneau&nbsp;password=foo"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;connexion&nbsp;à&nbsp;une&nbsp;base&nbsp;de&nbsp;données&nbsp;nommée&nbsp;"marie"&nbsp;sur&nbsp;l'hôte&nbsp;"mouton"&nbsp;avec&nbsp;un<br />//&nbsp;nom&nbsp;d'utilisateur&nbsp;et&nbsp;un&nbsp;mot&nbsp;de&nbsp;passe<br /><br /></span><span style="color: #0000BB">$conn_string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"host=mouton&nbsp;port=5432&nbsp;dbname=test&nbsp;user=agneau&nbsp;password=bar"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$dbconn4&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_pconnect</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_string</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;connexion&nbsp;à&nbsp;une&nbsp;base&nbsp;de&nbsp;données&nbsp;nommée&nbsp;"test"&nbsp;sur&nbsp;l'hôte&nbsp;"mouton"&nbsp;avec&nbsp;un<br />//&nbsp;nom&nbsp;d'utilisateur&nbsp;et&nbsp;un&nbsp;mot&nbsp;de&nbsp;passe<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.pg-pconnect-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.pg-connect.html" class="function" rel="rdfs-seeAlso">pg_connect()</a> - &Eacute;tablit une connexion PostgreSQL</span></li>
+    <li class="member">
+     <a href="features.persistent-connections.html" class="link">
+     Connexions Persistantes</a>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Copie un fichier appartenant &agrave; une archive vers un autre fichier de la m&ecirc;me archive</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="phar.converttoexecutable.html">« Phar::convertToExecutable</a></li>
+      <li style="float: right;"><a href="phar.count.html">Phar::count »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.phar.html">Phar</a></li>
+    <li>Copie un fichier appartenant &agrave; une archive vers un autre fichier de la m&ecirc;me archive</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="phar.copy" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Phar::copy</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PECL phar &gt;= 2.0.0)</p><p class="refpurpose"><span class="refname">Phar::copy</span> &mdash; <span class="dc-title">Copie un fichier appartenant à une archive vers un autre fichier de la même archive</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-phar.copy-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>Phar::copy</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$oldfile</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$newfile</code></span>
+   ) : <span class="type">bool</span></div>
+
+  <blockquote class="note"><p><strong class="note">Note</strong>: <p class="para">Cette
+    méthode nécessite que la variable de configuration INI <code class="literal">phar.readonly</code>
+    soit définie à <code class="literal">0</code> pour fonctionner avec les objets <a href="class.phar.html" class="classname">Phar</a>.
+    Sinon, une exception <a href="class.pharexception.html" class="classname">PharException</a> sera lançée.</p></p></blockquote>
+
+  <p class="para">
+   Copie un fichier appartenant à une archive vers un nouveau
+   fichier de la même archive. C&#039;est une alternative orientée
+   objet à l&#039;utilisation de <span class="function"><a href="function.copy.html" class="function">copy()</a></span> avec un
+   flux phar.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-phar.copy-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">oldfile</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">newfile</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-phar.copy-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne <strong><code>TRUE</code></strong> en cas de succès, mais il est plus sûr d&#039;encadrer l&#039;appel à cette méthode
+   dans un bloc try/catch et de considérer son succès si aucune exception n&#039;est levée.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-phar.copy-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Lève une exception <a href="class.unexpectedvalueexception.html" class="classname">UnexpectedValueException</a> 
+   si le fichier source n&#039;existe pas, si le fichier destination existe 
+   déjà, si l&#039;accès en écriture est désactivé, si ouvrir l&#039;un ou l&#039;autre
+   des fichiers échoue, si la lecture du fichier source échoue, ou lève 
+   une exception <a href="class.pharexception.html" class="classname">PharException</a>
+   si l&#039;écriture des changement dans le phar échoue.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-phar.copy-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-703">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>Phar::copy()</strong></span></strong></p>
+    <div class="example-contents"><p>
+     Cet exemple montre comment utiliser <span class="function"><strong>Phar::copy()</strong></span> et la comparaison en terme
+     de performance avec l&#039;équivalent utilisant le flux phar. La différence principale entre
+     les deux méthodes concerne la gestion des erreurs. Toutes les méthodes Phar lèvent des
+     exceptions, là où les fonctions de flux utilisent <span class="function"><a href="function.trigger-error.html" class="function">trigger_error()</a></span>.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$phar&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">(</span><span style="color: #DD0000">'monphar.phar'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$phar</span><span style="color: #007700">[</span><span style="color: #DD0000">'a'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">'salut'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$phar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">copy</span><span style="color: #007700">(</span><span style="color: #DD0000">'a'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'b'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$phar</span><span style="color: #007700">[</span><span style="color: #DD0000">'b'</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;affiche&nbsp;"salut"<br /></span><span style="color: #007700">}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;traite&nbsp;les&nbsp;erreurs<br /></span><span style="color: #007700">}<br /><br /></span><span style="color: #FF8000">//&nbsp;l'équivalent&nbsp;en&nbsp;terme&nbsp;de&nbsp;flux&nbsp;du&nbsp;code&nbsp;ci-dessus<br />//&nbsp;des&nbsp;E_WARNING&nbsp;sont&nbsp;retournés&nbsp;plutôt&nbsp;que&nbsp;des&nbsp;exceptions<br /></span><span style="color: #0000BB">copy</span><span style="color: #007700">(</span><span style="color: #DD0000">'phar://monphar.phar/a'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'phar//monphar.phar/c'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">'phar://monphar.phar/c'</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;affiche&nbsp;"salut"<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

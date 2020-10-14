@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Configure le d&eacute;lai d'attente d'une base SQLite occup&eacute;e</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.sqlite-array-query.html">« sqlite_array_query</a></li>
+      <li style="float: right;"><a href="function.sqlite-changes.html">sqlite_changes »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.sqlite.html">Fonctions SQLite</a></li>
+    <li>Configure le d&eacute;lai d'attente d'une base SQLite occup&eacute;e</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.sqlite-busy-timeout" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_busy_timeout</h1>
+  <h1 class="refname">SQLiteDatabase::busyTimeout</h1>
+  <p class="verinfo">(PHP 5 &lt; 5.4.0, PECL sqlite &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">sqlite_busy_timeout</span> -- <span class="refname">SQLiteDatabase::busyTimeout</span> &mdash; <span class="dc-title">Configure le délai d&#039;attente d&#039;une base SQLite occupée</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.sqlite-busy-timeout-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>sqlite_busy_timeout</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$dbhandle</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$milliseconds</code></span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">Style orienté objet (method):</p>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>SQLiteDatabase::busyTimeout</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$milliseconds</code></span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">
+   Spécifie la durée maximale, en millisecondes, que SQLite attendra pour
+   qu&#039;une base de données <code class="parameter">dbhandle</code> soit utilisable.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.sqlite-busy-timeout-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">dbhandle</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La ressource de base de données SQLite; retournée par
+       <span class="function"><a href="function.sqlite-open.html" class="function">sqlite_open()</a></span> lorsqu&#039;utilisée de manière
+       procédurale. Ce paramètre n&#039;est pas requis si vous utilisez la méthode
+       orientée objet.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">milliseconds</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nombre de millisecondes. Lorsque mis à <code class="literal">0</code>, les
+       gestionnaires d&#039;occupation seront désactivés et SQLite retournera
+       immédiatement un code d&#039;état <code class="literal">SQLITE_BUSY</code> si un autre
+       processus/thread a verrouillé la base de données pour une mise à jour.
+      </p>
+      <p class="para">
+       PHP initialise la durée maximale d&#039;utilisation à 60 secondes lorsque
+       la base de données est ouverte.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       <p class="para">
+        Il y a mille (1000) millisecondes dans une seconde.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.sqlite-busy-timeout-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Aucune valeur n&#039;est retournée.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.sqlite-busy-timeout-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2551">
+    <p><strong>Exemple #1 Style procédural</strong></p>
+
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dbhandle&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlite_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'sqlitedb'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">sqlite_busy_timeout</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">10000</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;fixe&nbsp;le&nbsp;timeout&nbsp;à&nbsp;10&nbsp;secondes<br /></span><span style="color: #0000BB">sqlite_busy_timeout</span><span style="color: #007700">(</span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;désactive&nbsp;le&nbsp;gestionnaire<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2552">
+    <p><strong>Exemple #2 Style orienté objet</strong></p>
+
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dbhandle&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SQLiteDatabase</span><span style="color: #007700">(</span><span style="color: #DD0000">'sqlitedb'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">busyTimeout</span><span style="color: #007700">(</span><span style="color: #0000BB">10000</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;10&nbsp;secondes<br /></span><span style="color: #0000BB">$dbhandle</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">busyTimeout</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;désactive<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.sqlite-busy-timeout-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.sqlite-open.html" class="function" rel="rdfs-seeAlso">sqlite_open()</a> - Ouvre une base SQLite et la cr&eacute;e si elle n'existe pas</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Re&ccedil;oit des donn&eacute;es d'un socket, connect&eacute; ou pas</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.socket-recv.html">« socket_recv</a></li>
+      <li style="float: right;"><a href="function.socket-recvmsg.html">socket_recvmsg »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.sockets.html">Fonctions sur les sockets</a></li>
+    <li>Re&ccedil;oit des donn&eacute;es d'un socket, connect&eacute; ou pas</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.socket-recvfrom" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">socket_recvfrom</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.1.0, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">socket_recvfrom</span> &mdash; <span class="dc-title">Reçoit des données d&#039;un socket, connecté ou pas</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.socket-recvfrom-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>socket_recvfrom</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$socket</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter reference">&$buf</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$len</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter reference">&$name</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter reference">&$port</code></span>
+  ] ) : <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   La fonction <span class="function"><strong>socket_recvfrom()</strong></span> reçoit
+   <code class="parameter">len</code> octets de données du buffer <code class="parameter">buf</code>
+   depuis <code class="parameter">name</code> sur le port <code class="parameter">port</code> (si le socket
+   n&#039;est pas du type <strong><code>AF_UNIX</code></strong>), en utilisant
+   <code class="parameter">socket</code>. <span class="function"><strong>socket_recvfrom()</strong></span> peut être utilisé
+   pour récupérer les données depuis des sockets connectées ou non. De plus,
+   un ou plusieurs drapeaux peuvent être spécifiés pour modifier ce comportement.
+  </p>
+  <p class="para">
+   Les paramètres <code class="parameter">name</code> et <code class="parameter">port</code>
+   doivent être passés par référence. Si le socket n&#039;est pas connecté,
+   <code class="parameter">name</code> contiendra l&#039;adresse internet de l&#039;hôte distant ou
+   le chemin du socket Unix. Si le socket est connecté, <code class="parameter">name</code>
+   vaut <strong><code>NULL</code></strong>. De plus, le paramètre <code class="parameter">port</code> contiendra
+   le port de l&#039;hôte distant dans le cas d&#039;un socket <strong><code>AF_INET</code></strong> ou
+   <strong><code>AF_INET6</code></strong>.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">
+ Cette fonction gère les chaînes binaires.
+</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.socket-recvfrom-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">socket</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le paramètre <code class="parameter">socket</code> doit être une ressource
+       de socket créé par la fonction <span class="function"><a href="function.socket-create.html" class="function">socket_create()</a></span>.
+      </p>
+     </dd>
+
+    
+
+    
+     <dt>
+<code class="parameter">buf</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Les données récupérées seront placées dans la variable spécifiée
+       par ce paramètre.
+      </p>
+     </dd>
+
+    
+
+    
+     <dt>
+<code class="parameter">len</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Jusqu&#039;à <code class="parameter">len</code> octets doivent être récupérés
+       de l&#039;hôte distant.
+      </p>
+     </dd>
+
+    
+
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La valeur de ce paramètre peut être une combinaison des drapeaux suivants,
+       joints par un OU binaire (<code class="literal">|</code>).
+      </p>
+
+      <table class="doctable table">
+       <caption><strong>Valeurs possibles pour <code class="parameter">flags</code></strong></caption>
+       
+        <thead>
+         <tr>
+          <th>Drapeau</th>
+          <th>Description</th>
+         </tr>
+
+        </thead>
+
+        <tbody class="tbody">
+         <tr>
+          <td><strong><code>MSG_OOB</code></strong></td>
+          <td>
+           Processus en dehors de la bande de données.
+          </td>
+         </tr>
+
+         <tr>
+          <td><strong><code>MSG_PEEK</code></strong></td>
+          <td>
+           Reçoit les données depuis le début de la file de réception
+           sans les supprimer de cette file.
+          </td>
+         </tr>
+
+         <tr>
+          <td><strong><code>MSG_WAITALL</code></strong></td>
+          <td>
+           Bloque tant qu&#039;au moins <code class="parameter">len</code> octets n&#039;ont pas
+           été reçus. Cependant, si un signal est reçu ou l&#039;hôte distant
+           se déconnecte, la fonction pourra retourner moins de données.
+          </td>
+         </tr>
+
+         <tr>
+          <td><strong><code>MSG_DONTWAIT</code></strong></td>
+          <td>
+           Lorsque ce drapeau est défini, la fonction retourne des données
+           même si elle devrait rester bloquer.
+          </td>
+         </tr>
+
+        </tbody>
+       
+      </table>
+
+     </dd>
+
+    
+
+    
+     <dt>
+<code class="parameter">name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Si le socket est du type <strong><code>AF_UNIX</code></strong>,
+       <code class="parameter">name</code> sera le chemin vers ce fichier. Sinon,
+       pour les sockets non-connectés, <code class="parameter">name</code> est l&#039;adresse
+       IP de l&#039;hôte distant, ou <strong><code>NULL</code></strong> si le socket est connecté.
+      </p>
+     </dd>
+
+    
+
+    
+     <dt>
+<code class="parameter">port</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Cet argument ne s&#039;applique qu&#039;aux sockets <strong><code>AF_INET</code></strong> et
+       <strong><code>AF_INET6</code></strong>, et spécifie le port distant depuis lequel
+       les données sont reçues. Si la socket est connectée,
+       <code class="parameter">port</code> vaudra <strong><code>NULL</code></strong>.
+      </p>
+     </dd>
+
+    
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.socket-recvfrom-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   <span class="function"><strong>socket_recvfrom()</strong></span> retourne le nombre d&#039;octets
+   reçus, ou <strong><code>FALSE</code></strong> si une erreur survient. Le code erreur actuel peut
+   être retrouvé en appelant la fonction <span class="function"><a href="function.socket-last-error.html" class="function">socket_last_error()</a></span>.
+   Ce code erreur peut être passé à la fonction <span class="function"><a href="function.socket-strerror.html" class="function">socket_strerror()</a></span>
+   afin de récupérer une explication textuelle de l&#039;erreur.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.socket-recvfrom-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="snmp.set.example.basic">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>socket_recvfrom()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />error_reporting</span><span style="color: #007700">(</span><span style="color: #0000BB">E_ALL&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">E_STRICT</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$socket&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">socket_create</span><span style="color: #007700">(</span><span style="color: #0000BB">AF_INET</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SOCK_DGRAM</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SOL_UDP</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">socket_bind</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'127.0.0.1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1223</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$from&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$port&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">socket_recvfrom</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$buf</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">12</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$from</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$port</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Réception&nbsp;de&nbsp;</span><span style="color: #0000BB">$buf</span><span style="color: #DD0000">&nbsp;depuis&nbsp;l'adresse&nbsp;distant&nbsp;</span><span style="color: #0000BB">$from</span><span style="color: #DD0000">&nbsp;et&nbsp;du&nbsp;port&nbsp;distant&nbsp;</span><span style="color: #0000BB">$port</span><span style="color: #DD0000">"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     Cet exemple initialise un socket UDP sur le port 1223 de l&#039;adresse
+     127.0.0.1 et affiche au moins 12 caractères reçus depuis l&#039;hôte distant.
+    </p></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.socket-recvfrom-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.socket-recv.html" class="function" rel="rdfs-seeAlso">socket_recv()</a> - Re&ccedil;oit des donn&eacute;es d'un socket connect&eacute;</span></li>
+    <li class="member"><span class="function"><a href="function.socket-send.html" class="function" rel="rdfs-seeAlso">socket_send()</a> - Envoie des donn&eacute;es &agrave; un socket connect&eacute;</span></li>
+    <li class="member"><span class="function"><a href="function.socket-sendto.html" class="function" rel="rdfs-seeAlso">socket_sendto()</a> - Envoie un message &agrave; un socket, qu'il soit connect&eacute; ou pas</span></li>
+    <li class="member"><span class="function"><a href="function.socket-create.html" class="function" rel="rdfs-seeAlso">socket_create()</a> - Cr&eacute;e un socket</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

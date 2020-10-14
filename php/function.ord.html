@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Convertit le premier octet d'une cha&icirc;ne en une valeur entre 0 et 255</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.number-format.html">« number_format</a></li>
+      <li style="float: right;"><a href="function.parse-str.html">parse_str »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.strings.html">Fonctions sur les cha&icirc;nes de caract&egrave;res</a></li>
+    <li>Convertit le premier octet d'une cha&icirc;ne en une valeur entre 0 et 255</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.ord" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ord</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">ord</span> &mdash; <span class="dc-title">Convertit le premier octet d&#039;une chaîne en une valeur entre 0 et 255</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.ord-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>ord</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$string</code></span>
+   ) : <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   Interprète la valeur binaire du premier octet de <code class="parameter">string</code>
+   en tant qu&#039;un <a href="language.types.integer.html" class="link">entier</a> non signé entre 0 et 255.
+  </p>
+  <p class="para">
+   Si la <a href="language.types.string.html" class="link">chaîne de caractères</a> est dans un encodage sur un octet tel que ASCII, ISO-8859, ou
+   Windows 1252, ceci est équivalent à retourner la position d&#039;un charactère dans la
+   table de correspondance de l&#039;encodage. Cependant, il est à noter que cette fontion
+   n&#039;est pas conscient d&#039;aucun encodage de <a href="language.types.string.html" class="link">chaîne de caractères</a>, et en particulier n&#039;identifiera
+   jamais une valeur de point de code Unicode dans un encodage multi-octet tel que
+   UTF-8 ou UTF-16.
+  </p>
+  <p class="para">
+   Cette fonction complète <span class="function"><a href="function.chr.html" class="function">chr()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ord-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">string</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un caractère.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ord-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Un <a href="language.types.integer.html" class="link">entier</a> entre 0 et 255.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ord-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-5476">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>ord()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />if&nbsp;(</span><span style="color: #0000BB">ord</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">)&nbsp;==&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Le&nbsp;premier&nbsp;caractère&nbsp;de&nbsp;\$str&nbsp;est&nbsp;une&nbsp;nouvelle&nbsp;ligne\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ <p class="para"> 
+   <div class="example" id="example-5477">
+    <p><strong>Exemple #2 Examiner les octets individuels d&#039;une chaîne UTF-8</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">declare(</span><span style="color: #0000BB">encoding</span><span style="color: #007700">=</span><span style="color: #DD0000">'UTF-8'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"🐘"</span><span style="color: #007700">;<br />for&nbsp;(&nbsp;</span><span style="color: #0000BB">$pos</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$pos&nbsp;</span><span style="color: #007700">&lt;&nbsp;</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">);&nbsp;</span><span style="color: #0000BB">$pos&nbsp;</span><span style="color: #007700">++&nbsp;)&nbsp;{<br />&nbsp;</span><span style="color: #0000BB">$byte&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$pos</span><span style="color: #007700">);<br />&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Octet&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$pos&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'&nbsp;de&nbsp;$str&nbsp;a&nbsp;comme&nbsp;valeur&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">ord</span><span style="color: #007700">(</span><span style="color: #0000BB">$byte</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen"><br />
+Octet 0 de $str a comme valeur 240<br />
+Octet 1 de $str a comme valeur 159<br />
+Octet 2 de $str a comme valeur 144<br />
+Octet 3 de $str a comme valeur 152<br />
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ord-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.chr.html" class="function" rel="rdfs-seeAlso">chr()</a> - G&eacute;n&eacute;rer une cha&icirc;ne d'un octet &agrave; partir d'un nombre</span></li>
+    <li class="member"><a href="http://www.asciitable.com" class="link external">&raquo;&nbsp;Table ASCII</a></li>
+    <li class="member"><span class="function"><a href="function.mb-ord.html" class="function" rel="rdfs-seeAlso">mb_ord()</a> - R&eacute;cup&egrave;re le point de code d'un charact&egrave;re</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

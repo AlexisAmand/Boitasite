@@ -1,0 +1,401 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Fonctions ODBC et DB2 (PDO_ODBC)</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="ref.pdo-oci.connection.html">« PDO_OCI DSN</a></li>
+      <li style="float: right;"><a href="ref.pdo-odbc.connection.html">PDO_ODBC DSN »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="pdo.drivers.html">Pilotes PDO</a></li>
+    <li>Fonctions ODBC et DB2 (PDO_ODBC)</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="ref.pdo-odbc" class="reference">
+  
+  <h1 class="title">Fonctions ODBC et DB2 (PDO_ODBC)</h1>
+  
+  <div class="partintro">
+
+   <div class="section" id="pdo-odbc.intro">
+   <h2 class="title">Introduction</h2>
+    <p class="para">
+     PDO_ODBC est un pilote qui implémente l&#039;<a href="intro.pdo.html" class="link">interface de PHP Data Objects (PDO)</a> pour
+     autoriser l&#039;accès de PHP aux bases de données par les pilotes de ODBC
+     ou par la bibliothèque d&#039;interface IBM DB2 Call Level (DB2 CLI). PDO_ODBC
+     supporte actuellement trois &quot;saveurs&quot; différentes des pilotes de bases de
+     données :
+     <dl>
+
+      
+       <dt>
+ibm-db2</dt>
+
+       <dd>
+
+        <p class="para">
+         Supporte l&#039;accès à <code class="literal">IBM DB2 Universal Database</code>, 
+         Cloudscape et Apache Derby Server à l&#039;aide du client gratuit DB2 express-C.
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+unixODBC</dt>
+
+       <dd>
+
+        <p class="para">
+         Supporte l&#039;accès aux serveurs de base de données à l&#039;aide du pilote
+         de gestion unixODBC et les bases de données possédées par les pilotes
+         ODBC.
+        </p>
+       </dd>
+
+      
+      
+       <dt>
+generic</dt>
+
+       <dd>
+
+        <p class="para">
+         Offre une option de compilation pour les pilotes de gestion ODBC qui
+         ne sont pas explicitement supportés par PDO_ODBC.
+        </p>
+       </dd>
+
+      
+     </dl>
+
+    </p>
+    <p class="para">
+     Sur Windows, <var class="filename">php_pdo_odbc.dll</var> doit être activé en tant qu&#039;extension dans <var class="filename">php.ini</var>. Il
+     est lié avec le Windows ODBC Driver Manager, c&#039;est pourquoi PHP peut se
+     connecter à n&#039;importe quelle base de données cataloguée comme étant un
+     System DSN. De plus, PDO_ODBC est le pilote recommandé pour se connecter
+     aux bases de données Microsoft SQL Server.
+    </p>
+   </div>
+
+   
+   
+
+
+
+
+<div class="section" id="ref.pdo-odbc.installation">
+ <h2 class="title">Installation</h2>
+ <div class="procedure">
+  <strong class="title">PDO_ODBC sur les systèmes UNIX</strong>
+  <ol type="1"><li>
+   <p class="para">
+    À partir de PHP 5.1, PDO_ODBC est inclus dans les sources de PHP. Vous
+    pouvez compiler l&#039;extension PDO_ODBC soit en statique ou en module partagé
+    en utilisant les commandes <strong class="command">configure</strong> suivantes.
+    <dl>
+
+     
+      <dt>
+ibm_db2</dt>
+
+      <dd>
+
+       <p class="para">
+        <div class="example-contents screen">
+<div class="cdata"><pre>
+./configure --with-pdo-odbc=ibm-db2,/opt/IBM/db2/V8.1/
+</pre></div>
+        </div>
+        Pour construire PDO_ODBC avec la saveur ibm-db2, vous devez avoir
+        précédemment installé les en-têtes de développement de l&#039;application de
+        DB2 sur la même machine sur laquelle vous compilez PDO_ODBC. Les
+        en-têtes de développement de l&#039;application DB2 sont une option
+        d&#039;installation dans les serveurs DB2 et sont aussi disponibles
+        en tant que <code class="literal">DB2 Application Development Client</code> gratuitement
+        disponibles pour téléchargement à partir du 
+        <a href="https://www.ibm.com/developerworks/downloads/im/db2express/index.html" class="link external">&raquo;&nbsp;site</a>.
+        <code class="literal">IBM developerWorks</code>.
+       </p>
+       <p class="para">
+        Si vous ne spécifiez pas d&#039;emplacement pour les bibliothèques et les
+        en-têtes de DB2 à la commande <strong class="command">configure</strong>, PDO_ODBC
+        prendra par défaut
+        <var class="filename">/home/db2inst1/sqllib</var>.
+       </p>
+      </dd>
+
+     
+     
+      <dt>
+unixODBC</dt>
+
+      <dd>
+
+       <p class="para">
+        <div class="example-contents screen">
+<div class="cdata"><pre>
+./configure --with-pdo-odbc=unixODBC,/usr/local
+</pre></div>
+        </div>
+        Si vous ne spécifiez pas d&#039;emplacement pour les bibliothèques et les
+        en-têtes de unixODBC à la commande <strong class="command">configure</strong>, PDO_ODBC
+        prendra par défaut
+        <var class="filename">/usr/local</var>.
+       </p>
+      </dd>
+
+     
+     
+      <dt>
+generic</dt>
+
+      <dd>
+
+       <div class="example-contents screen">
+<div class="cdata"><pre>
+./configure --with-pdo-odbc=generic,/usr/local,libname,ldflags,cflags
+</pre></div>
+       </div>
+      </dd>
+
+     
+    </dl>
+
+   </p>
+  </li>
+ </ol></div>
+</div>
+
+
+   
+   
+
+
+<div class="section" id="pdo-odbc.constants">
+ <h2 class="title">Constantes pré-définies</h2>
+ <p class="simpara">Les constantes ci-dessous sont
+définies par ce pilote et seront seulement disponibles lorsque l&#039;extension
+aura été compilée dans PHP ou chargée dynamiquement du moteur d&#039;exécution.
+De plus, ces constantes spécifiques au pilote devraient être utilisées seulement
+si vous utilisez ce pilote. En utilisant les attributs spécifiques à un pilote
+avec un autre pilote pourrait causer un comportement inattendu.
+<span class="function"><a href="pdo.getattribute.html" class="function">PDO::getAttribute()</a></span> pourrait être utilisé pour obtenir
+l&#039;attribut <strong><code>PDO::ATTR_DRIVER_NAME</code></strong> pour vérifier le
+pilote, si votre code peut fonctionner sur des pilotes multiples.</p>
+ <dl>
+
+  
+   <dt id="pdo.constants.odbc-attr-use-cursor-library">
+    <strong><code>PDO::ODBC_ATTR_USE_CURSOR_LIBRARY</code></strong>
+     (<span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>)
+   </dt>
+
+   <dd>
+
+    <p class="para">
+     This option controls whether the ODBC cursor library is used. The ODBC cursor library
+     supports some advanced ODBC features (e.g. block scrollable cursors), which may not
+     be implemented by the driver. The following values are supported:
+     <ul class="itemizedlist">
+      <li class="listitem">
+       <p class="para">
+        <strong><code>PDO::ODBC_SQL_USE_IF_NEEDED</code></strong> (the default):
+        use the ODBC cursor library when needed.
+       </p>
+      </li>
+      <li class="listitem">
+       <p class="para">
+        <strong><code>PDO::ODBC_SQL_USE_DRIVER</code></strong>:
+        never use the ODBC cursor library.
+       </p>
+      </li>
+      <li class="listitem">
+       <p class="para">
+        <strong><code>PDO::ODBC_SQL_USE_ODBC</code></strong>:
+        always use the ODBC cursor library.
+       </p>
+      </li>
+     </ul>
+    </p>
+   </dd>
+
+  
+  
+   <dt id="pdo.constants.odbc-attr-assume-utf8">
+    <strong><code>PDO::ODBC_ATTR_ASSUME_UTF8</code></strong>
+     (<span class="type"><a href="language.types.boolean.html" class="type boolean">boolean</a></span>)
+   </dt>
+
+   <dd>
+
+    <p class="para">
+     Windows only. If <strong><code>TRUE</code></strong>, UTF-16 encoded character data (<code class="literal">CHAR</code>,
+     <code class="literal">VARCHAR</code> and <code class="literal">LONGVARCHAR</code>) is converted to
+     UTF-8 when reading from or writing data to the database.
+     If <strong><code>FALSE</code></strong> (the default), no character encoding conversion is done.
+    </p>
+   </dd>
+
+  
+ </dl>
+
+</div>
+
+
+
+  
+   
+
+
+
+
+<div class="section" id="pdo-odbc.configuration">
+ <h2 class="title">Configuration à l&#039;exécution</h2>
+ <p class="simpara">Le comportement de ces fonctions est
+affecté par la configuration dans le fichier <var class="filename">php.ini</var>.</p>
+ <p class="para">
+  <table class="doctable table">
+   <caption><strong>Options de configuration PDO_ODBC</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Nom</th>
+      <th>Défaut</th>
+      <th>Modifiable</th>
+      <th>Historique</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td><a href="ref.pdo-odbc.html#ini.pdo-odbc.connection-pooling" class="link">pdo_odbc.connection_pooling</a></td>
+      <td>&quot;strict&quot;</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponible depuis PHP 5.1.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="ref.pdo-odbc.html#ini.pdo-odbc.db2-instance-name" class="link">pdo_odbc.db2_instance_name</a></td>
+      <td><strong><code>NULL</code></strong></td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.1.1. Cette fonctionnalité obsolète <em class="emphasis">sera</em>
+certainement <em class="emphasis">supprimée</em> dans le futur.</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+  Pour plus de détails sur les modes PHP_INI_*,
+        reportez-vous à <a href="configuration.changes.modes.html" class="xref">O&ugrave; une directive de configuration peut &ecirc;tre modifi&eacute;e</a>.
+ </p>
+
+<p class="para">Voici un éclaircissement sur
+l&#039;utilisation des directives de configuration.</p>
+
+ <p class="para">
+  <dl>
+
+   
+   <dt id="ini.pdo-odbc.connection-pooling">
+    <code class="parameter">pdo_odbc.connection_pooling</code>
+    <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+   </dt>
+
+   <dd>
+
+    <p class="para">
+     Pour mettre en commun les connexions ODBC. Peut être <code class="literal">&quot;strict&quot;</code>, <code class="literal">&quot;relaxed&quot;</code>
+     ou <code class="literal">&quot;off&quot;</code> (égal à <code class="literal">&quot;&quot;</code>). Le paramètre décrit comment la gestion de la
+     connexion stricte devrait être lorsque les paramètres de connexion se
+     ressemblent pour des connexions mises en commun.
+     <strong class="userinput"><code>strict</code></strong> est la valeur par défaut recommandée et
+     permettra l&#039;utilisation des connexions en cache lorsque des paramètres
+     de connexion similaires sont utilisés. <strong class="userinput"><code>relaxed</code></strong>
+     permettra d&#039;utiliser des connexions mises en cache lorsque des paramètres
+     de connexion similaire seront utilisés. Cela peut augmenter l&#039;utilisation
+     du cache au risque de noyer les informations de connexion entre (par
+     exemple) des serveurs virtuels.
+    </p>
+    <p class="para">
+     Cette configuration peut seulement être changé à partir du fichier
+     <var class="filename">php.ini</var> et affecte le processus entier; n&#039;importe quels autres modules
+     chargé dans le processus qui utilisent les bibliothèques ODBC sera aussi
+     affecté, en incluant l&#039;<a href="ref.uodbc.html" class="link">extension unifié
+     ODBC</a>.
+    </p>
+    <div class="warning"><strong class="warning">Avertissement</strong>
+     <p class="para">
+      <strong class="userinput"><code>relaxed</code></strong> ne devrait pas être utilisé sur les
+      serveurs partagés, pour des raisons de sécurité.
+     </p>
+    </div>
+    <div class="tip"><strong class="tip">Astuce</strong>
+     <p class="para">
+      Laissez cette configuration à la valeur par défaut
+      <strong class="userinput"><code>strict</code></strong> à moins que vous ayez une bonne raison
+      pour la changer.
+     </p>
+    </div>
+   </dd>
+
+  
+  
+   <dt id="ini.pdo-odbc.db2-instance-name">
+    <code class="parameter">pdo_odbc.db2_instance_name</code>
+    <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+   </dt>
+
+   <dd>
+
+    <p class="para">
+     Si vous compilez PDO_ODBC en utilisant <code class="literal">db2</code>, cette
+     configuration fixe la valeur de la variable d&#039;environnement DB2INSTANCE
+     sur les systèmes d&#039;exploitation Linux et UNIX au nom spécifié de
+     l&#039;instance DB2. Ceci permet à PDO_ODBC de résoudre le chemin des
+     bibliothèques DB2 et de faire des connexions cataloguées aux bases de
+     données DB2.
+    </p>
+    <p class="para">
+     Cette configuration peut seulement être changée à partir du fichier
+     <var class="filename">php.ini</var> et affecte le processus entier; n&#039;importe quels autres modules
+     chargés dans le processus qui utilisent les même bibliothèques ODBC
+     seront aussi affectés, incluant l&#039;<a href="ref.uodbc.html" class="link">extension
+     unifiée ODBC</a>.
+    </p>
+    <p class="para">
+     Cette configuration n&#039;a aucun effet sur Windows.
+    </p>
+   </dd>
+
+  
+ 
+  </dl>
+
+ </p>
+</div>
+
+
+
+  </div>
+
+  
+
+ <h2>Sommaire</h2><ul class="chunklist chunklist_reference"><li><a href="ref.pdo-odbc.connection.html">PDO_ODBC DSN</a> — Connexion aux bases de donn&eacute;es ODBC ou DB2</li></ul>
+</div>
+</div></div></body></html>

@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>V&eacute;rifie l'usage d'un certificat</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.openssl-x509-check-private-key.html">« openssl_x509_check_private_key</a></li>
+      <li style="float: right;"><a href="function.openssl-x509-export-to-file.html">openssl_x509_export_to_file »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.openssl.html">Fonctions OpenSSL</a></li>
+    <li>V&eacute;rifie l'usage d'un certificat</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.openssl-x509-checkpurpose" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">openssl_x509_checkpurpose</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">openssl_x509_checkpurpose</span> &mdash; <span class="dc-title">Vérifie l&#039;usage d&#039;un certificat</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.openssl-x509-checkpurpose-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>openssl_x509_checkpurpose</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$x509cert</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$purpose</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$cainfo</code><span class="initializer"> = array()</span></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$untrustedfile</code></span>
+  ]] ) : <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>openssl_x509_checkpurpose()</strong></span> examine le certificat
+   spécifié par <code class="parameter">x509cert</code>, pour voir s&#039;il peut être
+   utilisé pour une opération particulière <code class="parameter">purpose</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.openssl-x509-checkpurpose-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">x509cert</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le certificat examiné.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">purpose</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <table class="doctable table">
+        <caption><strong>Utilisation de <span class="function"><strong>openssl_x509_checkpurpose()</strong></span></strong></caption>
+        
+         <thead>
+          <tr>
+           <th>Constante</th>
+           <th>Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td>X509_PURPOSE_SSL_CLIENT</td>
+           <td>
+            Est-ce que le certificat peut être utilisé avec le client d&#039;une
+            connexion SSL ?
+           </td>
+          </tr>
+
+          <tr>
+           <td>X509_PURPOSE_SSL_SERVER</td>
+           <td>
+            Est-ce que le certificat peut être utilisé avec le serveur d&#039;une
+            connexion SSL ?
+           </td>
+          </tr>
+
+          <tr>
+           <td>X509_PURPOSE_NS_SSL_SERVER</td>
+           <td>
+            Est-ce que le certificat peut être utilisé avec un serveur
+            Netscape d&#039;une connexion SSL ?
+           </td>
+          </tr>
+
+          <tr>
+           <td>X509_PURPOSE_SMIME_SIGN</td>
+           <td>
+            Est-ce que le certificat peut être utilisé pour signer des
+            courriers à la norme S/MIME ?
+           </td>
+          </tr>
+
+          <tr>
+           <td>X509_PURPOSE_SMIME_ENCRYPT</td>
+           <td>
+            Est-ce que le certificat peut être utilisé pour
+            chiffrer un courrier au format S/MIME ?
+           </td>
+          </tr>
+
+          <tr>
+           <td>X509_PURPOSE_CRL_SIGN</td>
+           <td>
+            Est-ce que le certificat peut être utilisé pour
+            chiffrer une liste de révocation de certificats ?
+            (CRL)?
+           </td>
+          </tr>
+
+          <tr>
+           <td>X509_PURPOSE_ANY</td>
+           <td>
+            Est-ce que le certificat peut être utilisé pour
+            n&#039;importe lequel de ces cas ?
+           </td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+       Ces options ne sont pas des champs de bits :  vous ne pouvez en
+       passer qu&#039;une seule à la fois.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">cainfo</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">cainfo</code> doit être un tableau de dossiers/fichiers
+       de CA de confiance comme décrit dans la
+       <a href="openssl.cert.verification.html" class="link">Vérification des certificats</a>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">untrustedfile</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Si spécifié, est le nom d&#039;un fichier au format PEM contenant les
+       certificats qui pourront aider lors de la vérification du certificat,
+       même si une confiance limitée doit leur être portée.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.openssl-x509-checkpurpose-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne <strong><code>TRUE</code></strong> si le certificat peut être utilisé pour un but particulier,
+   <strong><code>FALSE</code></strong> s&#039;il ne le peut pas, ou -1 si une erreur survient.
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

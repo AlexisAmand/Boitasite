@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Cr&eacute;e un groupe de requ&ecirc;tes</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.eio-grp-limit.html">« eio_grp_limit</a></li>
+      <li style="float: right;"><a href="function.eio-init.html">eio_init »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.eio.html">Fonctions Eio</a></li>
+    <li>Cr&eacute;e un groupe de requ&ecirc;tes</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.eio-grp" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">eio_grp</h1>
+  <p class="verinfo">(PECL eio &gt;= 0.0.1dev)</p><p class="refpurpose"><span class="refname">eio_grp</span> &mdash; <span class="dc-title">Crée un groupe de requêtes</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.eio-grp-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>eio_grp</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> <code class="parameter">$callback</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$data</code><span class="initializer"> = NULL</span></span>
+  ] ) : <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>eio_grp()</strong></span> crée un groupe de requêtes.
+  </p>
+  
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.eio-grp-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">callback</code></dt>
+
+    <dd>
+
+     <p class="para">
+La fonction de rappel <code class="parameter">callback</code>
+est appelée lorsque la requête est terminée.
+Elle doit correspondre au prototype suivant : <div class="example-contents"><div class="phpcode"><code><span style="color: #000000">
+void&nbsp;callback(mixed&nbsp;$data,&nbsp;int&nbsp;$result[,&nbsp;resource&nbsp;$req]);</span>
+</code></div></div>
+
+<dl>
+
+    
+        <dt>
+<code class="parameter">data</code></dt>
+
+        <dd>
+<p class="para">représente les données personnalisées passées à la requête.</p></dd>
+
+    
+    
+        <dt>
+<code class="parameter">result</code></dt>
+
+        <dd>
+<p class="para">représente la valeur résultante spécifique à la requête ; basiquement,
+            la valeur retournée par l&#039;appel système correspondant.</p></dd>
+
+    
+    
+        <dt>
+<code class="parameter">req</code></dt>
+
+        <dd>
+<p class="para">est la ressource optionnelle de la requête qui peut être
+            utilisée avec les fonctions comme <span class="function"><a href="function.eio-get-last-error.html" class="function">eio_get_last_error()</a></span></p></dd>
+
+    
+</dl>
+
+</p>
+
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">data</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Variables arbitraires à passer à la fonction de rappel
+      <code class="parameter">callback</code>.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.eio-grp-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   <span class="function"><strong>eio_grp()</strong></span> retourne la ressource du groupe
+   de requêtes en cas de succès, ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.eio-grp-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-3885">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>eio_grp()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$temp_filename&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">__FILE__</span><span style="color: #007700">)&nbsp;.</span><span style="color: #DD0000">"/eio-file.tmp"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #0000BB">$temp_filename</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"w"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"some&nbsp;data"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$my_file_fd&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Sera&nbsp;appelé&nbsp;lorsque&nbsp;le&nbsp;groupe&nbsp;de&nbsp;requêtes&nbsp;aura&nbsp;terminé&nbsp;*/<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">my_grp_done</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;{<br />&nbsp;</span><span style="color: #FF8000">//&nbsp;Supprime&nbsp;le&nbsp;fichier,&nbsp;si&nbsp;il&nbsp;existe<br />&nbsp;</span><span style="color: #007700">@</span><span style="color: #0000BB">unlink</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Sera&nbsp;appelé&nbsp;lorsque&nbsp;le&nbsp;fichier&nbsp;temporaire&nbsp;sera&nbsp;ouvert&nbsp;*/<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">my_grp_file_opened_callback</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;{<br />&nbsp;global&nbsp;</span><span style="color: #0000BB">$my_file_fd</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$grp</span><span style="color: #007700">;<br /><br />&nbsp;</span><span style="color: #0000BB">$my_file_fd&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">;<br /><br />&nbsp;</span><span style="color: #0000BB">$req&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">eio_read</span><span style="color: #007700">(</span><span style="color: #0000BB">$my_file_fd</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">EIO_PRI_DEFAULT</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_grp_file_read_callback"</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #0000BB">eio_grp_add</span><span style="color: #007700">(</span><span style="color: #0000BB">$grp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$req</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Sera&nbsp;appelé&nbsp;lorsque&nbsp;le&nbsp;fichier&nbsp;aura&nbsp;été&nbsp;lu&nbsp;*/<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">my_grp_file_read_callback</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;{<br />&nbsp;global&nbsp;</span><span style="color: #0000BB">$my_file_fd</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$grp</span><span style="color: #007700">;<br /><br />&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br />&nbsp;</span><span style="color: #FF8000">//&nbsp;Crée&nbsp;une&nbsp;requête&nbsp;pour&nbsp;fermer&nbsp;le&nbsp;fichier<br />&nbsp;</span><span style="color: #0000BB">$req&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">eio_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$my_file_fd</span><span style="color: #007700">);<br /><br />&nbsp;</span><span style="color: #FF8000">//&nbsp;Ajoute&nbsp;la&nbsp;requête&nbsp;au&nbsp;groupe<br />&nbsp;</span><span style="color: #0000BB">eio_grp_add</span><span style="color: #007700">(</span><span style="color: #0000BB">$grp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$req</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Crée&nbsp;un&nbsp;groupe&nbsp;de&nbsp;requêtes<br /></span><span style="color: #0000BB">$grp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">eio_grp</span><span style="color: #007700">(</span><span style="color: #DD0000">"my_grp_done"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$temp_filename</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Crée&nbsp;une&nbsp;requête<br /></span><span style="color: #0000BB">$req&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">eio_open</span><span style="color: #007700">(</span><span style="color: #0000BB">$temp_filename</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">EIO_O_RDWR&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">EIO_O_APPEND&nbsp;</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;</span><span style="color: #0000BB">EIO_PRI_DEFAULT</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_grp_file_opened_callback"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Ajoute&nbsp;la&nbsp;requête&nbsp;au&nbsp;groupe<br /></span><span style="color: #0000BB">eio_grp_add</span><span style="color: #007700">(</span><span style="color: #0000BB">$grp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$req</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Exécute&nbsp;les&nbsp;demandes<br /></span><span style="color: #0000BB">eio_event_loop</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+string(4) &quot;some&quot;
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.eio-grp-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="function"><a href="function.eio-grp-cancel.html" class="function" rel="rdfs-seeAlso">eio_grp_cancel()</a> - Annule un groupe de requ&ecirc;tes</span></li>
+   <li class="member"><span class="function"><a href="function.eio-grp-add.html" class="function" rel="rdfs-seeAlso">eio_grp_add()</a> - Ajoute une requ&ecirc;te au groupe de requ&ecirc;tes</span></li>
+  </ul>
+ </div>
+
+ 
+</div></div></div></body></html>

@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ex&eacute;cute une requ&ecirc;te SQLite non bufferis&eacute;e</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.sqlite-udf-encode-binary.html">« sqlite_udf_encode_binary</a></li>
+      <li style="float: right;"><a href="book.sqlite3.html">SQLite3 »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.sqlite.html">Fonctions SQLite</a></li>
+    <li>Ex&eacute;cute une requ&ecirc;te SQLite non bufferis&eacute;e</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.sqlite-unbuffered-query" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_unbuffered_query</h1>
+  <h1 class="refname">SQLiteDatabase::unbufferedQuery</h1>
+  <p class="verinfo">(PHP 5 &lt; 5.4.0, PECL sqlite &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">sqlite_unbuffered_query</span> -- <span class="refname">SQLiteDatabase::unbufferedQuery</span> &mdash; <span class="dc-title">Exécute une requête SQLite non bufferisée</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.sqlite-unbuffered-query-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>sqlite_unbuffered_query</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$dbhandle</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$result_type</code><span class="initializer"> = SQLITE_BOTH</span></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter reference">&$error_msg</code></span>
+  ]] ) : <span class="type">resource</span></div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>sqlite_unbuffered_query</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>
+   , <span class="methodparam"><span class="type">resource</span> <code class="parameter">$dbhandle</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$result_type</code><span class="initializer"> = SQLITE_BOTH</span></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter reference">&$error_msg</code></span>   
+  ]] ) : <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">Style orienté objet (méthode) :</p>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>SQLiteDatabase::unbufferedQuery</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$result_type</code><span class="initializer"> = SQLITE_BOTH</span></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter reference">&$error_msg</code></span>
+  ]] ) : <span class="type"><span class="type SQLiteUnbuffered">SQLiteUnbuffered</span></span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>sqlite_unbuffered_query()</strong></span> est identique à
+   <span class="function"><a href="function.sqlite-query.html" class="function">sqlite_query()</a></span> hormis le fait que le résultat retourné est
+   une séquence croissante, qui ne peut être lue que dans un seul sens.
+  </p>
+  <p class="para">
+   Cette fonction est idéale pour générer des tables HTML, où vous n&#039;avez
+   besoin que d&#039;une ligne en même temps, et que vous n&#039;avez pas
+   à faire d&#039;accès aléatoire aux lignes.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Les fonctions telles que <span class="function"><a href="function.sqlite-seek.html" class="function">sqlite_seek()</a></span> et
+    <span class="function"><a href="function.sqlite-rewind.html" class="function">sqlite_rewind()</a></span> ne fonctionnent pas avec les
+    résultats non bufferisés de cette fonction.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.sqlite-unbuffered-query-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">dbhandle</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La ressource de base de données SQLite; retournée par
+       <span class="function"><a href="function.sqlite-open.html" class="function">sqlite_open()</a></span> lorsqu&#039;utilisée de manière
+       procédurale. Ce paramètre n&#039;est pas requis si vous utilisez la méthode
+       orientée objet.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">query</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La requête à être exécutée.
+      </p>
+      <p class="para">
+       Les données contenues dans la requête doivent être <a href="function.sqlite-escape-string.html" class="link">échappées</a>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">result_type</code></dt>
+
+     <dd>
+
+      <p class="para">Le paramètre optionnel
+<code class="parameter">result_type</code> accepte une constante et détermine comment
+le tableau retourné doit être indexé. L&#039;utilisation de
+<strong><code>SQLITE_ASSOC</code></strong> retournera uniquement un tableau associatif
+(nom des champs) tandis que <strong><code>SQLITE_NUM</code></strong> retournera un
+tableau indexé numériquement (numéro ordinal des champs).
+<strong><code>SQLITE_BOTH</code></strong> retournera des indices numériques et associatifs.
+<strong><code>SQLITE_BOTH</code></strong> est la valeur par défaut pour cette
+fonction.</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">error_msg</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La variable spécifiée sera remplie si une erreur se produit. Ceci est
+       important car les erreurs de syntaxes SQL ne peuvent être récupérées en
+       utilisant la fonction <span class="function"><a href="function.sqlite-last-error.html" class="function">sqlite_last_error()</a></span>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">Deux syntaxes alternatives sont
+    supportées pour assurer la compatibilité avec les autres bases de données
+    (telles que MySQL) : la forme recommandée est la première, où le paramètre
+    <code class="parameter">dbhandle</code> est le premier dans la fonction.</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.sqlite-unbuffered-query-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne une ressource de résultat ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+  <p class="para">
+   <span class="function"><strong>sqlite_unbuffered_query()</strong></span> retourne un jeu de résultats
+   séquentiel d&#039;avancement seul qui ne peut être utilisé que pour lire chaque
+   ligne, l&#039;une après l&#039;autre.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.sqlite-unbuffered-query-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.1.0</td>
+       <td>
+        Ajout du paramètre <code class="parameter">error_msg</code>
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.sqlite-unbuffered-query-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.sqlite-query.html" class="function" rel="rdfs-seeAlso">sqlite_query()</a> - Ex&eacute;cute une requ&ecirc;te SQLite et lit le r&eacute;sultat</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>V&eacute;rifier E_STRICT</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration51.databases.html">« Modifications dans le support des bases de donn&eacute;es</a></li>
+      <li style="float: right;"><a href="migration5.html">Migration de PHP 4 &agrave; PHP 5.0.x »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration51.html">Migration de PHP 5.0.x &agrave; PHP 5.1.x</a></li>
+    <li>V&eacute;rifier E_STRICT</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration51.errorcheck" class="section">
+  <h2 class="title">Vérifier <strong><code>E_STRICT</code></strong></h2>
+  <div class="informalexample">
+   <p class="para">
+    Si vous n&#039;avez qu&#039;un seul script à vérifier, vous pouvez identifier les
+    erreurs <strong><code>E_STRICT</code></strong> en utilisant PHP en ligne de commande :
+   </p>
+   <div class="example-contents"><div class="shellcode"><pre class="shellcode">php -d error_reporting=4095 -l script_to_check.php</pre>
+</div></div>
+
+   <p class="para">
+    Pour les projets d&#039;envergure, le script Shell ci-dessous sera plus
+    efficace :
+   </p>
+   <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">#!/bin/sh
+
+directory=$1
+
+shift
+
+# Les extensions suivantes sont vérifiées
+extensions=&quot;php inc&quot;
+
+check_file ()
+{
+  echo -ne &quot;Vérification E_STRICT de la syntaxe PHP sur $1 ...&quot;
+
+  # Options:
+  ERRORS=`/www/php/bin/php -d display_errors=1 -d html_errors=0 -d error_prepend_string=&quot; &quot; -d error_append_string=&quot; &quot; -d error_reporting=4095 -l $1 | grep -v &quot;No syntax errors detected&quot;`
+
+  if test -z &quot;$ERRORS&quot;; then
+    echo -ne &quot;OK.&quot;
+  else
+    echo -e &quot;Erreurs trouvées!\n$ERRORS&quot;
+  fi
+
+  echo
+}
+
+# test des autres arguments
+for FILE in &quot;$@&quot; ; do
+  for ext in $extensions; do
+     if echo $FILE | grep &quot;\.$ext$&quot; &gt; /dev/null; then
+       if test -f $FILE; then
+         check_file &quot;$FILE&quot;
+       fi
+     fi
+  done
+done</pre>
+</div>
+   </div>
+
+  </div>
+ </div></div></div></body></html>

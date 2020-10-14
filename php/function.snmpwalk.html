@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Re&ccedil;oit tous les objets SNMP d'un agent</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.snmpset.html">« snmpset</a></li>
+      <li style="float: right;"><a href="function.snmpwalkoid.html">snmpwalkoid »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.snmp.html">Fonctions SNMP</a></li>
+    <li>Re&ccedil;oit tous les objets SNMP d'un agent</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.snmpwalk" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">snmpwalk</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">snmpwalk</span> &mdash; <span class="dc-title">Reçoit tous les objets <acronym title="Simple Network Management Protocol">SNMP</acronym> d&#039;un agent</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.snmpwalk-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>snmpwalk</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$hostname</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$community</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$object_id</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$timeout</code><span class="initializer"> = 1000000</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$retries</code><span class="initializer"> = 5</span></span>
+  ]] ) : <span class="type">array</span></div>
+
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>snmpwalk()</strong></span> est utilisé pour lire toutes les valeurs d&#039;un
+   agent <acronym title="Simple Network Management Protocol">SNMP</acronym> spécifié par <code class="parameter">hostname</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.snmpwalk-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">hostname</code></dt>
+
+     <dd>
+
+      <p class="para">
+       L&#039;agent SNMP (serveur).
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">community</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La communauté de lecture.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">object_id</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Si <strong><code>NULL</code></strong>, <code class="parameter">object_id</code> est pris comme racine des
+       objets <acronym title="Simple Network Management Protocol">SNMP</acronym> et tous les objets de cet arbre sont retournés sous la
+       forme d&#039;un tableau.
+      </p>
+      <p class="para">
+       Si <code class="parameter">object_id</code> est spécifié, tous les objets <acronym title="Simple Network Management Protocol">SNMP</acronym>
+       suivant cet <code class="parameter">object_id</code> sont retournés.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">timeout</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nombre de microsecondes depuis le premier timeout.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">retries</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nombre de tentative dans le cas où le délai d&#039;expiration survient.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.snmpwalk-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau de valeurs de l&#039;objet <acronym title="Simple Network Management Protocol">SNMP</acronym>, en commençant par
+   <code class="parameter">object_id</code> ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.snmpwalk-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-5152">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>snmpwalk()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">snmpwalk</span><span style="color: #007700">(</span><span style="color: #DD0000">"127.0.0.1"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"public"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">);<br /><br />foreach&nbsp;(</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$val</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   L&#039;appel à la fonction ci-dessus retournera tous les objets <acronym title="Simple Network Management Protocol">SNMP</acronym>
+   depuis l&#039;agent <acronym title="Simple Network Management Protocol">SNMP</acronym> exécuté sur l&#039;hôte local. On parcourt les valeurs
+   via une boucle.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.snmpwalk-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.snmprealwalk.html" class="function" rel="rdfs-seeAlso">snmprealwalk()</a> - Retourne tous les objets, y compris les identifiants respectifs inclus dans l'objet</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

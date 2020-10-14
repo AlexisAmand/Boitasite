@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Convertit un gestionnaire de connexion MySQL en un gestionnaire de connexion mysqlnd</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="ref.mysqlnd-uh.html">« Fonctions Mysqlnd_uh</a></li>
+      <li style="float: right;"><a href="function.mysqlnd-uh-set-connection-proxy.html">mysqlnd_uh_set_connection_proxy »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.mysqlnd-uh.html">Fonctions Mysqlnd_uh</a></li>
+    <li>Convertit un gestionnaire de connexion MySQL en un gestionnaire de connexion mysqlnd</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.mysqlnd-uh-convert-to-mysqlnd" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqlnd_uh_convert_to_mysqlnd</h1>
+  <p class="verinfo">(PECL mysqlnd-uh &gt;= 1.0.0-alpha)</p><p class="refpurpose"><span class="refname">mysqlnd_uh_convert_to_mysqlnd</span> &mdash; <span class="dc-title">Convertit un gestionnaire de connexion MySQL en un gestionnaire de connexion mysqlnd</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.mysqlnd-uh-convert-to-mysqlnd-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   
+   <span class="methodname"><strong>mysqlnd_uh_convert_to_mysqlnd</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mysqli.html" class="type mysqli">mysqli</a></span> <code class="parameter reference">&$mysql_connection</code></span>
+   ) : <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">
+   Convertit un gestionnaire de connexion MySQL en un gestionnaire de connexion mysqlnd.
+   Après convertion, vous pouvez exécuter des appels à la bibliothèque cliente
+   mysqlnd sur le gestionnaire de connexion. Ceci peut être utile pour accéder à
+   des fonctionnalités mysqlnd non disponibles depuis les appels API C de l&#039;espace
+   utilisateur.
+  </p>
+  <p class="para">
+   La fonction peut être désactivée avec l&#039;option
+   <code class="literal"><a href="mysqlnd-uh.configuration.html#ini.mysqlnd-uh.enable" class="link">mysqlnd_uh.enable</a></code>.
+   Si <code class="literal"><a href="mysqlnd-uh.configuration.html#ini.mysqlnd-uh.enable" class="link">mysqlnd_uh.enable</a></code>
+   est défini à <strong><code>FALSE</code></strong>, la fonction n&#039;installera pas le proxy et retournera
+   toujours <strong><code>TRUE</code></strong>. De plus, une alerte de niveau <code class="literal">E_WARNING</code>
+   peut être émise. Le message d&#039;erreur ressemblera à
+   <code class="literal">PHP Warning:  mysqlnd_uh_convert_to_mysqlnd(): (Mysqlnd User Handler)
+   The plugin has been disabled by setting the configuration parameter mysqlnd_uh.enable = false.
+   You are not allowed to call this function [...]</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.mysqlnd-uh-convert-to-mysqlnd-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">Gestionnaire de connexion MySQL</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Un gestionnaire de connexion MySQL de type mysql, mysqli ou PDO_MySQL.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.mysqlnd-uh-convert-to-mysqlnd-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Un gestionnaire de connexion mysqlnd.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.mysqlnd-uh-convert-to-mysqlnd-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.4.0</td>
+       <td>
+        Le paramètre <code class="parameter">mysql_connection</code> peut maintenant être
+        de type <code class="literal">mysql</code>, <code class="literal">PDO_MySQL</code>, ou
+        <code class="literal">mysqli</code>. Avant cette version, seul le type
+        <code class="literal">mysqli</code> était autorisé.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.mysqlnd-uh-convert-to-mysqlnd-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2345">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>mysqlnd_uh_convert_to_mysqlnd()</strong></span></strong></p>
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;L'API&nbsp;utilisateur&nbsp;de&nbsp;PDO&nbsp;ne&nbsp;donne&nbsp;pas&nbsp;accès&nbsp;à&nbsp;l'identifiant&nbsp;du&nbsp;thread&nbsp;de&nbsp;connexion&nbsp;*/<br /></span><span style="color: #0000BB">$mysql_connection&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">(</span><span style="color: #DD0000">"mysql:host=localhost;dbname=test"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"root"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Convertit&nbsp;un&nbsp;gestionnaire&nbsp;PDO&nbsp;MySQL&nbsp;en&nbsp;un&nbsp;gestionnaire&nbsp;mysqlnd&nbsp;*/<br /></span><span style="color: #0000BB">$mysqlnd&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqlnd_uh_convert_to_mysqlnd</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysql_connection</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Crée&nbsp;un&nbsp;proxy&nbsp;pour&nbsp;appeler&nbsp;les&nbsp;méthodes&nbsp;de&nbsp;classe&nbsp;de&nbsp;connexion&nbsp;mysqlnd&nbsp;*/<br /></span><span style="color: #0000BB">$obj&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MySQLndUHConnection</span><span style="color: #007700">();<br /></span><span style="color: #FF8000">/*&nbsp;Appel&nbsp;à&nbsp;mysqlnd_conn::get_thread_id&nbsp;*/<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getThreadId</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqlnd</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/*&nbsp;Utilisation&nbsp;de&nbsp;SQL&nbsp;pour&nbsp;récupérer&nbsp;l'iID&nbsp;du&nbsp;thread&nbsp;de&nbsp;connexion&nbsp;*/<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysql_connection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;CONNECTION_ID()"</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">fetchAll</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+int(27054)
+array(1) {
+  [0]=&gt;
+  array(2) {
+    [&quot;CONNECTION_ID()&quot;]=&gt;
+    string(5) &quot;27054&quot;
+    [0]=&gt;
+    string(5) &quot;27054&quot;
+  }
+}
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mysqlnd-uh-convert-to-mysqlnd-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     <code class="literal"><a href="mysqlnd-uh.configuration.html#ini.mysqlnd-uh.enable" class="link">mysqlnd_uh.enable</a></code>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

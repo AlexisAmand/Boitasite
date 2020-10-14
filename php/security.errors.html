@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Rapport d'erreurs</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="security.database.sql-injection.html">« Injection SQL</a></li>
+      <li style="float: right;"><a href="security.globals.html">Utilisation des variables super-globales »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="security.html">S&eacute;curit&eacute;</a></li>
+    <li>Rapport d'erreurs</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="security.errors" class="chapter">
+ <h1>Rapport d&#039;erreurs</h1>
+
+ <p class="para">
+  En termes de sécurité, il y a deux conséquences au rapport d&#039;erreur.
+  D&#039;un coté, cela améliore la sécurité, mais d&#039;un autre, cela la réduit aussi.
+ </p>
+ <p class="para">
+  Une tactique d&#039;attaque standard consiste à faire faire des erreurs
+  au système, et à analyser les types des erreurs qui sont retournées,
+  ainsi que leur contexte. Cela permet à l&#039;attaquant d&#039;obtenir des
+  informations à propos du serveur, en vue de détecter de possibles faiblesses.
+  Par exemple, si un intrus a glané des informations sur une page dépendant
+  de la soumission préalable d&#039;un formulaire, il peut essayer d&#039;écraser les
+  variables par ses propres valeurs :
+  <div class="example" id="example-393">
+   <p><strong>Exemple #1 Attaque de variables avec une page HTML personnalisée</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+&lt;form&nbsp;method="post"&nbsp;action="http://www.site.cible.com/?username=badfoo&amp;password=badfoo"&gt;<br />&nbsp;&lt;input&nbsp;type="hidden"&nbsp;name="username"&nbsp;value="badfoo"&gt;<br />&nbsp;&lt;input&nbsp;type="hidden"&nbsp;name="password"&nbsp;value="badfoo"&gt;<br />&lt;/form&gt;</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  Les erreurs PHP qui sont normalement retournées peuvent être
+  très pratiques pour un développeur qui essaie de déboguer un
+  script, car elles donnent de précieux renseignements tels que
+  la fonction qui a échouée, depuis quel fichier PHP, et même le numéro
+  de la ligne à laquelle l&#039;erreur s&#039;est produite. Toutes ces informations sont exploitables.
+  Il n&#039;est pas rare que les développeurs PHP utilisent
+  les fonctions <span class="function"><a href="function.show-source.html" class="function">show_source()</a></span>,
+  <span class="function"><a href="function.highlight-string.html" class="function">highlight_string()</a></span>, ou
+  <span class="function"><a href="function.highlight-file.html" class="function">highlight_file()</a></span> comme outils de déboguage, mais sur un
+  site en production, cela peut exposer des variables cachées, des syntaxes non
+  vérifiées, ou d&#039;autres informations critiques. Il est particulièrement
+  dangereux d&#039;exécuter du code de sources connues avec des gestionnaires de
+  débogage inclus, ou de travailler avec des techniques de débogage répandues.
+  Si l&#039;attaquant peut déterminer quelle technique générale vous utilisez, il peut
+  tenter une attaque frontale sur une page, en envoyant des chaînes de débogage connues :
+  <div class="example" id="example-394">
+   <p><strong>Exemple #2 Exploiter des variables classiques de débogage</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+&lt;form&nbsp;method="post"&nbsp;action="http://www.site.cible.com/?errors=Y&amp;showerrors=1"&amp;debug=1"&gt;<br />&nbsp;&lt;input&nbsp;type="hidden"&nbsp;name="errors"&nbsp;value="Y"&gt;<br />&nbsp;&lt;input&nbsp;type="hidden"&nbsp;name="showerrors"&nbsp;value="1"&gt;<br />&nbsp;&lt;input&nbsp;type="hidden"&nbsp;name="debug"&nbsp;value="1"&gt;<br />&lt;/form&gt;</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  Indépendamment de la méthode de gestion des erreurs, la possibilité de tester
+  un système pour identifier des erreurs revient à fournir à un attaquant
+  plus d&#039;informations sur votre système.
+ </p>
+ <p class="para">
+  Par exemple, le style même d&#039;une erreur PHP standard indique d&#039;un système fait
+  tourner PHP.
+  Si un attaquant affiche une page .html, et essaye de la tester (pour rechercher des
+  faiblesses connues du système), en lui envoyant des données invalides, il peut déterminer
+  qu&#039;elle a été construite via un script PHP.
+ </p>
+ <p class="para">
+  Une erreur de fonction peut indiquer si un système supporte une base de
+  données spécifique, ou bien donner des indices quant à la façon dont une page a
+  été conçue ou développée. Cela peut orienter l&#039;intrus
+  vers les ports de cette base de données ou bien vers une attaque
+  liée à cette application. En envoyant des données
+  erronées, par exemple, un pirate peut déterminer l&#039;ordre
+  d&#039;identification dans un script (à partir des numéros de lignes d&#039;erreurs),
+  ou sonder à la recherche de failles qui pourraient être exploitées à
+  différents endroits du script.
+ </p>
+ <p class="para">
+  Une erreur de fichier, ou une erreur générale de PHP, peut indiquer
+  quelles sont les permissions du serveur web, ainsi que la structure
+  et l&#039;organisation des fichiers. Les gestionnaires d&#039;erreurs utilisateurs
+  peuvent aussi aggraver ce problème, en permettant l&#039;exploitation facile
+  d&#039;informations préalablement &quot;cachées&quot;.
+ </p>
+ <p class="para">
+  Il y a trois solutions majeures à ces problèmes : la première
+  est de scruter toutes les fonctions, et d&#039;essayer de traiter toutes les
+  erreurs. La seconde est de totalement désactiver le rapport d&#039;erreur, dès
+  que le script est en production. La troisième est d&#039;utiliser les
+  fonctions de gestion des erreurs de PHP pour créer vos propres gestionnaires d&#039;erreurs.
+  En fonction de votre politique de sécurité, il se peut que vous arriviez à la conclusion
+  que ces solutions sont toutes les trois applicables à votre situation.
+ </p>
+ <p class="para">
+  Une méthode pour gagner du temps est d&#039;utiliser la fonction
+  <span class="function"><a href="function.error-reporting.html" class="function">error_reporting()</a></span>, pour vous aider à
+  sécuriser votre code, et détecter certaines utilisations dangereuses de variables.
+  En testant votre code, avant le déploiement, avec <strong><code>E_ALL</code></strong>,
+  vous pouvez rapidement repérer les variables qui ne sont pas protégées.
+  Une fois que le code est prêt à être déployé, vous devriez soit désactiver complètement
+  le rapport d&#039;erreur en passant 0 à la fonction <span class="function"><a href="function.error-reporting.html" class="function">error_reporting()</a></span>,
+  soit en désactivant l&#039;affichage des erreurs en utilisant l&#039;option de configuration
+  <code class="literal">display_errors</code> de <var class="filename">php.ini</var>. Si vous choisissez la
+  seconde solution, vous devriez également définir le chemin vers votre fichier
+  de log en utilisant la directive de configuration <code class="literal">error_log</code>,
+  et en activant la directive <code class="literal">log_errors</code>.
+  <div class="example" id="example-395">
+   <p><strong>Exemple #3 Détecter des variables non protégées avec E_ALL</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$username</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Non&nbsp;initialisée&nbsp;ou&nbsp;vérifée&nbsp;avant&nbsp;utilisation<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$good_login&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />}<br />if&nbsp;(</span><span style="color: #0000BB">$good_login&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Si&nbsp;le&nbsp;test&nbsp;ci-dessus&nbsp;échoue,&nbsp;les&nbsp;valeurs&nbsp;n'ont&nbsp;pas&nbsp;été&nbsp;testées<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fpassthru&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"/données/très/très/sensibles/index.html"</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+</div>
+</div></div></body></html>

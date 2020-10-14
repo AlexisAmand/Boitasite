@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Filtres de nettoyage</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="filter.filters.validate.html">« Filtres de validation</a></li>
+      <li style="float: right;"><a href="filter.filters.misc.html">Autres filtres »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="filter.filters.html">Types de filtres</a></li>
+    <li>Filtres de nettoyage</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="filter.filters.sanitize" class="section">
+  <h2 class="title">Filtres de nettoyage</h2>
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Liste des filtres de nettoyage</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>ID</th>
+       <th>Nom</th>
+       <th>Flags</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td><strong><code>FILTER_SANITIZE_EMAIL</code></strong></td>
+       <td>&quot;email&quot;</td>
+       <td class="empty">&nbsp;</td>
+       <td>
+        Supprime tous les caractères sauf les lettres, chiffres, et 
+        <code class="literal">!#$%&amp;&#039;*+-=?^_`{|}~@.[]</code>.
+       </td>
+      </tr>
+
+      <tr>
+       <td><strong><code>FILTER_SANITIZE_ENCODED</code></strong></td>
+       <td>&quot;encoded&quot;</td>
+       <td>
+        <strong><code>FILTER_FLAG_STRIP_LOW</code></strong>,
+        <strong><code>FILTER_FLAG_STRIP_HIGH</code></strong>,
+        <strong><code>FILTER_FLAG_STRIP_BACKTICK</code></strong>,
+        <strong><code>FILTER_FLAG_ENCODE_LOW</code></strong>,
+        <strong><code>FILTER_FLAG_ENCODE_HIGH</code></strong>
+       </td>
+       <td>
+        Applique l&#039;encodage URL, et supprime ou encode les caractères spéciaux.
+       </td>
+      </tr>
+
+      <tr>
+       <td><strong><code>FILTER_SANITIZE_MAGIC_QUOTES</code></strong></td>
+       <td>&quot;magic_quotes&quot;</td>
+       <td class="empty">&nbsp;</td>
+       <td>Applique <span class="function"><a href="function.addslashes.html" class="function">addslashes()</a></span>.</td>
+      </tr>
+
+      <tr>
+       <td><strong><code>FILTER_SANITIZE_NUMBER_FLOAT</code></strong></td>
+       <td>&quot;number_float&quot;</td>
+       <td>
+        <strong><code>FILTER_FLAG_ALLOW_FRACTION</code></strong>,
+        <strong><code>FILTER_FLAG_ALLOW_THOUSAND</code></strong>,
+        <strong><code>FILTER_FLAG_ALLOW_SCIENTIFIC</code></strong>
+       </td>
+       <td>
+        Supprime tous les caractères, sauf les chiffres, <code class="literal">+-</code> et
+        éventuellement <code class="literal">.,eE</code>.
+       </td>
+      </tr>
+
+      <tr>
+       <td><strong><code>FILTER_SANITIZE_NUMBER_INT</code></strong></td>
+       <td>&quot;number_int&quot;</td>
+       <td class="empty">&nbsp;</td>
+       <td>
+        Supprime tous les caractères sauf les chiffres, et les signes plus et moins.
+       </td>
+      </tr>
+
+      <tr>
+       <td><strong><code>FILTER_SANITIZE_SPECIAL_CHARS</code></strong></td>
+       <td>&quot;special_chars&quot;</td>
+       <td>
+        <strong><code>FILTER_FLAG_STRIP_LOW</code></strong>,
+        <strong><code>FILTER_FLAG_STRIP_HIGH</code></strong>,
+         <strong><code>FILTER_FLAG_STRIP_BACKTICK</code></strong>,
+        <strong><code>FILTER_FLAG_ENCODE_HIGH</code></strong>
+       </td>
+       <td>
+        Transforme en entité HTML les caractères <code class="literal">&#039;&quot;&lt;&gt;&amp;</code> 
+        et les caractères ASCII de valeur inférieur à 32, et supprime ou encode
+        les autres caractères spéciaux.
+       </td>
+      </tr>
+
+      <tr>
+       <td><strong><code>FILTER_SANITIZE_FULL_SPECIAL_CHARS</code></strong></td>
+       <td>&quot;full_special_chars&quot;</td>
+       <td>
+        <strong><code>FILTER_FLAG_NO_ENCODE_QUOTES</code></strong>,
+       </td>
+       <td>
+        Équivaut à appeler la fonction <span class="function"><a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span> avec
+        le jeu <strong><code>ENT_QUOTES</code></strong>. L&#039;encodage des guillemets
+        peut être désactivé en utilisant la constante <strong><code>FILTER_FLAG_NO_ENCODE_QUOTES</code></strong>.
+        Comme la fonction <span class="function"><a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span>, ce filtre tient compte du
+        <a href="ini.core.html#ini.default-charset" class="link">default_charset</a> et si une séquence d&#039;octets est détectée
+        contenant un caractère invalide dans le jeu de caractères courant, alors la chaîne entière
+        sera rejetée et une chaîne vide sera retournée.
+       </td>
+      </tr>
+
+      <tr>
+       <td><strong><code>FILTER_SANITIZE_STRING</code></strong></td>
+       <td>&quot;string&quot;</td>
+       <td>
+        <strong><code>FILTER_FLAG_NO_ENCODE_QUOTES</code></strong>,
+        <strong><code>FILTER_FLAG_STRIP_LOW</code></strong>,
+        <strong><code>FILTER_FLAG_STRIP_HIGH</code></strong>,
+        <strong><code>FILTER_FLAG_STRIP_BACKTICK</code></strong>,
+        <strong><code>FILTER_FLAG_ENCODE_LOW</code></strong>,
+        <strong><code>FILTER_FLAG_ENCODE_HIGH</code></strong>,
+        <strong><code>FILTER_FLAG_ENCODE_AMP</code></strong>
+       </td>
+       <td>Supprime les balises, et supprime ou encode les caractères spéciaux.</td>
+      </tr>
+
+      <tr>
+       <td><strong><code>FILTER_SANITIZE_STRIPPED</code></strong></td>
+       <td>&quot;stripped&quot;</td>
+       <td class="empty">&nbsp;</td>
+       <td>Alias du filtre <code class="literal">&quot;string&quot;</code>.</td>
+      </tr>
+
+      <tr>
+       <td><strong><code>FILTER_SANITIZE_URL</code></strong></td>
+       <td>&quot;url&quot;</td>
+       <td class="empty">&nbsp;</td>
+       <td>
+        Supprime tous les caractères sauf les lettres, chiffres et 
+        <code class="literal">$-_.+!*&#039;(),{}|\\^~[]`&lt;&gt;#%&quot;;/?:@&amp;=</code>.
+       </td>
+      </tr>
+
+      <tr>
+       <td><strong><code>FILTER_UNSAFE_RAW</code></strong></td>
+       <td>&quot;unsafe_raw&quot;</td>
+       <td>
+        <strong><code>FILTER_FLAG_STRIP_LOW</code></strong>,
+        <strong><code>FILTER_FLAG_STRIP_HIGH</code></strong>,
+        <strong><code>FILTER_FLAG_STRIP_BACKTICK</code></strong>,
+        <strong><code>FILTER_FLAG_ENCODE_LOW</code></strong>,
+        <strong><code>FILTER_FLAG_ENCODE_HIGH</code></strong>,
+        <strong><code>FILTER_FLAG_ENCODE_AMP</code></strong>
+       </td>
+       <td>
+        Ne fait rien, supprime ou encode les caractères spéciaux. Ce filtre 
+        est aussi un alias pour <strong><code>FILTER_DEFAULT</code></strong>.         
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Lorsque vous utilisez ces filtres comme filtres par défaut, le drapeau par
+    défaut est réglé sur <strong><code>FILTER_FLAG_NO_ENCODE_QUOTES</code></strong>. Vous devez
+    mettre filter.default_flags à 0 explicitement pour que les quotes soient encodées
+    par défaut. Comme ceci:
+    <div class="example" id="example-5721">
+     <p><strong>Exemple #1 Configurer le filtre par défaut pour agir comme htmlspecialchars</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+filter.default&nbsp;=&nbsp;full_special_chars<br />filter.default_flags&nbsp;=&nbsp;0</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+  
+  <div class="simplesect">
+   <h3 class="title">Historique</h3>
+   <p class="para">
+    <table class="doctable informaltable">
+     
+      <thead>
+       <tr>
+        <th>Version</th>
+        <th>Description</th>
+       </tr>
+
+      </thead>
+
+      <tbody class="tbody">
+       <tr>
+        <td>5.2.11/5.3.1</td>
+        <td>
+         Les slashes (<code class="literal">/</code>) sont supprimés par
+         <strong><code>FILTER_SANITIZE_EMAIL</code></strong>. Avant cette version,
+         ils ne l&#039;étaient pas.
+        </td>
+       </tr>
+
+      </tbody>
+     
+    </table>
+
+   </p>
+  </div>
+  
+ </div></div></div></body></html>

@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Trouver un document en utilisant la m&eacute;thode
+    MongoCollection::findOne</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongo.tutorial.insert.html">« Insertion d'un document</a></li>
+      <li style="float: right;"><a href="mongo.tutorial.insert.multiple.html">Ajout de plusieurs documents »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mongo.tutorial.html">Tutoriel</a></li>
+    <li>Trouver un document en utilisant la m&eacute;thode
+    MongoCollection::findOne</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongo.tutorial.findone" class="section">
+   <h2 class="title">
+    Trouver un document en utilisant la méthode
+    <span class="function"><a href="mongocollection.findone.html" class="function">MongoCollection::findOne()</a></span>
+   </h2>
+   <p class="para">
+    Pour montrer que le document inséré dans l&#039;étape précédente est bien stocké
+    dans la base de données, nous pouvons simplement utiliser la méthode
+    <span class="function"><a href="mongocollection.findone.html" class="function">MongoCollection::findOne()</a></span> pour récupérer
+    une seule document de la collection. Cette méthode est utile dans les cas où
+    il n&#039;y a qu&#039;un seul document correspondant aux critères ou bien si vous ne
+    souhaitez qu&#039;un seul résultat.
+   </p>
+   <div class="example" id="example-1454">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$connection&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$collection&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$connection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">database</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">collectionName</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$document&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">findOne</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$document&nbsp;</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+array(6) {
+  [&quot;_id&quot;]=&gt;
+  object(MongoId)#8 (1) {
+    [&quot;$id&quot;]=&gt;
+    string(24) &quot;4e2995576803fab768000000&quot;
+  }
+  [&quot;name&quot;]=&gt;
+  string(7) &quot;MongoDB&quot;
+  [&quot;type&quot;]=&gt;
+  string(8) &quot;database&quot;
+  [&quot;count&quot;]=&gt;
+  int(1)
+  [&quot;info&quot;]=&gt;
+  array(2) {
+    [&quot;x&quot;]=&gt;
+    int(203)
+    [&quot;y&quot;]=&gt;
+    int(102)
+  }
+  [&quot;versions&quot;]=&gt;
+  array(3) {
+    [0]=&gt;
+    string(5) &quot;0.9.7&quot;
+    [1]=&gt;
+    string(5) &quot;0.9.8&quot;
+    [2]=&gt;
+    string(5) &quot;0.9.9&quot;
+  }
+}
+</pre></div>
+   </div>
+   </div>
+   <p class="para">
+    Notez qu&#039;il y a un champ <code class="literal">_id</code> qui a été ajouté automatiquement
+    à votre document. <code class="literal">_id</code> est le champ de la clé primaire.
+    Si votre document n&#039;en spécifie pas une, le driver en ajoutera une
+    automatiquement.
+   </p>
+   <p class="para">
+    Si vous spécifiez votre propre champ <code class="literal">_id</code>, il doit être unique
+    dans la collection. Par exemple :
+   </p>
+   <div class="example" id="example-1455">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$connection&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$db&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$connection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">database</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">foo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"_id"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br /></span><span style="color: #FF8000">//&nbsp;ceci&nbsp;émettra&nbsp;une&nbsp;exception<br /></span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">foo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"_id"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">//&nbsp;ceci&nbsp;est&nbsp;correct,&nbsp;sachant&nbsp;que&nbsp;c'est&nbsp;une&nbsp;collection&nbsp;différente<br /></span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"_id"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   </div>
+   <p class="para">
+    Par défaut, le driver va s&#039;assurer que le serveur a reconnu l&#039;écriture
+    avant de retourner. Vous pouvez optionnellement désactiver ce comportement
+    en passant <code class="literal">array(&quot;w&quot; =&gt; 0)</code> en tant que second argument.
+    Cela signifie que le driver ne va pas attendre la reconnaissance de l&#039;écriture
+    par le serveur, et n&#039;émettra pas d&#039;exception sur le duplicata de
+    <code class="literal">_id</code>.
+   </p>
+   <div class="section" id="mongo.tutorial.findone.seealso">
+    <h2 class="title">Voir aussi</h2>
+    <p class="para">
+     La méthode <span class="function"><a href="mongocollection.findone.html" class="function">MongoCollection::findOne()</a></span> pour plus
+     d&#039;informations sur la recherche de données.
+    </p>
+    <p class="para">
+     La classe <a href="class.mongoid.html" class="classname">MongoId</a> vous fournira plus de détails sur
+     les identifiants uniques.
+    </p>
+    <p class="para">
+     La section sur les <a href="mongo.writes.html" class="link">écritures</a> couvre
+     les écritures en profondeur, et le chapitre <a href="mongo.writeconcerns.html" class="xref">Write Concerns</a>
+     va dans le détail des options d&#039;écritures.
+    </p>
+   </div>
+  </div></div></div></body></html>

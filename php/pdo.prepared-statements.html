@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Requ&ecirc;tes pr&eacute;par&eacute;es et proc&eacute;dures stock&eacute;es</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="pdo.transactions.html">« Transactions et validation automatique (autocommit)</a></li>
+      <li style="float: right;"><a href="pdo.error-handling.html">Les erreurs et leur gestion »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.pdo.html">PDO</a></li>
+    <li>Requ&ecirc;tes pr&eacute;par&eacute;es et proc&eacute;dures stock&eacute;es</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="pdo.prepared-statements" class="chapter">
+ <h1>Requêtes préparées et procédures stockées</h1>
+
+ <p class="para">
+  La plupart des bases de données supportent le concept des requêtes préparées.
+  Qu&#039;est-ce donc ? Vous pouvez les voir comme une sorte de modèle compilé
+  pour le SQL que vous voulez exécuter, qui peut être personnalisé en utilisant
+  des variables en guise de paramètres. Les requêtes préparées offrent
+  deux fonctionnalités essentielles :
+ </p>
+ <ul class="itemizedlist">
+  <li class="listitem">
+   <span class="simpara">
+    La requête ne doit être analysée (ou préparée) qu&#039;une seule fois, mais peut
+    être exécutée plusieurs fois avec des paramètres identiques ou différents.
+    Lorsque la requête est préparée, la base de données va analyser, compiler
+    et optimiser son plan pour exécuter la requête. Pour les requêtes complexes,
+    ce processus peut prendre assez de temps, ce qui peut ralentir vos applications
+    si vous devez répéter la même requête plusieurs fois avec différents paramètres.
+    En utilisant les requêtes préparées, vous évitez ainsi de répéter le cycle
+    analyse/compilation/optimisation. Pour résumer, les requêtes préparées
+    utilisent moins de ressources et s&#039;exécutent plus rapidement.
+   </span>
+  </li>
+  <li class="listitem">
+   <span class="simpara">
+    Les paramètres pour préparer les requêtes n&#039;ont pas besoin d&#039;être entre
+    guillemets ; le pilote gère cela pour vous. Si votre application utilise exclusivement
+    les requêtes préparées, vous pouvez être sûr qu&#039;aucune injection SQL
+    n&#039;est possible (Cependant, si vous construisez d&#039;autres parties de la requête
+    en vous basant sur des entrées utilisateurs, vous continuez à prendre un risque).
+   </span>
+  </li>
+ </ul>
+ <p class="para">
+  Les requêtes préparées sont tellement pratiques que c&#039;est l&#039;unique fonctionnalité
+  que PDO émule pour les pilotes qui ne les prennent pas en charge. Ceci assure de pouvoir
+  utiliser la même technique pour accéder aux données, sans se soucier des capacités
+  de la base de données.
+ </p>
+ <p class="para">
+  <div class="example" id="example-991">
+   <p><strong>Exemple #1 Insertions répétitives en utilisant les requêtes préparées</strong></p>
+   <div class="example-contents"><p>
+    Cet exemple effectue une requête INSERT en y substituant un
+    <code class="literal">nom</code> et une <code class="literal">valeur</code> pour les marqueurs nommés.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;REGISTRY&nbsp;(name,&nbsp;value)&nbsp;VALUES&nbsp;(:name,&nbsp;:value)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #DD0000">':name'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$name</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #DD0000">':value'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$value</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;insertion&nbsp;d'une&nbsp;ligne<br /></span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'one'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$value&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;insertion&nbsp;d'une&nbsp;autre&nbsp;ligne&nbsp;avec&nbsp;des&nbsp;valeurs&nbsp;différentes<br /></span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'two'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$value&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  <div class="example" id="odbc-primarykeys.example.basic">
+   <p><strong>Exemple #2 Insertions répétées en utilisant des requêtes préparées</strong></p>
+   <div class="example-contents"><p>
+    Cet exemple effectue une requête INSERT en y substituant un <code class="literal">nom</code>
+    et une <code class="literal">valeur</code> pour les marqueurs <code class="literal">?</code>.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;REGISTRY&nbsp;(name,&nbsp;value)&nbsp;VALUES&nbsp;(?,&nbsp;?)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$name</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$value</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;insertion&nbsp;d'une&nbsp;ligne<br /></span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'one'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$value&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;insertion&nbsp;d'une&nbsp;autre&nbsp;ligne&nbsp;avec&nbsp;différentes&nbsp;valeurs<br /></span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'two'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$value&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  <div class="example" id="odbc-procedurecolumns.example.basic">
+   <p><strong>Exemple #3 Récupération des données en utilisant des requêtes préparées</strong></p>
+   <div class="example-contents"><p>
+    Cet exemple récupère des données basées sur la valeur d&#039;une clé fournie
+    par un formulaire. L&#039;entrée utilisateur est automatiquement échappée, il n&#039;y a
+    donc aucun risque d&#039;attaque par injection SQL.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;*&nbsp;FROM&nbsp;REGISTRY&nbsp;where&nbsp;name&nbsp;=&nbsp;?"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">(array(</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">])))&nbsp;{<br />&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$row</span><span style="color: #007700">);<br />&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ 
+ <p class="para">
+  <div class="example" id="odbc-procedures.example.basic">
+   <p><strong>Exemple #4 Appel d&#039;une procédure stockée avec un paramètre de sortie</strong></p>
+   <div class="example-contents"><p>
+    Si le pilote de la base de données le prend en charge, vous pouvez également lier
+    des paramètres aussi bien pour l&#039;entrée que pour la sortie. Les paramètres de sortie
+    sont utilisés typiquement pour récupérer les valeurs d&#039;une procédure stockée.
+    Les paramètres de sortie sont un peu plus complexes à utiliser que les paramètres d&#039;entrée
+    car vous devez savoir la longueur qu&#039;un paramètre donné pourra atteindre lorsque vous
+    le liez. Si la valeur retournée est plus longue que la taille qui vous aurez suggéré,
+    une erreur sera émise.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">"CALL&nbsp;sp_returns_string(?)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$return_value</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">PARAM_STR</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4000</span><span style="color: #007700">);&nbsp;<br /><br /></span><span style="color: #FF8000">//&nbsp;Appel&nbsp;de&nbsp;la&nbsp;procédure&nbsp;stockée<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /><br />print&nbsp;</span><span style="color: #DD0000">"La&nbsp;procédure&nbsp;a&nbsp;retourné&nbsp;:&nbsp;</span><span style="color: #0000BB">$return_value</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ 
+ <p class="para">
+  <div class="example" id="example-995">
+   <p><strong>Exemple #5 Appel d&#039;une procédure stockée avec un paramètre d&#039;entrée/sortie</strong></p>
+   <div class="example-contents"><p>
+    Vous devez également spécifier les paramètres qui gèrent les valeurs
+    aussi bien pour l&#039;entrée que pour la sortie ; la syntaxe est similaire aux
+    paramètres de sortie. Dans le prochain exemple, la chaîne &#039;Bonjour&#039; est passée
+    à la procédure stockée et lorsqu&#039;elle retourne la valeur, &#039;Bonjour&#039; est remplacée
+    par la valeur retournée par la procédure.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">"CALL&nbsp;sp_takes_string_returns_string(?)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$value&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'hello'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$value</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">PARAM_STR</span><span style="color: #007700">|</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">PARAM_INPUT_OUTPUT</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4000</span><span style="color: #007700">);&nbsp;<br /><br /></span><span style="color: #FF8000">//&nbsp;appel&nbsp;de&nbsp;la&nbsp;procédure&nbsp;stockée<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /><br />print&nbsp;</span><span style="color: #DD0000">"La&nbsp;procédure&nbsp;a&nbsp;retourné&nbsp;:&nbsp;</span><span style="color: #0000BB">$value</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  <div class="example" id="example-996">
+   <p><strong>Exemple #6 Utilisation invalide de marqueur</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;*&nbsp;FROM&nbsp;REGISTRY&nbsp;where&nbsp;name&nbsp;LIKE&nbsp;'%?%'"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">(array(</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]));<br /><br /></span><span style="color: #FF8000">//&nbsp;un&nbsp;marqueur&nbsp;doit&nbsp;être&nbsp;utilisé&nbsp;à&nbsp;la&nbsp;place&nbsp;d'une&nbsp;valeur&nbsp;complète<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;*&nbsp;FROM&nbsp;REGISTRY&nbsp;where&nbsp;name&nbsp;LIKE&nbsp;?"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"%</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #0000BB">name</span><span style="color: #007700">]</span><span style="color: #DD0000">%"</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+</div>
+</div></div></body></html>

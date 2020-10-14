@@ -1,0 +1,533 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Fonctions CUBRID (PDO_CUBRID)</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="pdo.drivers.html">« Pilotes PDO</a></li>
+      <li style="float: right;"><a href="ref.pdo-cubrid.connection.html">DSN PDO_CUBRID »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="pdo.drivers.html">Pilotes PDO</a></li>
+    <li>Fonctions CUBRID (PDO_CUBRID)</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="ref.pdo-cubrid" class="reference">
+ <h1 class="title">Fonctions CUBRID (PDO_CUBRID)</h1>
+ 
+ <div class="partintro">
+  
+  <div class="section" id="pdo-cubrid.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    PDO_CUBRID est un driver implémentant l&#039;
+    <a href="intro.pdo.html" class="link">interface PHP Data Objects (PDO)</a>
+    pour activer l&#039;accès depuis PHP aux bases de données CUBRID.
+   </p>
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <p class="para">
+     La version courante de PDO_CUBRID ne supporte pas les connexions
+     persistantes.
+    </p>
+   </p></blockquote>
+  </div>
+  
+  
+  
+
+
+
+
+<div class="section" id="ref.pdo-cubrid.installation">
+ <h2 class="title">Installation</h2>
+ <p class="para">
+  Pour construire l&#039;extension PDO_CUBRID, CUBRID DBMS doit être installé
+  sur le même système que PHP.
+  
+  PDO_CUBRID est une extension <a href="https://pecl.php.net/" class="link external">&raquo;&nbsp;PECL</a>,
+  aussi, vous devez suivre les instructions de <a href="install.pecl.html" class="xref">Installation d'extensions PECL</a> pour
+  installer l&#039;extension PDO_CUBRID. Lancez la commande <strong class="command">configure</strong>
+  pour localiser le dossier de base de CUBRID comme ceci :
+  <div class="example-contents screen">
+<div class="cdata"><pre>
+   $ ./configure --with-pdo-cubrid=/path/to/CUBRID[,shared]
+</pre></div>
+  </div>
+  La commande <strong class="command">configure</strong> prendra par défaut la valeur de la
+  variable d&#039;environnement <code class="literal">CUBRID</code>.
+ </p>
+ <p class="para">
+  Aucune bibliothèque <acronym title="Dynamic Link Library">DLL</acronym> pour cette
+        extension <acronym title="PHP Extension and Application Repository">PECL</acronym> n&#039;est actuellement disponible. Reportez-vous à la section
+<a href="install.windows.legacy.index.html#install.windows.legacy.building" class="link">Compilation sous Windows</a>.
+  Des informations sur l&#039;installation manuelle sous Linux et Windows peuvent
+  être trouvées dans le fichier build-guide.html du paquet CUBRID de PECL.
+ </p>
+</div>
+
+
+
+  
+  <div class="section" id="ref.pdo-cubrid.features">
+   <h2 class="title">Fonctionnalités</h2>
+   <table class="doctable table">
+    <caption><strong>Fonctionnalités PDO_CUBRID</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Fonctionnalités</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>Curseurs scrollables</td>
+       <td>
+        PDO_CUBRID supporte les curseurs scrollables. Le type
+        de curseur par défaut est uniquement un curseur permettant
+        de se déplacer vers l&#039;avant, et vous pouvez utiliser le
+        paramètre driver_options de la méthode
+        <span class="function"><a href="pdo.prepare.html" class="function">PDO::prepare()</a></span> pour modifier ce type
+        de curseur.
+       </td>
+      </tr>
+
+      <tr>
+       <td>Délai d&#039;expiration</td>
+       <td>PDO_CUBRID supporte le délai d&#039;expiration d&#039;exécution
+        d&#039;une requête sql ; vous pouvez utiliser la méthode
+        <span class="function"><a href="pdo.setattribute.html" class="function">PDO::setAttribute()</a></span> pour définir la valeur.</td>
+      </tr>
+
+      <tr>
+       <td>Autocommit_mode et transaction</td>
+       <td>
+        PDO_CUBRID supporte à la fois l&#039;autocommit_mode et
+        la transaction (autocommit_mode est activé par défaut).
+        Vous pouvez utiliser la méthode
+        <span class="function"><a href="pdo.setattribute.html" class="function">PDO::setAttribute()</a></span> pour modifier ce
+        comportement.
+        <p class="para">
+         Si vous utilisez <span class="function"><a href="pdo.begintransaction.html" class="function">PDO::beginTransaction()</a></span> pour
+         commencer une transaction, la méthode désactivera automatiquement
+         l&#039;autocommit_mode et l&#039;activera de nouveau après un appel à la
+         méthode <span class="function"><a href="pdo.commit.html" class="function">PDO::commit()</a></span> ou la méthode
+         <span class="function"><a href="pdo.rollback.html" class="function">PDO::rollBack()</a></span>. Notez qu&#039;avant de désactiver
+         l&#039;autocommit_mode, tous les travaux en attente seront automatiquement
+         commités.
+        </p>
+       </td>
+      </tr>
+
+      <tr>
+       <td>Requêtes SQL multiples</td>
+       <td>
+        PDO_CUBRID supporte les requêtes SQL multiples.
+        Elles sont séparées par un point virgule (;).
+       </td>
+      </tr>
+
+      <tr>
+       <td>Informations sur un schéma</td>
+       <td>PDO_CUBRID implémente la méthode
+        <span class="function"><a href="pdo.cubrid-schema.html" class="function">PDO::cubrid_schema()</a></span> pour récupérer les informations
+        sur le schéma.
+       </td>
+      </tr>
+
+      <tr>
+       <td>LOBs</td>
+       <td>PDO_CUBRID supporte les types de données BLOB/CLOB.
+        Le LOB en PDO est représenté sous la forme d&#039;un flux, aussi,
+        vous pouvez insérer des LOBs en liant un flux et récupérer des
+        LOBs en lisant un flux retourné par CUBRID PDO. Par exemple :
+        <p class="para">
+         <div class="example" id="example-1051"><p><strong>Exemple #1 Insertion de LOBs dans CUBRID PDO</strong></p>
+          <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">'lob_test.png'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'rb'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$sql_stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;lob_test(name,&nbsp;content)&nbsp;VALUES('lob_test.png',&nbsp;?)"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql_stmt</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">PARAM_LOB</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+          </div>
+
+         </div>
+        </p>
+        <p class="para">
+         <div class="example" id="example-1052"><p><strong>Exemple #2 Récupère des LOBs depuis CUBRID PDO</strong></p>
+          <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$sql_stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;content&nbsp;FROM&nbsp;lob_test&nbsp;WHERE&nbsp;name='lob_test.png'"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$dbh</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql_stmt</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_NUM</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">"Content-Type:&nbsp;image/png"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fpassthru</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+          </div>
+
+         </div>
+        </p>
+       </td>
+      </tr>
+
+      <tr>
+       <td>Méta-données des colonnes</td>
+       <td>
+        La méthode <span class="function"><a href="pdostatement.getcolumnmeta.html" class="function">PDOStatement::getColumnMeta()</a></span> en CUBRID PDO
+        retournera un tableau associatif contenant les valeurs suivantes :
+        <ul class="simplelist">
+         <li class="member">type</li>
+         <li class="member">name</li>
+         <li class="member">table</li>
+         <li class="member">def</li>
+         <li class="member">precision</li>
+         <li class="member">scale</li>
+         <li class="member">not_null</li>
+         <li class="member">auto_increment</li>
+         <li class="member">unique_key</li>
+         <li class="member">multiple_key</li>
+         <li class="member">primary_key</li>
+         <li class="member">foreign_key</li>
+         <li class="member">reverse_index</li>
+         <li class="member">reverse_unique</li>
+        </ul>
+       </td>
+      </tr>
+
+       <tr>
+        <td>Type de données de la collection</td>
+        <td>PDO_CUBRID supporte les types de données SET/MULTISET/SEQUENCE.
+         Si vous n&#039;en spécifiez aucun, le type de données par défaut sera char,
+         par exemple :
+         <p class="para">
+          <div class="example" id="example-1053"><p><strong>Exemple #3 Insertion d&#039;un jeu dans CUBRID PDO avec le type de données par défaut.</strong></p>
+           <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$conn_str&nbsp;</span><span style="color: #007700">=</span><span style="color: #DD0000">"cubrid:dbname=demodb;host=localhost;port=33000"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$cubrid_pdo&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_str</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'dba'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$cubrid_pdo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">exec</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;if&nbsp;exists&nbsp;test_tbl"</span><span style="color: #007700">);&nbsp;<br /></span><span style="color: #0000BB">$cubrid_pdo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">exec</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;test_tbl&nbsp;(col_1&nbsp;SET(VARCHAR))"</span><span style="color: #007700">);<br />&nbsp;<br /></span><span style="color: #0000BB">$sql_stmt_insert&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;test_tbl&nbsp;VALUES&nbsp;(?);"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$cubrid_pdo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql_stmt_insert</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"abc"</span><span style="color: #007700">,</span><span style="color: #DD0000">"def"</span><span style="color: #007700">,</span><span style="color: #DD0000">"ghi"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">PARAM_NULL</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">var_Dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$ret</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+           </div>
+
+          </div>
+         </p>
+         <p class="para">
+          <div class="example" id="example-1054"><p><strong>Exemple #4 Spécifie le type de données lors de l&#039;insertion du jeu dans CUBRID PDO</strong></p>
+           <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$conn_str&nbsp;</span><span style="color: #007700">=</span><span style="color: #DD0000">"cubrid:dbname=demodb;host=localhost;port=33000"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$cubrid_pdo&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn_str</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'dba'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$cubrid_pdo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">exec</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;if&nbsp;exists&nbsp;test_tbl"</span><span style="color: #007700">);&nbsp;<br /></span><span style="color: #0000BB">$cubrid_pdo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">exec</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;test_tbl&nbsp;(col_1&nbsp;SET(int))"</span><span style="color: #007700">);<br />&nbsp;<br /></span><span style="color: #0000BB">$sql_stmt_insert&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;test_tbl&nbsp;VALUES&nbsp;(?);"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$cubrid_pdo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql_stmt_insert</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">1</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">,</span><span style="color: #0000BB">3</span><span style="color: #007700">,</span><span style="color: #0000BB">4</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindParam</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,</span><span style="color: #0000BB">0</span><span style="color: #007700">,</span><span style="color: #DD0000">"int"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">var_Dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$ret</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+           </div>
+
+          </div>
+         </p>
+         Types de données liées CUBRID :(Le cinquième paramètre de la méthode PDOStatement::bindParam):
+         <ul class="simplelist">
+          <li class="member">CHAR</li>
+          <li class="member">STRING</li>
+          <li class="member">NCHAR</li>
+          <li class="member">VARNCHAR</li>
+          <li class="member">BIT</li>
+          <li class="member">VARBIT</li>
+          <li class="member">NUMERIC</li>
+          <li class="member">NUMBER</li>
+          <li class="member">INT</li>
+          <li class="member">SHORT</li>
+          <li class="member">BIGINT</li>
+          <li class="member">MONETARY</li>
+          <li class="member">FLOAT</li>
+          <li class="member">DOUBLE</li>
+          <li class="member">DATE</li>
+          <li class="member">TIME</li>
+          <li class="member">DATETIME</li>
+          <li class="member">TIMESTAMP</li>
+         </ul>
+        </td>
+       </tr>
+
+     </tbody>
+    
+   </table>
+
+  </div>
+  
+  
+  
+
+
+
+
+<div class="section" id="pdo-cubrid.constants">
+ <h2 class="title">Constantes pré-définies</h2>
+ <p class="simpara">Les constantes ci-dessous sont
+définies par ce pilote et seront seulement disponibles lorsque l&#039;extension
+aura été compilée dans PHP ou chargée dynamiquement du moteur d&#039;exécution.
+De plus, ces constantes spécifiques au pilote devraient être utilisées seulement
+si vous utilisez ce pilote. En utilisant les attributs spécifiques à un pilote
+avec un autre pilote pourrait causer un comportement inattendu.
+<span class="function"><a href="pdo.getattribute.html" class="function">PDO::getAttribute()</a></span> pourrait être utilisé pour obtenir
+l&#039;attribut <strong><code>PDO::ATTR_DRIVER_NAME</code></strong> pour vérifier le
+pilote, si votre code peut fonctionner sur des pilotes multiples.</p>
+  <p class="para">
+   Les constantes suivantes peuvent être utilisées pour configurer les attributs
+   de la base de données. Elles peuvent être passées à la méthode
+   <span class="function"><a href="pdo.getattribute.html" class="function">PDO::getAttribute()</a></span> ou à la méthode
+   <span class="function"><a href="pdo.setattribute.html" class="function">PDO::setAttribute()</a></span>.
+  <table class="doctable table">
+   <caption><strong>Drapeaux pour les attributs PDO::CUBRID</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Constante</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>PDO::CUBRID_ATTR_ISOLATION_LEVEL</td>
+       <td>Le niveau d&#039;isolation de la transaction pour la connexion à la base de données.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_ATTR_LOCK_TIMEOUT</td>
+       <td>Délai d&#039;expiration de la transaction en secondes.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_ATTR_MAX_STRING_LENGTH</td>
+       <td>Lecture seule. La longueur maximale de la chaîne pour les
+        types de données bit, varbit, char, varchar, nchar, nchar
+        lors de l&#039;utilisation de l&#039;API CUBRID PDO.</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+
+  <p class="para">
+   Les constantes suivantes peuvent être utilisées lors de la configuration
+   du niveau d&#039;isolation de la transaction. Elles peuvent être passées à la
+   méthode <span class="function"><a href="pdo.getattribute.html" class="function">PDO::getAttribute()</a></span> ou à la méthode
+   <span class="function"><a href="pdo.setattribute.html" class="function">PDO::setAttribute()</a></span>.
+  <table class="doctable table">
+   <caption><strong>Drapeaux pour le niveau d&#039;isolation PDO::CUBRID</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Constante</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>PDO::TRAN_COMMIT_CLASS_UNCOMMIT_INSTANCE</td>
+       <td>Le niveau d&#039;isolation le moins élevé (1). Une lecture
+        non fiable, non reproductible ou fantôme peut survenir sur
+        le tuple, mais aussi une lecture non reproductible peut
+        survenir pour la table.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::TRAN_COMMIT_CLASS_COMMIT_INSTANCE</td>
+       <td>Un niveau d&#039;isolation relativement bas (2). Une lecture
+        non fiable ne peut pas survenir, par contre, une lecture
+        non reproductible ou fantôme peut survenir.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::TRAN_REP_CLASS_UNCOMMIT_INSTANCE</td>
+       <td>Le niveau d&#039;isolation par défaut pour CUBRID (3).
+        Une lecture non fiable ou fantôme peut survenir sur le tuple,
+        mais la reproductibilité de la lecture est assurée sur le table.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::TRAN_REP_CLASS_COMMIT_INSTANCE</td>
+       <td>Un niveau d&#039;isolation relativement bas (4). Une lecture
+        non fiable ne peut survenir, mais les lectures non reproductibles
+        ou fantôme le peuvent.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::TRAN_REP_CLASS_REP_INSTANCE</td>
+       <td>Un niveau d&#039;isolation relativement haut (5). Les
+        lectures non fiables ou non reproductibles ne peuvent pas
+        survenir, mais une lecture fantôme est possible.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::TRAN_SERIALIZABLE</td>
+       <td>Le plus haut niveau d&#039;isolation (6). Les problèmes
+        relatifs à la concurrence (i.e. lecture non fiable, lecture
+        non reproductible, lecture fantôme, etc...) ne peuvent survenir.</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+
+  <p class="para">
+   Les constantes suivantes peuvent être utilisées pour récupérer
+   les informations sur le schéma. Elles peuvent être passées
+   à la fonction <span class="function"><a href="pdo.cubrid-schema.html" class="function">PDO::cubrid_schema()</a></span>.
+  <table class="doctable table">
+   <caption><strong>Drapeaux pour le schéma CUBRID</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Constante</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>PDO::CUBRID_SCH_TABLE</td>
+       <td>Récupère le nom et le type de table CUBRID.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_VIEW</td>
+       <td>Récupère le nom et le type de vue dans CUBRID.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_QUERY_SPEC</td>
+       <td>Récupère la définition de la requête de la vue.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_ATTRIBUTE</td>
+       <td>Récupère les attributs de la colonne de la table.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_TABLE_ATTRIBUTE</td>
+       <td>Récupère les attributs de la table.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_METHOD</td>
+       <td>Récupère la méthode de l&#039;instance. C&#039;est une méthode appelée
+        par l&#039;instance de la classe. Elle est utilisée plus souvent que la
+        méthode de la classe car la plupart des opérations sont exécutées
+        dans l&#039;instance.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_TABLE_METHOD</td>
+       <td>Récupère la méthode de la classe. C&#039;est une méthode appelée
+        par un objet de la classe. Elle est habituellement utilisée
+        pour créer une nouvelle instance de la classe ou pour l&#039;initialiser.
+        Elle est également utilisée pour accéder ou mettre à jour les attributs
+        de la classe.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_METHOD_FILE</td>
+       <td>Récupère les informations sur le fichier où la méthode de la table
+        est définie.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_SUPER_TABLE</td>
+       <td>Récupère le nom et le type de la table dont les attributs héritent.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_SUB_TABLE</td>
+       <td>Récupère le nom et le type de la table dont les attributs héritent.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_CONSTRAINT</td>
+       <td>Récupère les contraintes de la table.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_TRIGGER</td>
+       <td>Récupère les triggers de la table.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_TABLE_PRIVILEGE</td>
+       <td>Récupère les informations sur les privilèges de la table.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_COL_PRIVILEGE</td>
+       <td>Récupère les informations sur les privilèges d&#039;une colonne.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_DIRECT_SUPER_TABLE</td>
+       <td>Récupère la table directement supérieure à la table.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_PRIMARY_KEY</td>
+       <td>Récupère la clé primaire de la table.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_IMPORTED_KEYS</td>
+       <td>Récupère les clés importées d&#039;une table.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_EXPORTED_KEYS</td>
+       <td>Récupère les clés exportées d&#039;une table.</td>
+      </tr>
+
+      <tr>
+       <td>PDO::CUBRID_SCH_CROSS_REFERENCE</td>
+       <td>Récupère les relations de référence entre 2 tables.</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+</div>
+
+
+
+  
+ </div>
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+<h2>Sommaire</h2><ul class="chunklist chunklist_reference"><li><a href="ref.pdo-cubrid.connection.html">DSN PDO_CUBRID</a> — Connexion aux bases de donn&eacute;es CUBRID</li><li><a href="pdo.cubrid-schema.html">PDO::cubrid_schema</a> — R&eacute;cup&egrave;re le sch&eacute;ma d'informations demand&eacute;</li></ul>
+</div>
+</div></div></body></html>

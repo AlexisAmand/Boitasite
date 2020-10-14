@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Incompatibilit&eacute;s avec les version ant&eacute;rieures</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration5.changes.html">« Nouveaut&eacute;s de PHP 5.0.x</a></li>
+      <li style="float: right;"><a href="migration5.cli-cgi.html">CLI et CGI »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration5.html">Migration de PHP 4 &agrave; PHP 5.0.x</a></li>
+    <li>Incompatibilit&eacute;s avec les version ant&eacute;rieures</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration5.incompatible" class="section">
+   <h2 class="title">Incompatibilités avec les version antérieures</h2>
+   <p class="para">
+    Bien que la plupart des scripts PHP 4 existants devraient fonctionner,
+    il convient de noter quelques incompatibilités avec les versions
+    antérieures de PHP :
+   </p>
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      Il y a quelques <a href="reserved.keywords.html" class="link">nouveaux mots
+      réservés</a>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <span class="function"><a href="function.strrpos.html" class="function">strrpos()</a></span> et <span class="function"><a href="function.strripos.html" class="function">strripos()</a></span> utilisent
+      maintenant une chaîne de caractères complète (un seul caractère 
+      auparavant) en tant qu&#039;élément de recherche.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      L&#039;utilisation d&#039;index illégaux sur une chaîne de caractères entraîne
+      maintenant un message <strong><code>E_ERROR</code></strong> au lieu d&#039;un
+      message <strong><code>E_WARNING</code></strong> auparavant. 
+      Voici un exemple incorrect : 
+      <code class="literal">$str = &#039;abc&#039;; unset($str[0]);</code>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      La fonction <span class="function"><a href="function.array-merge.html" class="function">array_merge()</a></span> a été modifiée pour 
+      n&#039;accepter que des tableaux. Pour chaque variable passée en paramètre
+      autre qu&#039;un tableau, un message <strong><code>E_WARNING</code></strong> sera
+      envoyé. Soyez attentifs car votre script pourrait émettre des
+      <strong><code>E_WARNING</code></strong> de façon inopinée.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      La variable de serveur <strong><code>PATH_TRANSLATED</code></strong> n&#039;est plus définie implicitement
+      avec Apache2 SAPI contrairement à auparavant (PHP 4) où elle était fixée
+      avec la même valeur que <strong><code>SCRIPT_FILENAME</code></strong> lorsqu&#039;Apache ne
+      la renseignait pas. Cette modification a été apportée afin d&#039;être
+      en conformité avec les <a href="http://www.faqs.org/rfcs/rfc3875" class="link external">&raquo;&nbsp;spécifications CGI/1.1</a>. Merci de consulter
+      le <a href="https://bugs.php.net/23610" class="link external">&raquo;&nbsp;bogue #23610</a> pour plus 
+      d&#039;informations, ainsi que la description de 
+      <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER['PATH_TRANSLATED']</a></var>
+      du manuel. Ce problème affecte également PHP &gt;= 4.3.2.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      La constante <strong><code>T_ML_CONSTANT</code></strong> n&#039;est plus
+      définie par l&#039;extension <a href="ref.tokenizer.html" class="link">Tokenizer</a>.
+      Si error_reporting est réglée à <strong><code>E_ALL</code></strong>, PHP va
+      générer un avertissement. Bien que <strong><code>T_ML_CONSTANT</code></strong>
+      n&#039;ait jamais été utilisée, elle était définie dans PHP 4. Avec PHP 4
+      et PHP 5, // et /* */ sont assimilés à la constante
+      <strong><code>T_COMMENT</code></strong>.
+      Toutefois les commentaires de style PHPDoc <code class="literal">/** */</code>,
+      qui sont analysés depuis PHP 5, sont reconnus en tant que
+      <strong><code>T_DOC_COMMENT</code></strong>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER</a></var> contient dorénavant
+      <var class="varname">argc</var> et <var class="varname">argv</var> si votre
+      <a href="ini.core.html#ini.variables-order" class="link">variables_order</a> inclus &quot;S&quot;. Si
+      vous avez configuré votre système pour qu&#039;il ne
+      crée pas <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER</a></var>, ils n&#039;existeront bien sûr pas.
+      Cette modification a été effectuée afin que <var class="varname">argc</var> et
+      <var class="varname">argv</var> soient
+      toujours accessibles dans la version CLI quelle que soit la valeur de
+      <a href="ini.core.html#ini.variables-order" class="link">variables_order</a>. Ainsi, la
+      version CLI renseignera dorénavant toujours les variables 
+      <var class="varname"><a href="reserved.variables.argc.html" class="classname">$argc</a></var> et <var class="varname"><a href="reserved.variables.argv.html" class="classname">$argv</a></var>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Un objet sans propriété n&#039;est plus considéré comme vide
+      (<span class="function"><a href="function.empty.html" class="function">empty()</a></span>).
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Dans certains cas, les classes doivent être déclarées avant d&#039;être
+      utilisées. Cela survient uniquement si les nouvelles fonctionnalités de
+      PHP 5 (comme les <a href="language.oop5.interfaces.html" class="link">interfaces</a>)
+      sont utilisées. Sinon, le comportement sera le même qu&#039;avant.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Les fonctions <span class="function"><a href="function.get-class.html" class="function">get_class()</a></span>, 
+      <span class="function"><a href="function.get-parent-class.html" class="function">get_parent_class()</a></span>
+      et <span class="function"><a href="function.get-class-methods.html" class="function">get_class_methods()</a></span> retournent désormais le nom de 
+      la classe comme elle a été déclarée (sensible à la casse), ce qui peut
+      causer des problèmes dans vos anciens scripts qui utilisent le
+      comportement précédent (le nom de la classe était toujours retourné en
+      minuscules). Une solution possible est de rechercher ces fonctions
+      dans tous vos anciens scripts et d&#039;utiliser la fonction
+      <span class="function"><a href="function.strtolower.html" class="function">strtolower()</a></span>.
+     </span>
+     <span class="simpara">
+      Ces changements de sensibilité à la casse sont également appliqués aux
+      <a href="language.constants.predefined.html" class="link">constantes magiques
+      prédéfinies</a> <strong><code>__CLASS__</code></strong>,
+      <strong><code>__METHOD__</code></strong> et <strong><code>__FUNCTION__</code></strong>.
+      Les valeurs sont retournées exactement comme elles ont été déclarées
+      (sensible à la casse).
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      La fonction <span class="function"><a href="function.ip2long.html" class="function">ip2long()</a></span> retourne maintenant <strong><code>FALSE</code></strong>
+      lorsqu&#039;une adresse IP invalide est entrée comme argument de la fonction,
+      et non plus <code class="literal">-1</code>.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Lorsque des fonctions sont définies dans un fichier inclus, elles peuvent être
+      utilisées dans le fichier principal, qu&#039;elles soient définies
+      avant ou après l&#039;instruction
+      <span class="function"><a href="function.return.html" class="function">return</a></span>.
+      Si le fichier est inclus deux fois, PHP 5 émet une erreur fatale car les fonctions sont
+      toujours déclarées, tandis que PHP 4 n&#039;a aucun problème avec ça.
+      Il est recommandé d&#039;utiliser l&#039;instruction
+      <span class="function"><a href="function.include-once.html" class="function">include_once</a></span>
+      au lieu de vérifier si le fichier a déjà été inclus et de retourner,
+      conditionnellement, l&#039;inclusion du fichier.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <span class="function"><a href="function.include-once.html" class="function">include_once</a></span> et
+      <span class="function"><a href="function.require-once.html" class="function">require_once</a></span>
+      normalisent d&#039;abord le chemin du fichier à inclure sous Windows. Donc
+      inclure le fichier A.php et le fichier a.php revient à n&#039;inclure qu&#039;une
+      seule fois ce fichier.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Le fait de passer un tableau à une fonction par sa valeur ne réinitialise
+      plus le pointeur interne pour les tableaux dont on accède à l&#039;intérieur
+      de la fonction. En d&#039;autres termes, en PHP 4, lorsque vous passiez
+      un tableau à une fonction, son pointeur interne à l&#039;intérieur de la
+      fonction était réinitialisé, tandis qu&#039;en PHP 5, lorsque vous passez un
+      tableau à une fonction, le pointeur interne du tableau à l&#039;intérieur
+      de la fonction reste à la même position que lorsqu&#039;il est passé à la fonction.
+     </span>
+    </li>
+   </ul>
+   <p class="para">
+    <div class="example" id="example-6242">
+     <p><strong>Exemple #1 <span class="function"><a href="function.strrpos.html" class="function">strrpos()</a></span> et <span class="function"><a href="function.strripos.html" class="function">strripos()</a></span> 
+     recherchent maintenant une chaîne de caractères dans une autre</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">strrpos</span><span style="color: #007700">(</span><span style="color: #DD0000">'ABCDEF'</span><span style="color: #007700">,</span><span style="color: #DD0000">'DEF'</span><span style="color: #007700">));&nbsp;</span><span style="color: #FF8000">//int(3)<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">strrpos</span><span style="color: #007700">(</span><span style="color: #DD0000">'ABCDEF'</span><span style="color: #007700">,</span><span style="color: #DD0000">'DAF'</span><span style="color: #007700">));&nbsp;</span><span style="color: #FF8000">//bool(false)<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    <div class="example" id="example-6243">
+     <p><strong>Exemple #2 
+      Un objet sans propriété n&#039;est plus considéré comme vide 
+      (<span class="function"><a href="function.empty.html" class="function">empty()</a></span>)
+     </strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">test&nbsp;</span><span style="color: #007700">{&nbsp;}<br /></span><span style="color: #0000BB">$t&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">test</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(empty(</span><span style="color: #0000BB">$t</span><span style="color: #007700">));&nbsp;</span><span style="color: #FF8000">//&nbsp;echo&nbsp;bool(false)<br /><br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$t</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Cette&nbsp;portion&nbsp;de&nbsp;code&nbsp;sera&nbsp;exécutée<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    <div class="example" id="example-6244">
+     <p><strong>Exemple #3 
+      Dans certains cas, les classes doivent être déclarées 
+      avant d&#039;être utilisées
+     </strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;fonctionne&nbsp;sans&nbsp;erreur&nbsp;:<br /></span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">a</span><span style="color: #007700">();<br />class&nbsp;</span><span style="color: #0000BB">a&nbsp;</span><span style="color: #007700">{<br />}<br /><br /><br /></span><span style="color: #FF8000">//&nbsp;ici,&nbsp;une&nbsp;erreur&nbsp;:<br /></span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">b</span><span style="color: #007700">();<br /><br />interface&nbsp;</span><span style="color: #0000BB">c</span><span style="color: #007700">{<br />}<br />class&nbsp;</span><span style="color: #0000BB">b&nbsp;</span><span style="color: #007700">implements&nbsp;</span><span style="color: #0000BB">c&nbsp;</span><span style="color: #007700">{<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div></div></div></body></html>

@@ -1,0 +1,539 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Statistiques collect&eacute;es par le c&oelig;ur du cache des requ&ecirc;tes</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.mysqlnd-qc-get-cache-info.html">« mysqlnd_qc_get_cache_info</a></li>
+      <li style="float: right;"><a href="function.mysqlnd-qc-get-normalized-query-trace-log.html">mysqlnd_qc_get_normalized_query_trace_log »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.mysqlnd-qc.html">Fonctions mysqlnd_qc</a></li>
+    <li>Statistiques collect&eacute;es par le c&oelig;ur du cache des requ&ecirc;tes</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.mysqlnd-qc-get-core-stats" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqlnd_qc_get_core_stats</h1>
+  <p class="verinfo">(PECL mysqlnd_qc &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">mysqlnd_qc_get_core_stats</span> &mdash; <span class="dc-title">Statistiques collectées par le cœur du cache des requêtes</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.mysqlnd-qc-get-core-stats-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   
+   <span class="methodname"><strong>mysqlnd_qc_get_core_stats</strong></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Retourne un tableau de statistiques collectées par le cœur du plugin
+   de mise en cache. Des champs identiques de données seront rapportés
+   pour tous les gestionnaires de stockage, les données étant collectées
+   par le cœur.
+  </p>
+  <p class="para">
+   La directive de configuration PHP
+   <code class="literal">mysqlnd_qc.collect_statistics</code> contrôle la collection
+   de statistiques. La collection de statistiques est désactivée par défaut
+   pour des raisons de performance. La désactivation de la collection
+   de statistiques désactive également la collection des temps relatifs
+   aux statistiques.
+  </p>
+  <p class="para">
+   La direction de configuration PHP
+   <code class="literal">mysqlnd_qc.collect_time_statistics</code> contrôle la collection
+   des temps relatifs aux statistiques.
+  </p>
+  <p class="para">
+   Le scope des statistiques issues du cœur est le processus PHP.
+   Suivant votre modèle de déploiement, un processus PHP peut
+   gérer une ou plusieurs requêtes.
+  </p>
+  <p class="para">
+   Les statistiques sont agrégées pour toutes les entrées du cache
+   et tous les gestionnaires de stockage.
+   Il n&#039;est pas possible de demander le nombre de requêtes issues
+   depuis des appels à l&#039;API <code class="literal">mysqli</code>,
+   <code class="literal">PDO_MySQL</code> ou <code class="literal">mysql</code>.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.mysqlnd-qc-get-core-stats-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">Cette fonction ne contient aucun paramètre.</p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.mysqlnd-qc-get-core-stats-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Tableau de statistiques issues du cœur.
+  </p>
+  <table class="doctable informaltable">
+   
+    <col style="width: 10%;" />
+    <col style="width: 70%;" />
+    <col style="width: 20%;" />
+    <thead>
+     <tr>
+      <th>Statistique</th>
+      <th>Description</th>
+      <th>Version</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>
+       <code class="literal">cache_hit</code>
+      </td>
+      <td>
+       La requête est considérée comme pouvant être mise en cache
+       et les données mises en cache ont été réutilisées. La requête
+       est considérée comme pouvant être mise en cache et un &quot;cache miss&quot;
+       est survenu mais la requête a été mise en cache par un autre processus
+       alors que nous la traitions, et ainsi, nous avons pû récupérer le
+       résultat depuis cette nouvelle mise en cache.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">cache_miss</code>
+      </td>
+      <td>
+       La requête est considérée comme pouvant être mise en cache...
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <p class="para">
+          ... et a été ajoutée au cache
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          ... mais la directive de configuration PHP
+          <code class="literal">mysqlnd_qc.cache_no_table = 1</code> n&#039;a pas autorisé la mise en cache.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          ... mais un jeu de résultats non mis en mémoire tampon est demandé.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          ... mais un jeu de résultats mis en mémoire tampon est vide.
+         </p>
+        </li>
+       </ul>
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">cache_put</code>
+      </td>
+      <td>
+       La requête est considérée comme pouvant être mise en cache et a été
+       ajoutée au cache. Faîtes attention lors d&#039;un calcul de statistiques
+       dérivées. Le gestionnaire de stockage dont la durée de stockage
+       est au-delà du scope du processus peut rapporter à la fois
+       <code class="literal">cache_put = 0</code> et <code class="literal">cache_hit &gt; 0</code>,
+       si un autre processus a rempli le cache. Vous pouvez vouloir utiliser
+       <code class="literal">num_entries</code> depuis <span class="function"><a href="function.mysqlnd-qc-get-cache-info.html" class="function">mysqlnd_qc_get_cache_info()</a></span>
+       si le gestionnaire le supporte ( <code class="literal">default</code>, <code class="literal">APC</code>).
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_should_cache</code>
+      </td>
+      <td>
+       La requête est considérée comme pouvant être mise en cache
+       uniquement au vue de l&#039;analyse de la requête. La requête peut
+       (ou pas) être ajoutée au cache. Voir aussi
+       <code class="literal">cache_put</code>.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_should_not_cache</code>
+      </td>
+      <td>
+       La requête est considérée comme ne pouvant pas être mise
+       en cache uniquement au vue de l&#039;analyse de la requête.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_not_cached</code>
+      </td>
+      <td>
+       La requête est considérée comme ne pouvant pas être mise
+       en cache ou elle est considérée comme pouvant être mise
+       en cache mais le gestionnaire de stockage n&#039;a pas retourné
+       de clé pour cette requête.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_could_cache</code>
+      </td>
+      <td>
+       La requête est considérée comme pouvant être mise en cache...
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <p class="para">
+          ... et la requête a été exécutée sans erreur
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          ... et les données méta montrent au moins une colonne dans
+          le jeu de résultats
+         </p>
+        </li>
+       </ul>
+       La requête peut (ou pas) être déjà présente dans le cache.
+       Elle peut (ou pas) être ajoutée au cache plus tard.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_found_in_cache</code>
+      </td>
+      <td>
+       La requête est considérée comme pouvant être mise en cache
+       et nous l&#039;avons trouvée dans le cache mais nous n&#039;avons pas
+       encore rejoué les données du cache et nous n&#039;avons pas encore
+       envoyé le jeu de résultats au client. Ce n&#039;est pas considéré
+       comme un accès au cache, car le client peut ne pas récupérer
+       le résultat ou les données mises en cache peuvent être défectueuses.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_uncached_other</code>
+      </td>
+      <td>
+       La requête est considérée comme pouvant être mise en cache et
+       elle peut (ou pas) être déjà dans le cache, mais soit l&#039;accès
+       à ces données du cache a échoué, soit le jeu de résultats
+       n&#039;est pas disponible, ou soit, une autre erreur est survenue.
+      </td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_uncached_no_table</code>
+      </td>
+      <td>
+       La requête n&#039;a pas été mise en cache car le jeu de résultat
+       a au moins une colonne qui n&#039;a pas de nom de table dans ses
+       méta-données. Un exemple d&#039;une telle requête est
+       <code class="literal">SELECT SLEEP(1)</code>. Pour mettre en cache ce genre
+       de requêtes, vous devez modifier la valeur par défaut de la directive
+       de configuration PHP <code class="literal">mysqlnd_qc.cache_no_table</code>
+       et définir <code class="literal">mysqlnd_qc.cache_no_table = 1</code>.
+       Malgré tout, il n&#039;est pas conseillé de mettre en cache ce genre
+       de requêtes.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_uncached_use_result</code>
+      </td>
+      <td>
+       La requête aurait été mise en cache si le jeu de résultats
+       de la mémoire tampon avait été utilisé. Cette situation
+       est également considérée comme une absence de cache et
+       <code class="literal">cache_miss</code> sera incrémenté.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_aggr_run_time_cache_hit</code>
+      </td>
+      <td>
+       Temps d&#039;exécution agrégé (ms) de toutes les
+       requêtes du cache. Les requêtes du cache sont celles
+       qui ont incrémentées <code class="literal">cache_hit</code>.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_aggr_run_time_cache_put</code>
+      </td>
+      <td>
+       Temps d&#039;exécution agrégé (ms) de toutes les requêtes
+       non mises en cache qui ont été ajoutées dans le cache.
+       Voir aussi <code class="literal">cache_put</code>.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_aggr_run_time_total</code>
+      </td>
+      <td>
+       Temps d&#039;exécution agrégé (ms) de toutes les requêtes
+       du cache ainsi que celles non mises en cache qui ont
+       été inspectées et exécutées par le cache de requêtes.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_aggr_store_time_cache_hit</code>
+      </td>
+      <td>
+       Temps de stockage agrégé (ms) de toutes les requêtes
+       du cache. Les requêtes du cache sont celles qui ont
+       incrémentées <code class="literal">cache_hit</code>.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_aggr_store_time_cache_put</code>
+      </td>
+      <td>
+       Temps de stockage agrégé (<code class="literal">ms</code>) de
+       toutes les requêtes non mises en cache qui ont été
+       ajoutées dans le cache. Voir aussi
+       <code class="literal">cache_put</code>.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">query_aggr_store_time_total</code>
+      </td>
+      <td>
+       Temps de stockage agrégé (ms) de toutes les requêtes
+       mises en cache ainsi que celles non mises en cache
+       qui ont été inspectées et exécutées par le cache de
+       requêtes.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">receive_bytes_recorded</code>
+      </td>
+      <td>
+       Trafic réseau entrant enregistré (<code class="literal">bytes</code>)
+       envoyé depuis MySQL vers PHP. Le trafic peut (ou pas) avoir
+       été ajouté au cache. Le trafic est le total pour toutes les
+       requêtes, qu&#039;elles soient en cache ou non.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">receive_bytes_replayed</code>
+      </td>
+      <td>
+       Le trafic réseau rejoué pendant le cache. C&#039;est la quantité
+       totale de trafic entrant sauvegardée en raison de l&#039;utilisation
+       du plugin de mise en cache de requêtes.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">send_bytes_recorded</code>
+      </td>
+      <td>
+       Trafic réseau sortant enregistré (
+       <code class="literal">bytes</code>) envoyé depuis MySQL vers PHP.
+       Le trafic peut (ou pas) avoir été ajouté au cache. Le trafic
+       est le total pour toutes les requêtes, qu&#039;elles soient en cache
+       ou non.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">send_bytes_replayed</code>
+      </td>
+      <td>
+       Le trafic réseau rejoué pendant le cache. C&#039;est la quantité totale
+       de trafic sortant sauvegardé en raison de l&#039;utilisation du plugin
+       de mise en cache de requêtes.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">slam_stale_refresh</code>
+      </td>
+      <td>
+       Nombre d&#039;absence du cache qui a été émis lors d&#039;un accès
+       à des données périmées, jusqu&#039;à ce que le client qui a causé
+       l&#039;absence du cache ne rafraichisse l&#039;entrée du cache.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">slam_stale_hit</code>
+      </td>
+      <td>
+       Nombre d&#039;accès au cache avant qu&#039;une entrée du cache
+       périmé ne rafraichisse les données.
+      </td>
+      <td>Depuis 1.0.0.</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+ 
+ 
+ <div class="refsect1 examples" id="refsect1-function.mysqlnd-qc-get-core-stats-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-2280">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>mysqlnd_qc_get_core_stats()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Activation&nbsp;de&nbsp;la&nbsp;collection&nbsp;des&nbsp;statistiques&nbsp;-&nbsp;par&nbsp;défaut&nbsp;:&nbsp;désactivé&nbsp;*/<br /></span><span style="color: #0000BB">ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">"mysqlnd_qc.collect_statistics"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Activation&nbsp;de&nbsp;la&nbsp;collection&nbsp;de&nbsp;toutes&nbsp;les&nbsp;durées&nbsp;relatives&nbsp;aux&nbsp;statistiques&nbsp;-<br />par&nbsp;défaut&nbsp;:&nbsp;activé&nbsp;mais&nbsp;écrasé&nbsp;par&nbsp;la&nbsp;directive&nbsp;mysqlnd_qc.collect_statistics&nbsp;=&nbsp;0&nbsp;*/<br /></span><span style="color: #0000BB">ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">"mysqlnd_qc.collect_time_statistics"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Population&nbsp;du&nbsp;cache,&nbsp;e.g.&nbsp;en&nbsp;utilisant&nbsp;mysqli&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">'host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'password'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'schema'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Cache&nbsp;miss&nbsp;et&nbsp;cache&nbsp;put&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"/*qc=on*/SELECT&nbsp;id&nbsp;FROM&nbsp;test"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">/*&nbsp;Accès&nbsp;au&nbsp;cache&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"/*qc=on*/SELECT&nbsp;id&nbsp;FROM&nbsp;test"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Affichage&nbsp;des&nbsp;statistiques&nbsp;du&nbsp;cœur&nbsp;*/<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">mysqlnd_qc_get_core_stats</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>Les exemples ci-dessus vont afficher :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+array(26) {
+  [&quot;cache_hit&quot;]=&gt;
+  string(1) &quot;1&quot;
+  [&quot;cache_miss&quot;]=&gt;
+  string(1) &quot;1&quot;
+  [&quot;cache_put&quot;]=&gt;
+  string(1) &quot;1&quot;
+  [&quot;query_should_cache&quot;]=&gt;
+  string(1) &quot;2&quot;
+  [&quot;query_should_not_cache&quot;]=&gt;
+  string(1) &quot;0&quot;
+  [&quot;query_not_cached&quot;]=&gt;
+  string(1) &quot;0&quot;
+  [&quot;query_could_cache&quot;]=&gt;
+  string(1) &quot;2&quot;
+  [&quot;query_found_in_cache&quot;]=&gt;
+  string(1) &quot;1&quot;
+  [&quot;query_uncached_other&quot;]=&gt;
+  string(1) &quot;0&quot;
+  [&quot;query_uncached_no_table&quot;]=&gt;
+  string(1) &quot;0&quot;
+  [&quot;query_uncached_no_result&quot;]=&gt;
+  string(1) &quot;0&quot;
+  [&quot;query_uncached_use_result&quot;]=&gt;
+  string(1) &quot;0&quot;
+  [&quot;query_aggr_run_time_cache_hit&quot;]=&gt;
+  string(1) &quot;4&quot;
+  [&quot;query_aggr_run_time_cache_put&quot;]=&gt;
+  string(3) &quot;395&quot;
+  [&quot;query_aggr_run_time_total&quot;]=&gt;
+  string(3) &quot;399&quot;
+  [&quot;query_aggr_store_time_cache_hit&quot;]=&gt;
+  string(1) &quot;2&quot;
+  [&quot;query_aggr_store_time_cache_put&quot;]=&gt;
+  string(1) &quot;8&quot;
+  [&quot;query_aggr_store_time_total&quot;]=&gt;
+  string(2) &quot;10&quot;
+  [&quot;receive_bytes_recorded&quot;]=&gt;
+  string(2) &quot;65&quot;
+  [&quot;receive_bytes_replayed&quot;]=&gt;
+  string(2) &quot;65&quot;
+  [&quot;send_bytes_recorded&quot;]=&gt;
+  string(2) &quot;29&quot;
+  [&quot;send_bytes_replayed&quot;]=&gt;
+  string(2) &quot;29&quot;
+  [&quot;slam_stale_refresh&quot;]=&gt;
+  string(1) &quot;0&quot;
+  [&quot;slam_stale_hit&quot;]=&gt;
+  string(1) &quot;0&quot;
+  [&quot;request_counter&quot;]=&gt;
+  int(1)
+  [&quot;process_hash&quot;]=&gt;
+  int(3547549858)
+}
+
+</pre></div>
+   </div>
+   
+  </div>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-function.mysqlnd-qc-get-core-stats-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     <a href="mysqlnd-qc.configuration.html" class="link">Configuration à l&#039;exécution</a>
+    </li>
+    <li class="member">
+     <a href="mysqlnd-qc.configuration.html#ini.mysqlnd-qc.collect-statistics" class="link">mysqlnd_qc.collect_statistics</a>
+    </li>
+    <li class="member">
+     <a href="mysqlnd-qc.configuration.html#ini.mysqlnd-qc.time-statistics" class="link">mysqlnd_qc.time_statistics</a>
+    </li>
+    <li class="member">
+     <span class="function"><a href="function.mysqlnd-qc-get-cache-info.html" class="function" rel="rdfs-seeAlso">mysqlnd_qc_get_cache_info()</a> - Retourne des informations sur le gestionnaire courant</span>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+ 
+</div></div></div></body></html>

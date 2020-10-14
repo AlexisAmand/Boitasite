@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne une cha&icirc;ne d&eacute;crivant un message d'erreur</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.socket-shutdown.html">« socket_shutdown</a></li>
+      <li style="float: right;"><a href="function.socket-write.html">socket_write »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.sockets.html">Fonctions sur les sockets</a></li>
+    <li>Retourne une cha&icirc;ne d&eacute;crivant un message d'erreur</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.socket-strerror" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">socket_strerror</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.1.0, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">socket_strerror</span> &mdash; <span class="dc-title">Retourne une chaîne décrivant un message d&#039;erreur</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.socket-strerror-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>socket_strerror</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$errno</code></span>
+   ) : <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>socket_strerror()</strong></span> prend un code d&#039;erreur comme paramètre
+   <code class="parameter">errno</code>. Cette valeur est souvent retournée par la
+   fonction <span class="function"><a href="function.socket-last-error.html" class="function">socket_last_error()</a></span>. La fonction retourne
+   le message d&#039;erreur correspondant.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Bien que les messages d&#039;erreur générés par l&#039;extension socket soient
+    en anglais, le système gérant les messages de cette fonction dépend
+    de la locale courante (<strong><code>LC_MESSAGES</code></strong>).
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.socket-strerror-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">errno</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une numéro d&#039;erreur de socket valide, comme produit par la fonction
+       <span class="function"><a href="function.socket-last-error.html" class="function">socket_last_error()</a></span>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.socket-strerror-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne le message d&#039;erreur associé avec le paramètre
+   <code class="parameter">errno</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.socket-strerror-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-5185">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>socket_strerror()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">==&nbsp;(</span><span style="color: #0000BB">$socket&nbsp;</span><span style="color: #007700">=&nbsp;@</span><span style="color: #0000BB">socket_create</span><span style="color: #007700">(</span><span style="color: #0000BB">AF_INET</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SOCK_STREAM</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SOL_TCP</span><span style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"socket_create()&nbsp;a&nbsp;échoué&nbsp;:&nbsp;raison&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">socket_strerror</span><span style="color: #007700">(</span><span style="color: #0000BB">socket_last_error</span><span style="color: #007700">())&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br />if&nbsp;(</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">==&nbsp;(@</span><span style="color: #0000BB">socket_bind</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'127.0.0.1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">80</span><span style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"socket_bind()&nbsp;a&nbsp;échoué&nbsp;:&nbsp;raison&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">socket_strerror</span><span style="color: #007700">(</span><span style="color: #0000BB">socket_last_error</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     L&#039;affichage attendu pour l&#039;exemple du dessus (en supposant que
+     vous essayer d&#039;exécuter le script sans les droits Administrateur) :
+    </p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+socket_bind() a échoué : raison : Permission denied
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.socket-strerror-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.socket-accept.html" class="function" rel="rdfs-seeAlso">socket_accept()</a> - Accepte une connexion sur un socket</span></li>
+    <li class="member"><span class="function"><a href="function.socket-bind.html" class="function" rel="rdfs-seeAlso">socket_bind()</a> - Lie un nom &agrave; un socket</span></li>
+    <li class="member"><span class="function"><a href="function.socket-connect.html" class="function" rel="rdfs-seeAlso">socket_connect()</a> - Cr&eacute;e une connexion sur un socket</span></li>
+    <li class="member"><span class="function"><a href="function.socket-listen.html" class="function" rel="rdfs-seeAlso">socket_listen()</a> - Attend une connexion sur un socket</span></li>
+    <li class="member"><span class="function"><a href="function.socket-create.html" class="function" rel="rdfs-seeAlso">socket_create()</a> - Cr&eacute;e un socket</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

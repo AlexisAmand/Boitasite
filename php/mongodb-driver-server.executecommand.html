@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ex&eacute;cute une commande de base de donn&eacute;es sur ce serveur</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongodb-driver-server.executebulkwrite.html">« MongoDB\Driver\Server::executeBulkWrite</a></li>
+      <li style="float: right;"><a href="mongodb-driver-server.executequery.html">MongoDB\Driver\Server::executeQuery »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mongodb-driver-server.html">MongoDB\Driver\Server</a></li>
+    <li>Ex&eacute;cute une commande de base de donn&eacute;es sur ce serveur</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongodb-driver-server.executecommand" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">MongoDB\Driver\Server::executeCommand</h1>
+  <p class="verinfo">(mongodb &gt;=1.0.0)</p><p class="refpurpose"><span class="refname">MongoDB\Driver\Server::executeCommand</span> &mdash; <span class="dc-title">Exécute une commande de base de données sur ce serveur</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongodb-driver-server.executecommand-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="methodname"><strong>MongoDB\Driver\Server::executeCommand</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$db</code></span>
+   , <span class="methodparam"><span class="type"><a href="class.mongodb-driver-command.html" class="type MongoDB\Driver\Command">MongoDB\Driver\Command</a></span> <code class="parameter">$command</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code><span class="initializer"> = array()</span></span>
+  ] ) : <span class="type"><a href="class.mongodb-driver-cursor.html" class="type MongoDB\Driver\Cursor">MongoDB\Driver\Cursor</a></span></div>
+
+  <p class="para rdfs-comment">
+   Exécute une commande sur ce serveur.
+  </p>
+  <p class="para">
+   This method applies no special logic to the command. Although this method
+   accepts <code class="literal">&quot;readConcern&quot;</code> and
+   <code class="literal">&quot;writeConcern&quot;</code> options, which will be incorporated into
+   the command document, those options will not default to corresponding values
+   from the <a href="mongodb-driver-manager.construct.html#mongodb-driver-manager.construct-uri" class="link">MongoDB
+   Connection URI</a> nor will the MongoDB server version be taken into
+   account. Users are therefore encouraged to use specific read and/or write
+   command methods if possible.
+   
+   Cette méthode n&#039;applique aucune logique spéciale à la commande. Bien que 
+   cette méthode accepte les options <code class="literal">&quot;readConcern&quot;</code> et 
+   <code class="literal">&quot;writeConcern&quot;</code>, qui seront incorporées dans le document 
+   de commande, ces options ne seront pas par défaut aux valeurs correspondantes 
+   de l&#039;<a href="mongodb-driver-manager.construct.html#mongodb-driver-manager.construct-uri" class="link">URI de connexion MongoDB</a>, 
+   ni la version du serveur MongoDB ne sera pris en compte. Les utilisateurs sont 
+   donc encouragés à utiliser des méthodes de commande de lecture et/ou d&#039;écriture 
+   spécifiques si possible.
+  </p>
+  
+<blockquote class="note"><p><strong class="note">Note</strong>: 
+<span class="simpara">
+    L&#039;option <code class="literal">readPreference</code> ne contrôle pas le serveur vers
+    lequel le pilote émet l&#039;opération; il sera toujours exécuté sur cet objet
+    serveur. Au lieu de cela, il peut être utilisé lors de l&#039;émission de
+    l&#039;opération à un secondaire (à partir d&#039;une connexion de jeu de réplicas,
+    pas autonome) ou le noeud mongos pour s&#039;assurer que le pilote définit le
+    protocole de fil en conséquence ou ajoute la préférence de lecture à
+    l&#039;opération, respectivement.
+</span>
+</p></blockquote>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongodb-driver-server.executecommand-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+
+<dt>
+<code class="parameter">db</code> (<span class="type"><a href="language.types.string.html" class="type string">string</a></span>)</dt>
+
+<dd>
+
+    <p class="para">
+        Le nom de la base de données sur laquelle la commande sera exécutée.
+    </p>
+</dd>
+
+
+
+   
+
+<dt>
+<code class="parameter">command</code> (<a href="class.mongodb-driver-command.html" class="classname">MongoDB\Driver\Command</a>)</dt>
+
+<dd>
+
+    <p class="para">
+        La commande à exécuter.
+    </p>
+</dd>
+
+
+
+   
+    <dt>
+<code class="parameter">options</code></dt>
+
+    <dd>
+
+     <p class="para">
+      <table class="doctable table">
+       <caption><strong>options</strong></caption>
+       
+        <thead>
+         <tr>
+          <th>Option</th>
+          <th>Type</th>
+          <th>Description</th>
+         </tr>
+
+        </thead>
+
+        <tbody class="tbody">
+         
+<tr>
+<td>readConcern</td>
+<td><a href="class.mongodb-driver-readconcern.html" class="classname">MongoDB\Driver\ReadConcern</a></td>
+<td>
+    <p class="para">
+        Une préoccupation de lecture à appliquer à l&#039;opération.
+    </p>
+    <p class="para">
+        Cette option est disponible dans MongoDB 3.2+ et se traduira par
+        une exception au moment de l&#039;exécution si elle est spécifiée pour
+        une version plus ancienne du serveur.
+    </p>
+</td>
+</tr>
+
+
+         
+<tr>
+<td>readPreference</td>
+<td><a href="class.mongodb-driver-readpreference.html" class="classname">MongoDB\Driver\ReadPreference</a></td>
+<td>
+    <p class="para">
+        Une préférence de lecture à utiliser pour sélectionner un serveur
+        pour l&#039;opération.
+    </p>
+</td>
+</tr>
+
+
+         
+<tr>
+<td>session</td>
+<td><a href="class.mongodb-driver-session.html" class="classname">MongoDB\Driver\Session</a></td>
+<td>
+    <p class="para">
+        Une session à associer à l&#039;opération.
+    </p>
+</td>
+</tr>
+
+
+         
+<tr>
+<td>writeConcern</td>
+<td><a href="class.mongodb-driver-writeconcern.html" class="classname">MongoDB\Driver\WriteConcern</a></td>
+<td>
+    <p class="para">
+        Une préoccupation d&#039;écriture à appliquer à l&#039;opération.
+    </p>
+</td>
+</tr>
+
+
+        </tbody>
+       
+      </table>
+
+     </p>
+     
+<div class="warning"><strong class="warning">Avertissement</strong>
+<p class="para">
+    Si vous utilisez une <code class="literal">&quot;session&quot;</code> qui a une transaction
+    en cours, vous ne pouvez pas spécifier l&#039;option <code class="literal">&quot;readConcern&quot;</code>
+    ou <code class="literal">&quot;writeConcern&quot;</code>. Tenter de faire ceci lancera une exception
+    <a href="class.mongodb-driver-exception-invalidargumentexception.html" class="classname">MongoDB\Driver\Exception\InvalidArgumentException</a>.
+    À la place vous devriez définir ces options quand vous créez la transaction avec
+    <span class="methodname"><a href="mongodb-driver-session.starttransaction.html" class="methodname">MongoDB\Driver\Session::startTransaction()</a></span>.
+</p>
+</div>
+
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongodb-driver-server.executecommand-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">Retourne un <a href="class.mongodb-driver-cursor.html" class="classname">MongoDB\Driver\Cursor</a> en cas de succès.</p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mongodb-driver-server.executecommand-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <ul class="simplelist">
+   <li class="member">Throws <a href="class.mongodb-driver-exception-invalidargumentexception.html" class="classname">MongoDB\Driver\Exception\InvalidArgumentException</a> if the <code class="literal">&quot;session&quot;</code> option is used with an associated transaction in combination with a <code class="literal">&quot;readConcern&quot;</code> or <code class="literal">&quot;writeConcern&quot;</code> option.</li>
+   <li class="member">Lance une exception <a href="class.mongodb-driver-exception-invalidargumentexception.html" class="classname">MongoDB\Driver\Exception\InvalidArgumentException</a> si l&#039;option <code class="literal">&quot;session&quot;</code> est utilisée conjointement avec une préoccupation d&#039;écriture non reconnu.</li>
+   <li class="member">Lance une exception <strong class="classname">MongoDB\Driver\AuthenticationException</strong> si une identification est nécessaire mais qu&#039;elle échoue</li><li class="member">Lance une exception <strong class="classname">MongoDB\Driver\ConnectionException</strong> si la connexion au serveur échoue pour une autre raison qu&#039;en raison d&#039;un problème d&#039;identification</li>
+   <li class="member">Lance une exception <a href="class.mongodb-driver-exception-runtimeexception.html" class="classname">MongoDB\Driver\Exception\RuntimeException</a>
+    si une erreur survient (i.e. commande invalide, l&#039;envoi d&#039;une commande en écriture sur
+    un secondaire).</li>
+  </ul>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-mongodb-driver-server.executecommand-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>1.4.4</td>
+       <td>
+        <a href="class.mongodb-driver-exception-invalidargumentexception.html" class="classname">MongoDB\Driver\Exception\InvalidArgumentException</a>
+        sera lancé si l&#039;option <code class="literal">&quot;session&quot;</code> est utilisée
+        conjointement avec une préoccupation d&#039;écriture non reconnu.
+       </td>
+      </tr>
+
+      <tr>
+       <td>1.4.0</td>
+       <td>
+        Le troisième paramètre est maintenant un tableau
+        d&#039;<code class="parameter">options</code>. Pour la compatibilité ascendante, 
+        ce paramateur acceptera toujours un objet <a href="class.mongodb-driver-readpreference.html" class="classname">MongoDB\Driver\ReadPreference</a>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-mongodb-driver-server.executecommand-notes">
+  <h3 class="title">Notes</h3>
+  
+<blockquote class="note"><p><strong class="note">Note</strong>: 
+<span class="simpara">
+    Il est de la responsabilité de l&#039;appelant de s&#039;assurer que le
+    serveur est capable d&#039;exécuter l&#039;opération d&#039;écriture. Par
+    exemple, l&#039;exécution d&#039;une opération d&#039;écriture sur un
+    secondaire (à l&#039;exclusion de sa base de données  &quot;local&quot;) échouera.
+</span>
+</p></blockquote>
+
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mongodb-driver-server.executecommand-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member"><a href="class.mongodb-driver-command.html" class="classname">MongoDB\Driver\Command</a></li>
+   <li class="member"><a href="class.mongodb-driver-cursor.html" class="classname">MongoDB\Driver\Cursor</a></li>
+   <li class="member"><span class="function"><a href="mongodb-driver-server.executereadcommand.html" class="function" rel="rdfs-seeAlso">MongoDB\Driver\Server::executeReadCommand()</a> - Execute a database command that reads on this server</span></li>
+   <li class="member"><span class="function"><a href="mongodb-driver-server.executereadwritecommand.html" class="function" rel="rdfs-seeAlso">MongoDB\Driver\Server::executeReadWriteCommand()</a> - Execute a database command that reads and writes on this server</span></li>
+   <li class="member"><span class="function"><a href="mongodb-driver-server.executewritecommand.html" class="function" rel="rdfs-seeAlso">MongoDB\Driver\Server::executeWriteCommand()</a> - Execute a database command that writes on this server</span></li>
+   <li class="member"><span class="function"><a href="mongodb-driver-manager.executecommand.html" class="function" rel="rdfs-seeAlso">MongoDB\Driver\Manager::executeCommand()</a> - Execute a database command</span></li>
+  </ul>
+ </div>
+
+
+</div></div></div></body></html>

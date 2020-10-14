@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Niveau de service et consistence</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-ms.quickstart.xa_transactions.html">« Transactions distribu&eacute;es / XA</a></li>
+      <li style="float: right;"><a href="mysqlnd-ms.quickstart.gtid.html">ID de transaction globale »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-ms.quickstart.html">Exemples et d&eacute;marrage rapide</a></li>
+    <li>Niveau de service et consistence</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-ms.quickstart.qos-consistency" class="section">
+  <h2 class="title">Niveau de service et consistence</h2>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Versions requises</strong><br />
+   <p class="para">
+    Les niveaux de services ont été ajoutés dans mysqlnd_ms version 1.2.0-alpha.
+    <span class="function"><a href="function.mysqlnd-ms-set-qos.html" class="function">mysqlnd_ms_set_qos()</a></span>
+    est disponible pour PHP 5.4.0 ou plus récent.
+   </p>
+  </p></blockquote>
+  <p class="para">
+   Differents types de solutions de cluster MySQL offrent différents niveaux de consistence
+   des données à leurs utilisateurs. Un cluster asynchrone offre une consistence éventuelle
+   par défaut. Une lecture exécutée sur un esclave peut retourner une donnée fraiche, 
+   dépassée, ou pas de donnée du tout en fonction de l&#039;état d&#039;avancement de la réplication
+   de l&#039;esclave sur le maitre.
+  </p>
+  <p class="para">
+   Les applications utilisant le cluster de replication MySQL doivent être conçues pour
+   fonctionner avec une consistence éventuelle des données. Dans certains cas, des données
+   non fraiches ne sont pas acceptables. Dans ces cas-là, seuls certains esclaves voire même
+   uniquement le maitre sont autorisés pour atteindre la qualité de service nécessaire.
+  </p>
+  <p class="para">
+   Depuis mysqlnd_ms 1.2.0, le plugin peut sélectionner un noeud automatiquement pour assurer
+   une consistence de session ou une consistence forte. La consistence de session implique
+   qu&#039;un client peut lire ses écritures, les autres clients peuvent voir ou non les écritures.
+   La consistence forte assure que tous les autres clients verront les écritures.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2176">
+    <p><strong>Exemple #1 Consistence de session: lire ses écritures</strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">{
+    &quot;myapp&quot;: {
+        &quot;master&quot;: {
+            &quot;master_0&quot;: {
+                &quot;host&quot;: &quot;localhost&quot;,
+                &quot;socket&quot;: &quot;\/tmp\/mysql.sock&quot;
+            }
+        },
+        &quot;slave&quot;: {
+            &quot;slave_0&quot;: {
+                &quot;host&quot;: &quot;127.0.0.1&quot;,
+                &quot;port&quot;: &quot;3306&quot;
+            }
+        }
+    }
+}</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2177">
+    <p><strong>Exemple #2 Requêtage en consistence de session</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"myapp"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Utilisez&nbsp;ici&nbsp;votre&nbsp;propre&nbsp;gestion&nbsp;des&nbsp;erreurs...&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">()));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Séparation&nbsp;des&nbsp;lectures/écritures:&nbsp;maitre&nbsp;utilisé&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;orders(order_id,&nbsp;item)&nbsp;VALUES&nbsp;(1,&nbsp;'christmas&nbsp;tree,&nbsp;1.8m')"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Utlisez&nbsp;ici&nbsp;votre&nbsp;propre&nbsp;gestion&nbsp;des&nbsp;erreurs...&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Activation&nbsp;de&nbsp;la&nbsp;consistence&nbsp;de&nbsp;session&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">mysqlnd_ms_set_qos</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_QOS_CONSISTENCY_SESSION</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Le&nbsp;plugin&nbsp;sélectionne&nbsp;un&nbsp;noeud&nbsp;qui&nbsp;possède&nbsp;le&nbsp;changement,&nbsp;ici&nbsp;:&nbsp;le&nbsp;maitre&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;item&nbsp;FROM&nbsp;orders&nbsp;WHERE&nbsp;order_id&nbsp;=&nbsp;1"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">());<br /><br /></span><span style="color: #FF8000">/*&nbsp;Retour&nbsp;à&nbsp;la&nbsp;consistence&nbsp;éventuelle&nbsp;:&nbsp;des&nbsp;données&nbsp;non&nbsp;fraiches&nbsp;sont&nbsp;tolérées&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">mysqlnd_ms_set_qos</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_QOS_CONSISTENCY_EVENTUAL</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Le&nbsp;plugin&nbsp;choisit&nbsp;un&nbsp;esclave,&nbsp;des&nbsp;données&nbsp;non&nbsp;fraiches&nbsp;peuvent&nbsp;être&nbsp;retournées&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;item,&nbsp;price&nbsp;FROM&nbsp;specials"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Les niveaux de service peuvent être indiqués dans le fichier de configuration et
+   durant l&#039;exécution via <span class="function"><a href="function.mysqlnd-ms-set-qos.html" class="function">mysqlnd_ms_set_qos()</a></span>.
+   Dans l&#039;exemple la fonction est utilisée pour forcer la consistence de session pour
+   toutes les requêtes futures jusqu&#039;à nouvel ordre. La requête
+   <code class="literal">SELECT</code> sur la table <code class="literal">orders</code> est lancée sur le
+   maitre pour s&#039;assurer que l&#039;écriture précédente peut être vue par le client.
+   La logique de spération des lectures/écritures a donc été adaptée pour satisfaire le
+   niveau de service demandé.
+  </p>
+  <p class="para">
+   Après que l&#039;application n&#039;ait lue ses changements depuis la table <code class="literal">orders</code>
+   elle retourne dans le niveau de service par défaut, c&#039;est-à-dire la consistence éventuelle.
+   Celle-ci ne propose aucune restriction quant au choix du noeud, ainsi, la requête
+   <code class="literal">SELECT</code> sur la table <code class="literal">specials</code> est exécutée sur l&#039;esclave.
+  </p>
+  <p class="para">
+   Cette fonctionnalité est supérieure aux astices SQL et à l&#039;option de configuration
+   <code class="literal">master_on_write</code>. Dans beaucoup de cas,
+   <span class="function"><a href="function.mysqlnd-ms-set-qos.html" class="function">mysqlnd_ms_set_qos()</a></span> est plus facile à utiliser, plus puissante et plus
+   portable.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2178">
+    <p><strong>Exemple #3 Age maximum / retard de l&#039;esclave</strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">{
+    &quot;myapp&quot;: {
+        &quot;master&quot;: {
+            &quot;master_0&quot;: {
+                &quot;host&quot;: &quot;localhost&quot;,
+                &quot;socket&quot;: &quot;\/tmp\/mysql.sock&quot;
+            }
+        },
+        &quot;slave&quot;: {
+            &quot;slave_0&quot;: {
+                &quot;host&quot;: &quot;127.0.0.1&quot;,
+                &quot;port&quot;: &quot;3306&quot;
+            }
+        },
+        &quot;failover&quot; : &quot;master&quot;
+    }
+}</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2179">
+    <p><strong>Exemple #4 Limiter le retard de l&#039;esclave</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"myapp"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Utilisez&nbsp;ici&nbsp;votre&nbsp;propre&nbsp;gestion&nbsp;des&nbsp;erreurs...&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">()));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Lit&nbsp;depuis&nbsp;des&nbsp;esclaves&nbsp;ayant&nbsp;un&nbsp;retard&nbsp;de&nbsp;4&nbsp;secondes&nbsp;maximum&nbsp;*/<br /></span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqlnd_ms_set_qos</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_QOS_CONSISTENCY_EVENTUAL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_QOS_OPTION_AGE</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">4<br /></span><span style="color: #007700">);<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$ret</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Le&nbsp;plugin&nbsp;sélectionne&nbsp;un&nbsp;des&nbsp;esclaves,&nbsp;qui&nbsp;a&nbsp;ou&nbsp;pas&nbsp;la&nbsp;donnée&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;item,&nbsp;price&nbsp;FROM&nbsp;daytrade"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /><br /></span><span style="color: #FF8000">/*&nbsp;Retour&nbsp;au&nbsp;comportement&nbsp;par&nbsp;défaut&nbsp;:&nbsp;utilisation&nbsp;de&nbsp;tous&nbsp;les&nbsp;esclaves&nbsp;et&nbsp;du&nbsp;maitre&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">mysqlnd_ms_set_qos</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_QOS_CONSISTENCY_EVENTUAL</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Le niveau de consistence éventuelle peut utiliser un paramètre optionnel permettant
+   d&#039;indiquer l&#039;âge maximum de retard des esclaves pour leur sélection. Ainsi,
+   le plugin vérifiera <code class="literal">SHOW SLAVE STATUS</code> pour tous les esclaves
+   configurés. Dans notre exemple, seuls les esclaves pour qui
+   <code class="literal">Slave_IO_Running=Yes</code>,   <code class="literal">Slave_SQL_Running=Yes</code>
+   et <code class="literal">Seconds_Behind_Master &lt;= 4</code> est vrai sont considérés
+   dans le choix pour l&#039;éxecution de <code class="literal">SELECT item, price FROM daytrade</code>.
+  </p>
+  <p class="para">
+   La vérification <code class="literal">SHOW SLAVE STATUS</code> est transparente coté application.
+   Si des erreurs surviennent, elles seront reportées sous forme de Warning. Aucune erreur
+   ne sera émise sur la connexion. Même si tous les <code class="literal">SHOW SLAVE STATUS</code>
+   échouent, l&#039;éxecution de la requête de l&#039;utilisateur aura quand même lieu si la
+   reprise sur incident du maitre est activée. Ainsi, aucun changement côté applicatif n&#039;est
+   nécessaire.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Opérations couteuses et lentes</strong><br />
+   <p class="para">
+    Vérifier <code class="literal">SHOW SLAVE STATUS</code> pour tous les esclaves ajoute de
+    la charge. C&#039;est une opération couteuse. Malheureusement, le cluster de réplication
+    MySQL n&#039;offre pas d&#039;autre moyen de procéder pour vérifier le retard d&#039;un esclave.
+   </p>
+   <p class="para">
+    Notez les limites et les propriétés de <code class="literal">SHOW SLAVE STATUS</code>
+    en lisant le manuel de référence de MySQL.
+   </p>
+  </p></blockquote>
+  <p class="para">
+   Pour évoter que le plugin ne génère un Warning si aucun esclave satisfaisant le
+   critère de retard ne peut être trouvé, il est nécessaire d&#039;activer la reprise sur
+   incident du maitre dans le fichier de configuration. Dans ce cas, le plugin sélectionnera
+   un maitre.
+  </p>
+  <p class="para">
+   Si aucun esclave n&#039;est trouvé et que la reprise sur incident est désactivée, le plugin
+   génèrera un Warning, il n&#039;exécutera pas la requête et placera la connexion en erreur.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2180">
+    <p><strong>Exemple #5 Reprise sur incident non activée</strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">{
+    &quot;myapp&quot;: {
+        &quot;master&quot;: {
+            &quot;master_0&quot;: {
+                &quot;host&quot;: &quot;localhost&quot;,
+                &quot;socket&quot;: &quot;\/tmp\/mysql.sock&quot;
+            }
+        },
+        &quot;slave&quot;: {
+            &quot;slave_0&quot;: {
+                &quot;host&quot;: &quot;127.0.0.1&quot;,
+                &quot;port&quot;: &quot;3306&quot;
+            }
+        }
+    }
+}</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2181">
+    <p><strong>Exemple #6 Pas d&#039;esclave avec le critère de retard</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"myapp"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Utilisez&nbsp;ici&nbsp;votre&nbsp;propre&nbsp;gestion&nbsp;des&nbsp;erreurs...&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">()));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Lit&nbsp;depuis&nbsp;les&nbsp;esclaves&nbsp;dont&nbsp;le&nbsp;retard&nbsp;n'est&nbsp;pas&nbsp;supérieur&nbsp;à&nbsp;4&nbsp;secondes&nbsp;*/<br /></span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqlnd_ms_set_qos</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_QOS_CONSISTENCY_EVENTUAL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_QOS_OPTION_AGE</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">4<br /></span><span style="color: #007700">);<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$ret</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Le&nbsp;plugin&nbsp;choisit&nbsp;un&nbsp;esclave&nbsp;au&nbsp;hasard,&nbsp;il&nbsp;peut&nbsp;avoir&nbsp;une&nbsp;donnée&nbsp;non&nbsp;fraiche&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;item,&nbsp;price&nbsp;FROM&nbsp;daytrade"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /><br /><br /></span><span style="color: #FF8000">/*&nbsp;Cas&nbsp;par&nbsp;défaut:&nbsp;utilisation&nbsp;de&nbsp;tous&nbsp;les&nbsp;esclaves&nbsp;et&nbsp;maitres&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">mysqlnd_ms_set_qos</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_MS_QOS_CONSISTENCY_EVENTUAL</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%d]&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">));<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+PHP Warning:  mysqli::query(): (mysqlnd_ms) Couldn&#039;t find the appropriate slave connection. 0 slaves to choose from. Something is wrong in %s on line %d
+PHP Warning:  mysqli::query(): (mysqlnd_ms) No connection selected by the last filter in %s on line %d
+[2000] (mysqlnd_ms) No connection selected by the last filter
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div></div></div></body></html>

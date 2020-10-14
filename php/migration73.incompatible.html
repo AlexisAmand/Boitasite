@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Modifications entrainant une incompatibilit&eacute; ascendante</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration73.constants.html">« Nouvelles constantes globales</a></li>
+      <li style="float: right;"><a href="migration73.deprecated.html">Fonctionnalit&eacute;s devenues obsol&egrave;tes »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration73.html">Migration de PHP 7.2.x vers PHP 7.3.x</a></li>
+    <li>Modifications entrainant une incompatibilit&eacute; ascendante</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration73.incompatible" class="sect1">
+ <h2 class="title">Modifications entrainant une incompatibilité ascendante</h2>
+
+ <div class="sect2" id="migration73.incompatible.core">
+  <h3 class="title">Cœur de PHP</h3>
+
+  <div class="sect3" id="migration73.incompatible.core.heredoc-nowdoc">
+   <h4 class="title">Interprétation des Labels de Terminaison Heredoc/Nowdoc</h4>
+
+   <p class="para">
+    Avec l&#039;introduction de <a href="migration73.new-features.html#migration73.new-features.core.heredoc" class="link">la syntaxe flexible heredoc
+    / nowdoc</a>, les <a href="language.types.string.html" class="link">chaîne de caractères</a> doc qui contiennent le label de terminaison
+    dans leur corps peuvent causer des erreurs de syntaxe ou changer en
+    interprétation. Par exemple dans :
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;&lt;&lt;&lt;FOO<br /></span><span style="color: #DD0000">abcdefg<br /></span><span style="color: #007700">&nbsp;&nbsp;&nbsp;FOO<br /></span><span style="color: #0000BB">FOO</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+    l&#039;occurrence indentée de <code class="literal">FOO</code> n&#039;avait pas de signification
+    particulière précédemment. Désormais elle sera interprétée comme la fin de
+    la <a href="language.types.string.html" class="link">chaîne de caractères</a> heredoc et le <code class="literal">FOO;</code> suivant causera une erreur
+    de syntaxe. Ce problème peut toujours être résolu en choisissant un label de
+    terminaison qui n&#039;apparait pas dans le contenu de la <a href="language.types.string.html" class="link">chaîne de caractères</a>.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration73.incompatible.core.continue-targeting-switch">
+   <h4 class="title">Continue visant Switch génèrent des Avertissements</h4>
+
+   <p class="para">
+    Les déclarations <code class="literal">continue</code> visant les structures de flux de
+    contrôle <code class="literal">switch</code> généreront désormais un avertissement.
+    En PHP ces déclarations <code class="literal">continue</code> sont équivalentes à
+    <code class="literal">break</code>, alors qu&#039;ils se comportent comme 
+    <code class="literal">continue 2</code> dans d&#039;autres langages.
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">while&nbsp;(</span><span style="color: #0000BB">$foo</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;switch&nbsp;(</span><span style="color: #0000BB">$bar</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;</span><span style="color: #DD0000">"baz"</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Warning:&nbsp;"continue"&nbsp;targeting&nbsp;switch&nbsp;is&nbsp;equivalent&nbsp;to<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"break".&nbsp;Did&nbsp;you&nbsp;mean&nbsp;to&nbsp;use&nbsp;"continue&nbsp;2"?<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+
+  <div class="sect3" id="migration73.incompatible.core.arrayaccess">
+   <h4 class="title">Interprétation Stricte des Clés de Chaînes de Charactères Entiers sur ArrayAccess</h4>
+
+   <p class="para">
+    Les accès de <a href="language.types.array.html" class="link">tableau</a> du type <code class="literal">$obj[&quot;123&quot;]</code>, où
+    <code class="literal">$obj</code> implémente <a href="class.arrayaccess.html" class="classname">ArrayAccess</a> et
+    <code class="literal">&quot;123&quot;</code> est une <a href="language.types.string.html" class="link">chaîne de caractères</a> d&#039;<a href="language.types.integer.html" class="link">entier</a> litérale ne
+    résultera plus en une conversion implicite en <a href="language.types.integer.html" class="link">entier</a>, c.à.d.,
+    <code class="literal">$obj-&gt;offsetGet(&quot;123&quot;)</code> sera appellé au lieu de
+    <code class="literal">$obj-&gt;offsetGet(123)</code>. Ceci correspond au comportement
+    pour les non litérales. Le comportement des <a href="language.types.array.html" class="link">tableau</a> n&#039;est pas affecté
+    d&#039;une quelconque manière, ils continuent de convertir implicitement
+    des clés de <a href="language.types.string.html" class="link">chaîne de caractères</a> en <a href="language.types.integer.html" class="link">entier</a>.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration73.incompatible.core.static-properties">
+   <h4 class="title">Les Propriétés Statiques ne sont plus séparées par l&#039;Affectation de Référence</h4>
+
+   <p class="para">
+    En PHP, les propriétés statiques sont partagées entre les classes héritantes,
+    sauf si la propriété statique est explicitement remplacée dans une classe enfant.
+    Cependant à cause d&#039;un artefact d&#039;implémentation il était possible de séparer
+    les propriétés statiques en affectant une référence.
+    Cette lacune a été corrigée.
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">Test&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;</span><span style="color: #0000BB">$x&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />}<br />class&nbsp;</span><span style="color: #0000BB">Test2&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">Test&nbsp;</span><span style="color: #007700">{&nbsp;}<br /><br /></span><span style="color: #0000BB">Test2</span><span style="color: #007700">::</span><span style="color: #0000BB">$x&nbsp;</span><span style="color: #007700">=&nbsp;&amp;</span><span style="color: #0000BB">$x</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$x&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">Test</span><span style="color: #007700">::</span><span style="color: #0000BB">$x</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">Test2</span><span style="color: #007700">::</span><span style="color: #0000BB">$x</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;Previously:&nbsp;int(0),&nbsp;int(1)<br />//&nbsp;Now:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int(1),&nbsp;int(1)<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+
+  <div class="sect3" id="migration73.incompatible.core.reference-unwrapping">
+   <h4 class="title">
+    Les références retournées par les Tableaux et les accès aux propriétés
+    sont immédiatement décompressées
+   </h4>
+
+   <p class="para">
+    Les références retournées par les tableaux et les accès aux propriétés
+    sont désormais décompressés dans le cadre de l&#039;accès. Ceci signifie qu&#039;il
+    n&#039;est plus possible de modifier la référence entre l&#039;accès et l&#039;utilisation
+    de la valeur accèdée :
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$arr&nbsp;</span><span style="color: #007700">=&nbsp;[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">$ref&nbsp;</span><span style="color: #007700">=&amp;&nbsp;</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]&nbsp;+&nbsp;(</span><span style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /></span><span style="color: #FF8000">//&nbsp;Previously:&nbsp;int(4),&nbsp;Now:&nbsp;int(3)<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+    Ceci rend le comportement des références et non références cohérent.
+    Il est à noter que lire et écrire une valeur à l&#039;intérieur d&#039;une unique
+    expression continue d&#039;être un comportement non défini et peut changer
+    de nouveau dans le futur.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration73.incompatible.core.traversable-unpacking">
+   <h4 class="title">La décompression d&#039;arguments de Traversables avec des clés non-entières n&#039;est plus prise en charge</h4>
+
+   <p class="para">
+    La décompression d&#039;arguments a cessé de fonctionner avec
+    <a href="class.traversable.html" class="classname">Traversable</a>s avec des clés non-entières
+    Le code suivant fonctionnait en PHP 5.6-7.2 par accident.
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">(...</span><span style="color: #0000BB">$args</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$args</span><span style="color: #007700">);<br />}<br />function&nbsp;</span><span style="color: #0000BB">gen</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;yield&nbsp;</span><span style="color: #0000BB">1.23&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">123</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(...</span><span style="color: #0000BB">gen</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+
+  <div class="sect3" id="migration73.incompatible.core.misc">
+   <h4 class="title">Divers</h4>
+
+   <p class="para">
+    L&#039;utilitaire <var class="filename">ext_skel</var> a été entièrement repensé avec
+    de nouvelles options et certaines anciennes options supprimées.
+    Ceci est maintenant écrit en PHP et n&#039;a aucune dépendance externe.
+   </p>
+
+   <p class="para">
+    Le support pour BeOS a été abandonné.
+   </p>
+
+   <p class="para">
+    Les exceptions lancées à cause d&#039;une conversion automatique d&#039;avertissements
+    en exceptions avec le mode <code class="literal">EH_THROW</code> (par exemple certaines
+    exceptions de <a href="class.datetime.html" class="classname">DateTime</a>) ne remplissent plus l&#039;état de
+    <span class="function"><a href="function.error-get-last.html" class="function">error_get_last()</a></span>. En tant que tels, ils fonctionnent
+    désormais de la même manière que les exceptions levées manuellement.
+   </p>
+
+   <p class="para">
+    <a href="class.typeerror.html" class="classname">TypeError</a> rapporte désormais les mauvais types en
+    tant que <code class="literal">int</code> et <code class="literal">bool</code> au lieu de
+    <code class="literal">integer</code> et <code class="literal">boolean</code>, respectivement.
+   </p>
+
+   <p class="para">
+    Les variables indéfinies passées à <span class="function"><a href="function.compact.html" class="function">compact()</a></span> seront
+    désormais rapportées avec une notice.
+   </p>
+
+   <p class="para">
+    <span class="function"><a href="function.getimagesize.html" class="function">getimagesize()</a></span> et les fonctions connexes rapportent
+    désormais le type MIME des images BMP en tant que
+    <code class="literal">image/bmp</code> au lieu de <code class="literal">image/x-ms-bmp</code>,
+    car le premier a été inscrit avec l&#039;IANA (voir
+    <a href="http://www.faqs.org/rfcs/rfc7903" class="link external">&raquo;&nbsp;RFC 7903</a>).
+   </p>
+
+   <p class="para">
+    <span class="function"><a href="function.stream-socket-get-name.html" class="function">stream_socket_get_name()</a></span> retourne désormais les adresses
+    IPv6 avec des crochets. Par exemple <code class="literal">&quot;[::1]:1337&quot;</code> sera
+    retourné au lieu de <code class="literal">&quot;::1:1337&quot;</code>.
+   </p>
+  </div>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.bc">
+  <h3 class="title">BCMath Arbitrary Precision Mathematics</h3>
+
+  <p class="para">
+   Tous les avertissements lancés par les <a href="ref.bc.html" class="link">fonctions BCMath</a>
+   utilisent désormais le gestionnaire d&#039;erreur de PHP. Auparavant certains
+   avertissements étaient écrits directement à stderr.
+  </p>
+
+  <p class="para">
+   <span class="function"><a href="function.bcmul.html" class="function">bcmul()</a></span> et <span class="function"><a href="function.bcpow.html" class="function">bcpow()</a></span> retourne désormais
+   les nombres avec la précision demandée. Auparavant, certain nombres pouvaient
+   omettre les zéros de fin décimaux.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.imap">
+  <h3 class="title">IMAP, POP3 et NNTP</h3>
+
+  <p class="para">
+   Les authentifications <strong class="command">rsh</strong>/<strong class="command">ssh</strong> sont
+   désactivées par défaut. Utilisez <a href="imap.configuration.html#ini.imap.enable-insecure-rsh" class="link">imap.enable_insecure_rsh</a> si
+   vous voulez les activer. Il est à noter que la bibliothèque IMAP ne filtre
+   pas les noms des boîtes aux lettres avant de les passer aux commandes
+   <strong class="command">rsh</strong>/<strong class="command">ssh</strong>, ainsi passer des données non
+   fiable à cette fonction avec <strong class="command">rsh</strong>/<strong class="command">ssh</strong>
+   activé est dangereux.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.mbstring">
+  <h3 class="title">Chaînes de Caractères Multioctets</h3>
+
+  <p class="para">
+   En raison de la prise en charge des captures nommées, les masques
+   <code class="literal">mb_ereg_*()</code> utilisant les captures nommées se comporteront
+   différemment. En particulier les captures nommées feront partie des
+   correspondances et <span class="function"><a href="function.mb-ereg-replace.html" class="function">mb_ereg_replace()</a></span> interprétera la
+   syntaxe additionnelle. Voir <a href="migration73.new-features.html#migration73.new-features.mbstring.named-captures" class="link">Capture
+    Nommées</a> pour plus d&#039;information.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.mysqli">
+  <h3 class="title">Extension MySQL Améliorée (MySQLi)</h3>
+
+  <p class="para">
+   Les déclarations préparées rapportent désormais les fractions de secondes
+   pour les colonnes <code class="literal">DATETIME</code>, <code class="literal">TIME</code> et
+   <code class="literal">TIMESTAMP</code> avec spécificateur décimal (par example
+   <code class="literal">TIMESTAMP(6)</code> lors de l&#039;utilisation de microsecondes).
+   Auparavant les fractions de secondes étaient tout simplement omises
+   des valeurs de retours.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.pdo-mysql">
+  <h3 class="title">Fonctions MySQL (PDO_MYSQL)</h3>
+
+  <p class="para">
+   Les déclarations préparées rapportent désormais les fractions de secondes
+   pour les colonnes <code class="literal">DATETIME</code>, <code class="literal">TIME</code> et
+   <code class="literal">TIMESTAMP</code> avec spécificateur décimal (par example
+   <code class="literal">TIMESTAMP(6)</code> lors de l&#039;utilisation de microsecondes).
+   Auparavant les fractions de secondes étaient tout simplement omises
+   des valeurs de retours. Veuillez noter que ceci affecte uniquement
+   l&#039;utilisation de <a href="ref.pdo-mysql.html" class="link">PDO_MYSQL</a> avec les
+   déclarations préparées émulées désactivées (par exemple en utilisant la
+   fonctionalité native de préparation). Les déclarations utilisant des
+   connexions qui ont <strong><code>PDO::ATTR_EMULATE_PREPARES</code></strong>=<strong><code>TRUE</code></strong>
+   (ce qui est par défaut) ne sont pas affectées par la correction de bogue
+   et récupéraient déjà les valeurs des fractions de secondes depuis le moteur.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.reflection">
+  <h3 class="title">Reflection</h3>
+
+  <p class="para">
+   Les exportations de <a href="book.reflection.html" class="link">Reflection</a> en
+   <a href="language.types.string.html" class="link">chaîne de caractères</a> utilisent désormais
+   <code class="literal">int</code> et <code class="literal">bool</code> au lieu de
+   <code class="literal">integer</code> et <code class="literal">boolean</code>, respectivement.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.spl">
+  <h3 class="title">Bibliothéque Standard de PHP (SPL)</h3>
+
+  <p class="para">
+   Si un auto-chargeur <a href="book.spl.html" class="link">SPL</a> lance une exception,
+   les auto-chargeurs suivant ne seront pas exécutés. Précédemment tous les
+   auto-chargeurs étaient exécutés et les exceptions étaient chainées.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.simplexml">
+  <h3 class="title">SimpleXML</h3>
+
+  <p class="para">
+   Les opérations mathématiques impliquant les objets <a href="book.simplexml.html" class="link">SimpleXML</a> traiteront désormais le texte
+   comme un <a href="language.types.integer.html" class="link">entier</a> ou un <a href="language.types.float.html" class="link">nombre décimal</a>, selon ce qui est plus approprié.
+   Auparavant les valeurs étaient traitées comme un <a href="language.types.integer.html" class="link">entier</a> sans condition.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration73.incompatible.cookie-decode">
+  <h3 class="title">Cookies entrants</h3>
+
+  <p class="para">
+   Depuis PHP 7.3.23, le <em class="emphasis">nom</em> des cookies entrants
+   ne sont plus url-décodés pour les raisons de sécurité.
+  </p>
+ </div>
+
+</div></div></div></body></html>

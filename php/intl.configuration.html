@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Configuration &agrave; l'ex&eacute;cution</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="intl.installation.html">« Installation</a></li>
+      <li style="float: right;"><a href="intl.resources.html">Types de ressources »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="intl.setup.html">Installation/Configuration</a></li>
+    <li>Configuration &agrave; l'ex&eacute;cution</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="intl.configuration" class="section">
+ <h2 class="title">Configuration à l&#039;exécution</h2>
+ <p class="simpara">Le comportement de ces fonctions est
+affecté par la configuration dans le fichier <var class="filename">php.ini</var>.</p>
+ <p class="para">
+  <table class="doctable table">
+   <caption><strong>Options de configuration d&#039;internationalisation</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Nom</th>
+      <th>Défaut</th>
+      <th>Modifiable</th>
+      <th>Historique</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td><a href="intl.configuration.html#ini.intl.default-locale" class="link">intl.default_locale</a></td>
+      <td class="empty">&nbsp;</td>
+      <td>PHP_INI_ALL</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+     <tr>
+      <td><a href="intl.configuration.html#ini.intl.error-level" class="link">intl.error_level</a></td>
+      <td>0</td>
+      <td>PHP_INI_ALL</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+     <tr>
+      <td><a href="intl.configuration.html#ini.intl.use-exceptions" class="link">intl.use_exceptions</a></td>
+      <td>0</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponible depuis PHP 5.5 et PECL 3.0.0a1</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </p>
+ 
+ <p class="para">Voici un éclaircissement sur
+l&#039;utilisation des directives de configuration.</p>
+  
+  <p class="para">
+   <dl>
+
+    
+     <dt id="ini.intl.default-locale">
+      <code class="parameter">intl.default_locale</code>
+      <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      La locale à utiliser avec les fonctions intl lorsqu&#039;aucune n&#039;est
+      spécifiée (soit si elle est omis dans l&#039;argument correspondant,
+      soit si la valeur passée vaut <code class="literal">NULL</code>).
+      Ceux sont des locales ICU, et non des locales système. Les locales
+      ICU internes ainsi que leurs données peuvent être explorées ici
+      <a href="http://demo.icu-project.org/icu-bin/locexp" class="link external">&raquo;&nbsp;http://demo.icu-project.org/icu-bin/locexp</a>.
+     </p>
+     <p class="para">
+      Par défaut, vaut vide, ce qui force l&#039;utilisation de la locale ICU par
+      défaut. Une fois définie, la configuration ini ne peut être réinitialisée
+      par cette valeur par défaut. Il n&#039;est pas recommandé d&#039;utiliser cette
+      valeur par défaut, sachant qu&#039;elle dépend de l&#039;environnement du serveur.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.intl.error-level">
+     <code class="parameter">intl.error_level</code>
+     <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Le niveau des messages d&#039;erreur générés lorsqu&#039;une erreur survient
+      dans les fonctions ICU. C&#039;est un niveau d&#039;erreur PHP, comme
+      <strong><code>E_WARNING</code></strong>. Il peut valoir <code class="literal">0</code>
+      pour inhiber les messages. Ceci n&#039;affecte pas les valeurs retournées
+      indiquant une erreur ou les valeurs retournées par la fonction
+      <span class="function"><a href="function.intl-get-error-code.html" class="function">intl_get_error_code()</a></span> ou par les méthodes de classe
+      spécifiques permettant de récupérer les codes et les messages d&#039;erreur.
+      Le fait de choisir <code class="literal">E_ERROR</code> va stopper le script
+      dès qu&#039;une erreur de condition sera trouvée dans les classes intl.
+     </p>
+     <p class="para">
+      La valeur par défaut est <code class="literal">0</code>.
+     </p>
+    </dd>
+
+   
+   
+    <dt id="ini.intl.use-exceptions">
+     <code class="parameter">intl.use_exceptions</code>
+     <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Si vaut <strong><code>TRUE</code></strong>, une exception sera émise lorsqu&#039;une erreur surviendra
+      dans une fonction intl. L&#039;exception sera de type
+      <a href="class.intlexception.html" class="classname">IntlException</a>. L&#039;exception sera émise en plus
+      du message d&#039;erreur générée en raison de la définition de l&#039;option
+      de configuration <a href="intl.configuration.html#ini.intl.error-level" class="link">intl.error_level</a>.
+     </p>
+     <p class="para">Par défaut, vaut <strong><code>FALSE</code></strong>.</p>
+    </dd>
+
+   
+   
+  </dl>
+
+  </p>
+</div></div></div></body></html>

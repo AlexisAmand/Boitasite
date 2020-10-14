@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>La classe MongoDBRef</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongoint64.tostring.html">« MongoInt64::__toString</a></li>
+      <li style="float: right;"><a href="mongodbref.create.html">MongoDBRef::create »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mongo.types.html">Les types</a></li>
+    <li>La classe MongoDBRef</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="class.mongodbref" class="reference">
+ 
+ <h1 class="title">La classe <a href="class.mongodbref.html" class="classname">MongoDBRef</a></h1>
+ 
+ 
+ <div class="partintro"><p class="verinfo">(PECL mongo &gt;=0.9.0)</p>
+
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">Cette extension, qui définie cette classe est obsolète.
+Veuillez utiliser l&#039;extension <a href="set.mongodb.html" class="link">MongoDB</a> à la place.
+Il n&#039;y a pas d&#039;équivalent à cette classe dans la nouvelle extension.</p>
+   <p class="para">
+    Le concept des références de base de données, et par conséquence cette classe,
+    est obsolète dans la base de données.
+   </p>
+  </div>
+  
+  
+  <div class="section" id="mongodbref.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    Cette classe sert à créer des liens légers entre des
+    objets de différentes colllections.
+   </p>
+   <p class="para">
+    <em class="emphasis">Motivation</em> : Supposez que vous voulez lier un document
+    dans une autre collection. La façon la plus facile est de créer un champ
+    dans le document courant. Par exemple, si vous avez une collection &quot;people&quot;
+    et une collection &quot;addresses&quot;, vous devriez vouloir créer un lien entre
+    chaque document d&#039;une personne et chaque document d&#039;adresses :
+    <div class="example" id="example-1625">
+     <p><strong>Exemple #1 Liage des documents</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$people&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">people</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$addresses&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addresses</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$myAddress&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"line&nbsp;1"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"123&nbsp;Main&nbsp;Street"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"line&nbsp;2"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"city"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"Springfield"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"state"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"Vermont"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"country"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"USA"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Sauvegarde&nbsp;de&nbsp;l'adresse<br /></span><span style="color: #0000BB">$addresses</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #0000BB">$myAddress</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Sauvegarde&nbsp;une&nbsp;personne&nbsp;avec&nbsp;une&nbsp;référence&nbsp;vers&nbsp;l'adresse<br /></span><span style="color: #0000BB">$me&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"Fred"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"address"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$myAddress</span><span style="color: #007700">[</span><span style="color: #DD0000">'_id'</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">$people</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #0000BB">$me</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    Par la suite, vous pouver retrouver l&#039;adresse d&#039;une personne en interrogeant
+    la collection &quot;addresses&quot; avec un <a href="class.mongoid.html" class="classname">MongoId</a> sauvegardé
+    dans la collection &quot;people&quot;.
+   </p>
+   <p class="para">
+    Supposez maintenant que vous avez un cas plus général, où vous ne savez
+    pas quelle collection (ou bien quelle base de données) contient le document
+    référencé. La classe <strong class="classname">MongoDBRef</strong> est un bon choix dans ce
+    cas, vu qu&#039;elle a un format commun que tous les drivers et bases de données
+    comprennent.
+   </p>
+   <p class="para">
+    Si chaque personne a une liste de choses qu&#039;elles aiment, pouvant venir
+    de plusieurs collections, comme des &quot;hobbies&quot;, &quot;sports&quot;, &quot;books&quot;, etc.,
+    vous pouvez utiliser la classe <strong class="classname">MongoDBRef</strong> pour garder
+    une trace des collections fournissant ces choses :
+    <div class="example" id="example-1626">
+     <p><strong>Exemple #2 Création de lien MongoDBRef</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$people&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">selectCollection</span><span style="color: #007700">(</span><span style="color: #DD0000">"people"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Les&nbsp;modèles&nbsp;de&nbsp;train&nbsp;sont&nbsp;dans&nbsp;la&nbsp;collection&nbsp;"hobbies"<br /></span><span style="color: #0000BB">$trainRef&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">MongoDBRef</span><span style="color: #007700">::</span><span style="color: #0000BB">create</span><span style="color: #007700">(</span><span style="color: #DD0000">"hobbies"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$modelTrains</span><span style="color: #007700">[</span><span style="color: #DD0000">'_id'</span><span style="color: #007700">]);<br /></span><span style="color: #FF8000">//&nbsp;Le&nbsp;foot&nbsp;dans&nbsp;la&nbsp;collection&nbsp;"sports"<br /></span><span style="color: #0000BB">$soccerRef&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">MongoDBRef</span><span style="color: #007700">::</span><span style="color: #0000BB">create</span><span style="color: #007700">(</span><span style="color: #DD0000">"sports"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$soccer</span><span style="color: #007700">[</span><span style="color: #DD0000">'_id'</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">//&nbsp;Maintenant,&nbsp;vous&nbsp;connaissez&nbsp;la&nbsp;collection&nbsp;dont&nbsp;les&nbsp;éléments&nbsp;du&nbsp;tableau&nbsp;"likes"<br />//&nbsp;proviennent,&nbsp;au&nbsp;moment&nbsp;où&nbsp;vous&nbsp;souhaitez&nbsp;récupérer&nbsp;les&nbsp;documents&nbsp;associés<br /></span><span style="color: #0000BB">$people</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"Fred"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"likes"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #0000BB">$trainRef</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$soccerRef</span><span style="color: #007700">)));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    On peut représenter les références des bases de données comme des liens: elles donnent
+    l&#039;adresse unique d&#039;un document, mais elles ne le chargent pas et ne suivent pas les
+    lien/référence automatiquement.
+   </p>
+   <p class="para">
+    Une référence de base de données est juste un tableau associatif, pas une instance de
+    <strong class="classname">MongoDBRef</strong>, cette classe est donc un peu différente des autres
+    classes de tyes de données, elle ne contient que des méthodes statiques pour
+    manipuler les références de bases de données.
+   </p>
+  </div>
+  
+  
+  <div class="section" id="mongodbref.synopsis">
+   <h2 class="title">Synopsis de la classe</h2>
+   
+   
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+    
+    
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">MongoDBRef</strong>
+     </span>
+     {</div>
+    
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Méthodes */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="modifier">static</span> <span class="methodname"><a href="mongodbref.create.html" class="methodname">create</a></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$collection</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$id</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$database</code></span>
+  ] ) : <span class="type">array</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="modifier">static</span> <span class="methodname"><a href="mongodbref.get.html" class="methodname">get</a></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mongodb.html" class="type MongoDB">MongoDB</a></span> <code class="parameter">$db</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$ref</code></span>
+   ) : <span class="type">array</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="modifier">static</span> <span class="methodname"><a href="mongodbref.isref.html" class="methodname">isRef</a></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$ref</code></span>
+   ) : <span class="type">bool</span></div>
+
+   }</div>
+   
+   
+  </div>
+  
+  <div class="section">
+   <h2 class="title">Voir aussi</h2>
+    <p class="para">
+     Documentation de MongoDB <a href="https://docs.mongodb.com/manual/reference/database-references/" class="link external">&raquo;&nbsp;concernant les
+     références de bases de données</a>.
+    </p>
+  </div>
+ </div>
+ 
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+<h2>Sommaire</h2><ul class="chunklist chunklist_reference"><li><a href="mongodbref.create.html">MongoDBRef::create</a> — Cr&eacute;e un nouvelle r&eacute;f&eacute;rence de base de donn&eacute;es</li><li><a href="mongodbref.get.html">MongoDBRef::get</a> — Lit l'objet identifi&eacute; par la r&eacute;f&eacute;rence</li><li><a href="mongodbref.isref.html">MongoDBRef::isRef</a> — V&eacute;rifie si un tableau est une r&eacute;f&eacute;rence de base de donn&eacute;es</li></ul>
+</div>
+</div></div></body></html>

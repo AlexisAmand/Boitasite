@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Modifie une ou plusieurs options de connexion YAZ</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.yaz-search.html">« yaz_search</a></li>
+      <li style="float: right;"><a href="function.yaz-sort.html">yaz_sort »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.yaz.html">YAZ Fonctions</a></li>
+    <li>Modifie une ou plusieurs options de connexion YAZ</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.yaz-set-option" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">yaz_set_option</h1>
+  <p class="verinfo">(PECL yaz &gt;= 0.9.0)</p><p class="refpurpose"><span class="refname">yaz_set_option</span> &mdash; <span class="dc-title">Modifie une ou plusieurs options de connexion YAZ</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.yaz-set-option-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>yaz_set_option</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$id</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$value</code></span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>yaz_set_option</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$id</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code></span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">
+   Modifie une ou plusieurs options sur la connexion donnée.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.yaz-set-option-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">id</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La ressource de connexion retournée par
+       <span class="function"><a href="function.yaz-connect.html" class="function">yaz_connect()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">name</code> ou <code class="parameter">options</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Peut être soit une chaîne de caractères ou un tableau.
+      </p>
+      <p class="para">
+       Si donné comme chaîne de caractères, cela sera le nom de l&#039;option
+       à spécifier. Vous devrez donner sa valeur <code class="parameter">value</code>.
+      </p>
+      <p class="para">
+       Si donné comme tableau, cela sera un tableau associatif (nom de
+       l&#039;option =&gt; valeur de l&#039;option).
+      </p>
+      <table class="doctable table">
+       <caption><strong>Options de connexion PHP/YAZ</strong></caption>
+       
+        <col width="2*" />
+        <col width="5*" />
+        <thead>
+         <tr>
+          <th>Nom</th>
+          <th>Description</th>
+         </tr>
+
+        </thead>
+
+        <tbody class="tbody">
+         <tr>
+          <td>implementationName</td>
+          <td>Nom de l&#039;implémentation du serveur</td>
+         </tr>
+
+         <tr>
+          <td>implementationVersion</td>
+          <td>Version de l&#039;implémentation du serveur</td>
+         </tr>
+
+         <tr>
+          <td>implementationId</td>
+          <td>ID de l&#039;implémentation du serveur</td>
+         </tr>
+
+         <tr>
+          <td>schema</td>
+          <td>
+           Schéma de lecture. Par défaut, aucun schéma n&#039;est
+           utilisé. Modifier cette option équivaut à
+           utiliser la fonction <span class="function"><a href="function.yaz-schema.html" class="function">yaz_schema()</a></span>
+          </td>
+         </tr>
+
+         <tr>
+          <td>preferredRecordSyntax</td>
+          <td>
+           Syntaxe des enregistrements en lecture. Par défaut, il
+           n&#039;y a pas de syntaxe. Modifier cette option équivaut à
+           utiliser la fonction <span class="function"><a href="function.yaz-syntax.html" class="function">yaz_syntax()</a></span>
+          </td>
+         </tr>
+
+         <tr>
+          <td>start</td>
+          <td>
+           Décalage du premier enregistrement à lire,
+           via la fonction <span class="function"><a href="function.yaz-search.html" class="function">yaz_search()</a></span> ou
+           <span class="function"><a href="function.yaz-present.html" class="function">yaz_present()</a></span>. Les enregistrements
+           sont numérotés à partir de 0. Modifier cette option,
+           en combinaison avec l&#039;option <code class="literal">count</code>,
+           équivaut à utiliser la fonction
+           <span class="function"><a href="function.yaz-range.html" class="function">yaz_range()</a></span>, hormis le fait que les
+           enregistrements sont numérotés à partir de
+           1 avec <span class="function"><a href="function.yaz-range.html" class="function">yaz_range()</a></span>
+          </td>
+         </tr>
+
+         <tr>
+          <td>count</td>
+          <td>Nombre maximal d&#039;enregistrements à lire via
+           <span class="function"><a href="function.yaz-search.html" class="function">yaz_search()</a></span> et <span class="function"><a href="function.yaz-present.html" class="function">yaz_present()</a></span>.
+          </td>
+         </tr>
+
+         <tr>
+          <td>elementSetName</td>
+          <td>element-set-name en lecture. Modifier cette option équivaut à
+           utiliser la fonction <span class="function"><a href="function.yaz-element.html" class="function">yaz_element()</a></span>.
+          </td>
+         </tr>
+
+        </tbody>
+       
+      </table>
+
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">value</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La nouvelle valeur de l&#039;option. Utilisez cet argument seulement si
+       l&#039;argument précédent est une chaîne de caractères.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.yaz-set-option-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Aucune valeur n&#039;est retournée.
+  </p>
+ </div>
+
+</div></div></div></body></html>

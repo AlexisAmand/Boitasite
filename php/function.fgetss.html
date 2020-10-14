@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Renvoie la ligne courante du fichier et &eacute;limine les balises HTML</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.fgets.html">« fgets</a></li>
+      <li style="float: right;"><a href="function.file-exists.html">file_exists »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes de fichiers</a></li>
+    <li>Renvoie la ligne courante du fichier et &eacute;limine les balises HTML</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.fgetss" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">fgetss</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">fgetss</span> &mdash; <span class="dc-title">Renvoie la ligne courante du fichier et élimine les balises HTML</span></p>
+
+ </div>
+ 
+ <div id="function.fgetss-refsynopsisdiv">
+   <div class="warning"><strong class="warning">Avertissement</strong><p class="simpara">
+ Cette fonction est <em class="emphasis">OBSOLÈTE</em> à partir de PHP 7.3.0.
+ Dépendre de cette fonction est fortement déconseillé.
+</p></div>
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.fgetss-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>fgetss</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$handle</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$length</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$allowable_tags</code></span>
+  ]] ) : <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   Identique à <span class="function"><a href="function.fgets.html" class="function">fgets()</a></span>, sauf que
+   la fonction <span class="function"><strong>fgetss()</strong></span> supprime tous les octets nuls,
+   toutes les balises HTML et PHP qu&#039;il trouve dans le texte lu.
+   La fonction conserve l&#039;état de l&#039;analyse d&#039;appel en appel, et ainsi n&#039;est
+   pas équivalent à l&#039;appel de <span class="function"><a href="function.strip-tags.html" class="function">strip_tags()</a></span> sur la valeur de
+   retour de <span class="function"><a href="function.fgets.html" class="function">fgets()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.fgetss-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">handle</code></dt>
+
+     <dd>
+
+      <p class="para">Le pointeur de fichier doit être valide et pointer
+sur un fichier ouvert avec succès par <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span> ou
+<span class="function"><a href="function.fsockopen.html" class="function">fsockopen()</a></span> (et pas encore fermé par <span class="function"><a href="function.fclose.html" class="function">fclose()</a></span>).</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">length</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Taille des données à récupérer.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">allowable_tags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Vous pouvez utiliser ce paramètre optionnel pour spécifier
+       les balises qui ne doivent pas être supprimées.
+       Voir <span class="function"><a href="function.strip-tags.html" class="function">strip_tags()</a></span> pour plus de détails concernant
+       <code class="parameter">allowable_tags</code>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.fgetss-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne une chaîne de taille <code class="parameter">length</code> - 1 octet
+   lu depuis le fichier pointé par <code class="parameter">handle</code>,
+   dont les balises HTML et PHP ont été échappées.
+  </p>
+  <p class="para">
+   Si une erreur survient, la fonction retourne <strong><code>FALSE</code></strong>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.fgetss-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2794">
+    <p><strong>Exemple #1 Lecture d&#039;un fichier PHP ligne par ligne</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;&lt;&lt;&lt;EOD<br /></span><span style="color: #DD0000">&lt;html&gt;&lt;body&gt;<br />&nbsp;&lt;p&gt;Welcome!&nbsp;Today&nbsp;is&nbsp;the&nbsp;&lt;?php&nbsp;echo(date('jS'));&nbsp;?&gt;&nbsp;of&nbsp;&lt;?=&nbsp;date('F');&nbsp;?&gt;.&lt;/p&gt;<br />&lt;/body&gt;&lt;/html&gt;<br />Text&nbsp;outside&nbsp;of&nbsp;the&nbsp;HTML&nbsp;block.<br /></span><span style="color: #007700">EOD;<br /></span><span style="color: #0000BB">file_put_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">'sample.php'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$handle&nbsp;</span><span style="color: #007700">=&nbsp;@</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"sample.php"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"r"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(!</span><span style="color: #0000BB">feof</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$buffer&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fgetss</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4096</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$buffer</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+ Welcome! Today is the  of .
+
+Text outside of the HTML block.
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.fgetss-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">
+ Si PHP ne reconnaît pas correctement les fins de lignes lors de la lecture de fichiers qui ont été créés ou lus sur
+ un Macintosh, l&#039;activation de l&#039;option de configuration
+ <a href="filesystem.configuration.html#ini.auto-detect-line-endings" class="link">auto_detect_line_endings</a> peut régler le problème.
+</span></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.fgetss-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.fgets.html" class="function" rel="rdfs-seeAlso">fgets()</a> - R&eacute;cup&egrave;re la ligne courante &agrave; partir de l'emplacement du pointeur sur fichier</span></li>
+    <li class="member"><span class="function"><a href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a> - Ouvre un fichier ou une URL</span></li>
+    <li class="member"><span class="function"><a href="function.popen.html" class="function" rel="rdfs-seeAlso">popen()</a> - Cr&eacute;e un processus de pointeur de fichier</span></li>
+    <li class="member"><span class="function"><a href="function.fsockopen.html" class="function" rel="rdfs-seeAlso">fsockopen()</a> - Ouvre un socket de connexion Internet ou Unix</span></li>
+    <li class="member"><span class="function"><a href="function.strip-tags.html" class="function" rel="rdfs-seeAlso">strip_tags()</a> - Supprime les balises HTML et PHP d'une cha&icirc;ne</span></li>
+    <li class="member"><span class="methodname"><a href="splfileobject.fgetss.html" class="methodname" rel="rdfs-seeAlso">SplFileObject::fgetss()</a> - R&eacute;cup&egrave;re une ligne d'un fichier et supprime les balises HTML</span></li>
+    <li class="member">Le filtre <a href="filters.string.html#filters.string.strip_tags" class="link">string.strip_tags</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

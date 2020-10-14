@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Identifiants de transaction</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-ms.qos-consistency.html">« Niveaux de service et consistence</a></li>
+      <li style="float: right;"><a href="mysqlnd-ms.concept_cache.html">Int&eacute;gration du cache »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-ms.concepts.html">Concepts</a></li>
+    <li>Identifiants de transaction</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-ms.gtid" class="section">
+  <h2 class="title">Identifiants de transaction</h2>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Version requise</strong><br />
+   <p class="para">
+    L&#039;injection d&#039;identifiant de transaction coté client existe depuis mysqlnd_ms version 1.2.0-alpha.
+    Les identifiants de transaction sont détectés en scrutant les appels API. C&#039;est possible depuis
+    PHP 5.4.0. Voyez aussi <a href="mysqlnd-ms.transaction.html" class="link">la gestion des transactions</a>.
+   </p>
+   <p class="para">
+    Depuis MySQL 5.6.5-m8, le serveur MySQL fournit des identifiants de transaction globaux.
+    Cette nouvelle fonctionnalité est supportée par <code class="literal">PECL/mysqlnd_ms</code>
+    1.3.0-alpha et suivant. Aucune configuration n&#039;est requise si vous choisissez 
+    d&#039;utiliser la fonctionnalité interne du serveur.
+   </p>
+   <p class="para">
+    Veuillez noter que toutes les versions de production de MySQL 5.6 ne fournissent
+    pas de clients avec suffisamment d&#039;informations pour utiliser les GTIDs pour
+    renforcer la consistence de sessions. Dans ce cas, le plugin choisira seulement
+    le maître.
+   </p>
+  </p></blockquote>
+  <p class="para">
+   <em class="emphasis">Idées et émulation côté client</em>
+  </p>
+  <p class="para">
+   <code class="literal">PECL/mysqlnd_ms</code> peut effectuer de l&#039;injection d&#039;identifiant de transaction coté client, de manière transparente.
+   Dans sa forme la plus basique, un identifiant de transaction est un compteur incrémenté à chaque transaction
+   exécutée sur le maitre. Le compteur est sauvé dans une table sur le maitre. Les esclaves répliquent cette table.
+  </p>
+  <p class="para">
+   Dans le cas d&#039;un problème sur le maitre, un administrateur peut identifier facilement l&#039;esclave le plus récent
+   pour le passer en maitre. L&#039;esclave le plus récent possède l&#039;identifiant de transaction le plus élevé.
+  </p>
+  <p class="para">
+   Les développeurs coté application peuvent demander au plugin l&#039;identifiant de transaction
+   (GTID) pour leur dernière opération d&#039;écriture. Il peut alors être passé comme paramètre
+   au filtre QoS dans le cadre de la consistence de session (&quot;lit tes écritures&quot;). Le filtre
+   s&#039;assure que toutes les lectures sont dirigées vers un hôte (maitre ou esclave) ayant répliqué
+   la transaction référencée par le GTID.
+  </p>
+  <p class="para">
+   <em class="emphasis">Lorsque l&#039;injection a été effectuée</em>
+  </p>
+  <p class="para">
+   Le plugin maintient la table GTID sur le maitre, de manière transparente. En mode autocommit, le
+   plugin injecte un <code class="literal">UPDATE</code> avant d&#039;exécuter les requêtes de l&#039;utilisateur,
+   pour chaque utilisation du maitre. EN mode transactionnel manuel, l&#039;injection est effectuée avant
+   l&#039;appel à <code class="literal">commit()</code>. L&#039;option de configuration <code class="literal">report_error</code>
+   de la section GTID permet de contrôler si une transaction échouée doit annuler l&#039;opération ou
+   être ignorée silencieusement (cas par défaut).
+  </p>
+  <p class="para">
+   Veuillez noter les versions de PHP requises pour
+   <a href="mysqlnd-ms.transaction.html" class="link">la surveillance des transactions</a> ainsi que leurs
+   limites.
+  </p>
+  <p class="para">
+   <em class="emphasis">Limites</em>
+  </p>
+  <p class="para">
+   Les problèmes éventuels de l&#039;injection d&#039;identifiant de transaction ont des limites qui
+   ne sont pas propres à <code class="literal">PECL/mysqlnd_ms</code>.
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      Les tables d&#039;identifiants de transaction globale doivent être déployées
+      sur tous les maîtres et les réplications.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Le GTID peut avoir des trous, seuls les clients PHP utilisant le plugin vont maintenir la table,
+      pas les autres clients.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      La détection des transactions n&#039;est basée que sur les appels à l&#039;API.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      La détection des transactions coté client ne prend pas en compte les commits
+      implicites. Certaines requêtes de MySQL causent un commit implicite.
+     </span>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   <em class="emphasis">Utilisation côté serveur de l&#039;identifiant de transaction globale</em>
+  </p>
+  <p class="para">
+   Depuis <code class="literal">PECL/mysqlnd_ms</code> 1.3.0-alpha, les identifiants de transaction globale
+   apportés par MySQL 5.6.5-m8 ou supérieure sont supportés. L&#039;utilisation
+   de cette fonctionnalité serveur supprime toutes les limitations vues
+   précédemment. Reportez-vous au manuel de référence MySQL pour les limitations
+   ainsi que les préconditions concernant l&#039;utilisation des identifiants de transaction
+   globale internes.
+  </p>
+  <p class="para">
+   Choisir entre l&#039;utilisation de l&#039;émulation côté client ou la fonctionnalité interne
+   du serveur est une question qui n&#039;est pas en relation directe avec le plugin, aussi,
+   la discussion restera superficielle. Il n&#039;est pas actuellement prévu de supprimer
+   l&#039;émulation côté client et vous pouvez continuer de l&#039;utiliser, si la solution
+   interne du serveur n&#039;est pas une option pour vous. Ce peut être le cas en
+   environnement hétérogène comprenant de vieux serveurs MySQL ou, si une des limitations
+   des solutions côté serveur n&#039;est pas acceptable.
+  </p>
+  <p class="para">
+   D&#039;un point de vue applicatif, il y a une énorme différent dans l&#039;utilisation de
+   l&#039;une ou l&#039;autre des approches. Les propriétés suivantes diffèrent :
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      L&#039;émulation côté client, comme vu dans le manuel, fournie une solution simple
+      pour comparer un numéro de séquence pour les transactions globales. Les multi-maîtres
+      ne sont pas traités pour conserver les exemples du manuel simples.
+     </span>
+     <span class="simpara">
+      La fonctionnalité côté serveur utilise une combinaison d&#039;un identifiant de serveur
+      et d&#039;un numéro de séquence comme identifiant de transaction globale. La
+      comparaison ne peut utiliser l&#039;algèbre. A la place de cela, une fonction
+      SQL doit être utilisé. Reportez-vous au manuel de référence MySQL pour plus
+      de détails.
+     </span>
+     <span class="simpara">
+      Les fonctionnalités internes côté serveur de MySQL 5.6 ne peuvent être utilisées pour
+      assurer la consistence de sessions dans toutes les circonstances. Ne les utilisez donc pas
+      dans le cas de la qualité de service. Voici un exemple simple montrant des résultats
+      non fiables. Il y a plusieurs cas non pris en charge en raison des fonctionnalités limitées
+      proposées par le serveur. Actuellement, les clients peuvent demander au service maître de
+      réplication MySQL la liste de toutes les IDs de transactions globaux exécutées.
+      Si un esclave est configuré pour ne pas répliquer toutes les transactions, par exemple,
+      en raison de la définition de certains filtres, alors l&#039;esclave ne montrera jamais le même
+      jeu d&#039;IDs de transactions globaux exécutées. Malgré le fait que l&#039;esclave peut avoir
+      répliqué les écritures des clients, et qu&#039;il peut être candidat pour une lecture consistente,
+      il ne sera jamais retenu par le plugin. Pendant l&#039;écriture, le plugin apprend du maître
+      que l&#039;historique des transactions terminées des serveurs est GTID=1..3.
+      Il n&#039;y a aucun moyen pour le plugin de demander le GTID de la transaction d&#039;écriture,
+      soit GTID=3. Imaginez qu&#039;un esclave ne réplique pas les transactions GTID=1..2 mais seulement
+      GTID=3 en raison d&#039;une fonctionnalité de la réplication. Alors, l&#039;historique de transaction
+      de l&#039;esclave sera GTID=3. Cependant, le plugin tente de trouver un noeud qui a un historique
+      de transactions de GITD=1...3. Malgré le fait que l&#039;esclave a répliqué les écritures des clients
+      et que la consistence de session a été réalisée pendant la lecture depuis l&#039;esclave,
+      il ne sera pas considéré par le plugin. Ceci n&#039;est pas la faute de l&#039;implémentation du plugin,
+      mais d&#039;une fonctionnalité côté serveur. Notez que cet exemple est trivial, et ne permet
+      que d&#039;illustrer le propos, mais il y a d&#039;autres cas. En résumé, vous ne devriez pas utiliser
+      les GTIDs internes à MySQL 5.6 pour renforcer la consistence de session. Tôt ou tard, la balance
+      de charge arrêtera de fonctionner normalement, et le plugin va diriger toutes les requêtes
+      de consistence de sessions vers le maître.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Les statistiques du plugin concernant l&#039;identifiant de transaction globale
+      ne sont disponibles qu&#039;avec l&#039;émulation côté client car elles surveillent
+      l&#039;émulation.
+     </span>
+    </li>
+   </ul>
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Les identifiants de transaction globale dans les systèmes distribués</strong><br />
+   <p class="para">
+    Les identifiants de transaction globale peuvent servir de différentes façon dans
+    un contexte de systèmes distribués, comme un cluster de base de données. Les
+    identifiants de transaction globale peuvent être utilisés, par exemple, comme
+    identification système des transactions, comme tri global des transaction,
+    comme mécanisme permettant de savoir si le serveur est toujours disponible,
+    et pour vérifier le statut de réplication pour les serveurs de réplication.
+    <code class="literal">PECL/mysqlnd_ms</code>, un driver côté client basé sur un sofware, ne focalise sur l&#039;utilisation
+    des GTIDs pour les tâches qui peuvent être gérées par le client, comme la vérification
+    du statut de réplication des serveurs de réplication pour les configurations
+    asynchrones de réplication.
+   </p>
+  </p></blockquote>
+ </div></div></div></body></html>

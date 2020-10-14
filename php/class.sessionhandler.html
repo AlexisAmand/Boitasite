@@ -1,0 +1,280 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>La classe SessionHandler</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.session-write-close.html">« session_write_close</a></li>
+      <li style="float: right;"><a href="sessionhandler.close.html">SessionHandler::close »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.session.html">Sessions</a></li>
+    <li>La classe SessionHandler</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="class.sessionhandler" class="reference">
+
+ <h1 class="title">La classe SessionHandler</h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(PHP 5 &gt;= 5.4.0, PHP 7)</p>
+
+
+  <div class="section" id="sessionhandler.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    La classe <strong class="classname">SessionHandler</strong> est une classe spéciale
+    qui peut être utilisée pour exposer le gestionnaire de sauvegarde
+    de session courant en interne de PHP, par héritage. Il y a sept méthodes
+    qui représentent les septs fonctions de rappel du gestionnaire de sauvegarde
+    de session interne (<code class="parameter">open</code>, <code class="parameter">close</code>,
+    <code class="parameter">read</code>, <code class="parameter">write</code>,
+    <code class="parameter">destroy</code>, <code class="parameter">gc</code> et
+    <code class="parameter">create_sid</code>). Par défaut, cette classe va représenter ce qui
+    est défini dans le gestionnaire de sauvegarde interne, tel que défini par la directive
+    de configuration <a href="session.configuration.html#ini.session.save-handler" class="link">session.save_handler</a>,
+    qui vaut habituellement <code class="parameter">files</code> par défaut. D&#039;autres
+    gestionnaires de sauvegarde de session interne sont fournis par des
+    extensions PHP, comme SQLite (avec le paramètre <code class="parameter">sqlite</code>),
+    Memcache (avec le paramètre <code class="parameter">memcache</code>), et Memcached (avec
+    le paramètre <code class="parameter">memcached</code>).
+   </p>
+   <p class="para">
+    Lorsqu&#039;une instance complète de <strong class="classname">SessionHandler</strong> est définie comme
+    gestionnaire de sauvegarde en utilisant <span class="function"><a href="function.session-set-save-handler.html" class="function">session_set_save_handler()</a></span>, elle
+    remplacera le gestionnaire de sauvegarde courant. Une classe étendue depuis la classe
+    <strong class="classname">SessionHandler</strong> vous permet d&#039;écraser les méthodes, de les intercepter,
+    ou de les filtrer en appelant la méthode de la classe parent qui remplace en dernier lieu
+    le gestionnaire de session interne de PHP.
+   </p>
+   <p class="para">
+    Ceci vous permet, par exemple, d&#039;interception les méthodes <code class="parameter">read</code> et
+    <code class="parameter">write</code> pour crypter/décrypter les données de session, et de passer
+    le résultat à la classe parente. Alternativement, vous pouvez aussi choisir d&#039;écraser
+    totalement une méthode comme la fonction de rappel de collection des gabarits
+    <code class="parameter">gc</code>.
+   </p>
+   <p class="para">
+    En raison du fait que la classe <strong class="classname">SessionHandler</strong> se comporte comme les
+    méthodes du gestionnaire courant de sauvegarde de sessions interne, l&#039;exemple ci-dessus de cryptage
+    peut être appliqué à n&#039;importe quel gestionnaire de sauvegarde sans avoir besoin de connaître
+    les gestionnaires internes.
+   </p>
+   <p class="para">
+    Pour utiliser cette classe, vous devez commencer par définir un gestionnaire de sauvegarde
+    que vous souhaitez exposer en utilisant <a href="session.configuration.html#ini.session.save-handler" class="link">session.save_handler</a>
+    puis, passer une instance de la classe <strong class="classname">SessionHandler</strong> ou une étendue à la
+    fonction <span class="function"><a href="function.session-set-save-handler.html" class="function">session_set_save_handler()</a></span>.
+   </p>
+   <p class="para">
+    Veuillez noter que les méthodes de rappel de cette classe sont destinées à être appelées
+    en interne par PHP, et ne sont pas prévues pour être appelées depuis le code de l&#039;espace
+    utilisateur. Les valeurs retournées seront utilisées de la même façon en interne par PHP.
+    Pour plus d&#039;informations sur le mécanisme des sessions, référez-vous à la documentation
+    sur la fonction <span class="function"><a href="function.session-set-save-handler.html" class="function">session_set_save_handler()</a></span>.
+   </p>
+  </div>
+
+
+  <div class="section" id="sessionhandler.synopsis">
+   <h2 class="title">Synopsis de la classe</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">SessionHandler</strong>
+     </span>
+
+     <span class="oointerface">implements <span class="interfacename"><a href="class.sessionhandlerinterface.html" class="interfacename">SessionHandlerInterface</a></span></span>
+     <span class="oointerface">, <span class="interfacename"><a href="class.sessionidinterface.html" class="interfacename">SessionIdInterface</a></span></span>
+     {</div>
+
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Méthodes */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="sessionhandler.close.html" class="methodname">close</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="sessionhandler.create-sid.html" class="methodname">create_sid</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">string</span></div>
+<div class="methodsynopsis dc-description">
+  <span class="modifier">public</span> <span class="methodname"><a href="sessionhandler.destroy.html" class="methodname">destroy</a></span>
+   ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$session_id</code></span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="sessionhandler.gc.html" class="methodname">gc</a></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$maxlifetime</code></span>
+   ) : <span class="type">int</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="sessionhandler.open.html" class="methodname">open</a></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$save_path</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$session_name</code></span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="sessionhandler.read.html" class="methodname">read</a></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$session_id</code></span>
+   ) : <span class="type">string</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="sessionhandler.write.html" class="methodname">write</a></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$session_id</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$session_data</code></span>
+   ) : <span class="type">bool</span></div>
+
+   }</div>
+
+
+  </div>
+
+  <div class="section" id="session.notes">
+   <div class="warning"><strong class="warning">Avertissement</strong>
+    <p class="para">
+     Cette classe a pour but d&#039;exposer le gestionnaire de sauvegarde de session interne de PHP ; si vous
+     souhaitez écrire votre gestionnaire de sauvegarde personnalisé, vous devez
+     implémenter l&#039;interface <a href="class.sessionhandlerinterface.html" class="classname">SessionHandlerInterface</a> au lieu d&#039;étendre
+     la classe <strong class="classname">SessionHandler</strong>.
+    </p>
+   </div>
+  </div>
+
+  <div class="section" id="sessionhandler.changelog">
+   <h2 class="title">Historique</h2>
+   <p class="para">
+    <table class="doctable informaltable">
+     
+      <thead>
+       <tr>
+        <th>Version</th>
+        <th>Description</th>
+       </tr>
+
+      </thead>
+
+      <tbody class="tbody">
+       <tr>
+        <td>5.5.1</td>
+        <td>
+         Ajout de la fonction <span class="function"><a href="sessionhandler.create-sid.html" class="function">SessionHandler::create_sid()</a></span>.
+        </td>
+       </tr>
+
+      </tbody>
+     
+    </table>
+
+   </p>
+  </div>
+  
+  <div class="section" id="sessionhandler.examples">
+   <div class="example" id="example-5392">
+    <p><strong>Exemple #1 
+     Utilisation de la classe <strong class="classname">SessionHandler</strong>
+     pour ajouter un cryptage aux gestionnaires de sauvegarde interne de PHP.
+    </strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;</span><span style="color: #FF8000">/**<br />&nbsp;&nbsp;*&nbsp;Déchiffrement&nbsp;AES&nbsp;256<br />&nbsp;&nbsp;*<br />&nbsp;&nbsp;*&nbsp;@param&nbsp;data&nbsp;$edata<br />&nbsp;&nbsp;*&nbsp;@param&nbsp;string&nbsp;$password<br />&nbsp;&nbsp;*&nbsp;@return&nbsp;decrypted&nbsp;data<br />&nbsp;&nbsp;*/<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">decrypt</span><span style="color: #007700">(</span><span style="color: #0000BB">$edata</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">base64_decode</span><span style="color: #007700">(</span><span style="color: #0000BB">$edata</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$salt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">16</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$ct&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">16</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$rounds&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;depends&nbsp;on&nbsp;key&nbsp;length<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$data00&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">.</span><span style="color: #0000BB">$salt</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$hash&nbsp;</span><span style="color: #007700">=&nbsp;array();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$hash</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">hash</span><span style="color: #007700">(</span><span style="color: #DD0000">'sha256'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data00</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$hash</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">&lt;&nbsp;</span><span style="color: #0000BB">$rounds</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$hash</span><span style="color: #007700">[</span><span style="color: #0000BB">$i</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">hash</span><span style="color: #007700">(</span><span style="color: #DD0000">'sha256'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$hash</span><span style="color: #007700">[</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">-&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">].</span><span style="color: #0000BB">$data00</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #0000BB">$hash</span><span style="color: #007700">[</span><span style="color: #0000BB">$i</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">32</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$iv&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">32</span><span style="color: #007700">,</span><span style="color: #0000BB">16</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">openssl_decrypt</span><span style="color: #007700">(</span><span style="color: #0000BB">$ct</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'AES-256-CBC'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$iv</span><span style="color: #007700">);<br />&nbsp;&nbsp;}<br /><br /></span><span style="color: #FF8000">/**<br />&nbsp;*&nbsp;Chiffrement&nbsp;AES&nbsp;256<br />&nbsp;*<br />&nbsp;*&nbsp;@param&nbsp;data&nbsp;$data<br />&nbsp;*&nbsp;@param&nbsp;string&nbsp;$password<br />&nbsp;*&nbsp;@return&nbsp;base64&nbsp;encrypted&nbsp;data<br />&nbsp;*/<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">encrypt</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Set&nbsp;a&nbsp;random&nbsp;salt<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$salt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">openssl_random_pseudo_bytes</span><span style="color: #007700">(</span><span style="color: #0000BB">16</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$salted&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$dx&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Salt&nbsp;the&nbsp;key(32)&nbsp;and&nbsp;iv(16)&nbsp;=&nbsp;48<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">while&nbsp;(</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">$salted</span><span style="color: #007700">)&nbsp;&lt;&nbsp;</span><span style="color: #0000BB">48</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$dx&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">hash</span><span style="color: #007700">(</span><span style="color: #DD0000">'sha256'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$dx</span><span style="color: #007700">.</span><span style="color: #0000BB">$password</span><span style="color: #007700">.</span><span style="color: #0000BB">$salt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$salted&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #0000BB">$dx</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$salted</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">32</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$iv&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$salted</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">32</span><span style="color: #007700">,</span><span style="color: #0000BB">16</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$encrypted_data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">openssl_encrypt</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'AES-256-CBC'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$iv</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">base64_encode</span><span style="color: #007700">(</span><span style="color: #0000BB">$salt&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$encrypted_data</span><span style="color: #007700">);<br />}<br /><br />class&nbsp;</span><span style="color: #0000BB">EncryptedSessionHandler&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">SessionHandler<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;</span><span style="color: #0000BB">$key</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">__construct</span><span style="color: #007700">(</span><span style="color: #0000BB">$key</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$key</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">read</span><span style="color: #007700">(</span><span style="color: #0000BB">$id</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">read</span><span style="color: #007700">(</span><span style="color: #0000BB">$id</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!</span><span style="color: #0000BB">$data</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">decrypt</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">key</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">write</span><span style="color: #007700">(</span><span style="color: #0000BB">$id</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">encrypt</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">key</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">write</span><span style="color: #007700">(</span><span style="color: #0000BB">$id</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Nous&nbsp;interceptons&nbsp;le&nbsp;gestionnaire&nbsp;'files'&nbsp;natif,&nbsp;mais&nbsp;ceci<br />//&nbsp;fonctionnera&nbsp;de&nbsp;la&nbsp;même&nbsp;façon&nbsp;avec&nbsp;les&nbsp;autres&nbsp;gestionnaires&nbsp;internes<br />//&nbsp;comme&nbsp;'sqlite',&nbsp;'memcache'&nbsp;ou&nbsp;'memcached'<br />//&nbsp;qui&nbsp;sont&nbsp;fournis&nbsp;via&nbsp;des&nbsp;extensions&nbsp;PHP.<br /></span><span style="color: #0000BB">ini_set</span><span style="color: #007700">(</span><span style="color: #DD0000">'session.save_handler'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'files'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'secret_string'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$handler&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">EncryptedSessionHandler</span><span style="color: #007700">(</span><span style="color: #0000BB">$key</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">session_set_save_handler</span><span style="color: #007700">(</span><span style="color: #0000BB">$handler</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">session_start</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;processus&nbsp;pour&nbsp;définir&nbsp;et&nbsp;récupérer&nbsp;des&nbsp;valeurs&nbsp;avec&nbsp;la&nbsp;clé,&nbsp;depuis&nbsp;$_SESSION</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <p class="para">
+     Vu que les méthodes de cette classe sont prévues pour être appelées en interne par PHP
+     car faisant parties du mécanisme normal des sessions, les classes enfants appèlent les méthodes
+     parents (i.e. le gestionnaire natif interne actuellement) et doivent retourner <strong><code>FALSE</code></strong> tant que
+     la session n&#039;a pas encore démarrée (soit automatiquement, ou explicitement via la fonction
+     <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span>). Ceci est très important à considérer lors de
+     l&#039;écriture de vos tests unitaires où les méthodes de la classe peuvent être invoquées
+     manuellement.
+    </p>
+   </p></blockquote>
+  </div>
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Sommaire</h2><ul class="chunklist chunklist_reference"><li><a href="sessionhandler.close.html">SessionHandler::close</a> — Ferme la session</li><li><a href="sessionhandler.create-sid.html">SessionHandler::create_sid</a> — Retourne un nouvel ID de session</li><li><a href="sessionhandler.destroy.html">SessionHandler::destroy</a> — D&eacute;truit une session</li><li><a href="sessionhandler.gc.html">SessionHandler::gc</a> — Nettoie les anciennes sessions</li><li><a href="sessionhandler.open.html">SessionHandler::open</a> — Initialise une session</li><li><a href="sessionhandler.read.html">SessionHandler::read</a> — Lit les donn&eacute;es de session</li><li><a href="sessionhandler.write.html">SessionHandler::write</a> — Ecrit des donn&eacute;es dans la session</li></ul>
+</div>
+</div></div></body></html>

@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Construit un en-t&ecirc;te MIME avec les champs field_name et field_value</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.iconv-mime-decode.html">« iconv_mime_decode</a></li>
+      <li style="float: right;"><a href="function.iconv-set-encoding.html">iconv_set_encoding »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.iconv.html">Fonctions iconv</a></li>
+    <li>Construit un en-t&ecirc;te MIME avec les champs field_name et field_value</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.iconv-mime-encode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">iconv_mime_encode</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">iconv_mime_encode</span> &mdash; <span class="dc-title">Construit un en-tête MIME avec les champs field_name et field_value</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.iconv-mime-encode-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>iconv_mime_encode</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$field_name</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$field_value</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$preferences</code><span class="initializer"> = <strong><code>NULL</code></strong></span></span>
+  ] ) : <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>iconv_mime_encode()</strong></span> compose et retourne une 
+   chaîne de caractères qui représente un champ
+   en-tête <code class="literal">MIME</code> qui ressemble à :
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Subject: =?ISO-8859-1?Q?Pr=FCfung_f=FCr?= Entwerfen von einer MIME kopfzeile
+</pre></div>
+   </div>
+   Dans l&#039;exemple ci-dessus, <code class="literal">&quot;Subject&quot;</code> est le nom
+   du champ et la portion qui commence par
+   <code class="literal">&quot;=?ISO-8859-1?...&quot;</code> est la valeur du champ.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.iconv-mime-encode-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">field_name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nom du champ.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">field_value</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La valeur du champs.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">preferences</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Vous pouvez contrôler le comportement de la fonction 
+       <span class="function"><strong>iconv_mime_encode()</strong></span> en spécifiant 
+       un tableau associatif contenant la configuration des 
+       éléments dans le paramètre  <code class="parameter">preferences</code>.
+       La liste des éléments supportés par 
+       <span class="function"><strong>iconv_mime_encode()</strong></span> figure ci-dessous. 
+       Notez que les noms des éléments sont sensibles à la casse.
+       <table class="doctable table">
+        <caption><strong>Liste des éléments supportés par <span class="function"><strong>iconv_mime_encode()</strong></span></strong></caption>
+        
+         <thead>
+          <tr>
+           <th>Élément</th>
+           <th>Type</th>
+           <th>Description</th>
+           <th>Valeur par défaut</th>
+           <th>Exemple</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td>scheme</td>
+           <td><span class="type"><a href="language.types.string.html" class="type string">string</a></span></td>
+           <td>
+            Spécifie la méthode d&#039;encodage d&#039;un champ. Les valeurs possibles sont <code class="literal">&quot;B&quot;</code> ou <code class="literal">&quot;Q&quot;</code>, où
+            <code class="literal">&quot;B&quot;</code> signifie que le schéma d&#039;encodage sera <code class="literal">base64</code> et <code class="literal">&quot;Q&quot;</code>,
+            <code class="literal">quoted-printable</code>.
+           </td>
+           <td>B</td>
+           <td>B</td>
+          </tr>
+
+          <tr>
+           <td>input-charset</td>
+           <td><span class="type"><a href="language.types.string.html" class="type string">string</a></span></td>
+           <td>
+            Spécifie le jeux de caractères pour représenter le premier paramètre
+            <code class="parameter">field_name</code> et le second paramètre
+            <code class="parameter">field_value</code>. S&#039;il est omis,
+            <span class="function"><strong>iconv_mime_encode()</strong></span>
+            utilisera la directive de configuration
+            <a href="iconv.configuration.html" class="link">iconv.internal_encoding</a>
+            de votre php.ini pour les représenter.
+           </td>
+           <td>
+            <a href="iconv.configuration.html" class="link">iconv.internal_encoding</a>
+           </td>
+           <td>ISO-8859-1</td>
+          </tr>
+
+          <tr>
+           <td>output-charset</td>
+           <td><span class="type"><a href="language.types.string.html" class="type string">string</a></span></td>
+           <td>
+            Spécifie le jeux de caractères à utiliser pour composer
+            l&#039;en-tête <code class="literal">MIME</code>.
+           </td>
+           <td>
+            <a href="iconv.configuration.html" class="link">iconv.internal_encoding</a>
+           </td>
+           <td>UTF-8</td>
+          </tr>
+
+          <tr>
+           <td>line-length</td>
+           <td><span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span></td>
+           <td>
+            Spécifie la longueur maximale de chaque en-tête.
+            Si l&#039;en-tête est plus grande que la longueur défini par ce paramètre,
+            l&#039;en-tête résultant sera un en-tête composée de plusieurs lignes
+            conformément au standard <a href="http://www.faqs.org/rfcs/rfc2822" class="link external">&raquo;&nbsp;RFC2822 - Internet Message Format</a>.
+            S&#039;il est omis, la longueur maximale sera fixée à 76 caractères.
+           </td>
+           <td>76</td>
+           <td>996</td>
+          </tr>
+
+          <tr>
+           <td>line-break-chars</td>
+           <td><span class="type"><a href="language.types.string.html" class="type string">string</a></span></td>
+           <td>
+            Spécifie les caractères de fin de ligne. S&#039;il est omis, la valeur par défaut sera <code class="literal">&quot;\r\n&quot;</code>
+            (<code class="literal">CR</code> <code class="literal">LF</code>). Notez que ce paramètre est toujours
+            représenté comme une chaîne ASCII au regard de la valeur du paramètre
+          <code class="literal">input-charset</code>.
+           </td>
+           <td>\r\n</td>
+           <td>\n</td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.iconv-mime-encode-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un champs <code class="literal">MIME</code> en cas de succès,
+   ou <strong><code>FALSE</code></strong> si une erreur survient durant l&#039;encodage.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.iconv-mime-encode-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2911">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>iconv_mime_encode()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$preferences&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"input-charset"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"ISO-8859-1"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"output-charset"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"UTF-8"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"line-length"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">76</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"line-break-chars"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"\n"<br /></span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$preferences</span><span style="color: #007700">[</span><span style="color: #DD0000">"scheme"</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"Q"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">//&nbsp;This&nbsp;yields&nbsp;"Subject:&nbsp;=?UTF-8?Q?Pr=C3=BCfung=20Pr=C3=BCfung?="<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">iconv_mime_encode</span><span style="color: #007700">(</span><span style="color: #DD0000">"Subject"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Prüfung&nbsp;Prüfung"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$preferences</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$preferences</span><span style="color: #007700">[</span><span style="color: #DD0000">"scheme"</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"B"</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">//&nbsp;This&nbsp;yields&nbsp;"Subject:&nbsp;=?UTF-8?B?UHLDvGZ1bmcgUHLDvGZ1bmc=?="<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">iconv_mime_encode</span><span style="color: #007700">(</span><span style="color: #DD0000">"Subject"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Prüfung&nbsp;Prüfung"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$preferences</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.iconv-mime-encode-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.imap-binary.html" class="function" rel="rdfs-seeAlso">imap_binary()</a> - Convertit une cha&icirc;ne &agrave; 8 bits en une cha&icirc;ne &agrave; base64</span></li>
+    <li class="member"><span class="function"><a href="function.mb-encode-mimeheader.html" class="function" rel="rdfs-seeAlso">mb_encode_mimeheader()</a> - Encode une cha&icirc;ne pour un en-t&ecirc;te MIME</span></li>
+    <li class="member"><span class="function"><a href="function.imap-8bit.html" class="function" rel="rdfs-seeAlso">imap_8bit()</a> - Convertit une cha&icirc;ne &agrave; 8 bits en une cha&icirc;ne encod&eacute;e en Quoted-Printable</span></li>
+    <li class="member"><span class="function"><a href="function.quoted-printable-encode.html" class="function" rel="rdfs-seeAlso">quoted_printable_encode()</a> - Convertit une cha&icirc;ne 8 bits en une cha&icirc;ne quoted-printable</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

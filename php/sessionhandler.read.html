@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lit les donn&eacute;es de session</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="sessionhandler.open.html">« SessionHandler::open</a></li>
+      <li style="float: right;"><a href="sessionhandler.write.html">SessionHandler::write »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.sessionhandler.html">SessionHandler</a></li>
+    <li>Lit les donn&eacute;es de session</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="sessionhandler.read" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SessionHandler::read</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.4.0, PHP 7)</p><p class="refpurpose"><span class="refname">SessionHandler::read</span> &mdash; <span class="dc-title">Lit les données de session</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-sessionhandler.read-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>SessionHandler::read</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$session_id</code></span>
+   ) : <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   Lit les données de session depuis son lieu de stockage,
+   et retourne le résultat pour que PHP le traite. Cette fonction est appelée par PHP lorsque
+   la session est démarrée automatiquement ou au moyen de <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span>,
+   elle est précédée d&#039;un appel à <span class="function"><a href="sessionhandler.open.html" class="function">SessionHandler::open()</a></span>.
+  </p>
+  <p class="para">
+   Cette méthode se substitue au gestionnaire interne de sauvegarde de PHP, défini via
+   l&#039;option de configuration <a href="session.configuration.html#ini.session.save-handler" class="link">session.save_handler</a>
+   qui a été définie avant que ce gestionnaire ne soit modifié via la fonction
+   <span class="function"><a href="function.session-set-save-handler.html" class="function">session_set_save_handler()</a></span>.
+  </p>
+  <p class="para">
+   Si cette classe est étendue par héritage, l&#039;appel de la méthode parente
+   <code class="parameter">read</code> invoquera ce gestionnaire pour cette méthode, mais
+   aussi, la fonction de rappel interne associée. Ce mécanisme permet à cette méthode
+   de surcharger, intercepter et/ou filtrer les données (par exemple,
+   le décryptage de la valeur <code class="parameter">$data</code> retournée par la méthode parente
+   <code class="parameter">read</code>).
+  </p>
+  <p class="para">
+   Pour plus d&#039;informations sur cette méthode, référez-vous à la documentation
+   sur la fonction <span class="function"><a href="sessionhandlerinterface.read.html" class="function">SessionHandlerInterface::read()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-sessionhandler.read-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">session_id</code></dt>
+
+    <dd>
+
+     <p class="para">
+      L&#039;ID de la session depuis laquelle les données seront lues.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-sessionhandler.read-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne les données lues sous forme encodée. Si rien n&#039;a été lu, une chaine vide doit être retournée.
+   Cette valeur est utilisée en interne par PHP.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-sessionhandler.read-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     La directive de configuration <a href="session.configuration.html#ini.session.serialize-handler" class="link">session.serialize_handler</a>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

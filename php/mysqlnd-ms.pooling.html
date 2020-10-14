@@ -1,0 +1,374 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Groupe de connexions et bascule entre les connexions</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-ms.architecture.html">« Architecture</a></li>
+      <li style="float: right;"><a href="mysqlnd-ms.transaction.html">Gestion des transactions locales »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-ms.concepts.html">Concepts</a></li>
+    <li>Groupe de connexions et bascule entre les connexions</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-ms.pooling" class="section">
+  <h2 class="title">Groupe de connexions et bascule entre les connexions</h2>
+  <p class="para">
+   Le plugin de réplication et répartition de charge change la sémantique d&#039;une
+   connexion MySQL de PHP. Les API existantes des extensions PHP pour MySQL
+   (<a href="ref.mysqli.html" class="link">mysqli</a>,
+   <a href="ref.mysql.html" class="link">mysql</a> et
+   <a href="ref.pdo-mysql.html" class="link">PDO_MYSQL</a>) sont inchangées, mais leur
+   comportement est modifié lorsque le plugin est utilisé. Les applications
+   existantes n&#039;ont pas de changement à opérer pour utiliser la nouvelle API,
+   mais elles devront peut-être être modifiées en ce qui concerne le comportement
+   du plugin.
+  </p>
+  <p class="para">
+   Le plugin casse la relation un-à-un entre une connexion
+   <a href="ref.mysqli.html" class="link">mysqli</a>,
+   <a href="ref.mysql.html" class="link">mysql</a> et
+   <a href="ref.pdo-mysql.html" class="link">PDO_MYSQL</a> et la connexion réseau à
+   MySQL. Lorsque le plugin est utilisé, la connexion de
+   <a href="ref.mysqli.html" class="link">mysqli</a>,
+   <a href="ref.mysql.html" class="link">mysql</a>,
+   <a href="ref.pdo-mysql.html" class="link">PDO_MYSQL</a> représente en fait un groupe
+   de connexions vers un serveur maitre MySQL et des serveurs esclaves.
+   Le plugin aiguille les requêtes vers le serveur maitre ou un des esclaves.
+   A un moment donné, une connexion vue depuis PHP peut pointer vers le maitre
+   et juste après vers un esclave, ou alors toujours le maitre. La manipulation
+   et le remplacement d&#039;une connexion réseau référencée par un gestionnaire
+   de connexion PHP MySQL n&#039;est pas une opération transparente.
+  </p>
+  <p class="para">
+   Chaque connexion MySQL possède un état, et les différentes connexions, gérées dans
+   un groupe par le plugin, peuvent avoir chacune des états différents. Lorsque le
+   plugin bascule d&#039;une connexion à une autre, l&#039;état est susceptible de changer.
+   L&#039;application doit prendre cela en compte.
+  </p>
+  <p class="para">
+   La liste suivante indique ce qui est caractérisé par un état de connexion.
+   Cette liste peut ne pas être totalement complète.
+  </p>
+  <p class="para">
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      Les statuts des transactions
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Les tables temporaires
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Les verrous des tables
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Les variables de session système ou utilisateur
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Le jeu de bases de données courantes, utilisant
+      <code class="literal">USE</code> ainsi que d&#039;autres commandes de statut SQL
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Les requêtes préparées
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Les variables <code class="literal">HANDLER</code>
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Les verrous retournés par <code class="literal">GET_LOCK()</code>
+     </span>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   Le changement de connexions intervient juste avant l&#039;exécution de la requête.
+   Le plugin ne change la connexion courante qu&#039;au moment où la prochaine
+   requête est exécutée.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Problèmes liés à la réplication</strong><br />
+   <p class="para">
+    Voyez aussi le manuel de référence de MySQL concernant 
+    <a href="http://dev.mysql.com/doc/mysql/en/replication.html" class="link external">&raquo;&nbsp;la réplication</a> et
+    ses problématiques. Certaines restrictions ne sont pas dûes au plugin PHP mais
+    sont des caractéristiques du mécanisme de réplication de MySQL.
+   </p>
+  </p></blockquote>
+  <p class="para">Messages diffusés</p>
+  <p class="para">
+   La philosophie du plugin est d&#039;aligner le statut des connexions dans la file
+   d&#039;attente uniquement si le statut est sous le contrôle total du plugin,
+   ou si c&#039;est nécessaire d&#039;un point de vue de la sécurité. Seulement quelques
+   actions modifiants le statut de la connexion rentrent dans cette catégorie.
+  </p>
+  <p class="para">
+   Voici la liste des appels diffusés de la bibliothèques clientes qui modifient
+   le statut de toutes les connexions contenus dans la file d&#039;attente.
+  </p>
+  <p class="para">
+   Si un des appels listés ci-dessous est exécuté, le plugin
+   parcourt toutes les connexions actuellement ouvertes vers
+   le maître et les esclaves. Le parcourt continue tant que tous
+   les serveurs n&#039;ont pas été contactés. Le parcourt ne s&#039;interrompt
+   pas lorsqu&#039;un des serveurs indique une erreur. Si possible, l&#039;erreur
+   sera propagée pour appeler la fonction de l&#039;API utilisateur. Suivant
+   cette fonction, qui a été lancée par la fonction de la bibliothèque
+   sous-jacente, l&#039;utilisateur peut être capable de détecter l&#039;erreur.
+  </p>
+  <table class="doctable informaltable">
+   
+    <col width="1*" />
+    <col width="7*" />
+    <col width="2*" />
+    <thead>
+     <tr>
+      <th>Appel de la bibliothèque</th>
+      <th>Notes</th>
+      <th>Version</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>
+       <code class="literal">change_user()</code>
+      </td>
+      <td>
+       Appelé par l&#039;appel de l&#039;API utilisateur <span class="function"><a href="mysqli.change-user.html" class="function">mysqli_change_user()</a></span>.
+       Également émise lors de la réutilisation d&#039;une connexion
+       <code class="literal">mysqli</code> persistante.
+      </td>
+      <td>Depuis la version 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">select_db</code>
+      </td>
+      <td>
+       Appelé par les appels de l&#039;API utilisateur suivants :
+       <span class="function"><a href="function.mysql-select-db.html" class="function">mysql_select_db()</a></span>,
+       <span class="function"><a href="function.mysql-list-tables.html" class="function">mysql_list_tables()</a></span>,
+       <span class="function"><a href="function.mysql-db-query.html" class="function">mysql_db_query()</a></span>,
+       <span class="function"><a href="function.mysql-list-fields.html" class="function">mysql_list_fields()</a></span>,
+       <span class="function"><a href="mysqli.select-db.html" class="function">mysqli_select_db()</a></span>.
+       Notez que <code class="literal">USE</code> n&#039;est pas surveillé.
+      </td>
+      <td>Depuis la version 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">set_charset()</code>
+      </td>
+      <td>
+       Appelé par les appels de l&#039;API utilisateur suivants :
+       <span class="function"><a href="function.mysql-set-charset.html" class="function">mysql_set_charset()</a></span>.
+       <span class="function"><a href="mysqli.set-charset.html" class="function">mysqli_set_charset()</a></span>.
+       Notez que <code class="literal">SET NAMES</code> n&#039;est pas surveillé.
+      </td>
+      <td>Depuis la version 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">set_server_option()</code>
+      </td>
+      <td>
+       Appelé par les appels de l&#039;API utilisateur suivants :
+       <span class="function"><a href="mysqli.multi-query.html" class="function">mysqli_multi_query()</a></span>,
+       <span class="function"><a href="mysqli.real-query.html" class="function">mysqli_real_query()</a></span>,
+       <span class="function"><a href="mysqli.query.html" class="function">mysqli_query()</a></span>,
+       <span class="function"><a href="function.mysql-query.html" class="function">mysql_query()</a></span>.
+      </td>
+      <td>Depuis la version 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">set_client_option()</code>
+      </td>
+      <td>
+       Appelé par les appels de l&#039;API utilisateur suivants :
+       <span class="function"><a href="mysqli.options.html" class="function">mysqli_options()</a></span>,
+       <span class="function"><a href="mysqli.ssl-set.html" class="function">mysqli_ssl_set()</a></span>,
+       <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span>,
+       <span class="function"><a href="function.mysql-connect.html" class="function">mysql_connect()</a></span>,
+       <span class="function"><a href="function.mysql-pconnect.html" class="function">mysql_pconnect()</a></span>.
+      </td>
+      <td>Depuis la version 1.0.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">set_autocommit()</code>
+      </td>
+      <td>
+       Appelé par les appels de l&#039;API utilisateur suivants :
+       <span class="function"><a href="mysqli.autocommit.html" class="function">mysqli_autocommit()</a></span>,
+       <code class="literal">PDO::setAttribute(PDO::ATTR_AUTOCOMMIT)</code>.
+      </td>
+      <td>Depuis la version 1.0.0. PHP &gt;= 5.4.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">ssl_set()</code>
+      </td>
+      <td>
+       Appelé par les appels de l&#039;API utilisateur suivants :
+       <span class="function"><a href="mysqli.ssl-set.html" class="function">mysqli_ssl_set()</a></span>.
+      </td>
+      <td>Depuis la version 1.1.0.</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+  <p class="para">Les connexions diffusées et paresseuses</p>
+  <p class="para">
+   Le plugin n&#039;utilise pas de proxy ou bien ne se &quot;souvient&quot; pas de
+   toutes les configurations à appliquer aux futures connexions.
+   Il est important de se rappeler de cela lors de l&#039;utilisation des
+   <a href="mysqlnd-ms.plugin-ini-json.html#ini.mysqlnd-ms-plugin-config-v2.lazy-connections" class="link">connexions paresseuses</a>.
+   Les connexions paresseuses sont des connexions qui ne sont pas ouvertes
+   tant que le client n&#039;envoie pas la première connexion.
+   Le plugin utilise par défaut de telles connexions.
+  </p>
+  <p class="para">
+   Les appels de la bibliothèque modifiant la configuration et le statut des connexions
+   ci-après sont enregistrés pour être utilisés lors de l&#039;ouverture
+   d&#039;une connexion paresseuse afin de s&#039;assurer que le statut de cette connexion
+   est comparable avec le statut de toutes les connexions de la file d&#039;attente.
+  </p>
+  <table class="doctable informaltable">
+   
+    <col width="1*" />
+    <col width="7*" />
+    <col width="2*" />
+    <thead>
+     <tr>
+      <th>Appel de la bibliothèque</th>
+      <th>Notes</th>
+      <th>Version</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>
+       <code class="literal">change_user()</code>
+      </td>
+      <td>
+       Utilisateur, mot de passe et base de données sont enregistrés
+       pour une utilisation ultérieure.
+      </td>
+      <td>Depuis la version 1.1.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">select_db</code>
+      </td>
+      <td>
+       Base de données enregistré pour utilisation ultérieure.
+      </td>
+      <td>Depuis la version 1.1.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">set_charset()</code>
+      </td>
+      <td>
+       Appel <code class="literal">set_client_option(MYSQL_SET_CHARSET_NAME, charset)</code>
+       sur les connexions paresseuses pour s&#039;assurer que
+       <code class="literal">charset</code> sera utilisé lors de l&#039;ouverture d&#039;une connexion
+       paresseuse.
+      </td>
+      <td>Depuis la version 1.1.0.</td>
+     </tr>
+
+     <tr>
+      <td>
+       <code class="literal">set_autocommit()</code>
+      </td>
+      <td>
+       Ajoute <code class="literal">SET AUTOCOMMIT=0|1</code> à la liste des commandes
+       d&#039;initialisation pour une connexion paresseuse utilisant
+       <code class="literal">set_client_option(MYSQL_INIT_COMMAND, &quot;SET AUTOCOMMIT=...%quot;)</code>.
+      </td>
+      <td>Depuis la version 1.1.0. PHP &gt;= 5.4.0.</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+  
+  <div class="caution"><strong class="caution">Attention</strong>
+   <h1 class="title">Statut de connexion</h1>
+   <p class="para">
+    Notez que le statut de la connexion n&#039;est pas changé que par des appels
+    API. Aussi, même si PECL mysqlnd_ms surveille tous les appels API, l&#039;application
+    a toujours besoin de maintenir le statut de la connexion, si besoin.
+   </p>
+  </div>
+  
+  <p class="para">Jeux de caractères et échappement des chaînes</p>
+  <p class="para">
+   En raison de l&#039;utilisation des connexions paresseuses, qui sont actives
+   par défaut, il peut survenir qu&#039;une application tente d&#039;échapper une chaîne
+   pour une utilisation dans une requête SQL avant qu&#039;une connexion ne soit
+   établie. Dans ce cas, l&#039;échappement de la chaîne n&#039;est pas possible.
+   La fonction d&#039;échappement de chaînes ne connait pas le jeu de caractères
+   à utiliser avant qu&#039;une connexion ne soit établie.
+  </p>
+  <p class="para">
+   Pour éviter ce problème, une nouvelle option de configuration
+   <a href="mysqlnd-ms.plugin-ini-json.html#ini.mysqlnd-ms-plugin-config-v2.server-charset" class="link"><code class="literal">server_charset</code></a>
+   a été introduite en version 1.4.0.
+  </p>
+  <p class="para">
+   Une attention particulière doit être portée lors de l&#039;échappement de chaînes
+   avec un certain jeu de caractères, mais utilisant le résultat sur une connexion
+   qui utilise un jeu de caractères différent. Notez que PECL/mysqlnd_ms
+   manipule les connexions et qu&#039;une connexion au niveau applicatif représente une
+   file de plusieurs connexions qui peuvent avoir différents jeux de caractères
+   par défaut. Il est recommandé de configurer le serveur pour utiliser le même
+   jeu de caractères par défaut. L&#039;option de configuration <code class="literal">server_charset</code>
+   va être utile dans cette situation. Si vous utilisez l&#039;option
+   <code class="literal">server_charset</code>, le plugin va définir le jeu de caractères
+   fourni sur toutes les nouvelles connexions ouvertes.
+  </p>
+ </div></div></div></body></html>

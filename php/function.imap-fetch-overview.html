@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lit le sommaire des en-t&ecirc;tes de messages</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.imap-expunge.html">« imap_expunge</a></li>
+      <li style="float: right;"><a href="function.imap-fetchbody.html">imap_fetchbody »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.imap.html">Fonctions IMAP</a></li>
+    <li>Lit le sommaire des en-t&ecirc;tes de messages</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.imap-fetch-overview" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_fetch_overview</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">imap_fetch_overview</span> &mdash; <span class="dc-title">Lit le sommaire des en-têtes de messages</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.imap-fetch-overview-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>imap_fetch_overview</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$imap_stream</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$sequence</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$options</code><span class="initializer"> = 0</span></span>
+  ] ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Lit les en-têtes des courriers électroniques de la séquence
+   <code class="parameter">sequence</code> et retourne un sommaire de leur contenu.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.imap-fetch-overview-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<code class="parameter">
+    imap_stream</code></dt>
+<dd>
+<p class="para">Un flux IMAP retourné par la fonction
+    <span class="function"><a href="function.imap-open.html" class="function">imap_open()</a></span>.</p></dd>
+
+    
+     <dt>
+<code class="parameter">sequence</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une description de la séquence du message. Vous pouvez énumérer les
+       messages désirés avec la syntaxe <code class="literal">X,Y</code>, ou récupérer
+       tous les messages d&#039;un intervalle, avec la syntaxe <code class="literal">X:Y</code>
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">options</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">sequence</code> va contenir une séquence
+       d&#039;indice de message ou d&#039;UID, si <code class="parameter">flags</code>
+       contient <strong><code>FT_UID</code></strong>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.imap-fetch-overview-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau d&#039;objets décrivant l&#039;en-tête de chaque message.
+   L&#039;objet ne définira une propriété que si elle existe. Les propriétés
+   possibles sont :
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">subject</code> : le sujet du message
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">from</code> : l&#039;expéditeur
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">to</code> : le destinataire
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">date</code> : la date d&#039;expédition
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">message_id</code> : l&#039;identification du message
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">references</code> : la référence sur l&#039;id de ce message
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">in_reply_to</code> : la réponse à cet identifiant de message
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">size</code> : la taille en octets
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">uid</code> : UID du message dans la boîte aux lettres
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">msgno</code> : le numéro de séquence du message dans la boîte
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">recent</code> : ce message est récent
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">flagged</code> : ce message est marqué
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">answered</code> : ce message a donné lieu à une réponse
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">deleted</code> : ce message est marqué pour l&#039;effacement
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">seen</code> : ce message est déjà lu
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">draft</code> : ce message est un brouillon
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <code class="literal">udate</code> : l&#039;horodatage UNIX de l&#039;heure d&#039;arrivée
+     </span>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.imap-fetch-overview-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-3654">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>imap_fetch_overview()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mbox&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imap_open</span><span style="color: #007700">(</span><span style="color: #DD0000">"{imap.example.org:143}INBOX"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Connexion&nbsp;impossible&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">imap_last_error</span><span style="color: #007700">());<br /><br /></span><span style="color: #0000BB">$MC&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imap_check</span><span style="color: #007700">(</span><span style="color: #0000BB">$mbox</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Récupère&nbsp;le&nbsp;sommaire&nbsp;pour&nbsp;tous&nbsp;les&nbsp;messages&nbsp;contenus&nbsp;dans&nbsp;INBOX<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imap_fetch_overview</span><span style="color: #007700">(</span><span style="color: #0000BB">$mbox</span><span style="color: #007700">,</span><span style="color: #DD0000">"1:</span><span style="color: #007700">{</span><span style="color: #0000BB">$MC</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">Nmsgs</span><span style="color: #007700">}</span><span style="color: #DD0000">"</span><span style="color: #007700">,</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />foreach&nbsp;(</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$overview</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"#</span><span style="color: #007700">{</span><span style="color: #0000BB">$overview</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">msgno</span><span style="color: #007700">}</span><span style="color: #DD0000">&nbsp;(</span><span style="color: #007700">{</span><span style="color: #0000BB">$overview</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">date</span><span style="color: #007700">}</span><span style="color: #DD0000">)&nbsp;-&nbsp;From:&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$overview</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">from</span><span style="color: #007700">}</span><span style="color: #DD0000"><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$overview</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">subject</span><span style="color: #007700">}</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">imap_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$mbox</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.imap-fetch-overview-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.imap-fetchheader.html" class="function" rel="rdfs-seeAlso">imap_fetchheader()</a> - Retourne l'en-t&ecirc;te d'un message</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

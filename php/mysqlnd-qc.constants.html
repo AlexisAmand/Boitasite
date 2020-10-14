@@ -1,0 +1,296 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Constantes pr&eacute;-d&eacute;finies</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-qc.configuration.html">« Configuration &agrave; l'ex&eacute;cution</a></li>
+      <li style="float: right;"><a href="ref.mysqlnd-qc.html">Fonctions mysqlnd_qc »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.mysqlnd-qc.html">mysqlnd_qc</a></li>
+    <li>Constantes pr&eacute;-d&eacute;finies</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-qc.constants" class="appendix">
+ <h1>Constantes pré-définies</h1>
+
+ <p class="simpara">Ces constantes sont définies par cette
+extension, et ne sont disponibles que si cette extension a été compilée avec
+PHP, ou bien chargée au moment de l&#039;exécution.</p>
+ <p class="para">
+  <em class="emphasis">Astuces SQL</em>
+ </p>
+ <p class="para">
+  <div class="example" id="example-2276">
+   <p><strong>Exemple #1 Utilisation des constantes d&#039;astuces SQL</strong></p>
+   <div class="example-contents"><p>
+    La mise en cache de requêtes est contrôlée par les astuces SQL. Les astuces SQL
+    sont utilisées pour activer et désactiver la mise en cache des requêtes.
+    Elles peuvent être utilisées pour définir le <code class="literal">TTL</code> (la durée
+    de vie dans le cache) d&#039;une requête.
+   </p></div>
+   <div class="example-contents"><p>
+    Les astuces SQL reconnues par la mise en cache de requêtes peuvent être
+    manuellement modifiées au moment de la compilation. Ceci permet d&#039;utiliser
+    <code class="literal">mysqlnd_qc</code> dans les environnements pour lesquels les
+    astuces SQL par défaut sont déjà utilisées et interprétées par d&#039;autres
+    systèmes. Toutefois, il est recommandé d&#039;utiliser les constantes relatives
+    aux astuces SQL au lieu d&#039;ajouter manuellement les astuces SQL dans la chaîne
+    de la requête.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Utilisation&nbsp;des&nbsp;constantes&nbsp;pour&nbsp;une&nbsp;portabilité&nbsp;maximale&nbsp;*/<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"/*"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">MYSQLND_QC_ENABLE_SWITCH&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"*/SELECT&nbsp;id&nbsp;FROM&nbsp;test"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Valide&nbsp;mais&nbsp;moins&nbsp;portable&nbsp;:&nbsp;TTL&nbsp;par&nbsp;défaut&nbsp;*/<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"/*qc=on*/SELECT&nbsp;id&nbsp;FROM&nbsp;test"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Valide&nbsp;mais&nbsp;moins&nbsp;portable&nbsp;:&nbsp;TTL&nbsp;par&nbsp;requête&nbsp;*/<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"/*qc=on*//*qc_ttl=5*/SELECT&nbsp;id&nbsp;FROM&nbsp;test"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"MYSQLND_QC_ENABLE_SWITCH:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_QC_ENABLE_SWITCH</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"MYSQLND_QC_DISABLE_SWITCH:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_QC_DISABLE_SWITCH</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"MYSQLND_QC_TTL_SWITCH:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLND_QC_TTL_SWITCH</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>Les exemples ci-dessus vont afficher :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+MYSQLND_QC_ENABLE_SWITCH: qc=on
+MYSQLND_QC_DISABLE_SWITCH: qc=off
+MYSQLND_QC_TTL_SWITCH: qc_ttl=
+
+</pre></div>
+   </div>
+   
+  </div>
+ </p>
+ 
+ <p class="para">
+  <dl>
+
+   
+    <dt id="constant.mysqlnd-qc-enable-switch">
+     <strong><code>MYSQLND_QC_ENABLE_SWITCH</code></strong>
+     (<a href="language.types.string.html" class="link">chaîne de caractères</a>)
+    </dt>
+
+    <dd>
+
+     <span class="simpara">
+      Astuce SQL utilisée pour activer la mise en cache d&#039;une requête.
+     </span>
+    </dd>
+
+   
+   
+    <dt id="constant.mysqlnd-qc-disable-switch">
+     <strong><code>MYSQLND_QC_DISABLE_SWITCH</code></strong>
+     (<a href="language.types.string.html" class="link">chaîne de caractères</a>)
+    </dt>
+
+    <dd>
+
+     <span class="simpara">
+      Astuce SQL utilisée pour désactiver la mise en cache d&#039;une
+      requête si <code class="literal">mysqlnd_qc.cache_by_default = 1</code>.
+     </span>
+    </dd>
+
+   
+   
+    <dt id="constant.mysqlnd-qc-ttl-switch">
+     <strong><code>MYSQLND_QC_TTL_SWITCH</code></strong>
+     (<a href="language.types.string.html" class="link">chaîne de caractères</a>)
+    </dt>
+
+    <dd>
+
+     <span class="simpara">
+      Astuce SQL utilisée pour définir le TTL (la durée de
+      vie dans le cache) d&#039;un jeu de résultats.
+     </span>
+    </dd>
+
+   
+   
+    <dt id="constant.mysqlnd-qc-server-id">
+     <strong><code>MYSQLND_QC_SERVER_ID_SWITCH</code></strong>
+     (<a href="language.types.string.html" class="link">chaîne de caractères</a>)
+    </dt>
+
+    <dd>
+
+     <span class="simpara">
+      Cette astuce SQL ne doit en généralement pas être utilisée.
+     </span>
+     <span class="simpara">
+      Elle est nécessaire à <a href="book.mysqlnd-ms.html" class="link">PECL/mysqlnd_ms</a>
+      pour grouper les entrées du cache pour une seule requête et
+      provient de différentes connexions physiques. Si l&#039;astuce
+      est utilisée, la configuration de la connexion comme l&#039;utilisateur,
+      le nom d&#039;hôte et le jeu de caractères ne sera pas prise en
+      considération pour générer la clé du cache de la requête.
+      A la place de cela, la valeur fournie et la chaîne de requête
+      seront utilisées comme entrée dans la fonction de hachage qui génère
+      la clé.
+     </span>
+     <span class="simpara">
+      PECL/mysqlnd_ms peut, si demandé, mettre en cache les résultats
+      depuis des serveurs esclaves de réplication MySQL. En raison du fait
+      que le cache peut contenir plusieurs connexions à l&#039;esclave, la clé
+      du cache ne doit pas être formée en utilisant le nom de l&#039;utilisateur,
+      le nom d&#039;hôte ou tout autre configuration qui peuvent varier
+      entre les connexions aux esclaves. Au lieu de ça, PECL/mysqlnd_ms
+      fournit un identifiant qui se réfère au groupe de connexions esclaves
+      qui doivent être activées pour partager les entrées du cache, peu
+      importe la connexion esclave physique utilisée pour générer l&#039;entrée
+      du cache.
+     </span>
+     <span class="simpara">
+      L&#039;utilisation de cette fonctionnalité en dehors de PECL/mysqlnd_ms
+      n&#039;est pas recommandée.
+     </span>
+    </dd>
+
+   
+  </dl>
+
+ </p>
+ 
+ <p class="para">
+  En relation avec <em class="emphasis"><span class="function"><a href="function.mysqlnd-qc-set-cache-condition.html" class="function">mysqlnd_qc_set_cache_condition()</a></span></em>
+ </p>
+ <p class="para">
+  <div class="example" id="example-2277">
+   <p><strong>Exemple #2 Exemple avec <span class="function"><a href="function.mysqlnd-qc-set-cache-condition.html" class="function">mysqlnd_qc_set_cache_condition()</a></span></strong></p>
+   <div class="example-contents"><p>
+    La fonction <span class="function"><a href="function.mysqlnd-qc-set-cache-condition.html" class="function">mysqlnd_qc_set_cache_condition()</a></span> autorise la définition
+    de condition pour la mise en cache automatique des requêtes qui ne commencent pas
+    par des astuces SQL, nécessaire pour l&#039;activation manuelle de la mise en cache.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Met&nbsp;en&nbsp;cache&nbsp;tous&nbsp;les&nbsp;accès&nbsp;aux&nbsp;tables&nbsp;avec&nbsp;le&nbsp;"new%"&nbsp;dans&nbsp;le&nbsp;schéma/base&nbsp;de&nbsp;données&nbsp;"db_example"&nbsp;pour&nbsp;1&nbsp;seconde&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">mysqlnd_qc_set_cache_condition</span><span style="color: #007700">(</span><span style="color: #0000BB">MYSQLND_QC_CONDITION_META_SCHEMA_PATTERN</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"db_example.new%"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;die(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;définition&nbsp;de&nbsp;la&nbsp;condition&nbsp;de&nbsp;mise&nbsp;en&nbsp;cache&nbsp;!"</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"host"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"db_example"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"port"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">/*&nbsp;Mise&nbsp;en&nbsp;cache&nbsp;alors&nbsp;qu'aucune&nbsp;astuce&nbsp;SQL&nbsp;n'est&nbsp;fournie&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;title&nbsp;FROM&nbsp;news"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$pdo_mysql&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">(</span><span style="color: #DD0000">"mysql:host=host;dbname=db_example;port=port"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">/*&nbsp;Non&nbsp;mise&nbsp;en&nbsp;cache&nbsp;:&nbsp;aucune&nbsp;astuce&nbsp;SQL,&nbsp;et&nbsp;le&nbsp;masque&nbsp;ne&nbsp;correspond&nbsp;pas&nbsp;*/<br /></span><span style="color: #0000BB">$pdo_mysql</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;title&nbsp;FROM&nbsp;latest_news"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">/*&nbsp;Mise&nbsp;en&nbsp;cache&nbsp;:&nbsp;TTL&nbsp;de&nbsp;1&nbsp;seconde,&nbsp;le&nbsp;masque&nbsp;correspond&nbsp;*/<br /></span><span style="color: #0000BB">$pdo_mysql</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;title&nbsp;FROM&nbsp;news"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  <dl>
+
+   
+    <dt id="constant.mysqlnd-qc-condition-meta-schema-pattern">
+     <strong><code>MYSQLND_QC_CONDITION_META_SCHEMA_PATTERN</code></strong>
+     (<a href="language.types.integer.html" class="link">entier</a>)
+    </dt>
+
+    <dd>
+
+     <span class="simpara">
+      Utilisé comme paramètre de la fonction <span class="function"><a href="function.mysqlnd-qc-set-cache-condition.html" class="function">mysqlnd_qc_set_cache_condition()</a></span>
+      pour définir les conditions pour le schéma de mise en cache automatique.
+     </span>
+    </dd>
+
+   
+  </dl>
+
+ </p>
+ <p class="para">
+  <em class="emphasis">Autres</em>
+ </p>
+ <p class="para">
+  Le numéro de version du plugin peut être obtenu en utilisant soit la
+  constante <strong><code>MYSQLND_QC_VERSION</code></strong>, qui est une représentation
+  sous forme de chaînes de caractères du numéro de version numérique, ou la
+  constante <strong><code>MYSQLND_QC_VERSION_ID</code></strong>, qui est un entier
+  comme par exemple, 10000. Les développeurs peuvent calculer le numéro de
+  bersion comme ceci :
+ </p>
+ <p class="para">
+   <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Version (partie)</th>
+      <th>Exemple</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>Majeur*10000</td>
+      <td>1*10000 = 10000</td>
+     </tr>
+
+     <tr>
+      <td>Mineur*100</td>
+      <td>0*100 = 0</td>
+     </tr>
+
+     <tr>
+      <td>Patch</td>
+      <td>0 = 0</td>
+     </tr>
+
+     <tr>
+      <td>MYSQLND_QC_VERSION_ID</td>
+      <td>10000</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </p>
+ <p class="para">
+  <dl>
+
+   
+    <dt id="constant.mysqlnd-qc-version">
+     <strong><code>MYSQLND_QC_VERSION</code></strong>
+     (<a href="language.types.string.html" class="link">chaîne de caractères</a>)
+    </dt>
+
+    <dd>
+
+     <span class="simpara">
+      Chaîne de caractères représentant la version du plugin,
+      par exemple, <q class="quote">1.0.0-prototype</q>.
+     </span>
+    </dd>
+
+   
+  </dl>
+
+ </p>
+ <p class="para">
+  <dl>
+
+   
+    <dt id="constant.mysqlnd-qc-version-id">
+     <strong><code>MYSQLND_QC_VERSION_ID</code></strong>
+     (<a href="language.types.integer.html" class="link">entier</a>)
+    </dt>
+
+    <dd>
+
+     <span class="simpara">
+      Numéro de version du plugin, par exemple, 10000.
+     </span>
+    </dd>
+
+   
+  </dl>
+
+ </p>
+</div>
+</div></div></body></html>

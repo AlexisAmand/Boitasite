@@ -1,0 +1,281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Installation sur les syst&egrave;mes UNIX</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="install.general.html">« Consid&eacute;rations g&eacute;n&eacute;rales sur l'installation</a></li>
+      <li style="float: right;"><a href="install.unix.apache.html">Apache 1.3.x sur les syst&egrave;mes Unix »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="install.html">Installation et configuration</a></li>
+    <li>Installation sur les syst&egrave;mes UNIX</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="install.unix" class="chapter">
+ <h1>Installation sur les systèmes UNIX</h1>
+<h2>Sommaire</h2><ul class="chunklist chunklist_chapter"><li><a href="install.unix.apache.html">Apache 1.3.x sur les syst&egrave;mes Unix</a></li><li><a href="install.unix.apache2.html">Apache 2.x sur les syst&egrave;mes Unix</a></li><li><a href="install.unix.nginx.html">Nginx 1.4.x sur les syst&egrave;mes Unix</a></li><li><a href="install.unix.lighttpd-14.html">Lighttpd 1.4 sur les syst&egrave;mes Unix</a></li><li><a href="install.unix.sun.html">Installation sous Netscape et iPlanet Enterprise Serveur sur un syst&egrave;me Sun Solaris</a></li><li><a href="install.unix.litespeed.html">LiteSpeed Web Server/OpenLiteSpeed Web Server on Unix systems</a></li><li><a href="install.unix.commandline.html">CGI et configuration en ligne de commande</a></li><li><a href="install.unix.hpux.html">Installation sous HP-UX</a></li><li><a href="install.unix.openbsd.html">Installation sur les syst&egrave;mes OpenBSD</a></li><li><a href="install.unix.solaris.html">Installation sous Solaris</a></li><li><a href="install.unix.debian.html">Notes d'installation sous Debian GNU/Linux</a></li></ul>
+
+ <p class="para">
+  Cette section va vous guider lors du processus d&#039;installation et de
+  configuration de PHP sous Unix. Commencez par étudier les sections
+  spécifiques à votre plate-forme ou à votre serveur Web avant de passer
+  à l&#039;installation.
+ </p>
+ <p class="para">
+  Comme ce que nous avons écrit dans le manuel dans la section
+  <a href="install.general.html" class="link">Considérations générales sur l&#039;installation</a>,
+  nous traiterons de l&#039;installation de PHP sur des serveurs Web dans cette section, bien que
+  nous couvrirons également la configuration de PHP pour l&#039;utilisation en ligne de commande.
+ </p>
+ <p class="para">
+  Il y a plusieurs manières d&#039;installer PHP sur des plates-formes Unix : soit
+  avec un processus de compilation/configuration, soit avec des paquets
+  précompilés. Cette documentation est particulièrement focalisée sur
+  le processus de compilation/configuration. Beaucoup de systèmes basés sur Unix
+  ont plusieurs sortes de paquets d&#039;installation pour leur système. Ils permettent
+  de vous assister dans une configuration standard, mais si vous avez besoin
+  d&#039;avoir des fonctionnalités différentes (comme un serveur sécurisé ou un driver
+  différent de bases de données), vous aurez besoin de construire PHP et/ou
+  votre serveur Web. Si vous n&#039;êtes pas familiarisé avec la construction et la compilation
+  de vos propres logiciels, il sera plus simple de vérifier si quelque part, personne
+  n&#039;a déjà construit une version de paquet de PHP avec les fonctionnalités dont vous avez
+  besoin.
+ </p>
+ <p class="para">
+  Pré-requis :
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     Connaissance de base d&#039;UNIX (savoir faire un &quot;make&quot; et compiler en
+     C, si besoin).
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Un compilateur ANSI C (pour les codes sources)
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Un serveur web
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Toute bibliothèque nécessaire pour une extension spécifique
+     (comme <acronym title="Graphics Draw">GD</acronym>, <acronym title="Portable Document Format">PDF</acronym>, etc.)
+    </span>
+   </li>
+  </ul>
+ </p>
+ 
+ <p class="para">
+    Lors de la compilation depuis Git directement, ou après une modification des
+    sources personnalisée, vous pourriez avoir aussi besoin de :
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       autoconf: 2.13+ (pour PHP &lt; 5.4.0), 2.59+ (pour PHP &gt;= 5.4.0), 2.64+ (for PHP &gt;= 7.2.0)
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       automake: 1.4+
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       libtool: 1.4.x+ (sauf 1.4.2)
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       re2c: Version 0.13.4 ou plus récent
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       flex: Version 2.5.4 (pour PHP &lt;= 5.2)
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       bison :
+      </span>
+      <ul class="itemizedlist">
+       <li class="listitem">
+        <span class="simpara">
+         PHP 5.4 : 1.28, 1.35, 1.75, 1.875, 2.0, 2.1, 2.2, 2.3, 2.4, 2.4.1,
+         2.4.2, 2.4.3, 2.5, 2.5.1, 2.6, 2.6.1, 2.6.2, 2.6.4
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         PHP 5.5 : 2.4, 2.4.1, 2.4.2, 2.4.3, 2.5, 2.5.1, 2.6, 2.6.1, 2.6.2,
+         2.6.3, 2.6.4, 2.6.5, 2.7
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         PHP 5.6: &gt;= 2.4, &lt; 3.0
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         PHP 7.0 - 7.3: 2.4 ou ultérieur (incluant Bison 3.x)
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         PHP 7.4: &gt; 3.0
+        </span>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </p>
+
+ <p class="para">
+  La configuration initiale de PHP et le processus de configuration sont contrôlés
+  par l&#039;utilisation du fichier <strong class="command">configure</strong> et de ces options
+  en lignes de commande. Vous pouvez récupérer une liste de toutes les options disponibles
+  accompagnées d&#039;une courte description en exécutant la commande
+  <strong class="command">./configure --help</strong>. Notre manuel documente les différentes
+  options séparément. Vous pouvez trouver les
+  <a href="configure.about.html" class="link">options internes en annexe</a>,
+  bien que les différentes options spécifiques à chaque extension sont décrites
+  sur les pages de référence.
+ </p>
+
+ <p class="para">
+  Lorsque PHP est configuré, vous êtes prêt à construire le module et/ou
+  l&#039;exécutable. La commande <strong class="command">make</strong> devrait s&#039;occuper de cela.
+  Si elle échoue et que vous ne savez pas pourquoi, lisez la
+  <a href="install.problems.html" class="link">section Problèmes</a>.
+ </p>
+ 
+    <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <p class="para">
+     Certains systèmes UNIX (tels qu&#039;OpenBSD et SELinux) peuvent interdire la 
+     cartographie des pages à la fois inscriptibles et exécutables pour des 
+     raisons de sécurité, ce qu&#039;on appelle PaX MPROTECT ou W^X protection 
+     contre les violations. Ce type de mappage de mémoire est, cependant, 
+     nécessaire pour le soutien JIT de PCRE, donc soit php doit être construit 
+     <a href="pcre.installation.html" class="link">sans le soutien JIT pour PCRE</a>, 
+     ou le binaire doit être ajouter à la liste blanche par tous les moyens 
+     fournis par le système.
+    </p>
+   </p></blockquote>
+
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <span class="simpara">
+     La compilation croisée pour ARM avec la chaîne Android n&#039;est actuellement pas prise en charge.
+    </span>
+   </p></blockquote>
+
+ 
+ 
+
+
+
+
+   
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+   
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+</div>
+</div></div></body></html>

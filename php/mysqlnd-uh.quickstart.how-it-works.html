@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Comment fonctionne-t-il ?</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-uh.quickstart.configuration.html">« Configuration</a></li>
+      <li style="float: right;"><a href="mysqlnd-uh.quickstart.proxy-installation.html">Installation d'un proxy »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-uh.quickstart.html">D&eacute;marrage rapide et exemples</a></li>
+    <li>Comment fonctionne-t-il ?</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-uh.quickstart.how-it-works" class="section">
+  <h2 class="title">Comment fonctionne-t-il ?</h2>
+  <p class="para">
+   Cette section décrit le contexte et les rouages de l&#039;extension
+   mysqlnd_uh.
+  </p>
+  <p class="para">
+   Deux classes sont fournies par l&#039;extension : <a href="class.mysqlnduhconnection.html" class="classname">MysqlndUhConnection</a>
+   et <a href="class.mysqlnduhpreparedstatement.html" class="classname">MysqlndUhPreparedStatement</a>. <a href="class.mysqlnduhconnection.html" class="classname">MysqlndUhConnection</a>
+   vous permet d&#039;accéder à la plupart des méthodes de la classe interne <code class="literal">connection</code>
+   de <code class="literal">mysqlnd</code>. La seconde expose quelques méthodes
+   sélectionnées de la classe <code class="literal">statement</code> interne
+   à <code class="literal">mysqlnd</code>. Par exemple, la méthode
+   <span class="methodname"><a href="mysqlnduhconnection.connect.html" class="methodname">MysqlndUhConnection::connect()</a></span> est liée à la fonction C
+   <code class="literal">mysqlnd_conn__connect</code> de la bibliothèque
+   <code class="literal">mysqlnd</code>.
+  </p>
+  <p class="para">
+   Comme plugin mysqlnd, l&#039;extension PECL/mysqlnd_uh remplace les fonctions
+   de la bibliothèque C <code class="literal">mysqlnd</code> avec ces propres fonctions.
+   A chaque fois qu&#039;une extension PHP MySQL est compilée pour une utilisation
+   de <code class="literal">mysqlnd</code>, qu&#039;un appel à une fonction mysqlnd
+   est réalisée, la fonction installée par le plugin est exécutée au lieu
+   de la fonction originale <code class="literal">mysqlnd</code>. Si, par exemple, la
+   fonction <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span> appèle <code class="literal">mysqlnd_conn__connect</code>,
+   la fonction de connexion installée par PECL/mysqlnd_uh sera appelée.
+   Les fonctions installées par PECL/mysqlnd_uh sont les méthodes des classes
+   internes.
+  </p>
+  <p class="para">
+   Les classes internes PHP et leurs méthodes ne font rien, mais un appel
+   à leurs homologues de la bibliothèque C <code class="literal">mysqlnd</code>
+   permet d&#039;obtenir un comportement identique à la fonction originale
+   <code class="literal">mysqlnd</code> qu&#039;elles remplacent. Le code ci-dessous
+   illustre rapidement ce que la classe fait.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2287">
+    <p><strong>Exemple #1 Ce que fait une classe interne</strong></p>
+    <div class="example-contents">
+<div class="cdata"><pre>
+class MysqlndUhConnection {
+  public function connect(($conn, $host, $user, $passwd, $db, $port, $socket, $mysql_flags) {
+    MYSQLND* c_mysqlnd_connection = convert_from_php_to_c($conn);
+    ...
+    return call_c_function(mysqlnd_conn__connect(c_mysqlnd_connection, ...));
+  }
+}
+</pre></div>
+    </div>
+
+    </div>
+  </p>
+  <p class="para">
+   Les classes internes fonctionnent comme un proxy transparent.
+   Il vous est possible de remplacer le proxy par le votre, en surchargeant 
+   la classe <a href="class.mysqlnduhconnection.html" class="classname">MysqlndUhConnection</a> ou la classe
+   <a href="class.mysqlnduhpreparedstatement.html" class="classname">MysqlndUhPreparedStatement</a> pour étendre
+   les fonctionnalités du proxy, suivi de l&#039;enregistrement du nouvel
+   objet proxy. Les objets proxy sont installés en utilisant les
+   fonctions <span class="function"><a href="function.mysqlnd-uh-set-connection-proxy.html" class="function">mysqlnd_uh_set_connection_proxy()</a></span> et
+   <span class="function"><a href="function.mysqlnd-uh-set-statement-proxy.html" class="function">mysqlnd_uh_set_statement_proxy()</a></span>.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2288">
+    <p><strong>Exemple #2 Installation d&#039;un proxy</strong></p>
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">proxy&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">MysqlndUhConnection&nbsp;</span><span style="color: #007700">{<br />&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$host</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$passwd</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$port</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$socket</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysql_flags</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s(%s)\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">__METHOD__</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">func_get_args</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$host</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$passwd</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$port</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$socket</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysql_flags</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s&nbsp;retourne&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">__METHOD__</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">var_export</span><span style="color: #007700">(</span><span style="color: #0000BB">$ret</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$ret</span><span style="color: #007700">;<br />&nbsp;}<br />}<br /></span><span style="color: #0000BB">mysqlnd_uh_set_connection_proxy</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">proxy</span><span style="color: #007700">());<br /><br /></span><span style="color: #0000BB">$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"root"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"test"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+proxy::connect(array (
+  0 =&gt; NULL,
+  1 =&gt; &#039;localhost&#039;,
+  2 =&gt; &#039;root&#039;,
+  3 =&gt; &#039;&#039;,
+  4 =&gt; &#039;test&#039;,
+  5 =&gt; 3306,
+  6 =&gt; NULL,
+  7 =&gt; 131072,
+))
+proxy::connect retourne true
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div></div></div></body></html>

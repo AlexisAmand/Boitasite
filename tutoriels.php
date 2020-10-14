@@ -163,6 +163,7 @@
             <h5 class="mt-5">PHP</h5>
 
             <ul>
+                <li><a href="php/index.html" title="#">Doc officielle de PHP (octobre 2020)</a></li>
 				<li><a href="pdf/php/PHP_v1.pdf" title="#">Programmer en PHP (via Alcôve)</a></li>
 				<li><a href="pdf/php/cours-php-5.pdf" title="Cours sur la version 5 du langage PHP">Cours de PHP 5.0</a></li> 
 				<li><a href="pdf/php/Documentation-PHP-4-3-0.pdf" title="Documentation officielle de la version 4.3 de PHP">Manuel PHP 4.3.0 (Documentation officielle)</a></li>

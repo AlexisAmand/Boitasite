@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Supprime un enregistrement d'une collection</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongocollection.parallelcollectionscan.html">« MongoCollection::parallelCollectionScan</a></li>
+      <li style="float: right;"><a href="mongocollection.save.html">MongoCollection::save »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mongocollection.html">MongoCollection</a></li>
+    <li>Supprime un enregistrement d'une collection</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongocollection.remove" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">MongoCollection::remove</h1>
+  <p class="verinfo">(PECL mongo &gt;=0.9.0)</p><p class="refpurpose"><span class="refname">MongoCollection::remove</span> &mdash; <span class="dc-title">Supprime un enregistrement d&#039;une collection</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-mongocollection.remove-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>MongoCollection::remove</strong></span>
+    ([ <span class="methodparam"><span class="type">array</span> <code class="parameter">$criteria</code><span class="initializer"> = array()</span></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code><span class="initializer"> = array()</span></span>
+  ]] ) : <span class="type"><span class="type bool|array">bool|array</span></span></div>
+
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-mongocollection.remove-parameters">
+  <h3 class="title">Liste de paramètres</h3>    
+  <p class="para">
+   <dl>
+
+    
+     <dt id="mongocollection.remove.criteria">
+      <code class="parameter">criteria</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Critères de requête pour le document à supprimer.
+      </p>
+     </dd>
+
+       
+    
+     <dt>
+
+      <code class="parameter">options</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Un tableau d&#039;options pour l&#039;opération de suppression. Les options actuellement
+       disponibles sont :
+       <ul class="itemizedlist">
+        <li class="listitem"><p class="para"><code class="literal">&quot;w&quot;</code></p><p class="para">Voir les <a href="mongo.writeconcerns.html" class="link">préoccupatios d&#039;écriture</a>. La valeur par défaut pour <a href="class.mongoclient.html" class="classname">MongoClient</a> est <code class="literal">1</code>.</p></li>
+        <li class="listitem" id="mongocollection.remove.justone">
+         <p class="para">
+          <code class="literal">&quot;justOne&quot;</code>
+         </p>
+         <p class="para">
+          Spécifier <strong><code>TRUE</code></strong> pour limiter la suppression à un seul document.
+          Si <strong><code>FALSE</code></strong> est fourni, ou omis, alors tous les documents correspondants
+          aux critères seront supprimés.
+         </p>
+        </li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;fsync&quot;</code></p><p class="para">Booléen, par défaut à <strong><code>FALSE</code></strong>. Si l&#039;historisation est activée, il fonctionne exactement comme <code class="literal">&quot;j&quot;</code>. Si l&#039;historisation n&#039;est pas activée, l&#039;opération en écriture sera bloquante tant qu&#039;elle ne sera pas synchronisé sur les fichiers de base de données du disque. Si vaut <strong><code>TRUE</code></strong>, une insertion reconnue devient implicite, et cette option va écraser la configuration <code class="literal">&quot;w&quot;</code> à <code class="literal">0</code>.</p><blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">Si l&#039;historisation est activée, les utilisateurs sont vivement encouragés à utiliser l&#039;option <code class="literal">&quot;j&quot;</code> au lieu de <code class="literal">&quot;fsync&quot;</code>. N&#039;utilisez pas <code class="literal">&quot;fsync&quot;</code> et <code class="literal">&quot;j&quot;</code> en même temps, ou une erreur sera produite.</span></p></blockquote></li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;j&quot;</code></p><p class="para">Booléen, par défaut à <strong><code>FALSE</code></strong>. Force les opérations en écriture a être bloquantes tant qu&#039;elles ne sont pas synchronisées dans le journal du disque. Si vaut <strong><code>TRUE</code></strong>, une écriture reconnue est implicite, et cette option va écraser la configuration <code class="literal">&quot;w&quot;</code> à <code class="literal">0</code>.</p><blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">Si cette option est utilisée, et que l&#039;historisation est désactivée, MongoDB 2.6+ va lancer une erreur, et l&#039;écriture échouera ; les anciennes versions du serveur vont simplement ignorer cette ooption.</span></p></blockquote></li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;socketTimeoutMS&quot;</code></p><p class="para">Cette option spécifie la durée limite, en millisecondes, pour la communication avec un socket. Si le serveur ne répond pas pendant cette période, une exception <a href="class.mongocursortimeoutexception.html" class="classname">MongoCursorTimeoutException</a> sera émise et il n&#039;y a aucune façon de déterminer si le serveur gère actuellement l&#039;écriture ou non. Une valeur de <code class="literal">-1</code> peut être spécifiée pour bloquer indéfiniement. La valeur par défaut pour <a href="class.mongoclient.html" class="classname">MongoClient</a> est <code class="literal">30000</code> (30 secondes).</p></li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;w&quot;</code></p><p class="para">Voir les <a href="mongo.writeconcerns.html" class="link">préoccupatios d&#039;écriture</a>. La valeur par défaut pour <a href="class.mongoclient.html" class="classname">MongoClient</a> est <code class="literal">1</code>.</p></li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;wTimeoutMS&quot;</code></p><p class="para">Cette option spécifie la durée limite, en millisecondes, pour la reconnaissance des <a href="mongo.writeconcerns.html" class="link">préoccupations d&#039;écriture</a>.Ceci n&#039;est applicable que lorsque <code class="literal">&quot;w&quot;</code> est supérieur à <code class="literal">1</code>, sachant que le délai d&#039;attente maximal est en relation avec la réplication. Si la préoccupation d&#039;écriture n&#039;est pas spécifiée dans la durée limite, une exception <a href="class.mongocursorexception.html" class="classname">MongoCursorException</a> sera émise. Une valeur de <code class="literal">0</code> peut être spécifiée pour un blocage permanent. La valeur par défaut pour <a href="class.mongoclient.html" class="classname">MongoClient</a> est <code class="literal">10000</code> (dix secondes).</p></li>
+       </ul>
+      </p>
+      <p class="para">
+       Les options suivantes sont obsolètes et ne devraient plus être utilisées :
+       <ul class="itemizedlist">
+        <li class="listitem"><p class="para"><code class="literal">&quot;safe&quot;</code></p><p class="para">Deprecated. Please use the <a href="mongo.writeconcerns.html" class="link">write concern</a> <code class="literal">&quot;w&quot;</code> option.</p></li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;timeout&quot;</code></p><p class="para">Alias obsolète pour <code class="literal">&quot;socketTimeoutMS&quot;</code>.</p></li>
+        <li class="listitem"><p class="para"><code class="literal">&quot;wtimeout&quot;</code></p><p class="para">Alias obsolète pour <code class="literal">&quot;wTimeoutMS&quot;</code>.</p></li>
+       </ul>
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-mongocollection.remove-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau contenant le statut de l&#039;effacement si l&#039;option
+   <code class="literal">&quot;w&quot;</code> est définie. Sinon, retourne <strong><code>TRUE</code></strong>.
+  </p>
+  <p class="para">
+   Les champs de ce tableau sont décrits dans la documentation de la méthode
+   <span class="function"><a href="mongocollection.insert.html" class="function">MongoCollection::insert()</a></span>.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 errors" id="refsect1-mongocollection.remove-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">Lance une exception <a href="class.mongocursorexception.html" class="classname">MongoCursorException</a> si l&#039;option <code class="literal">&quot;w&quot;</code> est définie, et que l&#039;écriture échoue.</p><p class="para">Lance une exception <a href="class.mongocursortimeoutexception.html" class="classname">MongoCursorTimeoutException</a> si l&#039;option <code class="literal">&quot;w&quot;</code> est définie à une valeur supérieure à 1 et que l&#039;opération prend plus de temps que <var class="varname">MongoCursor::$timeout</var> millisecondes à se terminer. Ceci ne va pas mettre fin à l&#039;opération sur le serveur, ce n&#039;est qu&#039;un délai d&#039;attente maximal côté client. L&#039;unité pour <var class="varname">MongoCollection::$wtimeout</var> est la milliseconde.</p>
+ </div>
+
+ 
+ <div class="refsect1 changelog" id="refsect1-mongocollection.remove-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>1.5.0</td>
+       <td>
+        <p class="para">
+         Ajout de l&#039;option <code class="literal">&quot;wTimeoutMS&quot;</code>, qui remplace l&#039;option
+         <code class="literal">&quot;wtimeout&quot;</code>. Emets une alerte de niveau
+         <strong><code>E_DEPRECATED</code></strong> lorsque <code class="literal">&quot;wtimeout&quot;</code>
+         est utilisée.
+        </p>
+        <p class="para">
+         Ajout de l&#039;option <code class="literal">&quot;socketTimeoutMS&quot;</code>, qui remplace l&#039;option
+         <code class="literal">&quot;timeout&quot;</code>. Emets une alerte de niveau
+         <strong><code>E_DEPRECATED</code></strong> lorsque <code class="literal">&quot;timeout&quot;</code>
+         est utilisée.
+        </p>
+        <p class="para">
+         Emets une alerte de niveau <strong><code>E_DEPRECATED</code></strong> lorsque
+         <code class="literal">&quot;safe&quot;</code> est utilisée.
+        </p>
+       </td>
+      </tr>
+
+      <tr>
+       <td>1.3.4</td>
+       <td>Ajout de l&#039;option <code class="literal">&quot;wtimeout&quot;</code>.</td>
+      </tr>
+
+      <tr>
+       <td>1.3.0</td>
+       <td>
+        <p class="para">Ajout de l&#039;option <code class="literal">&quot;w&quot;</code>.</p>
+        <p class="para">
+         Le paramètre <code class="parameter">options</code> n&#039;accepte plus de booléen
+         pour indiquer <code class="literal">&quot;justOne&quot;</code>. A la place, utilisez la syntaxe
+         <code class="literal">array(&#039;justOne&#039; =&gt; true)</code>.
+        </p>
+       </td>
+      </tr>
+
+      <tr>
+       <td>1.2.11</td>
+       <td>
+        Lance une alerte de niveau <strong><code>E_DEPRECATED</code></strong> lorsque
+        le paramètre <code class="parameter">options</code> est de type <span class="type"><span class="type scalar">scalar</span></span>.
+       </td>
+      </tr>
+
+      <tr>
+       <td>1.2.0</td>
+       <td>
+        Ajout de l&#039;option <code class="literal">&quot;timeout&quot;</code>.
+       </td>
+      </tr>
+
+      <tr>
+       <td>1.0.11</td>
+        <td>
+         Se déconnecte lors d&#039;erreurs &quot;not master&quot; si <code class="literal">&quot;safe&quot;</code> 
+         est utilisé.
+        </td>
+      </tr>
+
+      <tr>
+       <td>1.0.9</td>
+       <td>
+        <p class="para">
+         Ajout de la capacité de passer des entiers à l&#039;option <code class="literal">&quot;safe&quot;</code>
+         (n&#039;acceptaient que des booléens avant).
+        </p>
+        <p class="para">
+         Ajout de l&#039;option <code class="literal">&quot;fsync&quot;</code>.
+        </p>
+        <p class="para">
+         Le type retourné a été modifié en un tableau contenant les informations
+         de l&#039;erreur si l&#039;option <code class="literal">&quot;safe&quot;</code> est utilisée, sinon, ce sera un booléen
+         comme auparavant.
+        </p>
+       </td>
+      </tr>
+
+      <tr>
+       <td>1.0.5</td>
+       <td>
+        Modification du second paramètre en un tableau d&#039;options.
+        Pre-1.0.5, le second paramètre était un booléen indiquant
+        l&#039;option <code class="literal">&quot;safe&quot;</code>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-mongocollection.remove-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="mongocollection.findandmodify.example.basic">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>MongoCollection::remove()</strong></span> et <code class="parameter">justOne</code></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$radioactive&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">radioactive</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;compte&nbsp;la&nbsp;quantité&nbsp;de&nbsp;plutonium<br /></span><span style="color: #0000BB">$remaining&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$radioactive</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">count</span><span style="color: #007700">(array(</span><span style="color: #DD0000">'type'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">94</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">$halflife&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$remaining</span><span style="color: #007700">/</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Suppression&nbsp;de&nbsp;la&nbsp;moitié<br /></span><span style="color: #007700">while&nbsp;(</span><span style="color: #0000BB">$halflife&nbsp;</span><span style="color: #007700">&gt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$radioactive</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">remove</span><span style="color: #007700">(array(</span><span style="color: #DD0000">'type'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">94</span><span style="color: #007700">),&nbsp;array(</span><span style="color: #DD0000">"justOne"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$halflife</span><span style="color: #007700">--;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-mongocollection.remove-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="function"><a href="mongocollection.insert.html" class="function" rel="rdfs-seeAlso">MongoCollection::insert()</a> - Ins&egrave;re un document dans la collection</span></li>
+   <li class="member"><span class="function"><a href="mongocollection.update.html" class="function" rel="rdfs-seeAlso">MongoCollection::update()</a> - Modifie les enregistrements</span></li>
+   <li class="member">Documentation de MongoDB <a href="https://docs.mongodb.com/manual/tutorial/remove-documents/" class="link external">&raquo;&nbsp;concernant  remove</a>.</li>
+  </ul>
+ </div>
+
+ 
+</div></div></div></body></html>

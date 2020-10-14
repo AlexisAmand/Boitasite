@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ex&eacute;cute une requ&ecirc;te sur un serveur FrontBase</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.fbsql-pconnect.html">« fbsql_pconnect</a></li>
+      <li style="float: right;"><a href="function.fbsql-read-blob.html">fbsql_read_blob »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.fbsql.html">FrontBase Fonctions</a></li>
+    <li>Ex&eacute;cute une requ&ecirc;te sur un serveur FrontBase</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.fbsql-query" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">fbsql_query</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5 &lt; 5.3.0)</p><p class="refpurpose"><span class="refname">fbsql_query</span> &mdash; <span class="dc-title">Exécute une requête sur un serveur FrontBase</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.fbsql-query-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>fbsql_query</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>
+   [, <span class="methodparam"><span class="type">resource</span> <code class="parameter">$link_identifier</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$batch_size</code></span>
+  ]] ) : <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">
+   Envoie la requête <code class="parameter">query</code> à la base de données
+   courante, sur le serveur.
+  </p>
+  <p class="para">
+   Lorsque la requête réussit, vous pouvez utilisez
+   <span class="function"><a href="function.fbsql-num-rows.html" class="function">fbsql_num_rows()</a></span> pour savoir combien de
+   lignes ont été retournées par une requête SELECT, ou
+   <span class="function"><a href="function.fbsql-affected-rows.html" class="function">fbsql_affected_rows()</a></span> pour les autres
+   requêtes (DELETE, INSERT, REPLACE et UPDATE).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.fbsql-query-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">query</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La requête SQL à exécuter.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       <p class="para">
+        La requête doit toujours se terminer par un point virgule.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+    <dt>
+<code class="parameter">link_identifier</code></dt>
+<dd>
+
+    <p class="para">Un identifiant de lien FrontBase
+        retourné par la fonction <span class="function"><a href="function.fbsql-connect.html" class="function">fbsql_connect()</a></span> ou la fonction
+        <span class="function"><a href="function.fbsql-pconnect.html" class="function">fbsql_pconnect()</a></span>.</p><p class="para">Si ce paramètre est optionnel
+    et qu&#039;il n&#039;est pas spécifié, la fonction tentera de trouver un lien ouvert vers le serveur
+    FrontBase et un tel lien n&#039;est pas trouvé, la fonction tentera d&#039;en créer un,
+    de la même façon que si la fonction <span class="function"><a href="function.fbsql-connect.html" class="function">fbsql_connect()</a></span> est appelée
+    sans aucun argument.</p></dd>
+
+    
+     <dt>
+<code class="parameter">batch_size</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.fbsql-query-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   <span class="function"><strong>fbsql_query()</strong></span> retourne une ressource
+   en cas de succès, ou <strong><code>FALSE</code></strong>, en cas d&#039;échec. Si <strong><code>TRUE</code></strong> est
+   retourné, cela signifie que la requête est correcte et qu&#039;elle peut
+   être exécutée par le serveur. Cela n&#039;indique rien sur le nombre
+   de lignes concernées ou retournées. Il est tout à fait possible
+   qu&#039;une requête réussisse mais qu&#039;aucune ligne ne soit affectée
+   ni retournée.
+  </p>
+  <p class="para">
+   Pour les requêtes SELECT, <span class="function"><strong>fbsql_query()</strong></span> retourne
+   une ressource de résultat, que vous pouvez passer à
+   <span class="function"><a href="function.fbsql-result.html" class="function">fbsql_result()</a></span>.
+  </p>
+  <p class="para">
+   <span class="function"><strong>fbsql_query()</strong></span> échouera si vous n&#039;avez pas
+   les droits d&#039;accès sur l&#039;une des bases de données utilisées dans
+   la requête.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.fbsql-query-examples">
+  <h3 class="title">Exemples</h3>
+   <p class="para">
+   La requête suivante est invalide, et <span class="function"><strong>fbsql_query()</strong></span>
+   échouera puis retournera <strong><code>FALSE</code></strong> :
+   <div class="example" id="example-1227">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>fbsql_query()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fbsql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;*&nbsp;WHERE&nbsp;1=1"</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die&nbsp;(</span><span style="color: #DD0000">"Requête&nbsp;invalide"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   La requête suivante est invalide si <code class="literal">my_col</code> n&#039;est pas
+   une colonne dans la table <code class="literal">my_tbl</code> : <span class="function"><strong>fbsql_query()</strong></span>
+   échouera puis retournera <strong><code>FALSE</code></strong> :
+   <div class="example" id="example-1228">
+    <p><strong>Exemple #2 Exemple avec <span class="function"><strong>fbsql_query()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fbsql_query&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;my_col&nbsp;FROM&nbsp;my_tbl;"</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die&nbsp;(</span><span style="color: #DD0000">"Requête&nbsp;invalide"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.fbsql-query-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.fbsql-affected-rows.html" class="function" rel="rdfs-seeAlso">fbsql_affected_rows()</a> - Lit le nombre de lignes affect&eacute;es par la derni&egrave;re requ&ecirc;te</span></li>
+    <li class="member"><span class="function"><a href="function.fbsql-db-query.html" class="function" rel="rdfs-seeAlso">fbsql_db_query()</a> - Envoie une requ&ecirc;te &agrave; la base FrontBase</span></li>
+    <li class="member"><span class="function"><a href="function.fbsql-free-result.html" class="function" rel="rdfs-seeAlso">fbsql_free_result()</a> - Lib&egrave;re le r&eacute;sultat de la m&eacute;moire</span></li>
+    <li class="member"><span class="function"><a href="function.fbsql-result.html" class="function" rel="rdfs-seeAlso">fbsql_result()</a> - Lit des donn&eacute;es dans un r&eacute;sultat</span></li>
+    <li class="member"><span class="function"><a href="function.fbsql-select-db.html" class="function" rel="rdfs-seeAlso">fbsql_select_db()</a> - S&eacute;lectionne une base de donn&eacute;es FrontBase</span></li>
+    <li class="member"><span class="function"><a href="function.fbsql-connect.html" class="function" rel="rdfs-seeAlso">fbsql_connect()</a> - Ouvre une connexion &agrave; un serveur FrontBase</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

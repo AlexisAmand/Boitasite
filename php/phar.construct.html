@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Construit un objet d'archive Phar</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="phar.compressfiles.html">« Phar::compressFiles</a></li>
+      <li style="float: right;"><a href="phar.converttodata.html">Phar::convertToData »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.phar.html">Phar</a></li>
+    <li>Construit un objet d'archive Phar</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="phar.construct" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Phar::__construct</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PECL phar &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">Phar::__construct</span> &mdash; <span class="dc-title">Construit un objet d&#039;archive Phar</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-phar.construct-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>Phar::__construct</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$fname</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$alias</code></span>
+  ]] )</div>
+
+  
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-phar.construct-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">fname</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le chemin vers une archive Phar existante ou à créer.
+       Le nom du fichier doit contenir l&#039;extension .phar.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Les drapeaux à passer à la classe parente <a href="class.recursivedirectoryiterator.html" class="classname">RecursiveDirectoryIterator</a>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">alias</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Alias avec lequel on doit faire référence à l&#039;archive lors de l&#039;appels aux fonctionnalités de flux.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 errors" id="refsect1-phar.construct-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Lève une exception <a href="class.badmethodcallexception.html" class="classname">BadMethodCallException</a>
+   si la méthode est appelée deux fois, ou <a href="class.unexpectedvalueexception.html" class="classname">UnexpectedValueException</a>
+   si l&#039;archive ne peut pas être ouverte.
+  </p>
+ </div>
+
+ 
+ 
+ <div class="refsect1 examples" id="refsect1-phar.construct-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-700">
+    <p><strong>Exemple #1 Un exemple avec <span class="function"><strong>Phar::__construct()</strong></span></strong></p>
+    <div class="example-contents"><p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$p&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">(</span><span style="color: #DD0000">'/path/to/my.phar'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">FilesystemIterator</span><span style="color: #007700">::</span><span style="color: #0000BB">CURRENT_AS_FILEINFO&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">FilesystemIterator</span><span style="color: #007700">::</span><span style="color: #0000BB">KEY_AS_FILENAME</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'mon.phar'</span><span style="color: #007700">);<br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">UnexpectedValueException&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Ne&nbsp;peut&nbsp;pas&nbsp;ouvrir&nbsp;mon.phar'</span><span style="color: #007700">);<br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">BadMethodCallException&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'techniquement,&nbsp;ça&nbsp;ne&nbsp;peut&nbsp;pas&nbsp;arriver'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #FF8000">//&nbsp;ça&nbsp;fonctionne&nbsp;maintenant<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">'phar://mon.phar/exemple.txt'</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;et&nbsp;ça&nbsp;fonctionne&nbsp;comme&nbsp;si&nbsp;nous&nbsp;avions&nbsp;tapé<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">'phar:///chemin/vers/mon.phar/exemple.txt'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </p></div>
+   </div>
+  </p>
+ </div>
+
+ 
+</div></div></div></body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Passage par r&eacute;f&eacute;rence</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.references.arent.html">« Ce que les r&eacute;f&eacute;rences ne sont pas</a></li>
+      <li style="float: right;"><a href="language.references.return.html">Retourner des r&eacute;f&eacute;rences »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.references.html">Les r&eacute;f&eacute;rences</a></li>
+    <li>Passage par r&eacute;f&eacute;rence</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.references.pass" class="sect1">
+  <h2 class="title">Passage par référence</h2>
+  <p class="para">
+   Vous pouvez passer une variable par référence à une fonction, de
+   manière à ce que celle-ci puisse la modifier.
+   La syntaxe est la suivante :
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">(&amp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">++;<br />}<br /></span><span style="color: #0000BB">$a</span><span style="color: #007700">=</span><span style="color: #0000BB">5</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">foo&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;$a&nbsp;vaut&nbsp;6&nbsp;maintenant<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <span class="simpara">
+     Il n&#039;y a pas de signe de référence dans l&#039;appel de la
+     fonction, uniquement sur sa définition. La définition de la
+     fonction en elle-même est suffisante pour passer correctement des arguments par
+     référence. A partir de PHP 5.3.0, vous devriez recevoir une alerte
+     disant que &quot;Call-time pass-by-reference&quot; est obsolète, lorsque vous utilisez
+     un &amp; dans <code class="literal">foo(&amp;$a);</code>.
+     Et à partir de PHP 5.4.0, call-time pass-by-reference a été supprimé, l&#039;utiliser
+     lèvera une erreur fatale.
+    </span>
+   </p></blockquote>
+  </p>
+  <p class="para">
+   Les données suivantes peuvent être passées par référence :
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      Une variable, comme dans <code class="literal">foo($a)</code>
+     </span>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Une référence retournée par une fonction :
+      <div class="informalexample">
+       <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">(&amp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">++;<br />}<br />function&nbsp;&amp;</span><span style="color: #0000BB">bar</span><span style="color: #007700">()<br />{<br />&nbsp;</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">;<br />&nbsp;return&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">bar</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+       </div>
+
+      </div>
+      Pour plus d&#039;informations, voir les détails dans
+      <a href="language.references.return.html" class="link">retour par
+       référence</a>.
+     </p>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   Toutes les autres expressions ne doivent pas être passées par
+   référence, car le résultat sera indéfini. Par exemple,
+   les passages par référence suivants sont invalides :
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">(&amp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">++;<br />}<br />function&nbsp;</span><span style="color: #0000BB">bar</span><span style="color: #007700">()&nbsp;</span><span style="color: #FF8000">//&nbsp;Notez&nbsp;l'absence&nbsp;de&nbsp;&amp;<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">bar</span><span style="color: #007700">());&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Produit&nbsp;une&nbsp;erreur&nbsp;fatale&nbsp;depuis&nbsp;PHP&nbsp;5.0.5,&nbsp;une&nbsp;remarque<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;strict&nbsp;standard&nbsp;depuis&nbsp;PHP&nbsp;5.11&nbsp;et&nbsp;juste&nbsp;une&nbsp;remarque&nbsp;depuis<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;PHP&nbsp;7.0.0<br /><br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Expression,&nbsp;pas&nbsp;une&nbsp;variable<br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(</span><span style="color: #0000BB">5</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Produit&nbsp;une&nbsp;erreur&nbsp;fatale<br /><br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">Foobar<br /></span><span style="color: #007700">{<br />}<br /><br /></span><span style="color: #0000BB">foo</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">Foobar</span><span style="color: #007700">())&nbsp;</span><span style="color: #FF8000">//&nbsp;Produit&nbsp;un&nbsp;notice&nbsp;depuis&nbsp;PHP&nbsp;7.0.7<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Notice:&nbsp;Seules&nbsp;les&nbsp;variables&nbsp;devraient&nbsp;être&nbsp;passées&nbsp;par&nbsp;référence.<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+
+  </p>
+ </div></div></div></body></html>

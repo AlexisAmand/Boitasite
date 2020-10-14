@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>D&eacute;finit une liste de maximum 4 variables $_SERVER qui doivent &ecirc;tre modifi&eacute;es lors de l'ex&eacute;cution</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="phar.mount.html">« Phar::mount</a></li>
+      <li style="float: right;"><a href="phar.offsetexists.html">Phar::offsetExists »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.phar.html">Phar</a></li>
+    <li>D&eacute;finit une liste de maximum 4 variables $_SERVER qui doivent &ecirc;tre modifi&eacute;es lors de l'ex&eacute;cution</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="phar.mungserver" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Phar::mungServer</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PECL phar &gt;= 2.0.0)</p><p class="refpurpose"><span class="refname">Phar::mungServer</span> &mdash; <span class="dc-title">Définit une liste de maximum 4 variables $_SERVER qui doivent être modifiées lors de l&#039;exécution</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-phar.mungserver-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="modifier">static</span> <span class="methodname"><strong>Phar::mungServer</strong></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter">$munglist</code></span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>Phar::mungServer()</strong></span> doit être appelée seulement dans le conteneur de chargement
+   d&#039;une archive phar.
+  </p>
+  <p class="para">
+   Définit une liste de maximum 4 variables <var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER</a></var> qui doiventt être modifiées 
+   lors de l&#039;exécution.
+   Les variables qui peuvent être modifiées pour effacer les traces de l&#039;exécution phar sont
+   <code class="literal">REQUEST_URI</code>, <code class="literal">PHP_SELF</code>,
+   <code class="literal">SCRIPT_NAME</code> et <code class="literal">SCRIPT_FILENAME</code>.
+  </p>
+  <p class="para">
+   Seule, cette méthode ne fait rien. Elle prend effet seulement quand elle est combinée à
+   <span class="function"><a href="phar.webphar.html" class="function">Phar::webPhar()</a></span> et seulement si le fichier demandé est un fichier PHP 
+   à parser. Notez que les variables <code class="literal">PATH_INFO</code> et 
+   <code class="literal">PATH_TRANSLATED</code> sont toujours modifiées.
+  </p>
+  <p class="para">
+   Les valeurs de départ des variables qui sont modifiées sont stockées dans le tableau SERVER
+   avec le préfixe <code class="literal">PHAR_</code> et donc par exemple
+   <code class="literal">SCRIPT_NAME</code> sera stockée en tant que <code class="literal">PHAR_SCRIPT_NAME</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-phar.mungserver-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">munglist</code></dt>
+
+     <dd>
+
+      <p class="para">
+       un tableau contenant n&#039;importe laquelle des variables
+       <code class="literal">REQUEST_URI</code>, <code class="literal">PHP_SELF</code>,
+       <code class="literal">SCRIPT_NAME</code> et <code class="literal">SCRIPT_FILENAME</code> en
+       tant qu&#039;indices de chaînes de caractères. Les autres valeurs déclenchent une exception
+       et <span class="function"><strong>Phar::mungServer()</strong></span> est sensible à la casse.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-phar.mungserver-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Aucun retour.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-phar.mungserver-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Lève une exception <a href="class.unexpectedvalueexception.html" class="classname">UnexpectedValueException</a> si un quelconque
+   problème est trouvé dans les données passées.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-phar.mungserver-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-721">
+    <p><strong>Exemple #1 Un exemple avec <span class="function"><strong>Phar::mungServer()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;exemple&nbsp;de&nbsp;conteneur<br /></span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">mungServer</span><span style="color: #007700">(array(</span><span style="color: #DD0000">'REQUEST_URI'</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">webPhar</span><span style="color: #007700">();<br />__HALT_COMPILER();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-phar.mungserver-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="phar.webphar.html" class="function" rel="rdfs-seeAlso">Phar::webPhar()</a> - mapPhar pour les phars orient&eacute;s web. Contr&ocirc;leur pour les applications web</span></li>
+    <li class="member"><span class="function"><a href="phar.setstub.html" class="function" rel="rdfs-seeAlso">Phar::setStub()</a> - Utilis&eacute; pour sp&eacute;cifier le chargeur PHP ou le conteneur de chargement d'une archive Phar</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

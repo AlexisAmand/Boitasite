@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Entr&eacute;es/Sorties HTTP</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mbstring.ja-basic.html">« Cas des caract&egrave;res japonais</a></li>
+      <li style="float: right;"><a href="mbstring.supported-encodings.html">Jeux de caract&egrave;res support&eacute;s »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.mbstring.html">Cha&icirc;nes de caract&egrave;res multi-octets</a></li>
+    <li>Entr&eacute;es/Sorties HTTP</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mbstring.http" class="chapter">
+ <h1>Entrées/Sorties HTTP</h1>
+
+ <p class="para">
+  La conversion automatique des entrées/sorties HTTP peut
+  aussi convertir des données binaires. Les utilisateurs
+  doivent contrôler les conversions, si des données binaires doivent
+  être utilisées via HTTP.
+ </p>
+ <blockquote class="note"><p><strong class="note">Note</strong>: 
+  <p class="para">
+   Si l&#039;attribut <code class="literal">enctype</code> de la balise <code class="literal">form</code> 
+   vaut <code class="literal">multipart/form-data</code> et que la directive du
+   <var class="filename">php.ini</var> est positionnée à On, les variables et les noms de fichiers
+   téléchargés en méthode POST seront convertis avec l&#039;encodage interne.
+   Sinon, la conversion ne sera pas faite.
+  </p>
+ </p></blockquote>
+ <p class="para">
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     Entrée HTTP
+    </span>
+    <p class="para">
+     Il n&#039;y a pas de moyens de contrôler la conversion des caractères
+     HTTP en entrée, depuis un script PHP. Pour désactiver cette
+     conversion, il faut le faire dès le fichier <var class="filename">php.ini</var>.
+     <div class="example" id="example-3189">
+      <p><strong>Exemple #1 
+       Désactive la conversion HTTP dans le <var class="filename">php.ini</var>
+      </strong></p>
+      <div class="example-contents">
+<div class="php.inicode"><pre class="php.inicode">;; Disable HTTP Input conversion
+mbstring.http_input = pass
+;; Disable HTTP Input conversion
+mbstring.encoding_translation = Off</pre>
+</div>
+      </div>
+
+     </div>
+    </p>
+    <p class="para">
+     Lorsque vous utilisez PHP comme module Apache, il est possible
+     d&#039;annuler la configuration du <var class="filename">php.ini</var> pour
+     chaque Virtual Host dans le fichier
+     <var class="filename">httpd.conf</var> ou par dossier avec le fichier
+     <code class="literal">.htaccess</code>. Reportez-vous à la section de
+     <a href="configuration.html" class="link">configuration</a> ainsi qu&#039;au
+     manuel Apache.
+    </p>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Sorties HTTP
+    </span>
+    <p class="para">
+     Il y a plusieurs moyens d&#039;activer la conversion en sortie de script
+     PHP. L&#039;un d&#039;entre eux utilise <var class="filename">php.ini</var>, un autre
+     utilise <span class="function"><a href="function.ob-start.html" class="function">ob_start()</a></span> avec la fonction
+     <span class="function"><a href="function.mb-output-handler.html" class="function">mb_output_handler()</a></span> comme fonction de rappel.
+    </p>
+   </li>
+  </ul>
+ </p>
+ <p class="para">
+  <div class="example" id="example-3190">
+   <p><strong>Exemple #2 Exemple de configuration de mbstring dans <var class="filename">php.ini</var></strong></p>
+   <div class="example-contents">
+<div class="cdata"><pre>
+;; Enable output character encoding conversion for all PHP pages
+
+;; Enable Output Buffering
+output_buffering    = On
+
+;; Set mb_output_handler to enable output conversion
+output_handler      = mb_output_handler
+</pre></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  <div class="example" id="example-3191">
+   <p><strong>Exemple #3 Exemple de script avec mbstring</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Enable&nbsp;output&nbsp;character&nbsp;encoding&nbsp;conversion&nbsp;only&nbsp;for&nbsp;this&nbsp;page<br /><br />//&nbsp;Set&nbsp;HTTP&nbsp;output&nbsp;character&nbsp;encoding&nbsp;to&nbsp;SJIS<br /></span><span style="color: #0000BB">mb_http_output</span><span style="color: #007700">(</span><span style="color: #DD0000">'SJIS'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Start&nbsp;buffering&nbsp;and&nbsp;specify&nbsp;"mb_output_handler"&nbsp;as<br />//&nbsp;callback&nbsp;function<br /></span><span style="color: #0000BB">ob_start</span><span style="color: #007700">(</span><span style="color: #DD0000">'mb_output_handler'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+</div>
+</div></div></body></html>

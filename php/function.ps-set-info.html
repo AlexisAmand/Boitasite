@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Assigne les champs d'informations d'un document</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.ps-set-border-style.html">« ps_set_border_style</a></li>
+      <li style="float: right;"><a href="function.ps-set-parameter.html">ps_set_parameter »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.ps.html">Fonctions PS</a></li>
+    <li>Assigne les champs d'informations d'un document</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.ps-set-info" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ps_set_info</h1>
+  <p class="verinfo">(PECL ps &gt;= 1.1.0)</p><p class="refpurpose"><span class="refname">ps_set_info</span> &mdash; <span class="dc-title">Assigne les champs d&#039;informations d&#039;un document</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.ps-set-info-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>ps_set_info</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$p</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$val</code></span>
+   ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>ps_set_info()</strong></span> fixe certains champs d&#039;informations du document.
+   Les champs seront montrés en tant que commentaire dans l&#039;en-tête du fichier
+   PostScript. Si le document est converti en PDF, ces champs seront aussi
+   utilisés pour les informations du document.
+  </p>
+  <p class="para">
+   Le <code class="literal">BoundingBox</code> est normalement fixé à la valeur donnée
+   par la première page. Cela fonctionne seulement si
+   <span class="function"><a href="function.ps-findfont.html" class="function">ps_findfont()</a></span> n&#039;a pas été appelée auparavant. Dans ces
+   cas, le BoundingBox sera laissé non fixé à moins que vous le fixé
+   explicitement avec cette fonction.
+  </p>
+  <p class="para">
+   Cette fonction n&#039;aura plus d&#039;effet lorsque l&#039;en-tête du fichier PostScript
+   a été déjà été écrit. Elle doit être appelée avant la première page ou le
+   premier appel de <span class="function"><a href="function.ps-findfont.html" class="function">ps_findfont()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ps-set-info-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">psdoc</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Identifiant de ressource PostScript, 
+       retourné par <span class="function"><a href="function.ps-new.html" class="function">ps_new()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">key</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nom du champ d&#039;information à configurer. Les valeurs de noms
+       possibles sont <code class="literal">Keywords</code>, <code class="literal">Subject</code>,
+       <code class="literal">Title</code>, <code class="literal">Creator</code>,
+       <code class="literal">Author</code>, <code class="literal">BoundingBox</code> et
+       <code class="literal">Orientation</code>. Soyez attentifs, car certains champs
+       ont des significations spéciales pour les lecteurs PostScript.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">value</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Les valeurs du champ d&#039;information. Le champ
+       <code class="literal">Orientation</code> peut être fixé à soit
+       <code class="literal">Portrait</code> ou <code class="literal">Landscape</code>. Le
+       <code class="literal">BoundingBox</code> est une <a href="language.types.string.html" class="link">chaîne de caractères</a> contenant quatre
+       nombres. Les deux premiers sont les coordonnées du coin inférieur
+       gauche de la page. Les deux derniers sont les coordonnées du coin
+       supérieur droit.
+      </p>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       <p class="para">
+        Jusqu&#039;à la version 0.2.6 de pslib, le BoundingBox et Orientation
+        seront toujours écrasés par <span class="function"><a href="function.ps-begin-page.html" class="function">ps_begin_page()</a></span>, à
+        moins que <span class="function"><a href="function.ps-findfont.html" class="function">ps_findfont()</a></span> ait été appelée avant.
+       </p>
+      </p></blockquote>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ps-set-info-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ps-set-info-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ps-findfont.html" class="function" rel="rdfs-seeAlso">ps_findfont()</a> - Charge une police</span></li>
+    <li class="member"><span class="function"><a href="function.ps-begin-page.html" class="function" rel="rdfs-seeAlso">ps_begin_page()</a> - D&eacute;marre une nouvelle page</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

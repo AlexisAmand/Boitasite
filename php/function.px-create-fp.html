@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Cr&eacute;e une nouvelle base de donn&eacute;es Paradox</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.px-close.html">« px_close</a></li>
+      <li style="float: right;"><a href="function.px-date2string.html">px_date2string »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.paradox.html">Fonctions Paradox</a></li>
+    <li>Cr&eacute;e une nouvelle base de donn&eacute;es Paradox</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.px-create-fp" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">px_create_fp</h1>
+  <p class="verinfo">(PECL paradox &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">px_create_fp</span> &mdash; <span class="dc-title">Crée une nouvelle base de données Paradox</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.px-create-fp-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>px_create_fp</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$pxdoc</code></span>
+   , <span class="methodparam"><span class="type">resource</span> <code class="parameter">$file</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$fielddesc</code></span>
+   ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Crée un nouveau fichier de base de données Paradox. Le fichier actuel doit avoir
+   été ouvert avec la fonction <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span>. Assurez-vous
+   que ce fichier est accessible en écriture.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    L&#039;appel à cette fonction émet une alerte à propos d&#039;un nom de table vide qui
+    peut être ignorée en toute sécurité. Définissez juste le nom de la table en suivant
+    avec la fonction <span class="function"><a href="function.px-set-parameter.html" class="function">px_set_parameter()</a></span>.
+   </p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Cette fonction est hautement expérimentale, à cause du manque de documentation
+    du format de fichier Paradox. Les fichiers de base de données créés avec cette
+    fonction peuvent être ouvert avec la fonction <span class="function"><a href="function.px-open-fp.html" class="function">px_open_fp()</a></span>
+    et devraient s&#039;ouvrir sans problème avec les logiciels Paradox.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.px-create-fp-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">pxdoc</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Identifiant de ressource de base de données Paradox tel que
+       retourné par la fonction <span class="function"><a href="function.px-new.html" class="function">px_new()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">file</code></dt>
+
+     <dd>
+
+      <p class="para">Ressource de fichier telle que retournée par la fonction <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">fielddesc</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <strong class="option unknown">fielddesc</strong> est un tableau comprenant un élément pour chaque
+       champ contenant ses spécifications. Une spécification de champ
+       est un tableau avec deux ou trois éléments. Le premier élément est toujours une
+       chaîne de caractères représentant le nom du champ. Il ne peut être plus
+       grand que dix caractères. Le deuxième élément contient le type du champ
+       qui peut être une des constantes listées dans la table
+       &quot;<a href="paradox.constants.html#paradox.table-fieldtypes" class="link">Constantes pour les types de champ</a>&quot;.
+       Dans le cas d&#039;un champ sous la forme de caractères ou de bcd, vous devez fournir un troisième
+       élément spécifiant la longueur du champ. Si votre spécification de champ contient des
+       champs Blob, vous devez vous assurer de rendre le champ assez grand pour toutes les valeurs
+       des champs ou bien spécifier un fichier Blob avec la fonction <span class="function"><strong>px_blob_file()</strong></span>
+       pour y stocker les Blobs. Si vous ne faîtes pas cela, les données du champ seront tronquées.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.px-create-fp-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.px-create-fp-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2455">
+    <p><strong>Exemple #1 Création d&#039;une base de données Paradox avec deux champs</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">if(!</span><span style="color: #0000BB">$pxdoc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">px_new</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Gestion&nbsp;d'erreurs&nbsp;*/<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"test.db"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"w+"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$fields&nbsp;</span><span style="color: #007700">=&nbsp;array(array(</span><span style="color: #DD0000">"col1"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"S"</span><span style="color: #007700">),&nbsp;array(</span><span style="color: #DD0000">"col2"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"I"</span><span style="color: #007700">));<br />if(!</span><span style="color: #0000BB">px_create_fp</span><span style="color: #007700">(</span><span style="color: #0000BB">$pxdoc</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$fields</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Gestion&nbsp;d'erreurs&nbsp;*/<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">px_set_parameter</span><span style="color: #007700">(</span><span style="color: #0000BB">$pxdoc</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"tablename"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"testtable"</span><span style="color: #007700">);<br />for(</span><span style="color: #0000BB">$i</span><span style="color: #007700">=-</span><span style="color: #0000BB">50</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">50</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$rec&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">$i</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">$i</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">px_put_record</span><span style="color: #007700">(</span><span style="color: #0000BB">$pxdoc</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rec</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">px_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$pxdoc</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">px_delete</span><span style="color: #007700">(</span><span style="color: #0000BB">$pxdoc</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.px-create-fp-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.px-new.html" class="function" rel="rdfs-seeAlso">px_new()</a> - Cr&eacute;e un nouvel objet Paradox</span></li>
+    <li class="member"><span class="function"><a href="function.px-put-record.html" class="function" rel="rdfs-seeAlso">px_put_record()</a> - Stocke un enregistrement dans une base de donn&eacute;es Paradox</span></li>
+    <li class="member"><span class="function"><a href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a> - Ouvre un fichier ou une URL</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

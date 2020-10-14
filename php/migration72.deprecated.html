@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Fonctionnalit&eacute;s devenues obsol&egrave;tes en PHP 7.2.x</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration72.incompatible.html">« &Eacute;volutions incompatibles avec les versions pr&eacute;c&eacute;dentes</a></li>
+      <li style="float: right;"><a href="migration72.other-changes.html">Autres changements »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration72.html">Migration de PHP 7.1.x vers PHP 7.2.x</a></li>
+    <li>Fonctionnalit&eacute;s devenues obsol&egrave;tes en PHP 7.2.x</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration72.deprecated" class="sect1">
+ <h2 class="title">Fonctionnalités devenues obsolètes en PHP 7.2.x</h2>
+
+ <div class="sect2" id="migration72.deprecated.unquoted-strings">
+  <h3 class="title">Des chaînes non délimitées</h3>
+
+  <p class="para">
+   Des chaînes qui sont des constantes globales inexistantes sont considérées 
+   comme des chaînes d’elles-mêmes. Ce comportement émettait une 
+   <strong><code>E_NOTICE</code></strong>, mais maintenant émet une 
+   <strong><code>E_WARNING</code></strong>. Dans la prochaine version majeure 
+   de PHP, une exception sera levée à la place.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">NONEXISTENT</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Output:<br />Warning:&nbsp;Use&nbsp;of&nbsp;undefined&nbsp;constant&nbsp;NONEXISTENT&nbsp;-&nbsp;assumed&nbsp;'NONEXISTENT'&nbsp;(this&nbsp;will&nbsp;throw&nbsp;an&nbsp;Error&nbsp;in&nbsp;a&nbsp;future&nbsp;version&nbsp;of&nbsp;PHP)&nbsp;in&nbsp;%s&nbsp;on&nbsp;line&nbsp;%d<br />string(11)&nbsp;"NONEXISTENT"<br />*/</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="sect2" id="migration72.deprecated.png2wbmp-jpeg2wbmp">
+  <h3 class="title"><span class="function"><a href="function.png2wbmp.html" class="function">png2wbmp()</a></span> et <span class="function"><a href="function.jpeg2wbmp.html" class="function">jpeg2wbmp()</a></span></h3>
+
+  <p class="para">
+   Les fonctions <span class="function"><a href="function.png2wbmp.html" class="function">png2wbmp()</a></span> et <span class="function"><a href="function.jpeg2wbmp.html" class="function">jpeg2wbmp()</a></span>
+   de l&#039;extension GD ont maintenant été désaprouvées et seront supprimées dans 
+   la prochaine version majeur de PHP.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.deprecated.INTL_IDNA_VARIANT_2003-variant">
+  <h3 class="title">Variante <strong><code>INTL_IDNA_VARIANT_2003</code></strong></h3>
+
+  <p class="para">
+   L&#039;extension Intl a désaprouvé la variante 
+   <strong><code>INTL_IDNA_VARIANT_2003</code></strong>,
+   qui est actuellement utilisée par <span class="function"><a href="function.idn-to-ascii.html" class="function">idn_to_ascii()</a></span> et
+   <span class="function"><a href="function.idn-to-utf8.html" class="function">idn_to_utf8()</a></span>. La valeur par défaut sera changée dans
+   PHP 7.4 par <strong><code>INTL_IDNA_VARIANT_UTS46</code></strong>, et la valeur
+   <strong><code>INTL_IDNA_VARIANT_2003</code></strong> sera supprimée dans la 
+   prochaine version majeur de PHP.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.deprecated.__autoload-method">
+  <h3 class="title">Méthode <span class="function"><a href="function.autoload.html" class="function">__autoload()</a></span></h3>
+
+  <p class="para">
+   La méthode <span class="function"><a href="function.autoload.html" class="function">__autoload()</a></span> a été déconseillée car inférieure à
+   <span class="function"><a href="function.spl-autoload-register.html" class="function">spl_autoload_register()</a></span> (car elle n&#039;est pas capable 
+   d&#039;accepter plusieurs chargeurs automatiques), et les deux styles de 
+   chargement automatique ne sont pas interopérables.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.deprecated.track_errors-and-php_errormsg">
+  <h3 class="title">Directive de configuration <code class="parameter">track_errors</code> et la variable <code class="literal">$php_errormsg</code></h3>
+
+  <p class="para">
+   Lorsque la directive de configuration <code class="parameter">track_errors</code>
+   est activé, une variable <code class="literal">$php_errormsg</code> est créée
+   dans la portée locale lorsqu&#039;une erreur non fatale se produit.
+   Étant donné que le meilleur moyen de récupérer ces informations d’erreur 
+   est d&#039;utiliser <span class="function"><a href="function.error-get-last.html" class="function">error_get_last()</a></span>, cette fonctionnalité 
+   a été désapprouvée.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.deprecated.create_function-function">
+  <h3 class="title">Fonction <span class="function"><a href="function.create-function.html" class="function">create_function()</a></span></h3>
+
+  <p class="para">
+   Étant donné les problèmes de sécurité de cette fonction (qui est un
+   wrapper mince autour de <span class="function"><a href="function.eval.html" class="function">eval()</a></span>) cette ancienne fonction 
+   est maintenant obsolète. Le meilleur moyen de créer des fermetures est en 
+   définissant des <a href="functions.anonymous.html" class="link">fonctions anonymes</a>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.deprecated.mbstringfunc_overload-ini-setting">
+  <h3 class="title">Directive de configuration <code class="parameter">mbstring.func_overload</code></h3>
+
+  <p class="para">
+   Étant donné les problèmes d’interopérabilité des fonctions basés sur 
+   une chaîne utilisées dans les environnements lorsque ce paramètre est 
+   activé, il est maintenant obsolète.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.deprecated.unset-cast">
+  <h3 class="title"><code class="literal">(unset)</code> cast</h3>
+
+  <p class="para">
+   Casting de n’importe quelle expression à ce type entraînera toujours un 
+   résultat <strong><code>NULL</code></strong>, et ce type de cast superflu est maintenant obsolète.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.deprecated.parse_str-no-second-arg">
+  <h3 class="title"><span class="function"><a href="function.parse-str.html" class="function">parse_str()</a></span> sans second argument</h3>
+
+  <p class="para">
+   Sans second argument à la fonction <span class="function"><a href="function.parse-str.html" class="function">parse_str()</a></span>, les
+   paramètres de la requête sont allouées dans des variables locales. Étant donné les implications de ce fonctionnement sur 
+   la sécurité, l&#039;utilisation de <span class="function"><a href="function.parse-str.html" class="function">parse_str()</a></span> sans un 
+   second argument est maintenant obsolète. La fonction doit toujours être 
+   utilisée avec deux arguments, car le deuxième argument entraîne l&#039;analyse 
+   de la chaîne de requête dans un tableau.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.deprecated.gmp_random-function">
+  <h3 class="title">Fonction <span class="function"><a href="function.gmp-random.html" class="function">gmp_random()</a></span></h3>
+
+  <p class="para">
+   Cette fonction génère un nombre aléatoire basé sur une plage qui est 
+   calculée par une taille non exposés, spécifique à la plateforme membre. 
+   Pour cette raison, la fonction est maintenant obsolète. 
+   Le meilleur moyen de générer un nombre aléatoire est l&#039;utilisation de 
+   l’extension GMP avec les fonction <span class="function"><a href="function.gmp-random-bits.html" class="function">gmp_random_bits()</a></span> et
+   <span class="function"><a href="function.gmp-random-range.html" class="function">gmp_random_range()</a></span>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.deprecated.each-function">
+  <h3 class="title">Fonction <span class="function"><a href="function.each.html" class="function">each()</a></span></h3>
+
+  <p class="para">
+   Cette fonction est beaucoup plus lente à l’itération qu’un normal 
+   <code class="literal">foreach</code> et entraîne des problèmes de mise en 
+   œuvre de certains changements de langue. Elle a donc été désapprouvée.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.deprecated.assert-string-arg">
+  <h3 class="title"><span class="function"><a href="function.assert.html" class="function">assert()</a></span> avec un argument texte</h3>
+
+  <p class="para">
+   Lors de l&#039;utilisation d&#039;<span class="function"><a href="function.assert.html" class="function">assert()</a></span> avec un argument texte, 
+   il est nécessaire que le texte soit évalué par la fonction 
+   <span class="function"><a href="function.eval.html" class="function">eval()</a></span>. Compte tenu du potentiel pour l’exécution de code
+   à distance, avec un argument de chaîne à l’aide de 
+   <span class="function"><a href="function.assert.html" class="function">assert()</a></span> a maintenant été désapprouvée en faveur de 
+   l’utilisation des expressions booléennes.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.deprecated.errcontext-arg-of-error-handlers">
+  <h3 class="title"><code class="literal">$errcontext</code> argument de gestionnaires d’erreurs</h3>
+
+  <p class="para">
+   L’argument <code class="literal">$errcontext</code> contient toutes les variables 
+   locales de l’emplacement de l’erreur. Compte tenu de son utilisation rare 
+   et les problèmes qu&#039;elle provoque avec des optimisations internes, il est 
+   maintenant devenu obsolète. Au lieu de cela, un débogueur doit être utilisé pour récupérer des 
+   informations sur les variables locales à l’emplacement de l’erreur.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.deprecated.read_exif_data-function">
+  <h3 class="title">Fonction <span class="function"><a href="function.read-exif-data.html" class="function">read_exif_data()</a></span></h3>
+
+  <p class="para">
+   L&#039;alias <span class="function"><a href="function.read-exif-data.html" class="function">read_exif_data()</a></span> a été déconseillé. La fonction <span class="function"><a href="function.exif-read-data.html" class="function">exif_read_data()</a></span> peut être utilisée à la place.
+  </p>
+ </div>
+</div></div></div></body></html>

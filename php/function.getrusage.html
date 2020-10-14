@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne le niveau d'utilisation des ressources</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.getopt.html">« getopt</a></li>
+      <li style="float: right;"><a href="function.ini-alter.html">ini_alter »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.info.html">Fonctions sur les options et les informations de PHP</a></li>
+    <li>Retourne le niveau d'utilisation des ressources</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.getrusage" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">getrusage</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">getrusage</span> &mdash; <span class="dc-title">Retourne le niveau d&#039;utilisation des ressources</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.getrusage-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>getrusage</strong></span>
+    ([ <span class="methodparam"><span class="type">int</span> <code class="parameter">$who</code><span class="initializer"> = 0</span></span>
+  ] ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   C&#039;est une interface à la fonction système <strong class="command">getrusage(2)</strong>.
+   Elle retourne un tableau associatif contenant les informations
+   renvoyées par cet appel système.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.getrusage-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">who</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Si <code class="parameter">who</code> est égal à 1,
+       <span class="function"><strong>getrusage()</strong></span> sera appelé avec
+       le paramètre <strong><code>RUSAGE_CHILDREN</code></strong>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.getrusage-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau associatif contenant les données retournées depuis
+   l&#039;appel système. Toutes les entrées sont accessibles en utilisant leurs
+   noms de champs documentés.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.getrusage-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-534">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>getrusage()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dat&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">getrusage</span><span style="color: #007700">();<br />echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_oublock"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;nombre&nbsp;d'opération&nbsp;de&nbsp;block&nbsp;de&nbsp;sortie<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_inblock"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;nombre&nbsp;d'opération&nbsp;de&nbsp;block&nbsp;d'entrée<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_msgsnd"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;nombre&nbsp;de&nbsp;messages&nbsp;IPC&nbsp;envoyé<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_msgrcv"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;nombre&nbsp;de&nbsp;messages&nbsp;IPC&nbsp;reçu<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_maxrss"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;taille&nbsp;maximale&nbsp;du&nbsp;groupe&nbsp;de&nbsp;résidents<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_ixrss"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;taille&nbsp;de&nbsp;la&nbsp;mémoire&nbsp;partagée&nbsp;intégrale<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_idrss"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;taille&nbsp;intégrale&nbsp;des&nbsp;données&nbsp;non&nbsp;partagées<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_minflt"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;nombre&nbsp;de&nbsp;page&nbsp;récupéré&nbsp;(faute&nbsp;de&nbsp;page&nbsp;mineure)<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_majflt"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;nombre&nbsp;de&nbsp;défauts&nbsp;de&nbsp;page&nbsp;(faute&nbsp;de&nbsp;page&nbsp;majeure)<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_nsignals"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;nombre&nbsp;de&nbsp;signaux&nbsp;reçu<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_nvcsw"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;nombre&nbsp;de&nbsp;changement&nbsp;de&nbsp;contexte&nbsp;volontaire<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_nivcsw"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;nombre&nbsp;de&nbsp;changement&nbsp;de&nbsp;contexte&nbsp;involontaire<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_nswap"</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;taille&nbsp;de&nbsp;la&nbsp;mémoire&nbsp;swap<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_utime.tv_usec"</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;temps&nbsp;utilisateur&nbsp;utilisé&nbsp;(en&nbsp;microsecondes)<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_utime.tv_sec"</span><span style="color: #007700">];&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;temps&nbsp;utilisateur&nbsp;utilisé&nbsp;(en&nbsp;secondes)<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$dat</span><span style="color: #007700">[</span><span style="color: #DD0000">"ru_stime.tv_usec"</span><span style="color: #007700">];&nbsp;</span><span style="color: #FF8000">//&nbsp;temps&nbsp;système&nbsp;utilisé&nbsp;(en&nbsp;microsecondes)<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.getrusage-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.0.0</td>
+       <td>
+        Cette fonction est maintenant supportée sous Windows.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.getrusage-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Sous Windows, la fonction <span class="function"><strong>getrusage()</strong></span> ne va retourner
+    que les membres suivants :
+   </p>
+   <p class="para">
+    <ul class="simplelist">
+     <li class="member"><code class="literal">&quot;ru_stime.tv_sec&quot;</code></li>
+     <li class="member"><code class="literal">&quot;ru_stime.tv_usec&quot;</code></li>
+     <li class="member"><code class="literal">&quot;ru_utime.tv_sec&quot;</code></li>
+     <li class="member"><code class="literal">&quot;ru_utime.tv_usec&quot;</code></li>
+     <li class="member">
+      <code class="literal">&quot;ru_majflt&quot;</code> (seulement si <code class="parameter">who</code> vaut 
+      <strong><code>RUSAGE_SELF</code></strong>)
+     </li>
+     <li class="member">
+      <code class="literal">&quot;ru_maxrss&quot;</code> (seulement si <code class="parameter">who</code> vaut
+      <strong><code>RUSAGE_SELF</code></strong>)
+     </li>
+    </ul>
+   </p>
+   <p class="para">
+    Si <span class="function"><strong>getrusage()</strong></span> est appelé avec le paramètre <code class="parameter">who</code> 
+    vallant <code class="literal">1</code> (<strong><code>RUSAGE_CHILDREN</code></strong>), alors l&#039;utilisation
+    de la ressource pour les threads sont collectés (ce qui signifie que, en interne,
+    la fonction est appelée avec <strong><code>RUSAGE_THREAD</code></strong>).
+   </p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Sous BeOS 2000, seuls les membres suivants sont retournés :
+   </p>
+   <p class="para">
+    <ul class="simplelist">
+     <li class="member"><code class="literal">&quot;ru_stime.tv_sec&quot;</code></li>
+     <li class="member"><code class="literal">&quot;ru_stime.tv_usec&quot;</code></li>
+     <li class="member"><code class="literal">&quot;ru_utime.tv_sec&quot;</code></li>
+     <li class="member"><code class="literal">&quot;ru_utime.tv_usec&quot;</code></li>
+    </ul>
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.getrusage-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">La page de manuel <strong class="command">getrusage(2)</strong> de votre système</li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

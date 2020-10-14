@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne un timestamp UNIX pour P&acirc;ques, &agrave; minuit pour une ann&eacute;e donn&eacute;e</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.cal-to-jd.html">« cal_to_jd</a></li>
+      <li style="float: right;"><a href="function.easter-days.html">easter_days »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.calendar.html">Calendar Fonctions</a></li>
+    <li>Retourne un timestamp UNIX pour P&acirc;ques, &agrave; minuit pour une ann&eacute;e donn&eacute;e</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.easter-date" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">easter_date</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">easter_date</span> &mdash; <span class="dc-title">Retourne un timestamp UNIX pour Pâques, à minuit pour une année donnée</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.easter-date-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>easter_date</strong></span>
+    ([ <span class="methodparam"><span class="type">int</span> <code class="parameter">$year</code><span class="initializer"> = date(&quot;Y&quot;)</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$method</code><span class="initializer"> = CAL_EASTER_DEFAULT</span></span>
+  ]] ) : <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   Retourne un timestamp UNIX pour Pâques, à minuit, pour une année donnée.
+  </p>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Cette fonction génère une alerte si la date tombe hors de
+    la zone de validité des horodatages UNIX (c&#039;est à dire typiquement avant
+    1970 ou après 2037 sur les systèmes 32bit).
+   </p>
+  </div>
+  <p class="para">
+   La date de Pâques a été fixée par le concile
+   de Nicée, en 325 de notre ère, comme étant le dimanche
+   après la première pleine lune qui suit l&#039;équinoxe de
+   printemps. L&#039;équinoxe de printemps est considéré
+   comme étant toujours le 21 mars, ce qui réduit le
+   problème au calcul de la date de la lune pleine qui suit, et le
+   dimanche suivant. L&#039;algorithme fut introduit vers 532, par Dionysius
+   Exiguus. Avec le calendrier Julien, (pour les années avant 1753),
+   un cycle de 19 ans suffit pour connaître les dates des phases de la
+   lune. Avec le calendrier grégorien, (à partir des années
+   1753, conçu par Clavius et Lilius, puis introduit par le pape Grégoire XIII
+   en octobre 1582, et en Grande Bretagne et ses colonies en septembre 1752),
+   deux facteurs de corrections ont été ajoutés pour rendre
+   le cycle plus précis.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.easter-date-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">year</code></dt>
+
+     <dd>
+
+      <p class="para">
+       L&#039;année, sous la forme d&#039;un nombre compris entre
+       1970 et 2037. Si omis, la valeur par défaut sera l&#039;année
+       courante suivant l&#039;heure locale.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">method</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Permet de calculer la date de Pâques en fonction du calendrier de Julien
+       quand définit à <strong><code>CAL_EASTER_ALWAYS_JULIAN</code></strong>. Voir aussi
+       <a href="calendar.constants.html" class="link">les constantes de calendrier</a>.
+       </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.easter-date-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   La date pour Pâques, sous la forme d&#039;un timestamp unix.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.easter-date-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2661">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>easter_date()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">"M-d-Y"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">easter_date</span><span style="color: #007700">(</span><span style="color: #0000BB">1999</span><span style="color: #007700">));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Apr-04-1999<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">"M-d-Y"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">easter_date</span><span style="color: #007700">(</span><span style="color: #0000BB">2000</span><span style="color: #007700">));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Apr-23-2000<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">"M-d-Y"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">easter_date</span><span style="color: #007700">(</span><span style="color: #0000BB">2001</span><span style="color: #007700">));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Apr-15-2001<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.easter-date-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    La fonction <span class="function"><strong>easter_date()</strong></span> reprose sur les fonctions
+    de la bibliothèque C time du système, plutôt que sur les fonctions
+    date et time internes de PHP. Aussi, la fonction <span class="function"><strong>easter_date()</strong></span>
+    utilise la variable d&#039;environnement <code class="literal">TZ</code> pour déterminer
+    le fuseau horaire à utiliser, plutôt que le
+    <a href="datetime.configuration.html#ini.date.timezone" class="link">fuseau horaire par défaut</a> de PHP,
+    ce qui peut conduire à un comportement non désiré lors de l&#039;utilisation
+    de cette fonction avec d&#039;autres fonctions date de PHP.
+   </p>
+   <p class="para">
+    Comme contournement, vous pouvez utiliser la fonction
+    <span class="function"><a href="function.easter-days.html" class="function">easter_days()</a></span> avec les classes
+    <a href="class.datetime.html" class="classname">DateTime</a> et <a href="class.dateinterval.html" class="classname">DateInterval</a>
+    pour calculer le jour de Pâques dans votre fuseau horaire PHP, comme ceci :
+   </p>
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">get_easter_datetime</span><span style="color: #007700">(</span><span style="color: #0000BB">$year</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$base&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">DateTime</span><span style="color: #007700">(</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$year</span><span style="color: #DD0000">-03-21"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$days&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">easter_days</span><span style="color: #007700">(</span><span style="color: #0000BB">$year</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$base</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">DateInterval</span><span style="color: #007700">(</span><span style="color: #DD0000">"P</span><span style="color: #007700">{</span><span style="color: #0000BB">$days</span><span style="color: #007700">}</span><span style="color: #DD0000">D"</span><span style="color: #007700">));<br />}<br /><br />foreach&nbsp;(</span><span style="color: #0000BB">range</span><span style="color: #007700">(</span><span style="color: #0000BB">2012</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2015</span><span style="color: #007700">)&nbsp;as&nbsp;</span><span style="color: #0000BB">$year</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Pâques,&nbsp;en&nbsp;%d,&nbsp;tombe&nbsp;le&nbsp;%s\n"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$year</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">get_easter_datetime</span><span style="color: #007700">(</span><span style="color: #0000BB">$year</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">format</span><span style="color: #007700">(</span><span style="color: #DD0000">'d&nbsp;F'</span><span style="color: #007700">));<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <p class="para">L&#039;exemple ci-dessus va afficher :</p>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Pâques, en 2012, tombe le 08 Avril
+Pâques, en 2013, tombe le 31 Mars
+Pâques, en 2014, tombe le 20 Avril
+Pâques, en 2015, tombe le 05 Avril
+</pre></div>
+    </div>
+   </div>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.easter-date-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     <span class="function"><a href="function.easter-days.html" class="function" rel="rdfs-seeAlso">easter_days()</a> - Retourne le nombre de jours entre le 21 Mars et P&acirc;ques, pour une ann&eacute;e donn&eacute;e</span> pour le calcul de Pâques
+     avant 1970 et après 2037
+    </li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

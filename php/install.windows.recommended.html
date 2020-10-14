@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Configuration recommand&eacute;e sur les syst&egrave;mes Windows</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="install.windows.tools.html">« Outils d'installation de PHP pour Windows</a></li>
+      <li style="float: right;"><a href="install.windows.manual.html">Installation manuelle de PHP sous Windows »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="install.windows.html">Installation sur les syst&egrave;me Windows</a></li>
+    <li>Configuration recommand&eacute;e sur les syst&egrave;mes Windows</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="install.windows.recommended" class="sect1">
+ <h2 class="title">Configuration recommandée sur les systèmes Windows</h2>
+ 
+ <div class="sect2">
+  <h3 class="title">OpCache</h3>
+  
+  <p class="para">
+   Il est fortement recommandé d&#039;activer OpCache. Cette extension est incluse 
+   avec PHP pour Windows. Il compile et optimise les scripts PHP et les met en 
+   cache mémoire afin qu&#039;ils ne soient pas compilés chaque fois que la page est 
+   chargée.
+  </p>
+  <p class="para">
+   Dans votre php.ini, définissez
+   <div class="example" id="install.unix.nginx.configure.nginx">
+    <p><strong>Exemple #1 Configuration recommandée pour OpCache</strong></p>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+zend_extension=php_opcache.dll
+opcache.enable=On
+opcache.enable_cli=On
+</pre></div>
+   </div>
+  </div>
+  
+  Et redémarrer votre serveur web.
+  
+  Pour plus d&#039;information, lire : 
+  <a href="opcache.configuration.html" class="link">Configuration d&#039;OpCache</a>
+ </p>
+ 
+ </div>
+ <div class="sect2">
+  <h3 class="title">WinCache</h3>
+  
+  <p class="para">
+   Recommandé d&#039;utiliser wincache si vous utilisez IIS, surtout si dans un 
+   environnement d&#039;hébergement Web partagé ou en utilisant le stockage de 
+   fichiers en réseau (NAS).
+   
+   Toutes les applications PHP bénéficient automatiquement de la fonctionnalité 
+   de cache de fichiers de WinCache. Les opérations du système de fichiers sont 
+   mises en cache en mémoire.
+   
+   WinCache peut également mettre en cache mémoire des objets de l&#039;utilisateur 
+   et les partager entre les processus <var class="varname">php.exe</var> ou 
+   <var class="varname">php-cgi.exe</var> (partager des objets entre les requêtes).
+   
+   De nombreuses applications Web majeures ont un plugin ou une extension ou une 
+   option de configuration pour utiliser le cache d&#039;objet de l&#039;utilisateur de 
+   WinCache.
+   
+   Si vous avez besoin de hautes performances, vous devez utiliser le cache 
+   d&#039;objets dans vos applications.
+   
+   Lire : 
+   <a href="http://pecl.php.net/package/WinCache" class="link external">&raquo;&nbsp;http://pecl.php.net/package/WinCache</a> 
+   pour télécharger WinCache DLL (ou tgz) vers votre dossier d&#039;extension 
+   PHP (extensions_dir dans votre php.ini).
+   
+   Dans votre php.ini, définissez 
+   <div class="example" id="install.unix.nginx.configure.nginx.location">
+    <p><strong>Exemple #2 Configuration recommandée pour WinCache</strong></p>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+
+extension=php_wincache.dll
+wincache.fcenabled=1
+wincache.ocenabled=1 ; removed as of wincache 2.0.0.0 
+
+</pre></div>
+   </div>
+  </div>
+  
+  Pour plus d&#039;information, lire : 
+  <a href="http://php.net/manual/en/wincache.configuration.php" class="link external">&raquo;&nbsp;http://php.net/manual/en/wincache.configuration.php</a>
+ </p>
+ 
+ </div>
+ <div class="sect2">
+  <h3 class="title">Configuration IIS</h3>
+  
+  <p class="para">Dans la console d&#039;administration de IIS, installer le module FastCGI 
+   et ajouter le mappage du gestionnaire pour  <var class="varname">`.php`</var> vers 
+   le chemin d&#039;accès à <var class="varname">PHP-CGI.exe</var> 
+   (pas <var class="varname">PHP.exe</var>)
+  </p>
+  
+  <p class="para">
+   
+   Vous pouvez utiliser l&#039;outil de ligne de commande appcmd.exe pour 
+   scripter la configuration IIS.
+   </p>
+ </div>
+ 
+ <div class="sect2">
+  <h3 class="title">Base de données</h3>
+  
+  <p class="para">Vous aurez probablement besoin d&#039;un serveur de base de données. 
+   Les bases de données populaires fournissent des extensions PHP pour les 
+   utiliser. Si votre site Web n&#039;a pas beaucoup de trafic, vous pouvez exécuter 
+   votre serveur de base de données sur le même serveur que votre serveur Web. 
+   De nombreux serveurs de base de données populaires s&#039;exécutent sous Windows.
+  </p>
+  
+  <p class="para">PHP inclut les extensions mysqli et PDO_MYSQL. PHP 5.5 et 5.6 
+   incluent l&#039;extension MySQL (obsolète en 7.0).</p>
+  
+  <p class="para">Lire <a href="https://dev.mysql.com/downloads/windows/" class="link external">&raquo;&nbsp;https://dev.mysql.com/downloads/windows/</a></p>
+ </div>
+</div></div></div></body></html>

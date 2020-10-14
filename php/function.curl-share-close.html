@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ferme un gestionnaire partag&eacute; cURL</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.curl-setopt.html">« curl_setopt</a></li>
+      <li style="float: right;"><a href="function.curl-share-errno.html">curl_share_errno »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.curl.html">Fonctions cURL</a></li>
+    <li>Ferme un gestionnaire partag&eacute; cURL</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.curl-share-close" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">curl_share_close</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.5.0, PHP 7)</p><p class="refpurpose"><span class="refname">curl_share_close</span> &mdash; <span class="dc-title">Ferme un gestionnaire partagé cURL</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.curl-share-close-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>curl_share_close</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$sh</code></span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">
+   Ferme un gestionnaire partagé cURL et libère toutes les ressources
+   associées.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.curl-share-close-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">sh</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Un gestionnaire partagé cURL retourné par la fonction
+      <span class="function"><a href="function.curl-share-init.html" class="function">curl_share_init()</a></span>
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.curl-share-close-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Aucune valeur n&#039;est retournée.
+  </p>
+ </div>
+
+ 
+<div class="refsect1 examples" id="refsect1-function.curl-share-close-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-4880">
+    <p><strong>Exemple #1 Exempe avec <span class="function"><a href="function.curl-share-setopt.html" class="function">curl_share_setopt()</a></span></strong></p>
+    <div class="example-contents"><p>
+     Cet exemple va créer un gestionnaire partagé cURL, y ajoute deux gestionnaires
+     cURL, puis, va les exécuter avec les cookies de données partagés.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Crée&nbsp;un&nbsp;gestionnaire&nbsp;partagé&nbsp;cURL,&nbsp;et&nbsp;le&nbsp;définit&nbsp;pour&nbsp;partager&nbsp;les&nbsp;cookies&nbsp;de&nbsp;données<br /></span><span style="color: #0000BB">$sh&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">curl_share_init</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">curl_share_setopt</span><span style="color: #007700">(</span><span style="color: #0000BB">$sh</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">CURLSHOPT_SHARE</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">CURL_LOCK_DATA_COOKIE</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Initialise&nbsp;le&nbsp;premier&nbsp;gestionnaire&nbsp;cURL,&nbsp;et&nbsp;y&nbsp;assigne&nbsp;le&nbsp;gestionnaire&nbsp;partagé<br /></span><span style="color: #0000BB">$ch1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">curl_init</span><span style="color: #007700">(</span><span style="color: #DD0000">"http://example.com/"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">curl_setopt</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">CURLOPT_SHARE</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sh</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Exécute&nbsp;le&nbsp;premier&nbsp;gestion&nbsp;cURL<br /></span><span style="color: #0000BB">curl_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch1</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Initialise&nbsp;le&nbsp;second&nbsp;gestionnaire&nbsp;cURL,&nbsp;et&nbsp;y&nbsp;assigne&nbsp;le&nbsp;gestionnaire&nbsp;partagé<br /></span><span style="color: #0000BB">$ch2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">curl_init</span><span style="color: #007700">(</span><span style="color: #DD0000">"http://php.net/"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">curl_setopt</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">CURLOPT_SHARE</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sh</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Exécute&nbsp;le&nbsp;second&nbsp;gestionnaire&nbsp;cURL.<br />//&nbsp;Tous&nbsp;les&nbsp;cookies&nbsp;du&nbsp;gestionnaire&nbsp;$ch1&nbsp;sont&nbsp;partagés&nbsp;avec&nbsp;le&nbsp;gestionnaire&nbsp;$ch2.<br /></span><span style="color: #0000BB">curl_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch2</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Ferme&nbsp;le&nbsp;gestionnaire&nbsp;partagé&nbsp;cURL<br /></span><span style="color: #0000BB">curl_share_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$sh</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Ferme&nbsp;les&nbsp;gestionnaires&nbsp;cURL<br /></span><span style="color: #0000BB">curl_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch1</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">curl_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch2</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-function.curl-share-close-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.curl-share-init.html" class="function" rel="rdfs-seeAlso">curl_share_init()</a> - Initialise un gestionnaire partag&eacute; cURL</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

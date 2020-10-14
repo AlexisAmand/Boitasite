@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Pr&eacute;pare une requ&ecirc;te pour ex&eacute;cution</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.sqlsrv-num-rows.html">« sqlsrv_num_rows</a></li>
+      <li style="float: right;"><a href="function.sqlsrv-query.html">sqlsrv_query »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.sqlsrv.html">Fonctions SQLSRV</a></li>
+    <li>Pr&eacute;pare une requ&ecirc;te pour ex&eacute;cution</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.sqlsrv-prepare" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlsrv_prepare</h1>
+  <p class="verinfo">(No version information available, might only be in Git)</p><p class="refpurpose"><span class="refname">sqlsrv_prepare</span> &mdash; <span class="dc-title">Prépare une requête pour exécution</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.sqlsrv-prepare-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>sqlsrv_prepare</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$conn</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$sql</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$params</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code></span>
+  ]] ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+
+  <p class="para rdfs-comment">
+   Prépare une requête pour exécution. Cette fonction est idéale pour
+   préparer une requête qui sera exécutée plusieurs fois avec des
+   valeurs de paramètres différents.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.sqlsrv-prepare-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">conn</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une ressource de connexion retournée par la fonction
+       <span class="function"><a href="function.sqlsrv-connect.html" class="function">sqlsrv_connect()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">sql</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La chaîne qui définit la requête à préparer et à exécuter.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">params</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un tableau spécifiant les informations de paramètres lors de l&#039;exécution
+       d&#039;une requête contenant des paramètres. Les éléments du tableau peuvent
+       être n&#039;importe lequel de ceux qui suivent :
+       <ul class="simplelist">
+        <li class="member">Une valeur litérale</li>
+        <li class="member">Une variable PHP</li>
+        <li class="member">Un tableau avec la structure suivante :
+        array($value [, $direction [, $phpType [, $sqlType]]])</li>
+       </ul>
+       La table suivante décrit les éléments de la structure du tableau ci-dessus :
+       </p>
+       <table class="doctable table">
+       <caption><strong>Structure du tableau</strong></caption>
+       
+        <thead>
+         <tr>
+          <th>Elément</th>
+          <th>Description</th>
+         </tr>
+
+        </thead>
+
+        <tbody class="tbody">
+         <tr>
+          <td>$value</td>
+          <td>Une valeur liétrale, une variable PHP ou une variable PHP passée par référence.</td>
+         </tr>
+
+         <tr>
+          <td>$direction (optional)</td>
+          <td>Une des constantes SQLSRV suivantes, utilisées pour indiquer la
+           direction du paramètre : SQLSRV_PARAM_IN, SQLSRV_PARAM_OUT, SQLSRV_PARAM_INOUT.
+           La valeur par défaut est SQLSRV_PARAM_IN.
+          </td>
+         </tr>
+
+         <tr>
+          <td>$phpType (optional)</td>
+          <td>Une constante SQLSRV_PHPTYPE_* qui spécifie le type de données PHP
+           de la valeur retournée.</td>
+         </tr>
+
+         <tr>
+          <td>$sqlType (optional)</td>
+          <td>Une constante SQLSRV_SQLTYPE_* qui spécifie le type de données
+           du serveur SQL de la valeur d&#039;entrée.</td>
+         </tr>
+
+        </tbody>
+       
+      </table>
+
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">options</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un tableau spécifiant les options de propriétés de la requête.
+       Les clés supportées sont décrites dans le tableau suivant :
+      </p>
+      <table class="doctable table">
+       <caption><strong>Options de la requête</strong></caption>
+       
+        <thead>
+         <tr>
+          <th>Clé</th>
+          <th>Valeurs</th>
+          <th>Description</th>
+         </tr>
+
+        </thead>
+
+        <tbody class="tbody">
+         <tr>
+          <td>QueryTimeout</td>
+          <td>Une valeur entière positive.</td>
+          <td>Définit le délai maximal d&#039;exécution de la requête, en seconde.
+           Par défaut, le driver attendra indéfiniment les résultats.</td>
+         </tr>
+
+         <tr>
+          <td>SendStreamParamsAtExec</td>
+          <td><strong><code>TRUE</code></strong> ou <strong><code>FALSE</code></strong> (par défaut, <strong><code>TRUE</code></strong>)</td>
+          <td>Configure le driver pour envoyer les données du flux à l&#039;exécution (<strong><code>TRUE</code></strong>),
+           ou envoyer les données du flux par morceaux (<strong><code>FALSE</code></strong>). Par défaut, la valeur
+           est définie à <strong><code>TRUE</code></strong>. Pour plus d&#039;informations, reportez-vous à la fonction
+           <span class="function"><a href="function.sqlsrv-send-stream-data.html" class="function">sqlsrv_send_stream_data()</a></span>.</td>
+         </tr>
+
+         <tr>
+          <td>Scrollable</td>
+          <td>SQLSRV_CURSOR_FORWARD, SQLSRV_CURSOR_STATIC, SQLSRV_CURSOR_DYNAMIC, 
+          ou SQLSRV_CURSOR_KEYSET</td>
+          <td>Voir la section sur <a href="http://msdn.microsoft.com/en-us/library/ee376927.aspx" class="link external">&raquo;&nbsp;la
+           sécification d&#039;un type de curseur et la sélection de lignes</a> de la documentation
+           Microsoft SQLSRV.</td>
+         </tr>
+
+        </tbody>
+       
+      </table>
+
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.sqlsrv-prepare-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne une ressource de requête en cas de succès, ou <strong><code>FALSE</code></strong> si une
+   erreur survient.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.sqlsrv-prepare-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2611">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>sqlsrv_prepare()</strong></span></strong></p>
+    <div class="example-contents"><p>
+     Cet exemple montre la façon de préparer une requête avec la fonction
+     <span class="function"><strong>sqlsrv_prepare()</strong></span> et sa ré-exécution à plusieurs reprises
+     (avec des valeurs de paramètres différents) en utilisant la fonction
+     <span class="function"><a href="function.sqlsrv-execute.html" class="function">sqlsrv_execute()</a></span>.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$serverName&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"serverName\sqlexpress"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$connectionInfo&nbsp;</span><span style="color: #007700">=&nbsp;array(&nbsp;</span><span style="color: #DD0000">"Database"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"dbName"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"UID"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"PWD"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlsrv_connect</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$serverName</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$connectionInfo</span><span style="color: #007700">);<br />if(&nbsp;</span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">sqlsrv_errors</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"UPDATE&nbsp;Table_1<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;OrderQty&nbsp;=&nbsp;?<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;SalesOrderID&nbsp;=&nbsp;?"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Initialise&nbsp;les&nbsp;paramètres&nbsp;et&nbsp;prépare&nbsp;la&nbsp;requête.<br />//&nbsp;Les&nbsp;variables&nbsp;$qty&nbsp;et&nbsp;$id&nbsp;sont&nbsp;liées&nbsp;à&nbsp;la&nbsp;requête&nbsp;$stmt.<br /></span><span style="color: #0000BB">$qty&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$id&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlsrv_prepare</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">,&nbsp;array(&nbsp;&amp;</span><span style="color: #0000BB">$qty</span><span style="color: #007700">,&nbsp;&amp;</span><span style="color: #0000BB">$id</span><span style="color: #007700">));<br />if(&nbsp;!</span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">sqlsrv_errors</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Définit&nbsp;les&nbsp;informations&nbsp;SalesOrderDetailID&nbsp;et&nbsp;OrderQty.<br />//&nbsp;Ce&nbsp;tableau&nbsp;lie&nbsp;l'ordre&nbsp;des&nbsp;IDs&nbsp;avec&nbsp;l'ordre&nbsp;des&nbsp;quantités&nbsp;avec&nbsp;des&nbsp;paires&nbsp;clé=&gt;valeur.<br /></span><span style="color: #0000BB">$orders&nbsp;</span><span style="color: #007700">=&nbsp;array(&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">10</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">20</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">30</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Exécute&nbsp;la&nbsp;requête&nbsp;pour&nbsp;chaque&nbsp;ordre.<br /></span><span style="color: #007700">foreach(&nbsp;</span><span style="color: #0000BB">$orders&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$id&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$qty</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;En&nbsp;raison&nbsp;du&nbsp;fait&nbsp;que&nbsp;$id&nbsp;et&nbsp;$qty&nbsp;sont&nbsp;liés&nbsp;à&nbsp;$stmt1,<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;leurs&nbsp;valeurs&nbsp;mises&nbsp;à&nbsp;jour&nbsp;sont&nbsp;utilisées&nbsp;lors&nbsp;de&nbsp;chaque&nbsp;exécution<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;de&nbsp;la&nbsp;requête.<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">if(&nbsp;</span><span style="color: #0000BB">sqlsrv_execute</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">)&nbsp;===&nbsp;</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;die(&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">sqlsrv_errors</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.sqlsrv-prepare-notes">
+  <h3 class="title">Notes</h3>
+  <p class="para">
+   Lorsque vous préparez une requête qui utilisent des variables comme paramètres,
+   les variables sont liées à la requête. Cela signifie que si vous mettez à jour
+   les valeurs de ces variables, la prochaine exécution de la requête prendra
+   en compte ces nouvelles valeurs. Pour les requêtes que vous ne prévoyez
+   exécuter qu&#039;une seule fois, utilisez la fonction
+   <span class="function"><a href="function.sqlsrv-query.html" class="function">sqlsrv_query()</a></span>.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-function.sqlsrv-prepare-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.sqlsrv-execute.html" class="function" rel="rdfs-seeAlso">sqlsrv_execute()</a> - Ex&eacute;cute une requ&ecirc;te pr&eacute;par&eacute;e avec la fonction sqlsrv_prepare</span></li>
+    <li class="member"><span class="function"><a href="function.sqlsrv-query.html" class="function" rel="rdfs-seeAlso">sqlsrv_query()</a> - Pr&eacute;pare et ex&eacute;cute une requ&ecirc;te</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

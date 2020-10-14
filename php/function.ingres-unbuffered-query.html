@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Envoie une requ&ecirc;te sans buffer &agrave; Ingres</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.ingres-set-environment.html">« ingres_set_environment</a></li>
+      <li style="float: right;"><a href="book.maxdb.html">MaxDB »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.ingres.html">Fonctions Ingres</a></li>
+    <li>Envoie une requ&ecirc;te sans buffer &agrave; Ingres</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.ingres-unbuffered-query" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ingres_unbuffered_query</h1>
+  <p class="verinfo">(No version information available, might only be in Git)</p><p class="refpurpose"><span class="refname">ingres_unbuffered_query</span> &mdash; <span class="dc-title">Envoie une requête sans buffer à Ingres</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.ingres-unbuffered-query-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>ingres_unbuffered_query</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$link</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$query</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$params</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$types</code></span>
+  ]] ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>ingres_unbuffered_query()</strong></span> envoie la requête SQL
+   <code class="parameter">query</code> au serveur Ingres.
+  </p>
+  <p class="para">
+   La requête fait alors partie de la transaction courante. S&#039;il
+   n&#039;y a pas de transaction ouverte, <span class="function"><a href="function.ingres-query.html" class="function">ingres_query()</a></span>
+   en ouvre une nouvelle. Pour fermer la transaction, vous pouvez
+   appeler soit <span class="function"><a href="function.ingres-commit.html" class="function">ingres_commit()</a></span> pour valider
+   les modifications, ou bien <span class="function"><a href="function.ingres-rollback.html" class="function">ingres_rollback()</a></span> 
+   pour les annuler. Lorsque le script s&#039;achève, toutes les transactions
+   qui n&#039;auront pas été validées, seront annulées, en appelant 
+   <span class="function"><a href="function.ingres-rollback.html" class="function">ingres_rollback()</a></span>. Vous pouvez aussi utiliser
+   <span class="function"><a href="function.ingres-autocommit.html" class="function">ingres_autocommit()</a></span> avant d&#039;ouvrir une
+   nouvelle transaction pour forcer la validation immédiate de toutes
+   les requêtes. Ingres permet une seule requête sans buffer active
+   à un moment donné. L&#039;extension va fermer toute requête active
+   avant d&#039;exécuter une nouvelle requête SQL. De plus, vous ne pouvez pas
+   utiliser <span class="function"><a href="function.ingres-result-seek.html" class="function">ingres_result_seek()</a></span> pour vous positionner
+   à la ligne que vous souhaitez dans le résultat.
+  </p>
+
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Configurations associées</strong><br />
+   <p class="para">
+    Voyez aussi les directives 
+    <a href="ingres.configuration.html#ini.ingres.describe" class="link">ingres.describe</a>
+    et <a href="ingres.configuration.html#ini.ingres.utf8" class="link">ingres.utf8</a> dans les
+    <a href="ingres.configuration.html" class="link">directives d&#039;exécution</a>.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ingres-unbuffered-query-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">link</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La <a href="language.types.resource.html" class="link">ressource</a> de connexion à Ingres
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">query</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une requête SQL valide (voyez le 
+       <em class="emphasis">SQL reference guide</em>) pour le serveur Ingres.
+       Voyez la documentation du paramètre
+       <a href="function.ingres-query.html#function.ingres-query.query" class="link">query</a>
+       la fonction <span class="function"><a href="function.ingres-query.html" class="function">ingres-query()</a></span>
+       pour une liste de requêtes SQL qui ne peuvent pas être
+       exécutées via la fonction <span class="function"><strong>ingres_unbuffered_query()</strong></span>.
+      </p>
+      <p class="para">
+       Les données contenues dans la requête doivent être <a href="function.ingres-escape-string.html" class="link">proprement échappées</a>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">params</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un tableau de valeurs de paramètre à utiliser avec la requête
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">types</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une chaîne contenant une séquence de types pour les paramètres
+       fournis à la requête.
+       Voyez la documentation de la fonction <span class="function"><a href="function.ingres-query.html" class="function">ingres-query()</a></span>
+       pour obtenir la liste des 
+       <a href="function.ingres-query.html#function.ingres-query.types" class="link">types</a>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ingres-unbuffered-query-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   <span class="function"><strong>ingres_unbuffered_query()</strong></span> retourne une <a href="language.types.resource.html" class="link">ressource</a>
+   de résultats lorsqu&#039;il y a des lignes à lire, et sinon, elle retourne
+   <strong><code>FALSE</code></strong> s&#039;il n&#039;y a pas de lignes à lire, comme pour les requêtes 
+   INSERT, UPDATE et DELETE. Pour savoir s&#039;il y a eu une erreur, utilisez
+   l&#039;une des fonctions <span class="function"><a href="function.ingres-errno.html" class="function">ingres_errno()</a></span>, 
+   <span class="function"><a href="function.ingres-error.html" class="function">ingres_error()</a></span> ou 
+   <span class="function"><a href="function.ingres-errsqlstate.html" class="function">ingres_errsqlstate()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ingres-unbuffered-query-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-1320">
+    <p><strong>Exemple #1 Exécution d&#039;une requête SQL sans buffer sur Ingres</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"demodb"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_unbuffered_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"select&nbsp;*&nbsp;from&nbsp;user_profile"</span><span style="color: #007700">);<br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_fetch_row</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">];<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-1321">
+    <p><strong>Exemple #2 Passage de paramètres de requêtes à <span class="function"><strong>ingres_unbuffered_query()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"demodb"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$params</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #DD0000">"Emma"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"select&nbsp;*&nbsp;from&nbsp;user_profile&nbsp;where&nbsp;up_first&nbsp;=&nbsp;?"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_unbuffered_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$params</span><span style="color: #007700">);<br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_fetch_row</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">];<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-1322">
+    <p><strong>Exemple #3 Insertion d&#039;un BLOB dans les paramètres de requêtes SQL Ingres</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"demodb"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//Ouverture&nbsp;d'une&nbsp;photo<br /></span><span style="color: #0000BB">$fh&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"photo.jpg"</span><span style="color: #007700">,</span><span style="color: #DD0000">"r"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$blob_data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stream_get_contents</span><span style="color: #007700">(</span><span style="color: #0000BB">$fh</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fh</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//Préparation&nbsp;des&nbsp;parametres<br /></span><span style="color: #0000BB">$params</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #0000BB">$blob_data</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$params</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #0000BB">1201</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//Définition&nbsp;des&nbsp;types&nbsp;de&nbsp;paramètres<br /></span><span style="color: #0000BB">$param_types&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Bi"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"update&nbsp;user_profile&nbsp;set&nbsp;up_image&nbsp;=&nbsp;?&nbsp;where&nbsp;up_id&nbsp;=&nbsp;?"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_unbuffered_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$params</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$param_types</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">ingres_errno</span><span style="color: #007700">())<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">ingres_errno</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">ingres_error</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ingres-unbuffered-query-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ingres-query.html" class="function" rel="rdfs-seeAlso">ingres_query()</a> - Envoie une requ&ecirc;te SQL &agrave; Ingres</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-fetch-array.html" class="function" rel="rdfs-seeAlso">ingres_fetch_array()</a> - R&eacute;cup&egrave;re une ligne de r&eacute;sultat Ingres dans un tableau</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-fetch-assoc.html" class="function" rel="rdfs-seeAlso">ingres_fetch_assoc()</a> - R&eacute;cup&egrave;re une ligne de r&eacute;sultat dans un tableau associatif</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-fetch-object.html" class="function" rel="rdfs-seeAlso">ingres_fetch_object()</a> - R&eacute;cup&egrave;re une ligne de r&eacute;sultat dans un objet</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-fetch-row.html" class="function" rel="rdfs-seeAlso">ingres_fetch_row()</a> - R&eacute;cup&egrave;re une ligne de r&eacute;sultat dans un tableau &eacute;num&eacute;r&eacute;</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-commit.html" class="function" rel="rdfs-seeAlso">ingres_commit()</a> - Valide une transaction</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-rollback.html" class="function" rel="rdfs-seeAlso">ingres_rollback()</a> - Annule une transaction Ingres</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-autocommit.html" class="function" rel="rdfs-seeAlso">ingres_autocommit()</a> - Active ou d&eacute;sactive le mode autocommit</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-set-environment.html" class="function" rel="rdfs-seeAlso">ingres_set_environment()</a> - Configure les directives contr&ocirc;lant les r&eacute;sultats Ingres</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-errno.html" class="function" rel="rdfs-seeAlso">ingres_errno()</a> - R&eacute;cup&egrave;re le dernier num&eacute;ro d'erreur d'Ingres g&eacute;n&eacute;r&eacute;</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-error.html" class="function" rel="rdfs-seeAlso">ingres_error()</a> - Lit le dernier message d'erreur Ingres</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Cr&eacute;e une paire de sockets connect&eacute;es et indissociables</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.stream-socket-get-name.html">« stream_socket_get_name</a></li>
+      <li style="float: right;"><a href="function.stream-socket-recvfrom.html">stream_socket_recvfrom »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.stream.html">Fonctions sur les flux</a></li>
+    <li>Cr&eacute;e une paire de sockets connect&eacute;es et indissociables</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.stream-socket-pair" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stream_socket_pair</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7)</p><p class="refpurpose"><span class="refname">stream_socket_pair</span> &mdash; <span class="dc-title">
+   Crée une paire de sockets connectées et indissociables
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.stream-socket-pair-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>stream_socket_pair</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$domain</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$type</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$protocol</code></span>
+   ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>stream_socket_pair()</strong></span> crée une paire de sockets connectées
+   et indissociables. Cette fonction est communément utilisée en IPC
+   (<code class="literal">InterProcess Communication</code>).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.stream-socket-pair-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">domain</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La famille de protocole à utiliser : <strong><code>STREAM_PF_INET</code></strong>,
+       <strong><code>STREAM_PF_INET6</code></strong> ou
+       <strong><code>STREAM_PF_UNIX</code></strong>
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">type</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le type de communication à utiliser :
+       <strong><code>STREAM_SOCK_DGRAM</code></strong>,
+       <strong><code>STREAM_SOCK_RAW</code></strong>,
+       <strong><code>STREAM_SOCK_RDM</code></strong>,
+       <strong><code>STREAM_SOCK_SEQPACKET</code></strong> ou
+       <strong><code>STREAM_SOCK_STREAM</code></strong>
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">protocol</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le protocole à utiliser : <strong><code>STREAM_IPPROTO_ICMP</code></strong>,
+       <strong><code>STREAM_IPPROTO_IP</code></strong>,
+       <strong><code>STREAM_IPPROTO_RAW</code></strong>,
+       <strong><code>STREAM_IPPROTO_TCP</code></strong> ou
+       <strong><code>STREAM_IPPROTO_UDP</code></strong>
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <span class="simpara">
+    Consultez la <a href="stream.constants.html" class="link">liste des constantes de flux</a> 
+    pour plus de détails sur chaque constante.
+   </span>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.stream-socket-pair-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un <a href="language.types.array.html" class="link">tableau</a> contenant les ressources des deux sockets en cas de succès, ou
+   <strong><code>FALSE</code></strong> en cas d&#039;échec.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.stream-socket-pair-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-4463">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>stream_socket_pair()</strong></span></strong></p>
+    <div class="example-contents"><p>
+     Cet exemple montre une utilisation basique de
+     <span class="function"><strong>stream_socket_pair()</strong></span> dans une communication inter-processus.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$sockets&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">stream_socket_pair</span><span style="color: #007700">(</span><span style="color: #0000BB">STREAM_PF_UNIX</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">STREAM_SOCK_STREAM</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">STREAM_IPPROTO_IP</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$pid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pcntl_fork</span><span style="color: #007700">();<br /><br />if&nbsp;(</span><span style="color: #0000BB">$pid&nbsp;</span><span style="color: #007700">==&nbsp;-</span><span style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Impossible&nbsp;de&nbsp;forker'</span><span style="color: #007700">);<br /><br />}&nbsp;else&nbsp;if&nbsp;(</span><span style="color: #0000BB">$pid</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;parent&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$sockets</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]);<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$sockets</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">],&nbsp;</span><span style="color: #DD0000">"PID&nbsp;enfant&nbsp;:&nbsp;</span><span style="color: #0000BB">$pid</span><span style="color: #DD0000">\n"</span><span style="color: #007700">);<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">fgets</span><span style="color: #007700">(</span><span style="color: #0000BB">$sockets</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]);<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$sockets</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]);<br /><br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;enfant&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$sockets</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]);<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$sockets</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">],&nbsp;</span><span style="color: #DD0000">"message&nbsp;de&nbsp;l'enfant\n"</span><span style="color: #007700">);<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">fgets</span><span style="color: #007700">(</span><span style="color: #0000BB">$sockets</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]);<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$sockets</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]);<br />}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+PID enfant : 1378
+message de l&#039;enfant
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

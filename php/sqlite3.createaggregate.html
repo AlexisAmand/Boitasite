@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Enregistre une fonction PHP &agrave; utiliser comme fonction d'aggr&eacute;gation SQLite</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="sqlite3.construct.html">« SQLite3::__construct</a></li>
+      <li style="float: right;"><a href="sqlite3.createcollation.html">SQLite3::createCollation »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.sqlite3.html">SQLite3</a></li>
+    <li>Enregistre une fonction PHP &agrave; utiliser comme fonction d'aggr&eacute;gation SQLite</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="sqlite3.createaggregate" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SQLite3::createAggregate</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7)</p><p class="refpurpose"><span class="refname">SQLite3::createAggregate</span> &mdash; <span class="dc-title">Enregistre une fonction PHP à utiliser comme fonction d&#039;aggrégation SQLite</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-sqlite3.createaggregate-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>SQLite3::createAggregate</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$step_callback</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$final_callback</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$argument_count</code><span class="initializer"> = -1</span></span>
+  ] ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Enregistre une fonction PHP ou une fonction définie par l&#039;utilisateur à
+   utiliser comme fonction d&#039;aggrégation SQL, qui sera utilisée dans les requêtes
+   SQL.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-sqlite3.createaggregate-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Nom de la fonction d&#039;aggrégation SQL à créer ou à redéfinir.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">step_func</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Fonction de rappel appelée pour chaque ligne dans le jeu de résultats. Votre
+       fonction PHP devrait accumuler le résultat et stocker son contexte d&#039;agrégation.
+      </p>
+      <p class="para">
+       Cette fonction doit être définie comme :
+       <div class="methodsynopsis dc-description">
+        <span class="methodname"><span class="replaceable">step</span></span>
+         ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$context</code></span>
+        , <span class="methodparam"><span class="type">int</span> <code class="parameter">$rownumber</code></span>
+        , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value1</code></span>
+        [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$...</code></span>
+       ] ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+
+       <dl>
+
+        
+         <dt>
+<code class="parameter">context</code></dt>
+
+         <dd>
+
+          <p class="para">
+           <strong><code>NULL</code></strong> pour la première ligne ; sur les lignes suivantes ceci aura la valeur
+           qui a été précedement retourné par la fonction step ; vous devriez utiliser
+           ceci pour maintenir l&#039;état d&#039;aggregation.
+          </p>
+         </dd>
+
+        
+        
+         <dt>
+<code class="parameter">rownumber</code></dt>
+
+         <dd>
+
+          <p class="para">
+           Le numéro de ligne courante.
+          </p>
+         </dd>
+
+        
+        
+         <dt>
+<code class="parameter">value1</code></dt>
+
+         <dd>
+
+          <p class="para">
+           Le premier argument à passer à l&#039;agrégateur.
+          </p>
+         </dd>
+
+        
+        
+         <dt>
+<code class="parameter">...</code></dt>
+
+         <dd>
+
+          <p class="para">
+           Arguments supplémentaires à passer à l&#039;agrégateur.
+          </p>
+         </dd>
+
+        
+       </dl>
+
+       La valeur retournée de cette fonction sera utilisée comme argument
+       <code class="parameter">context</code> lors du prochain appel d&#039;une fonction
+       d&#039;étape ou finale.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">final_callback</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Fonction de rappel pour agréger les &quot;étapes&quot; de données de chaque ligne.
+       Une fois que toutes les lignes ont été traitées, la fonction sera appelée,
+       prendra les données du contexte d&#039;agrégation et retournera le résultat.
+       La fonction de rappel doit retourner un type compris 
+       par SQLite (c&#039;est-à-dire <a href="language.types.intro.html" class="link">un type scalaire</a>).
+      </p>
+      <p class="para">
+       Cette fonction doit être définie comme :
+       <div class="methodsynopsis dc-description">
+        <span class="methodname"><span class="replaceable">fini</span></span>
+         ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$context</code></span>
+        , <span class="methodparam"><span class="type">int</span> <code class="parameter">$rownumber</code></span>
+        ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+
+       <dl>
+
+        
+         <dt>
+<code class="parameter">context</code></dt>
+
+         <dd>
+
+          <p class="para">
+           Contient la valeur de retour du tout dernier appel à la fonction step.
+          </p>
+         </dd>
+
+        
+        
+         <dt>
+<code class="parameter">rownumber</code></dt>
+
+         <dd>
+
+          <p class="para">
+           Toujours <code class="literal">0</code>.
+          </p>
+         </dd>
+
+        
+       </dl>
+
+       La valeur de retour de cette fonction sera utilisée comme valeur de retour pour
+       l&#039;agrégation.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">argument_count</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nombre d&#039;arguments pris par la fonction d&#039;aggrégation SQL.
+       Si ce nombre est négatif, alors la fonction d&#039;aggrégation SQL
+       pourra prendre un nombre non défini d&#039;arguments.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-sqlite3.createaggregate-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne <strong><code>TRUE</code></strong> si la création de l&#039;agrégat a réussie,  ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-sqlite3.createaggregate-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2574">
+    <p><strong>Exemple #1 Exemple d&#039;une fonction d&#039;agrégation avec max_length</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$data&nbsp;</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'one'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'two'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'three'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'four'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'five'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'six'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'seven'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'eight'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'nine'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'ten'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;);<br /></span><span style="color: #0000BB">$db&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SQLite3</span><span style="color: #007700">(</span><span style="color: #DD0000">':memory:'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">exec</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;strings(a)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$insert&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">'INSERT&nbsp;INTO&nbsp;strings&nbsp;VALUES&nbsp;(?)'</span><span style="color: #007700">);<br />foreach&nbsp;(</span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$insert</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bindValue</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$insert</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br />}<br /></span><span style="color: #0000BB">$insert&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">;<br /><br />function&nbsp;</span><span style="color: #0000BB">max_len_step</span><span style="color: #007700">(</span><span style="color: #0000BB">$context</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rownumber</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">)&nbsp;<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">)&nbsp;&gt;&nbsp;</span><span style="color: #0000BB">$context</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$context&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$context</span><span style="color: #007700">;<br />}<br /><br />function&nbsp;</span><span style="color: #0000BB">max_len_finalize</span><span style="color: #007700">(</span><span style="color: #0000BB">$context</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$rownumber</span><span style="color: #007700">)&nbsp;<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$context&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">null&nbsp;</span><span style="color: #007700">?&nbsp;</span><span style="color: #0000BB">0&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #0000BB">$context</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">createAggregate</span><span style="color: #007700">(</span><span style="color: #DD0000">'max_len'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'max_len_step'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'max_len_finalize'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">querySingle</span><span style="color: #007700">(</span><span style="color: #DD0000">'SELECT&nbsp;max_len(a)&nbsp;from&nbsp;strings'</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+int(5)
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   Dans cet exemple, on crée une fonction agrégative qui va calculer la
+   longueur de la plus grande chaîne de caractères dans une des colonnes de la
+   table. Pour chaque ligne, la fonction <code class="literal">max_len_step</code> est
+   appelée et le paramètre <code class="literal">$context</code> est passé. Le
+   paramètre de contexte est comme n&#039;importe quelle autre variable PHP et
+   doit être fixé pour contenir un tableau ou même, un objet. Dans cet exemple,
+   nous l&#039;utilisons pour contenir la taille maximale que nous avons vu jusqu&#039;à
+   présent ; si le paramètre <code class="literal">$string</code> a une grandeur plus
+   importante que celle courante, on met à jour le contexte pour contenir cette
+   nouvelle taille maximale.
+  </p>
+  <p class="para">
+   Une fois que toutes les lignes ont été traitées, SQLite appelle la fonction
+   <code class="literal">max_len_finalize</code> pour déterminer le résultat agrégatif.
+   Ici, nous pourrions effectuer des calculs basés sur les données trouvées
+   dans <code class="literal">$context</code>. Dans notre exemple simple, nous avons
+   calculé le résultat comme si la requête progressait, alors que nous avons
+   simplement besoin de retourner la valeur de contexte.
+  </p>
+  <div class="tip"><strong class="tip">Astuce</strong>
+   <p class="para">
+    Il n&#039;est PAS recommandé d&#039;enregistrer une copie des valeurs dans le contexte
+    pour finalement les traiter. Dans ce cas, SQLite utiliserait beaucoup trop
+    de mémoire pour traiter la requête - imaginez la quantité de mémoire nécessaire
+    si un million de lignes étaient enregistrées en mémoire, sachant que chaque ligne
+    contient une chaîne de caractères (32 octets par chaîne).
+   </p>
+  </div>
+  <div class="tip"><strong class="tip">Astuce</strong>
+   <p class="para">
+    Vous pouvez utiliser <span class="methodname"><strong>SQLite3::createAggregate()</strong></span> pour surcharger les
+    fonctions natives de SQLite.
+   </p>
+  </div>
+ </div>
+
+
+</div></div></div></body></html>

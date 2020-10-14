@@ -1,0 +1,347 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Rechercher et remplacer par expression rationnelle standard</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.preg-replace-callback.html">« preg_replace_callback</a></li>
+      <li style="float: right;"><a href="function.preg-split.html">preg_split »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.pcre.html">Fonctions PCRE</a></li>
+    <li>Rechercher et remplacer par expression rationnelle standard</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.preg-replace" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">preg_replace</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">preg_replace</span> &mdash; <span class="dc-title">Rechercher et remplacer par expression rationnelle standard</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.preg-replace-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>preg_replace</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$pattern</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$replacement</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$subject</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$limit</code><span class="initializer"> = -1</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter reference">&$count</code></span>
+  ]] ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+
+  <p class="para rdfs-comment">
+   Analyse <code class="parameter">subject</code> pour trouver l&#039;expression
+   rationnelle <code class="parameter">pattern</code> et remplace les
+   résultats par <code class="parameter">replacement</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.preg-replace-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">pattern</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le masque à chercher. Il peut être une chaîne ou un tableau de chaînes.
+      </p>
+      <p class="para">
+       Plusieurs <a href="reference.pcre.pattern.modifiers.html" class="link">modificateurs PCRE</a>
+       sont également disponibles.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">replacement</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La chaîne ou un tableau de chaînes pour le remplacement.
+       Si ce paramètre est une chaîne et le paramètre <code class="parameter">pattern</code>
+       est un tableau, tous les masques seront remplacés par cette chaîne.
+       Si les paramètres <code class="parameter">pattern</code> et 
+       <code class="parameter">replacement</code> sont des tableaux, chaque
+       <code class="parameter">pattern</code> sera remplacé par son
+       <code class="parameter">replacement</code> associé.
+       Si <code class="parameter">replacement</code> à moins d&#039;éléments
+       que <code class="parameter">pattern</code>, alors une chaîne vide est
+       utilisée pour le reste des valeurs.
+      </p>
+      <p class="para">
+       <code class="parameter">replacement</code> peut contenir des références
+       de la forme <code class="literal">\<span class="replaceable">n</span></code> ou
+       <code class="literal">$<span class="replaceable">n</span></code>.
+       Cette dernière forme est recommandée. Ces références seront remplacées 
+       par le texte capturé par la <span class="replaceable">n</span>-ième parenthèse 
+       capturante du masque. <span class="replaceable">n</span> peut prendre des 
+       valeurs de 0 à 99, et <code class="literal">\0</code> ou <code class="literal">$0</code>, 
+       correspondent au texte de qui satisfait le masque complet. Les parenthèses
+       ouvrantes sont comptées de gauche à droite (en commençant à 1) pour 
+       déterminer le numéro de parenthèse capturante.
+       Il est à noter que dans les <a href="language.types.string.html" class="link">chaîne de caractères</a> litéralles les antislashs doivent
+       peut être être échappé.
+      </p>
+      <p class="para">
+       Lorsque vous travaillez avec un masque de remplacement où une référence arrière 
+       est directement suivie par un nombre (i.e.: placer un nombre littéral immédiatement
+       après une référence arrière), vous ne pouvez pas utiliser la syntaxe classique
+       <code class="literal">\1</code> pour la référence arrière. <code class="literal">\11</code>, par exemple,
+       sera confus pour la fonction <span class="function"><strong>preg_replace()</strong></span> dans le sens où
+       elle ne saura pas si vous désirez la référence arrière <code class="literal">\1</code> suivi du nombre
+       <code class="literal">1</code> ou si vous désirez la référence arrière <code class="literal">\11</code>
+       suivi de &quot;rien&quot;. Dans ce cas, la solution est d&#039;utiliser la syntaxe <code class="literal">${1}1</code>.
+       Cela créera une référence arrière isolée <code class="literal">$1</code>, suivi du nombre
+       littéral <code class="literal">1</code>.
+      </p>
+      <p class="para">
+       Lorsque vous utilisez l&#039;option obsolète <code class="literal">e</code>, cette fonction
+       échappe quelques caractères (<code class="literal">&#039;</code>, <code class="literal">&quot;</code>,
+       <code class="literal">\</code> et NULL) dans la chaîne qui remplace les références arrières.
+       Ce comportement se justifie afin d&#039;assurer qu&#039;aucune erreur de syntaxe
+       ne survient lors de l&#039;utilisation des références arrières avec des guillemets
+       simples et doubles  (e.g. <code class="literal">&#039;strlen(\&#039;$1\&#039;)+strlen(&quot;$2&quot;)&#039;</code>).
+       Assurez-vous d&#039;être familier avec la <a href="language.types.string.html" class="link">syntaxe
+       des chaînes</a> afin de savoir exactement à quoi la chaîne interprétée doit ressembler.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">subject</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La chaîne ou le tableau contenant des chaînes à chercher et à remplacer.
+      </p>
+      <p class="para">
+       Si <code class="parameter">subject</code> est un tableau, alors l&#039;opération
+       sera appliquée à chacun des éléments du tableau, et le tableau sera retourné.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">limit</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nombre maximal de remplacement pour chaque masque dans
+       chaque chaîne <code class="parameter">subject</code>. Par défaut, vaut
+       <code class="literal">-1</code> (aucune limite).
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">count</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Si fournie, cette variable contiendra le nombre de remplacements effectués.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.preg-replace-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   <span class="function"><strong>preg_replace()</strong></span> retourne un tableau si le paramètre
+   <code class="parameter">subject</code> est un tableau, ou une chaîne sinon.
+  </p>
+  <p class="para">
+   Si des correspondances sont trouvées, le nouveau 
+   <code class="parameter">subject</code> sera retourné, sinon
+   <code class="parameter">subject</code> sera retourné à l&#039;identique, ou <strong><code>NULL</code></strong>
+   si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-function.preg-replace-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   À partir de PHP 5.5.0, une alerte de niveau <strong><code>E_DEPRECATED</code></strong>
+   est émise lorsque l&#039;option &quot;\e&quot; est fournie. À partir de PHP 7.0.0 utiliser
+   l&#039;option &quot;\e&quot; est une erreur ; une <strong><code>E_WARNING</code></strong> est émise
+   dans ce cas.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.preg-replace-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-5417">
+    <p><strong>Exemple #1 Utilisation des références arrières avec des littéraux numériques</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'April&nbsp;15,&nbsp;2003'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$pattern&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'/(\w+)&nbsp;(\d+),&nbsp;(\d+)/i'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$replacement&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'${1}1,$3'</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">preg_replace</span><span style="color: #007700">(</span><span style="color: #0000BB">$pattern</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$replacement</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+April1,2003
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5418">
+    <p><strong>Exemple #2 Utilisation de tableaux indexé avec <span class="function"><strong>preg_replace()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Le&nbsp;renard&nbsp;marron&nbsp;agile&nbsp;saute&nbsp;par&nbsp;dessus&nbsp;le&nbsp;chien&nbsp;paresseux.'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$patterns&nbsp;</span><span style="color: #007700">=&nbsp;array();<br /></span><span style="color: #0000BB">$patterns</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">'/agile/'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$patterns</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">'/marron/'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$patterns</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">'/renard/'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$replacements&nbsp;</span><span style="color: #007700">=&nbsp;array();<br /></span><span style="color: #0000BB">$replacements</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">'grizzly'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$replacements</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">'brun'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$replacements</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">'lent'</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">preg_replace</span><span style="color: #007700">(</span><span style="color: #0000BB">$patterns</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$replacements</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Le lent brun grizzly saute par dessus le chien paresseux.
+</pre></div>
+    </div>
+    <div class="example-contents"><p>
+     En triant les masques et les remplacements, vous devriez obtenir le résultat escompté.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />ksort</span><span style="color: #007700">(</span><span style="color: #0000BB">$patterns</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ksort</span><span style="color: #007700">(</span><span style="color: #0000BB">$replacements</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">preg_replace</span><span style="color: #007700">(</span><span style="color: #0000BB">$patterns</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$replacements</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Le grizzly brun lent saute par dessus le chien paresseux.
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5419">
+    <p><strong>Exemple #3 Remplacement de plusieurs valeurs simultanément</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$patterns&nbsp;</span><span style="color: #007700">=&nbsp;array&nbsp;(</span><span style="color: #DD0000">'/(19|20)(\d{2})-(\d{1,2})-(\d{1,2})/'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'/^\s*{(\w+)}\s*=/'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$replace&nbsp;</span><span style="color: #007700">=&nbsp;array&nbsp;(</span><span style="color: #DD0000">'\3/\4/\1\2'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'$\1&nbsp;='</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">preg_replace</span><span style="color: #007700">(</span><span style="color: #0000BB">$patterns</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$replace</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'{startDate}&nbsp;=&nbsp;1999-5-27'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+$startDate = 5/27/1999
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5420">
+    <p><strong>Exemple #4 Suppression des espaces</strong></p>
+    <div class="example-contents"><p>
+     Cet exemple supprime les espaces en trop dans une chaîne.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'foo&nbsp;&nbsp;&nbsp;o'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">preg_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">'/\s\s+/'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'&nbsp;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;Affichera&nbsp;'foo&nbsp;o'<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-5421">
+    <p><strong>Exemple #5 Utilisation du paramètre <code class="parameter">count</code></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$count&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br /><br />echo&nbsp;</span><span style="color: #0000BB">preg_replace</span><span style="color: #007700">(array(</span><span style="color: #DD0000">'/\d/'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/\s/'</span><span style="color: #007700">),&nbsp;</span><span style="color: #DD0000">'*'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'xp&nbsp;4&nbsp;to'</span><span style="color: #007700">,&nbsp;-</span><span style="color: #0000BB">1&nbsp;</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$count</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$count</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//3<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+xp***to
+3
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.preg-replace-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Lorsque vous utilisez des tableaux avec les paramètres
+    <code class="parameter">pattern</code> et
+    <code class="parameter">replacement</code>, les clés sont traitées
+    dans l&#039;ordre dans lequel elles apparaissent dans le tableau.
+    Ce <em class="emphasis">n&#039;est pas forcément</em> la même chose que
+    l&#039;ordre des index numériques. Si vous utilisez des index pour
+    identifier quel <code class="parameter">pattern</code> doit être
+    remplacé par quel <code class="parameter">replacement</code>, il est
+    recommandé de faire un tri <span class="function"><a href="function.ksort.html" class="function">ksort()</a></span> sur chaque
+    tableau avant de faire appel à <span class="function"><strong>preg_replace()</strong></span>.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.preg-replace-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="pcre.pattern.html" class="link">Masques PCRE</a></li>
+    <li class="member"><span class="function"><a href="function.preg-quote.html" class="function" rel="rdfs-seeAlso">preg_quote()</a> - Protection des caract&egrave;res sp&eacute;ciaux des expressions rationnelles</span></li>
+    <li class="member"><span class="function"><a href="function.preg-filter.html" class="function" rel="rdfs-seeAlso">preg_filter()</a> - Recherche et remplace avec une expression rationnelle</span></li>
+    <li class="member"><span class="function"><a href="function.preg-match.html" class="function" rel="rdfs-seeAlso">preg_match()</a> - Effectue une recherche de correspondance avec une expression rationnelle standard</span></li>
+    <li class="member"><span class="function"><a href="function.preg-replace-callback.html" class="function" rel="rdfs-seeAlso">preg_replace_callback()</a> - Rechercher et remplacer par expression rationnelle standard en utilisant une fonction de callback</span></li>
+    <li class="member"><span class="function"><a href="function.preg-split.html" class="function" rel="rdfs-seeAlso">preg_split()</a> - &Eacute;clate une cha&icirc;ne par expression rationnelle</span></li>
+    <li class="member"><span class="function"><a href="function.preg-last-error.html" class="function" rel="rdfs-seeAlso">preg_last_error()</a> - Retourne le code erreur de la derni&egrave;re expression PCRE ex&eacute;cut&eacute;e</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Trie les &eacute;l&eacute;ments avec une fonction utilisateur</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="arrayobject.setiteratorclass.html">« ArrayObject::setIteratorClass</a></li>
+      <li style="float: right;"><a href="arrayobject.uksort.html">ArrayObject::uksort »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.arrayobject.html">ArrayObject</a></li>
+    <li>Trie les &eacute;l&eacute;ments avec une fonction utilisateur</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="arrayobject.uasort" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ArrayObject::uasort</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.2.0, PHP 7)</p><p class="refpurpose"><span class="refname">ArrayObject::uasort</span> &mdash; <span class="dc-title">Trie les éléments avec une fonction utilisateur</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-arrayobject.uasort-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>ArrayObject::uasort</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> <code class="parameter">$cmp_function</code></span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">
+   Cette fonction trie les éléments tout en conservant leur
+   correlation avec la clé associée, en utilisant une fonction
+   de comparaison utilisateur.
+  </p>
+  <p class="para">
+   Cette fonction sert lors du tri de tableaux associatifs, où
+   l&#039;ordre des éléments est important.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-arrayobject.uasort-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">cmp_function</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La fonction <code class="parameter">cmp_function</code> doit accepter
+       deux paramètres, qui contiendront les éléments.
+       La fonction de comparaison doit retourner un entier qui peut
+       être négatif, nul ou positif, suivant que le premier 
+       paramètre est considéré comme inférieur, égal ou supérieur
+       au second.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-arrayobject.uasort-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Aucune valeur n&#039;est retournée.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-arrayobject.uasort-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-4422">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>ArrayObject::uasort()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Fonction&nbsp;de&nbsp;comparaison<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">cmp</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">&lt;&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">)&nbsp;?&nbsp;-</span><span style="color: #0000BB">1&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Les&nbsp;tableaux&nbsp;à&nbsp;trier<br /></span><span style="color: #0000BB">$array&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">'a'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'b'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">8</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'c'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;-</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'d'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;-</span><span style="color: #0000BB">9</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'e'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'f'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'g'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'h'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;-</span><span style="color: #0000BB">4</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$arrayObject&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">ArrayObject</span><span style="color: #007700">(</span><span style="color: #0000BB">$array</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$arrayObject</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Trie&nbsp;et&nbsp;affiche&nbsp;le&nbsp;tableau<br /></span><span style="color: #0000BB">$arrayObject</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">uasort</span><span style="color: #007700">(</span><span style="color: #DD0000">'cmp'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$arrayObject</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+ArrayObject Object
+(
+    [storage:ArrayObject:private] =&gt; Array
+        (
+            [a] =&gt; 4
+            [b] =&gt; 8
+            [c] =&gt; -1
+            [d] =&gt; -9
+            [e] =&gt; 2
+            [f] =&gt; 5
+            [g] =&gt; 3
+            [h] =&gt; -4
+        )
+
+)
+ArrayObject Object
+(
+    [storage:ArrayObject:private] =&gt; Array
+        (
+            [d] =&gt; -9
+            [h] =&gt; -4
+            [c] =&gt; -1
+            [e] =&gt; 2
+            [g] =&gt; 3
+            [a] =&gt; 4
+            [f] =&gt; 5
+            [b] =&gt; 8
+        )
+
+)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-arrayobject.uasort-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="arrayobject.asort.html" class="methodname" rel="rdfs-seeAlso">ArrayObject::asort()</a> - Trie les &eacute;l&eacute;ments par valeur</span></li>
+    <li class="member"><span class="methodname"><a href="arrayobject.ksort.html" class="methodname" rel="rdfs-seeAlso">ArrayObject::ksort()</a> - Trie un tableau par cl&eacute;</span></li>
+    <li class="member"><span class="methodname"><a href="arrayobject.natsort.html" class="methodname" rel="rdfs-seeAlso">ArrayObject::natsort()</a> - Trie les &eacute;l&eacute;ments avec un tri naturel</span></li>
+    <li class="member"><span class="methodname"><a href="arrayobject.natcasesort.html" class="methodname" rel="rdfs-seeAlso">ArrayObject::natcasesort()</a> - Trie un tableau en utilisant le tri naturel sans la casse</span></li>
+    <li class="member"><span class="methodname"><a href="arrayobject.uksort.html" class="methodname" rel="rdfs-seeAlso">ArrayObject::uksort()</a> - Trie les &eacute;l&eacute;ments par cl&eacute; avec une fonction utilisateur</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

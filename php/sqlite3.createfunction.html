@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Enregistre une fonction PHP &agrave; utiliser comme function scalaire SQL</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="sqlite3.createcollation.html">« SQLite3::createCollation</a></li>
+      <li style="float: right;"><a href="sqlite3.enableexceptions.html">SQLite3::enableExceptions »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.sqlite3.html">SQLite3</a></li>
+    <li>Enregistre une fonction PHP &agrave; utiliser comme function scalaire SQL</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="sqlite3.createfunction" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SQLite3::createFunction</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7)</p><p class="refpurpose"><span class="refname">SQLite3::createFunction</span> &mdash; <span class="dc-title">Enregistre une fonction PHP à utiliser comme function scalaire SQL</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-sqlite3.createfunction-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>SQLite3::createFunction</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$callback</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$argument_count</code><span class="initializer"> = -1</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = 0</span></span>
+  ]] ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Enregistre une fonction PHP ou une fonction utilisateur à utiliser comme
+   fonction scalaire SQL, pour utilisation dans les requête SQL.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-sqlite3.createfunction-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Nom de la fonction SQL à créer ou à redéfinir.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">callback</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nom de la fonction PHP ou la fonction utilisateur à appliquer
+       comme callback, définissant le comportement de la fonction SQL.
+      </p>
+      <p class="para">
+       Cette fonction doit être définit comme :
+       <div class="methodsynopsis dc-description">
+        <span class="methodname"><span class="replaceable">callback</span></span>
+         ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value1</code></span>
+        [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$...</code></span>
+       ] ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+
+       <dl>
+
+        
+         <dt>
+<code class="parameter">value1</code></dt>
+
+         <dd>
+
+          <p class="para">
+           Le premier argument à passer à la fonction SQL.
+          </p>
+         </dd>
+
+        
+        
+         <dt>
+<code class="parameter">...</code></dt>
+
+         <dd>
+
+          <p class="para">
+           Arguments supplémentaires à passer à la fonction SQL.
+          </p>
+         </dd>
+
+        
+       </dl>
+
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">argument_count</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Nombre d&#039;arguments que la fonction SQL prend. Si ce paramètre est 
+       <code class="literal">-1</code>, la fonction SQL peut prendre n&#039;importe quel nombre 
+       d&#039;arguments.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une conjonction d&#039;opérations de bits d&#039;indicateurs. Actuellement, seul 
+       <strong><code>PDO::SQLITE_DETERMINISTIC</code></strong> est pris en charge, ce qui 
+       spécifie que la fonction retourne toujours le même résultat étant donné 
+       les mêmes entrées dans une seule instruction SQL.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-sqlite3.createfunction-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne <strong><code>TRUE</code></strong> si la fonction a été créée avec succès, <strong><code>FALSE</code></strong> si une erreur
+   survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-sqlite3.createfunction-changelog">
+  <h3 class="title">Historique</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Version</th>
+      <th>Description</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>7.1.4</td>
+      <td>
+       Le paramètre <code class="parameter">flags</code> a été ajouté.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-sqlite3.createfunction-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2576">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>SQLite3::createFunction()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">my_udf_md5</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">md5</span><span style="color: #007700">(</span><span style="color: #0000BB">$string</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">$db&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SQLite3</span><span style="color: #007700">(</span><span style="color: #DD0000">'mysqlitedb.db'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">createFunction</span><span style="color: #007700">(</span><span style="color: #DD0000">'my_udf_md5'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_udf_md5'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">querySingle</span><span style="color: #007700">(</span><span style="color: #DD0000">'SELECT&nbsp;my_udf_md5("test")'</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+string(32) &quot;098f6bcd4621d373cade4e832627b4f6&quot;
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

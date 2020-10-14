@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Construit un nouvel objet SyncMutex</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="class.syncmutex.html">« SyncMutex</a></li>
+      <li style="float: right;"><a href="syncmutex.lock.html">SyncMutex::lock »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.syncmutex.html">SyncMutex</a></li>
+    <li>Construit un nouvel objet SyncMutex</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="syncmutex.construct" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SyncMutex::__construct</h1>
+  <p class="verinfo">(PECL sync &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">SyncMutex::__construct</span> &mdash; <span class="dc-title">Construit un nouvel objet SyncMutex</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-syncmutex.construct-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>SyncMutex::__construct</strong></span>
+    ([ <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Construit un objet comptable nommé ou non.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-syncmutex.construct-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">name</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Le nom du mutex s&#039;il s&#039;agit d&#039;un objet mutex nommé.
+     </p>
+     <blockquote class="note"><p><strong class="note">Note</strong>: 
+      <p class="para">
+       Si le nom existe déjà, il doit être capable d&#039;être ouvert par l&#039;utilisateur
+       courant exécutant le processus, ou bien une exception sera lancée
+       avec le message d&#039;erreur correspondant.
+      </p>
+     </p></blockquote>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-syncmutex.construct-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Le nouvel objet SyncMutex. Une exception est lancée si le mutex ne peut
+   être créé ou ouvert.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-syncmutex.construct-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-4072">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>SyncMutex::__construct()</strong></span>
+    et un mutex nommé avec un délai d&#039;attente maximal pour le verrou</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mutex&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SyncMutex</span><span style="color: #007700">(</span><span style="color: #DD0000">"UniqueName"</span><span style="color: #007700">);<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$mutex</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">lock</span><span style="color: #007700">(</span><span style="color: #0000BB">3000</span><span style="color: #007700">))<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Impossible&nbsp;de&nbsp;verrouiller&nbsp;le&nbsp;mutex."</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;...&nbsp;*/<br /><br /></span><span style="color: #0000BB">$mutex</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unlock</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-4073">
+   <p><strong>Exemple #2 Exemple avec <span class="function"><strong>SyncMutex::__construct()</strong></span>
+    et un mutex non nommé</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mutex&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SyncMutex</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$mutex</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">lock</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;...&nbsp;*/<br /><br /></span><span style="color: #0000BB">$mutex</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unlock</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-syncmutex.construct-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="methodname"><a href="syncmutex.lock.html" class="methodname" rel="rdfs-seeAlso">SyncMutex::lock()</a> - Obtient un verrou exclusif</span></li>
+   <li class="member"><span class="methodname"><a href="syncmutex.unlock.html" class="methodname" rel="rdfs-seeAlso">SyncMutex::unlock()</a> - D&eacute;verouille le mutex</span></li>
+  </ul>
+ </div>
+
+
+</div></div></div></body></html>

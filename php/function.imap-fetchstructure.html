@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lit la structure d'un message</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.imap-fetchmime.html">« imap_fetchmime</a></li>
+      <li style="float: right;"><a href="function.imap-fetchtext.html">imap_fetchtext »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.imap.html">Fonctions IMAP</a></li>
+    <li>Lit la structure d'un message</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.imap-fetchstructure" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_fetchstructure</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">imap_fetchstructure</span> &mdash; <span class="dc-title">Lit la structure d&#039;un message</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.imap-fetchstructure-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>imap_fetchstructure</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$imap_stream</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$msg_number</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$options</code><span class="initializer"> = 0</span></span>
+  ] ) : <span class="type">object</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>imap_fetchstructure()</strong></span> lit la structure du message
+   <code class="parameter">msg_number</code>.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.imap-fetchstructure-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<code class="parameter">
+    imap_stream</code></dt>
+<dd>
+<p class="para">Un flux IMAP retourné par la fonction
+    <span class="function"><a href="function.imap-open.html" class="function">imap_open()</a></span>.</p></dd>
+
+    
+     <dt>
+<code class="parameter">msg_number</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le numéro du message
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">options</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Ce paramètre optionnel n&#039;a qu&#039;une seule option,
+       <strong><code>FT_UID</code></strong>, qui demande à la fonction de traiter
+       l&#039;argument <code class="parameter">msg_number</code> comme un
+       <code class="literal">UID</code>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.imap-fetchstructure-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un objet avec des propriétés d&#039;enveloppe, de date interne,
+   de taille, de structure de flags et de corps, ainsi qu&#039;un objet pour
+   chaque attachement. La structure est la suivante :
+  </p>
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>
+     Objets retournés par <span class="function"><strong>imap_fetchstructure()</strong></span>
+    </strong></caption>
+    
+     <tbody class="tbody">
+      <tr>
+       <td>type</td>
+       <td>Type primaire de corps</td>
+      </tr>
+
+      <tr>
+       <td>encoding</td>
+       <td>Codage de transfert du corps</td>
+      </tr>
+
+      <tr>
+       <td>ifsubtype</td>
+       <td><strong><code>TRUE</code></strong> s&#039;il y a une chaîne de sous type</td>
+      </tr>
+
+      <tr>
+       <td>subtype</td>
+       <td>sous type <acronym title="Multipurpose Internet Mail Extensions">MIME</acronym></td>
+      </tr>
+
+      <tr>
+       <td>ifdescription</td>
+       <td><strong><code>TRUE</code></strong> s&#039;il y a une chaîne de description</td>
+      </tr>
+
+      <tr>
+       <td>description</td>
+       <td>Chaîne de description du contenu</td>
+      </tr>
+
+      <tr>
+       <td>ifid</td>
+       <td><strong><code>TRUE</code></strong> s&#039;il y a une chaîne d&#039;identification</td>
+      </tr>
+
+      <tr>
+       <td>id</td>
+       <td>Chaîne d&#039;identification</td>
+      </tr>
+
+      <tr>
+       <td>lines</td>
+       <td>Nombre de lignes</td>
+      </tr>
+
+      <tr>
+       <td>bytes</td>
+       <td>Nombre d&#039;octets</td>
+      </tr>
+
+      <tr>
+       <td>ifdisposition</td>
+       <td><strong><code>TRUE</code></strong> s&#039;il y a une chaîne de disposition</td>
+      </tr>
+
+      <tr>
+       <td>disposition</td>
+       <td>Chaîne de disposition</td>
+      </tr>
+
+      <tr>
+       <td>ifdparameters</td>
+       <td><strong><code>TRUE</code></strong> s&#039;il y a un tableau de paramètres <var class="varname">dparameters</var></td>
+      </tr>
+
+      <tr>
+       <td>dparameters</td>
+       <td>tableau d&#039;objets où chaque objet a une propriété <code class="literal">&quot;attribute&quot;</code> et une 
+        propriété <code class="literal">&quot;value&quot;</code> correspondant aux paramètres d&#039;en-têtes 
+        <code class="literal">Content-disposition</code> <acronym title="Multipurpose Internet Mail Extensions">MIME</acronym>.</td>
+      </tr>
+
+      <tr>
+       <td>ifparameters</td>
+       <td><strong><code>TRUE</code></strong> si le tableau de paramètres existe</td>
+      </tr>
+
+      <tr>
+       <td>parameters</td>
+       <td>Tableau d&#039;objets où chacun a une propriété <code class="literal">&quot;attribute&quot;</code> et 
+        une propriété <code class="literal">&quot;value&quot;</code>.</td>
+      </tr>
+
+      <tr>
+       <td>parts</td>
+       <td>Tableau d&#039;objets décrivant chaque partie
+        <acronym title="Multipurpose Internet Mail Extensions">MIME</acronym> du message</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+  <p class="para">
+   <table class="doctable table">
+     <caption><strong>Type primaire de corps (peut varier suivant la bibliothèque utilisée)</strong></caption>
+     
+     <thead>
+      <tr><th>Valeur</th><th>Type</th><th>Constante</th></tr>
+
+     </thead>
+
+      <tbody class="tbody">
+      <tr><td>0</td><td>texte</td><td>TYPETEXT</td></tr>
+
+      <tr><td>1</td><td>multipart</td><td>TYPEMULTIPART</td></tr>
+
+      <tr><td>2</td><td>message</td><td>TYPEMESSAGE</td></tr>
+
+      <tr><td>3</td><td>application</td><td>TYPEAPPLICATION</td></tr>
+
+      <tr><td>4</td><td>audio</td><td>TYPEAUDIO</td></tr>
+
+      <tr><td>5</td><td>image</td><td>TYPEIMAGE</td></tr>
+
+      <tr><td>6</td><td>vidéo</td><td>TYPEVIDEO</td></tr>
+
+      <tr><td>7</td><td>modèle</td><td>TYPEMODEL</td></tr>
+
+      <tr><td>8</td><td>autre</td><td>TYPEOTHER</td></tr>
+
+      </tbody>
+     
+   </table>
+
+  </p>
+  <p class="para">
+   <table class="doctable table">
+     <caption><strong>Codage de transfert (peut varier suivant la bibliothèque utilisée)</strong></caption>
+     
+     <thead>
+      <tr><th>Valeur</th><th>Type</th><th>Constante</th></tr>
+
+     </thead>
+
+      <tbody class="tbody">
+      <tr><td>0</td><td>7 bit</td><td>ENC7BIT</td></tr>
+
+      <tr><td>1</td><td>8 bit</td><td>ENC8BIT</td></tr>
+
+      <tr><td>2</td><td>Binaire</td><td>ENCBINARY</td></tr>
+
+      <tr><td>3</td><td>Base 64</td><td>ENCBASE64</td></tr>
+
+      <tr><td>4</td><td>Cité imprimable</td><td>ENCQUOTEDPRINTABLE</td></tr>
+
+      <tr><td>5</td><td>Autre</td><td>ENCOTHER</td></tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.imap-fetchstructure-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.imap-fetchbody.html" class="function" rel="rdfs-seeAlso">imap_fetchbody()</a> - Retourne une section extraite du corps d'un message</span></li>
+    <li class="member"><span class="function"><a href="function.imap-bodystruct.html" class="function" rel="rdfs-seeAlso">imap_bodystruct()</a> - Lit la structure d'une section du corps d'un mail</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

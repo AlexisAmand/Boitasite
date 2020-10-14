@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>D&eacute;code un champ d&rsquo;en‐t&ecirc;te MIME</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.iconv-mime-decode-headers.html">« iconv_mime_decode_headers</a></li>
+      <li style="float: right;"><a href="function.iconv-mime-encode.html">iconv_mime_encode »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.iconv.html">Fonctions iconv</a></li>
+    <li>D&eacute;code un champ d&rsquo;en‐t&ecirc;te MIME</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.iconv-mime-decode" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">iconv_mime_decode</h1>
+  <p class="verinfo">(PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">iconv_mime_decode</span> &mdash; <span class="dc-title">Décode un champ d’en‐tête MIME</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.iconv-mime-decode-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>iconv_mime_decode</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$encoded_header</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$mode</code><span class="initializer"> = 0</span></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$charset</code><span class="initializer"> = ini_get(&quot;iconv.internal_encoding&quot;)</span></span>
+  ]] ) : <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>iconv_mime_decode()</strong></span> décode un champ d’en‐tête MIME.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.iconv-mime-decode-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">encoded_header</code></dt>
+
+     <dd>
+
+      <p class="para">
+       L’en‐tête encodé, sous la forme d’une <a href="language.types.string.html" class="link">chaîne de caractères</a>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">mode</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">mode</code> détermine une alternative dans le cas
+       où <span class="function"><strong>iconv_mime_decode()</strong></span> rencontre un champ d’en‐tête 
+       <code class="literal">MIME</code> mal formé.
+       <table class="doctable table">
+        <caption><strong>Masques acceptables pour la fonction <span class="function"><strong>iconv_mime_decode()</strong></span></strong></caption>
+        
+         <thead>
+          <tr>
+           <th>Valeur</th>
+           <th>Constante</th>
+           <th>Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td>1</td>
+           <td>ICONV_MIME_DECODE_STRICT</td>
+           <td>
+            Si défini, l’en‐tête correspondant sera décodé en suivant 
+            strictement le standard <a href="http://www.faqs.org/rfcs/rfc2047" class="link external">&raquo;&nbsp;RFC2047</a>.
+            Cette option est désactivée par défaut, car il existe beaucoup 
+            de mauvais <code class="literal">clients de courriel</code> qui ne suivent pas
+            ce standard et donc, produisent de mauvais en‐têtes 
+            <code class="literal">MIME</code>.
+           </td>
+          </tr>
+
+          <tr>
+           <td>2</td>
+           <td>ICONV_MIME_DECODE_CONTINUE_ON_ERROR</td>
+           <td>
+            Si défini, <span class="function"><strong>iconv_mime_decode()</strong></span> 
+            essaie de continuer à décoder l’en‐tête passé, 
+            même si des erreurs apparaissent.
+           </td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">charset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le paramètre par défaut <code class="parameter">charset</code> spécifie
+       le jeu de caractères à utiliser pour représenter le résultat. 
+       S’il est omis,
+       <a href="iconv.configuration.html" class="link">iconv.internal_encoding</a> 
+       sera utilisé.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.iconv-mime-decode-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un champ <code class="literal">MIME</code> en cas de succès,
+   ou <strong><code>FALSE</code></strong> si une erreur survient durant le décodage.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.iconv-mime-decode-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2910">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>iconv_mime_decode()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Ceci&nbsp;affichera&nbsp;:&nbsp;"Subject:&nbsp;Prüfung&nbsp;Prüfung"<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">iconv_mime_decode</span><span style="color: #007700">(</span><span style="color: #DD0000">"Subject:&nbsp;=?UTF-8?B?UHLDvGZ1bmcgUHLDvGZ1bmc=?="</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"ISO-8859-1"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.iconv-mime-decode-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.iconv-mime-decode-headers.html" class="function" rel="rdfs-seeAlso">iconv_mime_decode_headers()</a> - D&eacute;code des en-t&ecirc;tes MIME multiples</span></li>
+    <li class="member"><span class="function"><a href="function.mb-decode-mimeheader.html" class="function" rel="rdfs-seeAlso">mb_decode_mimeheader()</a> - D&eacute;code un en-t&ecirc;te MIME</span></li>
+    <li class="member"><span class="function"><a href="function.imap-mime-header-decode.html" class="function" rel="rdfs-seeAlso">imap_mime_header_decode()</a> - D&eacute;code les &eacute;l&eacute;ments MIME d'un en-t&ecirc;te</span></li>
+    <li class="member"><span class="function"><a href="function.imap-base64.html" class="function" rel="rdfs-seeAlso">imap_base64()</a> - D&eacute;code un texte encod&eacute; en BASE64</span></li>
+    <li class="member"><span class="function"><a href="function.imap-qprint.html" class="function" rel="rdfs-seeAlso">imap_qprint()</a> - Convertit une cha&icirc;ne &agrave; guillemets en une cha&icirc;ne &agrave; 8 bits</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

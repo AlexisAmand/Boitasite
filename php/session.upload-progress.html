@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Progression d'un t&eacute;l&eacute;versement (upload) en session</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="session.customhandler.html">« Gestion personnalis&eacute;e des sessions</a></li>
+      <li style="float: right;"><a href="session.security.html">Sessions et s&eacute;curit&eacute; »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.session.html">Sessions</a></li>
+    <li>Progression d'un t&eacute;l&eacute;versement (upload) en session</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="session.upload-progress" class="chapter">
+ <h1>Progression d&#039;un téléversement (upload) en session</h1>
+
+ 
+ <blockquote class="note"><p><strong class="note">Note</strong>: 
+  <span class="simpara">
+   This feature is available as of PHP 5.4.0.
+  </span>
+ </p></blockquote>
+
+ <p class="para">
+  Lorsque l&#039;option de configuration
+  <a href="session.configuration.html#ini.session.upload-progress.enabled" class="link">session.upload_progress.enabled</a>
+  est active, PHP sera capable de traquer la progression d&#039;un fichier en
+  cours de téléversement (upload). Cette information n&#039;est pas particulièrement utile
+  pour la requête de téléversement en tant que tel, mais pendant le téléversement,
+  une application peut envoyer une requête POST séparée (via 
+  <acronym>XHR</acronym> par exemple) pour vérifier le statut de ce téléversement.
+ </p>
+ <p class="para">
+  La progression du téléversement sera disponible dans la variable super-globale
+  <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var> lorsque le téléversement est en cours,
+  et lors d&#039;un envoi en méthode POST d&#039;une variable du même nom que celui
+  défini dans l&#039;option de configuration INI
+  <a href="session.configuration.html#ini.session.upload-progress.name" class="link">session.upload_progress.name</a>.
+  Lorsque PHP détecte une requête POST de ce type, il remplira un tableau dans
+  <var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var>, où l&#039;index est une valeur concaténée des options
+  de configuration
+  <a href="session.configuration.html#ini.session.upload-progress.prefix" class="link">session.upload_progress.prefix</a>
+  et
+  <a href="session.configuration.html#ini.session.upload-progress.name" class="link">session.upload_progress.name</a>.
+  La clé est typiquement récupérée en lisant ces configurations INI, i.e.
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ini_get</span><span style="color: #007700">(</span><span style="color: #DD0000">"session.upload_progress.prefix"</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #0000BB">$_POST</span><span style="color: #007700">[</span><span style="color: #0000BB">ini_get</span><span style="color: #007700">(</span><span style="color: #DD0000">"session.upload_progress.name"</span><span style="color: #007700">)];<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">[</span><span style="color: #0000BB">$key</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <p class="para">
+  Il est également possible d&#039;<em class="emphasis">annuler</em> le téléversement courant
+  en définissant la clé <code class="literal">$_SESSION[$key][&quot;cancel_upload&quot;]</code> à la valeur
+  <strong><code>TRUE</code></strong>. Lors du téléversement de plusieurs fichiers dans la même
+  requête, cette action n&#039;annulera que le fichier actuellement en cours de téléchargement,
+  ainsi que ceux en attente de téléversement mais n&#039;annulera pas les téléversement
+  terminés avec succès. Lorsqu&#039;un téléversement est annulé en utilisant cette méthode,
+  la clé <code class="literal">error</code> du tableau <var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES</a></var> sera définie à
+  <strong><code>UPLOAD_ERR_EXTENSION</code></strong>.
+ </p>
+ <p class="para">
+  Les options de configuration INI
+  <a href="session.configuration.html#ini.session.upload-progress.freq" class="link">session.upload_progress.freq</a>
+  et
+  <a href="session.configuration.html#ini.session.upload-progress.min-freq" class="link">session.upload_progress.min_freq</a>
+  contrôlent la fréquence de mise à jour des informations de progression de téléversement.
+  Avec une configuration raisonnable de ces 2 options, la surcoût en terme
+  de charge est quasi nul.
+ </p>
+ <p class="para">
+  <div class="example" id="example-5376">
+   <p><strong>Exemple #1 Exemple</strong></p>
+   <div class="example-contents"><p>
+    Exemple de structure du tableau contenant les informations de
+    téléversement.
+   </p></div>
+   <div class="example-contents">
+<div class="htmlcode"><pre class="htmlcode">&lt;form action=&quot;upload.php&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;
+ &lt;input type=&quot;hidden&quot; name=&quot;&lt;?php echo ini_get(&quot;session.upload_progress.name&quot;); ?&gt;&quot; value=&quot;123&quot; /&gt;
+ &lt;input type=&quot;file&quot; name=&quot;file1&quot; /&gt;
+ &lt;input type=&quot;file&quot; name=&quot;file2&quot; /&gt;
+ &lt;input type=&quot;submit&quot; /&gt;
+&lt;/form&gt;</pre>
+</div>
+   </div>
+
+   <div class="example-contents"><p>
+    Les données stockées en session ressembleront à :
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$_SESSION</span><span style="color: #007700">[</span><span style="color: #DD0000">"upload_progress_123"</span><span style="color: #007700">]&nbsp;=&nbsp;array(<br />&nbsp;</span><span style="color: #DD0000">"start_time"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1234567890</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;L'heure&nbsp;de&nbsp;la&nbsp;requête<br />&nbsp;</span><span style="color: #DD0000">"content_length"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">57343257</span><span style="color: #007700">,&nbsp;</span><span style="color: #FF8000">//&nbsp;Longueur&nbsp;du&nbsp;contenu&nbsp;POST<br />&nbsp;</span><span style="color: #DD0000">"bytes_processed"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">453489</span><span style="color: #007700">,&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Quantité&nbsp;d'octets&nbsp;reçus&nbsp;et&nbsp;traités<br />&nbsp;</span><span style="color: #DD0000">"done"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;true&nbsp;lorsque&nbsp;le&nbsp;gestionnaire&nbsp;POST&nbsp;a&nbsp;terminé,&nbsp;avec&nbsp;succès&nbsp;ou&nbsp;non<br />&nbsp;</span><span style="color: #DD0000">"files"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;</span><span style="color: #0000BB">0&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"field_name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"file1"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Nom&nbsp;du&nbsp;champ&nbsp;&lt;input/&gt;<br />&nbsp;&nbsp;&nbsp;//&nbsp;Les&nbsp;3&nbsp;éléments&nbsp;suivants&nbsp;sont&nbsp;équivalents&nbsp;à&nbsp;ceux&nbsp;dans&nbsp;$_FILES<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"foo.avi"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"tmp_name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"/tmp/phpxxxxxx"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"error"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"done"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;True&nbsp;lorsque&nbsp;le&nbsp;gestionnaire&nbsp;POST&nbsp;a&nbsp;terminé&nbsp;de&nbsp;gérer&nbsp;ce&nbsp;fichier<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"start_time"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1234567890</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;L'heure&nbsp;de&nbsp;début&nbsp;de&nbsp;requête<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"bytes_processed"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">57343250</span><span style="color: #007700">,&nbsp;</span><span style="color: #FF8000">//&nbsp;Quantité&nbsp;d'octets&nbsp;reçus&nbsp;et&nbsp;traités&nbsp;pour&nbsp;ce&nbsp;fichier<br />&nbsp;&nbsp;</span><span style="color: #007700">),<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Un&nbsp;autre&nbsp;fichier,&nbsp;en&nbsp;cours&nbsp;de&nbsp;téléversement,&nbsp;dans&nbsp;la&nbsp;même&nbsp;requête<br />&nbsp;&nbsp;</span><span style="color: #0000BB">1&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"field_name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"file2"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"bar.avi"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"tmp_name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"error"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"done"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"start_time"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1234567899</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"bytes_processed"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">54554</span><span style="color: #007700">,<br />&nbsp;&nbsp;),<br />&nbsp;)<br />);</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ <div class="warning"><strong class="warning">Avertissement</strong>
+  <p class="para">
+   La mise en mémoire tampon de la requête du serveur web doit être désactivée
+   pour la bonne marche de cette fonctionalité, sinon PHP ne verra le fichier
+   qu&#039;une fois qu&#039;il sera totalement téléversé. Les serveurs tel que Nginx
+   sont connus pour mettre en mémoire tampon des grosses requêtes.
+  </p>
+ </div>
+ <div class="caution"><strong class="caution">Attention</strong>
+  <p class="para">
+   Les informations de la progression du téléversement sont écrite en session avant
+   qu&#039;un script soit éxécuté. Par conséquence changer le nom de session grâce à
+   <span class="function"><a href="function.ini-set.html" class="function">ini_set()</a></span> ou <span class="function"><a href="function.session-name.html" class="function">session_name()</a></span> donnera une
+   sessions sans les informations de progression du téléversement.
+  </p>
+ </div>
+
+</div>
+</div></div></body></html>

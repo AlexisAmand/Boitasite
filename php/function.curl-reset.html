@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>R&eacute;-initialise toutes les options d'un gestionnaire de session libcurl</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.curl-pause.html">« curl_pause</a></li>
+      <li style="float: right;"><a href="function.curl-setopt-array.html">curl_setopt_array »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.curl.html">Fonctions cURL</a></li>
+    <li>R&eacute;-initialise toutes les options d'un gestionnaire de session libcurl</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.curl-reset" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">curl_reset</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.5.0, PHP 7)</p><p class="refpurpose"><span class="refname">curl_reset</span> &mdash; <span class="dc-title">Ré-initialise toutes les options d&#039;un gestionnaire de session libcurl</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.curl-reset-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>curl_reset</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$ch</code></span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">
+   Cette fonction ré-initialise toutes les options définies
+   sur le gestionnaire cURL donné en leurs valeurs par défaut.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.curl-reset-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   <dt>
+<code class="parameter">ch</code>
+</dt>
+<dd>
+<p class="para">Un gestionnaire cURL retourné par la fonction
+    <span class="function"><a href="function.curl-init.html" class="function">curl_init()</a></span>.</p></dd>
+
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.curl-reset-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Aucune valeur n&#039;est retournée.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.curl-reset-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-4875">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>curl_reset()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Crée&nbsp;un&nbsp;gestionnaire&nbsp;cURL<br /></span><span style="color: #0000BB">$ch&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">curl_init</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;Définit&nbsp;l'option&nbsp;CURLOPT_USERAGENT<br /></span><span style="color: #0000BB">curl_setopt</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">CURLOPT_USERAGENT</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Mon&nbsp;user-agent&nbsp;de&nbsp;test"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Ré-initialise&nbsp;toutes&nbsp;les&nbsp;options&nbsp;définies&nbsp;précédemment<br /></span><span style="color: #0000BB">curl_reset</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Envoi&nbsp;la&nbsp;requête&nbsp;HTTP<br /></span><span style="color: #0000BB">curl_setopt</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">CURLOPT_URL</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'http://example.com/'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">curl_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;le&nbsp;user-agent&nbsp;précédemment&nbsp;défini&nbsp;ne&nbsp;sera&nbsp;pas&nbsp;envoyé,&nbsp;il&nbsp;a&nbsp;été&nbsp;ré-initialisé&nbsp;par&nbsp;la&nbsp;fonction&nbsp;curl_reset<br /><br />//&nbsp;Ferme&nbsp;le&nbsp;gestionnaire<br /></span><span style="color: #0000BB">curl_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$ch</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.curl-reset-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    La fonction <span class="function"><strong>curl_reset()</strong></span> va également ré-initialiser
+    l&#039;URL fourni comme paramètre de la fonction
+    <span class="function"><a href="function.curl-init.html" class="function">curl_init()</a></span>.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.curl-reset-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.curl-setopt.html" class="function" rel="rdfs-seeAlso">curl_setopt()</a> - D&eacute;finit une option de transmission cURL</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

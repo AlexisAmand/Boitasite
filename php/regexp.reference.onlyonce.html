@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Sous-masques uniques</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="regexp.reference.assertions.html">« Assertions</a></li>
+      <li style="float: right;"><a href="regexp.reference.conditional.html">Les sous-masques conditionnels »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="reference.pcre.pattern.syntax.html">Fonctionnement des expressions rationnelles</a></li>
+    <li>Sous-masques uniques</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="regexp.reference.onlyonce" class="section">
+  <h2 class="title">Sous-masques uniques</h2>
+  <p class="para">
+   Avec les quantificateurs de répétitions, l&#039;échec
+   d&#039;une recherche conduit normalement à une autre recherche, avec
+   un nombre différent de répétitions, pour
+   voir si le masque ne s&#039;applique pas dans d&#039;autres conditions.
+   Parfois, il est pratique d&#039;éviter ce comportement, soit
+   pour changer la nature de la recherche, soit pour la faire abandonner
+   plus tôt, si on pense qu&#039;il n&#039;est pas besoin d&#039;aller plus loin.
+  </p>
+  <p class="para">
+   Considérons, par exemple, le masque <code class="literal">\d+foo</code>
+   appliqué à la ligne
+   
+   <code class="literal">123456bar</code>.
+   
+  </p>
+  <p class="para">
+   Après avoir tenté d&#039;utiliser les 6 chiffres suivis
+   de &quot;<code class="literal">foo</code>&quot; qui font échouer, l&#039;action habituelle
+   sera de réessayer avec 5 chiffres, puis avec 4, et ainsi de
+   suite jusqu&#039;à l&#039;échec final. Un sous-masque évalué une seule fois
+   permettrait d&#039;indiquer que lorsqu&#039;une partie du masque est trouvée,
+   elle n&#039;a pas besoin d&#039;être réévaluée à chaque tentative. Ceci
+   conduirait à ce que la recherche échoue immédiatement après le
+   premier test. Ces assertions ont leur propre notation, commençant avec
+   <code class="literal">(?&gt;</code> comme ceci :
+   
+   <code class="literal">(?&gt;\d+)bar</code>
+  </p>
+  <p class="para">
+   Ce type de parenthèses verrouille le sous-masque qu&#039;il contient
+   une fois qu&#039;il a été trouvé, et empêche un
+   échec ultérieur d&#039;y repasser, mais autorise à
+   revenir plus loin en arrière.
+  </p>
+  <p class="para">
+   Une autre description est que les sous-masques de ce type
+   recherchent les chaînes de caractères, et ancre le sous-masque
+   à l&#039;intérieur de la chaîne.
+  </p>
+  <p class="para">
+   Les sous-masques uniques ne sont pas capturants. Des cas simples comme
+   ceux présentés ci-dessus peuvent être pris comme
+   des situations maximales, qui réservent le maximum de
+   caractères. En effet, alors que <code class="literal">\d+</code> et
+   <code class="literal">\d+?</code> ajustent le nombre de chiffres trouvés
+   de manière à laisser la possibilité au masque de
+   réussir, <code class="literal">(?&gt;\d+)</code> ne peut retenir que la
+   séquence entière de chiffres.
+  </p>
+  <p class="para">
+   Cette construction peut contenir un nombre arbitraire de sous-masques
+   complexes, et ils peuvent être imbriqués.
+  </p>
+  <p class="para">
+   Les sous-masques uniques ne peuvent être utilisés qu&#039;avec
+   les assertions arrières, pour effectuer une recherche efficace
+   en fin de chaîne. Considérons un masque simple tel
+   
+   <code class="literal">abcd$</code>
+   
+   appliqué à une très longue chaîne qui ne lui correspond pas.
+   À cause du système de recherche de gauche à droite, PCRE va
+   commencer par rechercher un &quot;<code class="literal">a</code>&quot; dans la
+   chaîne sujet, puis vérifier si ce qui suit convient au reste
+   du masque. Si le masque est spécifié sous la forme
+   
+   <code class="literal">^.*abcd$</code>
+   
+   alors, la séquence <code class="literal">.*</code> remplace en premier
+   lieu la chaîne entière, et échoue, repart en
+   arrière, et remplace tous les caractères sauf le dernier,
+   échoue, retourne en arrière, prend un caractère
+   de moins, etc. et ainsi de suite. Encore une fois, la recherche du
+   &quot;<code class="literal">a</code>&quot; passe en revue toute la chaîne de gauche
+   à droite, ce qui n&#039;est pas très efficace. Par contre,
+   si le masque était écrit
+   
+   <code class="literal">^(?&gt;.*)(?&lt;=abcd)</code>
+   
+   alors il n&#039;y aurait pas de retour en arrière, pour satisfaire
+   la séquence <code class="literal">.*</code>, car elle ne peut que remplacer
+   toute la chaîne. L&#039;assertion arrière consécutive
+   va alors faire un test sur les 4 derniers caractères. Si elle
+   échoue, la recherche est immédiatement interrompue.
+   Pour les chaînes très longues, cette approche fait la
+   différence en termes de performances et de temps de recherche.
+  </p>
+  <p class="para">
+   Lorsqu&#039;un masque contient une répétition illimitée
+   dans un sous-masque, qui contient lui-même un nombre
+   illimité de répétiteurs, l&#039;utilisation des
+   sous-masques à utilisation unique est la seule façon
+   d&#039;éviter l&#039;échec de la recherche après un
+   temps de calcul trop long.
+   Le masque
+   
+   <code class="literal">(\D+|&lt;\d+&gt;)*[!?]</code>
+   
+   recherche un nombre illimité de sous-chaînes, qui contiennent soit
+   des non chiffres, soit des chiffres inclus dans &lt;&gt;, suivi soit
+   par <code class="literal">!</code> ou par <code class="literal">?</code>. Lorsqu&#039;il trouve
+   une solution, ce masque va très vite. Mais, lorsqu&#039;il est
+   appliqué à une chaîne telle :
+   
+   <code class="literal">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</code>,
+   
+   il lui faut beaucoup de temps pour annoncer un échec. Cela est
+   dû au fait que la chaîne peut être divisée en deux
+   sous-chaînes d&#039;un grand nombre de façons, et qu&#039;elles
+   ont toutes été essayées. (Cet exemple utilisait
+   <code class="literal">[!?]</code> plutôt qu&#039;un caractère simple, car
+   PCRE et PHP utilise une optimisation qui leur permettent de détecter
+   rapidement l&#039;échec lorsqu&#039;un caractère unique est
+   trouvé. Il se souvient du dernier caractère qui est
+   attendu, et s&#039;aperçoit rapidement qu&#039;il n&#039;y a pas ce caractère).
+   Si le masque utilisé est
+   
+   <code class="literal">((?&gt;\D+)|&lt;\d+&gt;)*[!?]</code>
+   
+   les séquences de chiffres ne peuvent pas être
+   trouvées, et l&#039;échec intervient rapidement.
+  </p>
+ </div></div></div></body></html>

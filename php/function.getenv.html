@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne la valeur d'une variable d'environnement</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.get-resources.html">« get_resources</a></li>
+      <li style="float: right;"><a href="function.getlastmod.html">getlastmod »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.info.html">Fonctions sur les options et les informations de PHP</a></li>
+    <li>Retourne la valeur d'une variable d'environnement</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.getenv" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">getenv</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">getenv</span> &mdash; <span class="dc-title">Retourne la valeur d&#039;une variable d&#039;environnement</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.getenv-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>getenv</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$varname</code></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$local_only</code><span class="initializer"> = <strong><code>FALSE</code></strong></span></span>
+  ] ) : <span class="type">string</span></div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>getenv</strong></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Retourne la valeur d&#039;une variable d&#039;environnement.
+  </p>
+  <p class="para">
+   Vous pouvez voir une liste complète des variables d&#039;environnement en
+   utilisant la fonction <span class="function"><a href="function.phpinfo.html" class="function">phpinfo()</a></span>. Vous pouvez trouver
+   la signification de chacune d&#039;entre elles en consultant la
+   <a href="http://www.faqs.org/rfcs/rfc3875" class="link external">&raquo;&nbsp;RFC 3875</a>, en particulier la section
+   4.1 &quot;Request Meta-Variables&quot;.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.getenv-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">varname</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nom de la variable.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">local_only</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Définir à true pour retourner seulement les variables d&#039;environnement locales 
+       (définit par le système d&#039;exploitation ou putenv).
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.getenv-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne la valeur de la variable d&#039;environnement
+   <code class="parameter">varname</code>, ou <strong><code>FALSE</code></strong> si la variable
+   d&#039;environnement <code class="parameter">varname</code> n&#039;existe pas.
+   Si <code class="parameter">varname</code> est omit, toutes les variables
+   d&#039;environnement sont retournée en tant qu&#039;un <a href="language.types.array.html" class="link">tableau</a> associatif.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 changelog" id="refsect1-function.getenv-changelog">
+  <h3 class="title">Historique</h3>
+  <table class="doctable informaltable">
+   
+    <thead>
+     <tr>
+      <th>Version</th>
+      <th>Description</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>7.1.0</td>
+      <td>
+       <code class="parameter">varname</code> peut désormais être omit pour récupérer
+       un <a href="language.types.array.html" class="link">tableau</a> associatif de toutes les variables d&#039;environnement.
+      </td>
+     </tr>
+
+     <tr>
+      <td>5.5.38, 5.6.24, 7.0.9</td>
+      <td>
+       Le paramètre <code class="parameter">local_only</code> a été ajouté.
+      </td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.getenv-notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Si PHP est exécuté dans un SAPI tel que Fast CGI, cette fonction retournera
+    toujours la valeur d&#039;une variable d&#039;environnement définit par le SAPI,
+    même si <span class="function"><a href="function.putenv.html" class="function">putenv()</a></span> a été utilisé pour définir une variable
+    d&#039;environnement locale avec le même nom. Le paramètre
+    <code class="parameter">local_only</code> doit être utilisé pour retourner les
+    valeurs de variables d&#039;environnements définit localement.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.getenv-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-528">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>getenv()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Exemple&nbsp;d'utilisation&nbsp;de&nbsp;getenv()<br /></span><span style="color: #0000BB">$ip&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">getenv</span><span style="color: #007700">(</span><span style="color: #DD0000">'REMOTE_ADDR'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Ou&nbsp;utilisez&nbsp;simplement&nbsp;une&nbsp;Superglobale&nbsp;($_SERVER&nbsp;ou&nbsp;$_ENV)<br /></span><span style="color: #0000BB">$ip&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">'REMOTE_ADDR'</span><span style="color: #007700">];<br /><br /></span><span style="color: #FF8000">//&nbsp;Obtenir&nbsp;en&nbsp;toute&nbsp;sécurité&nbsp;la&nbsp;valeur&nbsp;d'une&nbsp;variable&nbsp;d'environnement,<br />//&nbsp;ignorant&nbsp;si&nbsp;elle&nbsp;a&nbsp;été&nbsp;définie&nbsp;par&nbsp;un&nbsp;SAPI&nbsp;ou&nbsp;a&nbsp;été&nbsp;modifiée&nbsp;avec&nbsp;putenv<br /></span><span style="color: #0000BB">$ip&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">getenv</span><span style="color: #007700">(</span><span style="color: #DD0000">'REMOTE_ADDR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;?:&nbsp;</span><span style="color: #0000BB">getenv</span><span style="color: #007700">(</span><span style="color: #DD0000">'REMOTE_ADDR'</span><span style="color: #007700">)<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.getenv-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.putenv.html" class="function" rel="rdfs-seeAlso">putenv()</a> - Fixe la valeur d'une variable d'environnement</span></li>
+    <li class="member"><span class="function"><a href="function.apache-getenv.html" class="function" rel="rdfs-seeAlso">apache_getenv()</a> - Lit une variable de processus Apache</span></li>
+    <li class="member"><a href="language.variables.superglobals.html" class="link">Superglobales</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

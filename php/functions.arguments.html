@@ -1,0 +1,685 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Les arguments de fonction</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="functions.user-defined.html">« Les fonctions d&eacute;finies par l'utilisateur</a></li>
+      <li style="float: right;"><a href="functions.returning-values.html">Les valeurs de retour »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.functions.html">Les fonctions</a></li>
+    <li>Les arguments de fonction</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="functions.arguments" class="sect1">
+  <h2 class="title">Les arguments de fonction</h2>
+  <p class="simpara">
+   Des informations peuvent être passées à
+   une fonction en utilisant une liste d&#039;arguments, dont chaque
+   expression est séparée par une virgule. Les arguments seront
+   évalués depuis la gauche vers la droite.
+  </p>
+  <p class="para">
+   PHP supporte le passage d&#039;arguments par valeur (comportement par défaut), <a href="functions.arguments.html#functions.arguments.by-reference" class="link">le passage par référence</a>, et <a href="functions.arguments.html#functions.arguments.default" class="link">des valeurs d&#039;arguments par défaut</a>.
+   <a href="functions.arguments.html#functions.variable-arg-list" class="link">Une liste variable d&#039;arguments</a>
+   est également supportée.
+  </p>
+  <p class="para">
+   <div class="example" id="example-147">
+    <p><strong>Exemple #1 Nombre variable d&#039;arguments sous forme de tableau</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">takes_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$input</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]</span><span style="color: #DD0000">&nbsp;+&nbsp;</span><span style="color: #0000BB">$input</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]</span><span style="color: #DD0000">&nbsp;=&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$input</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]+</span><span style="color: #0000BB">$input</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  
+  <div class="sect2" id="functions.arguments.by-reference">
+   <h3 class="title">Passage d&#039;arguments par référence</h3>
+   
+   <p class="simpara">
+    Par défaut, les arguments sont passés
+    à la fonction par valeur (aussi, changer la valeur d&#039;un argument dans la fonction ne
+    change pas sa valeur à l&#039;extérieur de la fonction). Si vous voulez que vos fonctions 
+    puissent changer la valeur des arguments, vous devez passer ces arguments par référence.
+   </p>
+   <p class="para">
+    Si vous voulez qu&#039;un argument soit toujours passé
+    par référence, vous pouvez ajouter un &#039;<code class="literal">&amp;</code>&#039;
+    devant l&#039;argument dans la déclaration de la fonction :
+   </p>
+   <p class="para">
+    <div class="example" id="example-148">
+     <p><strong>Exemple #2 Passage d&#039;arguments par référence</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">add_some_extra</span><span style="color: #007700">(&amp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$string&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">',&nbsp;et&nbsp;un&nbsp;peu&nbsp;plus.'</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Ceci&nbsp;est&nbsp;une&nbsp;chaîne'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">add_some_extra</span><span style="color: #007700">(</span><span style="color: #0000BB">$str</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$str</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;:&nbsp;'Ceci&nbsp;est&nbsp;une&nbsp;chaîne,&nbsp;et&nbsp;un&nbsp;peu&nbsp;plus.'<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+  
+  <div class="sect2" id="functions.arguments.default">
+   <h3 class="title">Valeur par défaut des arguments</h3>
+   
+   <p class="para">
+    Vous pouvez définir comme en C++ des valeurs par
+    défaut pour les arguments de type scalaire :
+   </p>
+   <p class="para">
+    <div class="example" id="example-149">
+     <p><strong>Exemple #3 Valeur par défaut des arguments de fonctions</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">servir_cafe&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$type&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"cappuccino"</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">"Servir&nbsp;un&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />}<br />echo&nbsp;</span><span style="color: #0000BB">servir_cafe</span><span style="color: #007700">();<br />echo&nbsp;</span><span style="color: #0000BB">servir_cafe</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">servir_cafe</span><span style="color: #007700">(</span><span style="color: #DD0000">"espresso"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Servir un cappuccino.
+Servir un .
+Servir un espresso.
+</pre></div>
+     </div>
+    </div>
+   </p>
+   <p class="para">
+    PHP vous autorise à utiliser des <a href="language.types.array.html" class="link">tableau</a> ainsi que le type spécial
+    <strong><code>NULL</code></strong> comme valeur par défaut, par exemple :
+   </p>
+   <p class="para">
+    <div class="example" id="example-150">
+     <p><strong>Exemple #4 Utilisation de type non scalaire comme valeur par défaut</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">servir_cafe</span><span style="color: #007700">(</span><span style="color: #0000BB">$types&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"cappuccino"</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">$coffeeMaker&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$device&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">is_null</span><span style="color: #007700">(</span><span style="color: #0000BB">$coffeeMaker</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #DD0000">"les&nbsp;mains"&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #0000BB">$coffeeMaker</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">"Préparation&nbsp;d'une&nbsp;tasse&nbsp;de&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">join</span><span style="color: #007700">(</span><span style="color: #DD0000">",&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$types</span><span style="color: #007700">).</span><span style="color: #DD0000">"&nbsp;avec&nbsp;</span><span style="color: #0000BB">$device</span><span style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />}<br />echo&nbsp;</span><span style="color: #0000BB">servir_cafe</span><span style="color: #007700">();<br />echo&nbsp;</span><span style="color: #0000BB">servir_cafe</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"cappuccino"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"lavazza"</span><span style="color: #007700">),&nbsp;</span><span style="color: #DD0000">"une&nbsp;cafetière"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="simpara">
+    La valeur par défaut d&#039;un argument doit
+    obligatoirement être une constante, et ne peut être
+    ni une variable, ni un membre de classe, ni un appel de fonction.
+   </p>
+   <p class="para">
+    Il est à noter que si vous utilisez des arguments avec
+    valeur par défaut avec d&#039;autres sans valeur par défaut,
+    les premiers doivent être placés à la suite de tous les paramètres sans
+    valeur par défaut. Sinon, cela ne fonctionnera pas.
+    Considérons le code suivant :
+   </p>
+   <p class="para">
+    <div class="example" id="example-151">
+     <p><strong>Exemple #5 Les arguments sans valeur par défaut doivent être en premiers : erreur</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">faireunyaourt&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$type&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"acidophilus"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$flavour</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">"Préparer&nbsp;un&nbsp;bol&nbsp;de&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #DD0000">&nbsp;</span><span style="color: #0000BB">$flavour</span><span style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />}<br />&nbsp;<br />echo&nbsp;</span><span style="color: #0000BB">faireunyaourt</span><span style="color: #007700">(</span><span style="color: #DD0000">"framboise"</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;ne&nbsp;fonctionne&nbsp;pas&nbsp;comme&nbsp;voulu<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Warning: Missing argument 2 in call to faireunyaourt() in 
+/usr/local/etc/httpd/htdocs/phptest/functest.html on line 41
+Préparer un bol de framboise .
+</pre></div>
+     </div>
+    </div>
+   </p>
+   <p class="para">
+    Maintenant comparons l&#039;exemple précédent avec l&#039;exemple suivant :
+   </p>
+   <p class="para">
+    <div class="example" id="example-152">
+     <p><strong>Exemple #6 Les arguments sans valeur par défaut doivent être en premiers : valide</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">faireunyaourt&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$flavour</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"acidophilus"</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">"Préparer&nbsp;un&nbsp;bol&nbsp;de&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #DD0000">&nbsp;</span><span style="color: #0000BB">$flavour</span><span style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />}<br />&nbsp;<br />echo&nbsp;</span><span style="color: #0000BB">faireunyaourt&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"framboise"</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;fonctionne&nbsp;comme&nbsp;voulu<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+Préparer un bol de acidophilus framboise.
+</pre></div>
+     </div>
+    </div>
+   </p>
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <span class="simpara">
+     Depuis PHP 5, les arguments passés par référence peuvent avoir
+     une valeur par défaut.
+    </span>
+   </p></blockquote>
+   
+  </div>
+  <div class="sect2" id="functions.arguments.type-declaration">
+   <h3 class="title">Déclarations de type</h3>
+   
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <p class="para">
+     Les déclarations de type sont aussi connues sous le nom de &quot;type hints&quot; en PHP 5.
+    </p>
+   </p></blockquote>
+   
+   <p class="para">
+    Les déclarations de type permettent aux fonctions de requérir que certains 
+    paramètres soient d&#039;un certain type lors de l&#039;appel de celles-ci. Si la valeur
+    donnée est d&#039;un type incorrect alors une erreur est générée : en PHP 5, 
+    cela sera une erreur fatale récupérable tandis que PHP 7 lèvera une 
+    exception <a href="class.typeerror.html" class="classname">TypeError</a>.
+   </p>
+   
+   <p class="para">
+    Pour spécifier une déclaration de type, le type doit être ajouté avant le 
+    nom du paramètre. La déclaration peut accepter les valeurs <strong><code>NULL</code></strong> si la 
+    valeur par défaut du paramètre est définie à <strong><code>NULL</code></strong>.
+   </p>
+   
+   <div class="sect3" id="functions.arguments.type-declaration.types">
+    <h4 class="title">Types valides</h4>
+    <table class="doctable informaltable">
+     
+      <thead>
+       <tr>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Version PHP minimum</th>
+       </tr>
+
+      </thead>
+
+      <tbody class="tbody">
+       <tr>
+        <td>Nom de la Classe/interface</td>
+        <td>
+         Le paramètre doit être une <a href="language.operators.type.html" class="link"><code class="literal">instanceof</code></a> de la classe ou interface donnée.
+        </td>
+        <td>PHP 5.0.0</td>
+       </tr>
+
+       <tr>
+        <td><code class="literal">self</code></td>
+        <td>
+         Le paramètre doit être une <a href="language.operators.type.html" class="link"><code class="literal">instanceof</code></a> de la même classe qui a défini la méthode.
+         Ceci ne peut être utilisé que sur les méthodes des classes et des instances.
+        </td>
+        <td>PHP 5.0.0</td>
+       </tr>
+
+       <tr>
+        <td><span class="type"><a href="language.types.array.html" class="type array">array</a></span></td>
+        <td>
+         Le paramètre doit être un <span class="type"><a href="language.types.array.html" class="type array">array</a></span>.
+        </td>
+        <td>PHP 5.1.0</td>
+       </tr>
+
+       <tr>
+        <td><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span></td>
+        <td>
+         Le paramètre doit être un 
+         <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> valide.
+        </td>
+        <td>PHP 5.4.0</td>
+       </tr>
+
+       <tr>
+        <td><span class="type"><a href="language.types.boolean.html" class="type bool">bool</a></span></td>
+        <td>
+         Le paramètre doit être un <span class="type"><a href="language.types.boolean.html" class="type boolean">boolean</a></span>.
+        </td>
+        <td>PHP 7.0.0</td>
+       </tr>
+
+       <tr>
+        <td><span class="type"><a href="language.types.float.html" class="type float">float</a></span></td>
+        <td>
+         Le paramètre doit être un nombre flottant (<span class="type"><a href="language.types.float.html" class="type float">float</a></span>).
+        </td>
+        <td>PHP 7.0.0</td>
+       </tr>
+
+       <tr>
+        <td><span class="type"><a href="language.types.integer.html" class="type int">int</a></span></td>
+        <td>
+         Le paramètre doit être un <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>.
+        </td>
+        <td>PHP 7.0.0</td>
+       </tr>
+
+       <tr>
+        <td><span class="type"><a href="language.types.string.html" class="type string">string</a></span></td>
+        <td>
+         Le paramètre doit être une <span class="type"><a href="language.types.string.html" class="type string">string</a></span>.
+        </td>
+        <td>PHP 7.0.0</td>
+       </tr>
+
+       <tr>
+        <td><span class="type"><a href="language.types.iterable.html" class="type iterable">iterable</a></span></td>
+        <td>
+         Le paramètre doit être soit un <span class="type"><a href="language.types.array.html" class="type array">array</a></span> ou une <a href="language.operators.type.html" class="link"><code class="literal">instanceof</code></a> <a href="class.traversable.html" class="classname">Traversable</a>.
+        </td>
+        <td>PHP 7.1.0</td>
+       </tr>
+
+        <tr>
+         <td><code class="literal">object</code></td>
+         <td>
+          Le paramètre doit être un <span class="type"><a href="language.types.object.html" class="type object">object</a></span>.
+         </td>
+         <td>PHP 7.2.0</td>
+        </tr>
+
+      </tbody>
+     
+    </table>
+
+    
+    <div class="warning"><strong class="warning">Avertissement</strong>
+     <p class="para">
+      Utiliser des alias pour les types scalaires ci-dessus n&#039;est pas supporté.
+      A la place, ils sont traités comme des noms de classe ou d&#039;interface. Par
+      exemple, utiliser <code class="literal">boolean</code> comme paramètre ou
+      type retourné nécessite un argument ou une valeur retournée qui est une
+      <a href="language.operators.type.html" class="link"><code class="literal">instanceof</code></a> de la classe ou l&#039;interface <code class="literal">boolean</code>, plutôt
+      que de type <span class="type"><a href="language.types.boolean.html" class="type bool">bool</a></span> :
+     </p>
+     <p class="para">
+      <div class="example" id="example-153">
+       <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">test</span><span style="color: #007700">(</span><span style="color: #0000BB">boolean&nbsp;$param</span><span style="color: #007700">)&nbsp;{}<br />&nbsp;</span><span style="color: #0000BB">test</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+       </div>
+
+       <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+       <div class="example-contents screen">
+<div class="cdata"><pre>
+ Fatal error: Uncaught TypeError: Argument 1 passed to test() must be an instance of boolean, boolean given, called in - on line 1 and defined in -:1
+ </pre></div>
+       </div>
+      </div>
+     </p>
+    </div>
+   </div>
+   
+   <div class="sect3" id="functions.arguments.type-declaration.examples">
+    <h4 class="title">Exemples</h4>
+    <div class="example" id="example-154">
+     <p><strong>Exemple #7 Déclaration basique de type de classe</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">C&nbsp;</span><span style="color: #007700">{}<br />class&nbsp;</span><span style="color: #0000BB">D&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">C&nbsp;</span><span style="color: #007700">{}<br /><br /></span><span style="color: #FF8000">//&nbsp;Ceci&nbsp;n'étend&nbsp;pas&nbsp;C<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">E&nbsp;</span><span style="color: #007700">{}<br /><br />function&nbsp;</span><span style="color: #0000BB">f</span><span style="color: #007700">(</span><span style="color: #0000BB">C&nbsp;$c</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">get_class</span><span style="color: #007700">(</span><span style="color: #0000BB">$c</span><span style="color: #007700">).</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">f</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">C</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">f</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">D</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">f</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">E</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+C
+D
+
+Fatal error: Uncaught TypeError: Argument 1 passed to f() must be an instance of C, instance of E given, called in - on line 14 and defined in -:8
+Stack trace:
+#0 -(14): f(Object(E))
+#1 {main}
+  thrown in - on line 8
+</pre></div>
+     </div>
+    </div>
+    
+    <div class="example" id="example-155">
+     <p><strong>Exemple #8 Déclaration basique de type interface</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">interface&nbsp;</span><span style="color: #0000BB">I&nbsp;</span><span style="color: #007700">{&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">f</span><span style="color: #007700">();&nbsp;}<br />class&nbsp;</span><span style="color: #0000BB">C&nbsp;</span><span style="color: #007700">implements&nbsp;</span><span style="color: #0000BB">I&nbsp;</span><span style="color: #007700">{&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">f</span><span style="color: #007700">()&nbsp;{}&nbsp;}<br /><br /></span><span style="color: #FF8000">//&nbsp;Ceci&nbsp;n'implémente&nbsp;pas&nbsp;I.<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">E&nbsp;</span><span style="color: #007700">{}<br /><br />function&nbsp;</span><span style="color: #0000BB">f</span><span style="color: #007700">(</span><span style="color: #0000BB">I&nbsp;$i</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">get_class</span><span style="color: #007700">(</span><span style="color: #0000BB">$i</span><span style="color: #007700">).</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">f</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">C</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">f</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">E</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+C
+
+Fatal error: Uncaught TypeError: Argument 1 passed to f() must implement interface I, instance of E given, called in - on line 13 and defined in -:8
+Stack trace:
+#0 -(13): f(Object(E))
+#1 {main}
+  thrown in - on line 8
+</pre></div>
+     </div>
+    </div>
+    
+    <div class="example" id="example-156">
+      <p><strong>Exemple #9 Paramètre typée passé par référence</strong></p>
+      <div class="example-contents"><p>
+       Les types déclaré des références des paramètres sont vérifiés lors de l&#039;entrée
+       dans la fonction, mais pas lorsque la fonction retourne, donc après que la
+       fonction a retourné, le type de l&#039;argument a pu être modifié.
+      </p></div>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">array_baz</span><span style="color: #007700">(array&nbsp;&amp;</span><span style="color: #0000BB">$param</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$param&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">$var&nbsp;</span><span style="color: #007700">=&nbsp;[];<br /></span><span style="color: #0000BB">array_baz</span><span style="color: #007700">(</span><span style="color: #0000BB">$var</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$var</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">array_baz</span><span style="color: #007700">(</span><span style="color: #0000BB">$var</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+      <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+int(1)
+
+Fatal error: Uncaught TypeError: Argument 1 passed to array_baz() must be of the type array, int given, called in %s on line %d
+</pre></div>
+      </div>
+     </div>
+    
+    <div class="example" id="example-157">
+     <p><strong>Exemple #10 Déclaration de type nullable</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">C&nbsp;</span><span style="color: #007700">{}<br /><br />function&nbsp;</span><span style="color: #0000BB">f</span><span style="color: #007700">(</span><span style="color: #0000BB">C&nbsp;$c&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$c</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">f</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">C</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">f</span><span style="color: #007700">(</span><span style="color: #0000BB">null</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+object(C)#1 (0) {
+}
+NULL
+</pre></div>
+     </div>
+    </div>
+   </div>
+   
+   <div class="sect3" id="functions.arguments.type-declaration.strict">
+    <h4 class="title">Typage strict</h4>
+    
+    <p class="para">
+     Par défaut, PHP va convertir les mauvais types vers le type scalaire 
+     attendu tant que possible. Par exemple, une fonction, qui attend comme 
+     paramètre une <span class="type"><a href="language.types.string.html" class="type string">string</a></span>  (chaine de caractères), à laquelle est passée un 
+     <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span> (entier) recevra une variable de type 
+     <span class="type"><a href="language.types.string.html" class="type string">string</a></span>.
+    </p>
+    
+    <p class="para">
+     Il est possible d&#039;activer un typage strict fichier par fichier. Dans ce 
+     mode, seule une variable du type exact correspondant au type attendu dans la 
+     déclaration sera acceptée sinon une exception du type 
+     <a href="class.typeerror.html" class="classname">TypeError</a> sera levée. La seule exception à cette 
+     règle est qu&#039;un entier (<span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>) peut être passé à une 
+     fonction attendant un nombre flottant (<span class="type"><a href="language.types.float.html" class="type float">float</a></span>). Les appels
+     aux fonctions depuis des fonctions internes ne seront pas affectés par
+     la déclaration <code class="literal">strict_types</code>.
+    </p>
+    
+    <p class="para">
+     Pour activer le typage strict, l&#039;expression <a href="control-structures.declare.html" class="link"><code class="literal">declare</code></a> est utilisée avec la 
+     déclaration <code class="literal">strict_types</code> :
+    </p>
+    
+    <div class="caution"><strong class="caution">Attention</strong>
+     <p class="para">
+      L&#039;activation du mode strict affecte également les
+      <a href="functions.returning-values.html#functions.returning-values.type-declaration" class="link">déclarations de type
+       retourné</a>.
+     </p>
+    </div>
+    
+    <blockquote class="note"><p><strong class="note">Note</strong>: 
+     <p class="para">
+      Le typage strict s&#039;applique aux appels de fonction effectués depuis
+      <em class="emphasis">l&#039;intérieur</em> d&#039;un fichier dont le typage strict est
+      actif, et non aux fonctions déclarées dans ce fichier. Si un fichier
+      dont le typage strict n&#039;est pas activé effectue un appel à une fonction
+      qui a été définie dans un fichier dont le type strict est actif, la
+      préférence de l&#039;appelant sera respecté, et la valeur sera forcée.
+     </p>
+    </p></blockquote>
+    
+    <blockquote class="note"><p><strong class="note">Note</strong>: 
+     <p class="para">
+      Le typage strict n&#039;est défini que pour les déclarations de type scalaire ;
+      aussi, il nécessite PHP 7.0.0 ou supérieur, sachant que les déclarations
+      de type scalaire ont été ajoutées dans cette version.
+     </p>
+    </p></blockquote>
+    
+    <div class="example" id="example-158">
+     <p><strong>Exemple #11 Typage strict</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">declare(</span><span style="color: #0000BB">strict_types</span><span style="color: #007700">=</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br />function&nbsp;</span><span style="color: #0000BB">sum</span><span style="color: #007700">(</span><span style="color: #0000BB">int&nbsp;$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">int&nbsp;$b</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">+&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">sum</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">sum</span><span style="color: #007700">(</span><span style="color: #0000BB">1.5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2.5</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+int(3)
+
+Fatal error: Uncaught TypeError: Argument 1 passed to sum() must be of the type integer, float given, called in - on line 9 and defined in -:4
+Stack trace:
+#0 -(9): sum(1.5, 2.5)
+#1 {main}
+  thrown in - on line 4
+</pre></div>
+     </div>
+    </div>
+    
+    <div class="example" id="example-159">
+     <p><strong>Exemple #12 Typage faible</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">sum</span><span style="color: #007700">(</span><span style="color: #0000BB">int&nbsp;$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">int&nbsp;$b</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">+&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">sum</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">//&nbsp;Ceux-ci&nbsp;vont&nbsp;être&nbsp;forcés&nbsp;en&nbsp;entier:&nbsp;notez&nbsp;l'affichage&nbsp;ci-dessous&nbsp;!<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">sum</span><span style="color: #007700">(</span><span style="color: #0000BB">1.5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2.5</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+int(3)
+int(3)
+</pre></div>
+     </div>
+    </div>
+    
+    <div class="example" id="example-160">
+     <p><strong>Exemple #13 Capturer l&#039;exception de type <a href="class.typeerror.html" class="classname">TypeError</a></strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">declare(</span><span style="color: #0000BB">strict_types</span><span style="color: #007700">=</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br />function&nbsp;</span><span style="color: #0000BB">sum</span><span style="color: #007700">(</span><span style="color: #0000BB">int&nbsp;$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">int&nbsp;$b</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">+&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">;<br />}<br /><br />try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">sum</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">sum</span><span style="color: #007700">(</span><span style="color: #0000BB">1.5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2.5</span><span style="color: #007700">));<br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">TypeError&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Erreur&nbsp;:&nbsp;'</span><span style="color: #007700">.</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">();<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+     <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+     <div class="example-contents screen">
+<div class="cdata"><pre>
+int(3)
+Erreur : Argument 1 passed to sum() must be of the type integer, float given, called in - on line 10
+</pre></div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="sect2" id="functions.variable-arg-list">
+   <h3 class="title">Nombre d&#039;arguments variable</h3>
+   
+   <p class="simpara">
+    PHP supporte les fonctions à nombre d&#039;arguments variable.
+    Ceci est implémenté en utilisant le mot clé 
+    <code class="literal">...</code> en PHP 5.6 et suivants, et
+    en utilisant les fonctions
+    <span class="function"><a href="function.func-num-args.html" class="function">func_num_args()</a></span>,
+    <span class="function"><a href="function.func-get-arg.html" class="function">func_get_arg()</a></span> et
+    <span class="function"><a href="function.func-get-args.html" class="function">func_get_args()</a></span> en PHP 5.5 et antérieurs.
+   </p>
+   
+   <div class="sect3" id="functions.variable-arg-list.new">
+    <h4 class="title"><code class="literal">...</code> en PHP 5.6+</h4>
+    
+    <p class="para">
+     En PHP 5.6 et suivants, la liste des arguments peut inclure le
+     mot clé <code class="literal">...</code> pour indiquer que cette fonction accepte
+     un nombre variable d&#039;arguments. Les arguments seront passés dans la variable
+     fournie sous forme d&#039;un tableau ; par exemple :
+     
+     <div class="example" id="example-161">
+      <p><strong>Exemple #14 Utilisation de <code class="literal">...</code> pour accéder aux arguments variables</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">sum</span><span style="color: #007700">(...</span><span style="color: #0000BB">$numbers</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$acc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$numbers&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$acc&nbsp;</span><span style="color: #007700">+=&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$acc</span><span style="color: #007700">;<br />}<br /><br />echo&nbsp;</span><span style="color: #0000BB">sum</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+      <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+10
+</pre></div>
+      </div>
+     </div>
+    </p>
+    
+    <p class="para">
+     Vous pouvez aussi utiliser le mot clé <code class="literal">...</code> lors de l&#039;appel
+     aux fonctions pour extraire le tableau, la variable
+     <a href="class.traversable.html" class="classname">Traversable</a> ou le littéral dans la liste d&#039;arguments :
+     
+     <div class="example" id="example-162">
+      <p><strong>Exemple #15 Utilisation de <code class="literal">...</code> pour fournir des arguments</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">+&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">;<br />}<br /><br />echo&nbsp;</span><span style="color: #0000BB">add</span><span style="color: #007700">(...[</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">]).</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;[</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">];<br />echo&nbsp;</span><span style="color: #0000BB">add</span><span style="color: #007700">(...</span><span style="color: #0000BB">$a</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+      <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+3
+3
+</pre></div>
+      </div>
+     </div>
+    </p>
+    
+    <p class="para">
+     Vous pouvez spécifier des arguments classiques avant le mot clé
+     <code class="literal">...</code>. Dans ce cas, seuls les arguments finaux
+     qui ne correspondent pas à un argument classique seront ajoutés
+     au tableau généré par <code class="literal">...</code>.
+    </p>
+    
+    <p class="para">
+     Il est également possible d&#039;ajouter un
+     <a href="language.oop5.typehinting.html" class="link">transtypage</a>
+     avant le mot clé <code class="literal">...</code>. Si ce transtypage est présent,
+     alors tous les arguments capturés par <code class="literal">...</code>
+     seront des objets de la classe visée.
+     
+     <div class="example" id="example-163">
+      <p><strong>Exemple #16 Transtypage d&#039;arguments variables</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">total_intervals</span><span style="color: #007700">(</span><span style="color: #0000BB">$unit</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DateInterval&nbsp;</span><span style="color: #007700">...</span><span style="color: #0000BB">$intervals</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$time&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$intervals&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$interval</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$time&nbsp;</span><span style="color: #007700">+=&nbsp;</span><span style="color: #0000BB">$interval</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">$unit</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$time</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">DateInterval</span><span style="color: #007700">(</span><span style="color: #DD0000">'P1D'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$b&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">DateInterval</span><span style="color: #007700">(</span><span style="color: #DD0000">'P2D'</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">total_intervals</span><span style="color: #007700">(</span><span style="color: #DD0000">'d'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">).</span><span style="color: #DD0000">'&nbsp;jours'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Ceci&nbsp;échouera,&nbsp;car&nbsp;null&nbsp;n'est&nbsp;pas&nbsp;un&nbsp;objet&nbsp;DateInterval.<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">total_intervals</span><span style="color: #007700">(</span><span style="color: #DD0000">'d'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+      <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+3 jours
+Catchable fatal error: Argument 2 passed to total_intervals() must be an instance of DateInterval, null given, called in - on line 14 and defined in - on line 2
+</pre></div>
+      </div>
+     </div>
+    </p>
+    
+    <p class="para">
+     Pour finir, vous pouvez passer des arguments variables
+     <a href="functions.arguments.html#functions.arguments.by-reference" class="link">par référence</a>
+     en préfixant le mot clé <code class="literal">...</code> d&#039;un ET commercial
+     (<code class="literal">&amp;</code>).
+    </p>
+   </div>
+   
+   <div class="sect3" id="functions.variable-arg-list.old">
+    <h4 class="title">Les anciennes versions de PHP</h4>
+    
+    <p class="para">
+     Aucune syntaxe spéciale n&#039;est nécessaire pour spécifier qu&#039;une fonction
+     est variable ; cependant, l&#039;accès aux arguments de la fonction
+     nécessite l&#039;utilisation des fonctions
+     <span class="function"><a href="function.func-num-args.html" class="function">func_num_args()</a></span>, <span class="function"><a href="function.func-get-arg.html" class="function">func_get_arg()</a></span>
+     et <span class="function"><a href="function.func-get-args.html" class="function">func_get_args()</a></span>.
+    </p>
+    
+    <p class="para">
+     Le premier exemple ci-dessus doit être implémenté comme ceci en PHP 5.5
+     et antérieurs :
+     
+     <div class="example" id="example-164">
+      <p><strong>Exemple #17 Accès aux arguments variables en PHP 5.5 et antérieurs</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">sum</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$acc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">func_get_args</span><span style="color: #007700">()&nbsp;as&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$acc&nbsp;</span><span style="color: #007700">+=&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$acc</span><span style="color: #007700">;<br />}<br /><br />echo&nbsp;</span><span style="color: #0000BB">sum</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+      <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+      <div class="example-contents screen">
+<div class="cdata"><pre>
+10
+</pre></div>
+      </div>
+     </div>
+    </p>
+   </div>
+   
+  </div>
+  
+ </div></div></div></body></html>

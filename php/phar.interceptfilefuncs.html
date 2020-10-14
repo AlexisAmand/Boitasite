@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Informe phar qu'il doit intercepter les fonctions de fichiers</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="phar.hasmetadata.html">« Phar::hasMetadata</a></li>
+      <li style="float: right;"><a href="phar.isbuffering.html">Phar::isBuffering »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.phar.html">Phar</a></li>
+    <li>Informe phar qu'il doit intercepter les fonctions de fichiers</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="phar.interceptfilefuncs" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Phar::interceptFileFuncs</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PECL phar &gt;= 2.0.0)</p><p class="refpurpose"><span class="refname">Phar::interceptFileFuncs</span> &mdash; <span class="dc-title">Informe phar qu&#039;il doit intercepter les fonctions de fichiers</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-phar.interceptfilefuncs-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="modifier">static</span> <span class="methodname"><strong>Phar::interceptFileFuncs</strong></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+
+  <p class="para rdfs-comment">
+   Informe phar d&#039;intercepter <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span>, <span class="function"><a href="function.readfile.html" class="function">readfile()</a></span>,
+   <span class="function"><a href="function.file-get-contents.html" class="function">file_get_contents()</a></span>, <span class="function"><a href="function.opendir.html" class="function">opendir()</a></span> et toutes les fonctions
+   relatives à stat. Si n&#039;importe laquelle de ces fonctions est appelée depuis l&#039;archive phar
+   avec un chemin relatif, l&#039;appel est modifié pour accéder à un fichier au sein de l&#039;archive.
+   Les chemins absolus sont supposés être des tentatives de chargement de fichiers externes à 
+   partir du système de fichiers.
+  </p>
+  <p class="para">
+   Cette fonction rend possible l&#039;exécution d&#039;applications PHP conçues
+   pour être lancées en dehors d&#039;un disque dur, en tant qu&#039;application phar.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-phar.interceptfilefuncs-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   Aucun paramètre.
+  </p>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-phar.interceptfilefuncs-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+  </p>
+ </div>
+
+
+  <div class="refsect1 examples" id="refsect1-phar.interceptfilefuncs-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-714">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>Phar::interceptFileFuncs()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />Phar</span><span style="color: #007700">::</span><span style="color: #0000BB">interceptFileFuncs</span><span style="color: #007700">();<br />include&nbsp;</span><span style="color: #DD0000">'phar://'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">__FILE__&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'/fichier.php'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   En supposant que ce phar est nommé <code class="literal">/chemin/vers/monphar.phar</code> est qu&#039;il 
+   contient <code class="literal">fichier.php</code> et
+   <code class="literal">fichier2.txt</code>, si <code class="literal">fichier.php</code> contient ce code :
+  </p>
+  <p class="para">
+   <div class="example" id="example-715">
+    <p><strong>Exemple #2 Un exemple avec <span class="function"><strong>Phar::interceptFileFuncs()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">file_get_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">'fichier2.txt'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Normalement, PHP chercherait dans le répertoire courant le fichier nommé <code class="literal">file2.txt</code>,
+   c&#039;est à dire dans le répertoire de fichier.php ou le répertoire courant de l&#039;utilisateur de la ligne
+   de commande. <span class="function"><strong>Phar::interceptFileFuncs()</strong></span> dit à
+   PHP de considérer <code class="literal">phar:///chemin/vers/monphar.phar/</code> comme répertoire courant
+   et ainsi ouvre dans l&#039;exemple ci-dessus le fichier <code class="literal">phar:///chemin/vers/monphar.phar/fichier2.txt</code>.
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

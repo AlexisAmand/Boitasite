@@ -1,0 +1,367 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>La classe EvPeriodic</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="evloop.verify.html">« EvLoop::verify</a></li>
+      <li style="float: right;"><a href="evperiodic.again.html">EvPeriodic::again »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.ev.html">Ev</a></li>
+    <li>La classe EvPeriodic</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="class.evperiodic" class="reference">
+ <h1 class="title">La classe EvPeriodic</h1>
+ 
+ <div class="partintro"><p class="verinfo">(PECL ev &gt;= 0.2.0)</p>
+
+  <div class="section" id="evperiodic.intro">
+   <h2 class="title">Introduction</h2>
+  <p class="para">
+   Les watchers périodiques sont des sortes de minuteurs, mais ils sont très
+   polyvalents.
+   </p>
+   <p class="para">
+    Contrairement à <a href="class.evtimer.html" class="classname">EvTimer</a>, les watchers 
+    <strong class="classname">EvPeriodic</strong> ne sont pas basés sur un temps réel
+    (ou un temps relatif, le temps physique qui passe), mais sur un temps
+    d&#039;horloge (temps absolu, calendaire, ou d&#039;horloge). La différence est
+    qu&#039;un temps d&#039;horloge peut être plus rapide ou plus lent qu&#039;un temps
+    réel, et les sauts dans le temps ne sont pas rares (i.e. lors d&#039;un ajustement).
+   </p>
+   <p class="para">
+    Un watcher <strong class="classname">EvPeriodic</strong> peut être configuré pour
+    être lancé après des points spécifiques dans le temps. Par exemple,
+    si un watcher <strong class="classname">EvPeriodic</strong> est configuré pour
+    se lancer <em class="emphasis">&quot;dans 10 secondes&quot;</em> (i.e.
+    <span class="methodname"><a href="evloop.now.html" class="methodname">EvLoop::now()</a></span> + <strong><code>10.0</code></strong>,
+    i.e. un temps absolu, et non un délai), et que l&#039;horloge système
+    est ré-initialisée à <em class="emphasis">Janvier de l&#039;année dernière</em>,
+    alors cela prendra une année et plus à lancer l&#039;événement (contrairement
+    à <a href="class.evtimer.html" class="classname">EvTimer</a> qui sera lancé <strong><code>10</code></strong>
+    secondes après son démarrage, sachant qu&#039;il utilise un délai maximal d&#039;attente
+    relatif).
+   </p>
+   <p class="para">
+    Comme pour les minuteurs, il est garantie que la fonction de rappel soit
+    appelée uniquement lorsque le point dans le temps où il est supposé se lancer
+    ne soit passé. Si plusieurs minuteurs deviennent prêts en même temps
+    pendant la même itération de boucle, alors ceux dont les valeurs de délai
+    maximal d&#039;attente sont les plus proches seront appelées avant ceux qui ont des
+    valeurs de délai maximal d&#039;attente plus éloignés (mais ceci n&#039;est plus
+    vrai lorsqu&#039;une fonction de rappel appelle récursivement la méthode
+    <span class="methodname"><a href="evloop.run.html" class="methodname">EvLoop::run()</a></span>).
+   </p>
+  </div>
+
+  <div class="section" id="evperiodic.synopsis">
+   <h2 class="title">Synopsis de la classe</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass">
+     
+    </div>
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">EvPeriodic</strong>
+     </span>
+     <span class="ooclass">
+      <span class="modifier">extends</span>
+      <a href="class.evwatcher.html" class="classname">EvWatcher</a>
+     </span>
+     {</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Propriétés */</div>
+    <div class="fieldsynopsis">
+     <span class="modifier">public</span>
+      <var class="varname"><a href="class.evperiodic.html#evperiodic.props.offset">$<var class="varname">offset</var></a></var>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">public</span>
+      <var class="varname"><a href="class.evperiodic.html#evperiodic.props.interval">$<var class="varname">interval</var></a></var>
+    ;</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Propriétés héritées */</div>
+    <div class="fieldsynopsis">
+     <span class="modifier">public</span>
+      <var class="varname"><a href="class.evwatcher.html#evwatcher.props.is-active">$<var class="varname">is_active</var></a></var>
+    ;</div>
+<div class="fieldsynopsis">
+     <span class="modifier">public</span>
+      <var class="varname"><a href="class.evwatcher.html#evwatcher.props.data">$<var class="varname">data</var></a></var>
+    ;</div>
+<div class="fieldsynopsis">
+     <span class="modifier">public</span>
+      <var class="varname"><a href="class.evwatcher.html#evwatcher.props.is-pending">$<var class="varname">is_pending</var></a></var>
+    ;</div>
+<div class="fieldsynopsis">
+     <span class="modifier">public</span>
+      <var class="varname"><a href="class.evwatcher.html#evwatcher.props.priority">$<var class="varname">priority</var></a></var>
+    ;</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Méthodes */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="evperiodic.again.html" class="methodname">again</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="evperiodic.at.html" class="methodname">at</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">float</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="methodname"><a href="evperiodic.construct.html" class="methodname">__construct</a></span>
+    ( <span class="methodparam">
+    <span class="type">float</span>
+     <code class="parameter">$offset</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type">string</span>
+     <code class="parameter">$interval</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span>
+     <code class="parameter">$reschedule_cb</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span>
+     <code class="parameter">$callback</code>
+   </span>
+   [, <span class="methodparam">
+    <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span>
+     <code class="parameter">$data</code>
+    <span class="initializer"> = <strong><code>NULL</code></strong></span>
+   </span>
+   [, <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$priority</code>
+    <span class="initializer"> = 0</span>
+   </span>
+  ]] )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span>
+   <span class="modifier">public</span>
+   <span class="modifier">static</span>
+   
+   <span class="methodname"><a href="evperiodic.createstopped.html" class="methodname">createStopped</a></span>
+    ( <span class="methodparam">
+    <span class="type">float</span>
+     <code class="parameter">$offset</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type">float</span>
+     <code class="parameter">$interval</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span>
+     <code class="parameter">$reschedule_cb</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span>
+     <code class="parameter">$callback</code>
+   </span>
+   [, <span class="methodparam">
+    <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span>
+     <code class="parameter">$data</code>
+    <span class="initializer"> = <strong><code>NULL</code></strong></span>
+   </span>
+   [, <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$priority</code>
+    <span class="initializer"> = 0</span>
+   </span>
+  ]] ) : <span class="type"><a href="class.evperiodic.html" class="type EvPeriodic">EvPeriodic</a></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="evperiodic.set.html" class="methodname">set</a></span>
+    ( <span class="methodparam">
+    <span class="type">float</span>
+     <code class="parameter">$offset</code>
+   </span>
+   , <span class="methodparam">
+    <span class="type">float</span>
+     <code class="parameter">$interval</code>
+   </span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Méthodes héritées */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="evwatcher.clear.html" class="methodname">EvWatcher::clear</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">int</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">abstract</span>
+   <span class="modifier">public</span>
+   <span class="methodname"><a href="evwatcher.construct.html" class="methodname">EvWatcher::__construct</a></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="evwatcher.feed.html" class="methodname">EvWatcher::feed</a></span>
+    ( <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$revents</code>
+   </span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="evwatcher.getloop.html" class="methodname">EvWatcher::getLoop</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type"><a href="class.evloop.html" class="type EvLoop">EvLoop</a></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="evwatcher.invoke.html" class="methodname">EvWatcher::invoke</a></span>
+    ( <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$revents</code>
+   </span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="evwatcher.keepalive.html" class="methodname">EvWatcher::keepalive</a></span>
+    ([ <span class="methodparam">
+    <span class="type">bool</span>
+     <code class="parameter">$value</code>
+   </span>
+  ] ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="evwatcher.setcallback.html" class="methodname">EvWatcher::setCallback</a></span>
+    ( <span class="methodparam">
+    <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span>
+     <code class="parameter">$callback</code>
+   </span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="evwatcher.start.html" class="methodname">EvWatcher::start</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="evwatcher.stop.html" class="methodname">EvWatcher::stop</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+
+   }</div>
+
+  </div>
+
+  <div class="section" id="evperiodic.props">
+   <h2 class="title">Propriétés</h2>
+   <dl>
+
+    
+     <dt id="evperiodic.props.offset">
+      <var class="varname">offset</var>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Lors de la répétition, va contenir la valeur de la position, sinon,
+       ce sera le point absolu dans le temps (la valeur de la position
+       passée à la méthode <span class="methodname"><a href="evperiodic.set.html" class="methodname">EvPeriodic::set()</a></span>,
+       bien que <em class="emphasis">libev</em> peut modifier cette valeur
+       pour une meilleure stabilité numérique).
+      </p>
+     </dd>
+
+    
+    
+     <dt id="evperiodic.props.interval">
+      <var class="varname">interval</var>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       La valeur de l&#039;intervalle courant. Peut être modifié à tout moment,
+       mais les modifications ne prennent effet que lorsque le minuteur
+       périodique ne se lance, ou lorsque la méthode
+       <span class="methodname"><a href="evperiodic.again.html" class="methodname">EvPeriodic::again()</a></span> est appelée.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </div>
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Sommaire</h2><ul class="chunklist chunklist_reference"><li><a href="evperiodic.again.html">EvPeriodic::again</a> — Arr&ecirc;te et re-d&eacute;marre le watcher p&eacute;riodique</li><li><a href="evperiodic.at.html">EvPeriodic::at</a> — Retourne le temps absolu auquel ce watcher sera appel&eacute; la prochaine fois</li><li><a href="evperiodic.construct.html">EvPeriodic::__construct</a> — Construit un objet watcher EvPeriodic</li><li><a href="evperiodic.createstopped.html">EvPeriodic::createStopped</a> — Cr&eacute;e un watcher EvPeriodic stopp&eacute;</li><li><a href="evperiodic.set.html">EvPeriodic::set</a> — Configure le watcher</li></ul>
+</div>
+</div></div></body></html>

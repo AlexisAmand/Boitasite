@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Les objets</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.types.iterable.html">« It&eacute;rables</a></li>
+      <li style="float: right;"><a href="language.types.resource.html">Les ressources »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.types.html">Les types</a></li>
+    <li>Les objets</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.types.object" class="sect1">
+ <h2 class="title">Les objets</h2>
+
+ <div class="sect2" id="language.types.object.init">
+  <h3 class="title">Initialisation des objets</h3>
+
+  <p class="para">
+   Pour créer un nouvel objet, utilisez le mot clé <code class="literal">new</code>
+   afin d&#039;instancier une classe :
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">foo<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">do_foo</span><span style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Doing&nbsp;foo."</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #0000BB">$bar&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">foo</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$bar</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">do_foo</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="simpara">
+   Pour une discussion complète, voir le chapitre sur
+   <a href="language.oop5.html" class="link">les classes et les objets</a>.
+  </p>
+
+ </div>
+
+ <div class="sect2" id="language.types.object.casting">
+  <h3 class="title">Conversion en un objet</h3>
+  <p class="para">
+   Si un objet est converti en un objet, il ne sera pas modifié.
+   Si une valeur de n&#039;importe quel type est convertie en un objet,
+   une nouvelle instance de la classe interne <code class="literal">stdClass</code>
+   sera créée. Si la valeur est <strong><code>NULL</code></strong>, la nouvelle instance sera vide.
+   Un <span class="type"><a href="language.types.array.html" class="type array">array</a></span> se converti en <span class="type"><a href="language.types.object.html" class="type object">object</a></span> avec  les propriétés 
+   nommées au regard des clés avec leurs valeurs correspondantes. Notez que 
+   dans ce cas, avant php 7.2.0 les clés numériques ont été inaccessibles à 
+   moins d&#039;être itérées.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$obj&nbsp;</span><span style="color: #007700">=&nbsp;(object)&nbsp;array(</span><span style="color: #DD0000">'1'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'foo'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(isset(</span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;{</span><span style="color: #DD0000">'1'</span><span style="color: #007700">}));&nbsp;</span><span style="color: #FF8000">//&nbsp;affiche&nbsp;'bool(true)'&nbsp;depuis&nbsp;PHP&nbsp;7.2.0;&nbsp;'bool(false)'&nbsp;auparavant<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">key</span><span style="color: #007700">(</span><span style="color: #0000BB">$obj</span><span style="color: #007700">));&nbsp;</span><span style="color: #FF8000">//&nbsp;affiche&nbsp;'string(1)&nbsp;"1"'&nbsp;depuis&nbsp;PHP&nbsp;7.2.0;&nbsp;'int(1)'&nbsp;auparavant<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   Pour n&#039;importe quel autre type, un membre appelé <code class="literal">scalar</code>
+   contiendra la valeur. 
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$obj&nbsp;</span><span style="color: #007700">=&nbsp;(object)&nbsp;</span><span style="color: #DD0000">'ciao'</span><span style="color: #007700">;<br />echo&nbsp;</span><span style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">scalar</span><span style="color: #007700">;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;:&nbsp;'ciao'<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+ </div>
+</div></div></div></body></html>

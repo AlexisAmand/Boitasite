@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Utilisation simple</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="shmop.examples.html">« Exemples</a></li>
+      <li style="float: right;"><a href="ref.shmop.html">Fonctions sur la m&eacute;moire partag&eacute;e »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="shmop.examples.html">Exemples</a></li>
+    <li>Utilisation simple</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="shmop.examples-basic" class="section">
+  <h2 class="title">Utilisation simple</h2>
+  <p class="para">
+   <div class="example" id="example-4065">
+    <p><strong>Exemple #1 Introduction à la mémoire partagée</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Crée&nbsp;100&nbsp;octets&nbsp;de&nbsp;mémoire&nbsp;partagée&nbsp;avec&nbsp;un&nbsp;identifiant&nbsp;système&nbsp;"0xff3"<br /></span><span style="color: #0000BB">$shm_id&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">shmop_open</span><span style="color: #007700">(</span><span style="color: #0000BB">0xff3</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"c"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0644</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br />if(!</span><span style="color: #0000BB">$shm_id</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Impossible&nbsp;de&nbsp;créer&nbsp;la&nbsp;mémoire&nbsp;partagée\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Lire&nbsp;la&nbsp;taille&nbsp;de&nbsp;la&nbsp;mémoire&nbsp;partagée<br /></span><span style="color: #0000BB">$shm_size&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">shmop_size</span><span style="color: #007700">(</span><span style="color: #0000BB">$shm_id</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"Un&nbsp;bloc&nbsp;de&nbsp;SHM&nbsp;de&nbsp;taille&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$shm_size&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"&nbsp;a&nbsp;été&nbsp;créé.\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Ecriture&nbsp;d'une&nbsp;chaîne&nbsp;de&nbsp;test&nbsp;dans&nbsp;ce&nbsp;segment<br /></span><span style="color: #0000BB">$shm_bytes_written&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">shmop_write</span><span style="color: #007700">(</span><span style="color: #0000BB">$shm_id</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Mon&nbsp;bloc&nbsp;de&nbsp;mémoire&nbsp;partagée"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$shm_bytes_written&nbsp;</span><span style="color: #007700">!=&nbsp;</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #DD0000">"Mon&nbsp;bloc&nbsp;de&nbsp;mémoire&nbsp;partagée"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Impossible&nbsp;d'écrire&nbsp;toutes&nbsp;les&nbsp;données&nbsp;en&nbsp;mémoire\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Lecture&nbsp;du&nbsp;segment<br /></span><span style="color: #0000BB">$my_string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">shmop_read</span><span style="color: #007700">(</span><span style="color: #0000BB">$shm_id</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$shm_size</span><span style="color: #007700">);<br />if(!</span><span style="color: #0000BB">$my_string</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Impossible&nbsp;de&nbsp;lire&nbsp;toutes&nbsp;les&nbsp;données&nbsp;en&nbsp;mémoire\n"</span><span style="color: #007700">;<br />}<br />echo&nbsp;</span><span style="color: #DD0000">"Les&nbsp;données&nbsp;mises&nbsp;en&nbsp;mémoire&nbsp;partagées&nbsp;sont&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$my_string&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;Maintenant,&nbsp;effaçons&nbsp;le&nbsp;bloc,&nbsp;et&nbsp;fermons&nbsp;le&nbsp;segment&nbsp;de&nbsp;mémoire<br /></span><span style="color: #007700">if(!</span><span style="color: #0000BB">shmop_delete</span><span style="color: #007700">(</span><span style="color: #0000BB">$shm_id</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Impossible&nbsp;d'effacer&nbsp;le&nbsp;segment&nbsp;de&nbsp;mémoire"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">shmop_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$shm_id</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div></div></div></body></html>

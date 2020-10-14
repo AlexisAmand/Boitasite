@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Pr&eacute;f&eacute;rences de lecture</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongo.tutorial.indexes.html">« Cr&eacute;ation d'un index</a></li>
+      <li style="float: right;"><a href="mongo.writeconcerns.html">Write Concerns »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mongo.manual.html">Manuel</a></li>
+    <li>Pr&eacute;f&eacute;rences de lecture</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongo.readpreferences" class="chapter">
+ <h1>Préférences de lecture</h1>
+
+ <p class="para">
+  MongoDB 2.2 et la version 1.3.0 du driver ajoutent le support pour les
+  <a href="https://docs.mongodb.com/manual/core/read-preference/" class="link external">&raquo;&nbsp;préférences de lecture</a>,
+  qui autorise le contrôle sur la façon dont les requêtes sont dirigées vers les
+  instances mongod dans un environnement de jeux de réplication. Les préférences
+  de lecture peuvent être spécifiées soit pour chaque connexion, soit par base de
+  données, soit par collection. Les préférences définies à un niveau plus élévé
+  seront héritées par défaut (i.e. <a href="class.mongocollection.html" class="classname">MongoCollection</a>
+  héritera des préférences définies au niveau correspondant de l&#039;instance
+  <a href="class.mongodb.html" class="classname">MongoDB</a>).
+ </p>
+ <p class="para">
+  Les préférences de lecture sont spécifiées avec des combinaison de modes
+  et de jeu de tags. Les modes déterminent la façon dont les instances mongod sont priorisées,
+  alors que les <a href="https://docs.mongodb.com/manual/tutorial/configure-replica-set-tag-sets/" class="link external">&raquo;&nbsp;jeux de tags</a>
+  spécifient les critères d&#039;éligibilité des instances mongod. Les instances Mongod
+  ne sont éligibles que si le temps du ping n&#039;excède pas une différence de 15 ms
+  depuis l&#039;instance mongod la plus proche.
+ </p>
+ <div class="simplesect" id="mongo.readpreferences.modes">
+  <h3 class="title">Les modes des préférences de lecture</h3>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Tous les modes des préférences de lecture, excepté <code class="literal">MongoClient::RP_PRIMARY</code>
+    peuvent retourner des données périmées sachant que les opérations de réplication des
+    secondaires depuis le primaire peuvent prendre un certain délai. Assurez-vous que votre
+    application peut toléler des données périmées si vous choisissez d&#039;utiliser un
+    mode autre que le mode <code class="literal">MongoClient::RP_PRIMARY</code>.
+   </p>
+  </div>
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     <code class="literal">MongoClient::RP_PRIMARY</code>
+    </p>
+    <p class="para">
+     Toutes les opérations de lecture n&#039;utilisent que le jeu primaire de réplication courant.
+     C&#039;est le comportement par défaut. Si le primaire n&#039;est pas disponible, les
+     opérations de lecture produiront une exception.
+    </p>
+    <p class="para">
+     Ce mode est incompatible avec l&#039;utilisation des jeux de tags. Le fait de spécifier
+     un jeu de tags avec le mode <code class="literal">MongoClient::RP_PRIMARY</code> retournera une
+     exception.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <code class="literal">MongoClient::RP_PRIMARY_PREFERRED</code>
+    </p>
+    <p class="para">
+     Dans la plupart des situations, les opérations de lecture s&#039;effectuent depuis
+     le membre primaire du jeu. Cependant, si le primaire n&#039;est pas disponible, ce qui 
+     est le cas lors des situations critiques, les opérations de lecture s&#039;effectuent
+     depuis les membres secondaires.
+    </p>
+    <p class="para">
+     Lorsque les préférences de lecture incluent un jeu de tags, le client
+     lit tout d&#039;abord en utilisant le primaire, s&#039;il est disponible, puis,
+     en utilisant les secondaires qui correspondent aux tags spécifiés.
+     Si aucun secondaire ne correspond aux tags spécifiés, l&#039;opération
+     de lecture échoue et produit une exception.
+    </p>
+    <div class="warning"><strong class="warning">Avertissement</strong>
+     <p class="para">
+      La version 2.2 de mongo ajoute un support complet des préférences
+      de lecture. Lors de la connexion à d&#039;anciennes instances mongo,
+      <code class="literal">MongoClient::RP_PRIMARY_PREFERRED</code>
+      enverra les requêtes aux secondaires.
+     </p>
+    </div>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <code class="literal">MongoClient::RP_SECONDARY</code>
+    </p>
+    <p class="para">
+     Les opérations de lecture ne s&#039;effectuent que sur les membres
+     secondaires du jeu. Si aucun secondaire n&#039;est disponible,
+     les opérations de lecture produiront une exception.
+    </p>
+    <p class="para">
+     La plupart des jeux ont au moins un secondaire, mais il existe
+     des situations où il peut ne pas être disponible. Par exemple,
+     un jeu avec un primaire, un secondaire, un arbitraire peut ne pas
+     avoir de secondaire si un membre est en cours de récupération ou
+     indisponible.
+    </p>
+    <p class="para">
+     Lorsque les préférences de lecture incluent un jeu de tags, le client
+     tente de trouver des membres secondaires qui correspondent au jeu de
+     tags spécifié, et dirige les lectures vers un secondaire pris aléatoirement
+     dans le groupe le plus proche. Si aucun secondaire ne correspond aux
+     tags, l&#039;opération de lecture produira une exception.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <code class="literal">MongoClient::RP_SECONDARY_PREFERRED</code>
+    </p>
+    <p class="para">
+     Dans la plupart des situations, les opérations de lecture s&#039;effectuent
+     sur les membres secondaires, mais dans le cas où le jeu contient
+     un seul primaire avec aucun autre membre, l&#039;opération de lecture
+     utilisera le primaire du jeu.
+    </p>
+    <p class="para">
+     Lorsque les préférences de lecture incluent un jeu de tags, le client
+     tente de trouver un membre secondaire qui correspond au jeu de tags
+     spécifié, et dirige les lectures vers un secondaire pris aléatoirement
+     dans la groupe le plus proche. Si aucun secondaire ne correspond aux tags,
+     l&#039;opération de lecture produira une exception.
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <code class="literal">MongoClient::RP_NEAREST</code>
+    </p>
+    <p class="para">
+     Le driver lit depuis un membre <em class="emphasis">aléatoire</em> du jeu,
+     qui a un ping inférieur à 15ms du membre avec le ping le plus bas. Une lecture
+     en mode <code class="literal">MongoClient::RP_NEAREST</code> ne prend pas en compte le
+     type du membre, et peut lire depuis les primaires mais aussi depuis les secondaires.
+    </p>
+    <p class="para">
+     Utilisez ce mode pour minimiser les effects de latence du réseau
+     lors des opérations de lecture sans préférence pour des données courantes
+     ou périmées.
+    </p>
+    <p class="para">
+     Si vous spécifiez un jeu de tags, le client tente de trouver un membre
+     qui correspond au jeu de tags spécifié et dirige les lectures
+     vers un noeud pris aléatoirement depuis le groupe le plus proche.
+    </p>
+    <blockquote class="note"><p><strong class="note">Note</strong>: 
+     <p class="para">
+      Toutes les opérations lisent depuis le membre le plus proche du jeu
+      de réplication qui correspond au mode de préférence de lecture spécifié.
+      Le mode <code class="literal">MongoClient::RP_NEAREST</code> préfère les faibles latences
+      lors des lectures sur les membres au statut primaire ou secondaire.
+     </p>
+    </p></blockquote>
+   </li>
+  </ul>
+ </div>
+ <div class="simplesect" id="mongo.readpreferences.tagsets">
+  <h3 class="title">Jeux de tags</h3>
+  <p class="para">
+   Les <a href="https://docs.mongodb.com/manual/tutorial/configure-replica-set-tag-sets/" class="link external">&raquo;&nbsp;jeux de tags</a>
+   vous permettent de spécifier des critères indiquant à votre application
+   les membres spécifiques à utiliser lors des opérations de lecture,
+   en se basant sur des paramètres personnalisés. Les jeux de tags permettent
+   cela, permettant ainsi de s&#039;assurer que les opérations de lecture utilisent
+   des membres d&#039;un centre de données particulier, ou utilisent des instances
+   mongod désignées pour une classe particulière d&#039;opérations, comme les
+   rapports ou les analyses.
+  </p>
+  <p class="para">
+   Vous pouvez spécifier des jeux de tags avec les modes de préférence de
+   lecture suivants :
+  </p>
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <p class="para">
+     <code class="literal">MongoClient::RP_PRIMARY_PREFERRED</code>
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <code class="literal">MongoClient::RP_SECONDARY</code>
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <code class="literal">MongoClient::RP_SECONDARY_PREFERRED</code>
+    </p>
+   </li>
+   <li class="listitem">
+    <p class="para">
+     <code class="literal">MongoClient::RP_NEAREST</code>
+    </p>
+   </li>
+  </ul>
+  <p class="para">
+   Vous ne pouvez pas spécifier de jeux de tags avec le mode de préférence
+   de lecture <code class="literal">MongoClient::RP_PRIMARY</code>. Les tags sont applicables
+   que lors de la sélection d&#039;un membre secondaire d&#039;un jeu, excepté
+   lors du mode utilisant le plus proche.
+  </p>
+ </div>
+ <div class="simplesect" id="mongo.readpreference.usage">
+  <h3 class="title">Spécifier les préférences de lecture</h3>
+  <p class="para">
+   Les préférences de lecture peuvent être spécifiées dans l&#039;URI de connexion
+   fourni à la méthode <span class="function"><a href="mongoclient.construct.html" class="function">MongoClient::__construct()</a></span>, qui utilise
+   une syntaxe de type requête, ou via des méthodes du coeur de la classe,
+   qui utilise un tableau pour spécifier les jeux de tags.
+  </p>
+  <p class="para">
+   Lorsque les modes de préférences de lecture sont fournis via une chaîne
+   de type requête, les jeux de tags pour la valeur de
+   <code class="literal">readPreferenceTags</code> doivent être une séquence
+   délimitée par une virgule de paires clé/valeur séparée par deux points(:).
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Chaque jeu de tags défini dans la chaîne de requête utilisera le nom
+    <code class="literal">readPreferenceTags</code>. Contrairement à la façon dont PHP
+    gère les chaînes de type URL, les valeurs successives de
+    <code class="literal">readPreferenceTags</code> n&#039;effaceront pas les précédentes.
+    Le driver va collecter les jeux de tags dans l&#039;ordre de leur apparition
+    dans la chaîne de requête.
+   </p>
+  </p></blockquote>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Si le driver ne trouve pas de jeu de tags correspondant, la lecture
+    échoue ! Il en est de votre responsabilité que de fournir un fallback
+    valide, comme une valeur vide pour <code class="literal">readPreferenceTags</code>
+    qui voudra dire &quot;aucun jeu de tags de préférence&quot;.
+   </p>
+  </div>
+  <p class="para">
+   <div class="example" id="mongo.tutorial.basics">
+    <p><strong>Exemple #1 Préférences de lecture via l&#039;URI de connexion avec une syntaxe de type
+     requête</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Préfère&nbsp;le&nbsp;serveur&nbsp;le&nbsp;plus&nbsp;proche&nbsp;avec&nbsp;aucun&nbsp;tag&nbsp;de&nbsp;préférence<br /></span><span style="color: #0000BB">$uri&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'mongodb://rs1.example.com,rs2.example.com/'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$uri&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">'?readPreference=nearest'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Mongo</span><span style="color: #007700">(</span><span style="color: #0000BB">$uri</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'replicaSet'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'rs'</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">//&nbsp;Sélectionne&nbsp;le&nbsp;serveur&nbsp;le&nbsp;plus&nbsp;proche&nbsp;dans&nbsp;le&nbsp;centre&nbsp;de&nbsp;données&nbsp;"east"<br /></span><span style="color: #0000BB">$uri&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'mongodb://rs1.example.com,rs2.example.com/'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$uri&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">'?readPreference=nearest'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$uri&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">'&amp;readPreferenceTags=dc:east'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Mongo</span><span style="color: #007700">(</span><span style="color: #0000BB">$uri</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'replicaSet'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'rs'</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">//&nbsp;Préfère&nbsp;le&nbsp;serveur&nbsp;le&nbsp;plus&nbsp;proche&nbsp;dans&nbsp;le&nbsp;centre&nbsp;de&nbsp;données&nbsp;"east",&nbsp;également<br />//&nbsp;utilisé&nbsp;pour&nbsp;les&nbsp;rapports,&nbsp;mais&nbsp;utilise&nbsp;le&nbsp;centre&nbsp;de&nbsp;données&nbsp;"west"&nbsp;en&nbsp;cas&nbsp;de&nbsp;problème<br /></span><span style="color: #0000BB">$uri&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'mongodb://rs1.example.com,rs2.example.com/'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$uri&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">'?readPreference=nearest'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$uri&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">'&amp;readPreferenceTags=dc:east,use:reporting'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$uri&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">'&amp;readPreferenceTags=dc:west'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Mongo</span><span style="color: #007700">(</span><span style="color: #0000BB">$uri</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'replicaSet'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'rs'</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">//&nbsp;Préfère&nbsp;le&nbsp;serveur&nbsp;le&nbsp;plus&nbsp;proche&nbsp;dans&nbsp;le&nbsp;centre&nbsp;de&nbsp;données&nbsp;"east",&nbsp;puis,&nbsp;un<br />//&nbsp;serveur&nbsp;dans&nbsp;le&nbsp;centre&nbsp;de&nbsp;données&nbsp;"west",&nbsp;et&nbsp;pour&nbsp;terminer,&nbsp;n'avoir&nbsp;aucun<br /></span><span style="color: #0000BB">jeu&nbsp;de&nbsp;tags&nbsp;de&nbsp;préférence&nbsp;si&nbsp;une&nbsp;erreur&nbsp;survient<br />$uri&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'mongodb://rs1.example.com,rs2.example.com/'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$uri&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">'?readPreference=nearest'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$uri&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">'&amp;readPreferenceTags=dc:east'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$uri&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">'&amp;readPreferenceTags=dc:west'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$uri&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">'&amp;readPreferenceTags='</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Mongo</span><span style="color: #007700">(</span><span style="color: #0000BB">$uri</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'replicaSet'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'rs'</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="mongo.tutorial.connecting-example">
+    <p><strong>Exemple #2 Préférences de lecture avec une syntaxe de type tableau pour les jeux de tags</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Mongo</span><span style="color: #007700">(</span><span style="color: #DD0000">'mongodb://rs1.example.com,rs2.example.com'</span><span style="color: #007700">,&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'replicaSet'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'rs'</span><span style="color: #007700">,<br />));<br /><br /></span><span style="color: #FF8000">//&nbsp;Préfère&nbsp;le&nbsp;serveur&nbsp;le&nbsp;plus&nbsp;proche,&nbsp;avec&nbsp;aucun&nbsp;tag&nbsp;de&nbsp;préférence<br /></span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setReadPreference</span><span style="color: #007700">(</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">::</span><span style="color: #0000BB">RP_NEAREST</span><span style="color: #007700">,&nbsp;array());<br /><br /></span><span style="color: #FF8000">//&nbsp;Sélectionne&nbsp;le&nbsp;serveur&nbsp;le&nbsp;plus&nbsp;proche&nbsp;dans&nbsp;le&nbsp;centre&nbsp;de&nbsp;données&nbsp;"east"<br /></span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setReadPreference</span><span style="color: #007700">(</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">::</span><span style="color: #0000BB">RP_NEAREST</span><span style="color: #007700">,&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'dc'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'east'</span><span style="color: #007700">),<br />));<br /><br /></span><span style="color: #FF8000">//&nbsp;Préfère&nbsp;le&nbsp;serveur&nbsp;le&nbsp;plus&nbsp;proche&nbsp;dans&nbsp;le&nbsp;centre&nbsp;de&nbsp;données&nbsp;"east"&nbsp;également<br />//&nbsp;utilisé&nbsp;pour&nbsp;les&nbsp;rapports,&nbsp;mais&nbsp;prend&nbsp;un&nbsp;serveur&nbsp;du&nbsp;centre&nbsp;de&nbsp;données&nbsp;"west"<br />//&nbsp;en&nbsp;cas&nbsp;d'erreur<br /></span><span style="color: #0000BB">$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setReadPreference</span><span style="color: #007700">(</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">::</span><span style="color: #0000BB">RP_NEAREST</span><span style="color: #007700">,&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'dc'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'east'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'use'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'reporting'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'dc'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'west'</span><span style="color: #007700">),<br />));<br /><br /></span><span style="color: #FF8000">//&nbsp;Préfère&nbsp;le&nbsp;serveur&nbsp;le&nbsp;plus&nbsp;proche&nbsp;dans&nbsp;le&nbsp;centre&nbsp;de&nbsp;données&nbsp;"east",&nbsp;puis&nbsp;un<br />//&nbsp;serveur&nbsp;dans&nbsp;le&nbsp;centre&nbsp;de&nbsp;données&nbsp;"west",&nbsp;et&nbsp;pour&nbsp;terminer,&nbsp;n'avoir&nbsp;aucun<br /></span><span style="color: #0000BB">jeu&nbsp;de&nbsp;tags&nbsp;de&nbsp;préférence&nbsp;si&nbsp;une&nbsp;erreur&nbsp;survient<br />$m</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setReadPreference</span><span style="color: #007700">(</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">::</span><span style="color: #0000BB">RP_NEAREST</span><span style="color: #007700">,&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'dc'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'east'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'dc'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'west'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(),<br />));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+</div>
+</div></div></body></html>

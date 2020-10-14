@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>La classe MongoId</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongo.types.html">« Les types</a></li>
+      <li style="float: right;"><a href="mongoid.construct.html">MongoId::__construct »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mongo.types.html">Les types</a></li>
+    <li>La classe MongoId</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="class.mongoid" class="reference">
+ 
+ <h1 class="title">La classe <a href="class.mongoid.html" class="classname">MongoId</a></h1>
+ 
+ 
+ <div class="partintro"><p class="verinfo">(PECL mongo &gt;=0.8.0)</p>
+
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">Cette extension, qui définie cette classe est obsolète.
+Veuillez utiliser l&#039;extension <a href="set.mongodb.html" class="link">MongoDB</a> à la place.
+Les alertnatives à cette classe sont :</p>
+   <ul class="simplelist">
+    <li class="member"><a href="class.mongodb-bson-objectid.html" class="classname">MongoDB\BSON\ObjectId</a></li>
+   </ul>
+  </div>
+  
+  
+  <div class="section" id="mongoid.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    Un identifiant unique créé par les objets de la base. Si un objet est inséré
+    dans la base de données sans le champ _id, ce champ y sera ajouté en utilisant
+    la valeur de l&#039;instance <strong class="classname">MongoId</strong>. Si les données ont
+    un champ unique naturel (comme un nom d&#039;utilisateur ou un timestamp), il
+    conviendra de l&#039;utiliser, mais sa valeur ne sera pas remplacée par la valeur
+    de l&#039;instance <strong class="classname">MongoId</strong>.
+   </p>
+   <p class="para">
+    Les instances de la classe <strong class="classname">MongoId</strong> remplissent le rôle
+    d&#039;un champ auto-incrémenté d&#039;une base de données relationnelle : fournir une
+    clé unique si la base de données n&#039;en possède pas. L&#039;auto-incrémentation
+    ne fonctionne pas correctement lors de bases de données partagées, vu qu&#039;il
+    est très difficile de déterminer le prochain nombre de la séquence. Cette
+    classe permet de trouver rapidement une valeur unique, y compris lors de
+    l&#039;utilisation de bases de données partagées.
+   </p>
+   <p class="para">
+    Chaque MongoId est sur 12 octets (ces chaînes seront sur 24 caractères héxadécimaux).
+    Les premiers 4 octets sont un timestamp, les 3 suivants, un hash du nom de la machine
+    cliente, les 2 suivants, les 2 derniers octets significatifs de l&#039;identifiant
+    du processus exécutant le script, et les 3 derniers, une valeur incrémentée.
+   </p>
+   <p class="para">
+    Un <strong class="classname">MongoId</strong> est linéarisable/délinéarisable. Leur forme
+    linéarisé est similaire à la forme d&#039;une <a href="language.types.string.html" class="link">chaîne de caractères</a> :
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+C:7:&quot;MongoId&quot;:24:{4af9f23d8ead0e1d32000000}
+</pre></div>
+    </div>
+   </p>
+  </div>
+  
+  
+  <div class="section" id="mongoid.synopsis">
+   <h2 class="title">Synopsis de la classe</h2>
+   
+   
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+    
+    
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">MongoId</strong>
+     </span>
+     {</div>
+    
+    
+    <div class="fieldsynopsis">
+     <span class="modifier">public</span>
+     <span class="type">string</span>
+      <var class="varname"><a href="class.mongoid.html#mongoid.props.id">$<var class="varname">$id</var></a></var>
+     <span class="initializer"> = <strong><code>NULL</code></strong></span>
+    ;</div>
+
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Méthodes */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongoid.construct.html" class="methodname">__construct</a></span>
+    ([ <span class="methodparam"><span class="type"><span class="type string|MongoId">string|MongoId</span></span> <code class="parameter">$id</code><span class="initializer"> = <strong><code>NULL</code></strong></span></span>
+  ] )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="modifier">static</span> <span class="methodname"><a href="mongoid.gethostname.html" class="methodname">getHostname</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">string</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongoid.getinc.html" class="methodname">getInc</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">int</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongoid.getpid.html" class="methodname">getPID</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">int</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongoid.gettimestamp.html" class="methodname">getTimestamp</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">int</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="modifier">static</span> <span class="methodname"><a href="mongoid.isvalid.html" class="methodname">isValid</a></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="modifier">static</span> <span class="methodname"><a href="mongoid.set-state.html" class="methodname">__set_state</a></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter">$props</code></span>
+   ) : <span class="type"><a href="class.mongoid.html" class="type MongoId">MongoId</a></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongoid.tostring.html" class="methodname">__toString</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">string</span></div>
+
+   }</div>
+   
+   
+  </div>
+  
+  <div class="section">
+   <h2 class="title">Champs</h2>
+   <dl>
+
+    
+     <dt id="mongoid.props.id"><var class="varname">$id</var></dt>
+
+     <dd>
+
+      <span class="simpara">
+       Ce champ contient la représentation sous forme de chaine de cet objet.
+      </span>
+      <blockquote class="note"><p><strong class="note">Note</strong>: 
+       <span class="simpara">
+        Le nom de la propriété commence avec un caractère <code class="literal">$</code>.
+        Il peut être accédé en utilisant
+        <a href="language.types.string.html#language.types.string.parsing.complex" class="link">une syntaxe
+        d&#039;analyser complexe de variable</a> (i.e. <code class="literal">$mongoId-&gt;{&#039;$id&#039;}</code>).
+       </span>
+      </p></blockquote>
+     </dd>
+
+    
+   </dl>
+
+  </div>
+  
+  <div class="section">
+   <h2 class="title">Voir aussi</h2>
+   <p class="para">
+    Documentation de MongoDB <a href="https://docs.mongodb.com/manual/reference/object-id/" class="link external">&raquo;&nbsp;concernant les ObjectIds</a>.
+   </p>
+  </div>
+ </div>
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+<h2>Sommaire</h2><ul class="chunklist chunklist_reference"><li><a href="mongoid.construct.html">MongoId::__construct</a> — Cr&eacute;e un nouvel identifiant</li><li><a href="mongoid.gethostname.html">MongoId::getHostname</a> — R&eacute;cup&egrave;re le nom d'h&ocirc;te utilis&eacute; pour les identifiants de cette machine</li><li><a href="mongoid.getinc.html">MongoId::getInc</a> — R&eacute;cup&egrave;re la valeur incr&eacute;ment&eacute;e pour cr&eacute;er cet identifiant</li><li><a href="mongoid.getpid.html">MongoId::getPID</a> — R&eacute;cup&egrave;re l'identifiant du processus</li><li><a href="mongoid.gettimestamp.html">MongoId::getTimestamp</a> — Retourne le timestamp depuis la cr&eacute;ation de l'id</li><li><a href="mongoid.isvalid.html">MongoId::isValid</a> — V&eacute;rifie si une valeur est un ObjectId valide</li><li><a href="mongoid.set-state.html">MongoId::__set_state</a> — Cr&eacute;e un MongoId</li><li><a href="mongoid.tostring.html">MongoId::__toString</a> — Retourne une repr&eacute;sentation hexad&eacute;cimale de cet identifiant</li></ul>
+</div>
+</div></div></body></html>

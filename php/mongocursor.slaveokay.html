@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>D&eacute;finit si la requ&ecirc;te peut &ecirc;tre effectu&eacute;e sur un serveur secondaire (obsol&egrave;te)</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongocursor.skip.html">« MongoCursor::skip</a></li>
+      <li style="float: right;"><a href="mongocursor.snapshot.html">MongoCursor::snapshot »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mongocursor.html">MongoCursor</a></li>
+    <li>D&eacute;finit si la requ&ecirc;te peut &ecirc;tre effectu&eacute;e sur un serveur secondaire (obsol&egrave;te)</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongocursor.slaveokay" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">MongoCursor::slaveOkay</h1>
+  <p class="verinfo">(PECL mongo &gt;=0.9.4)</p><p class="refpurpose"><span class="refname">MongoCursor::slaveOkay</span> &mdash; <span class="dc-title">Définit si la requête peut être effectuée sur un serveur secondaire (obsolète)</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongocursor.slaveokay-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>MongoCursor::slaveOkay</strong></span>
+    ([ <span class="methodparam"><span class="type">bool</span> <code class="parameter">$okay</code><span class="initializer"> = <strong><code>TRUE</code></strong></span></span>
+  ] ) : <span class="type"><a href="class.mongocursor.html" class="type MongoCursor">MongoCursor</a></span></div>
+
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Cette méthode est obsolète depuis la version 1.5.0. Veuillez utiliser la
+    méthode <span class="methodname"><a href="mongocursor.setreadpreference.html" class="methodname">MongoCursor::setReadPreference()</a></span> ainsi que
+    <a href="mongo.readpreferences.html" class="xref">Pr&eacute;f&eacute;rences de lecture</a>.
+   </p>
+  </div>
+  <p class="para">
+   L&#039;appel à cette méthode fera que la driver liera sur les secondaires si :
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      Vous utilisez un jeu de réplication, et
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Vous avez créé une instance <a href="class.mongoclient.html" class="classname">MongoClient</a> en utilisant l&#039;option
+      <code class="literal">&quot;replicaSet&quot; =&gt; &quot;setName&quot;</code> et
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Il y a un secondaire en bonne santé qui peut être atteint par le driver.
+     </span>
+    </li>
+   </ul>
+   Vous pouvez savoir quel serveur a été utilisé pour cette requête en appelant
+   la méthode <span class="function"><a href="mongocursor.info.html" class="function">MongoCursor::info()</a></span> après l&#039;exécution de la requête.
+   L&#039;information sera contenue dans le champ
+   <code class="literal">server</code>.
+  </p>
+  <p class="para">
+   Notez que vous devriez utiliser cette fonction même si vous n&#039;utilisez pas
+   la lecture automatique sur les secondaires. Si vous vous connectez directement
+   sur un secondaire d&#039;un jeu de réplications, vous devrez continuer d&#039;utiliser
+   cette méthode, qui informe la base de données que vous êtes prêt à recevoir
+   d&#039;anciennes données. Si vous ne l&#039;appelez pas, vous recevrez une erreur
+   de type &quot;not master&quot; lors de l&#039;exécution de la requête.
+  </p>
+  <p class="para">
+   Cette méthode écrasera la variable statique
+   <var class="varname">MongoCursor::$slaveOkay</var>. Elle écrasera aussi
+   <span class="function"><a href="mongo.setslaveokay.html" class="function">Mongo::setSlaveOkay()</a></span>,
+   <span class="function"><a href="mongodb.setslaveokay.html" class="function">MongoDB::setSlaveOkay()</a></span> et
+   <span class="function"><a href="mongocollection.setslaveokay.html" class="function">MongoCollection::setSlaveOkay()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongocursor.slaveokay-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+
+      <code class="parameter">okay</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Si l&#039;on peut effectuer la requête sur un serveur secondaire.
+      </p>
+     </dd>
+
+       
+   </dl>
+
+  </p>
+ </div>
+ 
+
+ <div class="refsect1 returnvalues" id="refsect1-mongocursor.slaveokay-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>  
+  <p class="para">
+   Returns this cursor.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mongocursor.slaveokay-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Lance une exception <a href="class.mongocursorexception.html" class="classname">MongoCursorException</a>
+   si le curseur a commencé à être parcouru.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mongocursor.slaveokay-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="mongocursor.intro-example">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>MongoCursor::slaveOkay()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />MongoCursor</span><span style="color: #007700">::</span><span style="color: #0000BB">$slaveOkay&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;On&nbsp;ne&nbsp;peut&nbsp;pas&nbsp;faire&nbsp;la&nbsp;requête&nbsp;sur&nbsp;un&nbsp;serveur&nbsp;secondaire<br /></span><span style="color: #0000BB">$cursor&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;On&nbsp;peut&nbsp;faire&nbsp;la&nbsp;requête&nbsp;sur&nbsp;un&nbsp;serveur&nbsp;secondaire<br /></span><span style="color: #0000BB">$cursor&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">slaveOkay</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">MongoCursor</span><span style="color: #007700">::</span><span style="color: #0000BB">$slaveOkay&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;On&nbsp;peut&nbsp;faire&nbsp;la&nbsp;requête&nbsp;sur&nbsp;un&nbsp;serveur&nbsp;secondaire<br /></span><span style="color: #0000BB">$cursor&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;On&nbsp;ne&nbsp;peut&nbsp;pas&nbsp;faire&nbsp;la&nbsp;requête&nbsp;sur&nbsp;un&nbsp;serveur&nbsp;secondaire<br /></span><span style="color: #0000BB">$cursor&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">slaveOkay</span><span style="color: #007700">(</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mongocursor.slaveokay-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member"><a href="mongo.readpreferences.html" class="xref">Pr&eacute;f&eacute;rences de lecture</a></li>
+   <li class="member"><span class="methodname"><a href="mongocursor.setreadpreference.html" class="methodname" rel="rdfs-seeAlso">MongoCursor::setReadPreference()</a> - D&eacute;finit les pr&eacute;f&eacute;rences de lecture pour cette requ&ecirc;te</span></li>
+   <li class="member"><span class="methodname"><a href="mongocursor.getreadpreference.html" class="methodname" rel="rdfs-seeAlso">MongoCursor::getReadPreference()</a> - R&eacute;cup&egrave;re les pr&eacute;f&eacute;rences de lecture pour cette requ&ecirc;te</span></li>
+  </ul>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-mongocursor.slaveokay-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>1.5.0</td>
+       <td>
+        Cette méthode est devenue obsolète, en faveur de la méthode
+        <span class="methodname"><a href="mongocursor.setreadpreference.html" class="methodname">MongoCursor::setReadPreference()</a></span> et <a href="mongo.readpreferences.html" class="xref">Pr&eacute;f&eacute;rences de lecture</a>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

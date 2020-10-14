@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lit une ligne de r&eacute;sultat SQLite dans un tableau</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.sqlite-create-function.html">« sqlite_create_function</a></li>
+      <li style="float: right;"><a href="function.sqlite-error-string.html">sqlite_error_string »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.sqlite.html">Fonctions SQLite</a></li>
+    <li>Lit une ligne de r&eacute;sultat SQLite dans un tableau</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.sqlite-current" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_current</h1>
+  <h1 class="refname">SQLiteResult::current</h1>
+  <h1 class="refname">SQLiteUnbuffered::current</h1>
+  <p class="verinfo">(PHP 5 &lt; 5.4.0, PECL sqlite &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">sqlite_current</span> -- <span class="refname">SQLiteResult::current</span> -- <span class="refname">SQLiteUnbuffered::current</span> &mdash; <span class="dc-title">Lit une ligne de résultat SQLite dans un tableau</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.sqlite-current-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>sqlite_current</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$result</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$result_type</code><span class="initializer"> = SQLITE_BOTH</span></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$decode_binary</code><span class="initializer"> = <strong><code>TRUE</code></strong></span></span>
+  ]] ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">Style orienté objet (méthode) :</p>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>SQLiteResult::current</strong></span>
+    ([ <span class="methodparam"><span class="type">int</span> <code class="parameter">$result_type</code><span class="initializer"> = SQLITE_BOTH</span></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$decode_binary</code><span class="initializer"> = <strong><code>TRUE</code></strong></span></span>
+  ]] ) : <span class="type">array</span></div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>SQLiteUnbuffered::current</strong></span>
+    ([ <span class="methodparam"><span class="type">int</span> <code class="parameter">$result_type</code><span class="initializer"> = SQLITE_BOTH</span></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$decode_binary</code><span class="initializer"> = <strong><code>TRUE</code></strong></span></span>
+  ]] ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>sqlite_current()</strong></span> est identique à
+   <span class="function"><a href="function.sqlite-fetch-array.html" class="function">sqlite_fetch_array()</a></span> hormis le fait qu&#039;elle ne fait pas
+   progresser le pointeur de résultat avant de lire des données. Elle ne fait
+   que retourner les données qui sont disponibles à la position courante.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.sqlite-current-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">result</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La ressource de résultat SQLite. Ce paramètre n&#039;est pas requis lorsque
+       vous utilisez la méthode orientée objet.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">result_type</code></dt>
+
+     <dd>
+
+      <p class="para">Le paramètre optionnel
+<code class="parameter">result_type</code> accepte une constante et détermine comment
+le tableau retourné doit être indexé. L&#039;utilisation de
+<strong><code>SQLITE_ASSOC</code></strong> retournera uniquement un tableau associatif
+(nom des champs) tandis que <strong><code>SQLITE_NUM</code></strong> retournera un
+tableau indexé numériquement (numéro ordinal des champs).
+<strong><code>SQLITE_BOTH</code></strong> retournera des indices numériques et associatifs.
+<strong><code>SQLITE_BOTH</code></strong> est la valeur par défaut pour cette
+fonction.</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">decode_binary</code></dt>
+
+     <dd>
+
+      <p class="para">Lorsque <code class="parameter">decode_binary</code>
+vaut <strong><code>TRUE</code></strong> (par défaut), PHP va décoder les données binaires, si elles ont été
+codées avec la fonction <span class="function"><a href="function.sqlite-escape-string.html" class="function">sqlite_escape_string()</a></span>.
+Vous allez généralement laisser cette valeur à sa valeur par défaut,
+à moins que vous ne travailliez avec des bases opérées par d&#039;autres
+applications.</p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.sqlite-current-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau de la ligne courante du jeu de résultats: <strong><code>FALSE</code></strong> si la
+   position courante est au-delà de la dernière ligne.
+  </p>
+  <p class="para">Les noms de colonnes retournés par
+<strong><code>SQLITE_ASSOC</code></strong> et <strong><code>SQLITE_BOTH</code></strong>
+suivent les règles concernant la case définie par l&#039;option de configuration
+<a href="sqlite.configuration.html#ini.sqlite.assoc-case" class="link">sqlite.assoc_case</a>.</p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.sqlite-current-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.sqlite-seek.html" class="function" rel="rdfs-seeAlso">sqlite_seek()</a> - D&eacute;place le pointeur de r&eacute;sultat SQLite vers une ligne</span></li>
+    <li class="member"><span class="function"><a href="function.sqlite-next.html" class="function" rel="rdfs-seeAlso">sqlite_next()</a> - D&eacute;place le pointeur SQLite vers la prochaine ligne</span></li>
+    <li class="member"><span class="function"><a href="function.sqlite-fetch-array.html" class="function" rel="rdfs-seeAlso">sqlite_fetch_array()</a> - Lit la prochaine ligne de r&eacute;sultat SQLite dans un tableau</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

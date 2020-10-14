@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Les constantes</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.variables.external.html">« Variables externes &agrave; PHP</a></li>
+      <li style="float: right;"><a href="language.constants.syntax.html">Syntaxe »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="langref.html">R&eacute;f&eacute;rence du langage</a></li>
+    <li>Les constantes</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.constants" class="chapter">
+ <h1>Les constantes</h1>
+<h2>Sommaire</h2><ul class="chunklist chunklist_chapter"><li><a href="language.constants.syntax.html">Syntaxe</a></li><li><a href="language.constants.predefined.html">Constantes magiques</a></li></ul>
+
+ <p class="simpara">
+  Une constante est un identifiant (un nom) qui représente une valeur
+  simple. Comme son nom le suggère, cette valeur ne peut jamais être
+  modifiée durant l&#039;exécution du script (sauf les
+  <a href="language.constants.predefined.html" class="link">constantes magiques</a>).
+  Par défaut, le nom d&#039;une constante est sensible à la casse. Par convention,
+  les constantes sont toujours en majuscules.
+ </p>
+ <p class="para">
+  Les noms de constantes suivent les mêmes règles que n&#039;importe
+  quel nom en PHP. Un nom de constante valide commence par une
+  lettre ou un souligné, suivi d&#039;un nombre
+  quelconque de lettres, chiffres ou soulignés. Sous forme d&#039;expression
+  régulière, cela peut s&#039;exprimer comme ceci :
+  <code class="code">^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$</code>
+ </p>
+ <p class="para">
+   C&#039;est possible de définir une constante avec un nom réservé ou même invalide via <span class="function"><a href="function.define.html" class="function">define()</a></span>,
+   ces valeurs peuvent (seulement) être récupérées avec 
+   <span class="function"><a href="function.constant.html" class="function">constant()</a></span>. Cependant, faire ceci n&#039;est pas recommandé.
+  </p>
+ <div class="tip"><strong class="tip">Astuce</strong><p class="simpara">
+ Jetez un oeil sur <a href="userlandnaming.html" class="xref">Guide de nommage de l'espace utilisateur</a>.
+</p></div>
+ <p class="para">
+  <div class="example" id="example-100">
+   <p><strong>Exemple #1 Noms valides et invalides pour les constantes</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Noms&nbsp;valides<br /></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">"FOO"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"something"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">"FOO2"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"something&nbsp;else"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">"FOO_BAR"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"something&nbsp;more"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Noms&nbsp;invalides<br /></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">"2FOO"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"something"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Ce&nbsp;nom&nbsp;est&nbsp;valide,&nbsp;mais&nbsp;évitez-le:<br />//&nbsp;PHP&nbsp;peut&nbsp;un&nbsp;jour&nbsp;fournir&nbsp;une&nbsp;constante&nbsp;magique&nbsp;nommée<br />//&nbsp;ainsi,&nbsp;ce&nbsp;qui&nbsp;va&nbsp;corrompre&nbsp;vos&nbsp;scripts.<br /></span><span style="color: #0000BB">define</span><span style="color: #007700">(</span><span style="color: #DD0000">"__FOO__"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"something"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+ </p>
+ <blockquote class="note"><p><strong class="note">Note</strong>: 
+  <span class="simpara">
+   Dans cette documentation, une lettre peut être un des caractères
+   suivants : de a à z, de A à Z et tous les caractères ASCII
+   de 128 à 255 (<code class="literal">0x80-0xff</code>).
+  </span>
+ </p></blockquote>
+ <p class="simpara">
+  Tout comme les <a href="language.variables.predefined.html" class="link">superglobals</a>, les constantes sont
+  accessibles de manière globale. Vous pouvez les définir
+  n&#039;importe où, et y accéder depuis n&#039;importe quelle fonction.
+  Pour plus d&#039;informations sur le contexte, lisez la section
+  du manuel sur la <a href="language.variables.scope.html" class="link">portée
+  des variables</a>.
+ </p>
+ 
+ 
+ 
+ 
+ </div>
+</div></div></body></html>

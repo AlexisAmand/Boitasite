@@ -1,0 +1,436 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>La classe EventBase</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="event.timer.html">« Event::timer</a></li>
+      <li style="float: right;"><a href="eventbase.construct.html">EventBase::__construct »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.event.html">Event</a></li>
+    <li>La classe EventBase</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="class.eventbase" class="reference">
+ <h1 class="title">La classe EventBase</h1>
+ 
+ <div class="partintro"><p class="verinfo">(PECL event &gt;= 1.2.6-beta)</p>
+
+  <div class="section" id="eventbase.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    La classe <strong class="classname">EventBase</strong> représente la structure
+    de base d&#039;un événement libevent. Elle contient un jeu d&#039;événements
+    et peut vérifier quels sont les événements actifs.
+   </p>
+   <p class="para">
+    Chaque événement de base a une <em class="emphasis">méthode</em> ou un
+    <em class="emphasis">backend</em> utilisé pour déterminer quels
+    sont les événements prêts. Ces méthodes sont :
+    <code class="literal">select</code>, <code class="literal">poll</code>, <code class="literal">epoll</code>,
+    <code class="literal">kqueue</code>, <code class="literal">devpoll</code>, <code class="literal">evport</code>
+    et <code class="literal">win32</code>.
+   </p>
+   <p class="para">
+    Pour configurer un événement de base à utiliser, ou éviter un backend spécifique,
+    la classe <a href="class.eventconfig.html" class="classname">EventConfig</a> peut être utilisée.
+   </p>
+   <div class="warning"><strong class="warning">Avertissement</strong>
+    <p class="para">
+     Ne <em class="emphasis">détruisez pas</em> l&#039;objet <strong class="classname">EventBase</strong>
+     tant que les ressources associées aux objets <code class="literal">Event</code>
+     ne sont pas libérées. Sinon, cela mènera à des résultats totalement indéfinis !
+    </p>
+   </div>
+  </div>
+
+  <div class="section" id="eventbase.synopsis">
+   <h2 class="title">Synopsis de la classe</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass">
+     
+    </div>
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <span class="modifier">final</span>
+      <strong class="classname">EventBase</strong>
+     </span>
+     {</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Constants */</div>
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.eventbase.html#eventbase.constants.loop-once"><var class="varname">LOOP_ONCE</var></a></var>
+     <span class="initializer"> = 1</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.eventbase.html#eventbase.constants.loop-nonblock"><var class="varname">LOOP_NONBLOCK</var></a></var>
+     <span class="initializer"> = 2</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.eventbase.html#eventbase.constants.nolock"><var class="varname">NOLOCK</var></a></var>
+     <span class="initializer"> = 1</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.eventbase.html#eventbase.constants.startup-iocp"><var class="varname">STARTUP_IOCP</var></a></var>
+     <span class="initializer"> = 4</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.eventbase.html#eventbase.constants.no-cache-time"><var class="varname">NO_CACHE_TIME</var></a></var>
+     <span class="initializer"> = 8</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">integer</span>
+      <var class="fieldsynopsis_varname"><a href="class.eventbase.html#eventbase.constants.epoll-use-changelist"><var class="varname">EPOLL_USE_CHANGELIST</var></a></var>
+     <span class="initializer"> = 16</span>
+    ;</div>
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Méthodes */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="methodname"><a href="eventbase.construct.html" class="methodname">__construct</a></span>
+    ([ <span class="methodparam">
+    <span class="type"><a href="class.eventconfig.html" class="type EventConfig">EventConfig</a></span>
+     <code class="parameter">$cfg</code>
+   </span>
+  ] )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbase.dispatch.html" class="methodname">dispatch</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbase.exit.html" class="methodname">exit</a></span>
+    ([ <span class="methodparam">
+    <span class="type">float</span>
+     <code class="parameter">$timeout</code>
+   </span>
+  ] ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbase.free.html" class="methodname">free</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbase.getfeatures.html" class="methodname">getFeatures</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">int</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbase.getmethod.html" class="methodname">getMethod</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">string</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbase.gettimeofdaycached.html" class="methodname">getTimeOfDayCached</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">float</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbase.gotexit.html" class="methodname">gotExit</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbase.gotstop.html" class="methodname">gotStop</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbase.loop.html" class="methodname">loop</a></span>
+    ([ <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$flags</code>
+   </span>
+  ] ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbase.priorityinit.html" class="methodname">priorityInit</a></span>
+    ( <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$n_priorities</code>
+   </span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbase.reinit.html" class="methodname">reInit</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   
+   <span class="methodname"><a href="eventbase.stop.html" class="methodname">stop</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">bool</span></div>
+
+   }</div>
+
+  </div>
+
+  <div class="section" id="eventbase.constants">
+   <h2 class="title">Constantes pré-définies</h2>
+   <dl>
+
+    
+     <dt id="eventbase.constants.loop-once">
+      <strong><code>EventBase::LOOP_ONCE</code></strong>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Drapeau utilisé avec la méthode <span class="methodname"><a href="eventbase.loop.html" class="methodname">EventBase::loop()</a></span>
+       qui signifie : &quot;blocage tant que libevent a un événement actif, puis,
+       sortie une fois que tous les événements actifs ont exécuté leurs
+       fonctions de rappel&quot;.
+      </p>
+     </dd>
+
+    
+    
+     <dt id="eventbase.constants.loop-nonblock">
+      <strong><code>EventBase::LOOP_NONBLOCK</code></strong>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Drapeau utilisé avec la méthode <span class="methodname"><a href="eventbase.loop.html" class="methodname">EventBase::loop()</a></span>
+       qui signifie : &quot;ne pas bloquer : regarde quels sont les événements prêts actuellement,
+       exécute leurs fonctions de rappel avec une priorité haute, puis, on sort&quot;.
+      </p>
+     </dd>
+
+    
+    
+     <dt id="eventbase.constants.nolock">
+      <strong><code>EventBase::NOLOCK</code></strong>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Drapeau de configuration. Ne pas verrouiller la base de l&#039;événement, même si
+       un verrouillage avait été mis en place.
+      </p>
+     </dd>
+
+    
+    
+     <dt id="eventbase.constants.startup-iocp">
+      <strong><code>EventBase::STARTUP_IOCP</code></strong>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Drapeau de configuration spécifique à Windows. Active le répartiteur IOCP
+       au démarrage.
+      </p>
+     </dd>
+
+    
+    
+     <dt id="eventbase.constants.no-cache-time">
+      <strong><code>EventBase::NO_CACHE_TIME</code></strong>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Drapeau de configuration. Au lieu de vérifier le temps courant chaque fois
+       que la boucle d&#039;événement est prête à exécuter la fonction de rappel,
+       le temps sera vérifié a chaque fois que le délai maximal d&#039;attente pour la
+       fonction de rappel sera atteint.
+      </p>
+     </dd>
+
+    
+    
+     <dt id="eventbase.constants.epoll-use-changelist">
+      <strong><code>EventBase::EPOLL_USE_CHANGELIST</code></strong>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Si vous utilisez le backend <code class="literal">epoll</code>, ce drapeau
+       signifie qu&#039;il est sécurisé d&#039;utiliser le code interne de modification de liste
+       interne à Libevent pour mettre en lot les ajouts et les suppressions afin
+       de tenter de minimiser le plus possible le nombre d&#039;appels système..
+      </p>
+      <p class="para">
+       Le fait de définir ce drapeau rend le code plus rapide, mais il peut
+       se confronter à un bogue Linux : il n&#039;est pas sécurisé d&#039;utiliser ce drapeau
+       en la présence d&#039;un fds clôné par dup() ou une de ces variantes.
+       Ceci produirait un comportement étrange et très difficile à diagnostiquer.
+      </p>
+      <p class="para">
+       Ce drapeau peut aussi être activé en définissant la variable d&#039;environnement
+       <code class="literal">EVENT_EPOLL_USE_CHANGELIST</code>.
+      </p>
+      <p class="para">
+       Ce drapeau n&#039;a aucun effet si on l&#039;utlise avec un autre backend que
+       <code class="literal">epoll</code>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </div>
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Sommaire</h2><ul class="chunklist chunklist_reference"><li><a href="eventbase.construct.html">EventBase::__construct</a> — Construit un objet EventBase</li><li><a href="eventbase.dispatch.html">EventBase::dispatch</a> — Distribut les &eacute;v&eacute;nements en attente</li><li><a href="eventbase.exit.html">EventBase::exit</a> — Stoppe la distribution des &eacute;v&eacute;nements</li><li><a href="eventbase.free.html">EventBase::free</a> — Lib&egrave;re les ressources allou&eacute;es pour l'&eacute;v&eacute;nement de base</li><li><a href="eventbase.getfeatures.html">EventBase::getFeatures</a> — Retourne un masque des fonctionalit&eacute;s support&eacute;es</li><li><a href="eventbase.getmethod.html">EventBase::getMethod</a> — Retourne la m&eacute;thode d'&eacute;v&eacute;nement utilis&eacute;e</li><li><a href="eventbase.gettimeofdaycached.html">EventBase::getTimeOfDayCached</a> — Retourne le temps de l'&eacute;v&eacute;nement courant</li><li><a href="eventbase.gotexit.html">EventBase::gotExit</a> — V&eacute;rifie s'il a &eacute;t&eacute; demand&eacute; &agrave; la boucle d'&eacute;v&eacute;nements de sortir</li><li><a href="eventbase.gotstop.html">EventBase::gotStop</a> — V&eacute;rifie s'il a &eacute;t&eacute; demand&eacute; &agrave; la boucle d'&eacute;v&eacute;nements de s'arr&ecirc;ter</li><li><a href="eventbase.loop.html">EventBase::loop</a> — Distribue les &eacute;v&eacute;nements en attente</li><li><a href="eventbase.priorityinit.html">EventBase::priorityInit</a> — D&eacute;fini le nombre de propri&eacute;t&eacute;s par &eacute;v&eacute;nement de base</li><li><a href="eventbase.reinit.html">EventBase::reInit</a> — Re-initialise l'&eacute;v&eacute;nement de base (apr&egrave;s un fork)</li><li><a href="eventbase.stop.html">EventBase::stop</a> — Demande &agrave; event_base de stopper la distribution d'&eacute;v&eacute;nements</li></ul>
+</div>
+</div></div></body></html>

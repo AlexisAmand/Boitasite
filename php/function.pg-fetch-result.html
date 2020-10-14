@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne les valeurs d'un r&eacute;sultat</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.pg-fetch-object.html">« pg_fetch_object</a></li>
+      <li style="float: right;"><a href="function.pg-fetch-row.html">pg_fetch_row »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.pgsql.html">Fonctions PostgreSQL</a></li>
+    <li>Retourne les valeurs d'un r&eacute;sultat</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.pg-fetch-result" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">pg_fetch_result</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">pg_fetch_result</span> &mdash; <span class="dc-title">
+   Retourne les valeurs d&#039;un résultat
+  </span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.pg-fetch-result-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>pg_fetch_result</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$result</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$row</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$field</code></span>
+   ) : <span class="type">string</span></div>
+
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>pg_fetch_result</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$result</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$field</code></span>
+   ) : <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>pg_fetch_result()</strong></span> retourne la valeur d&#039;une ligne et
+   d&#039;un champ (colonne) en particulier à partir d&#039;un ressource de résultat
+   PostgreSQL.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Cette fonction peut s&#039;appeler <span class="function"><strong>pg_result()</strong></span>.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.pg-fetch-result-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">result</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Ressource de résultat de requête PostgreSQL, retournée par
+       <span class="function"><a href="function.pg-query.html" class="function">pg_query()</a></span>, <span class="function"><a href="function.pg-query-params.html" class="function">pg_query_params()</a></span> ou
+       <span class="function"><a href="function.pg-execute.html" class="function">pg_execute()</a></span> (entre autres).
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">row</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Numéro de la ligne à récupérer. Les lignes sont numérotées de 0 en
+       montant. Si l&#039;argument est omis, la ligne suivante est récupérée.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">field</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une chaîne de type <span class="type"><a href="language.types.string.html" class="type string">string</a></span> représentant le nom du champ
+       (colonne) à récupérer, sinon un entier de type <span class="type"><a href="language.types.integer.html" class="type int">int</a></span>
+       représentant le numéro du champ à récupérer. Les champs sont numérotés
+       de 0 en montant.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.pg-fetch-result-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Les booléens sont retournés comme des &quot;t&quot; ou &quot;f&quot;.  
+   Tous les autres types, y compris les tableaux, sont retournés sous forme
+   de chaînes formatées, de la même manière que PostgreSQL vous les afficherait
+   dans le client <strong class="command">psql</strong>. Les valeurs NULL de la base de
+   données sont retournées NULL.
+  </p>
+  <p class="para">
+   <strong><code>FALSE</code></strong> est retournée si <code class="parameter">row</code> excède le nombre de lignes dans le jeu de
+   résultats, n&#039;a plus de ligne disponible ou tout autre erreur.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.pg-fetch-result-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2487">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>pg_fetch_result()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$db&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"dbname=users&nbsp;user=me"</span><span style="color: #007700">)&nbsp;||&nbsp;die();<br /><br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$db</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;1&nbsp;UNION&nbsp;ALL&nbsp;SELECT&nbsp;2"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$val&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_fetch_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Premier&nbsp;champ&nbsp;dans&nbsp;la&nbsp;deuxième&nbsp;ligne&nbsp;est&nbsp;:&nbsp;"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Premier champ dans la deuxième ligne est : 2
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.pg-fetch-result-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.pg-query.html" class="function" rel="rdfs-seeAlso">pg_query()</a> - Ex&eacute;cute une requ&ecirc;te PostgreSQL</span></li>
+    <li class="member"><span class="function"><a href="function.pg-fetch-array.html" class="function" rel="rdfs-seeAlso">pg_fetch_array()</a> - Lit une ligne de r&eacute;sultat PostgreSQL dans un tableau</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

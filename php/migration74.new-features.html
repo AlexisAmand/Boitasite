@@ -1,0 +1,389 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Nouvelles fonctionnalit&eacute;s</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration74.html">« Migration de PHP 7.3.x vers PHP 7.4.x</a></li>
+      <li style="float: right;"><a href="migration74.new-classes.html">Nouvelles Classes et Interfaces »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration74.html">Migration de PHP 7.3.x vers PHP 7.4.x</a></li>
+    <li>Nouvelles fonctionnalit&eacute;s</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration74.new-features" class="sect1">
+ <h2 class="title">Nouvelles fonctionnalités</h2>
+
+ <div class="sect2" id="migration74.new-features.core">
+  <h3 class="title">Cœur de PHP</h3>
+
+  <div class="sect3" id="migration74.new-features.core.typed-properties">
+   <h4 class="title">Propriétés typées</h4>
+
+   <p class="para">
+    Les propriétés des classes supportent désormais la déclaration du type.
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">User&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;</span><span style="color: #0000BB">int&nbsp;$id</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;</span><span style="color: #0000BB">string&nbsp;$name</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+    L&#039;exemple ci-dessus s&#039;assurera que <code class="literal">$user-&gt;id</code> ne peut
+    se voir attribuer que des valeurs d&#039;<a href="language.types.integer.html" class="link">entier</a> et
+    <code class="literal">$user-&gt;name</code> ne peut se voir attribuer que des valeurs
+    <a href="language.types.string.html" class="link">chaîne de caractères</a>.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.new-features.core.arrow-functions">
+   <h4 class="title">Fonctions flèches</h4>
+
+   <p class="para">
+    Les <a href="functions.arrow.html" class="link">fonctions flèches</a> fournissent
+    une syntaxe courte pour définir des fonctions qui lient la portée par
+    valeur implicitement.
+
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$factor&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$nums&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">array_map</span><span style="color: #007700">(</span><span style="color: #0000BB">fn</span><span style="color: #007700">(</span><span style="color: #0000BB">$n</span><span style="color: #007700">)&nbsp;=&gt;&nbsp;</span><span style="color: #0000BB">$n&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB">$factor</span><span style="color: #007700">,&nbsp;[</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">]);<br /></span><span style="color: #FF8000">//&nbsp;$nums&nbsp;=&nbsp;array(10,&nbsp;20,&nbsp;30,&nbsp;40);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.new-features.core.type-variance">
+   <h4 class="title">Type de retour covariant et type d&#039;argument contravariant limité</h4>
+
+   <p class="para">
+    Le code suivant va désormais fonctionner :
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">A&nbsp;</span><span style="color: #007700">{}<br />class&nbsp;</span><span style="color: #0000BB">B&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">A&nbsp;</span><span style="color: #007700">{}<br /><br />class&nbsp;</span><span style="color: #0000BB">Producer&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">method</span><span style="color: #007700">():&nbsp;</span><span style="color: #0000BB">A&nbsp;</span><span style="color: #007700">{}<br />}<br />class&nbsp;</span><span style="color: #0000BB">ChildProducer&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">Producer&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">method</span><span style="color: #007700">():&nbsp;</span><span style="color: #0000BB">B&nbsp;</span><span style="color: #007700">{}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+    Le support de variance totale est seulement disponible quand l&#039;autoloading
+    est utilisé. Dans un fichier unique seules des références de types non
+    cycliques sont possibles, car toutes les classes doivent être disponibles
+    avant qu&#039;elles soient référencées.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.new-features.core.null-coalescing-assignment-operator">
+   <h4 class="title">Opérateur d&#039;assignement de fusion Null</h4>
+
+   <p class="para">
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$array</span><span style="color: #007700">[</span><span style="color: #DD0000">'key'</span><span style="color: #007700">]&nbsp;??=&nbsp;</span><span style="color: #0000BB">computeDefault</span><span style="color: #007700">();<br /></span><span style="color: #FF8000">//&nbsp;is&nbsp;roughly&nbsp;equivalent&nbsp;to<br /></span><span style="color: #007700">if&nbsp;(!isset(</span><span style="color: #0000BB">$array</span><span style="color: #007700">[</span><span style="color: #DD0000">'key'</span><span style="color: #007700">]))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$array</span><span style="color: #007700">[</span><span style="color: #DD0000">'key'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">computeDefault</span><span style="color: #007700">();<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.new-features.core.unpack-inside-array">
+   <h4 class="title">Déballage dans les tableaux</h4>
+
+   <p class="para">
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$parts&nbsp;</span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'apple'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'pear'</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">$fruits&nbsp;</span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'banana'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'orange'</span><span style="color: #007700">,&nbsp;...</span><span style="color: #0000BB">$parts</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'watermelon'</span><span style="color: #007700">];<br /></span><span style="color: #FF8000">//&nbsp;['banana',&nbsp;'orange',&nbsp;'apple',&nbsp;'pear',&nbsp;'watermelon'];<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.new-features.core.numeric-literal-separator">
+   <h4 class="title">Séparateur numérique litéral</h4>
+
+   <p class="para">
+    Les nombres littéraux peuvent contenir un caractère de soulignement entre
+    les chiffres.
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />6.674_083e</span><span style="color: #007700">-</span><span style="color: #0000BB">11</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;float<br /></span><span style="color: #0000BB">299_792_458</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;decimal<br /></span><span style="color: #0000BB">0xCAFE_F00D</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;hexadecimal<br /></span><span style="color: #0000BB">0b0101_1111</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;binary<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+ 
+  <div class="sect3" id="migration74.new-features.core.weakreference">
+   <h4 class="title">Références faibles</h4>
+
+   <p class="para">
+    Les références faibles permettent au développeur de retenir une référence
+    à un object qui n&#039;empêche pas l&#039;objet d&#039;être détruit.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.new-features.core.tostring-exceptions">
+   <h4 class="title">Autoriser des Exceptions depuis __toString()</h4>
+
+   <p class="para">
+    Lancer des exceptions depuis <a href="language.oop5.magic.html#object.tostring" class="link">__toString()</a>
+    est désormais permis. Précédemment, ceci résultait en une erreur fatale.
+    Les erreurs fatales récupérables dans les conversions de <a href="language.types.string.html" class="link">chaîne de caractères</a> ont été
+    converties en exceptions <a href="class.error.html" class="classname">Error</a>.
+   </p>
+  </div>
+
+ </div>
+
+ <div class="sect2" id="migration74.new-features.curl">
+  <h3 class="title">CURL</h3>
+  
+  <p class="para">
+   <a href="class.curlfile.html" class="classname">CURLFile</a> supporte désormais les enveloppes de flux
+   en plus des noms de fichiers bruts, si l&#039;extension a été compilée avec libcurl
+   &gt;= 7.56.0.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.new-features.filter">
+  <h3 class="title">Filtre</h3>
+  
+  <p class="para">
+   Le filtre <strong><code>FILTER_VALIDATE_FLOAT</code></strong> supporte désormais les
+   options <code class="literal">min_range</code> et <code class="literal">max_range</code>,
+   avec la même sémantique que <strong><code>FILTER_VALIDATE_INT</code></strong>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.new-features.ffi">
+  <h3 class="title">FFI</h3>
+
+  <p class="para">
+   FFI est une nouvelle extension, qui fournit une manière simple d&#039;appeler
+   les fonctions natives, un accès natif aux variables, et la création/l&#039;accès à
+   des structures de données définies dans des bibliothèques C.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.new-features.gd">
+  <h3 class="title">GD</h3>
+
+  <p class="para">
+   Ajout du filtre d&#039;image <strong><code>IMG_FILTER_SCATTER</code></strong>
+   pour appliquer un filtre à dispersions aux images.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.new-features.hash">
+  <h3 class="title">Hash</h3>
+
+  <p class="para">
+   Ajout du hash <code class="literal">crc32c</code> utilisant le polynôme de Castagnoli.
+   Cette variante de CRC32 est utilisée par les systèmes de stockage, tels que
+   iSCSI, SCTP, Btrfs et ext4.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.new-features.mbstring">
+  <h3 class="title">Chaînes Multi-octet</h3>
+
+  <p class="para">
+   Ajout de la fonction <span class="function"><a href="function.mb-str-split.html" class="function">mb_str_split()</a></span>, qui fournit la même
+   fonctionalité que <span class="function"><a href="function.str-split.html" class="function">str_split()</a></span>, mais opère sur des points
+   de code au lieu d&#039;octets.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.new-features.opcache">
+  <h3 class="title">OPcache</h3>
+
+  <p class="para">
+   <a href="opcache.preloading.html" class="link">Le support pour le préchargement de code</a> a été ajouté.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.new-features.pcre">
+  <h3 class="title">Expressions Régulières (Compatible Perl)</h3>
+
+  <p class="para">
+   Les fonctions <span class="function"><a href="function.preg-replace-callback.html" class="function">preg_replace_callback()</a></span> et
+   <span class="function"><a href="function.preg-replace-callback-array.html" class="function">preg_replace_callback_array()</a></span> acceptent désormais un
+   argument <code class="parameter">flags</code> additionnel, avec le support des
+   drapeaux <strong><code>PREG_OFFSET_CAPTURE</code></strong> et
+   <strong><code>PREG_UNMATCHED_AS_NULL</code></strong>.
+   Ceci influence le format du <a href="language.types.array.html" class="link">tableau</a> de matchs passé à la fonction de rappel.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.new-features.pdo">
+  <h3 class="title">PDO</h3>
+
+  <p class="para">
+   Le nom d&#039;utilisateur et le mot de passe peuvent désormais être spécifiés en tant
+   que partie du DSN PDO pour les pilotes mysql, mssql, sybase, dblib, firebird
+   et oci. Précédemment, ceci était seulement supporté pour le pilote pgsql.
+   Si un nom d&#039;utilisateur/mot de passe est défini à la fois dans le
+   constructeur et le DSN, le constructeur prend précédence.
+  </p>
+  <p class="para">
+   Il est désormais possible d&#039;échapper les points d&#039;interrogations dans les
+   requêtes SQL pour éviter qu&#039;ils ne soient interprétés comme paramètre fictif.
+   Écrire <code class="literal">??</code> permet d&#039;envoyer un seul point d&#039;interrogation
+   à la base de données et, par exemple, utiliser l&#039;opérateur PostgreSQL JSON
+   pour savoir si une clef existe (<code class="literal">?</code>).
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.new-features.pdo_oci">
+  <h3 class="title">PDO_OCI</h3>
+
+  <p class="para">
+   <span class="methodname"><a href="pdostatement.getcolumnmeta.html" class="methodname">PDOStatement::getColumnMeta()</a></span> est désormais disponible.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.new-features.pdo_sqlite">
+  <h3 class="title">PDO_SQLite</h3>
+
+  <p class="para">
+   <code class="literal">PDOStatement::getAttribute(PDO::SQLITE_ATTR_READONLY_STATEMENT)</code>
+   permet de vérifier si la déclaration est en lecture seule, c.à.d. si elle
+   ne modifie pas la base de données.
+  </p>
+  <p class="para">
+   <code class="literal">PDO::setAttribute(PDO::SQLITE_ATTR_EXTENDED_RESULT_CODES, true)</code>
+   active l&#039;utilisation des codes de résultats étendus dans
+   <span class="function"><a href="pdo.errorinfo.html" class="function">PDO::errorInfo()</a></span> et
+   <span class="function"><a href="pdostatement.errorinfo.html" class="function">PDOStatement::errorInfo()</a></span>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.new-features.sqlite3">
+  <h3 class="title">SQLite3</h3>
+
+  <p class="para">
+   Ajout de <span class="methodname"><strong>SQLite3::lastExtendedErrorCode()</strong></span>
+   pour récupérer le dernier code étendu du résultat.
+  </p>
+  <p class="para">
+   Ajout de <code class="literal">SQLite3::enableExtendedResultCodes($enable = true)</code>,
+   qui fera retourner des codes de résultats étendus par
+   <span class="methodname"><a href="sqlite3.lasterrorcode.html" class="methodname">SQLite3::lastErrorCode()</a></span>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.new-features.standard">
+  <h3 class="title">Standard</h3>
+
+  <div class="sect3" id="migration74.new-features.standard.strip-tags">
+   <h4 class="title">strip_tags() avec un tableau de noms de tag</h4>
+   <p class="para">
+    <span class="function"><a href="function.strip-tags.html" class="function">strip_tags()</a></span> accepte désormais un <a href="language.types.array.html" class="link">tableau</a> de tags
+    autorisés : au lieu de
+    <code class="literal">strip_tags($str, &#039;&lt;a&gt;&lt;p&gt;&#039;)</code> il est désormais
+    possible d&#039;écrire <code class="literal">strip_tags($str, [&#039;a&#039;, &#039;p&#039;])</code>.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.new-features.standard.magic-serialize">
+   <h4 class="title">Linéarisation personalisée d&#039;objets</h4>
+   <p class="para">
+    Un nouveau mécanisme de linéarisation personalisée d&#039;objets a été ajouté,
+    qui utilise deux nouvelles méthodes magiques :
+    <code class="literal">__serialize</code> et <code class="literal">__unserialize</code>.
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Retourne&nbsp;un&nbsp;tableau&nbsp;contenant&nbsp;tout&nbsp;l'état&nbsp;nécessaire&nbsp;de&nbsp;l'objet.<br /></span><span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">__serialize</span><span style="color: #007700">():&nbsp;array;<br /><br /></span><span style="color: #FF8000">//&nbsp;Restaure&nbsp;l'état&nbsp;d'un&nbsp;objet&nbsp;depuis&nbsp;le&nbsp;tableau&nbsp;de&nbsp;données&nbsp;fourni.<br /></span><span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">__unserialize</span><span style="color: #007700">(array&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">):&nbsp;</span><span style="color: #0000BB">void</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+    Le nouveau mécanisme de linéarisation succèdera à l&#039;interface
+    <span class="interfacename"><a href="class.serializable.html" class="interfacename">Serializable</a></span>, qui sera rendu
+    obsolète dans le futur.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.new-features.standard.array-merge-no-args">
+   <h4 class="title">Les fonctions array merge sans arguments</h4>
+   <p class="para">
+    <span class="function"><a href="function.array-merge.html" class="function">array_merge()</a></span> et <span class="function"><a href="function.array-merge-recursive.html" class="function">array_merge_recursive()</a></span>
+    peuvent désormais être appelées sans arguments, dans ce cas-là elles
+    retourneront un <a href="language.types.array.html" class="link">tableau</a> vide. Ceci est utile en conjonction avec l&#039;opérateur
+    de décomposition, par exemple <code class="literal">array_merge(...$arrays)</code>.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.new-features.standard.proc-open">
+   <h4 class="title">La fonction <span class="function"><a href="function.proc-open.html" class="function">proc_open()</a></span></h4>
+   <p class="para">
+    <span class="function"><a href="function.proc-open.html" class="function">proc_open()</a></span> accepte désormais un <a href="language.types.array.html" class="link">tableau</a> au lieu d&#039;une
+    <a href="language.types.string.html" class="link">chaîne de caractères</a> pour la commande. Dans ce cas-là, le processus est ouvert directement
+    (sans passer à travers un shell) et PHP s&#039;occupera d&#039;échapper argument
+    nécessaire.
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />proc_open</span><span style="color: #007700">([</span><span style="color: #DD0000">'php'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'-r'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'echo&nbsp;"Hello&nbsp;World\n";'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$descriptors</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$pipes</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    <span class="function"><a href="function.proc-open.html" class="function">proc_open()</a></span> supporte désormais les descripteurs
+    <code class="literal">redirect</code> et <code class="literal">null</code>.
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Like&nbsp;2&gt;&amp;1&nbsp;on&nbsp;the&nbsp;shell<br /></span><span style="color: #0000BB">proc_open</span><span style="color: #007700">(</span><span style="color: #0000BB">$cmd</span><span style="color: #007700">,&nbsp;[</span><span style="color: #0000BB">1&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #DD0000">'pipe'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'w'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">2&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #DD0000">'redirect'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">]],&nbsp;</span><span style="color: #0000BB">$pipes</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">//&nbsp;Like&nbsp;2&gt;/dev/null&nbsp;or&nbsp;2&gt;nul&nbsp;on&nbsp;the&nbsp;shell<br /></span><span style="color: #0000BB">proc_open</span><span style="color: #007700">(</span><span style="color: #0000BB">$cmd</span><span style="color: #007700">,&nbsp;[</span><span style="color: #0000BB">1&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #DD0000">'pipe'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'w'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">2&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #DD0000">'null'</span><span style="color: #007700">]],&nbsp;</span><span style="color: #0000BB">$pipes</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.new-features.standard.sodium-argon-hash">
+   <h4 class="title">argon2i(d) sans libargon</h4>
+   <p class="para">
+    <span class="function"><a href="function.password-hash.html" class="function">password_hash()</a></span> a désormais les implémentations de
+    argon2i et argon2id de l&#039;extension sodium quand PHP est compilé sans libargon.
+   </p>
+  </div>
+
+ </div>
+
+</div></div></div></body></html>

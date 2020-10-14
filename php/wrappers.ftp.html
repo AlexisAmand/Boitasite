@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Acc&egrave;s aux URLs FTP(s)</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="wrappers.http.html">« http://</a></li>
+      <li style="float: right;"><a href="wrappers.php.html">php:// »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="wrappers.html">Liste des protocoles et des gestionnaires support&eacute;s</a></li>
+    <li>Acc&egrave;s aux URLs FTP(s)</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="wrappers.ftp" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ftp://</h1>
+  <h1 class="refname">ftps://</h1>
+  <p class="refpurpose"><span class="refname">ftp://</span> -- <span class="refname">ftps://</span> &mdash; <span class="dc-title">Accès aux URLs FTP(s)</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-wrappers.ftp-description">
+  <h3 class="title">Description</h3>
+  <p class="para">
+   Permet l&#039;accès en lecture aux fichiers existants, et la création de fichiers, via FTP.
+   Si le serveur ne supporte pas FTP en mode passif, la
+   connexion échouera.
+  </p>
+  <p class="simpara">
+   Vous pouvez ouvrir des fichiers en lecture ou en écriture, mais
+   pas les deux en même temps. Si le fichier distant existe déjà sur le serveur
+   ftp et que vous tentez de l&#039;ouvrir en écriture alors que vous n&#039;avez pas
+   spécifié l&#039;option <code class="literal">overwrite</code> dans le contexte,
+   la connexion échouera. Si vous devez réécrire des fichiers existants
+   en utilisant ftp, spécifiez l&#039;option <code class="literal">overwrite</code> dans le
+   contexte et ouvrez le fichier en écriture. Alternativement, vous pouvez
+   utiliser l&#039;<a href="ref.ftp.html" class="link">extension FTP</a>.
+  </p>
+  <p class="simpara">
+   Si vous avez défini la directive <a href="filesystem.configuration.html#ini.from" class="link">from</a>
+   dans le fichier <var class="filename">php.ini</var>, alors cette valeur sera envoyée en tant
+   que mot de passe pour les accès FTP anonymes.
+  </p>
+ </div>
+
+
+ <div class="refsect1 usage" id="refsect1-wrappers.ftp-usage"> 
+  <h3 class="title">Utilisation</h3>
+  <ul class="itemizedlist">
+   <li class="listitem"><span class="simpara"><var class="filename">ftp://example.com/pub/fichier.txt</var></span></li>
+   <li class="listitem"><span class="simpara"><var class="filename">ftp://user:password@example.com/pub/fichier.txt</var></span></li>
+   <li class="listitem"><span class="simpara"><var class="filename">ftps://example.com/pub/fichier.txt</var></span></li>
+   <li class="listitem"><span class="simpara"><var class="filename">ftps://user:password@example.com/pub/fichier.txt</var></span></li>
+  </ul>
+ </div>
+ 
+
+ <div class="refsect1 options" id="refsect1-wrappers.ftp-options">
+  <h3 class="title">Options</h3>
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Résumé du gestionnaire</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Attribut</th>
+       <th>Supporté</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>Restreint par <a href="filesystem.configuration.html#ini.allow-url-fopen" class="link">allow_url_fopen</a></td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Autorise la lecture</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Autorise l&#039;écriture</td>
+       <td>Oui (nouveaux fichiers/fichiers existants avec le paramètre <code class="parameter">overwrite</code>)</td>
+      </tr>
+
+      <tr>
+       <td>Autorise l&#039;ajout</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Autorise la lecture et l&#039;écriture simultanément</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Support de la fonction <span class="function"><a href="function.stat.html" class="function">stat()</a></span></td>
+       <td>
+        <span class="function"><a href="function.filesize.html" class="function">filesize()</a></span>, <span class="function"><a href="function.filetype.html" class="function">filetype()</a></span>,
+        <span class="function"><a href="function.file-exists.html" class="function">file_exists()</a></span>, <span class="function"><a href="function.is-file.html" class="function">is_file()</a></span>,
+        et <span class="function"><a href="function.is-dir.html" class="function">is_dir()</a></span> uniquement.
+        À partir de PHP 5.1.0 : <span class="function"><a href="function.filemtime.html" class="function">filemtime()</a></span>.
+       </td>
+      </tr>
+
+      <tr>
+       <td>Support de la fonction <span class="function"><a href="function.unlink.html" class="function">unlink()</a></span></td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Support de la fonction <span class="function"><a href="function.rename.html" class="function">rename()</a></span></td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Support de la fonction <span class="function"><a href="function.mkdir.html" class="function">mkdir()</a></span></td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Support de la fonction <span class="function"><a href="function.rmdir.html" class="function">rmdir()</a></span></td>
+       <td>Oui</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+ 
+
+ <div class="refsect1 notes" id="refsect1-wrappers.ftp-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    FTPS n&#039;est supporté que lorsque l&#039;extension <a href="book.openssl.html" class="link">openssl</a>
+    est active.
+   </p>
+   <span class="simpara">
+    Si le serveur ne supporte pas SSL, alors la connexion passera automatiquement
+    en connexion ftp non chiffrée.
+   </span>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>L&#039;ajout</strong><br />
+   <span class="simpara">
+    L&#039;ajout d&#039;informations à un fichiers est possible avec
+    le gestionnaire d&#039;URL <code class="literal">ftp://</code>.
+   </span>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-wrappers.ftp-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member"><a href="context.ftp.html" class="xref">Options de contexte FTP</a></li>
+  </ul>
+ </div>
+
+
+</div></div></div></body></html>

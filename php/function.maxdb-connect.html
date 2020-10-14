@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ouvre une nouvelle connexion sur un serveur MaxDB</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.maxdb-connect-error.html">« maxdb_connect_error</a></li>
+      <li style="float: right;"><a href="function.maxdb-data-seek.html">maxdb_data_seek »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.maxdb.html">Fonctions MaxDB</a></li>
+    <li>Ouvre une nouvelle connexion sur un serveur MaxDB</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.maxdb-connect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">maxdb_connect</h1>
+  <h1 class="refname">maxdb::__construct</h1>
+  <p class="verinfo">(PECL maxdb &gt;= 1.0)</p><p class="refpurpose"><span class="refname">maxdb_connect</span> -- <span class="refname">maxdb::__construct</span> &mdash; <span class="dc-title">Ouvre une nouvelle connexion sur un serveur MaxDB</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.maxdb-connect-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Style procédural</p>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>maxdb_connect</strong></span>
+    ([ <span class="methodparam"><span class="type">string</span> <code class="parameter">$host</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$username</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$passwd</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$dbname</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$port</code><span class="initializer"> = 0</span></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$socket</code></span>
+  ]]]]]] ) : <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">Style orienté objet</p>
+  <div class="constructorsynopsis dc-description">
+   <span class="methodname"><strong>maxdb::__construct</strong></span>
+    ([ <span class="methodparam"><span class="type">string</span> <code class="parameter">$host</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$username</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$passwd</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$dbname</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$port</code><span class="initializer"> = 0</span></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$socket</code></span>
+  ]]]]]] )</div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>maxdb_connect()</strong></span> tente d&#039;ouvrir une connexion sur un serveur 
+   MaxDB fonctionnant sur l&#039;hôte <code class="parameter">host</code> qui peut être soit
+   un nom d&#039;hôte, soit une adresse IP. Passer la chaîne &quot;localhost&quot; à ce paramètre,
+   l&#039;hôte local sera assumé. En cas de succès, <span class="function"><strong>maxdb_connect()</strong></span>
+   retournera une ressource représentant la connexion à la base de données ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+  <p class="para">
+   Les paramètres <code class="parameter">username</code> et
+   <code class="parameter">password</code> spécifient le nom de l&#039;utilisateur ainsi que le mot
+   de passe utilisés pour la connexion au serveur MaxDB. Si le mot de passe n&#039;est pas
+   fourni (la valeur <strong><code>NULL</code></strong> est passée), le serveur MaxDB tentera d&#039;identifier l&#039;utilisateur
+   encore une fois en utilisant la valeur de l&#039;option de configuration 
+   <code class="parameter">maxdb.default_pw</code> du <var class="filename">php.ini</var>.
+  </p>
+  <p class="para">
+   Le paramètre <code class="parameter">dbname</code>, si fourni, spécifie la base de données
+   par défaut à utiliser lors de l&#039;exécution de requêtes. S&#039;il n&#039;est pas fourni, l&#039;option
+   de configuration <code class="parameter">maxdb.default_db</code> du <var class="filename">php.ini</var> 
+   est utilisée.
+  </p>
+  <p class="para">
+   Les paramètres <code class="parameter">port</code> et <code class="parameter">socket</code> 
+   sont ignorés par le serveur MaxDB.
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.maxdb-connect-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne une ressource représentant la connexion au serveur MaxDB ou <strong><code>FALSE</code></strong>
+   si la connexion échoue.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.maxdb-connect-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1338">
+   <p><strong>Exemple #1 Style orienté objet</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$maxdb&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">maxdb</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Vérfication&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Echec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Informations&nbsp;sur&nbsp;l'hôte&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">host_info</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Fermeture&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #0000BB">$maxdb</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+  </div>
+
+  </div>
+  <div class="example" id="example-1339">
+   <p><strong>Exemple #2 Style procédural</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Vérifie&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Echec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Informations&nbsp;sur&nbsp;l'hôte&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_get_host_info</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/*&nbsp;Fermeture&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p>
+  <div class="example-contents screen">
+<div class="cdata"><pre>
+Informations sur l&#039;hôte : localhost
+</pre></div>
+  </div>
+ </div>
+
+
+</div></div></div></body></html>

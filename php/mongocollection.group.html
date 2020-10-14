@@ -1,0 +1,269 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Effecture une op&eacute;ration de regroupement</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongocollection.getwriteconcern.html">« MongoCollection::getWriteConcern</a></li>
+      <li style="float: right;"><a href="mongocollection.insert.html">MongoCollection::insert »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mongocollection.html">MongoCollection</a></li>
+    <li>Effecture une op&eacute;ration de regroupement</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongocollection.group" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">MongoCollection::group</h1>
+  <p class="verinfo">(PECL mongo &gt;=0.9.2)</p><p class="refpurpose"><span class="refname">MongoCollection::group</span> &mdash; <span class="dc-title">Effecture une opération de regroupement</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongocollection.group-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>MongoCollection::group</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$keys</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$initial</code></span>
+   , <span class="methodparam"><span class="type"><a href="class.mongocode.html" class="type MongoCode">MongoCode</a></span> <code class="parameter">$reduce</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code><span class="initializer"> = array()</span></span>
+  ] ) : <span class="type">array</span></div>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongocollection.group-parameters">
+  <h3 class="title">Liste de paramètres</h3>  
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+
+      <code class="parameter">keys</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Les champs avec lesquels faire le regroupement. Si un 
+       tableau ou un objet non-code est passé, ce sera la clé
+       utilisée pour grouper les résultats.
+      </p>
+      <p class="para">
+       1.0.4+: Si <code class="parameter">keys</code> est une instance de
+       <a href="class.mongocode.html" class="classname">MongoCode</a>, <code class="parameter">keys</code>
+       sera considéré comme une fonction qui retourne la clé pour
+       effectuer le regroupement (voir l&#039;exemple ci-dessous sur le
+       passage d&#039;une fonction <code class="parameter">keys</code>).  
+      </p>
+     </dd>
+
+       
+    
+     <dt>
+
+      <code class="parameter">initial</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Valeur initiales des compteurs d&#039;agrégation.
+      </p>
+     </dd>
+
+       
+    
+     <dt>
+
+      <code class="parameter">reduce</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Fonction acceptant deux arguments (le document courant et l&#039;agrégation
+       à ce point) et effectue l&#039;agrégation.
+      </p>
+     </dd>
+
+       
+    
+     <dt>
+
+      <code class="parameter">options</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Paramètres optionnels pour la commande de groupe. Les options accéptées sont:
+      </p>
+      <ul class="itemizedlist">
+       <li class="listitem">
+        <p class="para">
+         <code class="literal">&quot;condition&quot;</code>
+        </p>
+        <p class="para">
+         Critère pour inclure un document dans l&#039;agrégation.
+        </p>
+       </li>
+       <li class="listitem">
+        <p class="para">
+         <code class="literal">&quot;finalize&quot;</code>
+        </p>
+        <p class="para">
+         Fonction appelée une fois par clé unique qui prend le rendu final
+         de la fonction de réduction.
+        </p>
+       </li>
+       <li class="listitem"><p class="para"><code class="literal">&quot;maxTimeMS&quot;</code></p><p class="para">Spécifie une limite cumulative de temps, en millisecondes, pour procéder à l&#039;opération (n&#039;inclut pas le temps d&#039;inactivité). Si l&#039;opération n&#039;est pas terminée durant cette période, une exception <a href="class.mongoexecutiontimeoutexception.html" class="classname">MongoExecutionTimeoutException</a> sera émise.</p></li>
+      </ul>
+     </dd>
+
+       
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongocollection.group-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau contenant les résultats.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-mongocollection.group-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>1.5.0</td>
+       <td>Ajout de l&#039;option <code class="literal">&quot;maxTimeMS&quot;</code>.</td>
+      </tr>
+
+      <tr>
+       <td>1.2.11</td>
+       <td>
+        Lance une alerte de niveau <strong><code>E_DEPRECATED</code></strong> lorsque
+        le paramètre <code class="parameter">options</code> est de type <span class="type"><span class="type scalar">scalar</span></span>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mongocollection.group-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1569">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>MongoCollection::group()</strong></span></strong></p>
+   <div class="example-contents"><p>
+    Cet exemple regroupe des documents par catégorie et crée une liste de noms
+    à l&#039;intérieur des catégories
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"category"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"fruit"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"apple"</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"category"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"fruit"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"peach"</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"category"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"fruit"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"banana"</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"category"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"veggie"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"corn"</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"category"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"veggie"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"broccoli"</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">$keys&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"category"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$initial&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"items"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array());<br /><br /></span><span style="color: #0000BB">$reduce&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"function&nbsp;(obj,&nbsp;prev)&nbsp;{&nbsp;prev.items.push(obj.name);&nbsp;}"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$g&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">group</span><span style="color: #007700">(</span><span style="color: #0000BB">$keys</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$initial</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$reduce</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">json_encode</span><span style="color: #007700">(</span><span style="color: #0000BB">$g</span><span style="color: #007700">[</span><span style="color: #DD0000">'retval'</span><span style="color: #007700">]);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+[{&quot;category&quot;:&quot;fruit&quot;,&quot;items&quot;:[&quot;apple&quot;,&quot;peach&quot;,&quot;banana&quot;]},{&quot;category&quot;:&quot;veggie&quot;,&quot;items&quot;:[&quot;corn&quot;,&quot;broccoli&quot;]}]
+</pre></div>
+   </div>
+  </div>
+
+  <div class="example" id="example-1570">
+   <p><strong>Exemple #2 Exemple avec <span class="function"><strong>MongoCollection::group()</strong></span></strong></p>
+   <div class="example-contents"><p>
+    Cet exemple n&#039;utilise aucune clé, donc chaque document sera dans son propre
+    groupe. Il y a aussi une condition: seuls les documents qui correspondent à
+    cette condition seront traités par la fonction de regroupement.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+$collection-&gt;save(array("a"&nbsp;=&gt;&nbsp;2));<br />$collection-&gt;save(array("b"&nbsp;=&gt;&nbsp;5));<br />$collection-&gt;save(array("a"&nbsp;=&gt;&nbsp;1));<br /><br />//&nbsp;Utilisation&nbsp;de&nbsp;tous&nbsp;les&nbsp;champs<br />$keys&nbsp;=&nbsp;array();<br /><br />//&nbsp;Défini&nbsp;les&nbsp;valeurs&nbsp;initiales<br />$initial&nbsp;=&nbsp;array("count"&nbsp;=&gt;&nbsp;0);<br /><br />//&nbsp;Fonction&nbsp;JavaScript&nbsp;pour&nbsp;traitement<br />$reduce&nbsp;=&nbsp;"function&nbsp;(obj,&nbsp;prev)&nbsp;{&nbsp;prev.count++;&nbsp;}";<br /><br />//&nbsp;N'utilisez&nbsp;que&nbsp;les&nbsp;documents&nbsp;où&nbsp;le&nbsp;champ&nbsp;"a"&nbsp;est&nbsp;plus&nbsp;grand&nbsp;que&nbsp;1<br />$condition&nbsp;=&nbsp;array('condition'&nbsp;=&gt;&nbsp;array("a"&nbsp;=&gt;&nbsp;array(&nbsp;'$gt'&nbsp;=&gt;&nbsp;1)));<br /><br />$g&nbsp;=&nbsp;$collection-&gt;group($keys,&nbsp;$initial,&nbsp;$reduce,&nbsp;$condition);<br /><br />var_dump($g);<br /><br />?&gt;</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+array(4) {
+  [&quot;retval&quot;]=&gt;
+  array(1) {
+    [0]=&gt;
+    array(1) {
+      [&quot;count&quot;]=&gt;
+      float(1)
+    }
+  }
+  [&quot;count&quot;]=&gt;
+  float(1)
+  [&quot;keys&quot;]=&gt;
+  int(1)
+  [&quot;ok&quot;]=&gt;
+  float(1)
+}
+</pre></div>
+   </div>
+  </div>
+
+  <div class="example" id="example-1571">
+   <p><strong>Exemple #3 Passer une fonction <code class="parameter">keys</code></strong></p>
+   <div class="example-contents"><p>
+    Si vous voulez grouper par quelque chose d&#039;autre qu&#039;un nom de champ,
+    vous pouvez passer une fonction comme premier paramètre à la méthode
+    <span class="function"><strong>MongoCollection::group()</strong></span> et elle sera exécutée
+    sur chacun des documents. La valeur retournée de cette fonction
+    sera utilisée comme valeur de regroupement.
+   </p></div>
+   <div class="example-contents"><p>
+    Cet exemple montre comment regrouper par le numéro du champ, modulo 4.
+   </p></div>
+
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$c</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">group</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">MongoCode</span><span style="color: #007700">(</span><span style="color: #DD0000">'function(doc)&nbsp;{&nbsp;return&nbsp;{mod&nbsp;:&nbsp;doc.num&nbsp;%&nbsp;4};&nbsp;}'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">"count"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoCode</span><span style="color: #007700">(</span><span style="color: #DD0000">'function(current,&nbsp;total)&nbsp;{&nbsp;total.count++;&nbsp;}'</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+
+</div></div></div></body></html>

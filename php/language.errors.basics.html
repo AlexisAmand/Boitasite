@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Bases</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="language.errors.html">« Erreurs</a></li>
+      <li style="float: right;"><a href="language.errors.php7.html">Les Erreurs en PHP 7 »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="language.errors.html">Erreurs</a></li>
+    <li>Bases</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="language.errors.basics" class="sect1">
+ <h2 class="title">Bases</h2>
+
+ <p class="para">
+  PHP signale des erreurs en reponse à un certaines nombres de conditions d&#039;erreurs internes.
+  Ceux-ci peuvent être utilisés pour indiquer une multitude de problèmes différents,
+  et peuvent être affichées et/ou enregistrées dans l&#039;historique selon les besoins.
+ </p>
+
+ <p class="para">
+  Chaque erreur que PHP génère comprend un type. Une 
+  <a href="errorfunc.constants.html" class="link">liste de ces types d&#039;erreur</a> est disponible,
+  ainsi qu&#039;une brève description de leur comportement et leurs cause possible.
+ </p>
+
+ <div class="sect2" id="language.errors.basics.handling">
+  <h3 class="title">Gestion des erreurs en PHP</h3>
+
+  <p class="para">
+   Si aucun gestionnaire d&#039;erreur n&#039;est defini, PHP gèrera les erreurs qui se
+   produise selon sa configuration. Quelles erreurs seront signalées et lesquels
+   seront ignorées sont contrôler par la directive php.ini
+   <a href="errorfunc.configuration.html#ini.error-reporting" class="link"><code class="parameter">error_reporting</code></a>
+   ou lors de l&#039;exécution du script en appelant <span class="function"><a href="function.error-reporting.html" class="function">error_reporting()</a></span>. Il est toutefois fortement recommandé de 
+   configurer la directive, car certaines erreurs peuvent se produires avant
+   que l&#039;exécution du script débute.
+  </p>
+
+  <p class="para">
+   Dans un environnement de développement, la directive 
+   <a href="errorfunc.configuration.html#ini.error-reporting" class="link"><code class="parameter">error_reporting</code></a> 
+   devrait toujours être configurée avec <strong><code>E_ALL</code></strong>, afin d&#039;être
+   informé et corriger les problèmes relevés par PHP. En production il est possible
+   configurer la directive avec un niveau moins verbeux tel que 
+   <code class="code">E_ALL &amp; ~E_NOTICE &amp; ~E_STRICT &amp; ~E_DEPRECATED</code>,
+   mais généralement <strong><code>E_ALL</code></strong> reste approprié car il peut fournir
+   des avertissements en avance à des problèmes potentiels.
+  </p>
+
+  <p class="para">
+   Comment PHP traite ces erreurs dépend de deux directive php.ini supplémentaire.
+   <a href="errorfunc.configuration.html#ini.display-errors" class="link"><code class="parameter">display_errors</code></a>
+   détermine si le message d&#039;erreur est affiché dans la sortie du script.
+   Ceci devrait toujours être désactivé dans un environnement de production, car
+   le message d&#039;erreur peut contenir des informations confidentielles, tel que les
+   mots de passe de base de données. Cependant il est souvent utile d&#039;activer cette
+   directive lors du développement, car ceci assure un signalement immédiat des problèmes.
+  </p>
+
+  <p class="para">
+   En plus d&#039;afficher les erreurs, PHP peut enregistrer les erreurs quand la 
+   directive <a href="errorfunc.configuration.html#ini.log-errors" class="link"><code class="parameter">log_errors</code></a> 
+   est activée. Toutes les erreurs seront alors enregistrées dans le fichier ou 
+   syslog défini par
+   <a href="errorfunc.configuration.html#ini.error-log" class="link"><code class="parameter">error_log</code></a>.
+   Ceci est extrêment utile dans un environnement de production, car les erreurs qui
+   se produisent seront enregistrées, et des rapports pourront être générés en
+   s&#039;appuyant sur ces erreurs.
+  </p>
+ </div>
+
+ <div class="sect2" id="language.errors.basics.user">
+  <h3 class="title">Gestionnaire d&#039;erreurs d&#039;utilisateur</h3>
+
+  <p class="para">
+   Si le gestionnaire d&#039;erreur de PHP par defaut ne convient pas, beaucoup de types 
+   d&#039;erreurs peuvent être gérées par un gestionnaire d&#039;erreur personalisé qui peut
+   être définit avec <span class="function"><a href="function.set-error-handler.html" class="function">set_error_handler()</a></span>.
+   Bien que certains types d&#039;erreurs ne puissent pas être gérés de cette manière, 
+   ceux qui le peuvent seront gérées de la manière que le script utilisateur juge
+   appropriée : par exemple, ceci peut être utilisé pour afficher une page d&#039;erreur
+   personnalisée à l&#039;utilisateur et signaler plus directement plutôt que
+   l&#039;enregistrer dans un fichier, comme en envoyant un courriel électronique.
+  </p>
+ </div>
+</div></div></div></body></html>

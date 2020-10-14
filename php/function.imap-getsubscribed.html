@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Liste toutes les bo&icirc;tes aux lettres souscrites</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.imap-getmailboxes.html">« imap_getmailboxes</a></li>
+      <li style="float: right;"><a href="function.imap-header.html">imap_header »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.imap.html">Fonctions IMAP</a></li>
+    <li>Liste toutes les bo&icirc;tes aux lettres souscrites</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.imap-getsubscribed" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imap_getsubscribed</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">imap_getsubscribed</span> &mdash; <span class="dc-title">Liste toutes les boîtes aux lettres souscrites</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.imap-getsubscribed-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>imap_getsubscribed</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$imap_stream</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$ref</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$pattern</code></span>
+   ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Liste toutes les boîtes aux lettres souscrites.
+  </p>
+  <p class="para">
+   <span class="function"><strong>imap_getsubscribed()</strong></span> est identique à
+   <span class="function"><a href="function.imap-getmailboxes.html" class="function">imap_getmailboxes()</a></span>, mais ne retourne que les
+   boîtes aux lettres auxquelles l&#039;utilisateur est inscrit.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.imap-getsubscribed-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<code class="parameter">
+    imap_stream</code></dt>
+<dd>
+<p class="para">Un flux IMAP retourné par la fonction
+    <span class="function"><a href="function.imap-open.html" class="function">imap_open()</a></span>.</p></dd>
+
+    
+     <dt>
+<code class="parameter">ref</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">ref</code> ne devrait être que le serveur
+       sous la forme décrite dans <span class="function"><a href="function.imap-open.html" class="function">imap_open()</a></span>
+      </p>
+      <div class="warning"><strong class="warning">Avertissement</strong><p class="simpara">
+    Passer des données qui ne sont pas digne de confiance à ce paramètre est <em class="emphasis">dangereux</em>, sauf si,
+    <a href="imap.configuration.html#ini.imap.enable-insecure-rsh" class="link">imap.enable_insecure_rsh</a> est désactivé.
+</p></div>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">pattern</code></dt>
+
+     <dd>
+
+      <p class="para">Spécifie la position dans la hiérarchie des boîtes
+aux lettres, où il faut commencer à chercher.</p><p class="para">Il y a deux caractères
+spéciaux que vous pouvez utiliser dans <code class="parameter">pattern</code> :
+&#039;<code class="literal">*</code>&#039; et &#039;<code class="literal">%</code>&#039;.
+&#039;<code class="literal">*</code>&#039; signifie : toutes les boîtes aux lettres. Si vous passez
+<code class="parameter">pattern</code> comme &#039;<code class="literal">*</code>&#039;, vous obtiendrez
+la liste complète des boîtes aux lettres de la hiérarchie.
+&#039;<code class="literal">%</code>&#039; signifie qu&#039;on ne s&#039;intéresse qu&#039;au niveau courant.
+&#039;<code class="literal">%</code>&#039; passé à <code class="parameter">pattern</code> ne retournera
+que les boîtes aux lettres de niveau supérieur; &#039;<code class="literal">~/mail/%</code>&#039;
+sous <code class="literal">UW_IMAPD</code> retournera toutes les boîtes aux lettres du
+dossier <var class="filename">~/mail</var> directory, mais pas leurs enfants.</p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.imap-getsubscribed-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau d&#039;objets contenant les informations sur les
+   boîtes aux lettres. Chaque objet possède un attribut de
+   <code class="parameter">name</code>, qui contient le nom complet
+   de la boîte aux lettres, <code class="parameter">delimiter</code> qui
+   est le délimiteur hiérarchique et <code class="parameter">attributes</code>.
+   <code class="parameter">attributes</code> est un masque de bits, qui contient :
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      <strong><code>LATT_NOINFERIORS</code></strong> - Cette boîte aux lettres
+      n&#039;a pas d&#039;&quot;enfants&quot; (il n&#039;y a plus de boîtes aux lettres en
+      dessous de celle-ci).
+     </span>
+    </li>
+   <li class="listitem">
+     <span class="simpara">
+      <strong><code>LATT_NOSELECT</code></strong> - Ceci est juste un container, 
+      pas une boîte aux lettres (vous ne pouvez pas l&#039;ouvrir).
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <strong><code>LATT_MARKED</code></strong> - Cette boîte aux lettres est marquée.
+      Utilisé uniquement avec UW-IMAPD.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <strong><code>LATT_UNMARKED</code></strong> - Cette boîte aux lettres n&#039;est pas
+      marquée. Utilisé uniquement avec UW-IMAPD.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <strong><code>LATT_REFERRAL</code></strong> - Ce conteneur a une référence vers une boîte aux lettres distante.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <strong><code>LATT_HASCHILDREN</code></strong> - Cette boîte aux lettres a des inférieurs sélectionnables.
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      <strong><code>LATT_HASNOCHILDREN</code></strong> - Cette boîte aux lettres n&#039;a pas d&#039;inférieurs sélectionnables.
+     </span>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

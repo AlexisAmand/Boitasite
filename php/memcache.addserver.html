@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ajoute un serveur memcache &agrave; la liste de connexion</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="memcache.add.html">« Memcache::add</a></li>
+      <li style="float: right;"><a href="memcache.close.html">Memcache::close »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.memcache.html">Memcache</a></li>
+    <li>Ajoute un serveur memcache &agrave; la liste de connexion</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="memcache.addserver" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Memcache::addServer</h1>
+  <p class="verinfo">(PECL memcache &gt;= 2.0.0)</p><p class="refpurpose"><span class="refname">Memcache::addServer</span> &mdash; <span class="dc-title">Ajoute un serveur memcache à la liste de connexion</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-memcache.addserver-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>Memcache::addServer</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$host</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$port</code><span class="initializer"> = 11211</span></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$persistent</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$weight</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$timeout</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$retry_interval</code></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$status</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> <code class="parameter">$failure_callback</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$timeoutms</code></span>
+  ]]]]]]]] ) : <span class="type">bool</span></div>
+
+  
+  <p class="para rdfs-comment">
+   <span class="function"><strong>Memcache::addServer()</strong></span> ajoute un serveur à la liste de
+   connexion.
+  </p>
+
+  <p class="para">
+   Lors de l&#039;utilisation de cette méthode (contrairement aux méthodes
+   <span class="function"><a href="memcache.connect.html" class="function">Memcache::connect()</a></span> et <span class="function"><a href="memcache.pconnect.html" class="function">Memcache::pconnect()</a></span>),
+   la connexion au réseau n&#039;est pas établie sans qu&#039;elle ne soit nécessaire. De plus,
+   il n&#039;y a aucun inconvénient à ajouter beaucoup de serveurs à la liste, même s&#039;ils ne
+   seront pas tous utilisés.
+  </p>
+
+  <p class="para">
+   Le basculement peut se produire à n&#039;importe quel moment avec n&#039;importe
+   quelle méthode tant que les autres serveurs sont disponibles, la requête
+   n&#039;émettra pas d&#039;erreur. N&#039;importe quel interface de connexion ou niveau
+   d&#039;erreurs de serveur Memcache (à l&#039;exception du manque de mémoire) peut
+   lancer le basculement. Des erreurs normales de client comme l&#039;ajout d&#039;une
+   clé existante ne lancera pas un basculement.
+  </p>
+
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Cette fonction a été ajoutée à la version de Memcache 2.0.0.
+   </p>
+  </p></blockquote>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-memcache.addserver-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">host</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Pointe à l&#039;hôte où memcache écoute pour des connexions. Ce paramètre peut également
+       spécifier d&#039;autres transporteurs comme <code class="literal">unix:///path/to/memcached.sock</code>
+       pour utiliser les sockets Unix, et dans ce cas, <code class="parameter">port</code> doit également
+       être défini à <code class="literal">0</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">port</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Pointe au port où memcache écoute pour des connexions.
+       Définissez ce paramètre à <code class="literal">0</code> lors de l&#039;utilisation des sockets Unix.
+      </p>
+      <p class="para">
+       Note : Par défaut, le paramètre <code class="parameter">port</code>
+       prend la valeur de l&#039;option de configuration
+       <a href="memcache.ini.html#ini.memcache.default-port" class="link">memcache.default_port</a>
+       lorsqu&#039;il n&#039;est pas spécifié. Pour cette raison, il convient
+       de spécifier explicitement le port lors de l&#039;appel à cette méthode.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">persistent</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Contrôle l&#039;utilisation d&#039;une connexion persistante. La valeur par
+       défaut est <strong><code>TRUE</code></strong>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">weight</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Nombre d&#039;entrées à créer pour ce serveur qui en retour contrôle sa
+       probabilité d&#039;être choisi. La probabilité est relative au poids total
+       de tous les serveurs.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">timeout</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Valeur en seconde qui sera utilisée pour se connecter au démon.
+       Pensez-y deux fois avant de changer la valeur par défaut d&#039;une seconde
+       - vous pourriez perdre tous les avantages de l&#039;utilisation de la cache
+       si votre connexion est trop lente.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">retry_interval</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Contrôle combien de fois un serveur qui échoue sera tenté à nouveau, la valeur
+       par défaut est de 15 secondes. Si ce paramètre vaut -1, aucune nouvelle
+       tentative ne sera effectuée. Ni ce paramètre, ni le paramètre
+       <code class="parameter">persistent</code> n&#039;ont d&#039;effet lorsque cette extension
+       est chargée dynamiquement via la fonction <span class="function"><a href="function.dl.html" class="function">dl()</a></span>.
+      </p>
+      <p class="para">
+       Chaque structure de connexion échouée a son propre dépassement de temps
+       et avant que celui-ci expire, il sera sauté lors de la sélection du
+       processus pour servir une requête. Une fois expiré, la connexion sera
+       correctement reconnectée ou marquée comme échouée pour un autre
+       intervalle de <code class="parameter">retry_interval</code> secondes. L&#039;effet
+       typique est que chaque enfant de serveur Web essaiera la connexion
+       chaque <code class="parameter">retry_interval</code> secondes lorsqu&#039;il sert
+       une page.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">status</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Contrôle si le serveur doit être indiqué comme étant en ligne.
+       Quand ce paramètre vaut <strong><code>FALSE</code></strong> et le paramètre <code class="parameter">retry_interval</code>
+       vaut -1, cela permet de conserver un serveur qui a échoué dans la liste
+       et n&#039;affectera pas l&#039;algorithme de distribution des clés. Les demandes
+       pour ce serveur échoueront immédiatement suivant la configuration du
+       paramètre <code class="parameter">memcache.allow_failover</code>.
+       Par défaut, ce paramètre vaut <strong><code>TRUE</code></strong>, signifiant que le serveur doit être
+       considéré comme étant en ligne.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">failure_callback</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Permet à l&#039;utilisateur de spécifier une fonction de rappel permettant de
+       contourner une erreur. La fonction de rappel est exécutée avant d&#039;atteindre la limite
+       de tentative. La fonction prend deux paramètres ; le nom de l&#039;hôte et le port
+       du serveur qui a échoué.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">timeoutms</code></dt>
+
+     <dd>
+
+      <p class="para">
+       
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-memcache.addserver-notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Lorsque le paramètre <code class="parameter">port</code> n&#039;est pas spécifié, cette méthode
+    prendra la valeur de la directive de configuration INI
+    <a href="memcache.ini.html#ini.memcache.default-port" class="link">memcache.default_port</a>.
+    Si cette valeur a été modifiée à un autre endroit dans votre application,
+    cela peut conduire à des résultats innatendus : pour cette raison, il convient
+    de toujours spécifier le port explicitement lors de l&#039;appel à la méthode.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-memcache.addserver-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-memcache.addserver-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-5030">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>Memcache::addServer()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">/*&nbsp;API&nbsp;orientée&nbsp;objet&nbsp;*/<br /><br /></span><span style="color: #0000BB">$memcache&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Memcache</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$memcache</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addServer</span><span style="color: #007700">(</span><span style="color: #DD0000">'memcache_host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$memcache</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addServer</span><span style="color: #007700">(</span><span style="color: #DD0000">'memcache_host2'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;API&nbsp;procédurale&nbsp;*/<br /><br /></span><span style="color: #0000BB">$memcache_obj&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">memcache_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'memcache_host'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">memcache_add_server</span><span style="color: #007700">(</span><span style="color: #0000BB">$memcache_obj</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'memcache_host2'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-memcache.addserver-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="memcache.connect.html" class="function" rel="rdfs-seeAlso">Memcache::connect()</a> - Ouvre une connexion avec le serveur Memcache</span></li>
+    <li class="member"><span class="function"><a href="memcache.pconnect.html" class="function" rel="rdfs-seeAlso">Memcache::pconnect()</a> - Ouvre un connexion persistante &agrave; un serveur de cache</span></li>
+    <li class="member"><span class="function"><a href="memcache.close.html" class="function" rel="rdfs-seeAlso">Memcache::close()</a> - Ferme la connexion avec le serveur Memcache</span></li>
+    <li class="member"><span class="function"><a href="memcache.setserverparams.html" class="function" rel="rdfs-seeAlso">Memcache::setServerParams()</a> - Modifit les param&egrave;tres et les statuts du serveur pendant l'ex&eacute;cution</span></li>
+    <li class="member"><span class="function"><a href="memcache.getserverstatus.html" class="function" rel="rdfs-seeAlso">Memcache::getServerStatus()</a> - Retourne le statut du serveur</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

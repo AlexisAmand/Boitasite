@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Associe une variable PHP &agrave; un param&egrave;tre d'une requ&ecirc;te SQL</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.db2-autocommit.html">« db2_autocommit</a></li>
+      <li style="float: right;"><a href="function.db2-client-info.html">db2_client_info »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.ibm-db2.html">Fonctions IBM DB2</a></li>
+    <li>Associe une variable PHP &agrave; un param&egrave;tre d'une requ&ecirc;te SQL</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.db2-bind-param" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">db2_bind_param</h1>
+  <p class="verinfo">(PECL ibm_db2 &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">db2_bind_param</span> &mdash; <span class="dc-title">
+   Associe une variable PHP à un paramètre d&#039;une requête SQL
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.db2-bind-param-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>db2_bind_param</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$stmt</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$parameter_number</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$variable_name</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$parameter_type</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$data_type</code><span class="initializer"> = 0</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$precision</code><span class="initializer"> = -1</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$scale</code><span class="initializer"> = 0</span></span>
+  ]]]] ) : <span class="type">bool</span></div>
+
+  
+  <p class="para rdfs-comment">
+   Associe une variable PHP à un paramètre dans la requête SQL
+   retournée par <span class="function"><a href="function.db2-prepare.html" class="function">db2_prepare()</a></span>. Cette fonction vous donne
+   plus de contrôle sur les types des paramètres, les types des données, la
+   précision, et l&#039;échelle pour le paramètre qu&#039;en lui passant simplement une
+   variable à l&#039;intérieur du tableau d&#039;entrée optionnel de la fonction
+   <span class="function"><a href="function.db2-execute.html" class="function">db2_execute()</a></span>.
+  </p>
+  
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.db2-bind-param-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">stmt</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une requête préparée retournée par <span class="function"><a href="function.db2-prepare.html" class="function">db2_prepare()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">parameter_number</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Spécifie la position du paramètre commençant à l&#039;indice 1 dans la
+       requête préparée.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">variable_name</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une chaîne spécifiant le nom de la variable PHP à associer au
+       paramètre spécifié par <code class="parameter">parameter_number</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">parameter_type</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une constante spécifiant si la variable PHP devrait être associé au
+       paramètre SQL en tant que paramètre entrant
+       (<code class="literal">DB2_PARAM_IN</code>), que paramètre sortant
+       (<code class="literal">DB2_PARAM_OUT</code>) ou en tant que paramètre qui accepte
+       les entrées et les sorties (<code class="literal">DB2_PARAM_INOUT</code>).
+       Pour éviter une surconsommation de la mémoire, vous pouvez aussi spécifier
+       <code class="literal">DB2_PARAM_FILE</code> pour attacher la variable PHP au
+       nom du fichier qui contient les données de l&#039;objet large (BLOB, CLOB ou
+       DBCLOB).
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">data_type</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Une constante spécifiant le type de données SQL que la variable PHP
+       devrait être associée. Le paramètre doit prendre une des valeurs
+       suivantes : <code class="literal">DB2_BINARY</code>,
+       <code class="literal">DB2_CHAR</code>, <code class="literal">DB2_DOUBLE</code> ou
+       <code class="literal">DB2_LONG</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">precision</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Spécifie la précision à laquelle la variable devrait être associée à
+       la base de données. Ce paramètre peut également être utilisé pour
+       récupérer des valeurs de sortie XML pour les procédures stockées.
+       Une valeur non-négative spécifie la taille maximale des données XML
+       qui seront récupérées depuis la base de données. Si ce paramètre n&#039;est
+       pas utilisé, une taille par défaut de 1 Mo sera définie pour récupérer
+       les valeurs de sorte XML depuis la procédure stockée.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">scale</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Spécifie l&#039;échelle à laquelle la variable devrait être associée à la
+       base de données.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.db2-bind-param-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.db2-bind-param-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-1234">
+    <p><strong>Exemple #1 Association de variables PHP à une requête préparée</strong></p>
+    <div class="example-contents"><p>
+     La requête SQL dans l&#039;exemple suivant utilise deux paramètres d&#039;entrée
+     dans la section WHERE. Nous appelons <span class="function"><strong>db2_bind_param()</strong></span>
+     pour associer deux variables qui n&#039;ont pas été déclarées ou assignées
+     avant l&#039;appel de <span class="function"><strong>db2_bind_param()</strong></span>; dans cet exemple,
+     <code class="literal">$lower_limit</code> est assignée avant d&#039;être appelée à
+     <span class="function"><strong>db2_bind_param()</strong></span>, mais <code class="literal">$upper_limit</code>
+     est assignée après l&#039;appel de <span class="function"><strong>db2_bind_param()</strong></span>. Les
+     variables doivent être associées et, pour les paramètres qui acceptent les
+     entrées, nous devons leur assigner une valeur avant d&#039;appeler
+     <span class="function"><a href="function.db2-execute.html" class="function">db2_execute()</a></span>.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;nom,&nbsp;race,&nbsp;poids&nbsp;FROM&nbsp;animaux<br />&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;poids&nbsp;&gt;&nbsp;?&nbsp;AND&nbsp;poids&nbsp;&lt;&nbsp;?'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Nous&nbsp;pouvons&nbsp;déclarer&nbsp;la&nbsp;variable&nbsp;avant&nbsp;d'appeler&nbsp;db2_bind_param()<br /></span><span style="color: #0000BB">$lower_limit&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">db2_bind_param</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"lower_limit"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DB2_PARAM_IN</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">db2_bind_param</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"upper_limit"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DB2_PARAM_IN</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Nous&nbsp;pouvons&nbsp;aussi&nbsp;déclarer&nbsp;la&nbsp;variable&nbsp;après&nbsp;l'appel&nbsp;de&nbsp;db2_bind_param()<br /></span><span style="color: #0000BB">$upper_limit&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">15.0</span><span style="color: #007700">;<br /><br />if&nbsp;(</span><span style="color: #0000BB">db2_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"</span><span style="color: #007700">{</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]}</span><span style="color: #DD0000">,&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]}</span><span style="color: #DD0000">,&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]}</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Pook, chat, 3.2
+Rickety Ride, chèvre, 9.7
+Peaches, chien, 12.3
+</pre></div>
+    </div>
+   </div>
+   <div class="example" id="example-1235">
+    <p><strong>Exemple #2 Appel de procédures d&#039;enregistrement avec les paramètres IN et OUT</strong></p>
+    <div class="example-contents"><p>
+     La procédure d&#039;enregistrement concorde_animal dans l&#039;exemple suivant
+     accepte trois différents paramètres :
+     <ol type="1">
+      <li class="listitem">
+       <p class="para">
+        un paramètre d&#039;entré (IN) qui accepte le nom du premier animal en
+        entré
+       </p>
+      </li>
+      <li class="listitem">
+       <p class="para">
+        un paramètre d&#039;entrée-sortie (INOUT) qui accepte le nom du second
+        animal en entré et retourne une <a href="language.types.string.html" class="link">chaîne de caractères</a> <code class="literal">TRUE</code> si un
+        animal dans la base de données correspond à ce nom
+       </p>
+      </li>
+      <li class="listitem">
+       <p class="para">
+        un paramètre de sortie (OUT) qui retourne la somme des poids des deux
+        animaux identifiés
+       </p>
+      </li>
+     </ol>
+     De plus, la procédure d&#039;enregistrement retourne un jeu de résultat
+     contenant les animaux listés en ordre alphabétique en commençant avec
+     l&#039;animal correspondant à la valeur d&#039;entrée du premier paramètre et en
+     terminant avec l&#039;animal correspondant à la valeur d&#039;entrée du deuxième
+     paramètre.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'CALL&nbsp;concorde_animal(?,&nbsp;?,&nbsp;?)'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$nom&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Peaches"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$second_nom&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Rickety&nbsp;Ride"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$poids&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">db2_bind_param</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"nom"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DB2_PARAM_IN</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">db2_bind_param</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"second_nom"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DB2_PARAM_INOUT</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">db2_bind_param</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"poids"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DB2_PARAM_OUT</span><span style="color: #007700">);<br /><br />print&nbsp;</span><span style="color: #DD0000">"Valeurs&nbsp;des&nbsp;paramètres&nbsp;_avant_&nbsp;CALL&nbsp;:\n"</span><span style="color: #007700">;<br />print&nbsp;</span><span style="color: #DD0000">"&nbsp;&nbsp;1:&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$nom</span><span style="color: #007700">}</span><span style="color: #DD0000">&nbsp;2:&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$second_nom</span><span style="color: #007700">}</span><span style="color: #DD0000">&nbsp;3:&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$poids</span><span style="color: #007700">}</span><span style="color: #DD0000">\n\n"</span><span style="color: #007700">;<br /><br />if&nbsp;(</span><span style="color: #0000BB">db2_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"Valeurs&nbsp;des&nbsp;paramètres&nbsp;_après_&nbsp;CALL&nbsp;:\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"&nbsp;&nbsp;1:&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$nom</span><span style="color: #007700">}</span><span style="color: #DD0000">&nbsp;2:&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$second_nom</span><span style="color: #007700">}</span><span style="color: #DD0000">&nbsp;3:&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$poids</span><span style="color: #007700">}</span><span style="color: #DD0000">\n\n"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"Résultats&nbsp;:\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #DD0000">"&nbsp;&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]}</span><span style="color: #DD0000">,&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">]}</span><span style="color: #DD0000">,&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]}</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Valeurs des paramètres _avant_ CALL :
+  1: Peaches 2: Rickety Ride 3: 0
+
+Valeurs des paramètres _après_ CALL :
+  1: Peaches 2: TRUE 3: 22
+
+Résultats :
+  Peaches, chien, 12.3
+  Pook, chat, 3.2
+  Rickety Ride, chèvre, 9.7
+</pre></div>
+    </div>
+   </div>
+   <div class="example" id="example-1236">
+    <p><strong>Exemple #3 Insertion d&#039;un objet large binaire (BLOB) provenant directement d&#039;un fichier</strong></p>
+    <div class="example-contents"><p>
+     Les données pour les objets larges sont normalement enregistrées dans des
+     fichiers, comme des documents XML ou des fichiers audio. Plutôt que de
+     lire le fichier en entier dans une variable de PHP et ensuite associer
+     la variable PHP dans la requête SQL, vous pouvez éviter certain
+     surdébit de mémoire en associant le fichier directement au paramètre
+     d&#039;entrée de votre requête SQL. L&#039;exemple suivant démontre comment
+     associer un fichier directement dans une colonne BLOB.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;animal_pictures(photo)&nbsp;VALUES&nbsp;(?)"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$picture&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"/opt/albums/spook/grooming.jpg"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$rc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_bind_param</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"picture"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DB2_PARAM_FILE</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$rc&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">db2_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-function.db2-bind-param-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.db2-execute.html" class="function" rel="rdfs-seeAlso">db2_execute()</a> - Ex&eacute;cute une requ&ecirc;te SQL pr&eacute;par&eacute;e</span></li>
+    <li class="member"><span class="function"><a href="function.db2-prepare.html" class="function" rel="rdfs-seeAlso">db2_prepare()</a> - Pr&eacute;pare une requ&ecirc;te SQL &agrave; &ecirc;tre ex&eacute;cut&eacute;e</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

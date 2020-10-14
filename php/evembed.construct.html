@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Construit un objet EvEmbed</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="class.evembed.html">« EvEmbed</a></li>
+      <li style="float: right;"><a href="evembed.createstopped.html">EvEmbed::createStopped »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.evembed.html">EvEmbed</a></li>
+    <li>Construit un objet EvEmbed</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="evembed.construct" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">EvEmbed::__construct</h1>
+  <p class="verinfo">(PECL ev &gt;= 0.2.0)</p><p class="refpurpose"><span class="refname">EvEmbed::__construct</span> &mdash; <span class="dc-title">Construit un objet EvEmbed</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-evembed.construct-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span>
+   <span class="methodname"><strong>EvEmbed::__construct</strong></span>
+    ( <span class="methodparam">
+    <span class="type">object</span>
+     <code class="parameter">$other</code>
+   </span>
+   [, <span class="methodparam">
+    <span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span>
+     <code class="parameter">$callback</code>
+   </span>
+   [, <span class="methodparam">
+    <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span>
+     <code class="parameter">$data</code>
+   </span>
+   [, <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$priority</code>
+   </span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   Il s&#039;agit d&#039;un type de watcher avancé qui permet d&#039;intégrer une boucle
+   d&#039;événement dans une autre (actuellement, seuls les événements IO sont
+   supportés dans la boucle interne, les autres types de watcher ne doit
+   pas être utilisés).
+  </p>
+  <p class="para">
+   Voir la
+   <a href="http://pod.tst.eu/http://cvs.schmorp.de/libev/ev.pod#code_ev_embed_code_when_one_backend_" class="link external">&raquo;&nbsp;
+   documentation libev</a> pour plus de détails.
+  </p>
+  <p class="para">
+   Ce watcher est le plus utile sous les systèmes
+   <em class="emphasis">BSD</em> où <code class="literal">kqueue</code> n&#039;est pas utilisé,
+   pour être capable de gérer un grand nombre de sockers. Voir l&#039;exemple ci-dessous.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-evembed.construct-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+
+     <code class="parameter">other</code>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Une instance de <a href="class.evloop.html" class="classname">EvLoop</a>. La boucle à intégrer ;
+      elle doit être encapsulable (voir la méthode
+      <span class="methodname"><a href="ev.embeddablebackends.html" class="methodname">Ev::embeddableBackends()</a></span>).
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+
+     <code class="parameter">callback</code>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Voir les
+      <a href="ev.watcher-callbacks.html" class="link">fonctions de rappel des Watcher</a>.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+
+     <code class="parameter">data</code>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Données personnalisées à associer avec le watcher.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+
+     <code class="parameter">priority</code>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      <a href="class.ev.html#ev.constants.watcher-pri" class="link">Priorité du Watcher</a>
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-evembed.construct-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un objet EvEmbed en cas de succès.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-evembed.construct-examples">
+  <h3 class="title">Exemples</h3>
+ <div class="example" id="example-3918">
+   <p><strong>Exemple #1 
+    Encapsulage d&#039;une boucle créée avec le gestionnaire kqueue dans la boucle par défaut</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*<br />&nbsp;*&nbsp;Vérifie&nbsp;si&nbsp;kqueue&nbsp;est&nbsp;disponible&nbsp;et&nbsp;crée&nbsp;un&nbsp;gestionnaire&nbsp;kqueue<br />&nbsp;*&nbsp;pour&nbsp;l'utiliser&nbsp;avec&nbsp;les&nbsp;sockets&nbsp;(qui&nbsp;fonctionne&nbsp;habituellement&nbsp;avec&nbsp;n'importe&nbsp;quelle&nbsp;implémentation<br />&nbsp;*&nbsp;de&nbsp;kqueue.&nbsp;Stocke&nbsp;la&nbsp;boucle&nbsp;d'événement&nbsp;kqueue/socket&nbsp;seulement,&nbsp;dans&nbsp;loop_socket.<br />&nbsp;*&nbsp;(optionnellement,&nbsp;utilisation&nbsp;de&nbsp;EVFLAG_NOENV)<br />&nbsp;*<br />&nbsp;*&nbsp;Exemple&nbsp;issue&nbsp;de<br />&nbsp;*&nbsp;http://pod.tst.eu/http://cvs.schmorp.de/libev/ev.pod#Examples_CONTENT-9<br />&nbsp;*/<br /></span><span style="color: #0000BB">$loop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">EvLoop</span><span style="color: #007700">::</span><span style="color: #0000BB">defaultLoop</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$socket_loop&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$embed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br /><br />if&nbsp;(</span><span style="color: #0000BB">Ev</span><span style="color: #007700">::</span><span style="color: #0000BB">supportedBackends</span><span style="color: #007700">()&nbsp;&amp;&nbsp;~</span><span style="color: #0000BB">Ev</span><span style="color: #007700">::</span><span style="color: #0000BB">recommendedBackends</span><span style="color: #007700">()&nbsp;&amp;&nbsp;</span><span style="color: #0000BB">Ev</span><span style="color: #007700">::</span><span style="color: #0000BB">BACKEND_KQUEUE</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;((</span><span style="color: #0000BB">$socket_loop&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">EvLoop</span><span style="color: #007700">(</span><span style="color: #0000BB">Ev</span><span style="color: #007700">::</span><span style="color: #0000BB">BACKEND_KQUEUE</span><span style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$embed&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">EvEmbed</span><span style="color: #007700">(</span><span style="color: #0000BB">$loop</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$socket_loop</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$socket_loop&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$loop</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Maintenant,&nbsp;on&nbsp;utilise&nbsp;$socket_loop&nbsp;pour&nbsp;tous&nbsp;les&nbsp;sockets,&nbsp;et&nbsp;$loop&nbsp;poour&nbsp;tout&nbsp;le&nbsp;reste<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-evembed.construct-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member">
+    <span class="methodname"><a href="ev.embeddablebackends.html" class="methodname" rel="rdfs-seeAlso">Ev::embeddableBackends()</a> - Retourne le jeu de backends qui sont encapsul&eacute;s dans les autres boucles d'&eacute;v&eacute;nements</span>
+   </li>
+  </ul>
+ </div>
+
+</div></div></div></body></html>

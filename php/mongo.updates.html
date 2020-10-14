@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Mises &agrave; jour</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongo.queries.html">« Interrogation</a></li>
+      <li style="float: right;"><a href="mongo.security.html">Securit&eacute; »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mongo.manual.html">Manuel</a></li>
+    <li>Mises &agrave; jour</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongo.updates" class="chapter">
+ <h1>Mises à jour</h1>
+
+
+ <p class="para">
+  Les mises à jour sont les opérations les plus compliquées disponibles avec
+  MongoDB. Elles combinent une requête avec une action, modifiant
+  les documents qui correspondent aux critères. Elles sont également
+  extrèmement puissantes, vous permettant de changer les documents
+  rapidement mais aussi de les remplacer tous ensemble. Elles se font
+  sur place (quand c&#039;est possible), entrainant une légère surcharge. 
+ </p>
+
+ <div class="section">
+  <h2 class="title">Modification et remplacement de documents</h2>
+
+  <p class="para">
+   Il existe 2 types de mises à jour: modification ou remplacement. Les modifications
+   contiennent des opérateurs $ et changent des champs d&#039;un document: elles peuvent
+   incrémenter des compteurs, ajouter des éléments dans des tableaux ou encore changer
+   le type d&#039;un champ.
+  </p>
+
+  <p class="para">
+   Par exemple, une mise à jour en modification ajoute un nouveau champ au document.
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/**&nbsp;imaginons&nbsp;un&nbsp;document&nbsp;de&nbsp;cette&nbsp;structure&nbsp;:<br />&nbsp;*&nbsp;{"username"&nbsp;:&nbsp;"...",&nbsp;"password"&nbsp;:&nbsp;"...",&nbsp;"email"&nbsp;:&nbsp;"..."}<br />&nbsp;*/<br /></span><span style="color: #0000BB">$coll</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">update</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"username"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"joe"</span><span style="color: #007700">),&nbsp;array(</span><span style="color: #DD0000">'$set'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">"twitter"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"@joe4153"</span><span style="color: #007700">)));<br /><br /></span><span style="color: #FF8000">/**&nbsp;maintenant,&nbsp;le&nbsp;document&nbsp;ressemblera&nbsp;à&nbsp;:<br />&nbsp;*&nbsp;{"username"&nbsp;:&nbsp;"joe",&nbsp;"password"&nbsp;:&nbsp;"...",&nbsp;"email"&nbsp;:&nbsp;"...",&nbsp;"twitter"&nbsp;:&nbsp;"@joe4153"}<br />&nbsp;*/<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </p>
+
+  <p class="para">
+   Les mises à jour de remplacement remplacent le document entier par un autre.
+   Elles ne sont pas aussi efficaces que les modifications, mais elles peuvent avoir
+   un intérêt dans le cas où les opérateurs à $ ne peuvent être utilisés.
+  </p>
+
+  <p class="para">
+   Par exemple, une mise à jour de remplacement peut complètement changer la structure
+   d&#039;un document.
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/**&nbsp;imaginons&nbsp;un&nbsp;document&nbsp;de&nbsp;cette&nbsp;structure:<br />&nbsp;*&nbsp;{"username"&nbsp;:&nbsp;"...",&nbsp;"password"&nbsp;:&nbsp;"...",&nbsp;"email"&nbsp;:&nbsp;"..."}<br />&nbsp;*/<br /></span><span style="color: #0000BB">$coll</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">update</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"username"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"joe"</span><span style="color: #007700">),&nbsp;array(</span><span style="color: #DD0000">"userId"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">12345</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"info"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"joe"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"twitter"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"@joe4153"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"email"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"..."</span><span style="color: #007700">),&nbsp;</span><span style="color: #DD0000">"likes"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array()));<br /><br /></span><span style="color: #FF8000">/**&nbsp;maintenant,&nbsp;le&nbsp;document&nbsp;ressemblera&nbsp;à&nbsp;:<br />&nbsp;*&nbsp;{<br />&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"userId"&nbsp;:&nbsp;12345,<br />&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"info"&nbsp;:&nbsp;{<br />&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name"&nbsp;:&nbsp;"joe",<br />&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"twitter"&nbsp;:&nbsp;"@joe4153",<br />&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"email"&nbsp;:&nbsp;"..."<br />&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br />&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"likes"&nbsp;:&nbsp;[]<br />&nbsp;*&nbsp;}<br />&nbsp;*/<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </p>
+
+ </div>
+
+ <div class="section">
+  <h2 class="title">Mises à jour des objets imbriqués</h2>
+  <p class="para">
+   Supposez que vous voulez modifier le nom de l&#039;auteur d&#039;un commentaire dans
+   un document :
+   <div class="example-contents">
+<div class="javascriptcode"><pre class="javascriptcode">{ 
+    &quot;_id&quot; : ObjectId(&quot;4b06c282edb87a281e09dad9&quot;), 
+    &quot;content&quot; : &quot;ceci est un post d&#039;un blog.&quot;,
+    &quot;comments&quot; : 
+    [
+        {
+            &quot;author&quot; : &quot;Mike&quot;,
+            &quot;comment&quot; : &quot;Je pense que blah blah blah...&quot;,
+        },
+        {
+            &quot;author&quot; : &quot;John&quot;,
+            &quot;comment&quot; : &quot;Je ne suis pas d&#039;accord.&quot;
+        }
+    ]
+}</pre>
+</div>
+   </div>
+
+   Afin de modifier un champ interne, nous utilisons $set (ainsi, les
+   autres champs ne sont pas supprimés) avec l&#039;index du commentaire à
+   changer :
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$blog</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">update</span><span style="color: #007700">(</span><span style="color: #0000BB">$criteria</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">'$set'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">"comments.1"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">"author"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"Jim"</span><span style="color: #007700">))));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </p>
+ </div>
+
+ <div class="section">
+  <h2 class="title">L&#039;opérateur de position</h2>
+  <p class="para">
+   L&#039;opérateur de position <code class="literal">$</code> est utile pour la mise
+   à jour d&#039;objets qui se trouvent dans des tableaux. Dans l&#039;exemple suivant,
+   nous supposons que nous ne connaissons pas l&#039;index du commentaire que nous
+   souhaitons modifier, alors que vous voulons changer &quot;John&quot; en &quot;Jim&quot;.
+   Nous pouvons dans ce cas utiliser l&#039;opérateur de position <code class="literal">$</code>.
+  </p>
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$blog</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">update</span><span style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">"comments.author"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"John"</span><span style="color: #007700">),&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;array(</span><span style="color: #DD0000">'$set'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">'comments.$.author'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"Jim"</span><span style="color: #007700">)));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+  </div>
+
+ </div>
+</div>
+</div></div></body></html>

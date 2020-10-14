@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Travailler avec des Objets de Donn&eacute;es en S&eacute;quence</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="sdo.sample.getset.html">« Fixe et R&eacute;cup&egrave;re les Valeurs des Propri&eacute;t&eacute;s</a></li>
+      <li style="float: right;"><a href="sdo.sample.reflection.html">R&eacute;flexion sur des Objets de Service de Donn&eacute;es »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="sdo.examples.html">Exemples</a></li>
+    <li>Travailler avec des Objets de Donn&eacute;es en S&eacute;quence</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="sdo.sample.sequence" class="section">
+  <h2 class="title">Travailler avec des Objets de Données en Séquence</h2>
+  <p class="para">
+   Des objets de données en Séquence sont des SDOs peuvent tracer l&#039;ordre des
+   propriétés à travers les propriétés des objets de données. Ils peuvent
+   aussi contenir des éléments de texte non structuré (élément de texte qui
+   n&#039;appartient à aucune des propriétés SDO). Des objets de données en Séquence
+   sont utiles pour travailler avec des documents XML qui permettent du texte
+   non structuré (c&#039;est-à-dire mixed=true) ou si les éléments peuvent être
+   intercalée (<div class="cdata"><pre>&lt;A/&gt;&lt;B/&gt;&lt;A/&gt;</pre></div>). Ceci peut se produire par exemple
+   lorsque le schéma définit maxOccurs&gt;1 sur un élément qui est un
+   complexType avec un choix de l&#039;ordre.
+  </p>
+  <p class="para">
+   Les exemples ci-dessous assument qu&#039;un SDO est créé avec le schéma et
+   l&#039;information de l&#039;instance montrée ci-dessous, en utilisant le Service
+   d&#039;Accès de Données.
+  </p>
+  <p class="para">
+   Le schéma ci-dessous décrit le format d&#039;une lettre. La lettre peut
+   optionnellement contenir trois propriétés; date, prenom et nomFamille. Le
+   schéma indique <strong class="command">mixed=&quot;true&quot;</strong> qui signifie que le texte
+   non structuré peut être entremêlé entre les trois propriétés.
+  </p>
+  <p class="para">
+   <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+  xmlns:letter=&quot;http://letterSchema&quot;
+  targetNamespace=&quot;http://letterSchema&quot;&gt;
+  &lt;xsd:element name=&quot;letters&quot; type=&quot;letter:FormLetter&quot;/&gt;
+  &lt;xsd:complexType name=&quot;FormLetter&quot; mixed=&quot;true&quot;&gt;
+    &lt;xsd:sequence&gt;
+      &lt;xsd:element name=&quot;date&quot; minOccurs=&quot;0&quot; type=&quot;xsd:string&quot;/&gt;
+      &lt;xsd:element name=&quot;firstName&quot; minOccurs=&quot;0&quot; type=&quot;xsd:string&quot;/&gt;
+      &lt;xsd:element name=&quot;lastName&quot; minOccurs=&quot;0&quot; type=&quot;xsd:string&quot;/&gt;
+    &lt;/xsd:sequence&gt;
+  &lt;/xsd:complexType&gt;
+&lt;/xsd:schema&gt;</pre>
+</div>
+   </div>
+
+  </p>
+
+  <p class="para">
+   L&#039;exemple suivant est une instance du document lettre. Il contient les
+   trois propriétés de la lettre; date, prenom et nomFamille, et a des
+   éléments de texte non structuré pour l&#039;adresse et le corps de la lettre.
+  </p>
+  <p class="para">
+   <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">&lt;letter:letters xmlns:letter=&quot;http://letterSchema&quot;&gt;
+  &lt;date&gt;March 1, 2005&lt;/date&gt;
+  Mutual of Omaha
+  Wild Kingdom, USA
+  Dear
+  &lt;firstName&gt;Casy&lt;/firstName&gt;
+  &lt;lastName&gt;Crocodile&lt;/lastName&gt;
+  Please buy more shark repellent.
+  Your premium is past due.
+&lt;/letter:letters&gt;</pre>
+</div>
+   </div>
+
+  </p>
+  <p class="para">
+   Lorsque chargé, l&#039;objet de données de lettre aura la séquence et les
+   indices montrés dans la table ci-dessous :
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Index de Séquence</th>
+       <th>Index:Nom</th>
+       <th>Valeur</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>0</td>
+       <td>0:date</td>
+       <td>March 1, 2005</td>
+      </tr>
+
+      <tr>
+       <td>1</td>
+       <td>-</td>
+       <td>Mutual of Omaha</td>
+      </tr>
+
+      <tr>
+       <td>2</td>
+       <td>-</td>
+       <td>Wild Kingdom, USA</td>
+      </tr>
+
+      <tr>
+       <td>3</td>
+       <td>-</td>
+       <td>Dear</td>
+      </tr>
+
+      <tr>
+       <td>4</td>
+       <td>1:firstName</td>
+       <td>Casy</td>
+      </tr>
+
+      <tr>
+       <td>5</td>
+       <td>2:lastName</td>
+       <td>Crocodile</td>
+      </tr>
+
+      <tr>
+       <td>6</td>
+       <td>-</td>
+       <td>Please buy more shark repellent.</td>
+      </tr>
+
+      <tr>
+       <td>7</td>
+       <td>-</td>
+       <td>Your premium is past due.</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+
+  <p class="para">
+   Pour s&#039;assurer que la séquence des indices soit maintenue, les objets de
+   données en séquence devraient être manipulés à travers de l&#039;interface
+   SDO_Sequence. Ceci permet à l&#039;instance de l&#039;objet de données à être
+   manipulée en tant qu&#039;index de séquence plutôt qu&#039;avec un index de propriété
+   (montré dans la table ci-dessus).
+   Les exemples suivants assument que l&#039;instance de la lettre a été chargée
+   dans l&#039;objet de données référencé par la variable
+   <strong class="command">$lettre</strong>.
+   <div class="example" id="example-6085">
+    <p><strong>Exemple #1 Récupération de l&#039;interface SDO_Sequence</strong></p>
+    <div class="example-contents"><p>
+     Nous obtenons la séquence de l&#039;objet de données en utilisant la méthode
+     <span class="function"><strong>getSequence()</strong></span>. La suite récupère la séquence pour
+     l&#039;objet de données de la lettre.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$letter_seq&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$letter</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getSequence</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Tous les exemples suivants assument que la variable
+   <strong class="command">$lettre_seq</strong> a été assigné de la séquence pour l&#039;objet
+   de données de la lettre.
+  </p>
+
+  <p class="para">
+   <div class="example" id="example-6086">
+    <p><strong>Exemple #2 Récupère/Fixe des valeurs de séquence</strong></p>
+    <div class="example-contents"><p>
+     Nous pouvons récupérer et fixer des valeurs individuelles (en incluant
+     le texte non structuré) en utilisant les index de séquence. L&#039;exemple
+     suivant fixe le prenom à <code class="literal">&quot;Snappy&quot;</code> et récupère la dernière valeur de
+     séquence (le texte non structuré, <code class="literal">&quot;Votre prime est passée date.&quot;</code>).
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$letter_seq</span><span style="color: #007700">[</span><span style="color: #0000BB">4</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">'Snappy'</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$text&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$letter_seq</span><span style="color: #007700">[</span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$letter_seq</span><span style="color: #007700">)&nbsp;-&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+
+  <p class="para">
+   <div class="example" id="example-6087">
+    <p><strong>Exemple #3 Itération de Séquence</strong></p>
+    <div class="example-contents"><p>
+     Nous pouvons itérer à travers des valeurs de séquence individuellement
+     en utilisant <a href="control-structures.foreach.html" class="link">foreach</a>. L&#039;exemple suivant passe au travers des valeurs
+     individuelles dans l&#039;ordre séquentiel.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">$letter</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getSequence</span><span style="color: #007700">()&nbsp;as&nbsp;</span><span style="color: #0000BB">$value</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;...<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+
+  <p class="para">
+   <div class="example" id="example-6088">
+    <p><strong>Exemple #4 Séquence versus Objet de Données</strong></p>
+    <div class="example-contents"><p>
+     Fixer des valeurs à travers l&#039;interface d&#039;objet de données peut amener à
+     ce que les valeurs ne fassent pas partie de la séquence. Une valeur
+     fixée avec un objet de données sera seulement accessible avec la
+     séquence si la propriété était déjà une partie de la séquence. L&#039;exemple
+     suivant fixe le nomFamille à travers de l&#039;objet de données et le
+     récupère par la séquence. Ceci est correct puisque nomFamille existe
+     déjà dans la séquence. S&#039;il n&#039;avait pas été fixé, alors nomFamille
+     devrait être fixé à <code class="literal">&quot;Smith&quot;</code>, mais ne devrait pas faire partie de la
+     séquence.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$letter</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">'Smith'</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$last_name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$letter_seq</span><span style="color: #007700">[</span><span style="color: #0000BB">5</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+
+  <p class="para">
+   <div class="example" id="example-6089">
+    <p><strong>Exemple #5 Ajout à une séquence</strong></p>
+    <div class="example-contents"><p>
+     Nous pouvons ajouter de nouvelles valeurs à une séquence en utilisant la
+     méthode
+     <span class="function"><a href="sdo-sequence.insert.html" class="function">SDO_Sequence::insert()</a></span>.
+     Les exemples suivants assument que les propriétés <code class="literal">&quot;prenom&quot;</code> et
+     <code class="literal">&quot;nomFamille&quot;</code> sont non fixées.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Ajoute&nbsp;une&nbsp;valeur&nbsp;prenom&nbsp;à&nbsp;la&nbsp;séquence<br />&nbsp;&nbsp;//&nbsp;valeur&nbsp;:&nbsp;'Smith'<br />&nbsp;&nbsp;//&nbsp;index&nbsp;séquence&nbsp;:&nbsp;NULL&nbsp;(ajout)<br />&nbsp;&nbsp;//&nbsp;identifiant&nbsp;de&nbsp;propriété&nbsp;:&nbsp;1&nbsp;(index&nbsp;propriété&nbsp;prenom)<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$lettre_seq</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #DD0000">'Smith'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Ajoute&nbsp;une&nbsp;valeur&nbsp;nomFamille&nbsp;à&nbsp;la&nbsp;séquence<br />&nbsp;&nbsp;//&nbsp;valeur&nbsp;:&nbsp;'Jones'<br />&nbsp;&nbsp;//&nbsp;index&nbsp;séquence&nbsp;:&nbsp;NULL&nbsp;(ajout)<br />&nbsp;&nbsp;//&nbsp;identifiant&nbsp;de&nbsp;propriété&nbsp;:&nbsp;'nomFamille'&nbsp;(nom&nbsp;propriété&nbsp;nomFamille)<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$lettre_seq</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #DD0000">'Jones'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'nomFamille'</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Ajoute&nbsp;du&nbsp;texte&nbsp;non&nbsp;structuré<br />&nbsp;&nbsp;//&nbsp;valeur&nbsp;:&nbsp;'Annule&nbsp;Inscription.'<br />&nbsp;&nbsp;//&nbsp;index&nbsp;séquence&nbsp;:&nbsp;absent&nbsp;(ajout)<br />&nbsp;&nbsp;//&nbsp;identifiant&nbsp;de&nbsp;propriété&nbsp;:&nbsp;absent&nbsp;(texte&nbsp;non&nbsp;structuré)<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$lettre_seq</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #DD0000">'Annule&nbsp;Inscription.'</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;Ajoute&nbsp;du&nbsp;nouveau&nbsp;texte&nbsp;non&nbsp;structuré.&nbsp;Les&nbsp;séquence&nbsp;valeurs&nbsp;suivantes<br />&nbsp;&nbsp;//&nbsp;d'ordre&nbsp;sont&nbsp;décalées&nbsp;vers&nbsp;le&nbsp;haut<br />&nbsp;&nbsp;//&nbsp;valeur&nbsp;:&nbsp;'À&nbsp;l'attention&nbsp;de&nbsp;:'<br />&nbsp;&nbsp;//&nbsp;index&nbsp;séquence&nbsp;:&nbsp;1&nbsp;(insert&nbsp;comme&nbsp;second&nbsp;élément)<br />&nbsp;&nbsp;//&nbsp;identifiant&nbsp;de&nbsp;propriété&nbsp;:&nbsp;absent&nbsp;(texte&nbsp;non&nbsp;structuré)<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$lettre_seq</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #DD0000">'À&nbsp;l'</span><span style="color: #0000BB">attention&nbsp;de&nbsp;</span><span style="color: #007700">:</span><span style="color: #DD0000">',&nbsp;1);<br />?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+
+  <p class="para">
+   <div class="example" id="example-6090">
+    <p><strong>Exemple #6 Suppression d&#039;une séquence</strong></p>
+    <div class="example-contents"><p>
+     Nous pouvons utiliser les fonctions <span class="function"><a href="function.isset.html" class="function">isset()</a></span> et
+     <span class="function"><a href="function.unset.html" class="function">unset()</a></span> pour tester et supprimer des items de la
+     séquence (Note : <span class="function"><a href="function.unset.html" class="function">unset()</a></span> laisse actuellement les
+     valeurs dans l&#039;objet de données, mais ce comportement est devrait
+     changer et supprimer les données de l&#039;objet de données).
+     Une séquence se comporte comme une liste contiguë; donc, la suppression
+     d&#039;un item au milieu de la liste décalera les entrées d&#039;un indice plus
+     haut vers le bas. L&#039;exemple suivant teste pour vérifier si la première
+     séquence d&#039;élément est fixé et la détruit si elle l&#039;est.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;</span><span style="color: #007700">if&nbsp;(isset(</span><span style="color: #0000BB">$letter_seq</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;unset(</span><span style="color: #0000BB">$letter_seq</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]);<br />&nbsp;&nbsp;}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+
+ </div></div></div></body></html>

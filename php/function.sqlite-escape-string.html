@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Prot&egrave;ge une cha&icirc;ne de caract&egrave;res pour utilisation avec SQLite</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.sqlite-error-string.html">« sqlite_error_string</a></li>
+      <li style="float: right;"><a href="function.sqlite-exec.html">sqlite_exec »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.sqlite.html">Fonctions SQLite</a></li>
+    <li>Prot&egrave;ge une cha&icirc;ne de caract&egrave;res pour utilisation avec SQLite</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.sqlite-escape-string" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlite_escape_string</h1>
+  <p class="verinfo">(PHP 5 &lt; 5.4.0, PECL sqlite &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">sqlite_escape_string</span> &mdash; <span class="dc-title">Protège une chaîne de caractères pour utilisation avec SQLite</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.sqlite-escape-string-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>sqlite_escape_string</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$item</code></span>
+   ) : <span class="type">string</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>sqlite_escape_string()</strong></span> va ajouter des guillemets dans la
+   chaîne <code class="parameter">item</code>, pour qu&#039;elle puisse être utilisée
+   correctement dans une requête SQL. Cela inclut notamment le doublement
+   des guillemets simples (<code class="literal">&#039;</code>), et la vérification des
+   caractères binaires non sécuritaires, de la chaîne de requête.
+  </p>
+  <p class="para">
+   Bien que ce codage sécurise l&#039;insertion des données, il va rendre la recherche
+   de texte par simple comparaison, ou en utilisant la clause <code class="literal">LIKE</code>,
+   inutilisable dans vos requêtes pour les colonnes qui contiennent ces données
+   binaires. En pratique, cela ne devrait pas être un problème, car votre
+   utilisation de la base devrait faire que vous n&#039;utiliserez pas ces
+   colonnes (en fait, il est mieux de stocker des données binaires dans d&#039;autres
+   systèmes, comme des fichiers).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.sqlite-escape-string-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">item</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La <a href="language.types.string.html" class="link">chaîne de caractères</a> à échapper.
+      </p>
+      <p class="para">
+       Si <code class="parameter">item</code> contient le caractère <code class="literal">NUL</code>
+       et qu&#039;il commence avec un caractère dont la valeur ordinale est
+       <code class="literal">0x01</code>, PHP va appliquer un schéma de codage,
+       pour que vous puissiez stocker puis relire correctement ces données.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.sqlite-escape-string-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne une <a href="language.types.string.html" class="link">chaîne de caractères</a> échappée afin de l&#039;utiliser dans des requêtes
+   SQLite SQL.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.sqlite-escape-string-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <span class="simpara">
+    N&#039;utilisez pas cette fonction pour coder les valeurs retournées
+    par des fonctions utilisateurs, créées avec les fonctions
+    <span class="function"><a href="function.sqlite-create-function.html" class="function">sqlite_create_function()</a></span> ou
+    <span class="function"><a href="function.sqlite-create-aggregate.html" class="function">sqlite_create_aggregate()</a></span> : utilisez
+    plutôt <span class="function"><a href="function.sqlite-udf-encode-binary.html" class="function">sqlite_udf_encode_binary()</a></span>.
+   </span>
+  </p></blockquote>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="simpara">
+    <span class="function"><a href="function.addslashes.html" class="function">addslashes()</a></span> <em class="emphasis">NE doit PAS</em> être
+    utilisée pour protéger vos requêtes dans SQLite. Cela va conduire
+    à d&#039;étranges résultats lors de la lecture de vos données.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.sqlite-escape-string-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.sqlite-udf-encode-binary.html" class="function" rel="rdfs-seeAlso">sqlite_udf_encode_binary()</a> - Encode les donn&eacute;es binaires d'une UDF SQLite avant de les retourner</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

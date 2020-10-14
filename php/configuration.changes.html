@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Comment modifier la configuration</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="configuration.changes.modes.html">« O&ugrave; une directive de configuration peut &ecirc;tre modifi&eacute;e</a></li>
+      <li style="float: right;"><a href="langref.html">R&eacute;f&eacute;rence du langage »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="configuration.html">Configuration &agrave; l'ex&eacute;cution</a></li>
+    <li>Comment modifier la configuration</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="configuration.changes" class="sect1">
+  <h2 class="title">Comment modifier la configuration</h2>
+  
+  <div class="sect2" id="configuration.changes.apache">
+   <h3 class="title">Exécuter PHP comme module Apache</h3>
+   <p class="simpara">
+    Lorsque vous utilisez le module Apache, vous pouvez aussi changer
+    les paramètres de configuration en utilisant les directives
+    dans les fichiers de configuration d&#039;Apache (<var class="filename">httpd.conf</var>) et dans
+    les fichiers <var class="filename">.htaccess</var>. Vous aurez besoin des privilèges
+    &quot;AllowOverride Options&quot; ou &quot;AllowOverride All&quot;.
+   </p>
+   
+   <p class="para">
+    Il y a de nombreuses directives
+    Apache qui vous permettent de modifier la configuration de PHP
+    à partir des fichiers de configuration Apache. Pour une liste des
+    directives qui sont <strong><code>PHP_INI_ALL</code></strong>,
+    <strong><code>PHP_INI_PERDIR</code></strong> ou <strong><code>PHP_INI_SYSTEM</code></strong>
+    reportez-vous à l&#039;annexe <a href="ini.list.html" class="link">Liste des directives
+    du php.ini</a>.
+   </p>
+   
+   <p class="para">
+    <dl>
+
+     
+      <dt>
+
+       <code class="systemitem systemitem">php_value</code>
+       <code class="parameter">nom</code>
+       <code class="parameter">valeur</code>
+      </dt>
+
+      <dd>
+
+       <p class="para">
+        Modifie la valeur de la directive spécifiée.
+        Cette instruction n&#039;est utilisable qu&#039;avec les directives PHP de type
+        <strong><code>PHP_INI_ALL</code></strong> et <strong><code>PHP_INI_PERDIR</code></strong>.
+        Pour annuler une valeur qui aurait été modifiée au préalable,
+        utilisez la valeur <code class="literal">none</code>.
+       </p>
+       <blockquote class="note"><p><strong class="note">Note</strong>: 
+        <span class="simpara">
+         N&#039;utilisez pas <code class="systemitem systemitem">php_value</code>
+         pour configurer des valeurs booléennes.
+         <code class="systemitem systemitem">php_flag</code> (voir plus bas)
+         doit être utilisée.
+        </span>
+       </p></blockquote>
+      </dd>
+
+     
+     
+      <dt>
+
+       <code class="systemitem systemitem">php_flag</code>
+       <code class="parameter">nom</code>
+       <code class="parameter">on|off</code>
+      </dt>
+
+      <dd>
+
+       <p class="para">
+        Cette instruction est utilisée pour activer ou
+        désactiver une option.
+        Cette instruction n&#039;est utilisable qu&#039;avec les directives
+        PHP de type <strong><code>PHP_INI_ALL</code></strong> et
+        <strong><code>PHP_INI_PERDIR</code></strong>.
+       </p>
+      </dd>
+
+     
+     
+      <dt>
+
+       <code class="systemitem systemitem">php_admin_value</code>
+       <code class="parameter">nom</code>
+       <code class="parameter">valeur</code>
+      </dt>
+
+      <dd>
+
+       <p class="para">
+        Cette instruction affecte une valeur à la variable spécifiée.
+        Cette instruction <em class="emphasis">NE peut PAS être utilisée</em> dans un fichier
+        <var class="filename">.htaccess</var>. Toute directive de PHP configurée avec le type
+        <code class="systemitem systemitem">php_admin_value</code> ne peut pas être
+        modifiée en utilisant le fichier <var class="filename">.htaccess</var> ou la fonction <span class="function"><a href="function.ini-set.html" class="function">ini_set()</a></span>.
+        Pour annuler une valeur qui aurait été modifiée au préalable, utilisez la
+        valeur <code class="literal">none</code>.
+       </p>
+      </dd>
+
+     
+     
+      <dt>
+
+       <code class="systemitem systemitem">php_admin_flag</code>
+       <code class="parameter">name</code>
+       <code class="parameter">on|off</code>
+      </dt>
+
+      <dd>
+
+       <p class="para">
+        Cette directive est utilisée pour activer ou désactiver une option.
+        Cette instruction <em class="emphasis">NE peut PAS être utilisée</em> dans un fichier
+        <var class="filename">.htaccess</var>. Toute directive de PHP configurée avec le type
+        <code class="systemitem systemitem">php_admin_flag</code> ne peut pas être
+        modifiée en utilisant le fichier <var class="filename">.htaccess</var> ou par la fonction <span class="function"><a href="function.ini-set.html" class="function">ini_set()</a></span>.
+       </p>
+      </dd>
+
+     
+    </dl>
+
+   </p>
+   <p class="para">
+    <div class="example" id="example-38">
+     <p><strong>Exemple #1 Exemple de configuration Apache</strong></p>
+     <div class="example-contents">
+<div class="inicode"><pre class="inicode">&lt;IfModule mod_php5.c&gt;
+  php_value include_path &quot;.:/usr/local/lib/php&quot;
+  php_admin_flag engine on
+&lt;/IfModule&gt;
+&lt;IfModule mod_php4.c&gt;
+  php_value include_path &quot;.:/usr/local/lib/php&quot;
+  php_admin_flag engine on
+&lt;/IfModule&gt;</pre>
+</div>
+     </div>
+
+    </div>
+   </p>
+   <div class="caution"><strong class="caution">Attention</strong>
+    <p class="para">
+     Les constantes PHP n&#039;existent pas en dehors de PHP. Par
+     exemple, dans le fichier <var class="filename">httpd.conf</var>,
+     vous ne pouvez pas utiliser des constantes PHP telles que
+     <strong><code>E_ALL</code></strong> ou <strong><code>E_NOTICE</code></strong> pour spécifier
+     le niveau de <a href="errorfunc.configuration.html#ini.error-reporting" class="link">rapport d&#039;erreur</a>,
+     car ces constantes n&#039;ont pas de signification pour Apache,
+     et seront remplacées par <em class="emphasis">0</em>.
+     Utilisez les valeurs numériques à la place.
+     Les constantes peuvent être utilisées dans le <var class="filename">php.ini</var>
+    </p>
+   </div>
+  </div>
+  
+  <div class="sect2" id="configuration.changes.windows">
+   <h3 class="title">Modifier la configuration de PHP via la base de registre Windows</h3>
+   <p class="simpara">
+    Lorsque vous utilisez PHP sur Windows, la configuration peut
+    être modifiée dossier par dossier en utilisant la base de registres
+    de Windows. Les valeurs de configuration sont stockées
+    avec la clé de registre
+    <code class="literal">HKLM\SOFTWARE\PHP\Per Directory Values</code>,
+    dans les sous-clés correspondantes aux noms de dossier. Par exemple,
+    la valeur d&#039;une option dans le dossier <code class="literal">c:\inetpub\wwwroot</code>
+    sera stockée dans la clé
+    <code class="literal">HKLM\SOFTWARE\PHP\Per Directory Values\c\inetpub\wwwroot</code>.
+    La valeur de cette option sera utilisée pour tous les
+    scripts qui fonctionnent dans ce dossier ou ses sous-dossiers.
+    Les valeurs sous la clé doivent avoir le nom d&#039;une
+    <a href="configuration.html" class="link">direction de configuration PHP</a>,
+    et la valeur correspondante. Les constantes PHP ne sont
+    pas utilisables : il faut mettre la valeur entière.
+    Cependant, seules les valeurs des configurations dans
+    <strong><code>PHP_INI_USER</code></strong> peuvent être fixées de cette manière,
+    celles dans <strong><code>PHP_INI_PERDIR</code></strong> ne peuvent l&#039;être,
+    car ces valeurs de configurations sont relues à chaque requête.
+   </p>
+  </div>
+  
+  <div class="sect2" id="configuration.changes.other">
+   <h3 class="title">Autres interfaces de configuration de PHP</h3>
+   <p class="para">
+    Suivant la façon dont vous exécutez PHP, vous pouvez changer certaines valeurs
+    durant l&#039;exécution de vos scripts en utilisant <span class="function"><a href="function.ini-set.html" class="function">ini_set()</a></span>.
+    Voir la documentation de la fonction <span class="function"><a href="function.ini-set.html" class="function">ini_set()</a></span> pour plus
+    d&#039;informations.
+   </p>
+   <p class="para">
+    Si vous êtes intéressé par une liste complète des options configurées
+    sur votre système avec leurs valeurs courantes, vous pouvez exécuter
+    la fonction <span class="function"><a href="function.phpinfo.html" class="function">phpinfo()</a></span> et consulter la page résultante.
+    Vous pouvez aussi accéder individuellement aux directives de configuration
+    pendant l&#039;exécution de vos scripts en utilisant soit la fonction
+    <span class="function"><a href="function.ini-get.html" class="function">ini_get()</a></span>, soit la fonction <span class="function"><a href="function.get-cfg-var.html" class="function">get_cfg_var()</a></span>.
+   </p>
+  </div>
+ </div></div></div></body></html>

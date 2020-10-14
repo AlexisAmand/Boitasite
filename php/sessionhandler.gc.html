@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Nettoie les anciennes sessions</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="sessionhandler.destroy.html">« SessionHandler::destroy</a></li>
+      <li style="float: right;"><a href="sessionhandler.open.html">SessionHandler::open »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.sessionhandler.html">SessionHandler</a></li>
+    <li>Nettoie les anciennes sessions</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="sessionhandler.gc" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SessionHandler::gc</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.4.0, PHP 7)</p><p class="refpurpose"><span class="refname">SessionHandler::gc</span> &mdash; <span class="dc-title">Nettoie les anciennes sessions</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-sessionhandler.gc-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>SessionHandler::gc</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$maxlifetime</code></span>
+   ) : <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   Nettoie les sessions expirées. Appelé aléatoirement en interne par PHP lorsqu&#039;une
+   session démarre ou lorsque la fonction <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span> est appelée.
+   La fréquence d&#039;appel est basée sur les directives de configuration
+   <a href="session.configuration.html#ini.session.gc-divisor" class="link">session.gc_divisor</a> et
+   <a href="session.configuration.html#ini.session.gc-probability" class="link">session.gc_probability</a>.
+  </p>
+  <p class="para">
+   Cette méthode se substitue au gestionnaire interne de sauvegarde PHP défini via l&#039;option
+   de configuration <a href="session.configuration.html#ini.session.save-handler" class="link">session.save_handler</a>
+   qui a été définie avant que ce dernier ne le soit via la fonction
+   <span class="function"><a href="function.session-set-save-handler.html" class="function">session_set_save_handler()</a></span>.
+  </p>
+  <p class="para">
+   Si cette classe est étendue par héritage, l&#039;appel à la méthode parente <code class="parameter">gc</code>
+   invoquera le wrapper pour cette méthode, mais aussi, invoquera en interne la fonction de rappel
+   associée. Ce comportement permet à cette méthode d&#039;être surchargée ou bien d&#039;être interceptée
+   et filtrée.
+  </p>
+  <p class="para">
+   Pour plus d&#039;informations sur l&#039;attendu de cette méthode, référez-vous à la documentation
+   sur la fonction <span class="function"><a href="sessionhandlerinterface.gc.html" class="function">SessionHandlerInterface::gc()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-sessionhandler.gc-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">maxlifetime</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Les sessions qui n&#039;auront pas été mises à jour les dernières
+      <code class="parameter">maxlifetime</code> secondes seront supprimées.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-sessionhandler.gc-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   La valeur retournée (habituellement <strong><code>TRUE</code></strong> en cas de succès, <strong><code>FALSE</code></strong> si une erreur survient).
+        Notez que cette valeur est retournée en interne à PHP pour analyse.
+  </p>
+ </div>
+
+
+
+</div></div></div></body></html>

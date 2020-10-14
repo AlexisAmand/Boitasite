@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Sp&eacute;cifie la m&eacute;thode avec laquelle les valeurs SNMP seront retourn&eacute;es</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.snmp-set-quick-print.html">« snmp_set_quick_print</a></li>
+      <li style="float: right;"><a href="function.snmp2-get.html">snmp2_get »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.snmp.html">Fonctions SNMP</a></li>
+    <li>Sp&eacute;cifie la m&eacute;thode avec laquelle les valeurs SNMP seront retourn&eacute;es</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.snmp-set-valueretrieval" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">snmp_set_valueretrieval</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.3, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">snmp_set_valueretrieval</span> &mdash; <span class="dc-title">
+   Spécifie la méthode avec laquelle les valeurs SNMP seront retournées
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.snmp-set-valueretrieval-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   
+   <span class="methodname"><strong>snmp_set_valueretrieval</strong></span>
+    ( <span class="methodparam">
+    <span class="type">int</span>
+     <code class="parameter">$method</code>
+    <span class="initializer"> = SNMP_VALUE_LIBRARY</span>
+   </span>
+   ) : <span class="type">bool</span></div>
+
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.snmp-set-valueretrieval-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+
+      <code class="parameter">mehod</code>
+     </dt>
+
+     <dd>
+
+      <table class="doctable table">
+       <caption><strong>types</strong></caption>
+       
+        <tbody class="tbody">
+         <tr>
+          <td>SNMP_VALUE_LIBRARY</td>
+          <td>
+           Les valeurs retournées seront celles retournées par la bibliothèque
+           Net-SNMP.</td>
+         </tr>
+
+         <tr>
+          <td>SNMP_VALUE_PLAIN</td>
+          <td>
+           Les valeurs retournées seront brutes, sans l&#039;ajout du type
+           SNMP.</td>
+         </tr>
+
+         <tr>
+          <td>SNMP_VALUE_OBJECT</td>
+          <td>
+           Les valeurs retournées seront des objets avec les propriétés
+           &quot;value&quot; et &quot;type&quot;, où la seconde est une des constantes
+           SNMP_OCTET_STR, SNMP_COUNTER etc.. La façon dont la &quot;value&quot;
+           est retournée est basée suivant l&#039;utilisation de la constante
+           <strong><code>SNMP_VALUE_LIBRARY</code></strong> ou de
+           la constante <strong><code>SNMP_VALUE_PLAIN</code></strong>.
+          </td>
+         </tr>
+
+        </tbody>
+       
+      </table>
+
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ 
+ <div class="refsect1 examples" id="refsect1-function.snmp-set-valueretrieval-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-5134">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>snmp_set_valueretrieval()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;snmp_set_valueretrieval</span><span style="color: #007700">(</span><span style="color: #0000BB">SNMP_VALUE_LIBRARY</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">snmpget</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'public'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IF-MIB::ifName.1'</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #FF8000">//&nbsp;$ret&nbsp;=&nbsp;"STRING:&nbsp;lo"<br /><br />&nbsp;</span><span style="color: #0000BB">snmp_set_valueretrieval</span><span style="color: #007700">(</span><span style="color: #0000BB">SNMP_VALUE_PLAIN</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">snmpget</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'public'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IF-MIB::ifName.1'</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #FF8000">//&nbsp;$ret&nbsp;=&nbsp;"lo";<br /><br />&nbsp;</span><span style="color: #0000BB">snmp_set_valueretrieval</span><span style="color: #007700">(</span><span style="color: #0000BB">SNMP_VALUE_OBJECT</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">snmpget</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'public'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IF-MIB::ifName.1'</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #FF8000">//&nbsp;stdClass&nbsp;Object<br />&nbsp;//&nbsp;(<br />&nbsp;//&nbsp;&nbsp;&nbsp;[type]&nbsp;=&gt;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;--&nbsp;SNMP_OCTET_STR,&nbsp;voir&nbsp;les&nbsp;constantes<br />&nbsp;//&nbsp;&nbsp;&nbsp;[value]&nbsp;=&gt;&nbsp;lo<br />&nbsp;//&nbsp;)<br /><br />&nbsp;//&nbsp;Exemples&nbsp;avec&nbsp;PHP&nbsp;5.4+<br />&nbsp;</span><span style="color: #0000BB">snmp_set_valueretrieval</span><span style="color: #007700">(</span><span style="color: #0000BB">SNMP_VALUE_OBJECT&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">SNMP_VALUE_PLAIN</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">snmpget</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'public'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IF-MIB::ifName.1'</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #FF8000">//&nbsp;stdClass&nbsp;Object<br />&nbsp;//&nbsp;(<br />&nbsp;//&nbsp;&nbsp;&nbsp;[type]&nbsp;=&gt;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;--&nbsp;SNMP_OCTET_STR,&nbsp;voir&nbsp;les&nbsp;constantes<br />&nbsp;//&nbsp;&nbsp;&nbsp;[value]&nbsp;=&gt;&nbsp;lo<br />&nbsp;//&nbsp;)<br /><br />&nbsp;</span><span style="color: #0000BB">snmp_set_valueretrieval</span><span style="color: #007700">(</span><span style="color: #0000BB">SNMP_VALUE_OBJECT&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">SNMP_VALUE_LIBRARY</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #0000BB">$ret&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">snmpget</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'public'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IF-MIB::ifName.1'</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #FF8000">//&nbsp;stdClass&nbsp;Object<br />&nbsp;//&nbsp;(<br />&nbsp;//&nbsp;&nbsp;&nbsp;[type]&nbsp;=&gt;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;--&nbsp;SNMP_OCTET_STR,&nbsp;voir&nbsp;les&nbsp;constantes<br />&nbsp;//&nbsp;&nbsp;&nbsp;[value]&nbsp;=&gt;&nbsp;STRING:&nbsp;lo<br />&nbsp;//&nbsp;)<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.snmp-set-valueretrieval-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     <span class="function"><a href="function.snmp-get-valueretrieval.html" class="function" rel="rdfs-seeAlso">snmp_get_valueretrieval()</a> - Retourne la m&eacute;thode avec laquelle les valeurs SNMP seront retourn&eacute;es</span>
+    </li>
+    <li class="member"><a href="snmp.constants.html" class="xref">Constantes pr&eacute;-d&eacute;finies</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

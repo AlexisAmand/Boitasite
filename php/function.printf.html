@@ -1,0 +1,514 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Affiche une cha&icirc;ne de caract&egrave;res format&eacute;e</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.print.html">« print</a></li>
+      <li style="float: right;"><a href="function.quoted-printable-decode.html">quoted_printable_decode »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.strings.html">Fonctions sur les cha&icirc;nes de caract&egrave;res</a></li>
+    <li>Affiche une cha&icirc;ne de caract&egrave;res format&eacute;e</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.printf" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">printf</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">printf</span> &mdash; <span class="dc-title">Affiche une chaîne de caractères formatée</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.printf-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>printf</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$format</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$...</code></span>
+  ] ) : <span class="type">int</span></div>
+
+  <p class="simpara">
+   Affiche une chaîne de caractères formatée.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.printf-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+
+ <dt>
+<code class="parameter">format</code></dt>
+
+ <dd>
+
+  <p class="para">
+   La chaîne de format est composé de zéro ou plusieurs directives :
+   des caractères ordinaires (à l&#039;exception de <code class="literal">%</code>)
+   qui sont copiés directement dans le résultat et des
+   <em class="emphasis">spécifications de conversion</em>,
+   chacun ayant pour résultat de récupérer ses propres paramètre.
+  </p>
+
+  <p class="para">
+   Une spécification de conversion qui suit ce prototype :
+   <code class="literal">%[argnum$][flags][width][.precision]specifier</code>.
+  </p>
+
+  <p class="formalpara">
+   <h5 class="title">Argnum</h5>
+   <p class="para">
+    Un <a href="language.types.integer.html" class="link">entier</a> suivit d&#039;un signe dollar <code class="literal">$</code>,
+    pour spécifier quel numéro d&#039;argument à traiter dans la conversion.
+   </p>
+  </p>
+
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Drapeaux</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Drapeau</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td><code class="literal">-</code></td>
+       <td>
+        Justifie le texte à gauche donnée la largeur du champ ;
+        Justification à droite est le comportement par défaut.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">+</code></td>
+       <td>
+        Préfixe les nombres positives avec un signe plus
+        <code class="literal">+</code> ; Par défaut seul les nombres
+        négatifs sont préfixés avec un signe négatif.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal"> </code>(espace)</td>
+       <td>
+        Complète le résultat avec des espaces.
+        Ceci est par défaut.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">0</code></td>
+       <td>
+        Complète uniquement les nombres à gauches avec des zéros.
+        Avec le spécificateur <code class="literal">s</code> ceci peut aussi
+        compléter à droite avec des zéros.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">&#039;</code>(char)</td>
+       <td>
+        Complète le résultat avec le caractère (char).
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+
+  <p class="formalpara">
+   <h5 class="title">Largeur</h5>
+   <p class="para">
+    Un entier indiquant combien de caractères (au minimum)
+    cette conversion doit avoir pour résultat.
+   </p>
+  </p>
+
+  <p class="formalpara">
+   <h5 class="title">Precision</h5>
+   <p class="para">
+    Un point <code class="literal">.</code> suivie d&#039;un entier dont
+    sa signification dépend du spécificateur :
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       Pour les spécificateurs <code class="literal">e</code>, <code class="literal">E</code>,
+       <code class="literal">f</code> et <code class="literal">F</code> :
+       ceci est le nombre de chiffres à afficher après
+       la virgule (par défaut, ceci est 6).
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       Pour les spécificateurs <code class="literal">g</code> et <code class="literal">G</code> :
+       ceci est le nombre maximal de chiffres significatifs à afficher.
+       digits to be printed.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       Pour le spécificateur <code class="literal">s</code> : il agit comme un point de coupure,
+       définissant une limite maximale de caractères de la chaîne.
+      </span>
+     </li>
+    </ul>
+    <blockquote class="note"><p><strong class="note">Note</strong>: 
+     <span class="simpara">
+      Si le point est spécifié sans une valeur explicite pour la précision,
+      0 est assumé.
+     </span>
+    </p></blockquote>
+   </p>
+  </p>
+
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <span class="simpara">
+    Tenter d&#039;utiliser une position supérieure à
+    <strong><code>PHP_INT_MAX</code></strong> génèrera une alerte.
+   </span>
+  </p></blockquote>
+
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Spécificateurs</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Spécificateur</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td><code class="literal">%</code></td>
+       <td>
+        Un caractère de pourcentage littéral. Aucun argument n&#039;est nécessaire.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">b</code></td>
+       <td>
+        L&#039;argument est traité comme un entier et présenté
+        comme un nombre binaire.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">c</code></td>
+       <td>
+        L&#039;argument est traité comme un entier et présenté
+        comme le caractère de code ASCII correspondant.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">d</code></td>
+       <td>
+       L&#039;argument est traité comme un entier et présenté
+       comme un nombre entier décimal (signé).
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">e</code></td>
+       <td>
+        L&#039;argument est traité comme une notation scientifique
+        (e.g. <code class="literal">1.2e+2</code>).
+        Le spécificateur de précision représente le nombre de chiffres après
+        la virgule depuis PHP 5.2.1. Dans les versions antérieures, il a été
+        pris comme nombre des chiffres significatifs (moins un).
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">E</code></td>
+       <td>
+        Comme le spécificateur <code class="literal">e</code> mais utilise
+        une lettre majuscule (par exemple 1.2E+2).
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">f</code></td>
+       <td>
+        L&#039;argument est traité comme un nombre à virgule flottante
+        (type <span class="type"><a href="language.types.float.html" class="type float">float</a></span>) et présenté comme un nombre à virgule
+        flottante (tenant compte de la locale utilisée).
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">F</code></td>
+       <td>
+        L&#039;argument est traité comme un nombre à virgule flottante
+        (type <span class="type"><a href="language.types.float.html" class="type float">float</a></span>) et présenté comme un nombre à virgule
+        flottante (ne tenant pas compte de la locale utilisée).
+        Disponible à partir de PHP 5.0.3.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">g</code></td>
+       <td>
+        <p class="para">
+         Format général.
+        </p>
+        <p class="para">
+         Soit P égal à la précision si différent de 0, 6 si la précision
+         est omit ou 1 si la précision est zéro.
+         Alors, si la conversion avec le style E aurait comme exposant X :
+        </p>
+        <p class="para">
+         Si P &gt; X ≥ −4, la conversion est avec style f et précision P − (X + 1).
+         Sinon, la conversion est avec le style e et précision P - 1.
+        </p>
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">G</code></td>
+       <td>
+        Comme le spécificateur <code class="literal">g</code> mais utilise
+        <code class="literal">E</code> et <code class="literal">f</code>.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">o</code></td>
+       <td>
+        L&#039;argument est traité comme un entier et présenté
+        comme un nombre octal.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">s</code></td>
+       <td>
+        L&#039;argument est traité et présenté comme une chaîne de caractères.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">u</code></td>
+       <td>
+        L&#039;argument est traité comme un entier et présenté
+        comme un nombre décimal non signé.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">x</code></td>
+       <td>
+        L&#039;argument est traité comme un entier et présenté
+        comme un nombre hexadécimal (les lettres en minuscules).
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">X</code></td>
+       <td>
+       L&#039;argument est traité comme un entier et présenté
+       comme un nombre hexadécimal (les lettres en majuscules).
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Le spécificateur de type <code class="literal">c</code> ignore l&#039;alignement et la taille.
+   </p>
+  </div>
+
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Le fait de tenter d&#039;utiliser une combinaison d&#039;une chaîne
+    et de spécificateurs avec des jeux de caractères qui nécessitent
+    plus d&#039;un octet par caractères donnera un résultat inattendu.
+   </p>
+  </div>
+
+  <p class="para">
+   Les variables seront contraints à un type approprié pour le spécificateur :
+   <table class="doctable table">
+    <caption><strong>Gestion des types</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Type</th>
+       <th>Spécificateurs</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td><code class="literal">string</code></td>
+       <td><code class="literal">s</code></td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">integer</code></td>
+       <td>
+        <code class="literal">d</code>,
+        <code class="literal">u</code>,
+        <code class="literal">c</code>,
+        <code class="literal">o</code>,
+        <code class="literal">x</code>,
+        <code class="literal">X</code>,
+        <code class="literal">b</code>
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">double</code></td>
+       <td>
+        <code class="literal">g</code>,
+        <code class="literal">G</code>,
+        <code class="literal">e</code>,
+        <code class="literal">E</code>,
+        <code class="literal">f</code>,
+        <code class="literal">F</code>
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </dd>
+
+
+
+    
+     <dt>
+<code class="parameter">...</code></dt>
+
+     <dd>
+
+      <p class="para">
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.printf-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne la taille de la chaîne affichée.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.printf-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-5481">
+    <p><strong>Exemple #1 <span class="function"><strong>printf()</strong></span> : divers exemples</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$n&nbsp;</span><span style="color: #007700">=&nbsp;&nbsp;</span><span style="color: #0000BB">43951789</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$u&nbsp;</span><span style="color: #007700">=&nbsp;-</span><span style="color: #0000BB">43951789</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$c&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">65</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;ASCII&nbsp;65&nbsp;is&nbsp;'A'<br /><br />//&nbsp;notez&nbsp;le&nbsp;double&nbsp;%%,&nbsp;cela&nbsp;affiche&nbsp;un&nbsp;caractère&nbsp;'%'&nbsp;littéral<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%%b&nbsp;=&nbsp;'%b'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;représentation&nbsp;binaire<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%%c&nbsp;=&nbsp;'%c'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$c</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;affiche&nbsp;le&nbsp;caractère&nbsp;ascii,&nbsp;comme&nbsp;la&nbsp;fonction&nbsp;chr()<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%%d&nbsp;=&nbsp;'%d'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;représentation&nbsp;standard&nbsp;d'un&nbsp;entier<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%%e&nbsp;=&nbsp;'%e'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;notation&nbsp;scientifique<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%%u&nbsp;=&nbsp;'%u'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;représentation&nbsp;entière&nbsp;non&nbsp;signée&nbsp;d'un&nbsp;entier&nbsp;positif<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%%u&nbsp;=&nbsp;'%u'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$u</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;représentation&nbsp;entière&nbsp;non&nbsp;signée&nbsp;d'un&nbsp;entier&nbsp;négatif<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%%f&nbsp;=&nbsp;'%f'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;représentation&nbsp;en&nbsp;virgule&nbsp;flottante<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%%o&nbsp;=&nbsp;'%o'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;représentation&nbsp;octale<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%%s&nbsp;=&nbsp;'%s'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;représentation&nbsp;chaîne&nbsp;de&nbsp;caractères<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%%x&nbsp;=&nbsp;'%x'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;représentation&nbsp;hexadécimal&nbsp;(minuscule)<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%%X&nbsp;=&nbsp;'%X'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;représentation&nbsp;hexadécimal&nbsp;(majuscule)<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%%+d&nbsp;=&nbsp;'%+d'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$n</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;indication&nbsp;du&nbsp;signe&nbsp;pour&nbsp;un&nbsp;entier&nbsp;positif<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%%+d&nbsp;=&nbsp;'%+d'\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$u</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;indication&nbsp;du&nbsp;signe&nbsp;pour&nbsp;un&nbsp;entier&nbsp;négatif<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+%b = &#039;10100111101010011010101101&#039;
+%c = &#039;A&#039;
+%d = &#039;43951789&#039;
+%e = &#039;4.39518e+7&#039;
+%u = &#039;43951789&#039;
+%u = &#039;4251015507&#039;
+%f = &#039;43951789.000000&#039;
+%o = &#039;247523255&#039;
+%s = &#039;43951789&#039;
+%x = &#039;29ea6ad&#039;
+%X = &#039;29EA6AD&#039;
+%+d = &#039;+43951789&#039;
+%+d = &#039;-43951789&#039;
+</pre></div>
+    </div>
+   </div>
+   <div class="example" id="example-5482">
+    <p><strong>Exemple #2 <span class="function"><strong>printf()</strong></span> : spécificateurs chaînes de caractères</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$s&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'monkey'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$t&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'many&nbsp;monkeys'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%s]\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;affichage&nbsp;d'une&nbsp;chaîne&nbsp;standard<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%10s]\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;justification&nbsp;à&nbsp;droite&nbsp;avec&nbsp;des&nbsp;espaces<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%-10s]\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;justification&nbsp;à&nbsp;gauche&nbsp;avec&nbsp;des&nbsp;espaces<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%010s]\n"</span><span style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;l'espacement&nbsp;nul&nbsp;fonctionne&nbsp;aussi&nbsp;sur&nbsp;les&nbsp;chaînes<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%'#10s]\n"</span><span style="color: #007700">,&nbsp;&nbsp;</span><span style="color: #0000BB">$s</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;utilisation&nbsp;du&nbsp;caractère&nbsp;personnalisé&nbsp;de&nbsp;séparation&nbsp;'#'<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%10.9s]\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$t</span><span style="color: #007700">);&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;justification&nbsp;à&nbsp;droite&nbsp;mais&nbsp;avec&nbsp;une&nbsp;coupure&nbsp;à&nbsp;8&nbsp;caractères<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"[%-10.9s]\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$t</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;justification&nbsp;à&nbsp;gauche&nbsp;mais&nbsp;avec&nbsp;une&nbsp;coupure&nbsp;à&nbsp;8&nbsp;caractères<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+[monkey]
+[    monkey]
+[monkey    ]
+[0000monkey]
+[####monkey]
+[ many monk]
+[many monk ]
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.printf-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.print.html" class="function" rel="rdfs-seeAlso">print</a> - Affiche une cha&icirc;ne de caract&egrave;res</span></li>
+    <li class="member"><span class="function"><a href="function.sprintf.html" class="function" rel="rdfs-seeAlso">sprintf()</a> - Retourne une cha&icirc;ne format&eacute;e</span></li>
+    <li class="member"><span class="function"><a href="function.fprintf.html" class="function" rel="rdfs-seeAlso">fprintf()</a> - &Eacute;crit une cha&icirc;ne format&eacute;e dans un flux</span></li>
+    <li class="member"><span class="function"><a href="function.vprintf.html" class="function" rel="rdfs-seeAlso">vprintf()</a> - Affiche une cha&icirc;ne format&eacute;e</span></li>
+    <li class="member"><span class="function"><a href="function.vsprintf.html" class="function" rel="rdfs-seeAlso">vsprintf()</a> - Retourne une cha&icirc;ne format&eacute;e</span></li>
+    <li class="member"><span class="function"><a href="function.vfprintf.html" class="function" rel="rdfs-seeAlso">vfprintf()</a> - &Eacute;crit une cha&icirc;ne format&eacute;e dans un flux</span></li>
+    <li class="member"><span class="function"><a href="function.sscanf.html" class="function" rel="rdfs-seeAlso">sscanf()</a> - Analyse une cha&icirc;ne &agrave; l'aide d'un format</span></li>
+    <li class="member"><span class="function"><a href="function.fscanf.html" class="function" rel="rdfs-seeAlso">fscanf()</a> - Analyse un fichier en fonction d'un format</span></li>
+    <li class="member"><span class="function"><a href="function.number-format.html" class="function" rel="rdfs-seeAlso">number_format()</a> - Formate un nombre pour l'affichage</span></li>
+    <li class="member"><span class="function"><a href="function.date.html" class="function" rel="rdfs-seeAlso">date()</a> - Formate une date/heure locale</span></li>
+    <li class="member"><span class="function"><a href="function.flush.html" class="function" rel="rdfs-seeAlso">flush()</a> - Vide les tampons de sortie du syst&egrave;me</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Fonctionnalit&eacute;s devenues obsol&egrave;tes en PHP 5.6.x</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration56.new-features.html">« Nouvelles fonctionnalit&eacute;s</a></li>
+      <li style="float: right;"><a href="migration56.changed-functions.html">Fonctions modifi&eacute;es »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration56.html">Migration de PHP 5.5.x &agrave; PHP 5.6.x</a></li>
+    <li>Fonctionnalit&eacute;s devenues obsol&egrave;tes en PHP 5.6.x</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration56.deprecated" class="sect1">
+ <h2 class="title">Fonctionnalités devenues obsolètes en PHP 5.6.x</h2>
+
+ <div class="sect2" id="migration56.deprecated.incompatible-context">
+  <h3 class="title">Appel depuis un contexte incompatible</h3>
+
+  <p class="para">
+   L&#039;appel des méthodes depuis un contexte incompatible est désormais obsolète 
+   et va générer une erreur <strong><code>E_DEPRECATED</code></strong> au lieu d&#039;une 
+   <strong><code>E_STRICT</code></strong>. Le support de ces appels sera retiré dans une 
+   version future de PHP.
+  </p>
+
+  <p class="para">
+   Un exemple d&#039;un tel appel est :
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">A&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">f</span><span style="color: #007700">()&nbsp;{&nbsp;echo&nbsp;</span><span style="color: #0000BB">get_class</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">);&nbsp;}<br />}<br /><br />class&nbsp;</span><span style="color: #0000BB">B&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;</span><span style="color: #0000BB">f</span><span style="color: #007700">()&nbsp;{&nbsp;</span><span style="color: #0000BB">A</span><span style="color: #007700">::</span><span style="color: #0000BB">f</span><span style="color: #007700">();&nbsp;}<br />}<br /><br />(new&nbsp;</span><span style="color: #0000BB">B</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">f</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <p class="para">L&#039;exemple ci-dessus va afficher :</p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Deprecated: Non-static method A::f() should not be called statically, assuming $this from incompatible context in - on line 7
+B
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+ <div class="sect2" id="migration56.deprecated.raw-post-data">
+  <h3 class="title">
+   <var class="varname"><a href="reserved.variables.httprawpostdata.html" class="classname">$HTTP_RAW_POST_DATA</a></var> et 
+   <a href="ini.core.html#ini.always-populate-raw-post-data" class="link">always_populate_raw_post_data</a>
+  </h3>
+
+  <p class="para">
+   <a href="ini.core.html#ini.always-populate-raw-post-data" class="link">always_populate_raw_post_data</a>
+   génère désormais une erreur <strong><code>E_DEPRECATED</code></strong> quand
+   la variable <var class="varname"><a href="reserved.variables.httprawpostdata.html" class="classname">$HTTP_RAW_POST_DATA</a></var> est remplie. 
+   Le nouveau code devrait utiliser 
+   <a href="wrappers.php.html#wrappers.php.input" class="link"><code class="literal">php://input</code></a>
+   à la place de <var class="varname"><a href="reserved.variables.httprawpostdata.html" class="classname">$HTTP_RAW_POST_DATA</a></var>, qui sera supprimé dans 
+   une version future de PHP. Vous pouvez basculer vers le nouveau comportement 
+   (dans lequel <var class="varname"><a href="reserved.variables.httprawpostdata.html" class="classname">$HTTP_RAW_POST_DATA</a></var> n&#039;est jamais défini, et donc
+   aucune alerte de niveau <strong><code>E_DEPRECATED</code></strong> ne sera générée) 
+   en définissant 
+   <a href="ini.core.html#ini.always-populate-raw-post-data" class="link">always_populate_raw_post_data</a>
+   à <code class="literal">-1</code>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration56.deprecated.iconv-mbstring-encoding">
+  <h3 class="title">Configuration d&#039;encodage <a href="book.iconv.html" class="link">iconv</a> et <a href="book.mbstring.html" class="link">mbstring</a></h3>
+
+  <p class="para">
+   Les options de configuration <a href="book.iconv.html" class="link">iconv</a> et
+   <a href="book.mbstring.html" class="link">mbstring</a> relatives à l&#039;encodage sont
+   devenues obsolètes en faveur de l&#039;option
+   <a href="ini.core.html#ini.default-charset" class="link"><code class="parameter">default_charset</code></a>.
+   Les options obsolètes sont :
+  </p>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     <a href="iconv.configuration.html#ini.iconv.input-encoding" class="link"><code class="parameter">iconv.input_encoding</code></a>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <a href="iconv.configuration.html#ini.iconv.output-encoding" class="link"><code class="parameter">iconv.output_encoding</code></a>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <a href="iconv.configuration.html#ini.iconv.internal-encoding" class="link"><code class="parameter">iconv.internal_encoding</code></a>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <a href="mbstring.configuration.html#ini.mbstring.http-input" class="link"><code class="parameter">mbstring.http_input</code></a>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <a href="mbstring.configuration.html#ini.mbstring.http-output" class="link"><code class="parameter">mbstring.http_output</code></a>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <a href="mbstring.configuration.html#ini.mbstring.internal-encoding" class="link"><code class="parameter">mbstring.internal_encoding</code></a>
+    </span>
+   </li>
+  </ul>
+ </div>
+ 
+</div></div></div></body></html>

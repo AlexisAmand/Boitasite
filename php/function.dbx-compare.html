@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Compare deux lignes DBX afin de les trier</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.dbx-close.html">« dbx_close</a></li>
+      <li style="float: right;"><a href="function.dbx-connect.html">dbx_connect »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.dbx.html">Fonctions dbx</a></li>
+    <li>Compare deux lignes DBX afin de les trier</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.dbx-compare" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">dbx_compare</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.1.0, PHP 5 &lt; 5.1.0, PECL dbx &gt;= 1.1.0)</p><p class="refpurpose"><span class="refname">dbx_compare</span> &mdash; <span class="dc-title">Compare deux lignes DBX afin de les trier</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.dbx-compare-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>dbx_compare</strong></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter">$row_a</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$row_b</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$column_key</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = DBX_CMP_ASC | DBX_CMP_NATIVE</span></span>
+  ] ) : <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>dbx_compare()</strong></span> est une fonction d&#039;aide pour 
+   <span class="function"><a href="function.dbx-sort.html" class="function">dbx_sort()</a></span>, afin d&#039;aider aux tris.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.dbx-compare-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">row_a</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Première ligne
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">row_b</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Seconde ligne
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">column_key</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La colonne comparée
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le paramètre <code class="parameter">flags</code> peut prendre plusieurs valeurs :
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>DBX_CMP_ASC</code></strong> - ordre ascendant
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>DBX_CMP_DESC</code></strong> - ordre descendant
+         </span>
+        </li>
+       </ul>
+       et le type utilisé pour la comparaison :
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>DBX_CMP_NATIVE</code></strong> - pas de conversion de type
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>DBX_CMP_TEXT</code></strong> - compare les lignes comme des chaînes
+         </span>
+        </li>
+        <li class="listitem">
+         <span class="simpara">
+          <strong><code>DBX_CMP_NUMBER</code></strong> - compare les lignes comme des nombres
+         </span>
+        </li>
+       </ul>
+       Une direction de tri et un type de comparaison peuvent être combinés
+       avec l&#039;opérateur OR (|).
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.dbx-compare-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne <code class="literal">0</code> si
+   <code class="literal">row_a[$column_key]</code> est égale à
+   <code class="literal">row_b[$column_key]</code>, et <code class="literal">1</code> ou
+   <code class="literal">-1</code> si le premier est plus grand ou plus petit que le
+   dernier, respectivement, ou bien le contraire si l&#039;option
+   <code class="parameter">flags</code> est configurée à <strong><code>DBX_CMP_DESC</code></strong>.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.dbx-compare-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-959">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>dbx_compare()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">user_re_order</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">)&nbsp;<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$rv&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_compare</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"parentid"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DBX_CMP_DESC</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!</span><span style="color: #0000BB">$rv</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$rv&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_compare</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$b</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"id"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DBX_CMP_NUMBER</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$rv</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$link&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">DBX_ODBC</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"db"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Impossible&nbsp;de&nbsp;se&nbsp;connecter"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">dbx_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;parentid,&nbsp;description&nbsp;FROM&nbsp;table&nbsp;ORDER&nbsp;BY&nbsp;id"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;les&nbsp;données&nbsp;de&nbsp;$result&nbsp;sont&nbsp;désormais&nbsp;classées&nbsp;par&nbsp;id<br /><br /></span><span style="color: #0000BB">dbx_sort</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user_re_order"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;la&nbsp;date&nbsp;dans&nbsp;$result&nbsp;est&nbsp;maintenant&nbsp;ordonnée&nbsp;par&nbsp;parentid&nbsp;(descending),&nbsp;puis&nbsp;par&nbsp;id<br /><br /></span><span style="color: #0000BB">dbx_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.dbx-compare-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.dbx-sort.html" class="function" rel="rdfs-seeAlso">dbx_sort()</a> - Trie un r&eacute;sultat avec une fonction utilisateur</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

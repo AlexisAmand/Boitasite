@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Utilisation simple</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="sdo.examples.html">« Exemples</a></li>
+      <li style="float: right;"><a href="sdo.sample.getset.html">Fixe et R&eacute;cup&egrave;re les Valeurs des Propri&eacute;t&eacute;s »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="sdo.examples.html">Exemples</a></li>
+    <li>Utilisation simple</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="sdo.examples-basic" class="section">
+  <h2 class="title">Utilisation simple</h2>
+  <p class="para">
+   Les exemples ci-dessous assument qu&#039;un SDO est créé avec le schéma et
+   l&#039;information de l&#039;instance montrée ci-dessous, en utilisant le Service
+   d&#039;Accès de Données.
+  </p>
+  <p class="para">
+   L&#039;instance du document ci-dessous décrit un compagnie simple,
+   nommée <code class="literal">&quot;MegaCorp&quot;</code>, qui contient un seul département, nommé
+   <code class="literal">&quot;Advanced Technologies&quot;</code>. Ce département contient trois employés.
+   La compagnie <code class="literal">&quot;employeeOfTheMonth&quot;</code> référence le second employé,
+   <code class="literal">&quot;Jane Doe&quot;</code>.
+  </p>
+  <p class="para">
+   <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt; 
+&lt;company xmlns=&quot;companyNS&quot; name=&quot;MegaCorp&quot; 
+  employeeOfTheMonth=&quot;E0003&quot;&gt;
+  &lt;departments name=&quot;Advanced Technologies&quot; location=&quot;NY&quot; number=&quot;123&quot;&gt;
+    &lt;employees name=&quot;John Jones&quot; SN=&quot;E0001&quot;/&gt;
+    &lt;employees name=&quot;Jane Doe&quot; SN=&quot;E0003&quot;/&gt;
+    &lt;employees name=&quot;Al Smith&quot; SN=&quot;E0004&quot; manager=&quot;true&quot;/&gt;
+  &lt;/departments&gt;
+&lt;/company&gt;</pre>
+</div>
+   </div>
+
+  </p>
+  <p class="para">
+   L&#039;élément racine de ce schéma est une compagnie. La compagnie contient des départements,
+   et chaque département contient des employés. Chaque élément a un nombre d&#039;attributs pour y
+   stocker des valeurs comme le nom, un numéro de série et ainsi de suite. Finalement, la compagnie
+   a également un attribut IDREF qui identifie un des employés comme <code class="literal">&quot;employeeOfTheMonth&quot;</code>.
+  </p>
+  <p class="para">
+   <div class="example-contents">
+<div class="xmlcode"><pre class="xmlcode">&lt;xsd:schema
+  xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+  xmlns:sdo=&quot;commonj.sdo&quot;
+  xmlns:sdoxml=&quot;commonj.sdo/xml&quot;
+  xmlns:company=&quot;companyNS&quot;
+  targetNamespace=&quot;companyNS&quot;&gt;
+  &lt;xsd:element name=&quot;company&quot; type=&quot;company:CompanyType&quot;/&gt;
+  &lt;xsd:complexType name=&quot;CompanyType&quot;&gt;
+    &lt;xsd:sequence&gt;
+      &lt;xsd:element name=&quot;departments&quot; type=&quot;company:DepartmentType&quot; 
+        maxOccurs=&quot;unbounded&quot;/&gt;
+    &lt;/xsd:sequence&gt;
+    &lt;xsd:attribute name=&quot;name&quot; type=&quot;xsd:string&quot;/&gt;
+    &lt;xsd:attribute name=&quot;employeeOfTheMonth&quot; type=&quot;xsd:IDREF&quot; 
+      sdoxml:propertyType=&quot;company:EmployeeType&quot;/&gt; 
+  &lt;/xsd:complexType&gt;
+  &lt;xsd:complexType name=&quot;DepartmentType&quot;&gt;
+    &lt;xsd:sequence&gt;
+      &lt;xsd:element name=&quot;employees&quot; type=&quot;company:EmployeeType&quot;  
+        maxOccurs=&quot;unbounded&quot;/&gt;
+    &lt;/xsd:sequence&gt;
+    &lt;xsd:attribute name=&quot;name&quot; type=&quot;xsd:string&quot;/&gt;
+    &lt;xsd:attribute name=&quot;location&quot; type=&quot;xsd:string&quot;/&gt;
+    &lt;xsd:attribute name=&quot;number&quot; type=&quot;xsd:int&quot;/&gt;
+  &lt;/xsd:complexType&gt;
+  &lt;xsd:complexType name=&quot;EmployeeType&quot;&gt;
+    &lt;xsd:attribute name=&quot;name&quot; type=&quot;xsd:string&quot;/&gt;
+    &lt;xsd:attribute name=&quot;SN&quot; type=&quot;xsd:ID&quot;/&gt;
+    &lt;xsd:attribute name=&quot;manager&quot; type=&quot;xsd:boolean&quot;/&gt;
+  &lt;/xsd:complexType&gt;
+&lt;/xsd:schema&gt;</pre>
+</div>
+   </div>
+
+  </p>
+  <p class="para">
+   Un Service d&#039;Accès de Données XML voit ce schéma comme un SDO. Les attributs
+   comme <code class="literal">&quot;name&quot;</code> deviennent des propriétés primaires, les séquences d&#039;employés
+   deviennent une relation de contenu à multiples valeurs, et ainsi de suite.
+   Notez que les relations de contenu sont représentées comme un type complexe
+   contenu dans un autre, où les références non-contenues sont représentées
+   en terme d&#039;ID et d&#039;IDREF, avec un attribut <strong class="command">sdoxml:propertyType</strong>
+   spécial spécifiant le type de la référence non-contenue.
+  </p>
+ </div></div></div></body></html>

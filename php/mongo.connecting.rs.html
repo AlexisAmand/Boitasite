@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Paires de r&eacute;plication</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongo.connecting.auth.html">« Authentification</a></li>
+      <li style="float: right;"><a href="mongo.connecting.mongos.html">Fragmentation »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mongo.connecting.html">Connection</a></li>
+    <li>Paires de r&eacute;plication</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongo.connecting.rs" class="section">
+  <h2 class="title">Paires de réplication</h2>
+  <p class="para">
+   Pour se connecter à une paire de réplication, vous devez spécifier
+   au moins un membre de la paire et utiliser l&#039;option <code class="literal">&quot;replicaSet&quot;</code>.
+   Plusieurs serveurs doivent être délimités par une virgule.
+  </p>
+  <div class="example" id="example-1477">
+   <p><strong>Exemple #1 Liste du jeux de réplication</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;de&nbsp;plusieurs&nbsp;serveurs&nbsp;de&nbsp;la&nbsp;liste&nbsp;(méthode&nbsp;préférée)<br /></span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(</span><span style="color: #DD0000">"mongodb://rs1.example.com:27017,rs2.example.com:27017/?replicaSet=myReplSetName"</span><span style="color: #007700">);<br /><br /><br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;d'un&nbsp;seul&nbsp;serveur&nbsp;de&nbsp;la&nbsp;liste<br /></span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(</span><span style="color: #DD0000">"mongodb://rs1.example.com:27017"</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">"replicaSet"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"myReplSetName"</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;de&nbsp;plusieurs&nbsp;serveurs&nbsp;de&nbsp;la&nbsp;liste<br /></span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(</span><span style="color: #DD0000">"mongodb://rs1.example.com:27017,rs2.example.com:27017"</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">"replicaSet"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"myReplSetName"</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">
+   Le pilote PHP requêtera le(s) serveur(s) de base de données listé(s) pour vérifier qui
+   est le primaire. Dès qu&#039;il peut se connecter à au moins un hôte listé, et trouver un primaire,
+   la connexion sera réussie. Dans le cas contraire, une
+   <a href="class.mongoconnectionexception.html" class="classname">MongoConnectionException</a> est envoyée.
+  </p>
+  <div class="tip"><strong class="tip">Astuce</strong>
+   <p class="para">
+    Vous devriez toujours fournir une liste de partage contenant plus d&#039;un membre
+    du jeu de réplication. Pour une haute disponibilité, vous devriez partager
+    avec au moins un serveur de chacun de vos centres de données.
+   </p>
+  </div>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Les noms d&#039;hôte que vous spécifiez dans la liste de partage
+    <em class="emphasis">doivent</em> correspondre aux noms d&#039;hôte présent
+    dans la configuration du jeux de réplication. Et ce, car le driver utilise
+    uniquement les noms d&#039;hôte présents dans la configuration du jeux de
+    réplication pour créer le hash pour ces connexions persistentes.
+   </p>
+   <p class="para">
+    Par exemple, si une adresse IP est utilisée dans la liste de partage
+    et que le jeux de réplication est configuré avec les noms d&#039;hôte, le
+    driver va rejeter toutes les connexions de la liste de partage qui
+    diffèrent des noms d&#039;hôte canoniques présents dans le jeux de réplication.
+    En pratique, ces connexions non-canoniques de la liste de partage
+    seront re-créées à chaque requête, ce qui réduit le bénéfice de l&#039;utilisation
+    des connexions persistentes.
+   </p>
+  </div>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Le driver <em class="emphasis">ne supporte pas</em> les connexions aux différents
+    jeux de réplication avec un nom identique. Vous devez vous assurer
+    d&#039;avoir des noms différents pour chaque serveur de vos jeux de
+    réplication. Cela signifie également que vous <em class="emphasis">ne pouvez pas</em>
+    faire ceci :
+   </p>
+   <div class="example" id="example-1478">
+    <p><strong>Exemple #2 Mauvais noms pour le jeu de réplication</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(</span><span style="color: #DD0000">"mongodb://devserver1,devserver2,devserver3/?replicaSet=repset"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(</span><span style="color: #DD0000">"mongodb://prodserver1,prodserver2,prodserver3/?replicaSet=repset"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <p class="para">
+    A la place, vous devez avoir deux noms différents pour vos jeux de
+    réplications :
+   </p>
+   <div class="example" id="example-1479">
+    <p><strong>Exemple #3 Utilisation correcte des noms de deux jeux de réplication</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(</span><span style="color: #DD0000">"mongodb://devserver1,devserver2,devserver3/?replicaSet=devset"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(</span><span style="color: #DD0000">"mongodb://prodserver1,prodserver2,prodserver3/?replicaSet=prodset"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </div>
+  <p class="para">
+   Si le primaire devient indisponible, les secondaires ne deviendront pas
+   primaires pendant ces quelques secondes. Pendant ce temps là
+   (<a href="https://docs.mongodb.com/manual/faq/replica-sets/#how-long-does-replica-set-failover-take" class="link external">&raquo;&nbsp;20-60 secondes</a>),
+   la connexion ne sera pas capable d&#039;effectuer les opérations sur la base
+   de données (les connexions aux secondaires pourront toujours effectuer des
+   lectures) et une exception sera levée.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    La <a href="mongo.readpreferences.html" class="link">préférence de lecture</a>
+    par défaut est de ne lire que depuis le primaire. Lors du processus d&#039;élection,
+    il n&#039;y a pas de primaire, et toutes les lectures échoueront.
+   </p>
+   <p class="para">
+    Il est recommandé d&#039;utiliser la préférence de lecture
+    <strong><code>MongoClient::RP_PRIMARY_PREFERRED</code></strong> pour les applications
+    qui requièrent une haute disponibilité pour les lectures, vu que les
+    lectures ne seront réalisées sur les secondaires que lorsqu&#039;il n&#039;y a aucun
+    primaire de disponible.
+   </p>
+  </p></blockquote>
+  <p class="para">
+   Une fois le maître trouvé, essayer des lectures ou écritures permettra au pilote de
+   détecter le nouveau primaire. Le pilote en fera alors sa connexion principale et continuera
+   les opérations normalement.
+  </p>
+  <p class="para">
+   La santé et le statut d&#039;un secondaire sont vérifiés toutes les 5 secondes
+   (configurable avec la directive
+   <a href="mongo.configuration.html#ini.mongo.ping-interval" class="link">mongo.ping_interval</a>)
+   ou lorsque la prochaine opération survient après 5 secondes. La
+   configuration sera de nouveau analysée lorsque le driver rencontre
+   un problème lors d&#039;une connexion à un serveur.
+  </p>
+  <p class="para">
+   Les failovers du jeu de réplication sont vérifiés toutes les 60 secondes
+   (configurable avec la directive
+   <a href="mongo.configuration.html#ini.mongo.is-master-interval" class="link">mongo.is_master_interval</a>),
+   et lorsqu&#039;une opération en écriture échoue avec des écritures reconnues.
+  </p>
+  
+  <div class="caution"><strong class="caution">Attention</strong>
+   <p class="para">
+    Les secondaires peuvent être derrière le primaire lors des opérations,
+    aussi, votre application doit être capable de gérer les données périmées
+    lors de l&#039;utilisation de préférences de lecture autre que
+    <strong><code>MongoClient::RP_PRIMARY</code></strong>.
+   </p>
+  </div>
+  
+  <p class="para">
+   Pour plus d&#039;informations sur les paires de réplication, reportez-vous à la
+   <a href="https://docs.mongodb.com/manual/replication/" class="link external">&raquo;&nbsp;documentation interne</a>.
+  </p>
+  
+  <div class="simplesect">
+   <h3 class="title">Voir aussi</h3>
+   <ul class="simplelist">
+    <li class="member"><a href="mongo.readpreferences.html" class="xref">Pr&eacute;f&eacute;rences de lecture</a></li>
+    <li class="member"><a href="mongo.writeconcerns.html" class="xref">Write Concerns</a></li>
+   </ul>
+  </div>
+  
+  <div class="simplesect">
+   <h3 class="title">Historique</h3>
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>1.0.9</td>
+       <td>
+        Ajout du support au jeu de réplication, et du failover automatique.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </div>
+  
+ </div></div></div></body></html>

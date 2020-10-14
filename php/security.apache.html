@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Install&eacute; en tant que module Apache</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="security.cgi-bin.shell.html">« Cas 4 : Ex&eacute;cutable PHP &agrave; l'ext&eacute;rieur de l'arborescence du serveur</a></li>
+      <li style="float: right;"><a href="security.sessions.html">S&eacute;curit&eacute; des Sessions »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="security.html">S&eacute;curit&eacute;</a></li>
+    <li>Install&eacute; en tant que module Apache</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="security.apache" class="chapter">
+ <h1>Installé en tant que module Apache</h1>
+
+ <p class="simpara">
+  Lorsque <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> est utilisé en tant que module Apache, celui-ci hérite des
+  permissions accordées à l&#039;utilisateur faisant tourner Apache (par défaut,
+  l&#039;utilisateur &quot;nobody&quot;). Ceci a plusieurs impacts sur la sécurité et
+  les autorisations.
+  Par exemple, si vous utilisez <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> pour accéder à une base de données, à
+  moins que la base n&#039;ait un système de droits d&#039;accès interne, vous devrez
+  la rendre accessible à l&#039;utilisateur &quot;nobody&quot;. Cela signifie qu&#039;un
+  script mal intentionné peut accéder à la base et la modifier, sans
+  identification. Il est même possible qu&#039;un robot accède une page
+  d&#039;administration, et détruise toutes les bases de données. Vous pouvez vous protéger
+  contre cela avec les autorisations Apache, ou définir votre
+  propre modèle d&#039;accès en utilisant LDAP, des fichiers <var class="filename">.htaccess</var>, etc. et inclure ce code
+  dans vos scripts <acronym title="PHP: Hypertext Preprocessor">PHP</acronym>.
+ </p>
+ <p class="simpara">
+  Souvent, lorsqu&#039;on a établi les droits de l&#039;utilisateur <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> (ici,
+  l&#039;utilisateur Apache) pour minimiser les risques, on s&#039;aperçoit que
+  <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> ne peut plus écrire de fichiers dans les répertoires des utilisateurs.
+  Ou encore, qu&#039;il ne peut plus accéder à, ou modifier, une base de données privée.
+  En somme, les sécurités mises en place empêchent à la fois l&#039;écriture de bons et de mauvais fichiers,
+  en même temps que les bonnes et mauvaises opérations en bases de données.
+ </p>
+ <p class="simpara">
+  Arrivé là, une erreur de sécurité fréquente est de donner à l&#039;utilisateur Apache
+  les droits de superadministrateur (&quot;root&quot;), ou d&#039;accroitre les possibilités d&#039;Apache
+  d&#039;une quelconque autre façon.
+ </p>
+ <p class="simpara">
+  Donner de telles permissions à l&#039;utilisateur Apache est extrêmement
+  dangereux, et pourrait compromettre tout le système ; en conséquence, l&#039;utilisation de sudo,
+  de chroot, ou de toute autre solution permettant de fonctionner en tant que superadministrateur
+  (&quot;root&quot;), ne devrait pas être envisagée par toute personne qui ne soit pas experte en sécurité.
+ </p>
+ <p class="simpara">
+  Il existe des solutions plus simples. En utilisant
+  <a href="ini.core.html#ini.open-basedir" class="link">open_basedir</a>, vous pouvez contrôler et restreindre
+  les dossiers qui seront accessibles par <acronym title="PHP: Hypertext Preprocessor">PHP</acronym>. Vous pouvez
+  aussi créer des aires de restrictions Apache, pour limiter les activités
+  en provenance du web à des fichiers qui ne soient en rapport ni avec des utilisateurs,
+  ni avec le système.
+ </p>
+</div>
+</div></div></body></html>

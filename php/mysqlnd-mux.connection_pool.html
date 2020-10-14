@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>File d'attente de connexions</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-mux.architecture.html">« Architecture</a></li>
+      <li style="float: right;"><a href="mysqlnd-mux.sharing_connections.html">Connexions partag&eacute;es »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-mux.concepts.html">Concepts</a></li>
+    <li>File d'attente de connexions</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-mux.connection_pool" class="section">
+  <h2 class="title">File d&#039;attente de connexions</h2>
+  <p class="para">
+   Le plugin de mise en file d&#039;attente de connexion est créé lorsque PHP initialise
+   ces modules (<code class="literal">MINIT</code>) et libéré lorsque PHP éteint les modules
+   (<code class="literal">MSHUTDOWN</code>). Ce mécanisme est identique aux connexions persistentes
+   MySQL.
+  </p>
+  <p class="para">
+   Suivant le modèle de déploiement, la file d&#039;attente est utilisée pour la durée
+   d&#039;une ou plusieurs demandes web. Les connexions réseau sont liés à la durée de vie
+   d&#039;un processus au niveau du système d&#039;exploitation. Si le processus PHP sert
+   plusieurs demandes web comme c&#039;est le cas pour des déploiements Fast-CGI ou
+   des serveurs web threadés, alors les connexions de la file d&#039;attente peuvent
+   être ré-utilisées pour plusieurs connexions. Parce que le multiplexage
+   signifie connexions partagées, il peut également être utilisé avec un
+   déploiement threadé où deux threads ou deux demandes web distinctes
+   sont liés à une connexion réseau de la file d&#039;attente.
+  </p>
+  <p class="para">
+   Une connexion de dile d&#039;attente est explicitement fermée une fois que la
+   dernière référence à cette dernière est libérée. Une fermeture implicite
+   survient lorsque PHP éteint ses modules.
+  </p>
+ </div></div></div></body></html>

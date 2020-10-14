@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>V&eacute;rifie si plusieurs r&eacute;sultats sont disponibles</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.odbc-longreadlen.html">« odbc_longreadlen</a></li>
+      <li style="float: right;"><a href="function.odbc-num-fields.html">odbc_num_fields »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.uodbc.html">Fonctions ODBC</a></li>
+    <li>V&eacute;rifie si plusieurs r&eacute;sultats sont disponibles</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.odbc-next-result" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">odbc_next_result</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.5, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">odbc_next_result</span> &mdash; <span class="dc-title">Vérifie si plusieurs résultats sont disponibles</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.odbc-next-result-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>odbc_next_result</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$result_id</code></span>
+   ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Vérifie s&#039;il y a plus de jeux de résultats de disponibles accessibles
+   via les fonctions <span class="function"><a href="function.odbc-fetch-array.html" class="function">odbc_fetch_array()</a></span>,
+   <span class="function"><a href="function.odbc-fetch-row.html" class="function">odbc_fetch_row()</a></span>, <span class="function"><a href="function.odbc-result.html" class="function">odbc_result()</a></span>, etc.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.odbc-next-result-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">result_id</code></dt>
+
+     <dd>
+
+      <p class="para">
+       L&#039;identifiant de résultat.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.odbc-next-result-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne <strong><code>TRUE</code></strong> s&#039;il n&#039;y a plus de jeux de résultats, <strong><code>FALSE</code></strong> sinon.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.odbc-next-result-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-975">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>odbc_next_result()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$r_Connection&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$dsn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$username</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$s_SQL&nbsp;</span><span style="color: #007700">=&nbsp;&lt;&lt;&lt;END_SQL<br /></span><span style="color: #DD0000">SELECT&nbsp;'A'<br />SELECT&nbsp;'B'<br />SELECT&nbsp;'C'<br /></span><span style="color: #007700">END_SQL;<br /><br /></span><span style="color: #0000BB">$r_Results&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_exec</span><span style="color: #007700">(</span><span style="color: #0000BB">$r_Connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$s_SQL</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$a_Row1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$r_Results</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$a_Row2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$r_Results</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"Affiche&nbsp;le&nbsp;premier&nbsp;jeu&nbsp;de&nbsp;résultats&nbsp;:&nbsp;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$a_Row1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$a_Row2</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Récupération&nbsp;du&nbsp;deuxième&nbsp;jeu&nbsp;de&nbsp;résultats&nbsp;:&nbsp;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">odbc_next_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$r_Results</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">$a_Row1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$r_Results</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$a_Row2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$r_Results</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"Affiche&nbsp;le&nbsp;second&nbsp;jeu&nbsp;de&nbsp;résultats&nbsp;:&nbsp;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$a_Row1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$a_Row2</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Récupération&nbsp;du&nbsp;troisième&nbsp;jeu&nbsp;de&nbsp;résultats&nbsp;:&nbsp;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">odbc_next_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$r_Results</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">$a_Row1&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$r_Results</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$a_Row2&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">odbc_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$r_Results</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #DD0000">"Affiche&nbsp;le&nbsp;troisième&nbsp;jeu&nbsp;de&nbsp;résultats&nbsp;:&nbsp;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$a_Row1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$a_Row2</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"Tente&nbsp;de&nbsp;récupérer&nbsp;un&nbsp;quatrième&nbsp;jeu&nbsp;de&nbsp;résultats&nbsp;:&nbsp;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">odbc_next_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$r_Results</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Affiche le premier jeu de résultats : array(1) {
+  [&quot;A&quot;]=&gt;
+  string(1) &quot;A&quot;
+}
+bool(false)
+Récupération du second jeu de résultats :bool(true)
+Affiche le second jeu de résultats : array(1) {
+  [&quot;B&quot;]=&gt;
+  string(1) &quot;B&quot;
+}
+bool(false)
+Récupération du troisième jeu de résultats : bool(true)
+Affiche le troisième jeu de résultats : array(1) {
+  [&quot;C&quot;]=&gt;
+  string(1) &quot;C&quot;
+}
+bool(false)
+Tente de récupérer un quatrième jeu de résultats : bool(false)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+</div></div></div></body></html>

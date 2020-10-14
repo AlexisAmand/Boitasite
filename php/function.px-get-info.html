@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne des informations sur un fichier Paradox</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.px-get-field.html">« px_get_field</a></li>
+      <li style="float: right;"><a href="function.px-get-parameter.html">px_get_parameter »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.paradox.html">Fonctions Paradox</a></li>
+    <li>Retourne des informations sur un fichier Paradox</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.px-get-info" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">px_get_info</h1>
+  <p class="verinfo">(PECL paradox &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">px_get_info</span> &mdash; <span class="dc-title">Retourne des informations sur un fichier Paradox</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.px-get-info-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>px_get_info</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$pxdoc</code></span>
+   ) : <span class="type">array</span></div>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.px-get-info-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">pxdoc</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Identifiant de ressource de base de données Paradox tel que retourné
+       par la fonction <span class="function"><a href="function.px-new.html" class="function">px_new()</a></span>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.px-get-info-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau associatif contenant des informations sur un fichier Paradox.
+   Ce tableau est appelé à évoluer dans le futur.
+  </p>
+  <dl>
+
+   
+    <dt>
+fileversion</dt>
+
+    <dd>
+
+     <p class="para">Version du fichier, multiplié par 10, e.g. 70.</p>
+    </dd>
+
+   
+   
+    <dt>
+tablename</dt>
+
+    <dd>
+
+     <p class="para">Nom de la table stocké dans le fichier. Si la base de données a été créée par
+     pxlib, alors ce sera la même chose que le nom du fichier sans l&#039;extension.</p>
+    </dd>
+
+   
+   
+    <dt>
+numrecords</dt>
+
+    <dd>
+
+     <p class="para">Nombre d&#039;enregistrements dans cette table.</p>
+    </dd>
+
+   
+   
+    <dt>
+numfields</dt>
+
+    <dd>
+
+     <p class="para">Nombre de champs dans cette table.</p>
+    </dd>
+
+   
+   
+    <dt>
+headersize</dt>
+
+    <dd>
+
+     <p class="para">Nombre d&#039;octets utilisés pour l&#039;en-tête. Vaut habituellement 0x800.</p>
+    </dd>
+
+   
+   
+    <dt>
+recordsize</dt>
+
+    <dd>
+
+     <p class="para">Nombre d&#039;octets utilisés par chaque enregistrement. C&#039;est la somme de la taille de tous les champs
+      (disponible depuis la version 1.4.2).</p>
+    </dd>
+
+   
+   
+    <dt>
+maxtablesize</dt>
+
+    <dd>
+
+     <p class="para">
+      Cette valeur, multipliée par 0x400, est la taille du bloc de données en octets. Le nombre maximal
+      d&#039;enregistrements dans un bloc de données est un entier de l&#039;intervalle (maxtablesize * 0x400 - 8) / taille
+      de l&#039;enregistrements.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+numdatablocks</dt>
+
+    <dd>
+
+     <p class="para">
+      Le nombre de blocs de données dans le fichier. Chaque bloc de données
+      contient un certain nombre d&#039;enregistrements qui dépend de la taille de l&#039;enregistrement
+      et de la taille du bloc de données (maxtablesize). Les blocs de données
+      ne doivent pas nécessairement être complètement remplis.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+numindexfields</dt>
+
+    <dd>
+
+     <p class="para">
+      Nombre de champs utilisés pour l&#039;index primaire. Le champ commence
+      toujours au numéro 1.
+    </p>
+   </dd>
+
+   
+   
+    <dt>
+codepage</dt>
+
+    <dd>
+
+     <p class="para">
+      La page de code DOS qui sera utilisé pour encoder les champs contenant des données
+      sous forme de caractères. Si la cible d&#039;encodage n&#039;est pas définie avec la fonction
+      <span class="function"><a href="function.px-set-targetencoding.html" class="function">px_set_targetencoding()</a></span>, ceci sera l&#039;encodage
+      pour les champs sous forme de caractères lorsque les enregistrements
+      seront récupérés avec la fonction <span class="function"><a href="function.px-get-record.html" class="function">px_get_record()</a></span> ou
+      <span class="function"><a href="function.px-retrieve-record.html" class="function">px_retrieve_record()</a></span>.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.px-get-info-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.px-numfields.html" class="function" rel="rdfs-seeAlso">px_numfields()</a> - Retourne le nombre de champs d'une base de donn&eacute;es Paradox</span></li>
+    <li class="member"><span class="function"><a href="function.px-numrecords.html" class="function" rel="rdfs-seeAlso">px_numrecords()</a> - Retourne le nombre d'enregistrements d'une base de donn&eacute;es Paradox</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

@@ -1,0 +1,322 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lit plusieurs lignes d'un r&eacute;sultat dans un tableau multi-dimensionnel</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.oci-execute.html">« oci_execute</a></li>
+      <li style="float: right;"><a href="function.oci-fetch-array.html">oci_fetch_array »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.oci8.html">Fonctions OCI8</a></li>
+    <li>Lit plusieurs lignes d'un r&eacute;sultat dans un tableau multi-dimensionnel</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.oci-fetch-all" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">oci_fetch_all</h1>
+  <p class="verinfo">(PHP 5, PHP 7, PECL OCI8 &gt;= 1.1.0)</p><p class="refpurpose"><span class="refname">oci_fetch_all</span> &mdash; <span class="dc-title">Lit plusieurs lignes d&#039;un résultat dans un tableau multi-dimensionnel</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.oci-fetch-all-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>oci_fetch_all</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$statement</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter reference">&$output</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$skip</code><span class="initializer"> = 0</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$maxrows</code><span class="initializer"> = -1</span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$flags</code><span class="initializer"> = <strong><code>OCI_FETCHSTATEMENT_BY_COLUMN</code></strong> + <strong><code>OCI_ASSOC</code></strong></span></span>
+  ]]] ) : <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   Lit toutes les lignes d&#039;un résultat Oracle dans un tableau à 2 dimensions.
+   Par défaut, toutes les lignes sont retournées.
+  </p>
+  <p class="para">
+   Cette fonction peut être appelée une seule fois pour chaque requête
+   exécutée via la fonction <span class="function"><a href="function.oci-execute.html" class="function">oci_execute()</a></span>.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.oci-fetch-all-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">statement</code></dt>
+
+     <dd>
+
+      <p class="para">Un identifiant de requête OCI8
+créé par la fonction <span class="function"><a href="function.oci-parse.html" class="function">oci_parse()</a></span> et exécuté par la fonction
+<span class="function"><a href="function.oci-execute.html" class="function">oci_execute()</a></span>, ou un identifiant de requête <code class="literal">REF
+    CURSOR</code>.</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">output</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La variable qui va contenir les lignes retournées.
+      </p>
+      <p class="para">
+       Les colonnes LOB sont retournées sous la forme d&#039;une chaîne
+       lorsqu&#039;Oracle supporte la conversion.
+      </p>
+      <p class="para">
+       Voir la fonction <span class="function"><a href="function.oci-fetch-array.html" class="function">oci_fetch_array()</a></span> pour plus
+       d&#039;informations sur la façon dont les données et leurs types sont
+       récupérés.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">skip</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Nombre de lignes initiales à ignorer lors de la lecture du
+       résultat. Par défaut, ce paramètre vaut 0, pour commencer la lecture
+       à la première ligne.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">maxrows</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Nombre de lignes maximal à retourner. Par défaut, vaut -1, ce qui
+       signifie que toutes les lignes disponibles seront retournées
+       depuis le paramètre <code class="parameter">skip</code> + 1.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">flags</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le paramètre <code class="parameter">flags</code> indique la structure
+       du tableau mais aussi si des tableaux associatifs doivent
+       être utilisés.
+       <table class="doctable table">
+        <caption><strong>Modes de structure des tableaux pour la fonction
+         <span class="function"><strong>oci_fetch_all()</strong></span></strong></caption>
+        
+         <thead>
+          <tr>
+           <th>Constante</th>
+           <th>Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td><strong><code>OCI_FETCHSTATEMENT_BY_ROW</code></strong></td>
+           <td>Le tableau retourné contiendra un seul sous tableau par
+            lignes.</td>
+          </tr>
+
+          <tr>
+           <td><strong><code>OCI_FETCHSTATEMENT_BY_COLUMN</code></strong></td>
+           <td>Le tableau retourné contiendra un seul sous tableau par
+            colonnes. C&#039;est le comportement par défaut.</td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+      <p class="para">
+       Les tableaux peuvent être indexés soit par l&#039;en-tête de colonne,
+       soit numériquement.
+       <table class="doctable table">
+        <caption><strong>Modes d&#039;index des tableaux pour la fonction
+         <span class="function"><strong>oci_fetch_all()</strong></span></strong></caption>
+        
+         <thead>
+          <tr>
+           <th>Constante</th>
+           <th>Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td><strong><code>OCI_NUM</code></strong></td>
+           <td>Des indexes numériques sont utilisés pour chaque tableau
+            de colonnes.</td>
+          </tr>
+
+          <tr>
+           <td><strong><code>OCI_ASSOC</code></strong></td>
+           <td>Des indexes associatifs sont utilisés pour chaque tableau
+            de colonnes. C&#039;est le comportement par défaut.</td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+      <p class="para">
+       Utilisez l&#039;opérateur d&#039;addition &quot;+&quot; pour choisir une
+       combinaison de structures de tableaux et de modes d&#039;index.
+      </p>
+      <p class="para">
+       Les noms de colonnes qui ne sont pas sensibles à la casse (par défaut sous Oracle),
+       auront des noms d&#039;attributs en majuscule. Les noms de colonnes qui sont sensibles à la
+       casse, auront des noms d&#039;attributs utilisant exactement la même casse de la colonne.
+       Utilisez la fonction <span class="function"><a href="function.var-dump.html" class="function">var_dump()</a></span> sur l&#039;objet de résultat pour vérifier
+       la casse appropriée à utiliser pour chaque requête.
+      </p>
+      <p class="para">
+       Les requêtes qui possèdent plus d&#039;une colonne dont le nom est
+       identique doivent utiliser des alias. Sinon, seulement une
+       des colonnes apparaîtra dans le tableau associatif.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.oci-fetch-all-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne le nombre de lignes récupérées dans le paramètre <code class="parameter">output</code>
+   qui peut être de 0 ou plus,  ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.oci-fetch-all-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2397">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>oci_fetch_all()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'hr'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'welcome'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'localhost/XE'</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$e&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">'message'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">$stid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;POSTAL_CODE,&nbsp;CITY&nbsp;FROM&nbsp;locations&nbsp;WHERE&nbsp;ROWNUM&nbsp;&lt;&nbsp;3'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$nrows&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_fetch_all</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$nrows</span><span style="color: #DD0000">&nbsp;rows&nbsp;fetched&lt;br&gt;\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;var_dump&nbsp;affichera&nbsp;:<br />//&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;rows&nbsp;fetched<br />//&nbsp;&nbsp;&nbsp;&nbsp;array(2)&nbsp;{<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;["POSTAL_CODE"]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(2)&nbsp;{<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string(6)&nbsp;"00989x"<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string(6)&nbsp;"10934x"<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;["CITY"]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(2)&nbsp;{<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string(4)&nbsp;"Roma"<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string(6)&nbsp;"Venice"<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />//&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />//&nbsp;Affichage&nbsp;des&nbsp;résultats<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"&lt;table&nbsp;border='1'&gt;\n"</span><span style="color: #007700">;<br />foreach&nbsp;(</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$col</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;tr&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$col&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$item</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;"</span><span style="color: #007700">.(</span><span style="color: #0000BB">$item&nbsp;</span><span style="color: #007700">!==&nbsp;</span><span style="color: #0000BB">null&nbsp;</span><span style="color: #007700">?&nbsp;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$item</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">)&nbsp;:&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">).</span><span style="color: #DD0000">"&lt;/td&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;/tr&gt;\n"</span><span style="color: #007700">;<br />}<br />echo&nbsp;</span><span style="color: #DD0000">"&lt;/table&gt;\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2398">
+    <p><strong>Exemple #2 Exemple avec <span class="function"><strong>oci_fetch_all()</strong></span> et <strong><code>OCI_FETCHSTATEMENT_BY_ROW</code></strong></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'hr'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'welcome'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'localhost/XE'</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$e&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">'message'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">$stid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;POSTAL_CODE,&nbsp;CITY&nbsp;FROM&nbsp;locations&nbsp;WHERE&nbsp;ROWNUM&nbsp;&lt;&nbsp;3'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$nrows&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_fetch_all</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">OCI_FETCHSTATEMENT_BY_ROW</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$nrows</span><span style="color: #DD0000">&nbsp;lignes&nbsp;récupérées&lt;br&gt;\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;:<br />//&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;lignes&nbsp;récupérées<br />//&nbsp;&nbsp;&nbsp;&nbsp;array(2)&nbsp;{<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(2)&nbsp;{<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;["POSTAL_CODE"]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string(6)&nbsp;"00989x"<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;["CITY"]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string(4)&nbsp;"Roma"<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(2)&nbsp;{<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;["POSTAL_CODE"]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string(6)&nbsp;"10934x"<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;["CITY"]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string(6)&nbsp;"Venice"<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />//&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-2399">
+    <p><strong>Exemple #3 Exemple avec <span class="function"><strong>oci_fetch_all()</strong></span> et <strong><code>OCI_NUM</code></strong></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'hr'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'welcome'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'localhost/XE'</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$e&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">'message'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">$stid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;POSTAL_CODE,&nbsp;CITY&nbsp;FROM&nbsp;locations&nbsp;WHERE&nbsp;ROWNUM&nbsp;&lt;&nbsp;3'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$nrows&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_fetch_all</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">OCI_FETCHSTATEMENT_BY_ROW&nbsp;</span><span style="color: #007700">+&nbsp;</span><span style="color: #0000BB">OCI_NUM</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$nrows</span><span style="color: #DD0000">&nbsp;lignes&nbsp;récupérées&lt;br&gt;\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;:<br />//&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;lignes&nbsp;récupérées<br />//&nbsp;&nbsp;&nbsp;&nbsp;array(2)&nbsp;{<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(2)&nbsp;{<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string(6)&nbsp;"00989x"<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string(4)&nbsp;"Roma"<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(2)&nbsp;{<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string(6)&nbsp;"10934x"<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1]=&gt;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string(6)&nbsp;"Venice"<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />//&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 notes" id="refsect1-function.oci-fetch-all-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    L&#039;utilisation du paramètre <code class="parameter">skip</code> est vraiment inefficace.
+    Toutes les lignes à éviter sont comprises dans le jeu de résultats retourné par
+    la base de données à PHP. Puis, elles sont écartées. Il est plus efficace
+    d&#039;utiliser une requête SQL pour restreindre le champ des lignes désirées.
+    Voir la fonction <span class="function"><a href="function.oci-fetch-array.html" class="function">oci_fetch_array()</a></span> pour un exemple concrêt.
+   </p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Les requêtes qui retournent un très grand nombre de lignes peuvent
+    gagner en économie de mémoire lors de l&#039;utilisation de fonctions récupérant
+    une seule ligne, comme le fait la fonction <span class="function"><a href="function.oci-fetch-array.html" class="function">oci_fetch_array()</a></span>.
+   </p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">Pour les
+requêtes retournant un très grand nombre de lignes, les performances peuvent
+être très grandement accrues en augmentant la valeur de l&#039;option
+<a href="oci8.configuration.html#ini.oci8.default-prefetch" class="link">oci8.default_prefetch</a>
+ou en utilisant la fonction <span class="function"><a href="function.oci-set-prefetch.html" class="function">oci_set_prefetch()</a></span>.
+</p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Cette fonction ne retournera pas de lignes depuis un jeu
+    de résultats implicite d&#039;une base de données Oracle
+    12<em class="emphasis">c</em>. Utilisez pluotôt la fonction
+    <span class="function"><a href="function.oci-fetch-array.html" class="function">oci_fetch_array()</a></span>.
+   </p>
+  </p></blockquote>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-function.oci-fetch-all-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.oci-fetch.html" class="function" rel="rdfs-seeAlso">oci_fetch()</a> - Lit la prochaine ligne d'un r&eacute;sultat Oracle dans un buffer interne</span></li>
+    <li class="member"><span class="function"><a href="function.oci-fetch-array.html" class="function" rel="rdfs-seeAlso">oci_fetch_array()</a> - Lit une ligne d'un r&eacute;sultat sous forme de tableau associatif ou num&eacute;rique</span></li>
+    <li class="member"><span class="function"><a href="function.oci-fetch-assoc.html" class="function" rel="rdfs-seeAlso">oci_fetch_assoc()</a> - Lit une ligne d'un r&eacute;sultat sous forme de tableau associatif</span></li>
+    <li class="member"><span class="function"><a href="function.oci-fetch-object.html" class="function" rel="rdfs-seeAlso">oci_fetch_object()</a> - Lit une ligne d'un r&eacute;sultat sous forme d'objet</span></li>
+    <li class="member"><span class="function"><a href="function.oci-fetch-row.html" class="function" rel="rdfs-seeAlso">oci_fetch_row()</a> - Lit la prochaine ligne d'une requ&ecirc;te sous forme de tableau num&eacute;rique</span></li>
+    <li class="member"><span class="function"><a href="function.oci-set-prefetch.html" class="function" rel="rdfs-seeAlso">oci_set_prefetch()</a> - Indique le nombre de lignes qui doivent &ecirc;tre lues &agrave; l'avance par Oracle</span></li>
+   </ul>
+  </p>
+ </div>
+
+ 
+</div></div></div></body></html>

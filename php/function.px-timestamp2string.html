@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Convertit un timestamp en une cha&icirc;ne de caract&egrave;res</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.px-set-value.html">« px_set_value</a></li>
+      <li style="float: right;"><a href="function.px-update-record.html">px_update_record »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.paradox.html">Fonctions Paradox</a></li>
+    <li>Convertit un timestamp en une cha&icirc;ne de caract&egrave;res</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.px-timestamp2string" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">px_timestamp2string</h1>
+  <p class="verinfo">(PECL paradox &gt;= 1.4.0)</p><p class="refpurpose"><span class="refname">px_timestamp2string</span> &mdash; <span class="dc-title">
+   Convertit un timestamp en une chaîne de caractères
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.px-timestamp2string-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>px_timestamp2string</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$pxdoc</code></span>
+   , <span class="methodparam"><span class="type">float</span> <code class="parameter">$value</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$format</code></span>
+   ) : <span class="type">string</span></div>
+
+
+  <p class="para rdfs-comment">
+   Convertit un timestamp tel que stocké dans un fichier Paradox en un format humainement lisible.
+   Les timestamps Paradox sont le nombre de millisecondes depuis le 0001-01-02.
+   Cette fonction peut facilement être remplacée par des fonctions mathématiques
+   et de calendriers tel qu&#039;utilisées dans l&#039;exemple ci-dessous.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.px-timestamp2string-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">pxdoc</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Identifiant de la ressource de la base de données.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">value</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Valeur comme stockée dans un champ de base de données Paradox
+       de type PX_FIELD_TIME ou PX_FIELD_TIMESTAMP.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">format</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Format similaire au format utilisé par la fonction <span class="function"><a href="function.date.html" class="function">date()</a></span>.
+       Les caractères spéciaux supportés par cette fonction sont une partie de
+       ceux supportés par la fonction <span class="function"><a href="function.date.html" class="function">date()</a></span> (Y, y, m, n, d, j, H, h, G, g,
+        i, s, A, a, L).
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.px-timestamp2string-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.px-timestamp2string-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2460">
+    <p><strong>Exemple #1 Convertit un timestamp Paradox en un format humainement lisible</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$px&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">px_new</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;assignement&nbsp;d'une&nbsp;date&nbsp;telle&nbsp;qu'elle&nbsp;peut&nbsp;être&nbsp;stockée&nbsp;dans&nbsp;*/<br />/*&nbsp;un&nbsp;champ&nbsp;date&nbsp;d'une&nbsp;base&nbsp;de&nbsp;données&nbsp;Paradox.&nbsp;*/<br />/*&nbsp;700000&nbsp;jours&nbsp;depuis&nbsp;le&nbsp;1.1.0000.&nbsp;*/<br /></span><span style="color: #0000BB">$days&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">700000</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Utilisation&nbsp;des&nbsp;fonctions&nbsp;de&nbsp;calendriers&nbsp;pour&nbsp;afficher&nbsp;*/<br />/*&nbsp;un&nbsp;format&nbsp;humainement&nbsp;lisible&nbsp;de&nbsp;la&nbsp;date&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">jdtogregorian</span><span style="color: #007700">(</span><span style="color: #0000BB">$days</span><span style="color: #007700">+</span><span style="color: #0000BB">1721425</span><span style="color: #007700">).</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Convertit&nbsp;en&nbsp;un&nbsp;timestamp&nbsp;tel&nbsp;que&nbsp;stocké&nbsp;dans&nbsp;une&nbsp;base&nbsp;de&nbsp;données&nbsp;Paradox&nbsp;*/<br />/*&nbsp;Timestamps&nbsp;sont&nbsp;stockés&nbsp;en&nbsp;millisecondes&nbsp;depuis&nbsp;le&nbsp;0001-01-02&nbsp;*/<br /></span><span style="color: #0000BB">$stamp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$days&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB">86400.0&nbsp;</span><span style="color: #007700">*&nbsp;</span><span style="color: #0000BB">1000.0</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">/*&nbsp;Ajout&nbsp;d'une&nbsp;heure&nbsp;*/<br /></span><span style="color: #0000BB">$stamp&nbsp;</span><span style="color: #007700">+=&nbsp;</span><span style="color: #0000BB">3600000.0</span><span style="color: #007700">;<br /></span><span style="color: #FF8000">/*&nbsp;Affichera&nbsp;:&nbsp;'7/15/1917&nbsp;01:00:00'.&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">px_timestamp2string</span><span style="color: #007700">(</span><span style="color: #0000BB">$px</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$stamp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"n/d/Y&nbsp;H:i:s"</span><span style="color: #007700">).</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">px_delete</span><span style="color: #007700">(</span><span style="color: #0000BB">$px</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+7/15/1917
+7/15/1917 01:00:00
+</pre></div>
+    </div>
+   </div>
+  </p>
+
+  <p class="para">
+   Le nombre de jours Julien tel que passé à la fonction <span class="function"><a href="function.jdtogregorian.html" class="function">jdtogregorian()</a></span>
+   a une base différente de 1.1.4714 b.c. et doit être calculé en ajoutant
+   1721425 au nombre de jours utilisé dans le fichier Paradox. Le fait de convertir un nombre
+   de jours en un timestamp est facile ; il suffit de le multiplier par 86400000.0
+   pour obtenir des millisecondes.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.px-timestamp2string-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.px-date2string.html" class="function" rel="rdfs-seeAlso">px_date2string()</a> - Convertit une date en une cha&icirc;ne de caract&egrave;res</span></li>
+    <li class="member"><span class="function"><a href="function.jdtogregorian.html" class="function" rel="rdfs-seeAlso">jdtogregorian()</a> - Convertit le nombre de jours du calendrier Julien en date
+   gr&eacute;gorienne</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

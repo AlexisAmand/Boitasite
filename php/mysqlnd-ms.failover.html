@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Gestion des incidents (Failover)</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-ms.transient_errors.html">« Les erreurs passag&egrave;res</a></li>
+      <li style="float: right;"><a href="mysqlnd-ms.loadbalancing.html">R&eacute;partition de charge »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-ms.concepts.html">Concepts</a></li>
+    <li>Gestion des incidents (Failover)</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-ms.failover" class="section">
+  <h2 class="title">Gestion des incidents (Failover)</h2>
+  <p class="para">
+   Par défaut, la gestion des incidents de connexion est laissée à l&#039;utilisateur. L&#039;application
+   est responsable de la vérification des valeurs de retour des fonctions concernant
+   les bases de données, et doit réagir en cas de detection d&#039;erreur. Par exemple, si le
+   plugin reconnait une requête de type lecture-seule  et l&#039;aiguille vers un serveur esclave
+   dont la connexion n&#039;est pas disponible, il renverra une erreur.
+  </p>
+  <p class="para">
+   <em class="emphasis">Défaut : failover manuel</em>
+  </p>
+  <p class="para">
+   C&#039;est à l&#039;application de gérer l&#039;erreur, et, si besoin, de re-présenter la requête
+   afin qu&#039;elle soit re-prise en charge par le plugin et aiguillée vers un autre serveur.
+   Le plugin ne se charge pas de ça lui-même, car il pourrait risquer d&#039;impacter l&#039;état des
+   connexions, ce qui n&#039;est pas du tout désirable. Par exemple, l&#039;application peut avoir
+   envoyé une requête comportant des variables de session MySQL, celles-ci sont
+   dépendantes de la connexion utilisée. Une telle requête ne pourrait donc être
+   prise en charge par un mécanisme automatique implémenté dans le plugin.
+   L&#039;application doit donc gérer ces cas-là, et aucune gestion des incidents de connexion
+   n&#039;est implémentée à l&#039;intérieur du plugin.
+  </p>
+  <p class="para">
+   Un utilisateur ne changeant pas le statut d&#039;une connexion après l&#039;avoir ouverte peut activer
+   la gestion des incidents. Notez que la logique de failover automatique n&#039;est pas
+   utilisée pour les connexions déjà ouvertes. Il n&#039;y a aucune façon pour indiquer
+   au plugin de tenter un failover sur une connexion qui a été déjà connectée
+   à MySQL dans le passé.
+  </p>
+  <p class="para">
+   <em class="emphasis">Failover automatique</em>
+  </p>
+  <p class="para">
+   Cette gestion des incidents se configure dans le fichier de configuration du plugin au moyen
+   de la directive
+   <code class="literal"><a href="mysqlnd-ms.plugin-ini-json.html#ini.mysqlnd-ms-plugin-config-v2.failover" class="link">failover</a></code>.
+  </p>
+  <p class="para">
+   Le failover automatique et silencieux peut être activé via la directive
+   de configuration <a href="mysqlnd-ms.plugin-ini-json.html#ini.mysqlnd-ms-plugin-config-v2.failover" class="link">failover</a>.
+   Le failover automatique peut être configuré soit pour essayer exactement un maître
+   après l&#039;échec d&#039;un esclave ou bien, pour parcourir tous les esclaves et tous les
+   maîtres avant de retourner une erreur à l&#039;utilisateur. Le nombre de tentative de
+   connexion peut être limité et les hôtes en échec peuvent être exclus des
+   futurs tentatives de balance de charge. Liimiter le nombre de tentatives
+   et le fait de retenir les hôtes en échec sont considérés comme des fonctionalités
+   expérimentales malgré le fait qu&#039;elles sont relativement stables.
+   Leur syntaxe et leur signification peuvent être modifiées dans les futures
+   versions.
+  </p>
+  <p class="para">
+   Notez que depuis la version 1.5.0, le failover automatique est désactivé
+   pour la durée d&#039;une transaction si les transactions gluantes sont actives,
+   et que les limites de transaction ont été détectées. Le plugin ne va pas
+   changer de connexions durant une transaction. De même, il ne va pas faire
+   de failover automatique et silencieux. A la place, une erreur sera émise.
+   Il est alors du ressort de l&#039;utilisateur de gérer l&#039;échec de la transaction.
+   Veuillez vous raporter à la documentation de
+   <a href="mysqlnd-ms.plugin-ini-json.html#ini.mysqlnd-ms-plugin-config-v2.trx-stickiness" class="link"><code class="literal">trx_stickiness</code></a>
+   sur la façon de réaliser ceci.
+  </p>
+  <p class="para">
+   Un exemple d&#039;échec manuel est fourni dans la section sur les
+   <a href="mysqlnd-ms.errorhandling.html" class="link">gestionnaires d&#039;erreurs</a>.
+  </p>
+  <p class="para">
+   <em class="emphasis">Serveurs de secours</em>
+  </p>
+  <p class="para">
+   En utilisant la <a href="mysqlnd-ms.plugin-ini-json.html#ini.mysqlnd-ms-plugin-config-v2.filter-random" class="link">balance
+   de charge pondérée</a>, introduite en PECL/mysqlnd 1.4.0, il est possible de configurer
+   des serveurs de secours qui sont peu utilisés lors d&#039;opérations normales.
+   Un server de secours qui est utilisé comme cible en failover peut se voir
+   assigner une priorité/un poids faible par rapport aux autres serveurs.
+   Tant que tous les serveurs sont prêts et fonctionnels, la mageur partie
+   de la charge est assignée aux serveurs qui ont un poids élevé. Une petite
+   partie des requêtes sera redirigée vers le système de secours qui possède
+   un poids faible.
+  </p>
+  <p class="para">
+   Lors d&#039;un échec d&#039;un serveur possédant une priorité élevée, vous pouvez toujours
+   basculer vers le secours, qui s&#039;est vu attribué une priorité de balance de charge
+   faible en y assignant un poids faible. Le failover peut être manuel ou automatique.
+   S&#039;il est automatique, vous pouvez vouloir le combiner avec l&#039;option
+   <a href="mysqlnd-ms.plugin-ini-json.html#ini.mysqlnd-ms-plugin-config-v2.failover" class="link"><code class="literal">remember_failed</code></a>.
+  </p>
+  <p class="para">
+   A ce moment là, il n&#039;est pas possible d&#039;indiquer à la balance de charge
+   de ne rediriger aucune requête au secours. Ceci ne peut être considéré
+   comme une limitation sachant que le poids le plus élevé pouvant être assigné
+   à un serveur est 65535. Si l&#039;on prend deux esclaves, dont un va servir de secours
+   avec un poids de 1, le secours devra gérer moins de un pourcent de la
+   charge totale.
+  </p>
+  <p class="para">
+   <em class="emphasis">Failover et copie primaire</em>
+  </p>
+  <p class="para">
+   Veuillez noter que si vous utilisez une copie de cluster primaire,
+   comme une réplication MySQL, il est difficile de faire un failover de connexion
+   dans le cas où la connexion au maître échoue. A tout moment, il n&#039;y a
+   qu&#039;un seul maître dans le cluster pour un jeu de données.
+   Le maître représent un seul point. Si il échoue, les clients n&#039;ont plus
+   de cible à utiliser pour effectuer les requêtes en écriture. Dans le cas où
+   le maître tombe en panne, l&#039;administrateur de base de données doit prendre
+   en compte la situation et mettre à jour les configurations
+   des clients.
+  </p>
+ </div></div></div></body></html>

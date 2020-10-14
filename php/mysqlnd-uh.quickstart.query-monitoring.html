@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Surveillance de base des requ&ecirc;te</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-uh.quickstart.proxy-installation.html">« Installation d'un proxy</a></li>
+      <li style="float: right;"><a href="mysqlnd-uh.setup.html">Installation/Configuration »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-uh.quickstart.html">D&eacute;marrage rapide et exemples</a></li>
+    <li>Surveillance de base des requ&ecirc;te</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-uh.quickstart.query-monitoring" class="section">
+  <h2 class="title">Surveillance de base des requête</h2>
+  <p class="para">
+   La surveillance de base d&#039;une requête est simple avec PECL/mysqlnd_uh.
+   Combiné avec la fonction <span class="function"><a href="function.debug-print-backtrace.html" class="function">debug_print_backtrace()</a></span>,
+   ça peut devenir un outil très puissant, par exemple, pour trouver l&#039;origine
+   d&#039;une requête. Ceci peut être nécessaire lors de la recherche de requêtes
+   lentes, mais aussi après une re-factorisation de la base de données pour
+   trouver le code continuant à accéder à une ancienne table ou base de données.
+   Ce genre de recherche peut devenir vite compliqué en l&#039;absence de
+   ce genre d&#039;outils, surtout si vous utilisez une application qui
+   auto-génère des requêtes.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2293">
+    <p><strong>Exemple #1 Surveillance de base</strong></p>
+        <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">conn_proxy&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">MysqlndUhConnection&nbsp;</span><span style="color: #007700">{<br />&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">debug_print_backtrace</span><span style="color: #007700">();<br />&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br />&nbsp;}<br />}<br />class&nbsp;</span><span style="color: #0000BB">stmt_proxy&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">MysqlndUhPreparedStatement&nbsp;</span><span style="color: #007700">{<br />&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">debug_print_backtrace</span><span style="color: #007700">();<br />&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br />&nbsp;}<br />}<br /></span><span style="color: #0000BB">mysqlnd_uh_set_connection_proxy</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">conn_proxy</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">mysqlnd_uh_set_statement_proxy</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">stmt_proxy</span><span style="color: #007700">());<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Proxies&nbsp;installed...\n"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$pdo&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">(</span><span style="color: #DD0000">"mysql:host=localhost;dbname=test"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"root"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$pdo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;1&nbsp;AS&nbsp;_one&nbsp;FROM&nbsp;DUAL"</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">fetchAll</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_ASSOC</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"root"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"test"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;1&nbsp;AS&nbsp;_two&nbsp;FROM&nbsp;DUAL"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+#0  conn_proxy-&gt;query(Resource id #19, SELECT 1 AS _one FROM DUAL)
+#1  PDO-&gt;query(SELECT 1 AS _one FROM DUAL) called at [example.php:19]
+array(1) {
+  [0]=&gt;
+  array(1) {
+    [&quot;_one&quot;]=&gt;
+    string(1) &quot;1&quot;
+  }
+}
+#0  stmt_proxy-&gt;prepare(Resource id #753, SELECT 1 AS _two FROM DUAL)
+#1  mysqli-&gt;prepare(SELECT 1 AS _two FROM DUAL) called at [example.php:22]
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   Pour une surveillance de base des requêtes, vous devriez installer une connexion
+   et un proxy de requête préparée. Le proxy de connexion doit surcharger la classe
+   <span class="function"><a href="mysqlnduhconnection.query.html" class="function">MysqlndUhConnection::query()</a></span>. Toutes les requêtes
+   de base de données qui n&#039;utilisent pas des requêtes préparées nativement
+   devront appeler cette méthode. Dans l&#039;exemple ci-dessus, la fonction
+   <code class="literal">query</code> est invoquée par un appel PDO. Par défaut,
+   <code class="literal">PDO_MySQL</code> utilise une émulation de requête préparée.
+  </p>
+  <p class="para">
+   Toutes les requêtes préparées natives sont préparées avec la méthode
+   <code class="literal">prepare</code> de <code class="literal">mysqlnd</code> exportée via
+   <span class="methodname"><a href="mysqlnduhpreparedstatement.prepare.html" class="methodname">MysqlndUhPreparedStatement::prepare()</a></span>.
+   Surchargez la classe <a href="class.mysqlnduhpreparedstatement.html" class="classname">MysqlndUhPreparedStatement</a>
+   et écrasez la fonction <code class="literal">prepare</code> pour une surveillance
+   des requêtes préparées natives.
+  </p>
+ </div></div></div></body></html>

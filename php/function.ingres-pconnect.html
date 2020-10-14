@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ouvre une connexion persistante &agrave; un serveur Ingres</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.ingres-num-rows.html">« ingres_num_rows</a></li>
+      <li style="float: right;"><a href="function.ingres-prepare.html">ingres_prepare »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.ingres.html">Fonctions Ingres</a></li>
+    <li>Ouvre une connexion persistante &agrave; un serveur Ingres</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.ingres-pconnect" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ingres_pconnect</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5 &lt; 5.1.0, PECL ingres &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">ingres_pconnect</span> &mdash; <span class="dc-title">Ouvre une connexion persistante à un serveur Ingres</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.ingres-pconnect-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>ingres_pconnect</strong></span>
+    ([ <span class="methodparam"><span class="type">string</span> <code class="parameter">$database</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$username</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$password</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code></span>
+  ]]]] ) : <span class="type">resource</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>ingres_pconnect()</strong></span> ouvre une 
+   connexion persistante à la base de données Ingres.
+  </p>
+  <p class="para">
+   Il n&#039;y a que 2 différences entre <span class="function"><strong>ingres_pconnect()</strong></span>
+   et <span class="function"><a href="function.ingres-connect.html" class="function">ingres_connect()</a></span> :
+   tout d&#039;abord, à la connexion, la fonction cherche un lien persistant
+   déjà ouvert avec les mêmes paramètres. Si un tel
+   lien est trouvé, la <a href="language.types.resource.html" class="link">ressource</a> de ce lien est retournée
+   au lieu d&#039;établir une nouvelle connexion. Ensuite, la connexion vers
+   le serveur Ingres n&#039;est pas fermée lorsque le script se termine. En
+   fait, le lien reste ouvert pour pouvoir être réutilisé
+   (<span class="function"><a href="function.ingres-close.html" class="function">ingres_close()</a></span> ne ferme pas les liens établis
+   avec <span class="function"><strong>ingres_pconnect()</strong></span>). C&#039;est pourquoi ce type de lien
+   est dit &#039;persistant&#039;.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ingres-pconnect-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">database</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nom de la base de données. 
+      </p>
+      <p class="para">
+       Doit suivre la syntaxe suivante :
+       <var class="varname">[node_id::]dbname[/svr_class]</var>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">username</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nom d&#039;utilisateur Ingres.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">password</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le mot de passe associé à l&#039;utilisateur
+       <code class="parameter">username</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">options</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Voyez la fonction <span class="function"><a href="function.ingres-connect.html" class="function">ingres_connect()</a></span> pour connaître
+       la liste des options qui peuvent être passées.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ingres-pconnect-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne une <a href="language.types.resource.html" class="link">ressource</a> de connexion Ingres en cas de succès,
+    ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ingres-pconnect-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ingres-connect.html" class="function" rel="rdfs-seeAlso">ingres_connect()</a> - Ouvre une connexion sur un serveur Ingres</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-close.html" class="function" rel="rdfs-seeAlso">ingres_close()</a> - Ferme une connexion &agrave; un serveur Ingres</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

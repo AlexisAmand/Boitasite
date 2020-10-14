@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Installation manuelle de PHP sous Windows</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="install.windows.recommended.html">« Configuration recommand&eacute;e sur les syst&egrave;mes Windows</a></li>
+      <li style="float: right;"><a href="install.windows.troubleshooting.html">D&eacute;pannage de PHP sous Windows »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="install.windows.html">Installation sur les syst&egrave;me Windows</a></li>
+    <li>Installation manuelle de PHP sous Windows</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="install.windows.manual" class="sect1">
+ <h2 class="title">Installation manuelle de PHP sous Windows</h2>
+ <div class="sect2">
+  <h3 class="title">Choix du serveur Web</h3>
+  <div class="sect3">
+   <h4 class="title">IIS</h4>
+   <p class="para">
+    IIS est fourni avec Windows.      
+    Sur un serveur Windows, utilisez Server Manager pour ajouter le rôle IIS.
+    Assurez-vous d&#039;inclure la fonctionnalité CGI Role.    
+    Sur les bureaux Windows, utilisez le centre de contrôle d&#039;ajout/suppression
+    de programmes pour ajouter IIS.
+    La documentaion de Microsoft a <a href="https://docs.microsoft.com/en-us/previous-versions/ms181052(v=vs.80)" class="link external">&raquo;&nbsp;des instructions détaillées</a>.
+    Pour les applications web bureau et web développement, vous pouvez aussi
+    utiliser IIS/Express ou PHP Bureau
+    <div class="example" id="install.unix.nginx.configure.nginx.php">
+     <p><strong>Exemple #1 Ligne de commande pour configurer IIS et PHP</strong></p>
+     <div class="example-contents">
+<div class="cdata"><pre>
+
+@echo off
+
+REM download .ZIP file of PHP build from http://windows.php.net/downloads/
+
+REM path to directory you decompressed PHP .ZIP file into (no trailing \)
+set phppath=c:\php
+
+
+REM Clear current PHP handlers
+%windir%\system32\inetsrv\appcmd clear config /section:system.webServer/fastCGI
+REM The following command will generate an error message if PHP is not installed. This can be ignored.
+%windir%\system32\inetsrv\appcmd set config /section:system.webServer/handlers /-[name=&#039;PHP_via_FastCGI&#039;]
+
+REM Set up the PHP handler
+%windir%\system32\inetsrv\appcmd set config /section:system.webServer/fastCGI /+[fullPath=&#039;%phppath%\php-cgi.exe&#039;]
+%windir%\system32\inetsrv\appcmd set config /section:system.webServer/handlers /+[name=&#039;PHP_via_FastCGI&#039;,path=&#039;*.php&#039;,verb=&#039;*&#039;,modules=&#039;FastCgiModule&#039;,scriptProcessor=&#039;%phppath%\php-cgi.exe&#039;,resourceType=&#039;Unspecified&#039;]
+%windir%\system32\inetsrv\appcmd set config /section:system.webServer/handlers /accessPolicy:Read,Script
+
+REM Configure FastCGI Variables
+%windir%\system32\inetsrv\appcmd set config -section:system.webServer/fastCgi /[fullPath=&#039;%phppath%\php-cgi.exe&#039;].instanceMaxRequests:10000
+%windir%\system32\inetsrv\appcmd.exe set config -section:system.webServer/fastCgi /+&quot;[fullPath=&#039;%phppath%\php-cgi.exe&#039;].environmentVariables.[name=&#039;PHP_FCGI_MAX_REQUESTS&#039;,value=&#039;10000&#039;]&quot;
+%windir%\system32\inetsrv\appcmd.exe set config -section:system.webServer/fastCgi /+&quot;[fullPath=&#039;%phppath%\php-cgi.exe&#039;].environmentVariables.[name=&#039;PHPRC&#039;,value=&#039;%phppath%\php.ini&#039;]&quot;
+</pre></div>
+     </div>
+
+    </div>
+    Voir aussi comment <a href="install.windows.legacy.index.html#install.windows.legacy.iis7" class="link">les anciennes
+    instructions d&#039;installation d&#039;IIS</a>.
+   </p>
+  </div>
+  
+  <div class="sect3">
+   <h4 class="title">Apache</h4>
+   <p class="para">
+    Il y a plusieurs versions d&#039;Apache2 pour Windows.    
+    Nous supportons ApacheLounge, mais d&#039;autres options incluent XAMPP,
+    WampServer et BitNami, qui fournissent des outils d&#039;installation automatique.    
+    Vous devriez utiliser mod_php ou mod_fastcgi pour charger PHP dans Apache.    
+    Si vous utilisez mod_php, vous DEVEZ utiliser une version TS de Apache,
+    compilé avec la même version de Visual C et le même CPU (x86 ou x64).
+    Voir aussi les <a href="install.windows.legacy.index.html#install.windows.legacy.apache2" class="link">anciennes
+    instructions d&#039;installation d&#039;Apache2</a>.
+   </p>
+  </div>
+ </div>
+ 
+ <div class="sect2">
+  <h3 class="title">Choix de la version</h3>
+  <p class="para">
+   Téléchargez la version de production de PHP pour Windows depuis
+   <a href="http://windows.php.net/download/" class="link external">&raquo;&nbsp;http://windows.php.net/download/</a>.
+   Toutes les versions sont optimisées (<abbr class="abbrev">PGO</abbr>), et les versions
+   QA et GA sont minutieusement testées.
+  </p>
+  <p class="para">
+   Il y a 4 types de versions de PHP :
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      Thread-Safe(TS) - utilisé pour des serveurs web n&#039;ayant qu&#039;un seul processus, comme Apache avec mod_php
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Non-Thread-Safe(NTS) - utilisé pour IIS et les autres serveurs web FastCGI
+      (Apache avec mod_fastcgi) et c&#039;est la version recommandée pour les scripts en ligne de commande
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      x86 - version de production de PHP 5.5 ou 5.6 ou 7.0.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      x64 - version de production pour PHP 7.0+ tant que le système Windows n&#039;est pas 32-bit seulement.
+      PHP 5.5 et 5.6 x64 y sont expérimentaux.
+     </p>
+    </li>
+   </ul>
+  </p>
+ </div>
+</div></div></div></body></html>

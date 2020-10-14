@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Modificateurs de m&eacute;thodes</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="collectable.setgarbage.html">« Collectable::setGarbage</a></li>
+      <li style="float: right;"><a href="class.pool.html">Pool »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.pthreads.html">pthreads</a></li>
+    <li>Modificateurs de m&eacute;thodes</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="pthreads.modifiers" class="chapter">
+ <h1>Modificateurs de méthodes</h1>
+
+ 
+ <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Ces sémantiques ne s&#039;appliquent qu&#039;aux pthreads v2. Ils ont été supprimés dans pthreads v3.
+   </p>
+  </div>
+ <p class="para">
+  Pthreads écrase la fonctionalité des modificateurs de méthodes protégées et privées
+  afin de founir une fonctionalité plus conforme aux objets multi-threads.
+  Pthreads applique cette fonctionalité à tous les objets Threaded depuis leurs 
+  créations.
+ </p>
+ <div class="example" id="example-4009">
+  <p><strong>Exemple #1 Exemple de méthode protégée : les méthodes protégées peuvent seulement être
+   exécutées par un seul Thread à la fois.</strong></p>
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">ExampleThread&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">Thread&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">run</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Code&nbsp;du&nbsp;thread&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">synchronized</span><span style="color: #007700">())&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;function&nbsp;</span><span style="color: #0000BB">exclusive</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;méthode&nbsp;de&nbsp;synchronisation&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">}<br />}<br /><br /></span><span style="color: #0000BB">$thread&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">ExampleThread</span><span style="color: #007700">();<br />if&nbsp;(</span><span style="color: #0000BB">$thread</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">start</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$thread</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">exclusive</span><span style="color: #007700">();<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+  </div>
+
+ </div>
+ <div class="example" id="example-4010">
+  <p><strong>Exemple #2 Exemple de méthode privée : les méthodes privées ne peuvent être 
+   exécutées par l&#039;objet Threaded que pendant leur exécution</strong></p>
+  <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">ExampleThread&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">Thread&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">run</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Code&nbsp;du&nbsp;thread&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insideonly</span><span style="color: #007700">())&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;function&nbsp;</span><span style="color: #0000BB">insideonly</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;méthode&nbsp;privée&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">}<br />}<br /><br /></span><span style="color: #0000BB">$thread&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">ExampleThread</span><span style="color: #007700">();<br />if&nbsp;(</span><span style="color: #0000BB">$thread</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">start</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$thread</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insideonly</span><span style="color: #007700">();<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+  </div>
+
+ </div>
+</div>
+</div></div></body></html>

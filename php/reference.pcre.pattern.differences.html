@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Diff&eacute;rences avec Perl</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="reference.pcre.pattern.modifiers.html">« Options disponibles pour les expressions rationnelles</a></li>
+      <li style="float: right;"><a href="reference.pcre.pattern.posix.html">Differences avec les regex POSIX »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="pcre.pattern.html">Masques PCRE</a></li>
+    <li>Diff&eacute;rences avec Perl</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="reference.pcre.pattern.differences" class="article">
+ <h1>Différences avec Perl</h1>
+
+ 
+ <p class="para">
+  Les différences avec Perl 5.005 sont présentées ici :
+  <ol type="1">
+   <li class="listitem">
+    <span class="simpara">
+     Par défaut, un caractère d&#039;espacement correspond à
+     n&#039;importe quel caractère que la fonction C <code class="literal">isspace()</code> reconnaît,
+     bien qu&#039;il soit possible de recompiler la bibliothèque PCRE avec
+     d&#039;autres tables de caractères. Normalement, <code class="literal">isspace()</code> retourne
+     <strong><code>TRUE</code></strong> pour les espaces, les retours chariot, les
+     nouvelles lignes, les formfeed, les tabulations verticales et horizontales.
+     Perl 5 n&#039;accepte plus la tabulation verticale comme caractère
+     d&#039;espacement. La séquence \v qui était dans la documentation
+     Perl depuis longtemps n&#039;a jamais été reconnue. Cependant, la
+     tabulation verticale elle-même était reconnue comme un
+     caractère d&#039;espacement jusqu&#039;à la version 5.002. Avec les
+     versions 5.004 et 5.005, l&#039;option \s l&#039;ignore.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     PCRE ne tolère pas la répétition de quantificateurs
+     dans les expressions. Perl le permet, mais cela ne signifie pas ce que vous
+     pourriez penser. Par exemple, (?!a){3} ne s&#039;interprète pas : les trois
+     caractères suivants ne sont pas des &quot;a&quot;. En fait, cela
+     s&#039;interprète comme : le caractère suivant n&#039;est pas &quot;a&quot; trois fois.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Les occurrences de sous-masques qui interviennent dans des assertions
+     négatives sont comptées, mais elles ne sont pas
+     enregistrées dans le vecteur d&#039;occurrences. Perl modifie ses
+     variables numériques pour toutes les occurrences de sous-masque,
+     avant que l&#039;assertion ne vérifie le masque entier, et uniquement si
+     les sous-masques ne trouvent qu&#039;une seule occurrence.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Bien que les caractères nul soient tolérés dans la
+     chaîne de recherche, ils ne sont pas acceptés dans le
+     masque, car le masque est utilisé comme une chaîne C
+     standard, terminée par le caractère nul. Il faut donc
+     utiliser la séquence d&#039;échappement &quot;\x00&quot; dans le masque
+     pour rechercher les caractères nul.
+    </span>
+    </li>
+    <li class="listitem">
+    <span class="simpara">
+     Les séquences d&#039;échappement suivantes ne sont pas
+     supportées par Perl : \l, \u, \L, \U.
+     En fait, elles sont implémentées par la gestion
+     intrinsèque de chaînes Perl, et ne font pas partie
+     de ses caractères spéciaux.
+    </span>
+    </li>
+    <li class="listitem">
+    <span class="simpara">
+     L&#039;assertion \G du Perl n&#039;est pas supportée car elle n&#039;est pas
+     pertinente pour faire des recherches avec des masques uniques.
+    </span>
+    </li>
+    <li class="listitem">
+    <span class="simpara">
+     De manière assez évidente, PCRE n&#039;accepte pas la
+     construction <code class="literal">(?{code})</code> et <code class="literal">(??{code})</code>.
+     Cependant, les masques récursifs sont supportés.
+    </span>
+    </li>
+    <li class="listitem">
+    <span class="simpara">
+     Au moment de l&#039;écriture de PCRE, Perl 5.005_02 avait quelques
+     comportements étranges avec la capture des chaînes
+     lorsqu&#039;une partie du masque est redoublée. Par exemple, &quot;aba&quot; avec
+     le masque /^(a(b)?)+$/ va affecter à $2 la valeur &quot;b&quot;, mais la
+     même manipulation avec &quot;aabbaa&quot; et /^(aa(bb)?)+$/ laissera $2 vide.
+     Cependant, si le masque est remplacé par /^(aa(b(b))?)+$/ alors $2
+     (et d&#039;ailleurs $3) seront correctement affectés. Avec le Perl
+     5.004, $2 sera correctement affecté dans les deux cas, et c&#039;est
+     aussi vrai avec PCRE. Si Perl évolue vers un autre comportement
+     cohérent, PCRE s&#039;adaptera probablement.
+    </span>
+    </li>
+    <li class="listitem">
+    <span class="simpara">
+     Une autre différence encore non résolue est le fait qu&#039;en
+     Perl 5.005_02 le masque /^(a)?(?(1)a|b)+$/ accepte la chaîne &quot;a&quot;,
+     tandis que PCRE ne l&#039;accepte pas. Cependant, que ce soit avec Perl ou
+     PCRE /^(a)?a/ et &quot;a&quot; laisseront $1 vide.
+    </span>
+    </li>
+    <li class="listitem">
+    <p class="para">
+     PCRE propose quelques extensions aux expressions rationnelles du Perl.
+      <ol type="1">
+       <li class="listitem">
+        <span class="simpara">
+         (a) Bien que les assertions arrières (<code class="literal">lookbehind</code>) soient obligées
+         de rechercher une chaîne de longueur fixe, toutes les assertions
+         arrières peuvent avoir une longueur différente. Perl 5.005 leur
+         impose d&#039;avoir toutes la même longueur.
+       </span>
+      </li>
+      <li class="listitem">
+       <span class="simpara">
+        (b) Si <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_DOLLAR_ENDONLY</a> est
+        activé, et que <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_MULTILINE</a>
+        ne l&#039;est pas, le métacaractère <code class="literal">$</code> ne s&#039;applique qu&#039;à
+        la fin physique de la chaîne, et non pas avant les caractères
+        de nouvelle ligne.
+       </span>
+      </li>
+      <li class="listitem">
+       <span class="simpara">
+        (c) Si <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_EXTRA</a> est
+        activé, un antislash suivi d&#039;une lettre sans signification
+        spéciale est considéré comme une erreur.
+       </span>
+      </li>
+      <li class="listitem">
+       <span class="simpara">
+        (d) Si <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_UNGREEDY</a> est
+        activé, la &quot;gourmandise&quot; des quantificateurs de
+        répétition est inversée, ce qui est rend non
+        gourmand par défaut, mais s&#039;ils sont suivis de ?, il seront
+        gourmands.
+       </span>
+      </li>
+     </ol>
+    </p>
+   </li>
+  </ol>
+ </p>
+</div>
+</div></div></body></html>

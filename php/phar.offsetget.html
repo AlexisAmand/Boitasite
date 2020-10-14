@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Obtient un objet PharFileInfo &agrave; partir d'un fichier</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="phar.offsetexists.html">« Phar::offsetExists</a></li>
+      <li style="float: right;"><a href="phar.offsetset.html">Phar::offsetSet »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.phar.html">Phar</a></li>
+    <li>Obtient un objet PharFileInfo &agrave; partir d'un fichier</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="phar.offsetget" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Phar::offsetGet</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PECL phar &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">Phar::offsetGet</span> &mdash; <span class="dc-title">Obtient un objet <a href="class.pharfileinfo.html" class="classname">PharFileInfo</a> à partir d&#039;un fichier</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-phar.offsetget-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>Phar::offsetGet</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$offset</code></span>
+   ) : <span class="type"><a href="class.pharfileinfo.html" class="type PharFileInfo">PharFileInfo</a></span></div>
+
+
+  <p class="para rdfs-comment">
+   C&#039;est une implémentation de l&#039;interface 
+   <span class="interfacename"><a href="class.arrayaccess.html" class="interfacename">ArrayAccess</a></span> qui permet
+   la manipulation directe du contenu d&#039;une archive Phar
+   en utilisant les crochets d&#039;accès au tableau.
+   <span class="function"><strong>Phar::offsetGet()</strong></span> est utilisé pour 
+   extraire des fichiers d&#039;une archive Phar.
+  </p>
+
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-phar.offsetget-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">offset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nom de fichier (en chemin relatif) à chercher dans le Phar.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-phar.offsetget-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Un objet <a href="class.pharfileinfo.html" class="classname">PharFileInfo</a> est retourné et 
+   peut être utilisé pour intégrer le contenu d&#039;un fichier ou pour
+   récupérer des informations sur le fichier courant.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-phar.offsetget-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Cette méthode émet une exception <a href="class.badmethodcallexception.html" class="classname">BadMethodCallException</a>
+   si le fichier n&#039;existe pas dans l&#039;archive Phar.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-phar.offsetget-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-723">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>Phar::offsetGet()</strong></span></strong></p>
+    <div class="example-contents"><p>
+     Comme avec toutes les classes qui implémentent l&#039;interface 
+     <a href="class.arrayaccess.html" class="classname">ArrayAccess</a>, <span class="function"><strong>Phar::offsetGet()</strong></span>
+     est automatiquement appelée quand les crochets d&#039;accès à un tableau
+     sont utilisés (<code class="literal">[]</code>).
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$p&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">(</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">__FILE__</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">'/monphar.phar'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'monphar.phar'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$p</span><span style="color: #007700">[</span><span style="color: #DD0000">'existe.txt'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"le&nbsp;fichier&nbsp;existe\n"</span><span style="color: #007700">;<br />try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;appelle&nbsp;automatiquement&nbsp;offsetGet()<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$p</span><span style="color: #007700">[</span><span style="color: #DD0000">'existe.txt'</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$p</span><span style="color: #007700">[</span><span style="color: #DD0000">'nexistepas.txt'</span><span style="color: #007700">];<br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">BadMethodCallException&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$e</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+le fichier existe
+Entry nexistepas.txt does not exist
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-phar.offsetget-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="phar.offsetexists.html" class="function" rel="rdfs-seeAlso">Phar::offsetExists()</a> - D&eacute;termine si un fichier existe dans le phar</span></li>
+    <li class="member"><span class="function"><a href="phar.offsetset.html" class="function" rel="rdfs-seeAlso">Phar::offsetSet()</a> - Met le contenu d'un fichier interne &agrave; l'archive &agrave; l'identique du contenu d'un fichier externe</span></li>
+    <li class="member"><span class="function"><a href="phar.offsetunset.html" class="function" rel="rdfs-seeAlso">Phar::offsetUnset()</a> - Efface un fichier d'un phar</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

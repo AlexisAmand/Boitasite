@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>G&eacute;n&egrave;re des nombres entiers pseudo-al&eacute;atoire cryptographiquement s&eacute;curis&eacute;</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.random-bytes.html">« random_bytes</a></li>
+      <li style="float: right;"><a href="book.hash.html">Hash »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.csprng.html">CSPRNG Fonctions</a></li>
+    <li>G&eacute;n&egrave;re des nombres entiers pseudo-al&eacute;atoire cryptographiquement s&eacute;curis&eacute;</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.random-int" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">random_int</h1>
+  <p class="verinfo">(PHP 7)</p><p class="refpurpose"><span class="refname">random_int</span> &mdash; <span class="dc-title">Génère des nombres entiers pseudo-aléatoire cryptographiquement sécurisé</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.random-int-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>random_int</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$min</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$max</code></span>
+   ) : <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   
+   Génère un <a href="language.types.integer.html" class="link">entier</a> aléatoires cryptographiques qui convient à un usage où
+   des résultats impartial sont critique, comme lors d&#039;un mélange d&#039;un paquet de
+   cartes pour une partie de poker.
+  </p>
+  
+<p class="para">
+La source des données aléatoires utilisée pour cette fonction est :
+</p>
+<ul class="itemizedlist">
+<li class="listitem">
+    <span class="simpara">
+        Sous Windows,
+        <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa379942(v=vs.85).aspx" class="link external">&raquo;&nbsp;<span class="function"><strong>CryptGenRandom()</strong></span></a>
+        sera toujours utilisé. À partir de PHP 7.2.0 c&#039;est
+        <a href="https://docs.microsoft.com/en-us/windows/desktop/SecCNG/cng-portal" class="link external">&raquo;&nbsp;CNG-API</a>
+        qui sera toujours utilisé à la place
+    </span>
+</li>
+<li class="listitem">
+    <span class="simpara">
+        Sous Linux, l&#039;appel système
+        <a href="http://man7.org/linux/man-pages/man2/getrandom.2.html" class="link external">&raquo;&nbsp;getrandom(2)</a>
+        sera utilisé si disponible.
+    </span>
+</li>
+<li class="listitem">
+    <span class="simpara">
+        Sous les autres plate-formes, <var class="filename">/dev/urandom</var> sera utilisé.
+    </span>
+</li>
+<li class="listitem">
+    <span class="simpara">
+        Si tout ce qui précède n&#039;est pas disponible, alors une
+        <a href="class.exception.html" class="classname">Exception</a> sera émise.
+    </span>
+</li>
+</ul>
+
+  
+<blockquote class="note"><p><strong class="note">Note</strong>: 
+<span class="simpara">
+    Bien que cette fonction ait été ajoutée en PHP 7.0, une
+    <a href="https://github.com/paragonie/random_compat" class="link external">&raquo;&nbsp;implementation en espace utilisateur</a>
+    est disponible pour PHP 5.2 jusqu&#039;à 5.6, inclus.
+</span>
+</p></blockquote>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.random-int-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">min</code></dt>
+
+    <dd>
+
+     <p class="para">
+      La valeur minimale à retourner, qui doit être
+      <strong><code>PHP_INT_MIN</code></strong> ou supérieur.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">max</code></dt>
+
+    <dd>
+
+     <p class="para">
+      La valeur maximale à retourner, qui doit être moins
+      ou égal à <strong><code>PHP_INT_MAX</code></strong>.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.random-int-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un nombre entiers pseudo-aléatoire cryptographiquement sécurisé dans
+   l&#039;intervale inclusive entre <code class="parameter">min</code> et <code class="parameter">max</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-function.random-int-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <ul class="itemizedlist">
+   
+<li class="listitem">
+<span class="simpara">
+    Si aucune source de données aléatoires n&#039;est trouvée, une
+    <a href="class.exception.html" class="classname">Exception</a> sera émise.
+</span>
+</li>
+<li class="listitem">
+<span class="simpara">
+    Si un paramètre invalide est fourni, une exception
+    de type <a href="class.typeerror.html" class="classname">TypeError</a> sera émise.
+</span>
+</li>
+
+   <li class="listitem">
+    <span class="simpara">
+     Si <code class="parameter">max</code> est moins que <code class="parameter">min</code>,
+     une <a href="class.error.html" class="classname">Error</a> sera lancée.
+    </span>
+   </li>
+  </ul>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.random-int-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-873">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>random_int()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">random_int</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">999</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">random_int</span><span style="color: #007700">(-</span><span style="color: #0000BB">1000</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+int(248)
+int(-898)
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.random-int-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="function"><a href="function.random-bytes.html" class="function" rel="rdfs-seeAlso">random_bytes()</a> - G&eacute;n&egrave;re des octets pseudo-al&eacute;atoire cryptographiquement s&eacute;curis&eacute;</span></li>
+  </ul>
+ </div>
+
+
+</div></div></div></body></html>

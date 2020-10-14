@@ -1,0 +1,446 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Nouvelles fonctionnalit&eacute;s</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration72.html">« Migration de PHP 7.1.x vers PHP 7.2.x</a></li>
+      <li style="float: right;"><a href="migration72.new-functions.html">Nouvelles fonctions »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration72.html">Migration de PHP 7.1.x vers PHP 7.2.x</a></li>
+    <li>Nouvelles fonctionnalit&eacute;s</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration72.new-features" class="sect1">
+ <h2 class="title">Nouvelles fonctionnalités</h2>
+
+ <div class="sect2" id="migration72.new-features.object-type">
+  <h3 class="title">Nouveau type object</h3>
+
+  <p class="para">
+   Un nouveau type, <span class="type"><a href="language.types.object.html" class="type object">object</a></span>, a été introduit. Il peut être utilisé 
+   pour typer un paramètre (contravariant) ou pour typer le retour (covariant).
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">test</span><span style="color: #007700">(</span><span style="color: #0000BB">object&nbsp;$obj</span><span style="color: #007700">)&nbsp;:&nbsp;</span><span style="color: #0000BB">object<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;new&nbsp;</span><span style="color: #0000BB">SplQueue</span><span style="color: #007700">();<br />}<br /><br /></span><span style="color: #0000BB">test</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">StdClass</span><span style="color: #007700">());</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.ext-loading-by-name">
+  <h3 class="title">Chargement des extensions par leur nom</h3>
+
+  <p class="para">
+   Les extensions partagées ne demanderons plus de saisir leur nom 
+   complet (<code class="literal">.so</code> pour Unix ou <code class="literal">.dll</code> 
+   pour Windows). C&#039;est actif pour le fichier php.ini et pour la 
+   fonction <span class="function"><a href="function.dl.html" class="function">dl()</a></span>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.abstract-method-overriding">
+  <h3 class="title">Substitution de méthode abstraite</h3>
+
+  <p class="para">
+   Les méthodes abstraites peuvent maintenant être surchargées quand une 
+   classe abstraite étend une autre classe abstraite.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">abstract&nbsp;class&nbsp;</span><span style="color: #0000BB">A<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;abstract&nbsp;function&nbsp;</span><span style="color: #0000BB">test</span><span style="color: #007700">(</span><span style="color: #0000BB">string&nbsp;$s</span><span style="color: #007700">);<br />}<br />abstract&nbsp;class&nbsp;</span><span style="color: #0000BB">B&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">A<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;overridden&nbsp;-&nbsp;still&nbsp;maintaining&nbsp;contravariance&nbsp;for&nbsp;parameters&nbsp;and&nbsp;covariance&nbsp;for&nbsp;return<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">abstract&nbsp;function&nbsp;</span><span style="color: #0000BB">test</span><span style="color: #007700">(</span><span style="color: #0000BB">$s</span><span style="color: #007700">)&nbsp;:&nbsp;</span><span style="color: #0000BB">int</span><span style="color: #007700">;<br />}</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.sodium">
+  <h3 class="title"><a href="book.sodium.html" class="link">Sodium</a> est maintenant une extension du noyau</h3>
+
+  <p class="para">
+   La bibliothèque moderne de cryptographie sodium est maintenant devenue une extension de base dans PHP.
+  </p>
+  <p class="para">
+   Pour une référence de fonction complète, consultez le chapitre <a href="book.sodium.html" class="link">Sodium</a>.
+  </p>
+ </div>
+ 
+ <div class="sect2" id="migration72.new-features.pws-hashing-with-argon2">
+  <h3 class="title">Hachage de mot de passe avec Argon2</h3>
+
+  <p class="para">
+   Argon2 a été ajouté à l&#039;<a href="book.password.html" class="link">API pour le hachage de mot de passe</a>, 
+   et les constantes suivantes ont été exposées :
+  </p>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     <strong><code>PASSWORD_ARGON2I</code></strong>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <strong><code>PASSWORD_ARGON2_DEFAULT_MEMORY_COST</code></strong>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <strong><code>PASSWORD_ARGON2_DEFAULT_TIME_COST</code></strong>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <strong><code>PASSWORD_ARGON2_DEFAULT_THREADS</code></strong>
+    </span>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.pdo-extended-str-types">
+  <h3 class="title">Types de chaîne étendue pour <a href="book.pdo.html" class="link">PDO</a></h3>
+
+  <p class="para">
+   Type de chaîne de PDO a été étendu pour prendre en charge le type de 
+   caractère national lors de l’utilisation des requêtes préparées. Cela a été 
+   fait avec l’une des constantes suivantes :
+  </p>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     <strong><code>PDO::PARAM_STR_NATL</code></strong>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <strong><code>PDO::PARAM_STR_CHAR</code></strong>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <strong><code>PDO::ATTR_DEFAULT_STR_PARAM</code></strong>
+    </span>
+   </li>
+  </ul>
+
+  <p class="para">
+   Ces constantes sont utilisées avec l’opérateur de bits <code class="literal">OR</code> 
+   et <strong><code>PDO::PARAM_STR</code></strong> :
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">quote</span><span style="color: #007700">(</span><span style="color: #DD0000">'über'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">PARAM_STR&nbsp;</span><span style="color: #007700">|&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">PARAM_STR_NATL</span><span style="color: #007700">);</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.additional-emulated-prepares-debugging-info">
+  <h3 class="title">Ajout d&#039;information de déboggage pour l&#039;émulation des requêtes préparées pour <a href="book.pdo.html" class="link">PDO</a></h3>
+
+  <p class="para">
+   La méthode <span class="function"><a href="pdostatement.debugdumpparams.html" class="function">PDOStatement::debugDumpParams()</a></span> a été mis à 
+   jour pour inclure le SQL envoyé à la DB, où la requête complète, requête 
+   brute (y compris les espaces réservés remplacées par leurs valeurs 
+   protégées) sera montrée. Ceci a été ajouté afin de faciliter le débogage 
+   de l&#039;émulation des requêtes préparées (et donc il sera disponible lorsque 
+   l&#039;émulation des requêtes préparées est activée).
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.extended-ops-in-ldap">
+  <h3 class="title">Prise en charge pour les opérations étendues dans <a href="book.ldap.html" class="link">LDAP</a></h3>
+
+  <p class="para">
+   La prise en charge des EXOP a été ajoutée dans l&#039;extension LDAP. Cela a été 
+   fait en exposant les constantes et les fonctions suivantes :
+  </p>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><a href="function.ldap-parse-exop.html" class="function">ldap_parse_exop()</a></span>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><a href="function.ldap-exop.html" class="function">ldap_exop()</a></span>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><a href="function.ldap-exop-passwd.html" class="function">ldap_exop_passwd()</a></span>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><a href="function.ldap-exop-whoami.html" class="function">ldap_exop_whoami()</a></span>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <strong><code>LDAP_EXOP_START_TLS</code></strong>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <strong><code>LDAP_EXOP_MODIFY_PASSWD</code></strong>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <strong><code>LDAP_EXOP_REFRESH</code></strong>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <strong><code>LDAP_EXOP_WHO_AM_I</code></strong>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <strong><code>LDAP_EXOP_TURN</code></strong>
+    </span>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.addr-info-in-sockets">
+  <h3 class="title">Informations additionnelles des adresses dans l&#039;extension <a href="book.sockets.html" class="link">Sockets</a></h3>
+
+  <p class="para">
+   L&#039;extension sockets a maintenant la capacité de rechercher les informations 
+   sur l&#039;adresse, mais aussi de s&#039;y connecter, de se lier dessus et de 
+   l&#039;expliquer. Les quatre fonctions suivantes ont été ajoutées pour cela :
+  </p>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><a href="function.socket-addrinfo-lookup.html" class="function">socket_addrinfo_lookup()</a></span>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><a href="function.socket-addrinfo-connect.html" class="function">socket_addrinfo_connect()</a></span>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><a href="function.socket-addrinfo-bind.html" class="function">socket_addrinfo_bind()</a></span>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><a href="function.socket-addrinfo-explain.html" class="function">socket_addrinfo_explain()</a></span>
+    </span>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.param-type-widening">
+  <h3 class="title">Elargissement du type des arguments</h3>
+
+  <p class="para">
+   Les types de paramètres de méthodes substituées et des implémentations de 
+   l’interface peuvent maintenant être omises. C’est toujours dans le respect 
+   de LSP, puisque les types de paramètres sont contravariants.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">interface&nbsp;</span><span style="color: #0000BB">A<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">Test</span><span style="color: #007700">(array&nbsp;</span><span style="color: #0000BB">$input</span><span style="color: #007700">);<br />}<br /><br />class&nbsp;</span><span style="color: #0000BB">B&nbsp;</span><span style="color: #007700">implements&nbsp;</span><span style="color: #0000BB">A<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">Test</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span style="color: #007700">){}&nbsp;</span><span style="color: #FF8000">//&nbsp;type&nbsp;omis&nbsp;pour&nbsp;$input<br /></span><span style="color: #007700">}</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.trailing-comma-in-grouped-namespaces">
+  <h3 class="title">Permettre une virgule de fin pour les espaces de noms groupés</h3>
+
+  <p class="para">
+   Une virgule de fin peut maintenant être ajoutée à la syntaxe 
+   d’utilisation groupé introduite en PHP 7.0.
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">use&nbsp;</span><span style="color: #0000BB">Foo</span><span style="color: #007700">\</span><span style="color: #0000BB">Bar</span><span style="color: #007700">\{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">Foo</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">Bar</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">Baz</span><span style="color: #007700">,<br />};</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+<div class="sect2" id="migration72.new-features.proc_nice-windows-support">
+  <h3 class="title">Prise en charge sur Windows de <span class="function"><a href="function.proc-nice.html" class="function">proc_nice()</a></span></h3>
+
+  <p class="para">
+   La fonction <span class="function"><a href="function.proc-nice.html" class="function">proc_nice()</a></span> est maintenant prise en charge sur Windows.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.pack-unpack-endian-support">
+  <h3 class="title">Prise en charge de endian pour <span class="function"><a href="function.pack.html" class="function">pack()</a></span> et <span class="function"><a href="function.unpack.html" class="function">unpack()</a></span></h3>
+
+  <p class="para">
+   Les fonctions <span class="function"><a href="function.pack.html" class="function">pack()</a></span> et <span class="function"><a href="function.unpack.html" class="function">unpack()</a></span> 
+   prennent en charge les nombres décimaux et doubles dans les deux Little et 
+   Big endian.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.exif-features">
+  <h3 class="title">Améliorations de l&#039;extension <a href="book.exif.html" class="link">EXIF</a></h3>
+
+  <p class="para">
+   L&#039;extension EXIF a été mise à jour pour prendre en charge une gamme beaucoup 
+   plus large de formats. Cela signifie que leurs balises spécifiques au 
+   format sont maintenant correctement traduites lors de l&#039;analyse des images 
+   avec la fonction <span class="function"><a href="function.exif-read-data.html" class="function">exif_read_data()</a></span>. Les nouveaux formats 
+   suivants sont désormais pris en charge :
+  </p>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     Samsung
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     DJI
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Panasonic
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Sony
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Pentax
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Minolta
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Sigma/Foveon
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     AGFA
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Kyocera
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Ricoh
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Epson
+    </span>
+   </li>
+  </ul>
+
+  <p class="para">
+   Les fonctions EXIF <span class="function"><a href="function.exif-read-data.html" class="function">exif_read_data()</a></span> et 
+   <span class="function"><a href="function.exif-thumbnail.html" class="function">exif_thumbnail()</a></span> prennent désormais en charge des flux en 
+   tant que premier argument.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.pcre">
+  <h3 class="title">Nouvelles fonctionnalités dans <a href="book.pcre.html" class="link">PCRE</a></h3>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     Le modificateur <code class="literal">J</code> pour définir  PCRE_DUPNAMES a été ajouté.
+    </span>
+   </li>
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.sqlite3">
+  <h3 class="title"><a href="book.sqlite3.html" class="link">SQLite3</a> permet l&#039;écriture de BLOBs</h3>
+
+  <p class="para">
+   <span class="methodname"><a href="sqlite3.openblob.html" class="methodname">SQLite3::openBlob()</a></span> permet maintenant d&#039;ouvrir des 
+   champs BLOB en mode écriture; auparavant, seul le mode lecture était pris 
+   en charge.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.oci8">
+  <h3 class="title"><a href="book.oci8.html" class="link">Oracle OCI8</a> prise en charge du Transparent Application Failover</h3>
+
+  <p class="para">
+   La prise en charge de la <a href="oci8.taf.html" class="link">fonction de rappel de Transparent Application Failover (TAF)</a> a été ajouté.
+   TAF permet aux applications PHP oci8 de se reconnecter automatiquement à 
+   une base de données préconfigurée lorsqu&#039;une connexion est rompue. Le 
+   nouveau support de rappel TAF permet aux applications PHP de surveiller et 
+   de contrôler la reconnexion pendant le basculement.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration72.new-features.zip">
+  <h3 class="title">Améliorations de l&#039;extension <a href="book.zip.html" class="link">ZIP</a></h3>
+
+  <p class="para">
+   La prise en charge de la lecture et de l&#039;écriture d&#039;archive chiffrée a été ajouté (nécessite libzip 1.2.0).
+  </p>
+  <p class="para">
+   La classe <a href="class.ziparchive.html" class="classname">ZipArchive</a> implémente maintenant l&#039;interface <span class="interfacename"><a href="class.countable.html" class="interfacename">Countable</a></span>.
+  </p>
+  <p class="para">
+   Le flux <code class="literal">zip://</code> accepte maintenant l&#039;option de contexte <code class="literal">&#039;password&#039;</code>.
+  </p>
+ </div>
+</div></div></div></body></html>

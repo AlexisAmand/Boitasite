@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lit une ligne d'un r&eacute;sultat sous forme de tableau associatif</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.oci-fetch-array.html">« oci_fetch_array</a></li>
+      <li style="float: right;"><a href="function.oci-fetch-object.html">oci_fetch_object »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.oci8.html">Fonctions OCI8</a></li>
+    <li>Lit une ligne d'un r&eacute;sultat sous forme de tableau associatif</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.oci-fetch-assoc" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">oci_fetch_assoc</h1>
+  <p class="verinfo">(PHP 5, PHP 7, PECL OCI8 &gt;= 1.1.0)</p><p class="refpurpose"><span class="refname">oci_fetch_assoc</span> &mdash; <span class="dc-title">Lit une ligne d&#039;un résultat sous forme de tableau associatif</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.oci-fetch-assoc-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>oci_fetch_assoc</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$statement</code></span>
+   ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Retourne un tableau associatif contenant la prochaine ligne de résultat d&#039;une requête.
+   Chaque élément du tableau correspond à une colonne de la ligne. Cette fonction
+   est appelé typiquement dans une boucle tant qu&#039;elle ne retourne pas <strong><code>FALSE</code></strong>, indiquant
+   qu&#039;il n&#039;y a plus de ligne de disponible.
+  </p>
+  <p class="para">
+   <span class="function"><strong>oci_fetch_assoc()</strong></span> est identique à la fonction
+   <span class="function"><a href="function.oci-fetch-array.html" class="function">oci_fetch_array()</a></span> et le mode
+   <strong><code>OCI_ASSOC</code></strong> + <strong><code>OCI_RETURN_NULLS</code></strong>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.oci-fetch-assoc-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">statement</code></dt>
+
+     <dd>
+
+      <p class="para">Un identifiant de requête OCI8
+créé par la fonction <span class="function"><a href="function.oci-parse.html" class="function">oci_parse()</a></span> et exécuté par la fonction
+<span class="function"><a href="function.oci-execute.html" class="function">oci_execute()</a></span>, ou un identifiant de requête <code class="literal">REF
+    CURSOR</code>.</p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.oci-fetch-assoc-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau associatif ou <strong><code>FALSE</code></strong> s&#039;il n&#039;y a plus de ligne de diponible
+   pour la requête <code class="parameter">statement</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.oci-fetch-assoc-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2411">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>oci_fetch_assoc()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'hr'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'welcome'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'localhost/XE'</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$e&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_error</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">trigger_error</span><span style="color: #007700">(</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">[</span><span style="color: #DD0000">'message'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">E_USER_ERROR</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">$stid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_parse</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SELECT&nbsp;department_id,&nbsp;department_name&nbsp;FROM&nbsp;departments'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">oci_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br /><br />while&nbsp;((</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">oci_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">))&nbsp;!=&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'DEPARTMENT_ID'</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'DEPARTMENT_NAME'</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">"&lt;br&gt;\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">oci_free_statement</span><span style="color: #007700">(</span><span style="color: #0000BB">$stid</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">oci_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.oci-fetch-assoc-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Voir <span class="function"><a href="function.oci-fetch-array.html" class="function">oci_fetch_array()</a></span> pour plus d&#039;exemples sur la récupération
+    de lignes.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.oci-fetch-assoc-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.oci-fetch.html" class="function" rel="rdfs-seeAlso">oci_fetch()</a> - Lit la prochaine ligne d'un r&eacute;sultat Oracle dans un buffer interne</span></li>
+    <li class="member"><span class="function"><a href="function.oci-fetch-all.html" class="function" rel="rdfs-seeAlso">oci_fetch_all()</a> - Lit plusieurs lignes d'un r&eacute;sultat dans un tableau multi-dimensionnel</span></li>
+    <li class="member"><span class="function"><a href="function.oci-fetch-array.html" class="function" rel="rdfs-seeAlso">oci_fetch_array()</a> - Lit une ligne d'un r&eacute;sultat sous forme de tableau associatif ou num&eacute;rique</span></li>
+    <li class="member"><span class="function"><a href="function.oci-fetch-object.html" class="function" rel="rdfs-seeAlso">oci_fetch_object()</a> - Lit une ligne d'un r&eacute;sultat sous forme d'objet</span></li>
+    <li class="member"><span class="function"><a href="function.oci-fetch-row.html" class="function" rel="rdfs-seeAlso">oci_fetch_row()</a> - Lit la prochaine ligne d'une requ&ecirc;te sous forme de tableau num&eacute;rique</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

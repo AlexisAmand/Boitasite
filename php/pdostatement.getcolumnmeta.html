@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne les m&eacute;tadonn&eacute;es pour une colonne d'un jeu de r&eacute;sultats</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="pdostatement.getattribute.html">« PDOStatement::getAttribute</a></li>
+      <li style="float: right;"><a href="pdostatement.nextrowset.html">PDOStatement::nextRowset »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.pdostatement.html">PDOStatement</a></li>
+    <li>Retourne les m&eacute;tadonn&eacute;es pour une colonne d'un jeu de r&eacute;sultats</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="pdostatement.getcolumnmeta" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">PDOStatement::getColumnMeta</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7, PECL pdo &gt;= 0.2.0)</p><p class="refpurpose"><span class="refname">PDOStatement::getColumnMeta</span> &mdash; <span class="dc-title">
+   Retourne les métadonnées pour une colonne d&#039;un jeu de résultats
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-pdostatement.getcolumnmeta-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>PDOStatement::getColumnMeta</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$column</code></span>
+   ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Récupère les metainformations pour une colonne d&#039;un jeu de résultats
+   dans un tableau associatif.
+  </p>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="simpara">
+    Tous les drivers PDO ne supportent pas la fonction
+    <span class="function"><strong>PDOStatement::getColumnMeta()</strong></span>.
+   </p>
+  </div>
+
+  <p class="para">Les pilotes suivant implémente cette méthode :</p>
+  <ul class="itemizedlist">
+   <li class="listitem"><span class="simpara"><a href="ref.pdo-dblib.html" class="link">PDO_DBLIB</a></span></li>
+   <li class="listitem"><span class="simpara"><a href="ref.pdo-mysql.html" class="link">PDO_MYSQL</a></span></li>
+   <li class="listitem"><span class="simpara"><a href="ref.pdo-pgsql.html" class="link">PDO_PGSQL</a></span></li>
+   <li class="listitem"><span class="simpara"><a href="ref.pdo-sqlite.html" class="link">PDO_SQLITE</a></span></li>
+  </ul>
+  
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-pdostatement.getcolumnmeta-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">column</code></dt>
+
+      <dd>
+
+       <p class="para">
+        Le nom de la colonne dans le jeu de résultats.
+       </p>
+      </dd>
+
+     
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-pdostatement.getcolumnmeta-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau associatif contenant les valeurs suivantes représentant les metainformations
+   pour une colonne :
+  </p>
+  <table class="doctable table">
+   <caption><strong>Metainformations d&#039;une colonne</strong></caption>
+   
+    <col /> 
+    <col /> 
+    <thead>
+     <tr>
+      <th>Nom</th>
+      <th>Valeur</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td><code class="literal">native_type</code></td>
+      <td>Le type natif PHP utilisé pour représenter la valeur de la colonne.</td>
+     </tr>
+
+     <tr>
+      <td><code class="literal">driver:decl_type</code></td>
+      <td>Le type SQL utilisé pour représenter la valeur de la colonne dans la base de données.
+       Si la colonne du jeu de résultats est le résultat d&#039;une fonction, cette valeur
+       n&#039;est pas retournée par la fonction <span class="function"><strong>PDOStatement::getColumnMeta()</strong></span>.
+      </td>
+     </tr>
+
+     <tr>
+      <td><code class="literal">flags</code></td>
+      <td>N&#039;importe quelle balise définie pour cette colonne.</td>
+     </tr>
+
+     <tr>
+      <td><code class="literal">name</code></td>
+      <td>Le nom de cette colonne, comme retourné par la base de données.</td>
+     </tr>
+
+     <tr>
+      <td><code class="literal">table</code></td>
+      <td>Le nom de la table de cette colonne, tel que retourné par la base de données.</td>
+     </tr>
+
+     <tr>
+      <td><code class="literal">len</code></td>
+      <td>La longueur de cette colonne. Normalement, <code class="literal">-1</code>
+       pour les types autres que les nombres décimaux à virgule flottante.</td>
+     </tr>
+
+     <tr>
+      <td><code class="literal">precision</code></td>
+      <td>La précision numérique pour cette colonne. Normalement,
+       <code class="literal">0</code> pour les types autres que les nombres décimaux à virgule flottante.</td>
+     </tr>
+
+     <tr>
+      <td><code class="literal">pdo_type</code></td>
+      <td>Le type de cette colonne comme représenté par la constante 
+       <a href="pdo.constants.html" class="link"><code class="literal">PDO::PARAM_*</code></a>.</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+  <p class="para">
+   Retourne <strong><code>FALSE</code></strong> si la colonne demandée n&#039;existe pas dans le jeu de résultats,
+   ou si aucun jeu de résultats n&#039;existe.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-pdostatement.getcolumnmeta-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-1046">
+    <p><strong>Exemple #1 Récupération des metainformations pour une colonne</strong></p>
+    <div class="example-contents"><p>
+     L&#039;exemple suivant montre le résultat de la récupération des metainformations
+     pour une colonne générée par une fonction (COUNT) dans un pilote
+     PDO_SQLITE.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$select&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$DB</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">'SELECT&nbsp;COUNT(*)&nbsp;FROM&nbsp;fruit'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$meta&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$select</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getColumnMeta</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$meta</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(6) {
+   [&quot;native_type&quot;]=&gt;
+   string(7) &quot;integer&quot;
+   [&quot;flags&quot;]=&gt;
+      array(0) {
+      }
+   [&quot;name&quot;]=&gt;
+   string(8) &quot;COUNT(*)&quot;
+   [&quot;len&quot;]=&gt;
+   int(-1)
+   [&quot;precision&quot;]=&gt;
+   int(0)
+   [&quot;pdo_type&quot;]=&gt;
+   int(2)
+}
+
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-pdostatement.getcolumnmeta-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="pdostatement.columncount.html" class="function" rel="rdfs-seeAlso">PDOStatement::columnCount()</a> - Retourne le nombre de colonnes dans le jeu de r&eacute;sultats</span></li>
+    <li class="member"><span class="function"><a href="pdostatement.rowcount.html" class="function" rel="rdfs-seeAlso">PDOStatement::rowCount()</a> - Retourne le nombre de lignes affect&eacute;es par le dernier 
+   appel &agrave; la fonction PDOStatement::execute()</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Fonctionnalit&eacute;s obsol&egrave;tes</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration74.incompatible.html">« Modifications entrainant une incompatibilit&eacute; ascendante</a></li>
+      <li style="float: right;"><a href="migration74.removed-extensions.html">Extensions supprim&eacute;es »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration74.html">Migration de PHP 7.3.x vers PHP 7.4.x</a></li>
+    <li>Fonctionnalit&eacute;s obsol&egrave;tes</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration74.deprecated" class="sect1">
+ <h2 class="title">Fonctionnalités obsolètes</h2>
+
+ <div class="sect2" id="migration74.deprecated.core">
+  <h3 class="title">Cœur de PHP</h3>
+
+  <div class="sect3" id="migration74.deprecated.core.nested-ternary">
+   <h4 class="title">Opérateurs ternaires imbriqués sans parenthèses explicites</h4>
+
+   <p class="para">
+    Les opérateurs ternaires imbriqués doivent explicitement utiliser des
+    parenthèses pour dicter l&#039;ordre des opérations. Précedement, quand utilisée
+    sans parenthèses, l&#039;associativité-gauche ne résulterait pas dans le
+    comportement attendue pour la plupart des cas.
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />1&nbsp;</span><span style="color: #007700">?&nbsp;</span><span style="color: #0000BB">2&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #0000BB">3&nbsp;</span><span style="color: #007700">?&nbsp;</span><span style="color: #0000BB">4&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;obsolète<br /></span><span style="color: #007700">(</span><span style="color: #0000BB">1&nbsp;</span><span style="color: #007700">?&nbsp;</span><span style="color: #0000BB">2&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span style="color: #0000BB">4&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;ok<br /></span><span style="color: #0000BB">1&nbsp;</span><span style="color: #007700">?&nbsp;</span><span style="color: #0000BB">2&nbsp;</span><span style="color: #007700">:&nbsp;(</span><span style="color: #0000BB">3&nbsp;</span><span style="color: #007700">?&nbsp;</span><span style="color: #0000BB">4&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;ok<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.array-string-access-curly-brace">
+   <h4 class="title">Accès de position de tableau et de chaînes en utilisant les accolades</h4>
+
+   <p class="para">
+    La syntaxe pour accéder à la position des <a href="language.types.array.html" class="link">tableau</a>x et <a href="language.types.string.html" class="link">chaîne de caractères</a> avec les
+    accolades est obsolète. Utiliser <code class="literal">$var[$idx]</code> au lieu de
+    <code class="literal">$var{$idx}</code>.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.real">
+   <h4 class="title">Le transtypage (real) et la fonction<span class="function"><a href="function.is-real.html" class="function">is_real()</a></span></h4>
+
+   <p class="para">
+    Le transtypage <code class="literal">(real)</code> est obsolète,
+    utiliser <code class="literal">(float)</code> à la place.
+   </p>
+   <p class="para">
+    La fonction <span class="function"><a href="function.is-real.html" class="function">is_real()</a></span> est aussi obsolète,
+    utiliser <span class="function"><a href="function.is-float.html" class="function">is_float()</a></span> à la place.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.unbind-this">
+   <h4 class="title">Délier <code class="literal">$this</code> quand <code class="literal">$this</code> est utilisé</h4>
+
+   <p class="para">
+    Délié <code class="literal">$this</code> d&#039;une fermeture non statique qui utilise
+    <code class="literal">$this</code> est obsolète.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.parent">
+   <h4 class="title">Mot clé <code class="literal">parent</code> sans classe parente</h4>
+
+   <p class="para">
+    L&#039;utilisation de <code class="literal">parent</code> à l&#039;intérieur d&#039;une classe sans
+    parent est obsolète, et émettra une erreur lors de la compilation dans le
+    futur. Actuellement seul une erreur sera générée si/quand un parent est
+    accédé lors de l&#039;exécution.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.allow-url-include">
+   <h4 class="title">Option INI allow_url_include</h4>
+
+   <p class="para">
+    La directive INI <a href="filesystem.configuration.html#ini.allow-url-include" class="link">allow_url_include</a>
+    est obsolète. L&#039;activer génèrera un avis d&#039;obsolescence lors du démarrage.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.invalid-base-characters">
+   <h4 class="title">Caractères invalides dans les fonctions de conversion de base</h4>
+
+   <p class="para">
+    Passer des caractères invalides à <span class="function"><a href="function.base-convert.html" class="function">base_convert()</a></span>,
+    <span class="function"><a href="function.bindec.html" class="function">bindec()</a></span>, <span class="function"><a href="function.octdec.html" class="function">octdec()</a></span> et
+    <span class="function"><a href="function.hexdec.html" class="function">hexdec()</a></span> génèrera désromais avis d&#039;obsolescence.
+    Le résultat sera toujours calculé comme si les caractères invalides
+    n&#039;existaient pas. Les caractères d&#039;espacement blanc, aussi bien que les
+    préfixes de type 0x (en fonction de la base) continue d&#039;être accepté.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.array-key-exists-objects">
+   <h4 class="title">L&#039;utilisation de <span class="function"><a href="function.array-key-exists.html" class="function">array_key_exists()</a></span> sur des objets</h4>
+
+   <p class="para">
+    L&#039;utilisation de <span class="function"><a href="function.array-key-exists.html" class="function">array_key_exists()</a></span> sur des objets est
+    obsolète. À la place <span class="function"><a href="function.isset.html" class="function">isset()</a></span> ou
+    <span class="function"><a href="function.property-exists.html" class="function">property_exists()</a></span> devraient être utilisé.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.magic-quotes-functions">
+   <h4 class="title">Fonctions des guiellemets magiques</h4>
+
+   <p class="para">
+    Les fonctions <span class="function"><a href="function.get-magic-quotes-gpc.html" class="function">get_magic_quotes_gpc()</a></span> et
+    <span class="function"><a href="function.get-magic-quotes-runtime.html" class="function">get_magic_quotes_runtime()</a></span> sont obsolètes.
+    Elles retournent toujours <strong><code>FALSE</code></strong>.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.hebrevc">
+   <h4 class="title">Fonction <span class="function"><a href="function.hebrevc.html" class="function">hebrevc()</a></span></h4>
+
+   <p class="para">
+    La fonction <span class="function"><a href="function.hebrevc.html" class="function">hebrevc()</a></span> est obsolète.
+    Elle peut être remplacée par <code class="literal">nl2br(hebrev($str))</code> ou,
+    de préférence, en utilisant le support Unicode RTL (Droite à Gauche).
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.convert-cyr-string">
+   <h4 class="title">Fonction <span class="function"><a href="function.convert-cyr-string.html" class="function">convert_cyr_string()</a></span></h4>
+
+   <p class="para">
+    La fonction <span class="function"><a href="function.convert-cyr-string.html" class="function">convert_cyr_string()</a></span> est obsolète.
+    Elle peut être remplacée par l&#039;une de <span class="function"><strong>mb_convert_string()</strong></span>,
+    <span class="function"><a href="function.iconv.html" class="function">iconv()</a></span> ou <a href="class.uconverter.html" class="classname">UConverter</a>.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.money-format">
+   <h4 class="title">Fonction <span class="function"><a href="function.money-format.html" class="function">money_format()</a></span></h4>
+
+   <p class="para">
+    La fonction <span class="function"><a href="function.money-format.html" class="function">money_format()</a></span> est obsolète.
+    Elle peut être remplacée par la fonctionalité intl
+    <a href="class.numberformatter.html" class="classname">NumberFormatter</a>.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.ezmlm-hash">
+   <h4 class="title">Fonction <span class="function"><a href="function.ezmlm-hash.html" class="function">ezmlm_hash()</a></span></h4>
+
+   <p class="para">
+    La fonction <span class="function"><a href="function.ezmlm-hash.html" class="function">ezmlm_hash()</a></span> est obsolète.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.restore-include-path">
+   <h4 class="title">Fonction <span class="function"><a href="function.restore-include-path.html" class="function">restore_include_path()</a></span></h4>
+
+   <p class="para">
+    La fonction <span class="function"><a href="function.restore-include-path.html" class="function">restore_include_path()</a></span> est obsolète.
+    Elle peut être remplacée par <code class="literal">ini_restore(&#039;include_path&#039;)</code>.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.deprecated.core.implode-reverse-parameters">
+   <h4 class="title">Implode avec l&#039;ordre de paramètre historique</h4>
+
+   <p class="para">
+    Passer les paramètres à <span class="function"><a href="function.implode.html" class="function">implode()</a></span> dans l&#039;ordre inverse
+    est obsolète, utiliser <code class="literal">implode($glue, $parts)</code>
+    au lieu de <code class="literal">implode($parts, $glue)</code>.
+   </p>
+  </div>
+
+ </div>
+
+ <div class="sect2" id="migration74.deprecated.com">
+  <h3 class="title">COM</h3>
+
+  <p class="para">
+   L&#039;importation de bibliothèques de type avec l&#039;enregistrement de constantes
+   non sensible à la casse a été rendu obsolète.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.deprecated.filter">
+  <h3 class="title">Filtre</h3>
+
+  <p class="para">
+   <strong><code>FILTER_SANITIZE_MAGIC_QUOTES</code></strong> est obsolète,
+   utiliser <strong><code>FILTER_SANITIZE_ADD_SLASHES</code></strong> à la place.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.deprecated.mbstring">
+  <h3 class="title">Chaînes Multi-octet</h3>
+
+  <p class="para">
+   Passer un pattern qui n&#039;est pas une <a href="language.types.string.html" class="link">chaîne de caractères</a> à
+   <span class="function"><a href="function.mb-ereg-replace.html" class="function">mb_ereg_replace()</a></span> est obsolète.
+   Actuellement, les patterns qui ne sont pas des <a href="language.types.string.html" class="link">chaîne de caractères</a> sont interprétés
+   en tant que point de code ASCII. En PHP 8, le pattern sera interprété comme
+   une <a href="language.types.string.html" class="link">chaîne de caractères</a> à la place.
+  </p>
+  <p class="para">
+   Passer l&#039;encodage en tant que troisième paramètre à
+   <span class="function"><a href="function.mb-strrpos.html" class="function">mb_strrpos()</a></span> est obsolète. À la place passer une position
+   de 0, et l&#039;encodage en tant que quatrième paramètre.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.deprecated.ldap">
+  <h3 class="title">Lightweight Directory Access Protocol (LDAP)</h3>
+
+  <p class="para">
+   <span class="function"><a href="function.ldap-control-paged-result-response.html" class="function">ldap_control_paged_result_response()</a></span> et
+   <span class="function"><a href="function.ldap-control-paged-result.html" class="function">ldap_control_paged_result()</a></span> sont obsolètes.
+   Les contrôles de paginations peuvent être envoyés avec
+   <span class="function"><a href="function.ldap-search.html" class="function">ldap_search()</a></span> à la place.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.deprecated.reflection">
+  <h3 class="title">Reflection</h3>
+
+  <p class="para">
+   L&#039;appel à <span class="methodname"><a href="reflectiontype.tostring.html" class="methodname">ReflectionType::__toString()</a></span> génère
+   maintenant un avis d&#039;obsolescence. Cette méthode a été dépréciée en faveur
+   de <span class="methodname"><a href="reflectionnamedtype.getname.html" class="methodname">ReflectionNamedType::getName()</a></span> dans la
+   documentation à partir de PHP 7.1, mais ne lançait pas un avis d&#039;obsolescence
+   pour des raisons techniques.
+  </p>
+  <p class="para">
+   Les méthodes <code class="literal">export()</code> dans toutes les classes
+   <a href="class.reflection.html" class="classname">Reflection</a> sont obsolètes. Créer un objet
+   <a href="class.reflection.html" class="classname">Reflection</a> et le convertir en <a href="language.types.string.html" class="link">chaîne de caractères</a> à la place :
+   <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;ReflectionClass::export(Foo::class,&nbsp;false)&nbsp;est&nbsp;:<br /></span><span style="color: #007700">echo&nbsp;new&nbsp;</span><span style="color: #0000BB">ReflectionClass</span><span style="color: #007700">(</span><span style="color: #0000BB">Foo</span><span style="color: #007700">::class),&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;$str&nbsp;=&nbsp;ReflectionClass::export(Foo::class,&nbsp;true)&nbsp;est&nbsp;:<br /></span><span style="color: #0000BB">$str&nbsp;</span><span style="color: #007700">=&nbsp;(string)&nbsp;new&nbsp;</span><span style="color: #0000BB">ReflectionClass</span><span style="color: #007700">(</span><span style="color: #0000BB">Foo</span><span style="color: #007700">::class);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.deprecated.socket">
+  <h3 class="title">Socket</h3>
+
+  <p class="para">
+   Les drapeaux <strong><code>AI_IDN_ALLOW_UNASSIGNED</code></strong> et
+   <strong><code>AI_IDN_USE_STD3_ASCII_RULES</code></strong> pour
+   <span class="function"><a href="function.socket-addrinfo-lookup.html" class="function">socket_addrinfo_lookup()</a></span> sont obsolètes,
+   en raison d&#039;une dépréciation en amont dans glibc.
+  </p>
+ </div>
+
+</div></div></div></body></html>

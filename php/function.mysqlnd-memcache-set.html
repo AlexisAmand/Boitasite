@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Associe une connexion MySQL avec une connexion Memcache</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.mysqlnd-memcache-get-config.html">« mysqlnd_memcache_get_config</a></li>
+      <li style="float: right;"><a href="mysqlnd-memcache.changes.html">Historique des modifications »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.mysqlnd-memcache.html">Fonctions Mysqlnd_memcache</a></li>
+    <li>Associe une connexion MySQL avec une connexion Memcache</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.mysqlnd-memcache-set" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqlnd_memcache_set</h1>
+  <p class="verinfo">(PECL mysqlnd_memcache &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">mysqlnd_memcache_set</span> &mdash; <span class="dc-title">Associe une connexion MySQL avec une connexion Memcache</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.mysqlnd-memcache-set-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   
+   <span class="methodname"><strong>mysqlnd_memcache_set</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$mysql_connection</code></span>
+   [, <span class="methodparam"><span class="type"><a href="class.memcached.html" class="type Memcached">Memcached</a></span> <code class="parameter">$memcache_connection</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$pattern</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.types.callable.html" class="type callable">callable</a></span> <code class="parameter">$callback</code></span>
+  ]]] ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Associe une connexion <code class="parameter">mysql_connection</code> avec une connexion
+   <code class="parameter">memcache_connection</code> en utilisant le paramètre
+   <code class="parameter">pattern</code> comme expression rationnelle PCRE, et le paramètre
+   <code class="parameter">callback</code> comme notification de rappel, ou pour réinitialiser
+   l&#039;association de la connexion <code class="parameter">mysql_connection</code>.
+  </p>
+  <p class="para">
+   Lors de l&#039;association d&#039;une connexion MySQL avec une connexion Memcache, cette fonction
+   va interroger le serveur MySQL pour en connaître sa configuration. Elle va ainsi automatiquement
+   détecter si le serveur est configuré pour utiliser le plugin InnoDB Memcache Daemon,
+   ou le support MySQL Cluster NDB Memcache. Elle va également interroger le serveur afin
+   d&#039;identifier automatiquement les tables exportées, ainsi que d&#039;autres options de
+   configuration. Le résultat de cette configuration automatique peut être récupéré
+   en utilisant la fonction <span class="function"><a href="function.mysqlnd-memcache-get-config.html" class="function">mysqlnd_memcache_get_config()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.mysqlnd-memcache-set-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">mysql_connection</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Un gestionnaire de serveur MySQL, en utilisant une des extensions API MySQL de PHP,
+      qui sont <a href="ref.pdo-mysql.html" class="link">PDO_MYSQL</a>, <a href="book.mysqli.html" class="link">mysqli</a> ou
+      <a href="book.mysql.html" class="link">ext/mysql</a>.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">memcache_connection</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Une instance <a href="book.memcached.html" class="link">Memcached</a>
+      avec une connexion au plugin MySQL Memcache Daemon. Si ce paramètre est omis,
+      alors <code class="parameter">mysql_connection</code> sera dé-associée de toute connexion memcache.
+      Et si une précédente association existait, alors elle sera remplacée.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">pattern</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Une expression rationnelle au format <a href="book.pcre.html" class="link">PCRE</a>
+      pour identifier les requêtes potentielles Memcache. La requête doit avoir trois
+      sous-masques. Le premier contient la liste des champs demandés, le second,
+      le nom de la colonne ID depuis la requête, et le troisième, la valeur
+      demandée. Si ce paramètre est omis, ou défini à <strong><code>NULL</code></strong>, alors un
+      masque par défaut sera utilisé.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">callback</code></dt>
+
+    <dd>
+
+     <p class="para">
+      Une fonction de rappel qui sera utilisée à chaque fois que la requête
+      est envoyée à MySQL. Elle ne reçoit qu&#039;un seul paramètre, un booléen,
+      indiquant si la requête a été envoyée via Memcache.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.mysqlnd-memcache-set-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   <strong><code>TRUE</code></strong> si l&#039;association ou la dé-association a été un succès, ou <strong><code>FALSE</code></strong>
+   si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.mysqlnd-memcache-set-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2351">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>mysqlnd_memcache_set()</strong></span> et
+     <span class="function"><a href="function.var-dump.html" class="function">var_dump()</a></span> comme fonction de rappel de déboguage.</strong></p>
+
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"host"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"passwd"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$memc&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Memcached</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$memc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">addServer</span><span style="color: #007700">(</span><span style="color: #DD0000">"host"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">11211</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">mysqlnd_memcache_set</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$memc</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'var_dump'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Cette&nbsp;requête&nbsp;sera&nbsp;interceptée&nbsp;et&nbsp;exécutée&nbsp;via&nbsp;le&nbsp;protocole&nbsp;Memcache&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"Envoi&nbsp;de&nbsp;la&nbsp;requête&nbsp;pour&nbsp;l'ID&nbsp;via&nbsp;Memcache&nbsp;:&nbsp;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;f1,&nbsp;f2,&nbsp;f3&nbsp;FROM&nbsp;test&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;1"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;f1&nbsp;n'est&nbsp;pas&nbsp;configuré&nbsp;comme&nbsp;une&nbsp;clé&nbsp;de&nbsp;champ&nbsp;valide,&nbsp;cette&nbsp;requête&nbsp;ne&nbsp;sera&nbsp;pas&nbsp;envoyée&nbsp;via&nbsp;Memcache&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"Envoi&nbsp;de&nbsp;la&nbsp;requête&nbsp;pour&nbsp;f1&nbsp;via&nbsp;Memcache&nbsp;:&nbsp;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;id&nbsp;FROM&nbsp;test&nbsp;WHERE&nbsp;f1&nbsp;=&nbsp;1"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">mysqlnd_memcache_set</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Maintenant,&nbsp;le&nbsp;protocole&nbsp;régulier&nbsp;MySQL&nbsp;sera&nbsp;utilisé&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"var_dump&nbsp;ne&nbsp;sera&nbsp;pas&nbsp;appelé&nbsp;:&nbsp;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;f1,&nbsp;f2,&nbsp;f3&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;1"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Envoi de la requête pour l&#039;ID via Memcache: bool(true)
+Envoi de la requête pour f1 via Memcache: bool(false)
+var_dump ne sera pas appelé : 
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mysqlnd-memcache-set-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     <span class="function"><a href="function.mysqlnd-memcache-get-config.html" class="function" rel="rdfs-seeAlso">mysqlnd_memcache_get_config()</a> - Retourne les informations concernant la configuration du plugin</span>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

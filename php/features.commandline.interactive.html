@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Shell Interactif</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="features.commandline.io-streams.html">« Flux I/O</a></li>
+      <li style="float: right;"><a href="features.commandline.webserver.html">Serveur web interne »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="features.commandline.html">Utilisation des lignes de commande</a></li>
+    <li>Shell Interactif</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="features.commandline.interactive" class="section">
+  <h2 class="title">Shell Interactif</h2>
+  
+  <p class="para">
+   Depuis PHP 5.1.0, le <acronym title="Command Line Interpreter/Interface">CLI</acronym> <acronym title="Server Application Programming Interface">SAPI</acronym> fournit un shell intéractif lors de l&#039;utilisation
+   de l&#039;option <strong class="option unknown">-a</strong> si PHP a été compilé avec l&#039;option <strong class="option configure">--with-readline</strong>.
+   Depuis PHP 7.1.0 le shell intéractif est également disponible sur Windows, si 
+   <a href="book.readline.html" class="link">l&#039;extention readline</a> est activée.
+  </p>
+  
+  <p class="para">
+   En utilisant le shell interactif, vous avez la possibilité de taper du code PHP
+   et qu&#039;il soit exécuté directement.
+  </p>
+  
+  <div class="example" id="example-434">
+   <p><strong>Exemple #1 Exécution de code en utilisant le shell interactif</strong></p> 
+   <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">$ php -a
+Interactive shell
+
+php &gt; echo 5+8;
+13
+php &gt; function addTwo($n)
+php &gt; {
+php { return $n + 2;
+php { }
+php &gt; var_dump(addtwo(2));
+int(4)
+php &gt;</pre>
+</div>
+   </div>
+
+  </div>
+  
+  <p class="para">
+   Le shell interactif fournit également une auto-complétion des fonctions,
+   des constantes, des noms de classes, des variables, des appels aux méthodes
+   statiques, et des constantes de classes en utilisant la touche de tabulation.
+  </p>
+  
+  <div class="example" id="example-435">
+   <p><strong>Exemple #2 Auto-complétion en utilisant la touche de tabulation</strong></p>
+   <div class="example-contents"><p>
+    Le fait de presser deux fois la touche de tabulation lorsqu&#039;il y a plusieurs
+    complétions possibles affichera une liste de ces complétions :
+   </p></div>
+   <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">php &gt; strp[TAB][TAB]
+strpbrk   strpos    strptime  
+php &gt; strp</pre>
+</div>
+   </div>
+
+   <div class="example-contents"><p>
+    Lorsqu&#039;il n&#039;y a qu&#039;une seul complétion possible, presser la touche de tabulation
+    une seule fois complétera le reste sur la même ligne :
+   </p></div>
+   <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">php &gt; strpt[TAB]ime(</pre>
+</div>
+   </div>
+
+   <div class="example-contents"><p>
+    La complétion fonctionnera aussi pour les noms qui ont été définis lors
+    de la session courante du shell interactif :
+   </p></div>
+   <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">php &gt; $fooThisIsAReallyLongVariableName = 42;
+php &gt; $foo[TAB]ThisIsAReallyLongVariableName</pre>
+</div>
+   </div>
+
+  </div>
+  
+  <p class="para">
+   Le shell interactif stocke votre historique et peut y accéder en utilisant les touches
+   haut et bas. L&#039;historique est sauvegardé dans le fichier <var class="filename">~/.php_history</var>.
+  </p>
+  
+  <p class="para">
+   Depuis PHP 5.4.0, le <acronym title="Command Line Interpreter/Interface">CLI</acronym> <acronym title="Server Application Programming Interface">SAPI</acronym> fournit 2 nouvelles directives du <var class="filename">php.ini</var> :
+   <code class="parameter">cli.pager</code> et <code class="parameter">cli.prompt</code>.
+   La directive <code class="parameter">cli.pager</code> permet la définition d&#039;un programme
+   externe (comme <var class="filename">less</var>) à utiliser comme pager pour la sortie
+   au lieu d&#039;afficher directement sur l&#039;écran. La directive
+   <code class="parameter">cli.prompt</code> autorise la modification du prompte
+   <code class="literal">php &gt;</code>.
+  </p>
+  
+  <p class="para">
+   En PHP 5.4.0, il est également possible de définir des directives du <var class="filename">php.ini</var>
+   dans un shell interactif en utilisant des notations raccourcies.
+  </p>
+  
+  <div class="example" id="example-436">
+   <p><strong>Exemple #3 Définition de directives du <var class="filename">php.ini</var> dans un shell interactif</strong></p>
+   <div class="example-contents"><p>
+    La définition de la directive <code class="parameter">cli.prompt</code> :
+   </p></div>
+   <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">php &gt; #cli.prompt=hello world :&gt; 
+hello world :&gt;</pre>
+</div>
+   </div>
+
+   <div class="example-contents"><p>
+    En utilisant des backticks, il est possible d&#039;exécuter du code PHP
+    dans le prompte :
+   </p></div>
+   <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">php &gt; #cli.prompt=`echo date(&#039;H:i:s&#039;);` php &gt; 
+15:49:35 php &gt; echo &#039;hi&#039;;
+hi
+15:49:43 php &gt; sleep(2);
+15:49:45 php &gt;</pre>
+</div>
+   </div>
+
+   <div class="example-contents"><p>
+    Définition du pager à <var class="filename">less</var> :
+   </p></div>
+   <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">php &gt; #cli.pager=less
+php &gt; phpinfo();
+(sortie affichée avec less)
+php &gt;</pre>
+</div>
+   </div>
+
+  </div>
+  
+  <p class="para">
+   La directive <code class="parameter">cli.prompt</code> supporte quelques séquences d&#039;échappements :
+   <table class="doctable table">
+    <caption><strong>Séquences d&#039;échappements de <code class="parameter">cli.prompt</code></strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Séquence :</th>
+       <th>Description :</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td><code class="literal">\e</code></td>
+       <td>
+        utilisé pour ajouter des couleurs au prompte. Exemple :
+        <code class="literal">\e[032m\v \e[031m\b \e[34m\&gt; \e[0m</code>
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">\v</code></td>
+       <td>La version de PHP.</td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">\b</code></td>
+       <td>
+        Indique dans quel bloc de PHP nous nous trouvons.
+        Par exemple, <code class="literal">/*</code> permet d&#039;indiquer que nous
+        sommes dans un commentaire multi-lignes. Le scope externe est représenté
+        par <code class="literal">php</code>.
+       </td>
+      </tr>
+
+      <tr>
+       <td><code class="literal">\&gt;</code></td>
+       <td>
+        Indique le caractère utilisé pour le prompte. Par défaut, ce sera
+        <code class="literal">&gt;</code>, mais peut être modifié lorsque le shell se
+        trouve dans un bloc indéterminé ou dans une chaîne de caractères.
+        Les caractères possibles sont : <code class="literal">&#039; &quot; {
+        ( &gt;</code>
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+  
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Les fichiers inclus via <a href="ini.core.html#ini.auto-prepend-file" class="link">auto_prepend_file</a> et <a href="ini.core.html#ini.auto-append-file" class="link">auto_append_file</a> sont analysés
+    dans ce mode, mais avec quelques restrictions - i.e. les fonctions
+    doivent avoir été définies avant l&#039;appel.
+   </p>
+  </p></blockquote>
+  
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    L&#039;<a href="language.oop5.autoload.html" class="link">autoloading</a> n&#039;est pas disponible
+    si vous utilisez PHP en mode <acronym title="Command Line Interpreter/Interface">CLI</acronym> interactif.
+   </p>
+  </p></blockquote>
+ </div></div></div></body></html>

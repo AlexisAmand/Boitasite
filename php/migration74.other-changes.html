@@ -1,0 +1,574 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Autres changements</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration74.removed-extensions.html">« Extensions supprim&eacute;es</a></li>
+      <li style="float: right;"><a href="migration74.windows-support.html">Gestion de Windows »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration74.html">Migration de PHP 7.3.x vers PHP 7.4.x</a></li>
+    <li>Autres changements</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration74.other-changes" class="sect1">
+ <h2 class="title">Autres changements</h2>
+
+ <div class="sect2" id="migration74.other-changes.performance">
+  <h3 class="title">Amélioration des Performances</h3>
+
+  <div class="sect3" id="migration74.other-changes.performance.core">
+   <h4 class="title">Cœur de PHP</h4>
+   <p class="para">
+    Un opcode de VM spécialisé pour la fonction
+    <span class="function"><a href="function.array-key-exists.html" class="function">array_key_exists()</a></span> a été ajouté, ceci améliore les
+    performances de cette fonction si elle peut être résolue statiquement.
+    Dans du code sous un espace de nom, ceci peut nécessité d&#039;écrire
+    <code class="literal">\array_key_exists()</code> ou importer explicitement la fonction.
+   </p>
+  </div>
+
+  <div class="sect3" id="migration74.other-changes.performance.pcre">
+   <h4 class="title">Expression Régulières (Compatible Perl)</h4>
+   <p class="para">
+    Quand <span class="function"><a href="function.preg-match.html" class="function">preg_match()</a></span> en mode UTF-8 (modificateur
+    <code class="literal">&quot;u&quot;</code>) est appelée à plusieurs reprises sur la même <a href="language.types.string.html" class="link">chaîne de caractères</a>
+    (mais posiblement différentes positions), elle ne sera vérifiée qu&#039;une seule
+    fois pour la validité UTF-8.
+   </p>
+  </div>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.ini">
+  <h3 class="title">Modifications Apportées à la Gestion de Fichiers INI</h3>
+  <p class="para">
+   <a href="ini.core.html#ini.zend.exception-ignore-args" class="link">zend.exception_ignore_args</a>
+   est une nouvelle directive INI pour inclure ou exclure les arguments des
+   traces de pile généré par les exceptions.
+  </p>
+  <p class="para">
+   <a href="opcache.configuration.html#ini.opcache.preload-user" class="link">opcache.preload_user</a> est une
+   nouvelle directive INI permettant de spécifier le compte utilisateur ayant
+   pour rôle d&#039;exécuter le code pré-chargé (l&#039;utilisateur root n&#039;est pas
+   autorisé pour des raisons de sécurité).
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.pkg-config">
+  <h3 class="title">Migration vers pkg-config</h3>
+  <p class="para">
+   Un nombre d&#039;extension ont été migré pour utiliser exclusivement pkg-config
+   pour la détection des dépendances de bibliothèques. Généralement, ceci
+   signifie qu&#039;au lieu d&#039;utiliser
+   <strong class="option configure">--with-foo-dir=DIR</strong> ou similaire seul
+   <strong class="option configure">--with-foo</strong> est utilisé. Les chemins de
+   bibliothèques personalisés peuvent être spécifié soit en ajoutant des
+   dossiers supplémentaires à <code class="literal">PKG_CONFIG_PATH</code> soit en
+   spécifiant les options de compilations explicitement à travers
+   <code class="literal">FOO_CFLAGS</code> et <code class="literal">FOO_LIBS</code>.
+  </p>
+  <p class="para">
+   Les extensions et SAPIs suivants sont affectées :
+  </p>
+
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">CURL :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-curl</strong> n&#039;accepte plus un dossier.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">Enchant :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-enchant</strong> n&#039;accepte plus un dossier.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">FPM :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-fpm-systemd</strong> utilise désormais
+       uniauement pkg-config pour les vérifications libsystem.
+       La version minimale libsystemd requise est 209.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">GD :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-gd</strong> devient
+       <strong class="option configure">--enable-gd</strong>
+       (pour activer l&#039;extension) et
+       <strong class="option configure">--with-external-gd</strong>
+       (pour opter pour l&#039;utilisation d&#039;un libgd externe, plutôt que celui fourni).
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-png-dir</strong> a été supprimé. libpng est requis.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-zlib-dir</strong> a été supprimé. zlib est requis.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-freetype-dir</strong> devient
+       <strong class="option configure">--with-freetype</strong>
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-jpeg-dir</strong> devient
+       <strong class="option configure">--with-jpeg</strong>
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-webp-dir</strong> devient
+       <strong class="option configure">--with-webp</strong>
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-xpm-dir</strong> devient
+       <strong class="option configure">--with-xpm</strong>
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">IMAP :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-kerberos-systemd</strong> n&#039;accepte plus un dossier.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">Intl :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-icu-dir</strong> a été supprimé.
+       Si <strong class="option configure">--enable-intl</strong> est passé,
+       alors libicu est toujours requis.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">LDAP :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-ldap-sasl</strong> n&#039;accepte plus un dossier.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">Libxml :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-libxml-dir</strong> a été supprimé.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--enable-libxml</strong> devient
+       <strong class="option configure">--with-libxml</strong>.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-libexpat-dir</strong> a été renommé en
+       <strong class="option configure">--with-expat</strong> et n&#039;accepte plus un dossier.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">Litespeed :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-litespeed</strong> devient
+       <strong class="option configure">--enable-litespeed</strong>.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">Mbstring :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-onig</strong> a été supprimé.
+       Suf si <strong class="option configure">--disable-mbregex</strong>
+       a été passé, libonig est requis.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">ODBC :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-iodbc</strong> n&#039;accepte plus un dossier.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-unixODBC</strong> sans un dossier utilise
+       désormais phg-config (préférable). Le dossier est toujours accepté pour
+       les anciennes versions sans libodbc.pc.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">OpenSSL :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-openssl</strong> n&#039;accepte plus un dossier.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">PCRE :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-pcre-regex</strong> a été supprimé.
+       À la place <strong class="option configure">--with-external-pcre</strong>
+       est offert pour opter pour l&#039;utilisation d&#039;une bibliothèque PCRE externe,
+       plutôt que celle fourni.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">PDO_SQLite :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-pdo-sqlite</strong> n&#039;accepte plus un dossier.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">Readline :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-libedit</strong> n&#039;accepte plus un dossier.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">Sodium :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-sodium</strong> n&#039;accepte plus un dossier.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">SQLite3 :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-sqlite3</strong> n&#039;accepte plus un dossier.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">XSL :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-xsl</strong> n&#039;accepte plus un dossier.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+   <li class="listitem">
+    <span class="simpara">Zip :</span>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--with-libzip</strong> a été supprimé.
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <strong class="option configure">--enable-zip</strong> devient
+       <strong class="option configure">--with-zip</strong>.
+      </span>
+     </li>
+    </ul>
+   </li>
+
+  </ul>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.csv">
+  <h3 class="title">Échappement CSV</h3>
+  <p class="para">
+   <span class="function"><a href="function.fputcsv.html" class="function">fputcsv()</a></span>,
+   <span class="function"><a href="function.fgetcsv.html" class="function">fgetcsv()</a></span>,
+   <span class="methodname"><a href="splfileobject.fputcsv.html" class="methodname">SplFileObject::fputcsv()</a></span>, 
+   <span class="methodname"><a href="splfileobject.fgetcsv.html" class="methodname">SplFileObject::fgetcsv()</a></span>, et
+   <span class="methodname"><a href="splfileobject.setcsvcontrol.html" class="methodname">SplFileObject::setCsvControl()</a></span>
+   acceptent désormais une <a href="language.types.string.html" class="link">chaîne de caractères</a> vide en tant qu&#039;argument
+   <code class="literal">$escape</code>, qui désactive le mécanisme d&#039;échappement
+   propriétaire de PHP.
+  </p>
+  <p class="para">
+   Le comportement de <span class="function"><a href="function.str-getcsv.html" class="function">str_getcsv()</a></span> a été ajusté par
+   conséquent has been (auparavant, une <a href="language.types.string.html" class="link">chaîne de caractères</a> vide était identique à
+   utiliser les valeurs par défault).
+  </p>
+  <p class="para">
+   <span class="methodname"><a href="splfileobject.getcsvcontrol.html" class="methodname">SplFileObject::getCsvControl()</a></span> peut, par conséquent
+   désormais aussi retourner une <a href="language.types.string.html" class="link">chaîne de caractères</a> vide pour le troisième élément du <a href="language.types.array.html" class="link">tableau</a>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.filter">
+  <h3 class="title">Filtration de Données</h3>
+  <p class="para">
+   L&#039;extension <a href="book.filter.html" class="link">filter</a> n&#039;expose plus
+   <strong class="option configure">--with-pcre-dir</strong> pour les builds Unix qui
+   peut désormais être compilé de manière fiable en tant que partagé lors de
+   l&#039;utilisation de <strong class="command">./configure</strong>
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.gd">
+  <h3 class="title">GD</h3>
+  <p class="para">
+   Le comportement de <span class="function"><a href="function.imagecropauto.html" class="function">imagecropauto()</a></span> dans la bibliothèque
+   libgd fourni a été synchronisé avec celle de libgd système :
+  </p>
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     <strong><code>IMG_CROP_DEFAULT</code></strong> ne se replie plus sur
+     <strong><code>IMG_CROP_SIDES</code></strong>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Le seuil-recadrage (Threshold-cropping) utilise désormais l&#039;algorithme
+     de libgd système.
+    </span>
+   </li>
+  </ul>
+  <p class="para">
+   La paramètre par défaut <code class="literal">$mode</code> de
+   <span class="function"><a href="function.imagecropauto.html" class="function">imagecropauto()</a></span> a été modifié en
+   <strong><code>IMG_CROP_DEFAULT</code></strong> ; fournir <code class="literal">-1</code>
+   est désormais obsolète.
+  </p>
+  <p class="para">
+   <span class="function"><a href="function.imagescale.html" class="function">imagescale()</a></span> supporte désormais la préservation du
+   rapport hauteur / largeur lors de la mise à échelle à une hauteur fixe
+   en passant <code class="literal">-1</code> à <code class="literal">$new_width</code>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.hash">
+  <h3 class="title">HASH Message Digest Framework</h3>
+  <p class="para">
+   L&#039;extension <a href="book.hash.html" class="link">hash</a> ne peut plus être
+   désactivé et est toujours une part intégrale de n&#039;importe quel build PHP,
+   similaire à l&#039;extension <a href="book.datetime.html" class="link">date</a>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.intl">
+  <h3 class="title">Intl</h3>
+  <p class="para">
+   L&#039;extension <a href="book.intl.html" class="link">intl</a> requis désormais au moins
+   ICU 50.1.
+  </p>
+  <p class="para">
+   <a href="class.resourcebundle.html" class="classname">ResourceBundle</a> implémente désormais
+   <span class="interfacename"><a href="class.countable.html" class="interfacename">Countable</a></span>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.ldap">
+  <h3 class="title">Lightweight Directory Access Protocol (LDAP)</h3>
+  <p class="para">
+   Support pour nsldap et umich_ldap ont été supprimées.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.libxml">
+  <h3 class="title">Libxml</h3>
+  <p class="para">
+   Toutes les extensiosn basées sur libxml nécessite lib 2.7.6 ou ultérieur.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.mbstring">
+  <h3 class="title">Chaînes Multi-octet</h3>
+  <p class="para">
+   La bibliothèque oniguruma n&#039;est plus fourni avec PHP, à la place libonig
+   doit être disponible sur le système. Alternativement
+   <strong class="option configure">--disable-mbregex</strong> peut être utilisé pour
+   désactiver le composant mbregex.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.opcache">
+  <h3 class="title">OPcache</h3>
+  <p class="para">
+   Les options de configurations
+   <strong class="option configure">--disable-opcache-file</strong> et
+   <strong class="option configure">--enable-opcache-file</strong> ont été supprimées
+   en faveur de la directive INI
+   <a href="opcache.configuration.html#ini.opcache.file-cache" class="link">opcache.file_cache</a>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.password">
+  <h3 class="title">Hachage de Mot de Passe</h3>
+  <p class="para">
+   Les fonctions <span class="function"><a href="function.password-hash.html" class="function">password_hash()</a></span> et <span class="function">
+   acceptent désormais des <a href="language.types.string.html" class="link">chaîne de caractères</a> et <a href="language.types.integer.html" class="link">entier</a> nullable pour l&#039;arguement
+   <code class="literal">$algo</code>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.pear">
+  <h3 class="title">PEAR</h3>
+  <p class="para">
+   L&#039;installation de PEAR (inclus PECL) n&#039;est plus activé par défault.
+   Ceci peut être explicitement activé en utilisant
+   <strong class="option configure">--with-pear</strong>.
+   Cette option est obsolète et pourra être supprimée dans le futur.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.reflection">
+  <h3 class="title">Reflection</h3>
+  <p class="para">
+   Les valeurs numériques des consantes de modificateur
+   (<code class="literal">IS_ABSTRACT</code>,
+   <code class="literal">IS_DEPRECATED</code>,
+   <code class="literal">IS_EXPLICIT_ABSTRACT</code>,
+   <code class="literal">IS_FINAL</code>,
+   <code class="literal">IS_IMPLICIT_ABSTRACT</code>,
+   <code class="literal">IS_PRIVATE</code>,
+   <code class="literal">IS_PROTECTED</code>,
+   <code class="literal">IS_PUBLIC</code>, et
+   <code class="literal">IS_STATIC</code>) sur les classes
+   <a href="class.reflectionclass.html" class="classname">ReflectionClass</a>,
+   <a href="class.reflectionfunction.html" class="classname">ReflectionFunction</a>,
+   <a href="class.reflectionmethod.html" class="classname">ReflectionMethod</a>,
+   <a href="class.reflectionobject.html" class="classname">ReflectionObject</a>, et
+   <a href="class.reflectionproperty.html" class="classname">ReflectionProperty</a>
+   ont été modifié.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.simplexml">
+  <h3 class="title">SimpleXML</h3>
+  <p class="para">
+   <a href="class.simplexmlelement.html" class="classname">SimpleXMLElement</a> implémente désormais
+   <span class="interfacename"><a href="class.countable.html" class="interfacename">Countable</a></span>.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.sqlite3">
+  <h3 class="title">SQLite3</h3>
+  <p class="para">
+   La bibliothèque libsqlite intégré a été supprimée. Pour compilier l&#039;extension
+   <a href="book.sqlite3.html" class="link">SQLite3</a> une libsqlite3 ≥ 3.7.4 système
+   est désormais requis. Pour compiler l&#039;extension
+   <a href="ref.pdo-sqlite.html" class="link">PDO_SQLite</a>
+   une libsqlite3 ≥ 3.5.0 système est désormais requis.
+  </p>
+  <p class="para">
+   La linéarisation et délinéarisation de <a href="class.sqlite3.html" class="classname">SQLite3</a>,
+   <a href="class.sqlite3stmt.html" class="classname">SQLite3Stmt</a> et <a href="class.sqlite3result.html" class="classname">SQLite3Result</a>
+   est désormais explicitement interdit. Auparavent, la linéarisation
+   d&#039;instances de ces classes étaient possible, mais la dénéarisation générait
+   des objets inutilisables.
+  </p>
+  <p class="para">
+   La notation <code class="literal">@param</code> peut désormais être utilisé pour
+   dénoter les paramètres de requête SQL.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration74.other-changes.zip">
+  <h3 class="title">Zip</h3>
+  <p class="para">
+   La bibliothèque libzip intégré a été supprimée.
+   Une libzip &gt;= 0.11 système est désormais requis pour compiler l&#039;extension
+   <a href="book.zip.html" class="link">zip</a>.
+  </p>
+ </div>
+
+</div></div></div></body></html>

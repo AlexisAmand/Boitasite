@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Fonctions Microsoft SQL Server (PDO_SQLSRV)</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="ref.pdo-mysql.connection.html">« PDO_MYSQL DSN</a></li>
+      <li style="float: right;"><a href="ref.pdo-sqlsrv.connection.html">PDO_SQLSRV DSN »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="pdo.drivers.html">Pilotes PDO</a></li>
+    <li>Fonctions Microsoft SQL Server (PDO_SQLSRV)</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="ref.pdo-sqlsrv" class="reference">
+ <h1 class="title">Fonctions Microsoft SQL Server (PDO_SQLSRV)</h1>
+ 
+ <div class="partintro">
+  
+  <div class="section" id="pdo-sqlsrv.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    PDO_SQLSRV est un pilote qui implémente l&#039;<a href="intro.pdo.html" class="link">interface
+    PDO (PHP Data Objects)</a> pour permettre l&#039;accès depuis PHP aux bases de
+    données MS SQL Server (version SQL Server 2005 et supérieures) et SQL Azure.
+   </p>
+  </div>
+  
+
+
+
+
+<div class="section" id="ref.pdo-sqlsrv.installation">
+ <h2 class="title">Installation</h2>
+ <p class="para">
+  L&#039;extension PDO_SQLSRV est activée en ajoutant les bibliothèques
+  DLL appropriées dans  votre dossier d&#039;extension PHP 
+  et en ajoutant les entrées correspondantes dans le fichier <var class="filename">php.ini</var>.
+  PDO_SQLSRV est livré avec 8 pilotes, dont 4 dédiés au support de PDO.
+  Si vous exécutez PHP en version non thread-safe (PHP 5.3), utilisez le
+  fichier php_pdo_sqlsrv_53_nts.dll (vous devez utiliser une version non-thread-safe
+  si vous utilisez IIS comme serveur web). Si vous exécutez PHP en version
+  thread-safe, utilisez le fichier php_pdo_sqlsrv_53_ts.dll.
+  De même pour PHP 5.4, utilisez le fichier php_pdo_sqlsrv_54_nts.dll ou
+  php_pdo_sqlsrv_54_ts.dll suivant si votre installation de PHP est
+  non-thread-safe ou thread-safe.
+ </p>
+ <p class="para">
+  La version la plus récente du pilote est disponible au téléchargement ici :
+  <a href="http://msdn.microsoft.com/en-us/sqlserver/ff657782.aspx" class="link external">&raquo;&nbsp;téléchargement de SQLSRV</a>.
+  Si vous avez besoin d&#039;un support de PHP 5.2 et/ou de PHP compilé avec VC6,
+  utilisez la version 2.0 du pilote :
+  <a href="http://download.microsoft.com/download/C/D/B/CDB0A3BB-600E-42ED-8D5E-E4630C905371/SQLSRV20.EXE" class="link external">&raquo;&nbsp;téléchargement de SQLSRV 2.0</a>.
+  Les sources du polite sont hébergées dans un <a href="https://github.com/microsoft/msphpsql" class="link external">&raquo;&nbsp;dépôt public</a>.
+ </p>
+ <p class="para">
+  Pour plus d&#039;information à propos des exigences système, consultez le
+  chapitre sur les
+  <a href="http://msdn.microsoft.com/en-us/library/cc296170.aspx" class="link external">&raquo;&nbsp;exisgences systèmes SQLSRV</a>.
+ </p>
+ <p class="para">
+  L&#039;extension PDO_SQLSRV n&#039;est compatible qu&#039;avec PHP sur Windows.
+  Pour Linux, reportez-vous à <a href="ref.pdo-odbc.html" class="link">ODBC</a>
+  ainsi qu&#039;au
+  <a href="http://www.microsoft.com/download/en/details.aspx?id=28160" class="link external">&raquo;&nbsp;driver ODBC du serveur SQL Microsoft pour Linux</a>.
+ </p>
+</div>
+
+
+
+  
+
+
+
+
+<div class="section" id="pdo-sqlsrv.constants">
+ <h2 class="title">Constantes pré-définies</h2>
+ <p class="simpara">Les constantes ci-dessous sont
+définies par ce pilote et seront seulement disponibles lorsque l&#039;extension
+aura été compilée dans PHP ou chargée dynamiquement du moteur d&#039;exécution.
+De plus, ces constantes spécifiques au pilote devraient être utilisées seulement
+si vous utilisez ce pilote. En utilisant les attributs spécifiques à un pilote
+avec un autre pilote pourrait causer un comportement inattendu.
+<span class="function"><a href="pdo.getattribute.html" class="function">PDO::getAttribute()</a></span> pourrait être utilisé pour obtenir
+l&#039;attribut <strong><code>PDO::ATTR_DRIVER_NAME</code></strong> pour vérifier le
+pilote, si votre code peut fonctionner sur des pilotes multiples.</p>
+ <dl>
+
+  
+   <dt id="pdo.constants.sqlsrv-txn-read-uncommitted">
+    <strong><code>PDO::SQLSRV_TXN_READ_UNCOMMITTED</code></strong>
+    (<span class="type"><span class="type entier">entier</span></span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     Cette constante est une valeur possible pour la clé &quot;TransactionIsolation&quot; du DSN pour SQLSRV. 
+     Cette constante positionne le niveau d&#039;isolation de la transaction à &quot;Read Uncommitted&quot;.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="pdo.constants.sqlsrv-txn-read-committed">
+    <strong><code>PDO::SQLSRV_TXN_READ_COMMITTED</code></strong>
+    (<span class="type"><span class="type entier">entier</span></span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     Cette constante est une valeur possible pour la clé &quot;TransactionIsolation&quot; du DSN pour SQLSRV.
+     Cette constante positionne le niveau d&#039;isolation de la transaction à &quot;Read Uncommitted&quot;.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="pdo.constants.sqlsrv-txn-repeatable-read">
+    <strong><code>PDO::SQLSRV_TXN_REPEATABLE_READ</code></strong>
+    (<span class="type"><span class="type entier">entier</span></span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     Cette constante est une valeur possible pour la clé &quot;TransactionIsolation&quot; du DSN pour SQLSRV.
+     Cette constante positionne le niveau d&#039;isolation de la transaction à &quot;Repeateable Read&quot;.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="pdo.constants.sqlsrv-txn-snapshot">
+    <strong><code>PDO::SQLSRV_TXN_SNAPSHOT</code></strong>
+    (<span class="type"><span class="type entier">entier</span></span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     Cette constante est une valeur possible pour la clé &quot;TransactionIsolation&quot; du DSN pour SQLSRV.
+     Cette constante positionne le niveau d&#039;isolation de la transaction à &quot;Snapshot&quot;.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="pdo.constants.sqlsrv-txn-serializable">
+    <strong><code>PDO::SQLSRV_TXN_SERIALIZABLE</code></strong>
+    (<span class="type"><span class="type entier">entier</span></span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     Cette constante est une valeur possible pour la clé &quot;TransactionIsolation&quot; du DSN pour SQLSRV.
+     Cette constante positionne le niveau d&#039;isolation de la transaction à &quot;Serializable&quot;.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="pdo.constants.sqlsrv-encoding-binary">
+    <strong><code>PDO::SQLSRV_ENCODING_BINARY</code></strong>
+    (<span class="type"><span class="type entier">entier</span></span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     Spécifie que cette donnée est envoyée vers le (ou reçue du) serveur comme un flux d&#039;octets,
+     sans opérer d&#039;encodage ou de traduction. Cette constante peut être utilisée dans les appels à
+     PDOStatement::setAttribute, PDO::prepare, PDOStatement::bindColumn, et 
+     PDOStatement::bindParam.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="pdo.constants.sqlsrv-encoding-system">
+    <strong><code>PDO::SQLSRV_ENCODING_SYSTEM</code></strong>
+    (<span class="type"><span class="type entier">entier</span></span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     Spécifie que cette donnée est envoyée vers le (ou reçue du) serveur comme un flux de caractères 8 bits,
+     comme spécifié dans la page de code de la locale Windows active sur le système.
+     Tout caractère multi-octet, ou caractère qui n&#039;existe pas dans cette page de code,
+     est substitué par un simple point d&#039;interrogation (?). Cette constante peut être utilisée 
+     dans les appels à PDOStatement::setAttribute, PDO::setAttribute, PDO::prepare, 
+     PDOStatement::bindColumn, et PDOStatement::bindParam.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="pdo.constants.sqlsrv-encoding-utf8">
+    <strong><code>PDO::SQLSRV_ENCODING_UTF8</code></strong>
+    (<span class="type"><span class="type entier">entier</span></span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     Spécifie que cette donnée est envoyée vers le (ou reçue du) serveur comme un flux de caractères UTF-8.
+     Il s&#039;agit de l&#039;encodage par défaut. Cette constante peut être utilisée
+     dans les appels à PDOStatement::setAttribute, PDO::setAttribute, PDO::prepare,
+     PDOStatement::bindColumn, et PDOStatement::bindParam.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="pdo.constants.sqlsrv-encoding-default">
+    <strong><code>PDO::SQLSRV_ENCODING_DEFAULT</code></strong>
+    (<span class="type"><span class="type entier">entier</span></span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     Spécifie que cette donnée est envoyée vers le (ou reçue du) serveur en utilisant l&#039;encodage 
+     PDO::SQLSRV_ENCODING_SYSTEM si elle est spécifiée pendant la connexion. Si elle est spécifiée
+     dans une instruction &quot;prepare&quot;, c&#039;est l&#039;encodage de la connexion qui est utilisé.
+     Cette constante peut être utilisée dans les appels à PDOStatement::setAttribute, 
+     PDO::setAttribute, PDO::prepare, PDOStatement::bindColumn, et PDOStatement::bindParam.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="pdo.constants.sqlsrv-attr-query-timeout">
+    <strong><code>PDO::SQLSRV_ATTR_QUERY_TIMEOUT</code></strong>
+    (<span class="type"><span class="type entier">entier</span></span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     Un entier positif ou nul représentant la durée de timeout, en secondes. Zéro (0) 
+     est la valeur par défaut et signifie qu&#039;il n&#039;y a pas de timeout.
+     Cette constante peut être utilisée dans les appels à 
+     PDOStatement::setAttribute, PDO::setAttribute, et PDO::prepare.
+    </span>
+   </dd>
+
+  
+  
+   <dt id="pdo.constants.sqlsrv-attr-direct-query">
+    <strong><code>PDO::SQLSRV_ATTR_DIRECT_QUERY</code></strong>
+    (<span class="type"><span class="type entier">entier</span></span>)
+   </dt>
+
+   <dd>
+
+    <span class="simpara">
+     Indique une requête qui doit être exécutée directement, sans être préparée. 
+     Cette constante peut être utilisée dans les appels à PDO::setAttribute, et PDO::prepare. 
+     Pour plus d&#039;informations, voir (en anglais)
+     <a href="http://msdn.microsoft.com/en-us/library/ff754356.aspx" class="link external">&raquo;&nbsp;Direct and Prepared Statement Execution</a>.
+    </span>
+   </dd>
+
+  
+ </dl>
+
+</div>
+
+
+
+ </div>
+ 
+ 
+ 
+<h2>Sommaire</h2><ul class="chunklist chunklist_reference"><li><a href="ref.pdo-sqlsrv.connection.html">PDO_SQLSRV DSN</a> — Connexion &agrave; des bases de donn&eacute;es MS SQL Server et SQL Azure</li></ul>
+</div>
+</div></div></body></html>

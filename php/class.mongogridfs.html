@@ -1,0 +1,417 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>La classe MongoGridFS</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongo.gridfs.html">« Classes GridFS</a></li>
+      <li style="float: right;"><a href="mongogridfs.construct.html">MongoGridFS::__construct »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mongo.gridfs.html">Classes GridFS</a></li>
+    <li>La classe MongoGridFS</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="class.mongogridfs" class="reference">
+ 
+ <h1 class="title">La classe <a href="class.mongogridfs.html" class="classname">MongoGridFS</a></h1>
+ 
+ 
+ <div class="partintro"><p class="verinfo">(PECL mongo &gt;=0.9.0)</p>
+  
+  
+  <div class="section" id="mongogridfs.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    Utilitaires de stockage et lecture de fichiers dans la base de données
+   </p>
+   <p class="para">
+    GridFS est une spécification de stockage que tous les pilotes implémentent. 
+    Simplement, il définit deux collections: <code class="literal">files</code>, pour les
+    métadonnées du fichier, et <code class="literal">chunks</code> pour le contenu du fichier.
+    Si le fichier est volumineux, il sera automatiquement scindé en sous-parties et
+    chacune sera sauvée comme document dans la collection &#039;chunks&#039; représentant le contenu
+    du fichier.
+   </p>
+
+   <p class="para">
+    Chaque document dans la collection &#039;files&#039; est caractérisé par un nom, une date
+    d&#039;envoi et un hash md5. Il contient aussi un champ unique <code class="literal">_id</code>,
+    qui peut être utilisé pour requêter la collection &#039;chunks&#039; et obtenir le contenu
+    du fichier. Chaque document dans la collection &#039;chunks&#039; contient des données
+    binaires, un champ <code class="literal">files_id</code> qui correspond au <code class="literal">_id</code>
+    du fichier, et la position de ce document dans le fichier.
+   </p>
+
+   <p class="para">
+    Par exemple, la collection &#039;files&#039; ressemble à:
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">array(</span><span style="color: #DD0000">"_id"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">123456789</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"filename"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"foo.txt"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"chunkSize"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"length"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">12</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    et la collection &#039;chunks&#039; à:
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">array(</span><span style="color: #DD0000">"files_id"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">123456789</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"n"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"data"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoBinData</span><span style="color: #007700">(</span><span style="color: #DD0000">"abc"</span><span style="color: #007700">));<br />array(</span><span style="color: #DD0000">"files_id"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">123456789</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"n"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"data"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoBinData</span><span style="color: #007700">(</span><span style="color: #DD0000">"def"</span><span style="color: #007700">));<br />array(</span><span style="color: #DD0000">"files_id"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">123456789</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"n"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"data"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoBinData</span><span style="color: #007700">(</span><span style="color: #DD0000">"ghi"</span><span style="color: #007700">));<br />array(</span><span style="color: #DD0000">"files_id"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">123456789</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"n"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"data"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoBinData</span><span style="color: #007700">(</span><span style="color: #DD0000">"jkl"</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    Bien sur la taille par défaut des segments est de plusieurs milliers d&#039;octets, non représentatif
+    pour notre exemple.
+   </p>
+  </div>
+
+  <div class="section">
+   <h2 class="title">Compatibilité entre les différentes langages </h2>
+   <p class="para">
+    Vous devriez être capable d&#039;utiliser n&#039;importe quel fichier créé par
+    MongoGridFS avec n&#039;importe quel driver et vis versa. Cependant, quelques drivers
+    s&#039;attendent à ce que toutes les méta-données associées avec un fichier soivent
+    dans un champ &quot;metadata&quot;. Si vous souhaitez utiliser un autre langage, ce peut être
+    une bonne idée de placer les informations souhaitées dans un champ &quot;metadata&quot;. Par
+    exemple, au lieu de :
+   </p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$grid</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">storeFile</span><span style="color: #007700">(</span><span style="color: #DD0000">"somefile.txt"</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">"date"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoDate</span><span style="color: #007700">()));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <p class="para">
+    utilisez quelque chose comme :
+   </p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$grid</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">storeFile</span><span style="color: #007700">(</span><span style="color: #DD0000">"somefile.txt"</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">"metadata"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">"date"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoDate</span><span style="color: #007700">())));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <div class="section">
+   <h2 class="title">La famille <strong class="classname">MongoGridFS</strong></h2>
+
+   <p class="para">
+    <strong class="classname">MongoGridFS</strong> représente les collections &#039;files&#039; et &#039;chunks&#039;.
+    <strong class="classname">MongoGridFS</strong> étend MongoCollection, 
+    et une instance de <strong class="classname">MongoGridFS</strong> a accès à toutes les méthodes de
+    <a href="class.mongocollection.html" class="classname">MongoCollection</a>, qui agissent sur la collection &#039;files&#039;:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$grid&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getGridFS</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$grid</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">update</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"filename"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"foo"</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">$newObj</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;update&nbsp;on&nbsp;the&nbsp;files&nbsp;collection<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+
+   <p class="para">
+    Un autre exemple de manipulation des méta-données:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;Sauvegarde&nbsp;un&nbsp;fichier<br /></span><span style="color: #0000BB">$id&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$grid</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">storeFile</span><span style="color: #007700">(</span><span style="color: #DD0000">"game.tgz"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$game&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$grid</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">findOne</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;Ajoute&nbsp;un&nbsp;compteur&nbsp;de&nbsp;téléchargement<br /></span><span style="color: #0000BB">$game</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">file</span><span style="color: #007700">[</span><span style="color: #DD0000">'downloads'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$grid</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">save</span><span style="color: #007700">(</span><span style="color: #0000BB">$game</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">file</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Incrémente&nbsp;le&nbsp;compteur<br /></span><span style="color: #0000BB">$grid</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">update</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"_id"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$id</span><span style="color: #007700">),&nbsp;array(</span><span style="color: #DD0000">'$inc'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;array(</span><span style="color: #DD0000">"downloads"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">)));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+    </p>
+
+   <p class="para">
+    Vous pouvez aussi accéder aux objets dans la collection &#039;chunks&#039;
+    depuis une instance de <strong class="classname">MongoGridFS</strong>:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;$chunks&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$grid</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">chunks</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;$chunks&nbsp;est&nbsp;une&nbsp;MongoCollection<br /></span><span style="color: #0000BB">$chunks</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"x"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">4</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    Il existe des méthodes dans <strong class="classname">MongoGridFS</strong> qui ont le même
+    no que dans <a href="class.mongocollection.html" class="classname">MongoCollection</a> mais elles se comportent différement.
+    Par exemple, <span class="function"><a href="mongogridfs.remove.html" class="function">MongoGridFS::remove()</a></span> suppriment les objets qui
+    correspondent au critère depuis la collection des fichiers (&#039;files&#039;), ainsi que
+    leur contenu depuis la collection des données (&#039;chunks&#039;).
+   </p>
+
+   <p class="para">
+    Pour stocker un nouvel enregistrement dans GridFS, il y a plusieurs options.
+    Si vous possédez un nom de fichier, agissez comme cela:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$grid</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">storeFile</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">"whatever"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"metadata"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"you"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"want"</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+
+   <p class="para">
+    Si vous avez une chaine d&#039;octets qui n&#039;est pas un fichier, vous pouvez la stocker
+    grâce à <span class="function"><a href="mongogridfs.storebytes.html" class="function">MongoGridFS::storeBytes()</a></span>:
+    <div class="informalexample">
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$grid</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">storeBytes</span><span style="color: #007700">(</span><span style="color: #0000BB">$bytes</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">"whatever"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"metadata"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"you"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"want"</span><span style="color: #007700">));<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+
+   <p class="para">
+    Requêter une collection <strong class="classname">MongoGridFS</strong> retourne un
+    <a href="class.mongogridfscursor.html" class="classname">MongoGridFSCursor</a>, qui se comporte comme un
+    <a href="class.mongocursor.html" class="classname">MongoCursor</a> normal sauf qu&#039;il retourne des
+    <strong class="classname">MongoGridFSFiles</strong> plutôt que des tableaux associatifs.
+   </p>
+
+   <p class="para">
+    <strong class="classname">MongoGridFSFiles</strong> peut être écrit sur le disque en utilisant
+    <span class="function"><a href="mongogridfsfile.write.html" class="function">MongoGridFSFile::write()</a></span> ou récupéré de la mémoire avec
+    <span class="function"><a href="mongogridfsfile.getbytes.html" class="function">MongoGridFSFile::getBytes()</a></span>. Il n&#039;y a pas de méthode
+    actuellement qui guide les données d&#039;un à l&#039;autre, mais ce n&#039;est pas très
+    difficile à écrire en utilisant <code class="literal">$grid-&gt;chunks</code> de la collection.
+   </p>
+
+   <p class="para">
+    Les objets <a href="class.mongogridfsfile.html" class="classname">MongoGridFSFile</a> contiennent un champ file
+    qui contient les méta-données du fichier.
+   </p>
+  </div>
+  
+  
+  <div class="section" id="mongogridfs.synopsis">
+   <h2 class="title">Synopsis de la classe</h2>
+   
+   
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+    
+    
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <span class="modifier">étend</span>
+      <a href="class.mongocollection.html" class="classname">MongoCollection</a>
+     </span>
+     {</div>
+    
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Fields */</div>
+    <div class="fieldsynopsis">
+     <span class="modifier">public</span>
+     <span class="type"><a href="class.mongocollection.html" class="type MongoCollection">MongoCollection</a></span>
+      <var class="varname">$<var class="varname">chunks</var></var>
+     <span class="initializer"> = <strong><code>NULL</code></strong></span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">protected</span>
+     <span class="type">string</span>
+      <var class="varname">$<var class="varname">filesName</var></var>
+     <span class="initializer"> = <strong><code>NULL</code></strong></span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">protected</span>
+     <span class="type">string</span>
+      <var class="varname">$<var class="varname">chunksName</var></var>
+     <span class="initializer"> = <strong><code>NULL</code></strong></span>
+    ;</div>
+
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Méthodes */</div>
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongogridfs.construct.html" class="methodname">__construct</a></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mongodb.html" class="type MongoDB">MongoDB</a></span> <code class="parameter">$db</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$prefix</code><span class="initializer"> = &quot;fs&quot;</span></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$chunks</code><span class="initializer"> = &quot;fs&quot;</span></span>
+  ]] )</div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongogridfs.delete.html" class="methodname">delete</a></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$id</code></span>
+   ) : <span class="type"><span class="type bool|array">bool|array</span></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongogridfs.drop.html" class="methodname">drop</a></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">array</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongogridfs.find.html" class="methodname">find</a></span>
+    ([ <span class="methodparam"><span class="type">array</span> <code class="parameter">$query</code><span class="initializer"> = array()</span></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$fields</code><span class="initializer"> = array()</span></span>
+  ]] ) : <span class="type"><a href="class.mongogridfscursor.html" class="type MongoGridFSCursor">MongoGridFSCursor</a></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongogridfs.findone.html" class="methodname">findOne</a></span>
+    ([ <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$query</code><span class="initializer"> = array()</span></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$fields</code><span class="initializer"> = array()</span></span>
+  ]] ) : <span class="type"><a href="class.mongogridfsfile.html" class="type MongoGridFSFile">MongoGridFSFile</a></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongogridfs.get.html" class="methodname">get</a></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$id</code></span>
+   ) : <span class="type"><a href="class.mongogridfsfile.html" class="type MongoGridFSFile">MongoGridFSFile</a></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongogridfs.put.html" class="methodname">put</a></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$filename</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$metadata</code><span class="initializer"> = array()</span></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code><span class="initializer"> = array()</span></span>
+  ]] ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongogridfs.remove.html" class="methodname">remove</a></span>
+    ([ <span class="methodparam"><span class="type">array</span> <code class="parameter">$criteria</code><span class="initializer"> = array()</span></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code><span class="initializer"> = array()</span></span>
+  ]] ) : <span class="type"><span class="type bool|array">bool|array</span></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongogridfs.storebytes.html" class="methodname">storeBytes</a></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$bytes</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$metadata</code><span class="initializer"> = array()</span></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code><span class="initializer"> = array()</span></span>
+  ]] ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongogridfs.storefile.html" class="methodname">storeFile</a></span>
+    ( <span class="methodparam"><span class="type"><span class="type string|resource">string|resource</span></span> <code class="parameter">$filename</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$metadata</code><span class="initializer"> = array()</span></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$options</code><span class="initializer"> = array()</span></span>
+  ]] ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongogridfs.storeupload.html" class="methodname">storeUpload</a></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$metadata</code></span>
+  ] ) : <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span></div>
+
+   }</div>
+   
+   
+  </div>
+
+  <div class="section">
+   <h2 class="title">Voir aussi</h2>
+   <ul class="simplelist">
+    <li class="member">Documentation coeur de MongoDB sur <a href="https://docs.mongodb.com/manual/core/gridfs/" class="link external">&raquo;&nbsp;GridFS</a></li>
+    <li class="member">Article sur les solutions LightCube sur <a href="http://www.lightcubesolutions.com/blog/?p=209" class="link external">&raquo;&nbsp;la sauvegarde des téléchargements utilisateurs</a></li>
+    <li class="member">Article sur les solutions LightCube sur <a href="http://www.lightcubesolutions.com/blog/?p=228" class="link external">&raquo;&nbsp;l&#039;ajout de méta-données aux fichiers</a></li>
+   </ul>
+  </div>
+ </div>
+ 
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+ 
+<h2>Sommaire</h2><ul class="chunklist chunklist_reference"><li><a href="mongogridfs.construct.html">MongoGridFS::__construct</a> — Cr&eacute;e une nouvelle collection de fichiers</li><li><a href="mongogridfs.delete.html">MongoGridFS::delete</a> — Efface un fichier et ces morceaux depuis la base de donn&eacute;es</li><li><a href="mongogridfs.drop.html">MongoGridFS::drop</a> — Efface les collections de fichiers</li><li><a href="mongogridfs.find.html">MongoGridFS::find</a> — Interroge un fichier</li><li><a href="mongogridfs.findone.html">MongoGridFS::findOne</a> — Lit un fichier unique satisfaisant les crit&egrave;res</li><li><a href="mongogridfs.get.html">MongoGridFS::get</a> — R&eacute;cup&egrave;re un fichier depuis la base de donn&eacute;es</li><li><a href="mongogridfs.put.html">MongoGridFS::put</a> — Stocke un fichier dans la base de donn&eacute;es</li><li><a href="mongogridfs.remove.html">MongoGridFS::remove</a> — Efface des fichiers et leurs morceaux de la base de donn&eacute;es</li><li><a href="mongogridfs.storebytes.html">MongoGridFS::storeBytes</a> — Stocke une cha&icirc;ne d'octets dans la base de donn&eacute;es</li><li><a href="mongogridfs.storefile.html">MongoGridFS::storeFile</a> — Stocke un fichier dans la base de donn&eacute;es</li><li><a href="mongogridfs.storeupload.html">MongoGridFS::storeUpload</a> — Stocke un fichier t&eacute;l&eacute;charg&eacute; dans la base de donn&eacute;es</li></ul>
+</div>
+</div></div></body></html>

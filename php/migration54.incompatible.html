@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>&Eacute;volutions incompatibles avec les versions pr&eacute;c&eacute;dentes</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration54.changes.html">« Ce qui a chang&eacute; dans PHP 5.4.x</a></li>
+      <li style="float: right;"><a href="migration54.new-features.html">Nouveaut&eacute;s »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration54.html">Migration de PHP 5.3.x &agrave; PHP 5.4.x</a></li>
+    <li>&Eacute;volutions incompatibles avec les versions pr&eacute;c&eacute;dentes</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration54.incompatible" class="section">
+  <h2 class="title">Évolutions incompatibles avec les versions précédentes</h2>
+  <p class="simpara">
+   Même si l&#039;essentiel du code PHP 5 devrait fonctionner sans modification, il faut faire attention
+   aux situations suivantes, qui sont incompatibles avec les versions précédentes : 
+  </p>
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     <a href="features.safe-mode.html" class="link">Safe mode</a> n&#039;est plus supporté. Toute application se
+     reposant sur ce paramètre devra être revue, notamment en termes de sécurité.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <a href="security.magicquotes.html" class="link">Magic quotes</a> ont été supprimées. Toute application
+     se reposant sur ce paramètre devra être revue, notamment en termes de sécurité.
+    </span>
+    <span class="simpara">
+     <span class="function"><a href="function.get-magic-quotes-gpc.html" class="function">get_magic_quotes_gpc()</a></span> et <span class="function"><a href="function.get-magic-quotes-runtime.html" class="function">get_magic_quotes_runtime()</a></span>
+     retournent désormais toujours <strong><code>FALSE</code></strong>. <span class="function"><strong>set_magic_quotes_runtime()</strong></span> lève une
+     erreur <strong><code>E_CORE_ERROR</code></strong> lorsque vous tentez d&#039;activer les
+     <a href="security.magicquotes.html" class="link">guillemets magiques</a>.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Les directives du <var class="filename">php.ini</var> <a href="ini.core.html#ini.register-globals" class="link">register_globals</a> et
+     <a href="ini.core.html#ini.register-long-arrays" class="link">register_long_arrays</a> ont été supprimées.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     mbstring.script_encoding directives a été retiré. Préférez 
+     <a href="ini.core.html#ini.zend.script-encoding" class="link">zend.script_encoding</a> à la place.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <a href="language.references.pass.html" class="link">Call-time pass by reference</a> a été supprimé.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Les instructions <a href="control-structures.break.html" class="link">break</a>
+     et <a href="control-structures.continue.html" class="link">continue</a>
+     n&#039;acceptent plus de paramètre variable (exemple: <code class="literal">break 1 + foo() * $bar;</code>).
+     Les arguments statiques fonctionnent toujours, par exemple <code class="literal">break 2;</code>.
+     Un effet de bord de cette modification est que <code class="literal">break 0;</code>
+     et <code class="literal">continue 0;</code> ne sont plus autorisés.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Le jeu de caractères par défaut pour <span class="function"><a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span>
+     <span class="function"><a href="function.htmlentities.html" class="function">htmlentities()</a></span> et <span class="function"><a href="function.html-entity-decode.html" class="function">html_entity_decode()</a></span>
+     est désormais <code class="literal">UTF-8</code>,
+     au lieu de <code class="literal">ISO-8859-1</code>. Notez que modifier
+     votre jeu de caractères de sortie via l&#039;option de configuration
+     <a href="ini.core.html#ini.default-charset" class="link">default_charset</a> n&#039;affecte pas
+     les fonctions htmlspecialchars/htmlentities, à moins que ne vous passiez
+     &quot;&quot; (une chaîne vide) comme argument d&#039;encodage lors de vos appels aux fonctions
+     <span class="function"><a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span>/<span class="function"><a href="function.htmlentities.html" class="function">htmlentities()</a></span>
+     /<span class="function"><a href="function.html-entity-decode.html" class="function">html_entity_decode()</a></span>.
+     Généralement, nous ne vous recommandons pas de faire ceci, car vous
+     devriez pouvoir modifier le jeu de caractères de sortie sans affecter
+     le jeu de caractères utilisé par ces fonctions. L&#039;approche la plus
+     sûre est de définir explicitement le jeu de caractères lors de chaque appel
+     aux fonctions <span class="function"><a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span>,
+     <span class="function"><a href="function.htmlentities.html" class="function">htmlentities()</a></span> et <span class="function"><a href="function.html-entity-decode.html" class="function">html_entity_decode()</a></span>.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Dans l&#039;extension <a href="book.datetime.html" class="link">Date et Heure</a>, le fuseau ne peut plus
+     être défini au moyen de la variable d&#039;environnement TZ. Vous devez préciser un fuseau horaire
+     en utilisant l&#039;option de <var class="filename">php.ini</var> <a href="datetime.configuration.html#ini.date.timezone" class="link">date.timezone</a> ou
+     la fonction <span class="function"><a href="function.date-default-timezone-set.html" class="function">date_default_timezone_set()</a></span>.
+     PHP n&#039;essayera plus de deviner le fuseau horaire et utilisera par défaut &quot;UTC&quot; tout en
+     émettant une alerte de niveau <strong><code>E_WARNING</code></strong>.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Les index de tableaux non numériques concernant les chaines - exemple: <code class="literal">$a[&#039;foo&#039;]</code> où $a est une chaine -
+     retournent maintenant false sur un <span class="function"><a href="function.isset.html" class="function">isset()</a></span> et true sur un <span class="function"><a href="function.empty.html" class="function">empty()</a></span>, et produisent
+     une alerte de niveau <strong><code>E_WARNING</code></strong> si vous les utilisez. Les index de type flottant, bool et null produisent
+     une alerte de niveau <strong><code>E_NOTICE</code></strong>. Les index de type chaine
+     numérique (exemple: <code class="literal">$a[&#039;2&#039;]</code>) fonctionnent comme avant. Notez que les index tels que <code class="literal">&#039;12.3&#039;</code>
+     et <code class="literal">&#039;5 foobar&#039;</code> sont considérés comme non-numériques et produisent une alerte de niveau
+     <strong><code>E_WARNING</code></strong>, mais sont convertis vers 12 et 5 respectivement, pour des raisons de compatibilité.
+    </span>
+    <span class="simpara">
+     Note : Le code suivant retourne un résultat différent.
+    </span>
+    <span class="simpara">
+     $str=&#039;abc&#039;;var_dump(isset($str[&#039;x&#039;])); // false en PHP 5.4 ou supérieure,
+     mais true en 5.3 ou inférieure
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Convertir un tableau en chaine génère maintenant une erreur <strong><code>E_NOTICE</code></strong>, mais
+     le résultat du transtypage reste le même : la chaine <code class="literal">&quot;Array&quot;</code>.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Transformer <strong><code>NULL</code></strong>, <strong><code>FALSE</code></strong>, ou une chaine vide en objet en lui ajoutant un attribut
+     génère maintenant une erreur <strong><code>E_WARNING</code></strong>, au lieu de <strong><code>E_STRICT</code></strong>.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Des noms de paramètres qui masqueraient une super globale entrainent désormais une erreur
+     fatale. Ceci interdit du code comme celui-ci : <code class="literal">function foo($_GET, $_POST) {}</code>.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Les <a href="book.hash.html" class="link">algorithmes de hash</a> Salsa10 et Salsa20 ont été retirés.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+      L&#039;<a href="book.hash.html" class="link">algorithme de hash</a> Tiger utilise maintenant l&#039;ordre des octets big-endian.
+     Suivre <a href="function.hash.html#function.hash.tiger-bc" class="link">cet exemple</a> pour 
+     écrire un code compatible avec PHP 5.3 et PHP 5.4.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><a href="function.array-combine.html" class="function">array_combine()</a></span> retourne maintenant <code class="literal">array()</code> au lieu de
+     <strong><code>FALSE</code></strong> lorsque vous lui passez deux tableaux vides comme paramètres.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Si vous utilisez <span class="function"><a href="function.htmlentities.html" class="function">htmlentities()</a></span> avec un jeu de caractères asiatique, elle
+     fonctionnera comme <span class="function"><a href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span> - ça a toujours été le cas avec les
+     versions précédentes de PHP, mais maintenant, une erreur <strong><code>E_STRICT</code></strong> sera
+     levée.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Le troisième paramètre de la fonction <span class="function"><a href="function.ob-start.html" class="function">ob_start()</a></span>
+     a changé de type passant d&#039;un <span class="type"><span class="type booléen">booléen</span></span> nommé
+     <code class="parameter">erase</code> à un <span class="type"><span class="type entier">entier</span></span> nommé
+     <code class="parameter">flags</code>. Notez que la code qui définit explicitement
+     le paramètre <code class="parameter">erase</code> à <strong><code>FALSE</code></strong> ne fonctionnera
+     plus comme attendu en PHP 5.4 : veuillez suivre
+     <a href="function.ob-start.html#function.ob-start.flags-bc" class="link">cet exemple</a> afin
+     d&#039;écrire du code compatible avec PHP 5.3 et 5.4.
+    </span>
+   </li>
+  </ul>
+  <p class="simpara">
+   Les mots-clé suivants sont maintenant <a href="reserved.html" class="link">réservés</a>, et ne peuvent plus être utilisés
+   dans les noms de fonctions, de classes, etc. 
+  </p>
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     <a href="language.oop5.traits.html" class="link">trait</a>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <a href="language.types.callable.html" class="link">callable</a>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <a href="language.oop5.traits.html" class="link">insteadof</a>
+    </span>
+   </li>
+  </ul>
+  <p class="simpara">
+   Les fonctions suivantes ont été supprimées :
+  </p>
+  <ul class="itemizedlist">
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><a href="function.define-syslog-variables.html" class="function">define_syslog_variables()</a></span>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><strong>import_request_variables()</strong></span>
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     <span class="function"><a href="function.session-is-registered.html" class="function">session_is_registered()</a></span>, <span class="function"><a href="function.session-register.html" class="function">session_register()</a></span>
+     et <span class="function"><a href="function.session-unregister.html" class="function">session_unregister()</a></span>.
+    </span>
+   </li>
+   <li class="listitem">
+    <span class="simpara">
+     Les alias
+     <span class="function"><a href="function.mysqli-bind-param.html" class="function">mysqli_bind_param()</a></span>, <span class="function"><a href="function.mysqli-bind-result.html" class="function">mysqli_bind_result()</a></span>,
+     <span class="function"><a href="function.mysqli-client-encoding.html" class="function">mysqli_client_encoding()</a></span>, <span class="function"><a href="function.mysqli-fetch.html" class="function">mysqli_fetch()</a></span>,
+     <span class="function"><a href="function.mysqli-param-count.html" class="function">mysqli_param_count()</a></span>, <span class="function"><a href="function.mysqli-get-metadata.html" class="function">mysqli_get_metadata()</a></span>,
+     <span class="function"><a href="function.mysqli-send-long-data.html" class="function">mysqli_send_long_data()</a></span>, mysqli::client_encoding(), et mysqli_stmt::stmt().
+    </span>
+   </li>
+  </ul>
+ </div></div></div></body></html>

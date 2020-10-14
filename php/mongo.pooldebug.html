@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne des informations sur les pools de connexion</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongo.getslaveokay.html">« Mongo::getSlaveOkay</a></li>
+      <li style="float: right;"><a href="mongo.setpoolsize.html">Mongo::setPoolSize »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mongo.html">Mongo</a></li>
+    <li>Retourne des informations sur les pools de connexion</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongo.pooldebug" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Mongo::poolDebug</h1>
+  <p class="verinfo">(PECL mongo &gt;=1.2.0)</p><p class="refpurpose"><span class="refname">Mongo::poolDebug</span> &mdash; <span class="dc-title">Retourne des informations sur les pools de connexion</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongo.pooldebug-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>Mongo::poolDebug</strong></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type">array</span></div>
+
+
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="simpara">
+    Cette fonctionnalité est devenue <em class="emphasis">OBSOLÈTE</em>
+    depuis la version 1.2.3. Nous vous encourageons vivement
+    à ne plus l&#039;utiliser. Utilisez la méthode
+    <span class="function"><a href="mongopool.info.html" class="function">MongoPool::info()</a></span> à la place.
+   </p>
+  </div>
+
+  <p class="para">
+   Retourne un tableau contenant des informations sur les pools de connexion.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongo.pooldebug-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">Cette fonction ne contient aucun paramètre.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongo.pooldebug-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Chaque pool de connexion possède un identifiant, qui commence par l&#039;hôte. Pour chaque pool,
+   cette fonction fournit les champs suivants:
+   <dl>
+
+    
+     <dt>
+
+      <code class="parameter">in use</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Nombre de connexions utilisées actuellement par les instances
+       <a href="class.mongoclient.html" class="classname">MongoClient</a>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+
+      <code class="parameter">in pool</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Le nombre de connexions actuellement dans le pool (non utilisées).
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+
+      <code class="parameter">remaining</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Le nombre de connexions qui pourraient être créées dans ce pool. Par exemple, supposons un pool avec
+       5 connexions restantes et 3 utilisées. Nous pourrions créer 8 instances de
+       <a href="class.mongoclient.html" class="classname">MongoClient</a> avant d&#039;arriver à saturer le pool (supposant que toutes les instances
+       ont réussi <a href="class.mongoclient.html" class="classname">MongoClient</a>).
+      </p>
+      <p class="para">
+       Un nombre négatif signifie que le pool est illimité en connexions.
+      </p>
+      <p class="para">
+       Avant que le pool ne soit crée, vous pouvez changer le nombre maximum de connexions en appelant
+       <span class="function"><a href="mongo.setpoolsize.html" class="function">Mongo::setPoolSize()</a></span>. Une fois le pool crée, vous ne pouvez plus changer sa taille.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+
+      <code class="parameter">timeout</code>
+     </dt>
+
+     <dd>
+
+      <p class="para">
+       Le timeout pour le socket de connexion de ce pool. C&#039;est le temps pendant lequel les connexions
+       dans ce pool vont attendre pour se connecter à un serveur.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-mongo.pooldebug-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>1.2.11</td>
+       <td>
+        Lance une alerte de niveau <strong><code>E_DEPRECATED</code></strong>
+        lorsqu&#039;utilisé.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ 
+</div></div></div></body></html>

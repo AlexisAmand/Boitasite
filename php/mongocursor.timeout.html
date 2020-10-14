@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>D&eacute;fini un d&eacute;lai maximum d'attente c&ocirc;t&eacute; client pour cette requ&ecirc;te</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongocursor.tailable.html">« MongoCursor::tailable</a></li>
+      <li style="float: right;"><a href="mongocursor.valid.html">MongoCursor::valid »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mongocursor.html">MongoCursor</a></li>
+    <li>D&eacute;fini un d&eacute;lai maximum d'attente c&ocirc;t&eacute; client pour cette requ&ecirc;te</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongocursor.timeout" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">MongoCursor::timeout</h1>
+  <p class="verinfo">(PECL mongo &gt;=1.0.3)</p><p class="refpurpose"><span class="refname">MongoCursor::timeout</span> &mdash; <span class="dc-title">Défini un délai maximum d&#039;attente côté client pour cette requête</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongocursor.timeout-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>MongoCursor::timeout</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$ms</code></span>
+   ) : <span class="type"><a href="class.mongocursor.html" class="type MongoCursor">MongoCursor</a></span></div>
+
+  <p class="para rdfs-comment">
+   Un délai maximum d&#039;attente peut être défini à n&#039;importe quel moment,
+   et affectera les requêtes suivantes du curseur, incluant la récupération
+   de plus de résultats depuis la base de données.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongocursor.timeout-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   
+    <dt>
+
+     <code class="parameter">ms</code>
+    </dt>
+
+    <dd>
+
+     <p class="para">
+      Le nombre de millisecondes que le curseur doit attente une réponse.
+      Pour attendre indéfiniement, utilisez la valeur <code class="literal">-1</code>.
+      Par défaut, le curseur attendra <var class="varname">30000</var>
+      millisecondes (30 secondes).
+     </p>
+    </dd>
+
+      
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongocursor.timeout-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>  
+  <p class="para">
+   Ce curseur.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mongocursor.timeout-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Si la requête prend plus de temps que le nombre de millisecondes spécifié,
+   une exception de type <a href="class.mongocursortimeoutexception.html" class="classname">MongoCursorTimeoutException</a>
+   sera émise.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mongocursor.timeout-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1602">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>MongoCursor::timeout()</strong></span></strong></p>
+   <div class="example-contents"><p>
+    Dans l&#039;exemple suivant, le driver va attendre indéfiniement la réponse
+    initiale de la base de données, puis, va attendre 100ms pour
+    les réponses suivantes.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$cursor&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$collection</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">find</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">timeout</span><span style="color: #007700">(-</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;$cursor-&gt;hasNext()&nbsp;exécute&nbsp;la&nbsp;requête.&nbsp;Un&nbsp;délai&nbsp;d'attente&nbsp;infini&nbsp;a&nbsp;été&nbsp;défini,&nbsp;aussi<br />&nbsp;*&nbsp;le&nbsp;driver&nbsp;va&nbsp;attendre&nbsp;autant&nbsp;de&nbsp;temps&nbsp;que&nbsp;nécessaire&nbsp;la&nbsp;réponse.<br />&nbsp;*/<br /></span><span style="color: #007700">while&nbsp;(</span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">hasNext</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">timeout</span><span style="color: #007700">(</span><span style="color: #0000BB">100</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Un&nbsp;délai&nbsp;d'attente&nbsp;maximal&nbsp;a&nbsp;maintenant&nbsp;été&nbsp;défini,&nbsp;aussi,&nbsp;si&nbsp;le&nbsp;curseur<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;doit&nbsp;récupérer&nbsp;plus&nbsp;de&nbsp;résultats&nbsp;depuis&nbsp;la&nbsp;base&nbsp;de&nbsp;données,&nbsp;il&nbsp;n'attendra<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;la&nbsp;réponse&nbsp;que&nbsp;pendant&nbsp;100ms.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$cursor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getNext</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">MongoCursorTimeoutException&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"La&nbsp;requête&nbsp;prend&nbsp;trop&nbsp;longtemps&nbsp;!"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-mongocursor.timeout-notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Ce comportement ne permet pas d&#039;annuler une opération trop longue au niveau
+    du serveur MongoDB ; il ne va qu&#039;informer le driver d&#039;arrêter d&#039;attendre
+    une réponse, et lancer une exception
+    <a href="class.mongocursortimeoutexception.html" class="classname">MongoCursorTimeoutException</a> après la durée définie.
+    Si vous devez spécifier un délai maximal d&#039;attente côté serveur pour une
+    requête, veuillez utiliser la méthode <span class="methodname"><a href="mongocursor.maxtimems.html" class="methodname">MongoCursor::maxTimeMS()</a></span>.
+   </p>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mongocursor.timeout-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="methodname"><a href="mongocursorinterface.timeout.html" class="methodname" rel="rdfs-seeAlso">MongoCursorInterface::timeout()</a> - D&eacute;finit un d&eacute;lai maximal d'attente c&ocirc;t&eacute; client pour cette requ&ecirc;te</span></li>
+   <li class="member">L&#039;option <code class="literal">socketTimeoutMS</code> pour
+    <span class="function"><a href="mongoclient.construct.html" class="function">MongoClient::__construct()</a></span></li>
+  </ul>
+ </div>
+
+ 
+</div></div></div></body></html>

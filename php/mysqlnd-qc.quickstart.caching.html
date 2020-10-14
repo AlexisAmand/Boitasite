@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Mise en cache des requ&ecirc;tes</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-qc.quickstart.configuration.html">« Configuration</a></li>
+      <li style="float: right;"><a href="mysqlnd-qc.per-query-ttl.html">D&eacute;finition du TTL »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-qc.quickstart.html">D&eacute;marrage rapide et quelques exemples</a></li>
+    <li>Mise en cache des requ&ecirc;tes</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-qc.quickstart.caching" class="section">
+  <h2 class="title">Mise en cache des requêtes</h2>
+  <p class="para">
+   Il y a 4 façons de mettre en cache une requête.
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">Utiliser une astuce SQL pour chaque requête</span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      L&#039;utilisation fourni une fonction de rappel pour prise de décision pour chaque requête,
+      par exemple, en utilisant la fonction <span class="function"><strong>mysqlnd_qc_is_select()</strong></span>
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Utilisation de la fonction <span class="function"><strong>mysqlnd_set_cache_condition()</strong></span>
+      pour des règles automatiques pour chaque requête
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Utilisation de la directive 
+      <code class="literal"><a href="mysqlnd-qc.configuration.html" class="link">mysqlnd_qc.cache_by_default = 1</a></code>
+      pour mettre en cache toutes les requêtes aveuglément
+     </span>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   L&#039;utilisation d&#039;astuce SQL et de la directive de configuration
+   <code class="literal"><a href="mysqlnd-qc.configuration.html" class="link">mysqlnd_qc.cache_by_default = 1</a></code>
+   sont expliquées ci-dessous. Reportez-vous à la documentation sur la fonction
+   <span class="function"><strong>mysqlnd_qc_is_select()</strong></span> pour une description de l&#039;utilisation d&#039;une
+   fonction de rappel et à la documentation sur la fonction
+   <span class="function"><a href="function.mysqlnd-qc-set-cache-condition.html" class="function">mysqlnd_qc_set_cache_condition()</a></span> sur la façon pour
+   définir des règles automatiques pour la mise en cache.
+  </p>
+  <p class="para">
+   Une astuce SQL est un commentaire standard SQL. Comme tout commentaire SQL, il sera
+   ignoré par la base de données. Une requête est considérée éligible à la mise en cache
+   si elle commence par une astuce SQL activant la mise en cache, ou si c&#039;est une
+   requête de type <code class="literal">SELECT</code>.
+  </p>
+  <p class="para">
+   Une requête individuelle qui doit être mise en cache doit commencer avec l&#039;astuce SQL
+   <code class="literal">/*qc=on*/</code>. Il est recommandé d&#039;utiliser la constante PHP
+   <code class="literal"><a href="mysqlnd-qc.constants.html" class="link">MYSQLND_QC_ENABLE_SWITCH</a></code>
+   au lieu d&#039;utiliser la chaîne ci-dessus.
+  </p>
+  <p class="para">
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      non éligible pour la mise en cache, et non mise en cache : <code class="literal">INSERT INTO test(id) VALUES (1)</code>
+    </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      non éligible à la mise en cache et non mise en cache : <code class="literal">SHOW ENGINES</code>
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      éligible à la mise en cache, mais non mise en cache : <code class="literal">SELECT id FROM test</code>
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      éligible à la mise en cache et mise en cache : <code class="literal">/*qc=on*/SELECT id FROM test</code>
+     </p>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   L&#039;exemple avec la chaîne de requête <code class="literal">SELECT</code> est préfixé
+   avec l&#039;astuce SQL <code class="literal"><a href="mysqlnd-qc.constants.html" class="link">MYSQLND_QC_ENABLE_SWITCH</a></code>
+   pour active la mise en cache de la requête. L&#039;astuce SQL doit être fournie
+   au tout début de la chaîne de requête pour activer la mise en cache.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2262">
+    <p><strong>Exemple #1 Utilisation de l&#039;astuce SQL <code class="literal">MYSQLND_QC_ENABLE_SWITCH</code></strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">mysqlnd_qc.enable_qc=1</pre>
+</div>
+    </div>
+
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Connexion,&nbsp;création&nbsp;et&nbsp;peuplement&nbsp;de&nbsp;la&nbsp;table&nbsp;test&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"host"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"schema"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"port"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"socket"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;IF&nbsp;EXISTS&nbsp;test"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;test(id&nbsp;INT)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;test(id)&nbsp;VALUES&nbsp;(1),&nbsp;(2)"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Sera&nbsp;mis&nbsp;en&nbsp;cache&nbsp;en&nbsp;raison&nbsp;de&nbsp;la&nbsp;présence&nbsp;de&nbsp;l'astuce&nbsp;SQL&nbsp;*/<br /></span><span style="color: #0000BB">$start&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"/*"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">MYSQLND_QC_ENABLE_SWITCH&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"*/"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;id&nbsp;FROM&nbsp;test&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;1"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Durée&nbsp;de&nbsp;la&nbsp;requête&nbsp;non&nbsp;mise&nbsp;en&nbsp;cache&nbsp;:&nbsp;%.6fs\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;-&nbsp;</span><span style="color: #0000BB">$start</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Récupération&nbsp;depuis&nbsp;le&nbsp;cache&nbsp;*/<br /></span><span style="color: #0000BB">$start&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"/*"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">MYSQLND_QC_ENABLE_SWITCH&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"*/"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;id&nbsp;FROM&nbsp;test&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;1"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Durée&nbsp;de&nbsp;la&nbsp;requête&nbsp;mise&nbsp;en&nbsp;cache&nbsp;:&nbsp;%.6fs\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;-&nbsp;</span><span style="color: #0000BB">$start</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>Les exemples ci-dessus vont afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(1) {
+  [&quot;id&quot;]=&gt;
+  string(1) &quot;1&quot;
+}
+Durée de la requête non mise en cache : 0.000740s
+array(1) {
+  [&quot;id&quot;]=&gt;
+  string(1) &quot;1&quot;
+}
+Durée de la requête mise en cache : 0.000098s
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   Si rien de plus n&#039;est configuré, comme c&#039;est le cas dans l&#039;exemple de démarrage rapide,
+   le plugin utilisera le gestionnaire de stockage interne <code class="literal">default</code>.
+   Le gestionnaire de stockage <code class="literal">default</code> utilise un processus
+   mémoire pour stocker une entrée du cache. Suivant le modèle de déployement PHP,
+   un processus PHP peut servir une ou plusieurs requêtes web. Veuillez consulter
+   le manuel de votre serveur web pour plus de détails. Ces détails ne feront
+   aucune différence dans les exemples de cette section.
+  </p>
+  <p class="para">
+   Le plugin de mise en cache de requêtes va mettre en cache toutes les requêtes
+   si la chaîne commence par une astuce SQL qui active ou non la mise en cache,
+   si la directive de configuration PHP
+   <code class="literal"><a href="mysqlnd-qc.configuration.html" class="link">mysqlnd_qc.cache_by_default</a></code>
+   vaut <code class="literal">1</code>. La configuration
+   <code class="literal"><a href="mysqlnd-qc.configuration.html" class="link">mysqlnd_qc.cache_by_default</a></code>
+   est évaluée par le coeur du plugin de mise en cache de requêtes. Aussi,
+   ni le coeur du plugin, ni un gestionnaire de stockage défini par l&#039;utilisateur ne
+   peuvent écraser cette configuration.
+  </p>
+  <p class="para">
+   L&#039;astuce SQL <code class="literal">/*qc=off*/</code> peut être utilisée pour désactiver
+   la mise en cache d&#039;une requête si
+   <code class="literal"><a href="mysqlnd-qc.configuration.html" class="link">mysqlnd_qc.cache_by_default = 1</a></code>.
+   Il est recommandé d&#039;utiliser la constante PHP
+   <code class="literal"><a href="mysqlnd-qc.constants.html" class="link">MYSQLND_QC_DISABLE_SWITCH</a></code>
+   au lieu de la valeur litérale.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2263">
+    <p><strong>Exemple #2 Utilisation de l&#039;astuce SQL <code class="literal">MYSQLND_QC_DISABLE_SWITCH</code></strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">mysqlnd_qc.enable_qc=1
+mysqlnd_qc.cache_by_default=1</pre>
+</div>
+    </div>
+
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Connexion,&nbsp;création&nbsp;et&nbsp;peuplement&nbsp;de&nbsp;la&nbsp;table&nbsp;test&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"host"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"schema"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"port"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"socket"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;IF&nbsp;EXISTS&nbsp;test"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;test(id&nbsp;INT)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;test(id)&nbsp;VALUES&nbsp;(1),&nbsp;(2)"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Sera&nbsp;mise&nbsp;en&nbsp;cache&nbsp;malgré&nbsp;le&nbsp;fait&nbsp;qu'aucune&nbsp;astuce&nbsp;SQL&nbsp;ne&nbsp;soit&nbsp;présente,<br />car&nbsp;mysqlnd_qc.cache_by_default&nbsp;=&nbsp;1*/<br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;id&nbsp;FROM&nbsp;test&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;1"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DELETE&nbsp;FROM&nbsp;test&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;1"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Récupération&nbsp;depuis&nbsp;le&nbsp;cache&nbsp;-&nbsp;aucune&nbsp;invalidation&nbsp;automatique,&nbsp;et&nbsp;donc,&nbsp;toujours&nbsp;valide&nbsp;!&nbsp;*/<br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;id&nbsp;FROM&nbsp;test&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;1"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;Non&nbsp;présente&nbsp;dans&nbsp;le&nbsp;cache&nbsp;-&nbsp;la&nbsp;requête&nbsp;ne&nbsp;doit&nbsp;pas&nbsp;être&nbsp;mise&nbsp;en&nbsp;cache&nbsp;en&nbsp;raison&nbsp;de<br />la&nbsp;présence&nbsp;de&nbsp;l'astuce&nbsp;SQL&nbsp;*/<br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"/*"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">MYSQLND_QC_DISABLE_SWITCH&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"*/SELECT&nbsp;id&nbsp;FROM&nbsp;test&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;1"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>Les exemples ci-dessus vont afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(1) {
+  [&quot;id&quot;]=&gt;
+  string(1) &quot;1&quot;
+}
+array(1) {
+  [&quot;id&quot;]=&gt;
+  string(1) &quot;1&quot;
+}
+NULL
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   PECL/mysqlnd_qc ne mettra pas en cache les requêtes pour lesquelles au moins
+   une colonne du jeu de résultats ne contient pas le nom de la table dans ses
+   méta-données par défaut. C&#039;est habituellement le cas pour les colonnes
+   provenant de fonctions SQL comme
+   <code class="literal">NOW()</code> ou <code class="literal">LAST_INSERT_ID()</code>. La politique
+   vise à éviter les pièges, si la mise en cache est utilisée par défaut.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2264">
+    <p><strong>Exemple #3 Exemple montrant les types de requêtes non mis en cache</strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">mysqlnd_qc.enable_qc=1
+mysqlnd_qc.cache_by_default=1</pre>
+</div>
+    </div>
+
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Connexion,&nbsp;création&nbsp;et&nbsp;peuplement&nbsp;de&nbsp;la&nbsp;table&nbsp;test&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"host"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"schema"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"port"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"socket"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;IF&nbsp;EXISTS&nbsp;test"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;test(id&nbsp;INT)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;test(id)&nbsp;VALUES&nbsp;(1)"</span><span style="color: #007700">);<br /><br />for&nbsp;(</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">&lt;&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$start&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Note&nbsp;:&nbsp;la&nbsp;requête&nbsp;ne&nbsp;sera&nbsp;pas&nbsp;mise&nbsp;en&nbsp;cache&nbsp;car&nbsp;NOW()&nbsp;est&nbsp;utilisé&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;NOW()&nbsp;AS&nbsp;_time&nbsp;FROM&nbsp;test"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Affichage&nbsp;des&nbsp;résultats&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$row</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Durée&nbsp;d'exécution&nbsp;:&nbsp;%.6fs\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;-&nbsp;</span><span style="color: #0000BB">$start</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;On&nbsp;attend&nbsp;une&nbsp;seconde&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">sleep</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>Les exemples ci-dessus vont afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(2) {
+  [&quot;id&quot;]=&gt;
+  string(1) &quot;1&quot;
+  [&quot;_time&quot;]=&gt;
+  string(19) &quot;2012-01-11 15:43:10&quot;
+}
+Durée d&#039;exécution : 0.000540s
+array(2) {
+  [&quot;id&quot;]=&gt;
+  string(1) &quot;1&quot;
+  [&quot;_time&quot;]=&gt;
+  string(19) &quot;2012-01-11 15:43:11&quot;
+}
+Durée d&#039;exécution : 0.000555s
+array(2) {
+  [&quot;id&quot;]=&gt;
+  string(1) &quot;1&quot;
+  [&quot;_time&quot;]=&gt;
+  string(19) &quot;2012-01-11 15:43:12&quot;
+}
+Durée d&#039;exécution : 0.000549s
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   Il est possible d&#039;activer la mise en cache pour toutes les requêtes,
+   y compris celles qui contiennent des colonnes dans leur jeu de résultats
+   pour lesquelles MySQL rapporte aucune table, comme la requête de l&#039;exemple
+   ci-dessus. Définissez la directive de configuration comme ceci
+   <a href="mysqlnd-qc.configuration.html#ini.mysqlnd-qc.cache-no-table" class="link"><code class="literal">mysqlnd_qc.cache_no_table = 1</code></a>
+   pour activer la mise en cache de telle requête. Notez la différence dans les
+   durées mesurées de l&#039;exemple ci-dessus et de l&#039;exemple ci-dessous.
+  </p>
+  <p class="para">
+   <div class="example" id="example-2265">
+    <p><strong>Exemple #4 Activation du cache pour toutes les requêtes
+     en utilisant l&#039;option de configuration ini
+     <code class="literal">mysqlnd_qc.cache_no_table</code></strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">mysqlnd_qc.enable_qc=1
+mysqlnd_qc.cache_by_default=1
+mysqlnd_qc.cache_no_table=1</pre>
+</div>
+    </div>
+
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Connexion,&nbsp;création&nbsp;et&nbsp;peuplement&nbsp;de&nbsp;la&nbsp;table&nbsp;test&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"host"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"schema"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"port"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"socket"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;IF&nbsp;EXISTS&nbsp;test"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;test(id&nbsp;INT)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;test(id)&nbsp;VALUES&nbsp;(1)"</span><span style="color: #007700">);<br /><br />for&nbsp;(</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">&lt;&nbsp;</span><span style="color: #0000BB">3</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$start&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Note&nbsp;:&nbsp;la&nbsp;requête&nbsp;ne&nbsp;sera&nbsp;pas&nbsp;mise&nbsp;en&nbsp;cache&nbsp;car&nbsp;NOW()&nbsp;est&nbsp;utilisé&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;id,&nbsp;NOW()&nbsp;AS&nbsp;_time&nbsp;FROM&nbsp;test"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Affichage&nbsp;des&nbsp;résultats&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$row</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Durée&nbsp;d'exécution&nbsp;:&nbsp;%.6fs\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">microtime</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;-&nbsp;</span><span style="color: #0000BB">$start</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;On&nbsp;attend&nbsp;une&nbsp;seconde&nbsp;*/<br />&nbsp;&nbsp;</span><span style="color: #0000BB">sleep</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>Les exemples ci-dessus vont afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(2) {
+  [&quot;id&quot;]=&gt;
+  string(1) &quot;1&quot;
+  [&quot;_time&quot;]=&gt;
+  string(19) &quot;2012-01-11 15:47:45&quot;
+}
+Total time: 0.000546s
+array(2) {
+  [&quot;id&quot;]=&gt;
+  string(1) &quot;1&quot;
+  [&quot;_time&quot;]=&gt;
+  string(19) &quot;2012-01-11 15:47:45&quot;
+}
+Durée d&#039;exécution : 0.000187s
+array(2) {
+  [&quot;id&quot;]=&gt;
+  string(1) &quot;1&quot;
+  [&quot;_time&quot;]=&gt;
+  string(19) &quot;2012-01-11 15:47:45&quot;
+}
+Durée d&#039;exécution : 0.000167s
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Bien que <a href="mysqlnd-qc.configuration.html#ini.mysqlnd-qc.cache-no-table" class="link"><code class="literal">mysqlnd_qc.cache_no_table = 1</code></a>
+    a été créé pour une utilisation avec
+    <code class="literal"><a href="mysqlnd-qc.configuration.html" class="link">mysqlnd_qc.cache_by_default = 1</a></code>,
+    il y est lié. Le plugin va évaluer la directive
+    <a href="mysqlnd-qc.configuration.html#ini.mysqlnd-qc.cache-no-table" class="link"><code class="literal">mysqlnd_qc.cache_no_table</code></a>
+    à chaque fois qu&#039;une requête est prête à être mise en cache, sans tenir compte de
+    l&#039;activation du cache en utilisant une astuce SQL ou toute autre mesure.
+   </p>
+  </p></blockquote>
+ </div></div></div></body></html>

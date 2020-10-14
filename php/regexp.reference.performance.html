@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Performance</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="regexp.reference.recursive.html">« Masques r&eacute;cursifs</a></li>
+      <li style="float: right;"><a href="reference.pcre.pattern.modifiers.html">Options disponibles pour les expressions rationnelles »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="reference.pcre.pattern.syntax.html">Fonctionnement des expressions rationnelles</a></li>
+    <li>Performance</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="regexp.reference.performance" class="section">
+  <h2 class="title">Performance</h2>
+  <p class="para">
+   Certaines séquences de recherches sont plus efficaces que d&#039;autres.
+   Ainsi, il est plus efficace d&#039;utiliser une classe de caractères
+   telle que <code class="literal">[aeiou]</code> plutôt qu&#039;une alternative
+   <code class="literal">(a|e|i|o|u)</code>.
+   En général, le masque le plus simple, qui permette
+   la recherche désirée est le plus efficace. Le livre
+   de Jeffrey Friedl&#039;s contient de nombreuses études à
+   propos de l&#039;optimisation des expressions rationnelles.
+  </p>
+  <p class="para">
+   Lorsqu&#039;un masque commence par.* et que l&#039;option
+   <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_DOTALL</a> est
+   activée, le masque est implicitement ancré par PCRE,
+   étant donné qu&#039;il ne peut que rechercher au début
+   de la chaîne. Cependant, si l&#039;option
+   <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_DOTALL</a> n&#039;est pas
+   activée, PCRE ne peut faire aucune optimisation car le
+   métacaractères point &quot;<code class="literal">.</code>&quot;
+   ne remplace pas une nouvelle ligne, et si la chaîne
+   sujet contient des nouvelles lignes, le masque peut trouver une
+   solution qui serait située juste après une
+   de ces nouvelles lignes, et non pas seulement au début
+   de la chaîne sujet. Par exemple, le masque,
+   
+   <code class="literal">(.*)second</code>
+   
+   acceptera la chaîne &quot;<code class="literal">premier \net second</code>&quot;
+   (avec &quot;<code class="literal">\n</code>&quot; qui remplace la nouvelle ligne),
+   et la première chaîne capturée sera &quot;<code class="literal">et</code>&quot;.
+   Afin d&#039;effectuer la recherche, PCRE va essayer d&#039;appliquer le masque
+   à partir de chaque début de ligne.
+  </p>
+  <p class="para">
+   Si vous utilisez un tel masque avec des chaînes qui ne contiennent
+   pas de caractères de nouvelle ligne, les meilleures performances
+   seront atteintes avec l&#039;option
+   <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_DOTALL</a>, ou en ancrant le
+   masque avec <code class="literal">^.*</code>. Cela évite à PCRE
+   de scanner toute la chaîne pour rechercher un caractère
+   de nouvelle ligne et recommencer la recherche.
+  </p>
+  <p class="para">
+   Attention aux masques qui contiennent des quantificateurs infinis
+   imbriqués. Ils peuvent demander un temps de calcul très
+   long, lorsque appliqués à une chaîne qui ne
+   correspond pas à ce masque. Par exemple,
+   
+   <code class="literal">(a+)*</code>
+   
+  </p>
+  <p class="para">
+   Ce masque peut accepter &quot;<code class="literal">aaaa</code>&quot; de 33 manières
+   différentes, et ce nombre croit rapidement avec la taille
+   de la chaîne (le quantificateur <code class="literal">*</code> peut prendre
+   les valeurs de 0, 1, 2, 3, ou 4, et pour chaque cas non nul, le
+   quantificateur <code class="literal">+</code> peut prendre différentes
+   valeurs). Lorsque le reste de la chaîne est tel que l&#039;on s&#039;achemine
+   vers un échec, PCRE doit en principe vérifier
+   toutes les possibilités, et cela prend un temps
+   extrêmement long.
+  </p>
+  <p class="para">
+   Un optimiseur repère les cas les plus simples, tel que
+   
+   <code class="literal">(a+)*b</code>
+   
+   où un caractère simple suit les quantificateurs.
+   Avant de partir dans les procédures standards de recherche, PCRE
+   s&#039;assure qu&#039;il y a au moins un &quot;<code class="literal">b</code>&quot; dans la
+   chaîne, et si ce n&#039;est pas le cas, l&#039;échec est
+   annoncé immédiatement. Sinon, il n&#039;y a pas
+   d&#039;optimisation dans la recherche. Vous pouvez voir la
+   différence de comportement avec le masque suivant :
+   
+   <code class="literal">(a+)*\d</code>.
+   
+   Le premier retourne un échec quasi-immédiatement, s&#039;il est appliqué à
+   une ligne de &quot;<code class="literal">a</code>&quot;, alors que le second masque
+   prend un temps significatif pour une chaîne de plus de
+   20 caractères.
+  </p>
+ </div></div></div></body></html>

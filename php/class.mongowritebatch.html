@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>La classe MongoWriteBatch</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongo.batch.html">« Classes Batch</a></li>
+      <li style="float: right;"><a href="mongowritebatch.add.html">MongoWriteBatch::add »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mongo.batch.html">Classes Batch</a></li>
+    <li>La classe MongoWriteBatch</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="class.mongowritebatch" class="reference">
+
+ <h1 class="title">La classe MongoWriteBatch</h1>
+ 
+
+ <div class="partintro"><p class="verinfo">(PECL mongo &gt;=1.5.0)</p>
+
+
+  <div class="section" id="mongowritebatch.intro">
+   <h2 class="title">Introduction</h2>
+   <p class="para">
+    MongoWriteBatch est la classe de base pour
+    <a href="class.mongoinsertbatch.html" class="classname">MongoInsertBatch</a>,
+    <a href="class.mongoupdatebatch.html" class="classname">MongoUpdateBatch</a> et
+    <a href="class.mongodeletebatch.html" class="classname">MongoDeleteBatch</a>.
+   </p>
+   <p class="para">
+    MongoWriteBatch vous permet de mettre en lot plusieurs opérations
+    (du même type) et de les envoyer dans le même temps à MongoDB. Ceci est tout
+    particulièrement utile lorsqu&#039;on travaille sur plusieurs documents en même
+    temps, réduisant ainsi les étapes.
+   </p>
+   <p class="para">
+    Avant la version 1.5.0 du driver, il était possible d&#039;utiliser la méthode
+    <span class="methodname"><a href="mongocollection.batchinsert.html" class="methodname">MongoCollection::batchInsert()</a></span>, cependant, depuis
+    la version 1.5.0, cette méthode n&#039;est plus recommandée.
+   </p>
+   <p class="para">
+    Note : Cette classe n&#039;est disponible que lorsqu&#039;on travaille avec des
+    serveurs MongoDB 2.6.0 (et supérieurs). Elle lancera une exception
+    <a href="class.mongoprotocolexception.html" class="classname">MongoProtocolException</a> si vous tentez de l&#039;utiliser
+    avec des serveurs MongoDB plus anciens.
+   </p>
+  </div>
+
+
+  <div class="section" id="mongowritebatch.synopsis">
+   <h2 class="title">Synopsis de la classe</h2>
+
+
+   <div class="classsynopsis">
+    <div class="ooclass"></div>
+
+
+    <div class="classsynopsisinfo">
+     <span class="ooclass">
+      <strong class="classname">MongoWriteBatch</strong>
+     </span>
+     {</div>
+
+    
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Constantes */</div>
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.mongowritebatch.html#mongowritebatch.constants.command.insert"><var class="varname">COMMAND_INSERT</var></a></var>
+     <span class="initializer"> = 1</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.mongowritebatch.html#mongowritebatch.constants.command.update"><var class="varname">COMMAND_UPDATE</var></a></var>
+     <span class="initializer"> = 2</span>
+    ;</div>
+
+    <div class="fieldsynopsis">
+     <span class="modifier">const</span>
+     <span class="type">int</span>
+      <var class="fieldsynopsis_varname"><a href="class.mongowritebatch.html#mongowritebatch.constants.command.delete"><var class="varname">COMMAND_DELETE</var></a></var>
+     <span class="initializer"> = 3</span>
+    ;</div>
+
+
+    <div class="classsynopsisinfo classsynopsisinfo_comment">/* Méthodes */</div>
+    <div class="constructorsynopsis dc-description">
+   <span class="modifier">protected</span> <span class="methodname"><a href="mongowritebatch.construct.html" class="methodname">__construct</a></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mongocollection.html" class="type MongoCollection">MongoCollection</a></span> <code class="parameter">$collection</code></span>
+   [, <span class="methodparam"><span class="type">string</span> <code class="parameter">$batch_type</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$write_options</code></span>
+  ]] )</div>
+
+    <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="mongowritebatch.add.html" class="methodname">add</a></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter">$item</code></span>
+   ) : <span class="type">bool</span></div>
+<div class="methodsynopsis dc-description">
+   <span class="modifier">final</span> <span class="modifier">public</span> <span class="methodname"><a href="mongowritebatch.execute.html" class="methodname">execute</a></span>
+    ( <span class="methodparam"><span class="type">array</span> <code class="parameter">$write_options</code></span>
+   ) : <span class="type">array</span></div>
+
+   }</div>
+
+
+   <div class="section" id="mongowritebatch.constants">
+    <h2 class="title">Type de MongoWriteBatch</h2>
+    <dl>
+
+
+     
+      <dt id="mongowritebatch.constants.command.insert"><strong><code>MongoWriteBatch::COMMAND_INSERT</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Crée un lot d&#039;écritures d&#039;insertion</p>
+      </dd>
+
+     
+
+     
+      <dt id="mongowritebatch.constants.command.update"><strong><code>MongoWriteBatch::COMMAND_UPDATE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Crée un lot d&#039;écritures de mise à jour</p>
+      </dd>
+
+     
+
+     
+      <dt id="mongowritebatch.constants.command.delete"><strong><code>MongoWriteBatch::COMMAND_DELETE</code></strong></dt>
+
+      <dd>
+
+       <p class="para">Crée un lot d&#039;écritures d&#039;effacement</p>
+      </dd>
+
+     
+
+    </dl>
+
+   </div>
+  </div>
+
+  <div class="section" id="mongowritebatch.description">
+   <h2 class="title">Description</h2>
+   <p class="para">
+    Lors de l&#039;exécution d&#039;un lot, en appelant la méthode
+    <span class="methodname"><a href="mongowritebatch.execute.html" class="methodname">MongoWriteBatch::execute()</a></span>, MongoWriteBatch va envoyer
+    <code class="literal">maxWriteBatchSize</code> (par défaut, 1000) documents ou
+    jusqu&#039;à <code class="literal">maxBsonObjectSize</code> (par défaut, 16777216 octets),
+    celui qui arrive en premier.
+   </p>
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <p class="para">
+     Les documents ne seront jamais partiellement envoyés. Lors de l&#039;ajout de documents dans le lot,
+     qui dépassent la limite, un nouveau lot sera créé et le document sera ajouté
+     à ce nouveau lot.
+    </p>
+   </p></blockquote>
+  </div>
+
+  <div class="section" id="mongowritebatch.errors">
+   <h2 class="title">Erreurs / Exceptions</h2>
+   <ul class="simplelist">
+    <li class="member">
+     Lance une exception <a href="class.exception.html" class="classname">Exception</a> lors d&#039;un échec d&#039;analyse des
+     paramètres
+    </li>
+    <li class="member">
+     Lance une exception <a href="class.exception.html" class="classname">Exception</a> lors d&#039;erreurs de validation
+     des arguments (i.e., clés manquantes)
+    </li>
+    <li class="member">
+     Lance une exception <a href="class.mongoprotocolexception.html" class="classname">MongoProtocolException</a> lors d&#039;une communication
+     avec un serveur MongoDB plus ancien que la version 2.6.0.
+    </li>
+    <li class="member">
+     Lance une exception <a href="class.mongoprotocolexception.html" class="classname">MongoProtocolException</a> lors d&#039;erreurs du socket.
+    </li>
+    <li class="member">
+     Lance une exception <a href="class.mongowriteconcernexception.html" class="classname">MongoWriteConcernException</a> lors d&#039;un échec
+     d&#039;écriture à cause des <a href="mongo.writeconcerns.html" class="link">préoccupations d&#039;écriture</a>
+    </li>
+   </ul>
+  </div>
+
+  <div class="section" id="mongowritebatch.examples">
+   <h2 class="title">Exemples</h2>
+   <div class="example" id="example-1636">
+    <p><strong>Exemple #1 Exemple avec <strong class="classname">MongoWriteBatch</strong></strong></p>
+    <div class="example-contents"><p>
+     Ajout de documents dans un lot d&#039;insertion, et l&#039;exécute
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mc&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$collection&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mc</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">selectCollection</span><span style="color: #007700">(</span><span style="color: #DD0000">"test"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"test"</span><span style="color: #007700">);<br /><br /><br /></span><span style="color: #0000BB">$docs&nbsp;</span><span style="color: #007700">=&nbsp;array();<br /></span><span style="color: #0000BB">$docs</span><span style="color: #007700">[]&nbsp;=&nbsp;array(</span><span style="color: #DD0000">"my"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"demo"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$docs</span><span style="color: #007700">[]&nbsp;=&nbsp;array(</span><span style="color: #DD0000">"is"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"working"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$docs</span><span style="color: #007700">[]&nbsp;=&nbsp;array(</span><span style="color: #DD0000">"pretty"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"well"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$batch&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoInsertBatch</span><span style="color: #007700">(</span><span style="color: #0000BB">$collection</span><span style="color: #007700">);<br />foreach(</span><span style="color: #0000BB">$docs&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$document</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$batch</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add</span><span style="color: #007700">(</span><span style="color: #0000BB">$document</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">$retval&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$batch</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">(array(</span><span style="color: #DD0000">"w"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$retval</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(2) {
+  [&quot;nInserted&quot;]=&gt;
+  int(3)
+  [&quot;ok&quot;]=&gt;
+  bool(true)
+}
+</pre></div>
+    </div>
+   </div>
+  </div>
+
+ </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Sommaire</h2><ul class="chunklist chunklist_reference"><li><a href="mongowritebatch.add.html">MongoWriteBatch::add</a> — Ajoute une op&eacute;ration d'&eacute;criture dans un lot</li><li><a href="mongowritebatch.construct.html">MongoWriteBatch::__construct</a> — Cr&eacute;e un nouveau lot d'op&eacute;rations d'&eacute;criture</li><li><a href="mongowritebatch.execute.html">MongoWriteBatch::execute</a> — Ex&eacute;cute un lot d'op&eacute;rations d'&eacute;criture</li></ul>
+</div>
+</div></div></body></html>

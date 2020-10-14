@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>R&eacute;cup&egrave;re une ligne de r&eacute;sultat Ingres dans un tableau</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.ingres-execute.html">« ingres_execute</a></li>
+      <li style="float: right;"><a href="function.ingres-fetch-assoc.html">ingres_fetch_assoc »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.ingres.html">Fonctions Ingres</a></li>
+    <li>R&eacute;cup&egrave;re une ligne de r&eacute;sultat Ingres dans un tableau</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.ingres-fetch-array" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ingres_fetch_array</h1>
+  <p class="verinfo">(PHP 5 &lt; 5.1.0, PECL ingres &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">ingres_fetch_array</span> &mdash; <span class="dc-title">Récupère une ligne de résultat Ingres dans un tableau</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.ingres-fetch-array-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>ingres_fetch_array</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$result</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$result_type</code></span>
+  ] ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>ingres_fetch_array()</strong></span> est une version améliorée de
+   <span class="function"><a href="function.ingres-fetch-row.html" class="function">ingres_fetch_row()</a></span>. En plus de stocker les données
+   dans un tableau à indices numériques, elle peut aussi les enregistrer
+   dans un tableau associatif, en utilisant les noms des champs comme
+   indices.
+  </p>
+  <p class="para">
+   Si plusieurs colonnes ont le même nom, la dernière colonne aura la
+   priorité. Pour accéder aux autres colonnes du même nom, vous devez
+   utiliser l&#039;index numérique, ou faire un alias pour chaque colonne.
+   Par exemple : 
+   <div class="informalexample">
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"select&nbsp;ap_place&nbsp;as&nbsp;city,&nbsp;ap_ccode&nbsp;as&nbsp;country&nbsp;from&nbsp;airport&nbsp;where&nbsp;ap_iatacode&nbsp;=&nbsp;'VLL'"</span><span style="color: #007700">);&nbsp;<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$foo&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">[</span><span style="color: #DD0000">"city"</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">$bar&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">[</span><span style="color: #DD0000">"country"</span><span style="color: #007700">];<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Du point de vue de la rapidité, cette fonction est identique à
+   <span class="function"><a href="function.ingres-fetch-object.html" class="function">ingres_fetch_object()</a></span>, et presque aussi rapide
+   que <span class="function"><a href="function.ingres-fetch-row.html" class="function">ingres_fetch_row()</a></span> (la différence est
+   insignifiante).
+  </p>
+  <p class="para">
+   Par défaut, les index numériques des tableaux créés avec la fonction
+   <span class="function"><strong>ingres_fetch_array()</strong></span> commencent à 1, qui est le
+   premier champ du résultat. Ce n&#039;est pas la pratique avec les autres
+   bases de données, qui commencent la numérotation à 0. 
+   Pour changer cette valeur, voyez
+   <a href="ingres.configuration.html#ini.ingres.array-index-start" class="link">ingres.array_index_start</a>.
+   À utiliser avec <span class="function"><strong>ingres_fetch_array()</strong></span>.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Directives de configurations associées</strong><br />
+   <p class="para">
+    Voyez aussi 
+    <a href="ingres.configuration.html#ini.ingres.array-index-start" class="link">ingres.array_index_start</a>, 
+    <a href="ingres.configuration.html#ini.ingres.fetch-buffer-size" class="link">ingres.fetch_buffer_size</a>
+    et les directives <a href="ingres.configuration.html#ini.ingres.utf8" class="link">ingres.utf8</a>
+    dans les <a href="ingres.configuration.html" class="link">configurations à l&#039;exécution</a>.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ingres-fetch-array-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">result</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La <a href="language.types.resource.html" class="link">ressource</a> de résultats
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">result_type</code></dt>
+
+     <dd>
+
+      <p class="para">
+       <code class="parameter">result_type</code> peut valoir 
+       <strong><code>INGRES_NUM</code></strong> pour un tableau à index 
+       numériques, <strong><code>INGRES_ASSOC</code></strong> pour un tableau associatif,
+       ou <strong><code>INGRES_BOTH</code></strong> (défaut) pour un tableau mixte 
+       (accessible selon les deux méthodes).
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ingres-fetch-array-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau qui correspond à la ligne récupérée,
+   ou <strong><code>FALSE</code></strong> s&#039;il n&#039;y a plus de lignes.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ingres-fetch-array-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-1308">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>ingres_fetch_array()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_connect</span><span style="color: #007700">(</span><span style="color: #0000BB">$database</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$user</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$password</span><span style="color: #007700">);<br />&nbsp;<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,</span><span style="color: #DD0000">"select&nbsp;*&nbsp;from&nbsp;table"</span><span style="color: #007700">);<br /><br />while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">ingres_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"user_id"</span><span style="color: #007700">];&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;utilisation&nbsp;du&nbsp;tableau&nbsp;associatif<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">"fullname"</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;utilisation&nbsp;du&nbsp;tableau&nbsp;à&nbsp;indices&nbsp;numériques<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">];<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.ingres-fetch-array-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ingres-query.html" class="function" rel="rdfs-seeAlso">ingres_query()</a> - Envoie une requ&ecirc;te SQL &agrave; Ingres</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-num-fields.html" class="function" rel="rdfs-seeAlso">ingres_num_fields()</a> - Retourne le nombre de champs renvoy&eacute;s par la derni&egrave;re requ&ecirc;te Ingres</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-field-name.html" class="function" rel="rdfs-seeAlso">ingres_field_name()</a> - Retourne le nom d'un champ dans le r&eacute;sultat d'une requ&ecirc;te Ingres</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-fetch-assoc.html" class="function" rel="rdfs-seeAlso">ingres_fetch_assoc()</a> - R&eacute;cup&egrave;re une ligne de r&eacute;sultat dans un tableau associatif</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-fetch-object.html" class="function" rel="rdfs-seeAlso">ingres_fetch_object()</a> - R&eacute;cup&egrave;re une ligne de r&eacute;sultat dans un objet</span></li>
+    <li class="member"><span class="function"><a href="function.ingres-fetch-row.html" class="function" rel="rdfs-seeAlso">ingres_fetch_row()</a> - R&eacute;cup&egrave;re une ligne de r&eacute;sultat dans un tableau &eacute;num&eacute;r&eacute;</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

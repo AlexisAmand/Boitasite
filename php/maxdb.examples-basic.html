@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Utilisation simple</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="maxdb.examples.html">« Exemples</a></li>
+      <li style="float: right;"><a href="ref.maxdb.html">Fonctions MaxDB »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="maxdb.examples.html">Exemples</a></li>
+    <li>Utilisation simple</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="maxdb.examples-basic" class="section">
+  <h2 class="title">Utilisation simple</h2>
+  <p class="para">
+   Tous les exemples dans la documentation PHP de MaxDB utilise la base de
+   données de démonstration HETOLDB depuis MaxDB. Plus d&#039;informations
+   concernant cette base de données peuvent être trouvées sur
+   <a href="http://maxdb.sap.com/doc/7_7/44/d8c25164bb38d0e10000000a1553f7/content.htm" class="link external">&raquo;&nbsp;http://maxdb.sap.com/doc/7_7/44/d8c25164bb38d0e10000000a1553f7/content.htm</a>.
+  </p>
+  <p class="para">
+   Pour utiliser les exemples dans la documentation PHP MaxDB, vous devez
+   télécharger les données du tutorial dans votre base de données.
+   Ensuite, vous devez définir maxdb.default_db dans votre <var class="filename">php.ini</var>
+   à la valeur de votre base de données contenant les données du tutorial.
+  </p>
+  <p class="para">
+   Cet exemple simple montre comment se connecter, exécuter une requête,
+   afficher les lignes résultants et se déconnecter de la base de données
+   MaxDB.
+   <div class="example" id="example-1323">
+    <p><strong>Exemple #1 Exemple global de l&#039;extension MaxDB</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Vérification&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">maxdb_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Exécution&nbsp;de&nbsp;la&nbsp;requête&nbsp;SQL&nbsp;*/<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;*&nbsp;FROM&nbsp;hotel.city"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">)&nbsp;or&nbsp;die(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;requête&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">maxdb_error</span><span style="color: #007700">());<br /><br /></span><span style="color: #FF8000">/*&nbsp;Affichage&nbsp;des&nbsp;resultats&nbsp;en&nbsp;HTML&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"&lt;table&gt;\n"</span><span style="color: #007700">;<br />while&nbsp;(</span><span style="color: #0000BB">$line&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MAXDB_ASSOC</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&nbsp;&nbsp;&lt;tr&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$line&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$col_value</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;</span><span style="color: #0000BB">$col_value</span><span style="color: #DD0000">&lt;/td&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&nbsp;&nbsp;&lt;/tr&gt;\n"</span><span style="color: #007700">;<br />}<br />echo&nbsp;</span><span style="color: #DD0000">"&lt;/table&gt;\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Libération&nbsp;du&nbsp;résultat&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Fermeture&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #0000BB">maxdb_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   L&#039;exemple suivant montre comment l&#039;on lie des variables à des requêtes
+   SELECT INTO.
+   <div class="example" id="example-1324">
+    <p><strong>Exemple #2 Exemple d&#039;utilisation des requêtes SELECT INTO</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Vérification&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Exécution&nbsp;de&nbsp;la&nbsp;requête&nbsp;SQL&nbsp;*/<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_prepare&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;percentage&nbsp;INTO&nbsp;?&nbsp;FROM&nbsp;hotel.countrylanguage&nbsp;where&nbsp;language&nbsp;=&nbsp;?"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;préparation&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_error</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Mbundu"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">maxdb_stmt_bind_param</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ds'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$percentage</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$name</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_stmt_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"%f\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$percentage</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">maxdb_stmt_close&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   L&#039;exemple suivant montre comment utiliser les procédures avec les
+   bases de données MaxDB.
+   <div class="example" id="example-1325">
+    <p><strong>Exemple #3 Exemple d&#039;utilisation des procédures</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"MONA"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"RED"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DEMODB"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Vérification&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_OFF</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,</span><span style="color: #DD0000">"DROP&nbsp;DBPROC&nbsp;test_proc"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_report&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MAXDB_REPORT_ERROR</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"create&nbsp;dbproc&nbsp;test_proc&nbsp;(INOUT&nbsp;e_text&nbsp;char(72))&nbsp;AS&nbsp;select&nbsp;*&nbsp;from&nbsp;SYSDBA.DUAL;&nbsp;fetch&nbsp;into&nbsp;:e_text;"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">maxdb_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Exécution&nbsp;de&nbsp;la&nbsp;requête&nbsp;SQL&nbsp;*/<br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">maxdb_prepare&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"CALL&nbsp;test_proc&nbsp;(?)"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;préparation&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">maxdb_error</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #0000BB">maxdb_stmt_bind_param</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'s'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">maxdb_stmt_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf&nbsp;</span><span style="color: #007700">(</span><span style="color: #DD0000">"%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">maxdb_stmt_close&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div></div></div></body></html>

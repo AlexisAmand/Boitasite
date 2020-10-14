@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Attache un filtre &agrave; un flux en fin de liste</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.stream-copy-to-stream.html">« stream_copy_to_stream</a></li>
+      <li style="float: right;"><a href="function.stream-filter-prepend.html">stream_filter_prepend »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.stream.html">Fonctions sur les flux</a></li>
+    <li>Attache un filtre &agrave; un flux en fin de liste</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.stream-filter-append" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">stream_filter_append</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">stream_filter_append</span> &mdash; <span class="dc-title">Attache un filtre à un flux en fin de liste</span></p>
+ 
+ </div>
+ <div class="refsect1 description" id="refsect1-function.stream-filter-append-description">
+  <h3 class="title">Description</h3>
+   <div class="methodsynopsis dc-description">
+    <span class="methodname"><strong>stream_filter_append</strong></span>
+     ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$stream</code></span>
+    , <span class="methodparam"><span class="type">string</span> <code class="parameter">$filtername</code></span>
+    [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$read_write</code></span>
+    [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$params</code></span>
+   ]] ) : <span class="type">resource</span></div>
+
+   <p class="para rdfs-comment">
+    <span class="function"><strong>stream_filter_append()</strong></span> ajoute le filtre 
+    <code class="parameter">filtername</code> à la liste de filtres attachés au
+    flux <code class="parameter">stream</code>. 
+   </p>
+  </div>
+
+
+  <div class="refsect1 parameters" id="refsect1-function.stream-filter-append-parameters">
+   <h3 class="title">Liste de paramètres</h3>
+   <p class="para">
+    <dl>
+
+     
+      <dt>
+<code class="parameter">stream</code></dt>
+
+      <dd>
+
+       <p class="para">
+       Le flux cible.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">filtername</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nom du filtre.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">read_write</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Par défaut, <span class="function"><strong>stream_filter_append()</strong></span> va ajouter
+       le filtre à la liste de filtres de lecture si le fichier a été ouvert
+       en mode lecture (<code class="literal">r</code> et/ou <code class="literal">+</code>). Le
+       filtre sera aussi attaché à la liste des filtres de lecture
+       si le fichier a été ouvert en mode lecture (<code class="literal">w</code>, 
+       <code class="literal">a</code> et/ou <code class="literal">+</code>).
+       <strong><code>STREAM_FILTER_READ</code></strong>,
+       <strong><code>STREAM_FILTER_WRITE</code></strong>, et/ou
+       <strong><code>STREAM_FILTER_ALL</code></strong> peuvent aussi être utilisées
+       dans le paramètre <code class="parameter">read_write</code> pour contrôler
+       ce comportement. 
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">params</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Ce filtre sera ajouté avec les paramètres 
+       <code class="parameter">params</code> à la <em class="emphasis">fin</em> de
+       la liste des filtres, et sera ainsi appelé à la fin des 
+       opérations de filtres. Pour ajouter un filtre au début
+       de la liste, utilisez la fonction 
+       <span class="function"><a href="function.stream-filter-prepend.html" class="function">stream_filter_prepend()</a></span>.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.stream-filter-append-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne une ressource en cas de succès, ou <strong><code>FALSE</code></strong> si une erreur survient.
+   La ressource peut être utilisée pour se référer à l&#039;instance de ce filtre
+   lors d&#039;un appel à la fonction <span class="function"><a href="function.stream-filter-remove.html" class="function">stream_filter_remove()</a></span>.
+  </p>
+  <p class="para">
+   <strong><code>FALSE</code></strong> est retourné si <code class="parameter">stream</code> n&#039;est pas une ressource
+   ou si <code class="parameter">filtername</code> ne peut être atteint.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.stream-filter-append-examples">
+  <h3 class="title">Exemples</h3>
+    <p class="para">
+     <div class="example" id="example-4442">
+      <p><strong>Exemple #1 Contrôler l&#039;application des filtres</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Ouverture&nbsp;d'un&nbsp;fichier&nbsp;de&nbsp;test&nbsp;en&nbsp;lecture/écriture<br /></span><span style="color: #0000BB">$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">'test.txt'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'w+'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;On&nbsp;applique&nbsp;le&nbsp;filtre&nbsp;ROT13&nbsp;au&nbsp;flux&nbsp;d'écriture,&nbsp;mais&nbsp;pas&nbsp;à<br />&nbsp;*&nbsp;celui&nbsp;de&nbsp;lecture&nbsp;*/<br /></span><span style="color: #0000BB">stream_filter_append</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"string.rot13"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">STREAM_FILTER_WRITE</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;On&nbsp;ajoute&nbsp;un&nbsp;simple&nbsp;chaîne&nbsp;dans&nbsp;le&nbsp;fichier,&nbsp;il&nbsp;sera<br />&nbsp;*&nbsp;transformé&nbsp;par&nbsp;ROT13&nbsp;à&nbsp;l'écriture&nbsp;*/<br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Ceci&nbsp;est&nbsp;un&nbsp;test\n"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;On&nbsp;revient&nbsp;au&nbsp;début&nbsp;du&nbsp;fichier&nbsp;*/<br /></span><span style="color: #0000BB">rewind</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;On&nbsp;lit&nbsp;le&nbsp;contenu&nbsp;du&nbsp;fichier.<br />&nbsp;*&nbsp;Si&nbsp;on&nbsp;appliquait&nbsp;le&nbsp;filtre&nbsp;ROT13&nbsp;nous&nbsp;aurions&nbsp;la<br />&nbsp;*&nbsp;chaîne&nbsp;dans&nbsp;son&nbsp;étât&nbsp;d'origine&nbsp;*/<br /></span><span style="color: #0000BB">fpassthru</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Résultat&nbsp;attendu<br />&nbsp;&nbsp;&nbsp;----------------<br /><br />Guvf&nbsp;vf&nbsp;n&nbsp;grfg<br /><br />*/<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+     </div>
+    </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.stream-filter-append-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Quand vous utilisez des filtres personnalisés</strong><br />
+   <span class="simpara">
+    <span class="function"><strong>stream_register_filter()</strong></span> doit être appelée avant
+    <span class="function"><strong>stream_filter_append()</strong></span> pour enregistrer le filtre
+    sous le nom de <code class="parameter">filtername</code>.
+   </span>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>:  
+   <span class="simpara">
+    Les données du flux (locales et distantes) sont retournées en morceaux,
+    les données non acheminées étant conservées dans le tampon interne.
+    Lorsqu&#039;un nouveau filtre est ajouté à la fin du flux, les données dans
+    le tampon interne sont passées dans le nouveau filtre à ce moment-là.
+    Ceci est différent du comportement de
+    <span class="function"><a href="function.stream-filter-prepend.html" class="function">stream_filter_prepend()</a></span>.
+   </span>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <span class="simpara">
+    Quand un filtre est ajouté pour la lecture et l&#039;écriture, deux instances
+    du filtres sont créées. <span class="function"><a href="function.stream-filter-prepend.html" class="function">stream_filter_prepend()</a></span> doit être
+    appelée deux fois avec <strong><code>STREAM_FILTER_READ</code></strong> et 
+    <strong><code>STREAM_FILTER_WRITE</code></strong> pour obtenir les ressources de filtres.
+   </span>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.stream-filter-append-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <ul class="simplelist">
+   <li class="member"><span class="function"><a href="function.stream-filter-register.html" class="function" rel="rdfs-seeAlso">stream_filter_register()</a> - Enregistre un filtre de flux</span></li>
+   <li class="member"><span class="function"><a href="function.stream-filter-prepend.html" class="function" rel="rdfs-seeAlso">stream_filter_prepend()</a> - Attache un filtre &agrave; un flux en d&eacute;but de liste</span></li>
+   <li class="member"><span class="function"><a href="function.stream-get-filters.html" class="function" rel="rdfs-seeAlso">stream_get_filters()</a> - Liste les filtres enregistr&eacute;s</span></li>
+  </ul>
+ </div>
+
+</div></div></div></body></html>

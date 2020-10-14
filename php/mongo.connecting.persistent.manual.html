@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Les connexions persistantes manuelles (version sup&eacute;rieure &agrave; 1.1.4 *uniquement*)</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongo.connecting.pools.html">« File d'attente de connexion (version 1.2.0-1.2.12 *seulement*)</a></li>
+      <li style="float: right;"><a href="mongo.context.html">Options de contexte du flux »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mongo.connecting.html">Connection</a></li>
+    <li>Les connexions persistantes manuelles (version sup&eacute;rieure &agrave; 1.1.4 *uniquement*)</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongo.connecting.persistent.manual" class="section">
+  <h2 class="title">Les connexions persistantes manuelles (version supérieure à 1.1.4 *uniquement*)</h2>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Cette section n&#039;est pas pertinente pour les versions 1.2.0+. En 1.2.0+,
+    les connexions sont toujours persistantes et gérées automatiquement
+    par le driver. Si vous utilisez la version 1.2.x (mais non 1.3.x ou supérieur),
+    reportez-vous à la méthode <a href="class.mongopool.html" class="classname">MongoPool</a> pour plus
+    d&#039;informations sur les files d&#039;attente de connexions.
+   </p>
+  </p></blockquote>
+  
+  <p class="para">
+   La création de nouvelles connexions à la base de données est une opération lente.
+   Pour minimiser le nombre de connexions que vous devez effectuer, vous pouvez utiliser
+   les connexions dites &quot;persistantes&quot;. Une connexion persistante est sauvegardée par PHP,
+   et ainsi, vous pourrez utiliser la même connexion pour toutes vos requêtes.
+  </p>
+  
+  <p class="para">
+   Par exemple, ce programme simple se connecte à la base de données 1000 fois :
+  </p>
+  
+  <div class="example" id="mongo.writeconcerns.majority.acknowledged-example">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">for&nbsp;(</span><span style="color: #0000BB">$i</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">1000</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">();<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  
+  <p class="para">
+   Son exécution prend approximativement 18 secondes. Si vous changez ce code pour
+   utiliser les connexions persistantes :
+  </p>
+  
+  <div class="example" id="mongo.writeconcerns.journalled">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">for&nbsp;(</span><span style="color: #0000BB">$i</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">1000</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$m&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">MongoClient</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost:27017"</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #DD0000">"persist"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"x"</span><span style="color: #007700">));<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  
+  <p class="para">
+   ... il ne prend plus que .02 secondes, vu qu&#039;il ne réalise réellement qu&#039;une seule
+   connexion à la base de données.
+  </p>
+  
+  <p class="para">
+   Les connexions persistantes ont besoin d&#039;une chaîne d&#039;identification (qui est &quot;x&quot; dans
+   notre précédent exemple) afin de les identifier de façon unique. Afin d&#039;utiliser une
+   connexion persistante, le nom de l&#039;hôte, le port, la chaîne d&#039;identification, le nom
+   d&#039;utilisateur ainsi que le mot de passe (si fourni) doivent correspondre avec une
+   connexion persistante existante. Sinon, une nouvelle connexion sera créée avec ces
+   informations d&#039;identification.
+  </p>
+  <p class="para">
+   Les connexions persistantes sont <em class="emphasis">hautement recommandées</em> et
+   devraient être systématiquement utilisées en production sauf si une très bonne raison
+   indique le contraire. La plupart des raisons qui font qu&#039;elles ne sont pas recommandées
+   dans le cas des bases de données relationnelles ne sont pas applicables pour MongoDB.
+  </p>
+ </div></div></div></body></html>

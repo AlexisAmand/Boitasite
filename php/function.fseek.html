@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Modifie la position du pointeur de fichier</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.fscanf.html">« fscanf</a></li>
+      <li style="float: right;"><a href="function.fstat.html">fstat »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes de fichiers</a></li>
+    <li>Modifie la position du pointeur de fichier</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.fseek" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">fseek</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">fseek</span> &mdash; <span class="dc-title">Modifie la position du pointeur de fichier</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.fseek-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>fseek</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$handle</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$offset</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$whence</code><span class="initializer"> = SEEK_SET</span></span>
+  ] ) : <span class="type">int</span></div>
+
+  <p class="para rdfs-comment">
+   Modifie le curseur de position dans le fichier <code class="parameter">handle</code>.
+   La nouvelle position, mesurée en octets, à partir du début du fichier,
+   est obtenue en additionnant la distance <code class="parameter">offset</code>
+   à la position <code class="parameter">whence</code>.
+  </p>
+   <p class="para">
+   En général, il est possible de se déplacer au delà de la fin du flux (eof); si des
+   données sont écrites dans ce cas, l&#039;espace entre la fin du flux et
+   la position courante sera rempli d&#039;octets nuls. Cependant, certains flux ne supportent
+   pas ce comportement, en particulier lorsque l&#039;espace de stockage sous-jascent est de
+   taille fixe.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.fseek-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">handle</code></dt>
+
+     <dd>
+
+      <p class="para">Un pointeur de système de fichiers de type <span class="type"><a href="language.types.resource.html" class="type resource">resource</a></span>
+qui est habituellement créé en utilisant la fonction <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span>.</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">offset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       La position.
+      </p>
+      <p class="para">
+       Pour se déplacer à une position avant la fin du fichier, vous devez
+       passer une valeur négative à <code class="parameter">offset</code> et définir
+       le paramètre <code class="parameter">whence</code> à la valeur
+       <strong><code>SEEK_END</code></strong>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">whence</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Les valeurs possibles pour <code class="parameter">whence</code> sont :
+       <ul class="simplelist">
+        <li class="member"><strong><code>SEEK_SET</code></strong> : la position finale vaut <code class="parameter">offset</code> octets.</li>
+        <li class="member"><strong><code>SEEK_CUR</code></strong> : la position finale sera la position courante, ajoutée à <code class="parameter">offset</code> octets.</li>
+        <li class="member"><strong><code>SEEK_END</code></strong> : la position finale vaut la position courante par rapport à la fin du fichier, ajoutée de <code class="parameter">offset</code> octets.</li>
+       </ul>
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.fseek-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne 0 en cas de succès, et sinon -1.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.fseek-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-2824">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>fseek()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">'somefile.txt'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'r'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;lit&nbsp;quelques&nbsp;données<br /></span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fgets</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">4096</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;retourne&nbsp;au&nbsp;début&nbsp;du&nbsp;fichier<br />//&nbsp;identique&nbsp;à&nbsp;rewind($fp);<br /></span><span style="color: #0000BB">fseek</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.fseek-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Si vous ouvrez le fichier avec le mode <code class="literal">a</code> ou
+    <code class="literal">a+</code>, toutes les données que vous écrirez dans le fichier
+    seront toujours ajoutées, sans se soucier de la position dans le fichier.
+   </p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Tous les flux ne supportent pas le déplacement. Pour ceux qui ne le supportent pas,
+    le déplacement en avant se fera en lisant et libérant les octets; les autres formes
+    de déplacements échoueront.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.fseek-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.ftell.html" class="function" rel="rdfs-seeAlso">ftell()</a> - Renvoie la position courante du pointeur de fichier</span></li>
+    <li class="member"><span class="function"><a href="function.rewind.html" class="function" rel="rdfs-seeAlso">rewind()</a> - Replace le pointeur de fichier au d&eacute;but</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

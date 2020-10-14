@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Ex&eacute;cute la requ&ecirc;te Mongo</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mongocursor.dead.html">« MongoCursor::dead</a></li>
+      <li style="float: right;"><a href="mongocursor.explain.html">MongoCursor::explain »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.mongocursor.html">MongoCursor</a></li>
+    <li>Ex&eacute;cute la requ&ecirc;te Mongo</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mongocursor.doquery" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">MongoCursor::doQuery</h1>
+  <p class="verinfo">(PECL mongo &gt;=0.9.0 &lt;1.6.0)</p><p class="refpurpose"><span class="refname">MongoCursor::doQuery</span> &mdash; <span class="dc-title">Exécute la requête Mongo</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mongocursor.doquery-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">protected</span> <span class="methodname"><strong>MongoCursor::doQuery</strong></span>
+    ( <span class="methodparam">void</span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Veuillez ne pas utiliser cette méthode.
+   </p>
+  </div>
+  <p class="para">
+   Cette fonction requête actuellement la base de données. Toutes les requêtes
+   et les commandes passent par cette fonction. Aussi, cette fonction peut être
+   surchargée pour fournir une gestion personnalisée des requêtes.
+  </p>
+  <p class="para">
+   Ce gestionnaire linéarise votre requête, et l&#039;envoie à la base de données,
+   puis, reçoit une réponse et la dé-linéarise. Aussi, si vous souhaitez la surcharger,
+   votre code devrait appeler la fonction originale pour utiliser les
+   fonctionnalités existantes (voir l&#039;exemple ci-dessous).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mongocursor.doquery-parameters">
+  <h3 class="title">Liste de paramètres</h3>    
+  <p class="para">Cette fonction ne contient aucun paramètre.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mongocursor.doquery-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   <strong><code>NULL</code></strong>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 errors" id="refsect1-mongocursor.doquery-errors">
+  <h3 class="title">Erreurs / Exceptions</h3>
+  <p class="para">
+   Lance une exception <a href="class.mongoconnectionexception.html" class="classname">MongoConnectionException</a> si
+   la base de données n&#039;a pu être atteinte.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 changelog" id="refsect1-mongocursor.doquery-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>1.2.11</td>
+       <td>
+        Lance une alerte de niveau <strong><code>E_DEPRECATED</code></strong>
+        lorsqu&#039;utilisé.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-mongocursor.doquery-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-1592">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>MongoCursor::doQuery()</strong></span></strong></p>
+    <div class="example-contents"><p>
+     Vous pouvez surcharger cette fonction pour effectuer une requête
+     sur un secondaire et, si elle échoue, la tenter sur le primaire.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">MyCursor&nbsp;</span><span style="color: #007700">extends&nbsp;</span><span style="color: #0000BB">MongoCursor&nbsp;</span><span style="color: #007700">{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;function&nbsp;</span><span style="color: #0000BB">doQuery</span><span style="color: #007700">()&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">slaveOkay</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">MongoCursor</span><span style="color: #007700">::</span><span style="color: #0000BB">doQuery</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;catch(</span><span style="color: #0000BB">MongoCursorException&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">slaveOkay</span><span style="color: #007700">(</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">MongoCursor</span><span style="color: #007700">::</span><span style="color: #0000BB">doQuery</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+ 
+</div></div></div></body></html>

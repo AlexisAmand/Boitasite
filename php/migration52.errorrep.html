@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Rapports d'erreur</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration52.newconf.html">« Nouvelles directives INI</a></li>
+      <li style="float: right;"><a href="migration52.other.html">Am&eacute;liorations »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration52.html">Migration de PHP 5.1.x &agrave; PHP 5.2.x</a></li>
+    <li>Rapports d'erreur</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration52.errorrep" class="section">
+  <h2 class="title">Rapports d&#039;erreur</h2>
+  <p class="para">
+   Certaines des conditions <strong><code>E_ERROR</code></strong> ont été converties en
+   erreurs qui peuvent être interceptées par un gestionnaire d&#039;erreur local. Si
+   <a href="errorfunc.constants.html" class="link"><strong><code>E_RECOVERABLE_ERROR</code></strong></a>
+   n&#039;est pas géré, il sera géré de la même manière que
+   <strong><code>E_ERROR</code></strong> dans les autres versions de PHP. Les erreurs
+   de ce type sont identifiées comme <code class="literal">Catchable fatal error</code>.
+  </p>
+  <p class="para">
+   Cette modification signifie que la valeur de la constante <strong><code>E_ALL</code></strong>
+   <a href="errorfunc.configuration.html#ini.error-reporting" class="link">error_reporting</a> est maintenant de
+   6143, alors qu&#039;elle était de 2047 auparavant. Commme les constantes PHP n&#039;ont pas
+   de signification hors de PHP, il arrive que la valeur entière soit utilisée
+   à la place de la constante, et il faudra alors modifier ces valeurs. Par exemple,
+   configurer le rapport d&#039;erreur dans le fichier
+   <a href="apache.configuration.html" class="link">httpd.conf</a> ou dans les fichiers
+   <var class="filename">.htaccess</var> doit se faire maintenant avec la valeur 6143.
+   Cela s&#039;applique aussi aux valeurs numériques utilisées directement dans les scripts.
+  </p>
+  <p class="para">
+   Un effet secondaire de la modification faite pour éviter les messages récurrents
+   avec <a href="errorfunc.configuration.html#ini.track-errors" class="link">track_errors</a> à
+   <code class="literal">On</code>, est qu&#039;il est désormais nécessaire de retourner <strong><code>FALSE</code></strong> depuis
+   le gestionnaire d&#039;erreur pour remplir la variable
+   <var class="varname"><a href="reserved.variables.phperrormsg.html" class="classname">$php_errormsg</a></var>. Cela fournit
+   un contrôle fin sur les messages stockés.
+  </p>
+ </div></div></div></body></html>

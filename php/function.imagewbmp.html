@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Affichage de l'image vers le navigateur ou dans un fichier</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.imagetypes.html">« imagetypes</a></li>
+      <li style="float: right;"><a href="function.imagewebp.html">imagewebp »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.image.html">Fonctions GD et images</a></li>
+    <li>Affichage de l'image vers le navigateur ou dans un fichier</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.imagewbmp" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">imagewbmp</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">imagewbmp</span> &mdash; <span class="dc-title">Affichage de l&#039;image vers le navigateur ou dans un fichier</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.imagewbmp-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>imagewbmp</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$image</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$to</code><span class="initializer"> = <strong><code>NULL</code></strong></span></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$foreground</code></span>
+  ]] ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   <span class="function"><strong>imagewbmp()</strong></span> affiche ou sauvegarde une version
+   <acronym title="Wireless Bitmap">WBMP</acronym> de l&#039;image <code class="parameter">image</code>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.imagewbmp-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<code class="parameter">
+    image</code></dt>
+<dd>
+<p class="para">Une ressource d&#039;image, retournée
+    par une des fonctions de création d&#039;images, comme <span class="function"><a href="function.imagecreatetruecolor.html" class="function">imagecreatetruecolor()</a></span>.
+</p></dd>
+
+    
+     <dt>
+<code class="parameter">to</code></dt>
+
+     <dd>
+
+      <p class="para">Le chemin ou un flux de ressource ouvert (qui sera automatiquement fermé après
+        le retour de cette fonction) vers lequel le fichier sera sauvegardé. Si défini à <strong><code>NULL</code></strong>, le flux
+        brute de l&#039;image sera affiché directement.</p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">foreground</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Vous pouvez choisir la couleur de fond avec ce paramètre.
+       Utilisez l&#039;identifiant retourné par <span class="function"><a href="function.imagecolorallocate.html" class="function">imagecolorallocate()</a></span>
+       comme valeur de ce paramètre. La couleur de fond par défaut est noire.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.imagewbmp-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+  <div class="caution"><strong class="caution">Attention</strong><p class="simpara">Toutefois, si libgd ne parvient pas à produire l&#039;image, cette fonction retourne <strong><code>TRUE</code></strong>.</p></div>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.imagewbmp-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-3367">
+    <p><strong>Exemple #1 Affichage d&#039;une image WBMP</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Création&nbsp;d'une&nbsp;image&nbsp;vide&nbsp;et&nbsp;ajout&nbsp;d'un&nbsp;texte<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecreatetruecolor</span><span style="color: #007700">(</span><span style="color: #0000BB">120</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">20</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$text_color&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">233</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">14</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">91</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagestring</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;&nbsp;</span><span style="color: #DD0000">'Un&nbsp;texte&nbsp;simple'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$text_color</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Définit&nbsp;le&nbsp;contenu&nbsp;de&nbsp;l'en-tête&nbsp;-&nbsp;dans&nbsp;ce&nbsp;cas,&nbsp;image/vnd.wap.wbmp<br />//&nbsp;Hint:&nbsp;see&nbsp;image_type_to_mime_type()&nbsp;for&nbsp;content-types<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-Type:&nbsp;image/vnd.wap.wbmp'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Affichage&nbsp;de&nbsp;l'image<br /></span><span style="color: #0000BB">imagewbmp</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Libération&nbsp;de&nbsp;la&nbsp;mémoire<br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-3368">
+    <p><strong>Exemple #2 Sauvegarde de l&#039;image WBMP</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Création&nbsp;d'une&nbsp;image&nbsp;vide&nbsp;et&nbsp;ajout&nbsp;d'un&nbsp;texte<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecreatetruecolor</span><span style="color: #007700">(</span><span style="color: #0000BB">120</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">20</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$text_color&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">233</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">14</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">91</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagestring</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;&nbsp;</span><span style="color: #DD0000">'Un&nbsp;texte&nbsp;simple'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$text_color</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Sauvegarde&nbsp;de&nbsp;l'image<br /></span><span style="color: #0000BB">imagewbmp</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'simpletext.wbmp'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Libération&nbsp;de&nbsp;la&nbsp;mémoire<br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="example" id="example-3369">
+    <p><strong>Exemple #3 Affichage de l&#039;image avec un premier-plan différent</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Création&nbsp;d'une&nbsp;image&nbsp;vide&nbsp;et&nbsp;ajout&nbsp;d'un&nbsp;texte<br /></span><span style="color: #0000BB">$im&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecreatetruecolor</span><span style="color: #007700">(</span><span style="color: #0000BB">120</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">20</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$text_color&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">233</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">14</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">91</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">imagestring</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;&nbsp;</span><span style="color: #DD0000">'Un&nbsp;texte&nbsp;simple'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$text_color</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Définit&nbsp;le&nbsp;contenu&nbsp;de&nbsp;l'en-tête&nbsp;-&nbsp;dans&nbsp;ce&nbsp;cas,&nbsp;image/vnd.wap.wbmp<br />//&nbsp;Astuce&nbsp;:&nbsp;voir&nbsp;la&nbsp;fonction&nbsp;image_type_to_mime_type()&nbsp;pour&nbsp;les&nbsp;types&nbsp;de&nbsp;contenu<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;image/vnd.wap.wbmp'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Définit&nbsp;un&nbsp;premier-plan<br /></span><span style="color: #0000BB">$foreground_color&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">imagecolorallocate</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">255</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">imagewbmp</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$foreground_color</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Libération&nbsp;de&nbsp;la&nbsp;mémoire<br /></span><span style="color: #0000BB">imagedestroy</span><span style="color: #007700">(</span><span style="color: #0000BB">$im</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.imagewbmp-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.image2wbmp.html" class="function" rel="rdfs-seeAlso">image2wbmp()</a> - Affichage de l'image vers le navigateur ou dans un fichier</span></li>
+    <li class="member"><span class="function"><a href="function.imagepng.html" class="function" rel="rdfs-seeAlso">imagepng()</a> - Envoie une image PNG vers un navigateur ou un fichier</span></li>
+    <li class="member"><span class="function"><a href="function.imagegif.html" class="function" rel="rdfs-seeAlso">imagegif()</a> - Affichage de l'image vers le navigateur ou dans un fichier</span></li>
+    <li class="member"><span class="function"><a href="function.imagejpeg.html" class="function" rel="rdfs-seeAlso">imagejpeg()</a> - Affichage de l'image vers le navigateur ou dans un fichier</span></li>
+    <li class="member"><span class="function"><a href="function.imagetypes.html" class="function" rel="rdfs-seeAlso">imagetypes()</a> - Retourne les types d'images support&eacute;s par la version courante de PHP</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

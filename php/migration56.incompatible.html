@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Modifications entrainant une incompatibilit&eacute; ascendante</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration56.html">« Migration de PHP 5.5.x &agrave; PHP 5.6.x</a></li>
+      <li style="float: right;"><a href="migration56.new-features.html">Nouvelles fonctionnalit&eacute;s »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration56.html">Migration de PHP 5.5.x &agrave; PHP 5.6.x</a></li>
+    <li>Modifications entrainant une incompatibilit&eacute; ascendante</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration56.incompatible" class="sect1">
+ <h2 class="title">Modifications entrainant une incompatibilité ascendante</h2>
+ <p class="simpara">
+  Bien que la plupart du code PHP 5 existant devrait fonctionner sans aucune 
+  modification, vous devez prendre en considération quelques incompatibilités 
+  ascendantes : 
+ </p>
+
+ <div class="sect2" id="migration56.incompatible.array-keys">
+  <h3 class="title">Les clés des tableaux ne sont pas écrasées lors de la définition d&#039;un
+   tableau comme une propriété d&#039;une classe via un tableau littéral</h3>
+
+  <p class="para">
+   Précédemment, les tableaux déclarés comme des propriétés de classe qui mixaient
+   des clés explicites et implicites pouvaient voir leurs éléments écrasés sans
+   avertissement si une clé explicite était identique à une clé séquentielle
+   implicite. Par exemple :
+  </p>
+
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">C&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;</span><span style="color: #0000BB">ONE&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;</span><span style="color: #0000BB">$array&nbsp;</span><span style="color: #007700">=&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">self</span><span style="color: #007700">::</span><span style="color: #0000BB">ONE&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'foo'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'bar'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'quux'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;];<br />}<br /><br /></span><span style="color: #0000BB">var_dump</span><span style="color: #007700">((new&nbsp;</span><span style="color: #0000BB">C</span><span style="color: #007700">)-&gt;</span><span style="color: #0000BB">array</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <p class="para">Résultat de l&#039;exemple ci-dessus en PHP 5.5 :</p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+array(2) {
+  [0]=&gt;
+  string(3) &quot;bar&quot;
+  [1]=&gt;
+  string(4) &quot;quux&quot;
+}
+
+</pre></div>
+   </div>
+   <p class="para">Résultat de l&#039;exemple ci-dessus en PHP 5.6 :</p>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+array(3) {
+  [1]=&gt;
+  string(3) &quot;foo&quot;
+  [2]=&gt;
+  string(3) &quot;bar&quot;
+  [3]=&gt;
+  string(4) &quot;quux&quot;
+}
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+ <div class="sect2" id="migration56.incompatible.json-decode">
+  <h3 class="title">Rigueur de <span class="function"><a href="function.json-decode.html" class="function">json_decode()</a></span></h3>
+
+  <p class="para">
+   <span class="function"><a href="function.json-decode.html" class="function">json_decode()</a></span> rejette maintenant les variantes non 
+   écrites en minuscule des littéraux JSON <code class="literal">true</code>, 
+   <code class="literal">false</code> et <code class="literal">null</code>, en accord 
+   avec la spécification JSON, et <span class="function"><a href="function.json-last-error.html" class="function">json_last_error()</a></span> est
+   renseignée en conséquence. Précédemment, les valeurs passées à
+   <span class="function"><a href="function.json-decode.html" class="function">json_decode()</a></span> contenant l&#039;une 
+   de ces valeurs en majuscules ou dans une casse mixte étaient acceptées.
+  </p>
+
+  <p class="para">
+   Ce changement va affecter uniquement les cas ou du JSON invalide serait passé 
+   à <span class="function"><a href="function.json-decode.html" class="function">json_decode()</a></span> : du JSON valide ne sera pas affecté et sera
+   analysé normalement.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration56.incompatible.peer-verification">
+  <h3 class="title">
+   Les gestionnaires de flux vérifient maintenant par défaut les certificats de pair
+   et les noms d&#039;hôtes lors de l&#039;utilisation de SSL/TLS
+  </h3>
+
+  
+<p class="para">
+    Tous les flux clients cryptés activent désormais la vérification par paire par défaut.
+    Par défaut, ceci va utiliser le CA OpenSSL par défaut pour vérifier la paire
+    de certificat. Dans la plupart des cas, aucune modification n&#039;a besoin d&#039;être faite
+    pour communiquer avec des serveurs et des certificats SSL valides, sachant que les
+    distributeurs configurent généralement OpenSSL pour utiliser les CA connus.
+</p>
+
+<p class="para">
+    Le CA par défaut peut être écrasé sur une base globale en utilisant les
+    options de configuration openssl.cafile ou openssl.capath, ou via une requête
+    basique en utilisant les options de contexte
+    <a href="context.ssl.html#context.ssl.cafile" class="link"><code class="parameter">cafile</code></a> ou
+    <a href="context.ssl.html#context.ssl.capath" class="link"><code class="parameter">capath</code></a>.
+</p>
+
+<p class="para">
+    Bien que ce ne soit pas conseillé en général, il est possible de désactiver la
+    vérification de certificats par paire pour une requête en définissant l&#039;option
+    de contexte <a href="context.ssl.html#context.ssl.verify-peer" class="link"><code class="parameter">verify_peer</code></a>
+    à <strong><code>FALSE</code></strong>, et pour désactiver la validation du nom des paires, en configurant
+    l&#039;option de contexte
+    <a href="context.ssl.html#context.ssl.verify-peer-name" class="link"><code class="parameter">verify_peer_name</code></a>
+    à <strong><code>FALSE</code></strong>.
+</p>
+
+ </div>
+
+ <div class="sect2" id="migration56.incompatible.gmp">
+  <h3 class="title">Les ressources <a href="book.gmp.html" class="link">GMP</a> sont maintenant des objets</h3>
+
+  <p class="para">
+   Les ressources <a href="book.gmp.html" class="link">GMP</a> sont maintenant des objets.
+   L&#039;API de l&#039;extension GMP n&#039;a pas changé et le code existant devrait
+   continuer à fonctionner sans modification à moins qu&#039;une vérification explicite
+   ne soit faite en utilisant <span class="function"><a href="function.is-resource.html" class="function">is_resource()</a></span> ou équivalent.
+  </p>
+ </div>
+
+ <div class="sect2" id="migration56.incompatible.mcrypt">
+  <h3 class="title">Les fonctions <a href="book.mcrypt.html" class="link">Mcrypt</a> requièrent maintenant des clés ou IV valides</h3>
+
+  <p class="para">
+   <span class="function"><a href="function.mcrypt-encrypt.html" class="function">mcrypt_encrypt()</a></span>, <span class="function"><a href="function.mcrypt-decrypt.html" class="function">mcrypt_decrypt()</a></span>,
+   <span class="function"><a href="function.mcrypt-cbc.html" class="function">mcrypt_cbc()</a></span>, <span class="function"><a href="function.mcrypt-cfb.html" class="function">mcrypt_cfb()</a></span>,
+   <span class="function"><a href="function.mcrypt-ecb.html" class="function">mcrypt_ecb()</a></span>, <span class="function"><a href="function.mcrypt-generic.html" class="function">mcrypt_generic()</a></span> et
+   <span class="function"><a href="function.mcrypt-ofb.html" class="function">mcrypt_ofb()</a></span> n&#039;acceptent plus de clés ou de vecteurs
+   d&#039;initialisation (IVs) de tailles incorrectes, et les modes de ciphers par blocs
+   qui requièrent des IVs échoueront désormais si un IV n&#039;est pas fourni.
+  </p>
+ </div>
+ 
+ <div class="sect2" id="migration56.incompatible.curl">
+  <h3 class="title">Téléchargement de fichiers avec <a href="book.curl.html" class="link">cURL</a></h3>
+
+  <p class="para">
+   Le téléchargement de fichier en utilisant la syntaxe @file nécessite maintenant
+   que la directive CURLOPT_SAFE_UPLOAD soit définie à <strong><code>FALSE</code></strong>.
+   <a href="class.curlfile.html" class="classname">CURLFile</a> doit plutôt être utilisé à la place.
+  </p>
+ </div>
+ 
+</div></div></div></body></html>

@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Cr&eacute;e un contexte pr&eacute;fixe/ns pour la prochaine requ&ecirc;te XPath</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="simplexmlelement.getnamespaces.html">« SimpleXMLElement::getNamespaces</a></li>
+      <li style="float: right;"><a href="simplexmlelement.savexml.html">SimpleXMLElement::saveXML »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.simplexmlelement.html">SimpleXMLElement</a></li>
+    <li>Cr&eacute;e un contexte pr&eacute;fixe/ns pour la prochaine requ&ecirc;te XPath</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="simplexmlelement.registerxpathnamespace" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SimpleXMLElement::registerXPathNamespace</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.0, PHP 7)</p><p class="refpurpose"><span class="refname">SimpleXMLElement::registerXPathNamespace</span> &mdash; <span class="dc-title">
+   Crée un contexte préfixe/ns pour la prochaine requête XPath
+  </span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-simplexmlelement.registerxpathnamespace-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><strong>SimpleXMLElement::registerXPathNamespace</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$prefix</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$ns</code></span>
+   ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Crée un contexte préfixe/ns pour la prochaine requête XPath. En
+   particulier, ceci est utile si le fournisseur du document XML donné modifie
+   les préfixes d&#039;espace de nom. <code class="literal">registerXPathNamespace</code>
+   créera un préfixe pour l&#039;espace de nom associé, autorisant l&#039;accès aux
+   noeuds dans cet espace de nom sans avoir besoin de changer le code pour
+   autoriser les nouveaux préfixes dictés par le fournisseur.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-simplexmlelement.registerxpathnamespace-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">prefix</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le préfixe d&#039;espace de nom à utiliser dans la requête XPath pour
+       l&#039;espace de nom donnée dans <code class="parameter">ns</code>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">ns</code></dt>
+
+     <dd>
+
+      <p class="para">
+       L&#039;espace de nom à utiliser pour la requête XPath. Ceci doit concorder
+       avec un espace de nom qui est utilisé par le document XML, sinon la requête
+       XPath qui utilise <code class="parameter">prefix</code> ne retournera aucun
+       résultat.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-simplexmlelement.registerxpathnamespace-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-simplexmlelement.registerxpathnamespace-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-6138">
+    <p><strong>Exemple #1 Fixe un préfixe d&#039;espace de nom pour utiliser dans une requête XPath</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$xml&nbsp;</span><span style="color: #007700">=&nbsp;&lt;&lt;&lt;EOD<br /></span><span style="color: #DD0000">&lt;book&nbsp;xmlns:chap="http://example.org/chapter-title"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;My&nbsp;Book&lt;/title&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;chapter&nbsp;id="1"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;chap:title&gt;Chapter&nbsp;1&lt;/chap:title&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;para&gt;Donec&nbsp;velit.&nbsp;Nullam&nbsp;eget&nbsp;tellus&nbsp;vitae&nbsp;tortor&nbsp;gravida&nbsp;scelerisque.&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In&nbsp;orci&nbsp;lorem,&nbsp;cursus&nbsp;imperdiet,&nbsp;ultricies&nbsp;non,&nbsp;hendrerit&nbsp;et,&nbsp;orci.&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nulla&nbsp;facilisi.&nbsp;Nullam&nbsp;velit&nbsp;nisl,&nbsp;laoreet&nbsp;id,&nbsp;condimentum&nbsp;ut,&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ultricies&nbsp;id,&nbsp;mauris.&lt;/para&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/chapter&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;chapter&nbsp;id="2"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;chap:title&gt;Chapter&nbsp;2&lt;/chap:title&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;para&gt;Lorem&nbsp;ipsum&nbsp;dolor&nbsp;sit&nbsp;amet,&nbsp;consectetuer&nbsp;adipiscing&nbsp;elit.&nbsp;Proin&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gravida.&nbsp;Phasellus&nbsp;tincidunt&nbsp;massa&nbsp;vel&nbsp;urna.&nbsp;Proin&nbsp;adipiscing&nbsp;quam&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vitae&nbsp;odio.&nbsp;Sed&nbsp;dictum.&nbsp;Ut&nbsp;tincidunt&nbsp;lorem&nbsp;ac&nbsp;lorem.&nbsp;Duis&nbsp;eros&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tellus,&nbsp;pharetra&nbsp;id,&nbsp;faucibus&nbsp;eu,&nbsp;dapibus&nbsp;dictum,&nbsp;odio.&lt;/para&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/chapter&gt;<br />&lt;/book&gt;<br /></span><span style="color: #007700">EOD;<br /><br /></span><span style="color: #0000BB">$sxe&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">SimpleXMLElement</span><span style="color: #007700">(</span><span style="color: #0000BB">$xml</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$sxe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">registerXPathNamespace</span><span style="color: #007700">(</span><span style="color: #DD0000">'c'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'http://example.org/chapter-title'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$sxe</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">xpath</span><span style="color: #007700">(</span><span style="color: #DD0000">'//c:title'</span><span style="color: #007700">);<br /><br />foreach&nbsp;(</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$title</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$title&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Chapter 1
+Chapter 2
+</pre></div>
+    </div>
+    <div class="example-contents"><p>
+     Notez comment le document XML montré dans cet exemple fixe un espace de
+     nom avec le préfixe <code class="literal">chap</code>. Imaginez que ce document (ou
+     un autre similaire) puisse avoir utilisé un préfixe <code class="literal">c</code>
+     dans le passé pour le même espace de nom. Puisqu&#039;il a changé, la requête
+     XPath ne retournerait plus les résultats appropriés et la requête devrait
+     être modifiée. L&#039;utilisation de <code class="literal">registerXPathNamespace</code>
+     évite les modifications futures de la requête même si le fournisseur
+     change le préfixe d&#039;espace de nom.
+    </p></div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-simplexmlelement.registerxpathnamespace-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="methodname"><a href="simplexmlelement.xpath.html" class="methodname" rel="rdfs-seeAlso">SimpleXMLElement::xpath()</a> - Ex&eacute;cute une requ&ecirc;te Xpath sur des donn&eacute;es XML</span></li>
+    <li class="member"><span class="methodname"><a href="simplexmlelement.getdocnamespaces.html" class="methodname" rel="rdfs-seeAlso">SimpleXMLElement::getDocNamespaces()</a> - Retourne les espaces de noms d&eacute;clar&eacute;s dans un document</span></li>
+    <li class="member"><span class="methodname"><a href="simplexmlelement.getnamespaces.html" class="methodname" rel="rdfs-seeAlso">SimpleXMLElement::getNamespaces()</a> - Retourne les espaces de noms utilis&eacute;s dans un document</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

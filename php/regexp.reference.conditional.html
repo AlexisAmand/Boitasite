@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Les sous-masques conditionnels</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="regexp.reference.onlyonce.html">« Sous-masques uniques</a></li>
+      <li style="float: right;"><a href="regexp.reference.comments.html">Commentaires »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="reference.pcre.pattern.syntax.html">Fonctionnement des expressions rationnelles</a></li>
+    <li>Les sous-masques conditionnels</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="regexp.reference.conditional" class="section">
+  <h2 class="title">Les sous-masques conditionnels</h2>
+  <p class="para">
+   Il est possible de lier un sous-masque à une condition, ou de
+   choisir entre deux sous-masques alternatifs, en fonction du
+   résultat d&#039;une assertion, ou suivant les résultats
+   de recherche précédents.
+   Les deux formes possibles de sous-masques conditionnels sont
+  </p>
+  
+ <div class="informalexample">
+   <div class="example-contents">
+<div class="cdata"><pre>
+(?(condition)masque positif)
+(?(condition) masque positif | masque négatif)
+</pre></div>
+  </div>
+
+  </div>
+  <p class="para">
+   Si les conditions sont satisfaites, le masque positif est utilisé,
+   sinon, le masque négatif est utilisé, si présent.
+   S&#039;il y a plus de deux alternatives, une erreur est générée
+   à la compilation.
+  </p>
+  <p class="para">
+   Il y a deux types de conditions : si le texte entre les parenthèses
+   est une séquence de chiffres, alors la condition est satisfaite si
+   le sous-masque correspondant à ce numéro a réussi.
+   Considérons le masque suivant, qui contient des espaces non
+   significatifs pour le rendre plus compréhensible (on supposera
+   l&#039;option <a href="reference.pcre.pattern.modifiers.html" class="link">PCRE_EXTENDED</a>
+   activée) et qui est divisée en trois parties
+   pour simplifier les explications :
+  </p>
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="cdata"><pre>
+( \( )?    [^()]+    (?(1) \) )
+</pre></div>
+   </div>
+
+  </div>
+  <p class="para">
+   La première partie recherche une parenthèse ouvrante
+   optionnelle et, si elle existe, elle est capturée. La deuxième
+   partie recherche un séquence de caractères qui ne contiennent
+   pas de parenthèses. La troisième partie est
+   conditionnée à la première, et s&#039;assure que s&#039;il
+   y a une parenthèse ouvrante, il en existe une fermante.
+   Si une parenthèse ouvrante a été trouvée,
+   elle a été capturée, et donc la première capture
+   existe, et la condition est exécutée. Sinon, elle est
+   ignorée. Ce masque recherche donc une séquence de lettres,
+   éventuellement placées entre parenthèse.
+  </p>
+  <p class="para">
+   Si la condition est la chaîne <code class="literal">(R)</code>, elle sera
+   satisfaite si un appel récursif au masque ou au sous-masque
+   a été fait. Au premier appel, la condition n&#039;est pas vérifiée.
+  </p>
+  <p class="para">
+   Si la condition n&#039;est pas une séquence de chiffres, il faut que ce soit
+   une assertion. Ce peut être une assertion positive ou négative,
+   arrière ou avant. Considérons le masque suivant
+   (même conditions que le précédent) et avec deux
+   alternatives en seconde ligne :
+  </p>
+  
+  <div class="informalexample">
+   <div class="example-contents">
+<div class="cdata"><pre>
+(?(?=[^a-z]*[a-z])
+\d{2}-[a-z]{3}-\d{2}  |  \d{2}-\d{2}-\d{2} )
+</pre></div>
+   </div>
+
+  </div>
+  <p class="para">
+   La condition est une assertion avant positive, qui recherche une
+   séquence optionnelle de caractères non-lettre. En d&#039;autres
+   termes, elle teste la présence d&#039;au moins une lettre dans la chaîne
+   sujet. Si une lettre est trouvée, la recherche se poursuit avec
+   la première alternative, et sinon, avec la seconde. Ce masque
+   recherche des chaînes de la forme <code class="literal">dd-aaa-dd</code> ou
+   <code class="literal">dd-dd-dd</code>, avec &quot;<code class="literal">aaa</code>&quot; qui sont des
+   lettres, et <code class="literal">dd</code> qui sont des chiffres.
+  </p>
+ </div></div></div></body></html>

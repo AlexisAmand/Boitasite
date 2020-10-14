@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Lib&egrave;re un verrou exclusif sur une cl&eacute; donn&eacute;e</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.wincache-ucache-set.html">« wincache_ucache_set</a></li>
+      <li style="float: right;"><a href="wincache.win32build.html">Compilation sous Windows »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.wincache.html">Fonctions WinCache</a></li>
+    <li>Lib&egrave;re un verrou exclusif sur une cl&eacute; donn&eacute;e</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.wincache-unlock" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">wincache_unlock</h1>
+  <p class="verinfo">(PECL wincache &gt;= 1.1.0)</p><p class="refpurpose"><span class="refname">wincache_unlock</span> &mdash; <span class="dc-title">Libère un verrou exclusif sur une clé donnée</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.wincache-unlock-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>wincache_unlock</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$key</code></span>
+   ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Libère un verrou exclusif qui a été obtenu sur une clé donnée en utilisant
+   la fonction <span class="function"><a href="function.wincache-lock.html" class="function">wincache_lock()</a></span>. Si un autre processus est en
+   attente de ce verrou, pour cette clé, il obtiendra le verrou.
+  </p>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="simpara">
+    L&#039;utilisation des fonctions <span class="function"><a href="function.wincache-lock.html" class="function">wincache_lock()</a></span> et
+    <span class="function"><strong>wincache_unlock()</strong></span> peut provoquer des verrous morts lors
+    de l&#039;exécution de scripts PHP dans un environnement multi-processus comme FastCGI.
+    N&#039;utilisez pas ces fonctions tant que vous n&#039;êtes pas sûr d&#039;en avoir besoin.
+    Pour la majorité des opérations sur le cache utilisateur, il n&#039;est pas nécessaire
+    de les utiliser.
+   </p>
+  </div>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.wincache-unlock-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">key</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Nom de la clé du cache pour laquelle le verrou doit être libéré.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.wincache-unlock-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.wincache-unlock-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-645">
+    <p><strong>Exemple #1 Exemple avec <span class="function"><strong>wincache_unlock()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"/tmp/lock.txt"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"r+"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">wincache_lock</span><span style="color: #007700">(</span><span style="color: #0000BB">“lock_txt_lock”</span><span style="color: #007700">))&nbsp;{&nbsp;</span><span style="color: #FF8000">//&nbsp;Pose&nbsp;d'un&nbsp;verrou&nbsp;exclusif<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">ftruncate</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;on&nbsp;vide&nbsp;le&nbsp;fichier<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"On&nbsp;écrit&nbsp;quelque&nbsp;chose&nbsp;ici\n"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">wincache_unlock</span><span style="color: #007700">(</span><span style="color: #0000BB">“lock_txt_lock”</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">//&nbsp;On&nbsp;libère&nbsp;le&nbsp;verrou<br /></span><span style="color: #007700">}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Impossible&nbsp;d'obtenir&nbsp;le&nbsp;verrou&nbsp;!"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.wincache-unlock-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.wincache-lock.html" class="function" rel="rdfs-seeAlso">wincache_lock()</a> - Acqui&egrave;re un verrou exclusif sur une cl&eacute; donn&eacute;e</span></li>
+    <li class="member"><span class="function"><a href="function.wincache-ucache-set.html" class="function" rel="rdfs-seeAlso">wincache_ucache_set()</a> - Ajoute une variable au cache utilisateur et &eacute;crase la variable si elle existe d&eacute;j&agrave; dans le cache</span></li>
+    <li class="member"><span class="function"><a href="function.wincache-ucache-get.html" class="function" rel="rdfs-seeAlso">wincache_ucache_get()</a> - R&eacute;cup&egrave;re une variable stok&eacute;e dans le cache utilisateur</span></li>
+    <li class="member"><span class="function"><a href="function.wincache-ucache-delete.html" class="function" rel="rdfs-seeAlso">wincache_ucache_delete()</a> - Supprime les variables du cache utilisateur</span></li>
+    <li class="member"><span class="function"><a href="function.wincache-ucache-clear.html" class="function" rel="rdfs-seeAlso">wincache_ucache_clear()</a> - Supprime le contenu d'une entr&eacute;e du cache utilisateur</span></li>
+    <li class="member"><span class="function"><a href="function.wincache-ucache-exists.html" class="function" rel="rdfs-seeAlso">wincache_ucache_exists()</a> - V&eacute;rifie si une variable existe dans le cache utilisateur</span></li>
+    <li class="member"><span class="function"><a href="function.wincache-ucache-meminfo.html" class="function" rel="rdfs-seeAlso">wincache_ucache_meminfo()</a> - R&eacute;cup&egrave;re des informations sur l'utilisation m&eacute;moire du cache utilisateur</span></li>
+    <li class="member"><span class="function"><a href="function.wincache-ucache-info.html" class="function" rel="rdfs-seeAlso">wincache_ucache_info()</a> - R&eacute;cup&egrave;re des informations sur des donn&eacute;es stok&eacute;es dans le cache utilisateur</span></li>
+    <li class="member"><span class="function"><a href="function.wincache-scache-info.html" class="function" rel="rdfs-seeAlso">wincache_scache_info()</a> - R&eacute;cup&egrave;re des informations sur des fichiers mis en cache</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

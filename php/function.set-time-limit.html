@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Fixe le temps maximum d'ex&eacute;cution d'un script</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.set-include-path.html">« set_include_path</a></li>
+      <li style="float: right;"><a href="function.sys-get-temp-dir.html">sys_get_temp_dir »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.info.html">Fonctions sur les options et les informations de PHP</a></li>
+    <li>Fixe le temps maximum d'ex&eacute;cution d'un script</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.set-time-limit" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">set_time_limit</h1>
+  <p class="verinfo">(PHP 4, PHP 5, PHP 7)</p><p class="refpurpose"><span class="refname">set_time_limit</span> &mdash; <span class="dc-title">Fixe le temps maximum d&#039;exécution d&#039;un script</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.set-time-limit-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>set_time_limit</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$seconds</code></span>
+   ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Fixe le délai d&#039;expiration d&#039;un script, en secondes. Si cette limite est atteinte,
+   le script s&#039;interrompt, et renvoie une erreur fatale. La valeur par défaut est
+   30 secondes ou, si c&#039;est le cas, la valeur de la directive <code class="literal">max_execution_time</code>
+   définie dans le <var class="filename">php.ini</var>.
+  </p>
+  <p class="para">
+    Lorsqu&#039;elle est appelée, <span class="function"><strong>set_time_limit()</strong></span> remet le compteur
+    à zéro. En d&#039;autres termes, si la limite par défaut est à 30 secondes, et qu&#039;après
+    25 secondes d&#039;exécution du script l&#039;appel <code class="literal">set_time_limit(20)</code>
+    est fait, alors le script tournera pendant un total de 45 secondes avant de finir.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.set-time-limit-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">seconds</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le temps maximal d&#039;exécution, en secondes. S&#039;il vaut <code class="literal">0</code>, aucune limite
+       n&#039;est imposée.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.set-time-limit-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne <strong><code>TRUE</code></strong> en cas de succès, ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.set-time-limit-notes">
+  <h3 class="title">Notes</h3>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Notez que <span class="function"><strong>set_time_limit()</strong></span> n&#039;a pas d&#039;effet lorsque PHP
+    fonctionne en mode <a href="ini.sect.safe-mode.html#ini.safe-mode" class="link">safe mode</a>. Il n&#039;y a pas d&#039;autre solution que de changer de
+    mode, ou de modifier la durée maximale d&#039;exécution dans le <var class="filename">php.ini</var>.
+   </p>
+  </div>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    La fonction <span class="function"><strong>set_time_limit()</strong></span> et la directive de configuration
+    <a href="info.configuration.html#ini.max-execution-time" class="link">max_execution_time</a> n&#039;affectent que
+    le temps d&#039;exécution du script lui-même. Tout temps passé en dehors du script,
+    comme un appel système utilisant <span class="function"><a href="function.system.html" class="function">system()</a></span>, des opérations sur
+    les flux, les requêtes sur base de données, etc. n&#039;est pas pris en compte lors du
+    calcul de la durée maximale d&#039;exécution du script.
+    Ceci est faux sous Windows où le temps mesuré est le temps réel.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.set-time-limit-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="info.configuration.html#ini.max-execution-time" class="link">max_execution_time</a></li>
+    <li class="member"><a href="info.configuration.html#ini.max-input-time" class="link">max_input_time</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

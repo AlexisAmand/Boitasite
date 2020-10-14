@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>S&eacute;ries 1.2 PECL/mysqlnd_ms</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-ms.changes-one-three.html">« S&eacute;ries 1.3 PECL/mysqlnd_ms</a></li>
+      <li style="float: right;"><a href="mysqlnd-ms.changes-one-one.html">S&eacute;ries 1.1 PECL/mysqlnd_ms »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-ms.changes.html">Change History</a></li>
+    <li>S&eacute;ries 1.2 PECL/mysqlnd_ms</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-ms.changes-one-two" class="section">
+  <h2 class="title">Séries 1.2 PECL/mysqlnd_ms</h2>
+  <p class="para">
+   1.2.1-beta
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      Date de sortie : 01/2012
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Motto/thème : voir 1.2.0-alpha
+     </span>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   Modifications mineures.
+  </p>
+  <p class="para">
+   1.2.0-alpha
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      Date de sortie : 11/2011
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Motto/thème : Injection de l&#039;identifiant de transaction globale
+      et concepte de la qualité de service
+     </span>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   En version 1.2, le focus continue d&#039;être sur le support des clusters de
+   base de données MySQL avec la réplication asynchrone. Le plugin tente
+   de rendre utilisable le cluster en introduisant un filtre de qualité de service,
+   utilisable par les applications pour définir la qualité de service requise
+   depuis le cluster. Les niveaux de service fournis sont la consistence éventuelle
+   en tenant compte d&#039;un âge maximal et du lag des esclaves, la consistence de
+   session, et la consistence forte.
+  </p>
+  <p class="para">
+   De plus, le plugin peut injecter l&#039;identifiant de transaction globale côté
+   client pour rendre plus simple le retour manuel vers le maître.
+  </p>
+  <p class="para">
+   Modifications des fonctionnalités
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      Introduction du filtre de qualité de service (QoS). Les niveaux de service
+      fournis par le filtre QoS sont :
+      <ul class="itemizedlist">
+       <li class="listitem">
+        <span class="simpara">
+         consistence éventuelle, lag de l&#039;esclave en option
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         consistence de session, GTID en option
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         consistence forte
+        </span>
+       </li>
+      </ul>
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Ajout de la fonction <span class="function"><a href="function.mysqlnd-ms-set-qos.html" class="function">mysqlnd_ms_set_qos()</a></span> pour définir
+      la qualité de service requise lors de l&#039;exécution. Les nouvelles constantes
+      relatives à la fonction <span class="function"><a href="function.mysqlnd-ms-set-qos.html" class="function">mysqlnd_ms_set_qos()</a></span> sont :
+      <ul class="itemizedlist">
+       <li class="listitem">
+        <span class="simpara">
+         <strong><code>MYSQLND_MS_QOS_CONSISTENCY_STRONG</code></strong>
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <strong><code>MYSQLND_MS_QOS_CONSISTENCY_SESSION</code></strong>
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <strong><code>MYSQLND_MS_QOS_CONSISTENCY_EVENTUAL</code></strong>
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <strong><code>MYSQLND_MS_QOS_OPTION_GTID</code></strong>
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <strong><code>MYSQLND_MS_QOS_OPTION_AGE</code></strong>
+        </span>
+       </li>
+      </ul>
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Ajout de l&#039;injection de l&#039;identifiant de transaction globale côté client (GTID).
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Nouvelles statistiques relatives au GTID :
+      <ul class="itemizedlist">
+       <li class="listitem">
+        <span class="simpara">
+         <code class="literal">gtid_autocommit_injections_success</code>
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <code class="literal">gtid_autocommit_injections_failure</code>
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <code class="literal">gtid_commit_injections_success</code>
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <code class="literal">gtid_commit_injections_failure</code>
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <code class="literal">gtid_implicit_commit_injections_success</code>
+        </span>
+       </li>
+       <li class="listitem">
+        <span class="simpara">
+         <code class="literal">gtid_implicit_commit_injections_failure</code>
+        </span>
+       </li>
+      </ul>
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Ajout de la fonction <span class="function"><a href="function.mysqlnd-ms-get-last-gtid.html" class="function">mysqlnd_ms_get_last_gtid()</a></span>
+      pour récupérer le dernier identifiant de transaction globale.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Activation du support de plusieurs maîtres, sans aucun esclave.
+     </p>
+    </li>
+   </ul>
+  </p>
+ </div></div></div></body></html>

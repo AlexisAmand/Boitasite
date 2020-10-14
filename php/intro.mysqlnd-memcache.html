@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Introduction</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="book.mysqlnd-memcache.html">« mysqlnd_memcache</a></li>
+      <li style="float: right;"><a href="mysqlnd-memcache.quickstart.html">D&eacute;marrage rapide et exemples »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="book.mysqlnd-memcache.html">mysqlnd_memcache</a></li>
+    <li>Introduction</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="intro.mysqlnd-memcache" class="preface">
+  <h1 class="title">Introduction</h1>
+  <p class="para">
+   Le plugin mysqlnd memcache (<code class="literal">mysqlnd_memcache</code>)
+   est une extension PHP pour traduire de façon transparente le SQL en
+   requêtes pour le plugin MySQL InnoDB Memcached Daemon (plugin côté serveur).
+   Il inclut un support expérimental pour le Daémon MySQL Cluster Memcached.
+   Le plugin côté serveur fournit un accès aux données stockées dans
+   des tables MySQL InnoDB (respectivement MySQL Cluster NDB) en utilisant
+   le protocole Memcache. Cette extension PHP, qui supporte toutes les extensions
+   PHP MySQL qui utilisent <a href="book.mysqlnd.html" class="link">mysqlnd</a>, va identifier
+   les tables exportées de cette façon, et va traduire les requêtes SELECT
+   en requêtes Memcache.
+  </p>
+  <div class="mediaobject">
+   
+   <div class="imageobject">
+    <img src="images/55c7816ef6df6821f05678a68b4e4e63-mymemflow.png" alt="Flux de données mysqlnd_memcache" width="813" height="276" />
+   </div>
+  </div>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Ce plugin dépend du plugin MySQL InnoDB Memcached Daemon. Il n&#039;est pas fourni
+    pour être utilisé avec un Memcache seul. Pour un gestionnaire de cache
+    générique utilisant Memcache, utilisez plutôt <a href="book.mysqlnd-qc.html" class="link">
+    le plugin de mise en cache de requête mysqlnd</a>. Pour un accès
+    direct à Memcache, tournez-vous du côté des extensions
+    <a href="book.memcache.html" class="link">memcache</a> et
+    <a href="book.memcached.html" class="link">memcached</a>.
+   </p>
+  </p></blockquote>
+  <p class="para">
+   Le driver natif MySQL pour PHP est une bibliothèque C qui fonctionne
+   avec PHP depuis PHP 5.3.0. Il agit comme remplaçant de la bibliothèque
+   cliente MySQL (libmysqlclient). L&#039;utilisation de mysqlnd a plusieurs
+   avantages : aucune extension à télépharger n&#039;est nécessaire, car il est fourni
+   avec PHP, il est sous licence PHP, il consomme moins de mémoire dans certain
+   cas, et il contient de nouvelles fonctionalités comme les requêtes asynchrones.
+  </p>
+  <p class="para">
+   <code class="literal">mysqlnd_mmemcache</code> opère, dans la plupart des cas,
+   de façon transparente d&#039;un point de vue utilisateur. Le plugin mysqlnd
+   memcache supporte toutes les applications PHP, et toutes les extensions
+   MySQL de PHP. Il ne modifie en rien les APIs existantes. Aussi, il peut
+   être utilisé très facilement avec toutes les applications PHP existantes.
+  </p>
+  <p class="para">
+   Le plugin MySQL Memcache ajoute des méthodes d&#039;accès de type clé-valeur
+   pour les données stockées dans des tables InnoDB resp. NDB (MySQL Cluster) SQL
+   via le protocole Memcache. Ce type d&#039;accès est bien plus rapide que
+   d&#039;utiliser SQL.
+  </p>
+  <div class="section" id="mysqlnd-memcache.key-features">
+   <h2 class="title">Fonctionalités clés</h2>
+   <p class="para">
+    Voici les fonctionalités clés de PECL/mysqlnd_memcache :
+   </p>
+   <p class="para">
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <p class="para">
+       De possible bénéfice en terme de performance
+      </p>
+      <p class="para">
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <p class="para">
+          Côté client : protocole léger.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          Côté serveur : aucune analyse SQL, accès direct au stockage.
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          Vous pouvez utiliser nos propres tests de performance !
+          Les résultats de ces tests sont hautement dépendants de la configuration
+          et du matériel utilisés.
+         </p>
+        </li>
+       </ul>
+      </p>
+     </li>
+    </ul>
+   </p>
+  </div>
+
+  <div class="section" id="mysqlnd-memcache.limitations">
+   <h2 class="title">Limitations</h2>
+   <p class="para">
+    La version initiale n&#039;est pas sécurisé niveau binaire. En raison de la
+    façon dont le plugin MySQL Memcache fonctionne, il y a des restrictions
+    au niveau des séparateurs.
+   </p>
+   <p class="para">
+    Les requêtes préparées et asynchrones ne sont pas supportées.
+    Le support des méta-données du jeu de résultats est limité.
+   </p>
+   <p class="para">
+    Les informations de mappage des tables accessibles via Memcache
+    ne sont pas mises en cache dans le plugin entre les requêtes,
+    mais récupérées depuis le serveur MySQL à chaque fois qu&#039;une connexion
+    MySQL est associée avec une connexion Memcache. Voir la fonction
+    <span class="function"><a href="function.mysqlnd-memcache-set.html" class="function">mysqlnd_memcache_set()</a></span> pour plus de détails.
+   </p>
+  </div>
+
+  <div class="section" id="mysqlnd-memcache.name">
+   <h2 class="title">A propos du nom</h2>
+   <p class="para">
+    Le raccourci <code class="literal">mysqlnd_memcache</code> signifie
+    <code class="literal">mysqlnd memcache plugin</code>. Memcache se repose
+    sur le plugin MySQL Memcache pour InnoDB et NDB (MySQL Cluster).
+    Le plugin n&#039;est pas lié au serveur de cache Memcache.
+   </p>
+  </div>
+ </div></div></div></body></html>

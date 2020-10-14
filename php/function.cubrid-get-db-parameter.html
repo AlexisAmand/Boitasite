@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Retourne les param&egrave;tres de la base de donn&eacute;es CUBRID</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.cubrid-get-client-info.html">« cubrid_get_client_info</a></li>
+      <li style="float: right;"><a href="function.cubrid-get-query-timeout.html">cubrid_get_query_timeout »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.cubrid.html">Fonctions CUBRID</a></li>
+    <li>Retourne les param&egrave;tres de la base de donn&eacute;es CUBRID</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.cubrid-get-db-parameter" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">cubrid_get_db_parameter</h1>
+  <p class="verinfo">(PECL CUBRID &gt;= 8.3.0)</p><p class="refpurpose"><span class="refname">cubrid_get_db_parameter</span> &mdash; <span class="dc-title">Retourne les paramètres de la base de données CUBRID</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.cubrid-get-db-parameter-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>cubrid_get_db_parameter</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$conn_identifier</code></span>  
+   ) : <span class="type">array</span></div>
+
+  <p class="para rdfs-comment">
+   Cette fonction retourne les paramètres de la base de données CUBRID, ou
+   <strong><code>FALSE</code></strong> si une erreur survient. Elle retourne un tableau associatif
+   avec les valeurs des paramètres suivants :
+  </p>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><strong><code>PARAM_ISOLATION_LEVEL</code></strong></li>
+    <li class="member"><strong><code>PARAM_LOCK_TIMEOUT</code></strong></li>
+    <li class="member"><strong><code>PARAM_MAX_STRING_LENGTH</code></strong></li>
+    <li class="member"><strong><code>PARAM_AUTO_COMMIT</code></strong></li>
+   </ul>
+  </p>
+  <p class="para">
+   <table class="doctable table">
+    <caption><strong>Paramètres de la base de données</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Paramètre</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>PARAM_ISOLATION_LEVEL</td>
+       <td>Le niveau d&#039;isolation de la transaction.</td>
+      </tr>
+
+      <tr>
+       <td>LOCK_TIMEOUT</td>
+       <td>CUBRID fournit la fonctionnalité de verrou du délai d&#039;expiration,
+        qui définit le temps d&#039;attente (en secondes) pour le verrou tant que
+        la configuration du verrou de la transaction est autorisée.
+        La valeur par défaut du paramètre lock_timeout_in_secs vaut -1, qui
+        signifie que l&#039;application cliente attendra indéfiniment tant que le
+        verrou de transaction est autorisé.</td>
+      </tr>
+
+      <tr>
+       <td>PARAM_AUTO_COMMIT</td>
+       <td>En CUBRID PHP, le mode auto-commit est désactivé par défaut pour
+        le gestionnaire de transaction. Il peut être défini par
+        la fonction <span class="function"><a href="function.cubrid-set-autocommit.html" class="function">cubrid_set_autocommit()</a></span>.</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+  <p class="para">
+   La table suivante montre les niveaux d&#039;isolation de 1 à 6 :
+   <table class="doctable table">
+    <caption><strong>Niveaux d&#039;isolation supportés par CUBRID</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Nom</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>SERIALIZABLE (6)</td>
+       <td>Dans ce niveau d&#039;isolation, les problèmes de concurrence
+        (i.e. lecture de données modifiées, lecture répétée de données,
+        lecture de données fantôme, etc.) ne peuvent pas survenir.</td>
+      </tr>
+
+      <tr>
+       <td>REPEATABLE READ CLASS avec REPEATABLE READ INSTANCES (5)</td>
+       <td>Une autre transaction T2 ne peut pas mettre à jour le schéma
+        de la table A tant que la transaction T1 lit la table A. La transaction
+        T1 peut rencontrer des données fantômes de l&#039;enregistrement R
+        qui a été inséré par la transaction T2 lorsqu&#039;elle récupère à plusieurs
+        reprises un enregistrement spécifique.</td>
+      </tr>
+
+      <tr>
+       <td>REPEATABLE READ CLASS with READ COMMITTED INSTANCES (or CURSOR STABILITY) (4)</td>
+       <td>Une autre transaction T2 ne peut pas mettre à jour le schéma
+        de la table A alors qu&#039;une transaction T1 lit la table A. La transaction
+        T1 peut rencontrer des lectures répétées de données qui ont 
+        été mises à jour, et valider par une autre transaction T2 lorsqu&#039;elle
+        récupère à plusieurs reprises l&#039;enregistrement R.</td>
+      </tr>
+
+      <tr>
+       <td>REPEATABLE READ CLASS with READ UNCOMMITTED INSTANCES (3)</td>
+       <td>Niveau d&#039;isolation par défaut. Une transaction T2 ne peut
+        pas mettre à jour le schéma de la table A alors qu&#039;une transaction
+        T1 lit la table A. La transaction T1 peut rencontrer des données
+        non mises à jour pour l&#039;enregistrement qui a été mis à jour
+        mais non encore validé par la transaction T2.</td>
+      </tr>
+
+      <tr>
+       <td>READ COMMITTED CLASS with READ COMMITTED INSTANCES (2)</td>
+       <td>La transaction T1 peut rencontrer des lectures répétées de données
+        pour la table qui a été mise à jour et validée par la transaction T2
+        alors qu&#039;elle lit plusieurs fois la table A. La transaction T1 peut
+        rencontrer des lectures répétées de données pour l&#039;enregistrement qui
+        a été mis à jour et validé par la transaction T2 alors qu&#039;elle récupère
+        à plusieurs reprises l&#039;enregistrement R.</td>
+      </tr>
+
+      <tr>
+       <td>READ COMMITTED CLASS with READ UNCOMMITTED INSTANCES (1)</td>
+       <td>La transaction T1 peut rencontrer des lectures répétées
+        de données pour la table qui a été mise à jour et validée par la
+        transaction T2 alors qu&#039;elle lit à plusieurs reprises la table A.
+        La transaction T1 peut rencontrer des données non mises à jour pour
+        l&#039;enregistrement qui a été mise à jour mais non validé par la transaction
+        T2.</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.cubrid-get-db-parameter-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">conn_identifier</code></dt>
+
+     <dd>
+<p class="para">La connexion CUBRID. Si l&#039;identifiant de connexion
+      n&#039;est pas spécifié, le dernier lien ouvert avec la fonction
+      <span class="function"><a href="function.cubrid-connect.html" class="function">cubrid_connect()</a></span> sera utilisé.</p></dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.cubrid-get-db-parameter-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Un tableau associatif contenant les paramètres de la base
+   de données CUBRID en cas de succès.
+  </p>
+  <p class="para">
+   <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.cubrid-get-db-parameter-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>8.4.0</td>
+       <td>
+        Modification de LOCK_TIMEOUT en PARAM_LOCK_TIMEOUT,
+        de MAX_STRING_LENGTH en PARAM_MAX_STRING_LENGTH dans le
+        résultat.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.cubrid-get-db-parameter-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1109">
+   <p><strong>Exemple #1 Exemple avec <span class="function"><strong>cubrid_get_db_parameter()</strong></span></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%-30s&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"CUBRID&nbsp;PHP&nbsp;Version:"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">cubrid_version</span><span style="color: #007700">());<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">cubrid_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">33088</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"demodb"</span><span style="color: #007700">);<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$conn</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Connect&nbsp;Error&nbsp;('</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">cubrid_error_code</span><span style="color: #007700">()&nbsp;.</span><span style="color: #DD0000">')'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">cubrid_error_msg</span><span style="color: #007700">());<br />}<br /><br /></span><span style="color: #0000BB">$db_params&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">cubrid_get_db_parameter</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /><br />while&nbsp;(list(</span><span style="color: #0000BB">$param_name</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$param_value</span><span style="color: #007700">)&nbsp;=&nbsp;</span><span style="color: #0000BB">each</span><span style="color: #007700">(</span><span style="color: #0000BB">$db_params</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%-30s&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$param_name</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$param_value</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$server_info&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">cubrid_get_server_info</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$client_info&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">cubrid_get_client_info</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%-30s&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Server&nbsp;Info:"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$server_info</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%-30s&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Client&nbsp;Info:"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$client_info</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$charset&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">cubrid_get_charset</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%-30s&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"CUBRID&nbsp;Charset:"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$charset</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">cubrid_disconnect</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+CUBRID PHP Version:            9.1.0.0001
+
+PARAM_ISOLATION_LEVEL          3
+LOCK_TIMEOUT                   -1
+MAX_STRING_LENGTH              1073741823
+PARAM_AUTO_COMMIT              1
+
+Server Info:                   9.1.0.0212
+Client Info:                   9.1.0
+
+CUBRID Charset:                iso8859-1
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.cubrid-get-db-parameter-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="function.cubrid-set-db-parameter.html" class="function" rel="rdfs-seeAlso">cubrid_set_db_parameter()</a> - D&eacute;finit les param&egrave;tres de base de donn&eacute;es CUBRID</span></li>
+    <li class="member"><span class="function"><a href="function.cubrid-get-autocommit.html" class="function" rel="rdfs-seeAlso">cubrid_get_autocommit()</a> - R&eacute;cup&egrave;re le mode auto-commit de la connexion</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div></div></div></body></html>

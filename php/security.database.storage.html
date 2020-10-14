@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Mod&egrave;le de stockage avec chiffrement</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="security.database.connection.html">« Connexions au serveur de base de donn&eacute;es</a></li>
+      <li style="float: right;"><a href="security.database.sql-injection.html">Injection SQL »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="security.database.html">S&eacute;curit&eacute; des bases de donn&eacute;es</a></li>
+    <li>Mod&egrave;le de stockage avec chiffrement</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="security.database.storage" class="sect1">
+  <h2 class="title">Modèle de stockage avec chiffrement</h2>
+  <p class="simpara">
+   Les protocoles SSL/SSH protègent les données qui circulent entre
+   le serveur et le client : SSL/SSH ne protège pas les données
+   une fois dans la base. SSL est un protocole en ligne.
+  </p>
+  <p class="simpara">
+   Une fois que le pirate a obtenu l&#039;accès direct à votre base de données
+   (en contournant le serveur web), les données sensibles, stockées dans votre
+   base sont accessibles directement, à moins que les données de la base
+   ne soient protégées par la base. Chiffrer les données est une bonne
+   solution pour réduire cette menace, mais très peu de bases de données
+   offrent ce type de chiffrement.
+  </p>
+  <p class="simpara">
+   Le moyen le plus simple pour contourner ce problème est de créer votre
+   propre logiciel de chiffrement, et de l&#039;utiliser dans vos scripts PHP.
+   <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> peut vous aider dans cette tâche grâce aux nombreuses extensions
+   dont il dispose, comme
+   <a href="ref.mcrypt.html" class="link">Mcrypt</a> et
+   <a href="ref.mhash.html" class="link">Mhash</a>, qui connaissent un large éventail
+   de méthodes de chiffrement. Le script PHP va chiffrer les données qui
+   seront stockées, et les déchiffrer lorsqu&#039;elles seront relues. Voyez la
+   suite pour des exemples d&#039;utilisation de ce chiffrement.
+  </p>
+  
+  <div class="sect2" id="security.database.storage.hashing">
+   <h3 class="title">Hashage</h3>
+   <p class="simpara">
+    Dans le cas de données vraiment sensibles, si la représentation originale
+    n&#039;est pas nécessaire (pour affichage, ou comparaison), utiliser un
+    hash est une bonne solution. L&#039;exemple classique est le stockage de
+    mots de passe dans les bases de données, après les avoir passés au
+    en hashage de cryptage.
+   </p>
+   <p class="simpara">
+    En PHP 5.5 ou supérieur, les fonctions <a href="ref.password.html" class="link">password</a>
+    fournissent une bonne façon de hasher les données sensibles et fonctionnent avec ces hashs.
+    En PHP 5.3.7+, la bibliothèque <a href="https://github.com/ircmaxell/password_compat" class="link external">&raquo;&nbsp;
+    password_compat</a> peut également être utilsée.
+   </p>
+   <p class="simpara">
+    La fonction <span class="function"><a href="function.password-hash.html" class="function">password_hash()</a></span> est utilisée pour hasher une chaîne donnée
+    en utilisant l&#039;algorithme le plus fort actuellement disponible et la fonction
+    <span class="function"><a href="function.password-verify.html" class="function">password_verify()</a></span> vérifie si le mot de passe fourni correspond au
+    hash stocké en base de données.
+   </p>
+   <div class="example" id="example-382">
+    <p><strong>Exemple #1 Hasher un champ mot de passe</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;stockage&nbsp;du&nbsp;hash&nbsp;du&nbsp;mot&nbsp;de&nbsp;passe<br /></span><span style="color: #0000BB">$query&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;users(name,pwd)&nbsp;VALUES('%s','%s');"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">pg_escape_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$username</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">password_hash</span><span style="color: #007700">(</span><span style="color: #0000BB">$password</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">PASSWORD_DEFAULT</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;on&nbsp;vérifie&nbsp;si&nbsp;l'utilisateur&nbsp;a&nbsp;soumis&nbsp;le&nbsp;bon&nbsp;mot&nbsp;de&nbsp;passe<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;pwd&nbsp;FROM&nbsp;users&nbsp;WHERE&nbsp;name='%s';"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">pg_escape_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$username</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">));<br /><br />if&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">&amp;&amp;&nbsp;</span><span style="color: #0000BB">password_verify</span><span style="color: #007700">(</span><span style="color: #0000BB">$password</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'pwd'</span><span style="color: #007700">]))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Bonjour,&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">$username</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">'!'</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'L\'authentification&nbsp;a&nbsp;échoué&nbsp;pour&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">$username</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">'.'</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+   </div>
+   <p class="simpara">
+    Dans les anciennes versions de PHP, ceci pouvait être réalisé en utilisant la fonction
+    <span class="function"><a href="function.crypt.html" class="function">crypt()</a></span>.
+   </p>
+   <div class="example" id="example-383">
+    <p><strong>Exemple #2 Hasher un mot de passe en utilisant la fonction <span class="function"><a href="function.crypt.html" class="function">crypt()</a></span>s</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br /></span><span style="color: #FF8000">//&nbsp;stockage&nbsp;du&nbsp;hash&nbsp;du&nbsp;mot&nbsp;de&nbsp;passe<br />//&nbsp;$random_chars&nbsp;récupéré&nbsp;en&nbsp;utilisant,&nbsp;i.e.&nbsp;/dev/random<br /></span><span style="color: #0000BB">$query&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;users(name,pwd)&nbsp;VALUES('%s','%s');"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">pg_escape_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$username</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">pg_escape_string</span><span style="color: #007700">(</span><span style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span style="color: #0000BB">$password</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'$2a$07$'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$random_chars&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'$'</span><span style="color: #007700">)));<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;On&nbsp;vérifie&nbsp;si&nbsp;l'utilisateur&nbsp;a&nbsp;soumis&nbsp;le&nbsp;bon&nbsp;mot&nbsp;de&nbsp;passe<br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;pwd&nbsp;FROM&nbsp;users&nbsp;WHERE&nbsp;name='%s';"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">pg_escape_string</span><span style="color: #007700">(</span><span style="color: #0000BB">$username</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">pg_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">pg_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">));<br /><br />if&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">&amp;&amp;&nbsp;</span><span style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span style="color: #0000BB">$password</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'pwd'</span><span style="color: #007700">])&nbsp;==&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'pwd'</span><span style="color: #007700">])&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Bonjour,&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">$username</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">'!'</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'L\'authentification&nbsp;a&nbsp;échoué&nbsp;pour&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">$username</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">'.'</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+   </div>
+  </div>
+ </div></div></div></body></html>

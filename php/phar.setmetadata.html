@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Fixe les m&eacute;tadonn&eacute;es de l'archive phar</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="phar.setdefaultstub.html">« Phar::setDefaultStub</a></li>
+      <li style="float: right;"><a href="phar.setsignaturealgorithm.html">Phar::setSignatureAlgorithm »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="class.phar.html">Phar</a></li>
+    <li>Fixe les m&eacute;tadonn&eacute;es de l'archive phar</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="phar.setmetadata" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">Phar::setMetadata</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0, PHP 7, PECL phar &gt;= 1.0.0)</p><p class="refpurpose"><span class="refname">Phar::setMetadata</span> &mdash; <span class="dc-title">Fixe les métadonnées de l&#039;archive phar</span></p>
+
+ </div>
+ 
+ 
+ <div class="refsect1 description" id="refsect1-phar.setmetadata-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="methodname"><a href="phardata.setmetadata.html" class="methodname">Phar::setMetadata</a></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$metadata</code></span>
+   ) : <span class="type"><span class="type void">void</span></span></div>
+
+ <blockquote class="note"><p><strong class="note">Note</strong>: <p class="para">Cette
+    méthode nécessite que la variable de configuration INI <code class="literal">phar.readonly</code>
+    soit définie à <code class="literal">0</code> pour fonctionner avec les objets <a href="class.phar.html" class="classname">Phar</a>.
+    Sinon, une exception <a href="class.pharexception.html" class="classname">PharException</a> sera lançée.</p></p></blockquote>
+
+  <p class="para">
+   <span class="function"><a href="phardata.setmetadata.html" class="function">Phar::setMetadata()</a></span> doit être utilisée pour stocker des données personnalisées 
+   qui décrivent l&#039;archive phar, en tant qu&#039;entité à part entière.
+   <span class="function"><a href="pharfileinfo.setmetadata.html" class="function">PharFileInfo::setMetadata()</a></span> doit être utilisée pour les métadonnées spécifiques aux fichiers.
+   Les métadonnées peuvent diminuer les performance de chargement d&#039;une archive phar si les données sont importantes.
+  </p>
+  <p class="para">
+   Une utilisation possible des métadonnées est la spécification
+   des fichiers à utiliser au sein de  l&#039;archive pour la lancer, 
+   ou l&#039;emplacement d&#039;un fichier de manifeste comme le fichier package.xml 
+   de <a href="https://pear.php.net/" class="link external">&raquo;&nbsp;PEAR</a>.
+   De façon générale, toute donnée utile qui décrit l&#039;archive phar peut être stockée.
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-phar.setmetadata-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">metadata</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Toute variable PHP contenant des informations à stocker et qui
+       décrit l&#039;archive phar
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-phar.setmetadata-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Aucune valeur n&#039;est retournée.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-phar.setmetadata-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-729">
+    <p><strong>Exemple #1 Un exemple avec <span class="function"><a href="phardata.setmetadata.html" class="function">Phar::setMetadata()</a></span></strong></p>
+    <div class="example-contents"><p>
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;on&nbsp;s'assure&nbsp;que&nbsp;le&nbsp;phar&nbsp;n'existe&nbsp;pas&nbsp;déjà<br /></span><span style="color: #007700">@</span><span style="color: #0000BB">unlink</span><span style="color: #007700">(</span><span style="color: #DD0000">'nouveau.phar'</span><span style="color: #007700">);<br />try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$p&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Phar</span><span style="color: #007700">(</span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">__FILE__</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span style="color: #DD0000">'/nouveau.phar'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'nouveau.phar'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$p</span><span style="color: #007700">[</span><span style="color: #DD0000">'fichier.php'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">'&lt;?php&nbsp;echo&nbsp;"salut"'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$p</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setMetadata</span><span style="color: #007700">(array(</span><span style="color: #DD0000">'chargeur'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'fichier.php'</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$p</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMetadata</span><span style="color: #007700">());<br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Ne&nbsp;peut&nbsp;pas&nbsp;créer/modifier&nbsp;le&nbsp;phar&nbsp;:'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$e</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(1) {
+  [&quot;chargeur&quot;]=&gt;
+  string(11) &quot;fichier.php&quot;
+}
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-phar.setmetadata-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><span class="function"><a href="phar.getmetadata.html" class="function" rel="rdfs-seeAlso">Phar::getMetadata()</a> - Retourne les m&eacute;ta-donn&eacute;es de l'archive phar</span></li>
+    <li class="member"><span class="function"><a href="phar.delmetadata.html" class="function" rel="rdfs-seeAlso">Phar::delMetadata()</a> - Efface les m&eacute;ta-donn&eacute;es globales du phar</span></li>
+    <li class="member"><span class="function"><a href="phar.hasmetadata.html" class="function" rel="rdfs-seeAlso">Phar::hasMetadata()</a> - D&eacute;termine si le phar a ou non des m&eacute;ta-donn&eacute;es</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div></div></div></body></html>

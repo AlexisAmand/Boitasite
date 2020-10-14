@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>S&eacute;ries 1.6 PECL/mysqlnd_ms</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="mysqlnd-ms.changes.html">« Change History</a></li>
+      <li style="float: right;"><a href="mysqlnd-ms.changes-one-five.html">S&eacute;ries 1.5 PECL/mysqlnd_ms »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="mysqlnd-ms.changes.html">Change History</a></li>
+    <li>S&eacute;ries 1.6 PECL/mysqlnd_ms</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="mysqlnd-ms.changes-one-six" class="section">
+  <h2 class="title">Séries 1.6 PECL/mysqlnd_ms</h2>
+  <p class="para">
+   1.6.0-alpha
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <span class="simpara">
+      Date de sortie : TBD
+     </span>
+    </li>
+    <li class="listitem">
+     <span class="simpara">
+      Motto/thème : Maintenance et support initial de MySQL Fabric
+     </span>
+    </li>
+   </ul>
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    C&#039;est la série courante de développement. Toutes les fonctionalités
+    sont encore à un stade précoce. Les modifications peuvent survenir à
+    n&#039;importe quel moment sans aucun avertissement. Veuillez ne pas utiliser
+    cette version dans un environnement de production.
+   </p>
+   <p class="para">
+    La documentation peut ne pas refléter pour l&#039;instant l&#039;ensemble
+    des modifications.
+   </p>
+  </p></blockquote>
+  <p class="para">
+   Correction de bogues
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      Modification refusée : #66616 R/W split fails : QOS with mysqlnd_get_last_gtid with built-in MySQL GTID
+     </p>
+     <p class="para">
+      Ceci n&#039;est pas un bogue dans l&#039;implémentation du plugin, mais une limitation de
+      la fonctionalité côté serveur non considérée ni documentée auparavant. MySQL 5.6 built-in GTIDs
+      ne peut être utilisé pour assurer la consistence de la session lors de la lecture depuis
+      des esclaves, dans tous les cas. Dans le pire des cas, le plugin ne va pas considérer l&#039;utilisation
+      des esclaves et se retournera vers le maître. Il n&#039;y aura aucun résultat incorrect,
+      mais il n&#039;y aura, non plus, aucun bénéfice de faire des vérification GTID.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Correction du bogue #66064 - la balance de charge aléatoire ingore le poids
+     </p>
+     <p class="para">
+      En raison d&#039;un bogue sur l&#039;analyseur de configuration de la balance de charge
+      aléatoire, le poids du noeud était ignoré, si et seulement si le drapeau
+      sticky était défini.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Correction du bogue #65496 - Vérification incorrecte du délai de l&#039;esclave
+     </p>
+     <p class="para">
+      Le filtre de qualité de service ignorait les esclaves pour lesquels le lag
+      était de 0 seconde si un lag maximum était défini.
+      Malgré le fait qu&#039;un esclave ne lag pas du tout, il était exclus de la liste
+      de la balance de charge si un âge maximal était défini par le filtre QoS.
+      Ceci était du à l&#039;utilisation d&#039;un opérateur de comparaison incorrect dans les sources
+      du filtre.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Correction du bogue #65408 - Echéc de la compilation avec -Werror=format-security
+     </p>
+    </li>
+   </ul>
+  </p>
+  <p class="para">
+   Modification de fonctionalités
+   <ul class="itemizedlist">
+    <li class="listitem">
+     <p class="para">
+      Introduction d&#039;un pool de connexion interne. Lors de l&#039;utilisation de Fabric,
+      et du passage du groupe partagé A vers le groupe partagé B, nous remplaçons
+      la liste entière des maîtres et des esclaves. Ceci va perturber la logique
+      d&#039;alignement des status de connexions ainsi que quelques filtres et leurs
+      informations en cache sur la liste des maîtres et des esclaves. La nouvelle
+      abstraction du pool de connexion interne permet d&#039;informer les filtres des
+      modifications, leur permettant ainsi de mettre à jour leurs caches.
+     </p>
+     <p class="para">
+      Par la suite, le pool peut également être utilisé pour réduire la charge
+      des connexions. Supposons que vous passez d&#039;un groupe partagé à un autre,
+      et que vous revenez par la suite à la situation de départ. Chaque fois que
+      la bascule survient, la liste du pool de serveurs actifs (et de connexions)
+      est remplacée. Cependant, les connexions qui ne sont plus utilisées
+      ne sont pas nécessairement fermées immédiatement, mais conservées dans le
+      pool pour une utilisation ultérieure.
+     </p>
+     <p class="para">
+      Notez que le pool de connexion est interne à ce moment là. Il existe
+      quelques nouvelles statistiques permettant de le surveiller. Cependant,
+      vous ne pouvez pas pour l&#039;instant configurer la taille de ce pool.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Ajout d&#039;une abstraction padique des transactions distribuées.
+      Les transactions XA sont supportées en utilisant des appels SQL standarts.
+      Ceci est un inconvénient car les participans XA doivent être gérés manuellement.
+      PECL/mysqlnd_ms introduit des appels API pour contrôler les transactions XA
+      sur les serveurs MySQL. Lors de l&#039;utilisation de nouvelles fonctions,
+      PECL/mysqlnd_ms agit comme un coordinateur de transaction. Après le début
+      d&#039;une transaction distribuée, le plugin surveille tous les serveurs concernés
+      tant que la transaction ne s&#039;est pas terminée, et envoie les requêtes SQL
+      appropriées sur les participants XA.
+     </p>
+     <p class="para">
+      Ceci est utile, par exemple, lors de l&#039;utilisation de Fabric et du partage.
+      Lors de l&#039;utilisation de Fabric, les serveurs partagés concernés dans une
+      transaction peuvent ne pas être connus par avance. Aussi, le contrôle manuelle
+      d&#039;une transaction qui touchent plusieurs serveurs partagés devient difficile.
+      Soyez attentif aux <a href="mysqlnd-ms.concept_xa_trx.html" class="link">limitations courantes</a>.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Introduction d&#039;une boucle de tentatives automatique pour les
+      <a href="mysqlnd-ms.transient_errors.html" class="link">erreurs passagères</a> et les
+      <a href="function.mysqlnd-ms-get-stats.html" class="link">statistiques correspondantes</a>
+      pour compter le nombre de tentatives implicites. Quelques clusters
+      de bases de données distribuées utilisent les erreurs passagères pour
+      avertir le client de re-tenter son opération dans un moment. Le plus souvent,
+      le client est alors supposé stopper l&#039;exécution (sleep) pendant un
+      court instant avant de re-tenter l&#039;opération désirée. Le fait de passer
+      immédiatement à un autre noeud n&#039;est pas nécessaire comme réponse à
+      ces erreurs. Il convient plutôt de lancer une boucle de tentative.
+      C&#039;est une situation commune lors de l&#039;utilisation d&#039;un cluster MySQL.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Introduit une boucle de re-tentative automatique pour les
+      <a href="mysqlnd-ms.transient_errors.html" class="link">erreurs transitoires</a> et les
+      <a href="function.mysqlnd-ms-get-stats.html" class="link">statistiques correspondantes</a>
+      pour compter le nombre de re-tentatives implicites. Quelques grappes de
+      bases de données distribuées utilisent les erreurs transitoires pour
+      toucher un client afin qu&#039;il re-tente ses opérations un peu plus tard.
+      La plupart du temps, le client est alors supposé mettre en pause l&#039;exécution
+      pendant une court instant avant de tenter de nouveau l&#039;opération. 
+      Le passage immédiat au noeud suivant n&#039;est pas nécessaire en
+      réponse à cette erreur. Au lieu de cela, une boucle de re-tentative
+      peut être mise en place. Ceci est une situation commune lors de l&#039;utilisation
+      de grappe MySQL.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Introduction d&#039;un <a href="mysqlnd-ms.quickstart.mysql_fabric.html" class="link">support basic</a>
+      le framework d&#039;haute disponibilité et de fragmentation MySQL Fabric.
+     </p>
+     <p class="para">
+      Attention, ce support est au stade pré-alpha. A la fois le framework
+      côté serveur et côté client sont supposés fonctionner normalement ; toutefois,
+      les tests n&#039;ont pas été effectués avant la mise à disposition de la version
+      alpha du plugin. De plus, l&#039;API peut être modifié sans aucune alerte préalable.
+     </p>
+     <p class="para">
+      Sachant que c&#039;est un travail en cours, le manuel peut ne pas refléter toutes les
+      limitations des fonctionalités, ainsi que les bogues connus.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Les
+      <a href="function.mysqlnd-ms-get-stats.html" class="link">statistiques</a>
+      pour surveiller Fabric XML RPC appellant <code class="literal">sharding.lookup_servers</code> :
+      <code class="literal">fabric_sharding_lookup_servers_success</code>,
+      <code class="literal">fabric_sharding_lookup_servers_failure</code>,
+      <code class="literal">fabric_sharding_lookup_servers_time_total</code>,
+      <code class="literal">fabric_sharding_lookup_servers_bytes_total</code>,
+      <code class="literal">fabric_sharding_lookup_servers_xml_failure</code>.
+     </p>
+    </li>
+    <li class="listitem">
+     <p class="para">
+      Nouvelles fonctions en relation avec MySQL Fabric :
+      <span class="function"><a href="function.mysqlnd-ms-fabric-select-shard.html" class="function">mysqlnd_ms_fabric_select_shard()</a></span>,
+      <span class="function"><a href="function.mysqlnd-ms-fabric-select-global.html" class="function">mysqlnd_ms_fabric_select_global()</a></span>,
+      <span class="function"><a href="function.mysqlnd-ms-dump-servers.html" class="function">mysqlnd_ms_dump_servers()</a></span>.
+     </p>
+    </li>
+   </ul>
+  </p>
+ </div></div></div></body></html>

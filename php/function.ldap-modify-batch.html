@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Mets en lot des modifications et les ex&eacute;cute sur une entr&eacute;e LDAP</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="function.ldap-mod-replace.html">« ldap_mod_replace</a></li>
+      <li style="float: right;"><a href="function.ldap-modify.html">ldap_modify »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="ref.ldap.html">Fonctions LDAP</a></li>
+    <li>Mets en lot des modifications et les ex&eacute;cute sur une entr&eacute;e LDAP</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="function.ldap-modify-batch" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">ldap_modify_batch</h1>
+  <p class="verinfo">(PHP 5.4 &gt;= 5.4.26, PHP 5.5 &gt;= 5.5.10, PHP 5.6 &gt;= 5.6.0, PHP 7)</p><p class="refpurpose"><span class="refname">ldap_modify_batch</span> &mdash; <span class="dc-title">Mets en lot des modifications et les exécute sur une entrée LDAP</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-function.ldap-modify-batch-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="methodname"><strong>ldap_modify_batch</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$link_identifier</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$dn</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$entry</code></span>
+   [, <span class="methodparam"><span class="type">array</span> <code class="parameter">$serverctrls</code><span class="initializer"> = array()</span></span>
+  ] ) : <span class="type">bool</span></div>
+
+  <p class="para rdfs-comment">
+   Modifie une entrée existante dans un dossier LDAP. Permet
+   de spécifier de façon détaillée les modifications à effectuer.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.ldap-modify-batch-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    
+     <dt>
+<code class="parameter">link_identifier</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un identifiant de lien LDAP, retourné par la fonction
+       <span class="function"><a href="function.ldap-connect.html" class="function">ldap_connect()</a></span>.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">dn</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Le nom unique de l&#039;entrée LDAP.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">entry</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Un tableau qui spécifie les modifications à réaliser. Chaque entrée
+       de ce tableau est un tableau associatif contenant deux ou trois clés :
+       <code class="literal">attrib</code> correspond au nom de l&#039;attribut à modifier,
+       <code class="literal">modtype</code> correspond au type de modification à réaliser,
+       et (suivant le type de modification) <code class="literal">values</code> correspond
+       à un tableau de valeurs d&#039;attribut correspondant à la modification.
+      </p>
+      <p class="para">
+       Les valeurs possibles pour <code class="literal">modtype</code> sont :
+       <dl>
+
+        
+         <dt>
+<strong><code>LDAP_MODIFY_BATCH_ADD</code></strong></dt>
+
+         <dd>
+
+          <p class="para">
+           Chaque valeur spécifiée via <code class="literal">values</code> est ajoutée
+           (comme valeur additionnelle) à l&#039;attribut nommé par <code class="literal">attrib</code>.
+          </p>
+         </dd>
+
+        
+        
+         <dt>
+<strong><code>LDAP_MODIFY_BATCH_REMOVE</code></strong></dt>
+
+         <dd>
+
+          <p class="para">
+           Chaque valeur spécifiée via <code class="literal">values</code> est supprimée
+           depuis l&#039;attribut nommée par <code class="literal">attrib</code>. Toutes les
+           valeurs de l&#039;attribut n&#039;étant pas présentes dans le tableau
+           <code class="literal">values</code> demeureront inchangées.
+          </p>
+         </dd>
+
+        
+        
+         <dt>
+<strong><code>LDAP_MODIFY_BATCH_REMOVE_ALL</code></strong></dt>
+
+         <dd>
+
+          <p class="para">
+           Toutes les valeurs sont supprimées depuis l&#039;attribut nommé par
+           <code class="literal">attrib</code>. Une entrée <code class="literal">values</code>
+           n&#039;a pas besoin d&#039;être fournie.
+          </p>
+         </dd>
+
+        
+        
+         <dt>
+<strong><code>LDAP_MODIFY_BATCH_REPLACE</code></strong></dt>
+
+         <dd>
+
+          <p class="para">
+           Toutes les valeurs courantes de l&#039;attribut nommé par
+           <code class="literal">attrib</code> sont remplacées avec les valeurs
+           spécifiées via le tableau <code class="literal">values</code>.
+          </p>
+         </dd>
+
+        
+       </dl>
+
+      </p>
+      <p class="para">
+       Notez que toutes les valeurs de <code class="literal">attrib</code> doivent être
+       des chaînes de caractères, toutes les valeurs de <code class="literal">values</code>
+       doivent être un tableau de chaînes de caractères, et toutes les valeurs
+       de <code class="literal">modtype</code> doivent être une des constantes
+       LDAP_MODIFY_BATCH_*.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">serverctrls</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Tableau de <a href="ldap.controls.html" class="link">Contrôles LDAP</a> à envoyer avec la requête.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.ldap-modify-batch-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-function.ldap-modify-batch-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>7.3</td>
+       <td>
+        Support pour <code class="parameter">serverctrls</code> a été ajouté.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.ldap-modify-batch-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-5017">
+    <p><strong>Exemple #1 Ajout d&#039;un numéro de téléphone à un contact</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"cn=John&nbsp;Smith,ou=Wizards,dc=example,dc=com"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$modifs&nbsp;</span><span style="color: #007700">=&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"attrib"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"telephoneNumber"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"modtype"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">LDAP_MODIFY_BATCH_ADD</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"values"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #DD0000">"+1&nbsp;555&nbsp;555&nbsp;1717"</span><span style="color: #007700">],<br />&nbsp;&nbsp;&nbsp;&nbsp;],<br />];<br /></span><span style="color: #0000BB">ldap_modify_batch</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$dn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$modifs</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-5018">
+    <p><strong>Exemple #2 Renomme un utilisateur</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"cn=John&nbsp;Smith,ou=Wizards,dc=example,dc=com"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$modifs&nbsp;</span><span style="color: #007700">=&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"attrib"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"sn"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"modtype"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">LDAP_MODIFY_BATCH_REPLACE</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"values"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #DD0000">"Smith-Jones"</span><span style="color: #007700">],<br />&nbsp;&nbsp;&nbsp;&nbsp;],<br />&nbsp;&nbsp;&nbsp;&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"attrib"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"givenName"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"modtype"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">LDAP_MODIFY_BATCH_REPLACE</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"values"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #DD0000">"Jack"</span><span style="color: #007700">],<br />&nbsp;&nbsp;&nbsp;&nbsp;],<br />];<br /></span><span style="color: #0000BB">ldap_modify_batch</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$dn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$modifs</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">ldap_rename</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$dn</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"cn=Jack&nbsp;Smith-Jones"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">TRUE</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-5019">
+    <p><strong>Exemple #3 Ajoute deux adresses emails à un utilisateur</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"cn=Jack&nbsp;Smith-Jones,ou=Wizards,dc=example,dc=com"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$modifs&nbsp;</span><span style="color: #007700">=&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"attrib"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"mail"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"modtype"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">LDAP_MODIFY_BATCH_ADD</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"values"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"jack.smith@example.com"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"jack.smith-jones@example.com"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br />&nbsp;&nbsp;&nbsp;&nbsp;],<br />];<br /></span><span style="color: #0000BB">ldap_modify_batch</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$dn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$modifs</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-5020">
+    <p><strong>Exemple #4 Modifie le mot de passe d&#039;un utilisateur</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$dn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"cn=Jack&nbsp;Smith-Jones,ou=Wizards,dc=example,dc=com"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$modifs&nbsp;</span><span style="color: #007700">=&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"attrib"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"userPassword"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"modtype"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">LDAP_MODIFY_BATCH_REMOVE</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"values"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #DD0000">"Tr0ub4dor&amp;3"</span><span style="color: #007700">],<br />&nbsp;&nbsp;&nbsp;&nbsp;],<br />&nbsp;&nbsp;&nbsp;&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"attrib"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"userPassword"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"modtype"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">LDAP_MODIFY_BATCH_ADD</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"values"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #DD0000">"correct&nbsp;horse&nbsp;battery&nbsp;staple"</span><span style="color: #007700">],<br />&nbsp;&nbsp;&nbsp;&nbsp;],<br />];<br /></span><span style="color: #0000BB">ldap_modify_batch</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$dn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$modifs</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-5021">
+    <p><strong>Exemple #5 Modifie le mot de passe d&#039;un utilisateur (Active Directory)</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">adifyPw</span><span style="color: #007700">(</span><span style="color: #0000BB">$pw</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">iconv</span><span style="color: #007700">(</span><span style="color: #DD0000">"UTF-8"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"UTF-16LE"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'"'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$pw&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'"'</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">$dn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"cn=Jack&nbsp;Smith-Jones,ou=Wizards,dc=ad,dc=example,dc=com"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$modifs&nbsp;</span><span style="color: #007700">=&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"attrib"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"unicodePwd"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"modtype"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">LDAP_MODIFY_BATCH_REMOVE</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"values"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #0000BB">adifyPw</span><span style="color: #007700">(</span><span style="color: #DD0000">"Tr0ub4dor&amp;3"</span><span style="color: #007700">)],<br />&nbsp;&nbsp;&nbsp;&nbsp;],<br />&nbsp;&nbsp;&nbsp;&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"attrib"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"unicodePwd"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"modtype"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">LDAP_MODIFY_BATCH_ADD</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"values"&nbsp;&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[</span><span style="color: #0000BB">adifyPw</span><span style="color: #007700">(</span><span style="color: #DD0000">"correct&nbsp;horse&nbsp;battery&nbsp;staple"</span><span style="color: #007700">)],<br />&nbsp;&nbsp;&nbsp;&nbsp;],<br />];<br /></span><span style="color: #0000BB">ldap_modify_batch</span><span style="color: #007700">(</span><span style="color: #0000BB">$connection</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$dn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$modifs</span><span style="color: #007700">);</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+</div></div></div></body></html>

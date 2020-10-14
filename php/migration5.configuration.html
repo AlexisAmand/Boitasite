@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Migration des fichiers de configuration</title>
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-base.css" />
+<link media="all" rel="stylesheet" type="text/css" href="styles/03e73060321a0a848018724a6c83de7f-theme-medium.css" />
+
+ </head>
+ <body class="docs"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <ul class="nav" style="width: 100%">
+      <li style="float: left;"><a href="migration5.cli-cgi.html">« CLI et CGI</a></li>
+      <li style="float: right;"><a href="migration5.functions.html">Nouvelles fonctions »</a></li>
+    </ul>
+  </div>
+</div>
+<div id="breadcrumbs" class="clearfix">
+  <ul class="breadcrumbs-container">
+    <li><a href="index.html">PHP Manual</a></li>
+    <li><a href="migration5.html">Migration de PHP 4 &agrave; PHP 5.0.x</a></li>
+    <li>Migration des fichiers de configuration</li>
+  </ul>
+</div>
+<div id="layout">
+  <div id="layout-content"><div id="migration5.configuration" class="section">
+   <h2 class="title">Migration des fichiers de configuration</h2>
+   <p class="para">
+    Les modules ISAPI ayant changé de nom (php4xxx vers php5xxx), il
+    est nécessaire de faire quelques modifications dans vos fichiers de
+    configuration. Des modifications des noms des versions CLI et CGI ont
+    également été faites. Consultez la <a href="migration5.cli-cgi.html" class="link">section correspondante</a> pour plus
+    d&#039;informations.
+   </p>
+   <p class="para">
+    La migration du fichier de configuration Apache est très facile.
+    Consultez l&#039;exemple ci-dessous afin de connaître les modifications
+    que vous devez faire :
+    <div class="example" id="example-6245">
+     <p><strong>Exemple #1 Migration des fichiers de configuration Apache</strong></p>
+     <div class="example-contents">
+<div class="apache-confcode"><pre class="apache-confcode"># changez cette ligne :
+LoadModule php4_module /php/sapi/php4apache2.dll
+
+# en :
+LoadModule php5_module /php/php5apache2.dll</pre>
+</div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    Si votre serveur web utilise PHP en mode CGI, il vous faut noter que
+    la version CGI a changé de nom, passant de <var class="filename">php.exe</var>
+    à <var class="filename">php-cgi.exe</var>. Voici la modification à faire,
+    pour Apache :
+    <div class="example" id="example-6246">
+    <p><strong>Exemple #2 Migration des fichiers de configuration Apache, en mode CGI</strong></p>
+     <div class="example-contents">
+<div class="apache-confcode"><pre class="apache-confcode"># changez cette ligne :
+Action application/x-httpd-php &quot;/php/php.exe&quot;
+
+# en :
+Action application/x-httpd-php &quot;/php/php-cgi.exe&quot;</pre>
+</div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    Si vous utilisez un serveur web autre que Apache, vous devez également
+    changer le nom de fichier du module ISAPI ou du CGI.
+   </p>
+  </div></div></div></body></html>
