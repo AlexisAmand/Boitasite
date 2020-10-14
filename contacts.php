@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Création de sites web à Valenciennes  | Alexis AMAND - développement web et SEO à Valenciennes</title>
-    <meta name="description" content="Webmaster à Valenciennes, Alexis AMAND propose de développer votre visibilité sur internet (SEO) grace à la création d'un site web. Site dynamique et responsive à l'image de votre activité que vous soyez professionnel, particulier ou association.">
+    <title>Me contacter | Alexis AMAND - développement web et SEO à Valenciennes</title>
+    <meta name="description" content="Besoin d'un devis ou d'un audit à propos de votre site web ?">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -111,113 +111,25 @@
         <article class="row d-flex justify-content-center" style="background: ('img/line-1.gif') 0 top repeat-x;">
 
             <div class="col-12 py-5 mb-3" style="background: url('img/line-1.gif') 0 bottom repeat-x;">
-                <h1 class="text-center">Création de <span>sites</span> web</h1>
+                <h1 class="text-center">Pour <span>me</span> contacter</h1>
             </div>
 
             <div class="col-12">
-                <p class="text-justify my-5">Vous êtes à la recherche d'une solution facile pour créer votre site web, et ainsi faire progresser votre entreprise et propulser votre site Web en première page de Google ? Si vous vous poser cette question, vous demandez sans doute également quelles sont les bonnes pratiques pour être visibles sur les moteurs de recherche et être en première page des moteurs de recherche ?</p>
-            </div>
+            <p class="text-center">Vous vous posez des questions?<br/>
+            Vous avez des envies, des besoins et des idées ?<br/>
+            Le monde de l’internet et des ordinateurs est trop compliqué pour vous ?</p>
 
-            <div class="col-auto">
-                <p class="text-center alert alert-success">Avoir un site 100 % opérationnel, 100 % efficace, 24h sur 24 et 7 jrs sur 7 !</p>
-            </div>
+            <p class="text-center">N'hésitez pas à me contacter en m'envoyant un message à <a href="mailto:alexis.amand@boitasite.com">alexis.amand@boitasite.com</a><br />
+            ou en m&#39;envoyant un SMS au 06.62.63.79.21</p>
 
-        </article>
+            <p class="text-center">Si vous préférez, je suis également disponible sur les réseaux sociaux :<br />
+                <a href="https://twitter.com/boitasite"><i class="fi-swluxl-facebook" style="font-size:2em"></i></a>
+                <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><i class="fi-swluxl-twitter" style="font-size:2em"></i></a>
+                <a href="https://www.linkedin.com/in/alexis-amand-99775817"><i class="fi-swluxl-linkedin" style="font-size:2em"></i></a>
+            </p>
 
-        <article class="row">
-         
-            <div class="col-12">
+            <img src="img/wifi.png" class="mx-auto d-block">
 
-                <h5 class="mt-5">Quelles sont les préstations proposées ?</h5>
-
-            </div>
-
-            <div class="col-12 col-md-6">
-                <ul>
-                    <li> Création du site</li>
-                    <li> Maintenance et mises à jour SEO</li>
-                    <li> Audit de votre site</li>
-                    <li> Gestion de l’hébergement</li>
-                </ul>
-            </div> 
-
-            <div class="col-12 col-md-6">
-                <ul>
-                    <li> Veille technologique</li>
-                    <li> Sauvegarde mensuelle</li>
-                    <li> Mises à jour de sécurité</li>
-                    <li> Suivi client</li>
-                </ul>
-            </div> 
-
-        </article>
-
-        <article class="row d-flex justify-content-center">
-
-            <div class="col-12">
-
-                <h5 class="mt-5">Quelques réalisations...</h5>
-
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/thegasp.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site du jeu en ligne Le Gasp">
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/transmediation.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site de l'entreprise Trans-Médiation">
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/hdp.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site personel sur les soldats de la Grande Guerre">
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/boitasite.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Le site où vous êtes">
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/img1.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site personnel sur la généalogie">
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/img2.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Projet de site sur la franchise Anno">
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/img4.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site du CPIE Bocage de l'Avesnois">
-            </div>
-            
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/img5.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site sur la Route 66">
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/img6.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title='Site de la campagne "Un dragon ? Dans mon jardin !"'>
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/img7.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title='Site de la campagne "Site sur la franchise Half-Life'>
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/img8.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Projet de site pour l'entreprise Infinity Matériel">
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/img9.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site du centre de ressources des CPIE">
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/img10.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Blog personnel">
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/img11.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Blog personnel">
-            </div>
-
-            <div class="col-xs-3 m-3">
-                <img src="img/captures/img3.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site du CPIE - Bocage de l'Avesnois">
             </div>
 
         </article>

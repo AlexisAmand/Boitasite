@@ -198,8 +198,10 @@
                 <div  class="col-12 col-sm-6 col-md-6">
                     <p class="text-center">Follow Moi:</p>
                     <p class="text-center">
-                        <a href="https://twitter.com/alexisamand"><i class="fi-swluxl-facebook"></i></a>
+                        <a href="https://twitter.com/boitasite"><i class="fi-swluxl-facebook"></i></a>
                         <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><i class="fi-swluxl-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/alexis-amand-99775817"><i class="fi-swluxl-linkedin"></i></a>
+                        
                     </p>
                 </div>
             
