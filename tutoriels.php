@@ -123,6 +123,52 @@
 
             <p class="text-justify">Vous retrouvez ci-dessous la liste de tous les tutos, trucs et astuces et cours d'informatique consultables sur mon site. Bien sûr, ils ne sont pas de moi, je me contente de les centraliser dans une sorte d'annuaire. Faites toutefois attention à bien vérifier la version du logiciel ou du langage dont traite le guide que vous consultez. :)</p>
 
+            <h5 class="mt-5">Algorithmes</h5>
+            
+            <ul>
+                <li><a href="pdf/Algo/Algo_Provence.pdf">Cours sur les algorithmes (Université de Provence)</a></li>
+                <li><a href="pdf/Algo/poly-algo.pdf">Cours sur les algorithmes (Université de Valenciennes)</a></li>
+            </ul>
+
+            <h5 class="mt-5">Assembleur</h5>
+
+            <ul>
+                <li><a href="pdf/assembleur/Assembleur.pdf">Assembleur</a></li>
+                <li><a href="pdf/assembleur/Assembleur_INTEL.pdf">L'Assembleur d'Intel (IUT d'Amiens)</a></li>
+            </ul>
+
+            <h5 class="mt-5">C</h5>
+
+            <ul>               
+                <li><a href="pdf/c/Gestion-des-fichiers-en-C-sous-Unix.pdf">Gestion des fichiers en C (Université de Valenciennes)</a></li>
+                <li><a href="pdf/c/Introduction.pdf">Introduction au langage C (Université de Grenoble)</a></li>
+                <li><a href="pdf/c/les-base-du-c.pdf">Les bases du C</a></li>               
+                <li><a href="pdf/c/PolyC.pdf">Le langage C (Université de la Méditerranée)</a></li>
+            </ul>
+
+            <h5 class="mt-5">C++</h5>
+
+            <ul>
+                <li><a href="pdf/c/objetcpp.pdf">Intro à la POO et à C++ (Université de Nancy)</a></li>
+                <li><a href="pdf/c/Base-du-PP.pdf">Les bases du C++ (Université de Valenciennes)</a></li>
+                <li><a href="pdf/cpp/classes.pdf">Le langage en C++</a></li>
+                <li><a href="pdf/cpp/exception.pdf">Les exception en C++</a></li>
+                <li><a href="pdf/cpp/flux.pdf">Les flux en C++</a></li>
+                <li><a href="pdf/cpp/heritage.pdf">L'héritage en C++</a></li>
+                <li><a href="pdf/cpp/introduction-au-cpp.pdf">Introduction au C++</a></li>
+                <li><a href="pdf/cpp/meilleur.pdf">Le C++ : un meilleur C</a></li>
+                <li><a href="pdf/cpp/surcharge.pdf">La surcharge d'opérateurs en C++</a></li>
+                <li><a href="pdf/cpp/template.pdf">Les modèles en C++</a></li>
+            </ul>
+
+
+
+            <h5 class="mt-5">Electronique</h5>
+
+            <ul>
+                <li><a href="pdf/electronique/Bases_Ethernet.pdf">Technologies Ethernet</a></li>
+            </ul>
+            
             <h5 class="mt-5">HTML</h5>
 
             <ul>
@@ -130,8 +176,9 @@
 				<li><a href="pdf/logiciels/Macromedia-Dreamweaver-MX-6.0-Fr-Guide%20Utilisateur.pdf">Guide Utilisateur de Macromedia-Dreamweaver MX 6.0 (Macromedia)</a></li>
 				<li><a href="pdf/html/html_fr.pdf" title="Cours de HTML de la CCIM">Apprendre le HTML (CCIM)</a></li>
 				<li><a href="codes-couleurs.php" title="Guide sur les codes hexadécimaux des couleurs en HTML">Liste des codes couleur en HTML</a></li>
-		    </ul>
-
+                <li><a href="pdf/html/apprendre-html-zeros.pdf">Apprendre HTML pour les zéros</a></li>
+            </ul>
+            
             <h5 class="mt-5">Javascript</h5>
 
             <ul>
@@ -163,7 +210,7 @@
             <h5 class="mt-5">PHP</h5>
 
             <ul>
-                <li><a href="php/index.html" title="#">Doc officielle de PHP (octobre 2020)</a></li>
+                <li><a href="php/index.html" title="documentation officielle de PHP en français">Doc officielle de PHP (octobre 2020)</a></li>
 				<li><a href="pdf/php/PHP_v1.pdf" title="#">Programmer en PHP (via Alcôve)</a></li>
 				<li><a href="pdf/php/cours-php-5.pdf" title="Cours sur la version 5 du langage PHP">Cours de PHP 5.0</a></li> 
 				<li><a href="pdf/php/Documentation-PHP-4-3-0.pdf" title="Documentation officielle de la version 4.3 de PHP">Manuel PHP 4.3.0 (Documentation officielle)</a></li>
@@ -180,7 +227,7 @@
 
             <ul>                   
 				<li><a href="pdf/mysql/Documentation-MySQL-4-1-0.pdf" title="Documentation officielle francophone de la version 4.1 de SQL">Documentation MySQL 4.1.X - Version Française</a></li>
-			</ul>  
+			</ul>
 
             <h5 class="mt-5">UML</h5>
                         
@@ -206,6 +253,12 @@
                 <li><a href="pdf/VBA/intro a vba.pdf" title="Cours de VBA de l'Université de Valenciennes">Inroduction à VBA (Licence IG - Université de Valenciennes)</a></li>
                 <li><a href="pdf/VBA/Vba sous Word.pdf" title="Cours de VBA de l'Université de Valenciennes">VBA sous Word (Licence IG - Université de Valenciennes)</a></li>
                 <li><a href="pdf/VBA/Visual Basic Editor.pdf" title="Cours de VBA de l'Université de Valenciennes">VBE - Visual Basic Editor (Licence IG - Université de Valenciennes)</a></li>
+            </ul>
+
+            <h5 class="mt-5">Généralités sur l'informatique</h5>
+
+            <ul>
+                <li><a href="pdf/lexique-informatique.pdf">Lexique d'informatique : Anglais - Français - Berbère</a></li>
             </ul>
 
             </div>
