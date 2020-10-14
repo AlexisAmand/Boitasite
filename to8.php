@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Le micro-ordinateur Thomson TO8</title>
+    <meta name="description" content="A la découverte des micro-ordinateurs Thomson TO8">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
+    <meta name="google-site-verification" content="CT6-MJGUD82ligpXoIBjdglp4CyBIFXPum0LuBbcsD4" />
+
+    <style>
+
+        h1 {
+            font-family: 'Just Me Again Down Here',cursive;
+        }
+
+        h1 span {
+            color: #ff9000;
+        }
+
+        /*
+
+        h2 {
+            font-size: 31px;
+            line-height: 40px;
+            color: #007c9e;
+            font-weight: 400;
+        }
+
+        */
+
+        p {
+            font-family: Verdana,Geneva,sans-serif;
+        }
+
+        .navbar-light .navbar-nav a.nav-link {
+            font-family: 'Just Me Again Down Here',cursive;
+            font-size: 25px;
+            color: #f2f2f2;
+        }
+
+        .navbar-light .navbar-nav a.nav-link:link {
+            font-family: 'Just Me Again Down Here',cursive;
+            font-size: 25px;
+            color: #f2f2f2;
+        }
+
+        .navbar-light .navbar-nav a.nav-link:hover {
+            font-family: 'Just Me Again Down Here',cursive;
+            font-size: 25px;
+            color: #ff9000;
+        }
+
+        .navbar-light .navbar-toggler {
+            color: rgba(0,0,0,.5);
+            border-color: rgba(0,0,0,.1);
+            background-color: #f2f2f2;
+        }
+
+        section a{
+            text-decoration: none;
+            color: #007c9e;
+        }
+
+        footer a {
+            color: #f2f2f2;
+            font-size:1.75em;
+        }
+
+        footer a:link {
+            color: #f2f2f2;
+        }
+
+        footer a:hover {
+            color: #ff9000;
+        }
+
+    </style>
+
+</head>
+  <body style="background: #f2f2f2;font-style: italic;color: #484848;font-size: 0.85em;">
+
+    <div class="fluid-container" style="background: url('img/header-bg.jpg') 0 0 repeat;">
+
+        <div class="container" style="height:95px;">
+
+                <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="index.php"><img src="img/logo.png"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup" style="z-index:1000;background: url('img/header-bg.jpg') 0 0 repeat;">
+                <ul class="navbar-nav ml-auto"> 
+                    <li class="nav-item m-2"><a class="nav-link" href="webmaster.php">Création de sites</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="seo.php">SEO</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">TO8</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li> 
+                </ul> 
+                </div>
+                </nav>
+
+        </div>
+
+    </div>
+
+    <section class="container">
+
+        <article class="row d-flex justify-content-center" style="background: ('img/line-1.gif') 0 top repeat-x;">
+
+            <img src="to8/images/logo-to8.jpg" style="width:100%;">
+
+            <div class="col-12 py-5 mb-3" style="background: url('img/line-1.gif') 0 bottom repeat-x;">
+                <h1 class="text-center">Le micro-<span>ordinateur</span> TO8</h1>
+            </div>
+
+            <div class="col-12">
+
+                <p class="text-justify">Si vous avez envie de (re)découvrir le TO8, je vous conseille l'utilisation de <a href="http://dcmoto.free.fr/" title="Site officiel de l'émulateur de tous les ordinateurs 8 bits Thomson">DCMOTO</a>. C'est un logiciel qui émule sous Windows les machines telles que le Thomson MO5, le MO5E, le MO5NR, le MO6, le T9000, le TO7, le TO7/70, le TO8, le TO8D, le TO9, le TO9+ ou encore l'Olivetti Prodest PC128. Le site propose aussi un accès à plus de 850 jeux et programmes divers ainsi que plus de 160 livres et documents. Vous pouvez aussi utiliser l'emulateur MESS... à condition de vous procurer la ROM du TO8.</p>
+
+                <h5 class="mt-5">Présentation du TO8</h5>
+
+                <p>(source: TEOphile n°6 de septembre 1986)</p>
+
+                <p class="text-justify">Le TO8 est une machine ouverte et évolutive proposée à 2990 F dans sa version de base mais qui peut devenir l'équivalent d'un TO9+ avec une extension de mémoire et une unité de disquette. Le TO8 est blanc également, son clavier de 81 touches  + pavé numérique + 5 touches de fonctions, identique à celui du TO9 est, comme le TO7-70, intégré dans l'unité centrale. Au dessus du clavier, on trouve la trappe verticale à mémo 7. Doté de 256K de RAM il peut recevoir à l'arrière sur un connecteur spécial une extension de 256K portant la mémoire à 512 K comme le TO9+. Les 80 K de ROM contiennent le Basic 512 (identique au Basic 128 mais gérant les banques de RAM jusqu'à 512), le Basic Basic 1.0 et le moniteur.</p>
+
+                <div class="row d-flex justify-content-center">
+
+                    <figure class="figure col-6 m-3">
+                        <a href="to8/images/thomson_t08_04.jpg" data-fancybox data-caption="Le TO8 pendant sa mise en route">
+                        <img src="to8/images/thumbs/thomson_t08_04.jpg" class="figure-img img-fluid rounded" alt="capture d'écran de la page de démarrage du TO8"></a>
+                        <figcaption class="figure-caption text-right">On allume la machine !</figcaption>
+                    </figure>
+
+                </div>
+        
+                <p class="text-justify mt-3">Le TO8 possède un contrôleur de disquette 3,5 pouces 640K fonctionnant avec le DOS inclus dans le Basic  512. Un connecteur pour brancher l'unité de disquettes (Sony) apparaît à l'arrière de l'unité centrale. Ce connecteur peut recevoir également un QDD. Plusieurs unités de disquettes sont connectables par chaînage. On trouve aussi le sunthétiseur de sons identique à celui du MO6, une interface pour imprimante paralléle, un connecteur pour LEP (identique à celui du TO7, mais avec un nouveau design), deux connecteurs pour manettes de jeux/souris, une prise son Cinch et un seul connecteur d'extension pour recevoir un modem, etc. Le TO8 adopte, comme toute la gamme, les 8 modes d'affichage du TO9 dont le mode 80 colonnes et la palette de 4096 couleurs. La version de base est proposée à 2990 F ttc, l'unité de disquettes à 3,5 pouces 640 K à 1990 F ttc. Une configuration comprenant un TO8, <a href="to8/moniteur-to8.php">un moniteur couleurs haute résolution</a> et une unité de disquette 640 K sera proposée à 5990 F ttc au lieu de 7470 F.</p>
+
+                <div class="row d-flex justify-content-center">
+
+                    <figure class="figure col-xs-4 m-3">
+                        <a href="to8/images/thomson_t08_01.jpg" data-fancybox data-caption="L'unité centrale du TO8">
+                        <img src="to8/images/thumbs/thomson_t08_01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de face de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
+                        <figcaption class="figure-caption text-right">Vue de face de l'unité centrale.</figcaption>
+                    </figure>
+
+                    <figure class="figure col-xs-4 m-3">
+                        <a href="to8/images/thomson_t08_02.jpg" data-fancybox data-caption="L'unité centrale du TO8">
+                        <img src="to8/images/thumbs/thomson_t08_02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de côté de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
+                        <figcaption class="figure-caption text-right">Vue de côté de l'unité centrale.</figcaption>
+                    </figure>
+
+                    <figure class="figure col-xs-4 m-3">
+                        <a href="to8/images/thomson_t08_03.jpg" data-fancybox data-caption="L'unité centrale du TO8">
+                        <img src="to8/images/thumbs/thomson_t08_03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de dos de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
+                        <figcaption class="figure-caption text-right">Vue de dos de l'unité centrale.</figcaption>
+                    </figure>
+
+                    <figure class="figure col-xs-4 m-3">
+                        <a href="to8/images/thomson_t08_06.jpg" data-fancybox data-caption="L'exploitation de fichiers avec le TO8">
+                        <img src="to8/images/thumbs/thomson_t08_06.jpg" class="figure-img img-fluid rounded img-thumbnail"  alt="L'exploitation de fichiers avec le TO8 "/></a>
+                        <figcaption class="figure-caption text-right">Exploitation de fichiers</figcaption>
+                    </figure>
+
+                    <figure class="figure col-xs-4 m-3">
+                        <a href="to8/images/thomson_t08_07.jpg" data-fancybox data-caption="Le contenu d'une disquette en Basic">
+                        <img src="to8/images/thumbs/thomson_t08_07.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="La visualisation d'une disquette en Basic"/></a>
+                        <figcaption class="figure-caption text-right">Le contenu d'une disquette</figcaption>
+                    </figure>   
+
+                    <figure class="figure col-xs-4 m-3">
+                        <a href="to8/images/thomson_t08_05.jpg" data-fancybox data-caption="La palette de couleurs du TO8">
+                        <img src="to8/images/thumbs/thomson_t08_05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="La palette de couleurs du Thomson TO8"/></a>
+                        <figcaption class="figure-caption text-right">La palette de couleurs</figcaption>
+                    </figure>
+
+                </div>
+
+                <h5 class="mt-5">Ressources</h5>
+
+                <ul>
+                    <li><a href="to8/liste-jeux.php" title=" ">Jeux et utilitaires pour le TO8</a></li>
+                    <li><a href="to8/moniteur-to8.php" title="manuel du moniteur du micro-ordinateur TO8">Le guide du moniteur pour le TO8</a></li>
+                    <li><a href="to8/manuel-saphir.php" title="Manuel du jeu Saphir pour micro-ordinateur Thomson">Le guide du jeu "Saphir"</a></li>
+                    <li><a href="to8/manuel-dieux.php" title="Manuel du jeu Les Dieux de la Glisse pour micro-ordinateur Thomson">Le guide du jeu "Les Dieux de la Glisse"</a></li>
+                    <li><a href="to8/club-micro-thomson.php" title="publicité sur le Club Micro Thomson">Le Club Micro Thomson</a></li>
+                    <li><a href="to8/addendum-to8.php" title="addemdum au manuel du micro-ordinateur Thomson TO8">Addendum TO8</a></li>
+                </ul>
+
+                <h6 class="mt-3">Le TO8 dans la presse informatique</h6>
+
+                <ul>
+                    <li><a href="to8/pdf/js-41-page-44.pdf" title="extrait de la revue Jeux et Stratégie n°41 à propos de la nouvelle gamme Thomson">
+                    Jeux & Stratégie n°41 - Octobre/Novembre 1986 : "La nouvelle gamme Thomson" (pdf)</a></li>
+                    <li><a href="to8/pdf/svm-032.pdf" title="extrait de la revue Jeux et Vie Micro n°32 à propos de la nouvelle gamme Thomson">
+                    Science & Vie Micro n°32 - Octobre 1986 : "La nouvelle gamme Thomson" (pdf)</a></li>
+                    <li><a href="to8/pdf/svm-032.pdf" title="extrait de la revue Tilt n°35 à propos de la nouvelle gamme Thomson">
+                    TILT n°35 - Octobre 1986 : "Thomson 86: Un bon millésime" (pdf)</a></li>
+                    <li><a href="to8/pdf/Canard_PC_Hardware_HS_2016_06_07_fr_0079.pdf" title="La gamme TO de Thomson dans Canard PC Hardware HS de 2016">
+                    Canard PC Hardware HS - Eté 2016 : "La gamme TO de Thomson" (pdf)</a></li>
+                </ul>
+
+                <h6 class="mt-3">Publicités pour le TO8</h6>
+
+                <ul>
+                    <li><a href="to8/pdf/svm-034.pdf" title="publicité pour le TO8 parue dans la revue Science & Vie Micro n°34">
+                    Scienve & Vie Micro n°34 - Décembre 1986 : "Une place de 1ere dans le train de l'avenir" (pdf)</a></li>
+                    <li><a href="to8/pdf/svm-039.pdf" title="publicité pour le TO8 parue dans la revue Science & Vie Micro n°39">
+                    Scienve & Vie Micro n°39 - Mai 1987 : "Promotion sur la gamme TO8 chez Videoshop" (pdf)</a></li>                                
+                </ul>
+
+                <h6 class="mt-3">Articles sur les jeux</h6>
+
+                <ul>
+                    <li><a href="to8/pdf/js-38-page-70.pdf" title="Le jeu La malédiction de Thaar dans le magazine Jeux & Stratégie n°38">
+                    Jeux & Stratégie n°38 - Avril/Mai 1986 : "La malédiction de thaar" (pdf)</a></li>
+                    <li><a href="to8/pdf/js-38-page-72.pdf" title="Le jeu Cap sur Dakar dans le magazine Jeux & Stratégie n°38">
+                    Jeux & Stratégie n°38 - Avril/Mai 1986 : "Cap sur Dakar" (pdf)</a></li>
+                    <li><a href="to8/pdf/js-39-page-79.pdf" title="Le jeu Sortileges dans le magazine Jeux & Stratégie n°39">
+                    Jeux & Stratégie n°39 - Juin/Juillet 1986 : "Sortileges" (pdf)</a></li>
+                    <li><a href="to8/pdf/js-42-page-64.pdf" title="Le jeu Grand Prix dans le magazine Jeux & Stratégie n°42">
+                    Jeux & Stratégie n°42 - Décembre 1986/Janvier 1987 : "Grand Prix 500 cc" (pdf)</a></li>
+                    <li><a href="to8/pdf/js-43-page-74.pdf" title="Le jeu James Debug dans le magazine Jeux & Stratégie n°43">
+                    Jeux & Stratégie n°43 - Février/Mars 1987 : "James Debug" (pdf)</a></li>
+                    <li><a href="to8/pdf/js-45-page-65.pdf" title="Le jeu Prohibition dans le magazine Jeux & Stratégie n°45">
+                    Jeux & Stratégie n°45 - Juin/Juillet 1987 : "Prohibition" (pdf)</a></li>                 
+                </ul>
+
+                <h6 class="mt-3">La revue Microtom</h6>
+
+                <ul>
+                    <li><a href="to8/pdf/microtom_01.pdf" title="revue Microtom n°1 de juillet et aout 1985">Microtom n°1 - Juillet/Aout 1985 (pdf)</a></li>
+                    <li><a href="to8/pdf/microtom_02.pdf" title="revue Microtom n°2 de septembre et acotobre 1985">Microtom n°2 - Septembre/Octobre 1985 (pdf)</a></li>
+                    <li><a href="to8/pdf/microtom_03.pdf" title="revue Microtom n°3 de novembre et décembre 1985">Microtom n°3 - Novembre/Décembre 1985 (pdf)</a></li>
+                    <li><a href="to8/pdf/microtom_04.pdf" title="revue Microtom n°4 de janvier et fécrier 1986">Microtom n°4 - Janvier/Février 1986 (pdf)</a></li>
+                    <li><a href="to8/pdf/microtom_05.pdf" title="revue Microtom n°5 de mars et avril 1986">Microtom n°5 - Mars/Avril 1986 (pdf)</a></li>
+                    <li><a href="to8/pdf/microtom_06.pdf" title="revue Microtom n°6 de mai et juin 1986">Microtom n°6 - Mai/Juin 1986 (pdf)</a></li>               
+                    <li><a href="to8/pdf/microtom_08.pdf" title="revue Microtom n°8 de septembre et octobre 1986">Microtom n°8 - Septembre/Octobre 1986 (pdf)</a></li>
+                    <li><a href="to8/pdf/microtom_09.pdf" title="revue Microtom n°9 de novembre 1986">Microtom n°9 - Novembre 1986 (pdf)</a></li>
+                    <li><a href="to8/pdf/microtom_10.pdf" title="revue Microtom n°10 de décembre 1986 et janvier 1987">Microtom n°10 - décembre 1986/Janvier 1987 (pdf)</a></li>
+                </ul>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </section>
+
+    <div class="fluid-container py-4" style="background: url('img/header-bg.jpg') 0 0 repeat;" >
+
+        <footer class="container text-light">
+
+            <div class="row">
+
+                <div class="col-12 col-sm-6 col-md-6">
+                    <p class="text-center">Alexis AMAND<br />Développement Web et SEO<br />---
+                    <br />06.62.63.79.21<br />alexis.amand@boitasite.com</p>
+                </div>
+        
+                <div  class="col-12 col-sm-6 col-md-6">
+                    <p class="text-center">Follow Moi:</p>
+                    <p class="text-center">
+                        <a href="https://twitter.com/boitasite"><i class="fi-swluxl-facebook"></i></a>
+                        <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><i class="fi-swluxl-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/alexis-amand-99775817"><i class="fi-swluxl-linkedin"></i></a>
+                    </p>
+                </div>
+            
+            </div>
+
+            <div class="col-12">
+
+                <p class="text-center mt-4">© 2020 - Alexis AMAND</p>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <script defer src="https://friconix.com/cdn/friconix.js"> </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script>
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script> 
+  </body>
+</html>

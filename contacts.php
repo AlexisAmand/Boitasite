@@ -63,6 +63,11 @@
             background-color: #f2f2f2;
         }
 
+        section a{
+            text-decoration: none;
+            color: #007c9e;
+        }
+
         footer a {
             color: #f2f2f2;
             font-size:1.75em;
@@ -79,7 +84,7 @@
     </style>
 
 </head>
-  <body style="background: #f2f2f2;font-style: italic;color: #484848;font-size: 0.85em;">
+<body style="background: #f2f2f2;font-style: italic;color: #484848;font-size: 0.85em;">
 
     <div class="fluid-container" style="background: url('img/header-bg.jpg') 0 0 repeat;">
 
@@ -122,7 +127,9 @@
             <p class="text-center">N'hésitez pas à me contacter en m'envoyant un message à <a href="mailto:alexis.amand@boitasite.com">alexis.amand@boitasite.com</a><br />
             ou en m&#39;envoyant un SMS au 06.62.63.79.21</p>
 
-            <p class="text-center">Si vous préférez, je suis également disponible sur les réseaux sociaux :<br />
+            <p class="text-center">Si vous préférez, je suis également disponible sur les réseaux sociaux :</p>
+
+            <p class="text-center mt-4">
                 <a href="https://twitter.com/boitasite"><i class="fi-swluxl-facebook" style="font-size:2em"></i></a>
                 <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><i class="fi-swluxl-twitter" style="font-size:2em"></i></a>
                 <a href="https://www.linkedin.com/in/alexis-amand-99775817"><i class="fi-swluxl-linkedin" style="font-size:2em"></i></a>

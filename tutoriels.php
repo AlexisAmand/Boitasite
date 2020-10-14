@@ -63,6 +63,11 @@
             background-color: #f2f2f2;
         }
 
+        section a{
+            text-decoration: none;
+            color: #007c9e;
+        }
+
         footer a {
             color: #f2f2f2;
             font-size:1.75em;
@@ -79,7 +84,7 @@
     </style>
 
 </head>
-  <body style="background: #f2f2f2;font-style: italic;color: #484848;font-size: 0.85em;">
+<body style="background: #f2f2f2;font-style: italic;color: #484848;font-size: 0.85em;">
 
     <div class="fluid-container" style="background: url('img/header-bg.jpg') 0 0 repeat;">
 
@@ -118,7 +123,7 @@
 
             <p class="text-justify">Vous retrouvez ci-dessous la liste de tous les tutos, trucs et astuces et cours d'informatique consultables sur mon site. Bien sûr, ils ne sont pas de moi, je me contente de les centraliser dans une sorte d'annuaire. Faites toutefois attention à bien vérifier la version du logiciel ou du langage dont traite le guide que vous consultez. :)</p>
 
-            <h5>HTML</h5>
+            <h5 class="mt-5">HTML</h5>
 
             <ul>
 				<li><a href="pdf/html/html.pdf" title="cours de HTML de l'IUT d'Amiens">Le Langage HTML (IUT d'Amiens)</a></li>
@@ -127,7 +132,7 @@
 				<li><a href="codes-couleurs.php" title="Guide sur les codes hexadécimaux des couleurs en HTML">Liste des codes couleur en HTML</a></li>
 		    </ul>
 
-            <h5>Javascript</h5>
+            <h5 class="mt-5">Javascript</h5>
 
             <ul>
 				<li><a href="pdf/javascript/javascript-lyon.pdf" title="Cours de javascript de l'Ecole Centrale de Lyon">10 minutes pour apprendre le Javascript (Ecole Centrale de Lyon)</a></li>
@@ -136,7 +141,7 @@
 			</ul>
 
                        
-            <h5>Linux et Unix</h5>
+            <h5 class="mt-5">Linux et Unix</h5>
 
             <ul>        
                 <li><a href="/pdf/linux/abc-unix.pdf" title="Abécédaire Unix pour la maîtrise de biochimie de l'Université d'Aix Marseille">Abécédaire Unix (Maîtrise de Biochimie - Université Aix Marseille)</a></li>
@@ -148,14 +153,14 @@
                 <li><a href="/pdf/linux/Korn_shell.pdf" title="Guide du KornShell sous unix">Guide du KornShell sous Unix</a></li>
             </ul>     
 
-            <h5>MS-DOS</h5>
+            <h5 class="mt-5">MS-DOS</h5>
 
             <ul>
                 <li><a href="/pdf/dos/Commandes-Ms-Dos.pdf" title="guide des principales commandes MS-DOS">Résumé des commandes MS-DOS</a></li>
                 <li><a href="/pdf/dos/MS-Dos.pdf" title="guide sur l'utilisation de MS-DOS">Pourquoi faut-il encore connaître MS-DOS ?</a></li>
             </ul>
 
-            <h5>PHP</h5>
+            <h5 class="mt-5">PHP</h5>
 
             <ul>
 				<li><a href="pdf/php/PHP_v1.pdf" title="#">Programmer en PHP (via Alcôve)</a></li>
@@ -164,19 +169,19 @@
 				<li><a href="pdf/php/introduction-php.pdf" title="Introduction à la version 4 du langage PHP">Introduction à PHP 4 (Université de Genève)</a></li>
 			</ul>
 
-            <h5>Réseaux <span>sociaux</span></h5>
+            <h5 class="mt-5">Réseaux <span>sociaux</span></h5>
                         
             <ul>
                 <li><a href="pdf/reseaux/TutoTwitter.pdf" title="Guide pour apprendre à bien utiliser Twitter">Comment utiliser Twitter ?</a></li>
             </ul>    
 
-            <h5>SQL</h5>
+            <h5 class="mt-5">SQL</h5>
 
             <ul>                   
 				<li><a href="pdf/mysql/Documentation-MySQL-4-1-0.pdf" title="Documentation officielle francophone de la version 4.1 de SQL">Documentation MySQL 4.1.X - Version Française</a></li>
 			</ul>  
 
-            <h5>UML</h5>
+            <h5 class="mt-5">UML</h5>
                         
             <ul>   
                 <li><a href="pdf/UML/IntroMethodesGL.pdf" title="Cours de Licence sur l'Introduction aux méthodes d'analyse et de modélisation avec UML de l'Université de Valenciennes">
@@ -185,13 +190,13 @@
                 Objets et UML (Licence IG - Université de Valenciennes)</a></li>
             </ul>
 
-            <h5>Visual Basic 6</h5>
+            <h5 class="mt-5">Visual Basic 6</h5>
                         
             <ul>
                 <li><a href="pdf/VB/Poly_VB.pdf" title="Cours de Visual Basic 6 du DEUST IOSI de l'Université de Valenciennes">Cours de Visual Basic 6 (Deust IOSI - ISTV de Valenciennes)</a></li>
             </ul>
 
-			<h5>Visual Basic for Applications (VBA)</h5>
+			<h5 class="mt-5">Visual Basic for Applications (VBA)</h5>
                             
             <ul>                  
                 <li><a href="pdf/VBA/acces aux donnees avec DAO et ADO.pdf" title="Cours de VBA de l'Université de Valenciennes">Accés aux donnees avec DAO et ADO (Licence IG - Université de Valenciennes)</a></li>

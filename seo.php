@@ -63,6 +63,11 @@
             background-color: #f2f2f2;
         }
 
+        section a{
+            text-decoration: none;
+            color: #007c9e;
+        }
+
         footer a {
             color: #f2f2f2;
             font-size:1.75em;
@@ -79,7 +84,7 @@
     </style>
 
 </head>
-  <body style="background: #f2f2f2;font-style: italic;color: #484848;font-size: 0.85em;">
+<body style="background: #f2f2f2;font-style: italic;color: #484848;font-size: 0.85em;">
 
     <div class="fluid-container" style="background: url('img/header-bg.jpg') 0 0 repeat;">
 
