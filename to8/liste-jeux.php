@@ -1,244 +1,539 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<head>
-  
-  <meta charset="utf-8">
+    <title>Liste de jeux pour ordinateurs Thomson | A la découverte du Thomson TO8</title>
+    <meta name="description" content="Pour les fans de retrogaming, une liste de jeux pour les micro-ordinateurs Thomson TO8 datant les années 80">
 
-  <title>Liste de jeux pour ordinateurs Thomson | A la découverte du Thomson TO8</title>
-  <meta name="description" content="liste de jeux pour les micro-ordinateurs Thomson TO8 dans les années 80">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-  <link rel="stylesheet" type="text/css" media="screen" href="../css/reset.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="../css/grid_12.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
-    
-  <?php include('../include/matomo.inc'); ?>
+    <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
+    <meta name="google-site-verification" content="CT6-MJGUD82ligpXoIBjdglp4CyBIFXPum0LuBbcsD4" />
+
+    <style>
+
+        h1 {
+            font-family: 'Just Me Again Down Here',cursive;
+        }
+
+        h1 span {
+            color: #ff9000;
+        }
+
+        /*
+
+        h2 {
+            font-size: 31px;
+            line-height: 40px;
+            color: #007c9e;
+            font-weight: 400;
+        }
+
+        */
+
+        p {
+            font-family: Verdana,Geneva,sans-serif;
+        }
+
+        .navbar-light .navbar-nav a.nav-link {
+            font-family: 'Just Me Again Down Here',cursive;
+            font-size: 25px;
+            color: #f2f2f2;
+        }
+
+        .navbar-light .navbar-nav a.nav-link:link {
+            font-family: 'Just Me Again Down Here',cursive;
+            font-size: 25px;
+            color: #f2f2f2;
+        }
+
+        .navbar-light .navbar-nav a.nav-link:hover {
+            font-family: 'Just Me Again Down Here',cursive;
+            font-size: 25px;
+            color: #ff9000;
+        }
+
+        .navbar-light .navbar-toggler {
+            color: rgba(0,0,0,.5);
+            border-color: rgba(0,0,0,.1);
+            background-color: #f2f2f2;
+        }
+
+        section a{
+            text-decoration: none;
+            color: #007c9e;
+        }
+
+        footer a {
+            color: #f2f2f2;
+            font-size:1.75em;
+        }
+
+        footer a:link {
+            color: #f2f2f2;
+        }
+
+        footer a:hover {
+            color: #ff9000;
+        }
+
+    </style>
+
+    <?php include('../include/matomo.inc'); ?>
 
 </head>
 
-<body>
-   <header> 
-       <div> 
-          <div>                 	
-              <h3><img src="../images/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a></h3>
-              <nav>  
-                <ul class="menu">
-                      <li><a href="../webmaster.php">Création de sites</a></li>
-                      <li><a href="../seo.php">SEO</a></li>
-                      <li><a href="../tutoriels.php" class="current">Tutos</a></li>    
-                      <li><a href="../to8.php" class="current">TO8</a></li>
-                      <li><a href="http://thegasp.genealexis.fr" title="Le Gasp, casse-tête gratuit jouable en ligne">Le Gasp</a></li>                
-                      <li><a href="../contacts.php">Contacts</a></li>
-                  </ul>
-              </nav>
-              <div class="clear"></div>
-          </div>
-      </div>
-    </header>  
-  <!--==============================content================================-->
-    <section id="content">
-    	<div class="container_12">
+<body style="background: #f2f2f2;font-style: italic;color: #484848;font-size: 0.85em;">
 
-            <div class="grid_12 box-2">
-                <img src="images/logo-to8.jpg" style="width:100%;">
-            	<div>
-                    <h1 class="text-3">Jeux et utili<span>tai</span>res</h1>                                     
-                </div>
+<div class="fluid-container" style="background: url('../img/header-bg.jpg') 0 0 repeat;">
+
+    <div class="container" style="height:95px;">
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="../index.php"><img src="../img/logo.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup" style="z-index:1000;background: url('../img/header-bg.jpg') 0 0 repeat;">
+            <ul class="navbar-nav ml-auto"> 
+                <li class="nav-item m-2"><a class="nav-link" href="../webmaster.php">Création de sites</a></li> 
+                <li class="nav-item m-2"><a class="nav-link" href="../seo.php">SEO</a></li> 
+                <li class="nav-item m-2"><a class="nav-link" href="../tutoriels.php">Tutos</a></li> 
+                <li class="nav-item m-2"><a class="nav-link" href="../to8.php">TO8</a></li> 
+                <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
+                <li class="nav-item m-2"><a class="nav-link" href="../contacts.php">Contact</a></li> 
+            </ul> 
+            </div>
+            </nav>
+
+    </div>
+
+</div>
+
+<section class="container">
+
+    <article class="row d-flex justify-content-center" style="background: ('../img/line-1.gif') 0 top repeat-x;">
+
+        <div class="col-12 py-5 mb-3" style="background: url('../img/line-1.gif') 0 bottom repeat-x;">
+            <h1 class="text-center">#retrogaming : Les <span>jeux</span> du T08</h1>                                     
+        </div>
+
+        <div class="col-12">
+                
+            <h5 class="mt-5">Androïdes</h5>
+
+            <p class="text-justify">Rien ne va plus dans les entrepôts depuis qu'ils ont remplacé le vieux chien de garde par des robots très perfectionnés. Votre but, récupérer tous les colis sans qu'ils vous rattrapent. Cela sera très difficile, mais bonne chance quand même. Le jeu était édité par Infogrames.</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/androide/androide_01.jpg" class="figure-img img-fluid rounded" title="capture d'écran du jeu pour thomson TO8 Androïdes">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/androide/androide_02.jpg" class="figure-img img-fluid rounded" title="capture d'écran du jeu pour thomson TO8 Androïdes">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/androide/androide_03.jpg" class="figure-img img-fluid rounded" title="capture d'écran du jeu pour thomson TO8 Androïdes">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
             </div>
 
-            <div style="clear:both">
-
-                <br />
+            <h5 class="mt-5">Arkanoïd</h5>
                 
-            <p>&nbsp;</p>
+            <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-46-page-89.pdf">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987.</p>
 
-            <br /><p>A</p>
+            <h5 class="mt-5">La Bataille des Brevets</h5>
+            
+            <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-64.pdf">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
 
-            <ul>    
-                <li>Alerte au Tabac</li>
-                <li>Les athlétes</li>
-                <li><a href="androides.php">Androïdes</a></li>
-                <li>Aquanaute</li>
-                <li><a href="pdf/js-46-page-89.pdf">Arkanoïd</a> (Jeux et Stratégie n°46 aout/septembre 1987)</li>
-                <li>Animatix</li>
-                <li><a href="aide-orthographe-v1.php">Aide à l'Orthographe V1</a></li>
-                <li><a href="aide-orthographe-v2.php">Aide à l'Orthographe V2</a></li>
-                <li><a href="aide-lecture-v1.php">Aide à la Lecture V1</a></li>
-                <li>Aide à la Lecture V2</li>
-                <li>Air Attack</li>
-            </ul>    
+            <h5 class="mt-5">Bivouac</h5>
 
-            <br /><p>B</p>
+            <p class="text-justify"> jeu a fait l'objet d'un <a href="pdf/js-46-page-81.pdf">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987.</p>
 
-            <ul>    
-            <li><a href="pdf/js-43-page-64.pdf">La Bataille des Brevets</a> (Jeux et Stratégie n°43 février mars 1987)</li>
-            <li><a href="pdf/js-46-page-81.pdf">Bivouac</a> (Jeux et Stratégie n°46 aout septembre 1987)
-            <li>Blue War II</li>
-            <li>Blitz !</li>
-            </ul>    
+            <h5 class="mt-5">Cap sur Dakar</h5>
 
-            <br /><p>C</p>
+            <p class="text-justify">Edité par Coktel Vision, Cap sur Dakar est une simulation réaliste de la célèbre course Paris-Dakar: de la recherche des sponsors, vitale, jusqu'aux épreuves de conduite sur pistes, de plus en plus sportives, vivez toutes les péripéties de ce très grand raid.</p>
 
-            <UL>
-                <li>Crazzy Cars</li>
-                <li><a href="cap-dakar.php">Cap sur Dakar</a></li>
-                <li>Caractor II</li>
-                <li><a href="choplifter.php">Choplifter</a></li>
-                <li>Les Contes de Monte-Crypto</li>
-                <li>Le Crépuscule du Naja</li>
-                <li><a href="carte-europe.php">Carte d'Europe</a></li>
-                <li>Chateau de la Mort</li>
-                
-            </ul>
+            <div class="row d-flex justify-content-center">
 
-            <br /><p>D</p>
+                <figure class="figure col-3 m-3">
+                    <img src="images/tilt-37-01.jpg" class="figure-img img-fluid rounded" title="Une publicité pour le jeu Cap sur Dakar parue dans la revue TILT de décembre 1986">
+                    <figcaption class="figure-caption text-right">Une publicité dans TILT de décembre 1986.</figcaption>
+                </figure>
 
-            <ul>
-                <li><a href="dakar.php">Dakar 4x4</a></li>
-                <li><a href="manuel-dieux.php">Les Dieux de la Glisse - Savoie 92 -</a></li>
-                <li><a href="pdf/js-46-page-88.pdf">Don Camillo</a> (Jeux et Stratégie n°46 aout/septembre 1987)</li>
-                <li><a href="pdf/js-43-page-68.pdf">Dossier Boerhaave</a> (Jeux et Stratégie n°43 février mars 1987)</li>
-            </ul>    
+            </div>
 
-            <br /><p>E</p>
-
-            <ul>
-                 <li><a href="entropie.php">Entropie</a></li>
-            </ul>         
-
-            <br /><p>F</p>
-
-            <ul>
-                <li>FBI</li>
-                <li>Feu vert</li>
-                <li>Flipper</li>
-                <li>Formule 1</li>
-            </ul>    
-
-            <br /><p>G</p>
-
-            <ul>
-                 <li>Game Over</li>
-                 <li><a href="grand-prix.php">Grand Prix 500cc</a></li>
-                 <li>Green Beret</li>
-                 <li>Gulpy la Chenille Gourmande</li>
-            </ul>
-
-            <br /><p>J</p>
-
-            <ul>
-                <li><a href="james-debug.php">James Debug</a></li>
-                    
-                <li>Jeux de Dames Américaines (Draught)</li>
-            </ul>    
-
-            <br /><p>K</p>
-
-            <ul>
-                <li><a href="karate.php">Karate</a></li>    
-            </ul> 
-
-            <br /><p>L</p>
-
-            <ul>
-                <li>La Ronde de l'eau</li>
-            </ul>    
-
-            <br /><p>M</p>
-
-            <ul>    
-                <li><a href="thaar.php">Malediction de Thaar (La)</a></li>
-                <li><a href="pdf/js-46-page-85.pdf">Marche à l'ombre</a> (Jeux et Stratégie n°46 aout/septembre 1987)</li>
-                <li>Le Minautore</li>
-                <li>Minautore</li>
-                <li><a href="pdf/js-46-page-87.pdf">Missions en rafale</a> (Jeux et Stratégie n°46 aout/septembre 1987)</li>
-                <li><a href="pdf/js-43-page-72.pdf">Monopoly</a> (Jeux et Stratégie n°43 février mars 1987)</li>
-                <li>Monté-crypto</li>
-               
-            </ul>
-
-            <br /><p>N</p>
-            <ul>
-                <li>La Nuit des Templiers</li>
-                <li>Numéro 10</li>
-            </ul>     
-
-            <br /><p>P</p>
-
-            <ul>
-            	
-            	 <li><a href="pdf/js-42-page-75.pdf" title="Le jeu Les Passagers du vent dans le magazine Jeux & Stratégie n°42">
-                 Passagers du vent (Les)</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987)</li>
-                 <li><a href="pdf/js-46-page-84.pdf">Passagers du vent 2 (Les)</a> (Jeux et Stratégie n°46 aout/septembre 1987)</li>
-                 <li>Pictor</li>
-                 <li>Pilote</li>
-                 <li>Pingo</li>
-                 <li><a href="pdf/js-45-page-65.pdf" title="Le jeu Prohibition dans le magazine Jeux & Stratégie n°45">
-                 Prohibition</a> (Jeux et Stratégie n°45 - Juin/Juillet 1987)</li>
-                 <li>Pulsar II</li>
-                             
-            </ul>         
-
-            <br /><P>R</p>
-
-            <ul>
-                <li>Raid sur Tenere</li>
-                <li><a href="pdf/js-46-page-85.pdf">Réussites</a> (Jeux et Stratégie n°46 aout/septembre 1987)</li>
-                <li><a href="pdf/js-46-page-88.pdf">Robinson Crusoé</a> (Jeux et Stratégie n°46 aout/septembre 1987)</li>
-                <li>Rodeo</li>
-                <li>Runway</li>
-                <li>Runway II</li>
-            </ul>
-
-            <br /><p>S</p>
-
-            <ul>
-                <li><a href="manuel-saphir.php">Saphir</a></li>
-                <li><a href="pdf/js-42-page-63.pdf">Sapiens</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987)</li>
-                <li>Stone Zone</li>
-                <li>Super Tennis</li>
-                <li>Sorcery</li>
-                <li>San Pablo</li>
-                <li><a href="sortileges.php">Sortiléges</a></li>
-                <li><a href="">Silent Service</a></li> 
-                <li>Solfège</li>
-                <li>Slap Fight</li>
-                <li><a href="speedway.php">Speedway</a></li>
-            </ul>  
-
-            <br /><p>T</p>
-
-            <ul>
-            	<li><a href="pdf/js-42-page-62.pdf">Temple de Quauhli (Le)</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987)</li>   
-                <li>Templiers</li>
-                <li>Tridi 444</li>
-                <li><a href="pdf/js-46-page-89.pdf">TNT</a> (Jeux et Stratégie n°46 aout/septembre 1987)</li>
-            </ul>
-
-            <br /><p>V</p>
-
-            <ul>
-                <li><a href="vegas.php">Las Vegas</a></li>
-                <li>Volsolo</li>
-            </ul>    
-
-            <br /><p>Y</p>
-
-            <ul>
-                <li>Yahtzee</li>
-                <li>Yeti</li>
-            </ul>
-       
-            <div class="clear"></div>
-        </div>
-    </section> 
-    
-    <?php include('../include/footer.inc'); ?>
-    
-      <script defer src="https://friconix.com/cdn/friconix.js"> </script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-38-page-74.pdf" title="Le jeu Cap sur Dakar dans le magazine Jeux & Stratégie n°38">article</a> dans la revue Jeux et Stratégie n°38 d'avril/mai 1986.</p>
   
+            <h5 class="mt-5">Choplifter</h5>
+
+            <p>Dans ce jeu signé F.I.L, vous devez sauver, grâce à votre hélicoptère vos compatriotes d'un camp en pays ennemi. Bien sûr, ce camp est bien gardé, avions et chars attaquent. Ce jeu est un des best-sellers américains de l'époque dans sa catégorie.<p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/choplifter/choplifter-01.jpg" class="figure-img img-fluid rounded" title="capture d'écran du jeu Choplifter pour thomson TO8">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/choplifter/choplifter-02.jpg" class="figure-img img-fluid rounded" title="capture d'écran du jeu Choplifter pour thomson TO8">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+            </div>
+
+            <h5 class="mt-5">Dakar 4x4</h5>
+
+            <p class="text-justify">Dakar 4x4 est un jeu de simulation sportive édité en 1987 par Coktel Vision. Au volant de votre super 4x4, vous voilà au départ de la célèbre course. Les moteurs ronflent sous les capots, les adversaires sont prêts. Enfin c'est le départ! La poussière vole, le paysage désertique défile, et le compte-tour s'affole...</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/tilt-39-01.jpg" class="figure-img img-fluid rounded" title="Une publicité pour le jeu Dakar 4x4 parue dans la revue TILT de février 1987">
+                    <figcaption class="figure-caption text-right">Une publicité dans TILT de février 1987.</figcaption>
+                </figure>
+
+            </div>
+
+            <h5 class="mt-5">Les Dieux de la Glisse - Savoie 92</h5>
+
+            <p class="text-justify">Savoie, 1992. Cette année les Jeux Olympiques auront lieu en Savoie. Les français sont fiers, tous leurs supporteurs seront sur place pour les encourager. Aujourd'hui, trois épreuves sont prévues: Le saut à ski, le saut acrobatique et le patinage de vitesse. Chacune de ces épreuves requiert des qualités physiques exceptionnelles. La puissance de l'effort tout autant que le style des mouvements seront sévèrement notés par des juges impartiaux. Les meilleurs seront récompensés.</p>
+
+            <h5 class="mt-5">Don Camillo</h5>
+
+            <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-46-page-88.pdf">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987.</p>
+
+            <h5 class="mt-5">Dossier Boerhaave</h5>
+
+            <p>Meurtre ? Vous avez dit meurtre ?</p>
+
+            <p>Une vieille dame vient d'être assassinée dans sa baignoire, vide! La porte était fermée à clef de l'extérieur. Que s'est-il donc passé ? Une vraie bande dessinée animée signé Infogrames.</p>
+
+            <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-68.pdf">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
+             
+            <h5 class="mt-5">Entropie</h5>
+
+            <p class="text-justify">Un coup d'oeil au Petit Robert tout d'abord, pour se remémorer la notion d'entropie: "En thermodynamique, se dit d'une fonction définissant l'état de désorde d'un système, croissante lorsque celle-ci évolue vers un autre état de désordre accru." Le message est clair, vous êtes chargé, sous les traits du robot Explorer 3, de rétablir l'équilibre des forces sur une planète en plein chaos. Monté sur coussin d'air, l'androïde arpente des cavernes en trois dimensions en collectant informations et objets sur son passage.</p>
+            
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/entropie/entropie-01.jpg" class="figure-img img-fluid rounded" title="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/entropie/entropie-02.jpg" class="figure-img img-fluid rounded" title="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/entropie/entropie-03.jpg" class="figure-img img-fluid rounded" title="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+            </div>
+
+            <p class="text-justify">Comme dans tous les jeux d'aventure et d'action, sa marche est entravée par une multitude de robots et de formes bizarroïdes. Mais le premier obstacle est sans nul doute le contrôle des déplacements. Les directions sont calculées en fonction de la position du robot et non de celle du joueur, ce qui est toujours déroutant au début. Lors des premières parties, Explorer 3 limite son parcours à quelques salles immédiatement accessibles avant de mourir prématurément. Puis, peu à peu, il découvre de nouveaux horizons, fait parler les objets et déméle l'écheveau des forces en présences. L'animations est rapide et déliée et les graphismes sont réussis malgré la quasi-absence de couleurs. La première aventure soi-disant logique est déjà très ardue. Imaginez les scénarios aléatoires que l'on appelle lors du chargement... De beaux sacs de noeuds en perspective, rappelez-vous l'entropie définit un état de désordre croissant...</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/entropie/entropie-04.jpg" class="figure-img img-fluid rounded" title="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+            </div>
+
+            <h5 class="mt-5">Grand Prix 500cc</h5>
+
+            <p>Un jeu édité par Microïds.</p>
+ 
+            <p class="text-justify">Cette version perd le son, le graphisme ne progresse pas: douze circuits à choisir mais le décor reste identique en Hollande ou en Afrique du Sud ! Deux motos indépendantes, à la direction déroutante, une résistance au choc et une adhérence exceptionnelles (Tilt n°41 - avril 1987).</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/tilt-38-01.jpg" class="figure-img img-fluid rounded" title="Une publicité pour le jeu Grand Prix 500 cc parue dans la revue TILT de janvier 1987">
+                    <figcaption class="figure-caption text-right">Une publicité dans TILT de janvier 1987.</figcaption>
+                </figure>
+
+            </div>
+      
+            <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-42-page-64.pdf" title="Le jeu Grand Prix dans le magazine Jeux & Stratégie n°42">article</a> dans la revue Jeux et Stratégie n°42 de décembre 1986-Janvier 1987.</p>
+
+            <h5 class="mt-5">James Debug</h5>
+
+            <p class="text-justify">Dans ce jeu d'arcade-aventure, le joueur guide un petit personnage sur un terrain vu en coup et tente de rassembler les preuves (pièces graphiques à collecter). Les déplacemements sont assez lents et le jeu ne déclenche pas une folle passion. Il faut cependant faire preuve d'astuce pour progresser régulièrement. On ne peut que déplorer la différence entre le scénario (une grande puissance implante un centre informatique stratégique secret dans une île perdu du Pacifique. Suite à un incident majeur, un déversement massif de programmes buggés envahit les centres serveurs de la planète...) et le contenu réel du jeu. Un jeu édité par Coktel Vision.</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/tilt-37-01.jpg" class="figure-img img-fluid rounded" title="Une publicité pour le jeu James Debug parue dans la revue TILT de décembre 1986">
+                    <figcaption class="figure-caption text-right">Une publicité dans TILT de décembre 1986.</figcaption>
+                </figure>
+
+            </div>
+
+            <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-74.pdf" title="Le jeu James Debug dans le magazine Jeux & Stratégie n°43">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
+
+            <h5 class="mt-5">Karate</h5>
+
+            <p class="text-justify">Un superbe jeu de karaté édité par Infogrames. Vous pourrez combattre vos adversaires en utilisant tous les coups autorisés par la fédération. Mais attention, les autres peuvent vous disqualifier.</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/tilt-34-01.jpg" class="figure-img img-fluid rounded" title="Une publicité pour le jeu James Debug parue dans la revue TILT de décembre 1986">
+                    <figcaption class="figure-caption text-right">Une publicité dans TILT de décembre 1986.</figcaption>
+                </figure>
+
+            </div>
+
+            <h5 class="mt-5">Malediction de Thaar (La)</h5>
+
+            <p class="text-justify">Une aventure dans les entrailles du globe. Vous devrez affronter des monstres préhistoriques, de belles créatures inquiétantes, des esprits démoniaques, mais aussi un mystérieux sorcier nommé Thaar. Un jeu édité par Coktel Vision.</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/tilt-37-01.jpg" class="figure-img img-fluid rounded" title="Une publicité pour la malédiction de Thaar parue dans la revue TILT de décembre 1986">
+                    <figcaption class="figure-caption text-right">Une publicité dans TILT de décembre 1986.</figcaption>
+                </figure>
+
+            </div>
+
+            <p class="text-justify">Ce jeu a fait l'objet d'un <a href="to8/pdf/js-38-page-70.pdf" title="Le jeu La malédiction de Thaar dans le magazine Jeux & Stratégie n°38">article</a> dans la revue Jeux et Stratégie n°38 d'avril/mai 1986.</p>
+                
+            <h5 class="mt-5">Marche à l'ombre</h5>
+
+            <a href="pdf/js-46-page-85.pdf">Marche à l'ombre</a> (Jeux et Stratégie n°46 aout/septembre 1987)
+
+            <h5 class="mt-5">Missions en rafale</h5>
+
+            <a href="pdf/js-46-page-87.pdf">Missions en rafale</a> (Jeux et Stratégie n°46 aout/septembre 1987)
+
+            <h5 class="mt-5">Monopoly</h5>
+
+            <a href="pdf/js-43-page-72.pdf">Monopoly</a> (Jeux et Stratégie n°43 février mars 1987)
+
+            <h5 class="mt-5">Nuit des templiers (La)</h5>
+
+            <p class="text-justify">Jeu d'aventure et d'action aux graphismes élaborés, sur le thème de la quête du Graal; des heures de recherches dans un château de 150 pièces aux décors et aux habitants inquiétants. Un jeu édité par France Image Logiciel.</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/templiers/templiers-04.jpg" class="figure-img img-fluid rounded" title="capture d'écran du jeu pour thomson TO8 La nuit des templiers">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/templiers/templiers-02.jpg" class="figure-img img-fluid rounded" title="capture d'écran du jeu pour thomson TO8 La nuit des templiers">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/templiers/templiers-03.jpg" class="figure-img img-fluid rounded" title="capture d'écran du jeu pour thomson TO8 La nuit des templiers">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+            </div>
+          
+            <h5 class="mt-5">Passagers du vent (Les)</h5>
+            	
+            <a href="pdf/js-42-page-75.pdf" title="Le jeu Les Passagers du vent dans le magazine Jeux & Stratégie n°42">
+            Passagers du vent (Les)</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987)
+
+            <h5 class="mt-5">Passagers du vent 2 (Les)</h5>
+
+            <a href="pdf/js-46-page-84.pdf">Passagers du vent 2 (Les)</a> (Jeux et Stratégie n°46 aout/septembre 1987)
+        
+            <h5 class="mt-5">Passagers du vent 2 (Les)</h5>
+
+            <a href="pdf/js-45-page-65.pdf" title="Le jeu Prohibition dans le magazine Jeux & Stratégie n°45">
+            Prohibition</a> (Jeux et Stratégie n°45 - Juin/Juillet 1987)
+
+            <h5 class="mt-5">Réussites</h5>
+            
+            <a href="pdf/js-46-page-85.pdf">Réussites</a> (Jeux et Stratégie n°46 aout/septembre 1987)
+
+            <h5 class="mt-5">Robinson Crusoé</h5>
+
+            <a href="pdf/js-46-page-88.pdf">Robinson Crusoé</a> (Jeux et Stratégie n°46 aout/septembre 1987)
+
+            <h5 class="mt-5">Saphir</h5>
+            
+            <p class="text-justify">Vous êtes ruiné, mais un vieux mage vous a indiqué une mine de saphirs désaffectée. Vous n'avez plus rien à perdre et partez l'explorer. Ah ! si vous aviez su ! mais maintenant il est trop tard. Vous êtes pris au piège. Et il faut vous défendre des assauts répétés des monstres qui règnent dans ces galeries. Un jeu d'arcade passionnant d'une part, par la multiplicité des galeries, d'autre part, par son éditeur de tableau très performant qui vous permet de créer vos propres galeries.</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/saphir/saphir_0006.jpg" class="figure-img img-fluid rounded" title="Capture d'écran du jeu Saphir pour ordinateur TO8">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/saphir/saphir_0007.jpg" class="figure-img img-fluid rounded" title="Capture d'écran du jeu Saphir pour ordinateur TO8">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/saphir/saphir_0008.jpg" class="figure-img img-fluid rounded" title="Capture d'écran du jeu Saphir pour ordinateur TO8">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+            </div>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/saphir/saphir_0001.jpg" class="figure-img img-fluid rounded" title="Manuel du jeu TO8 pour ordinateur Thomson TO8">
+                    <figcaption class="figure-caption text-right">Le manuel du jeu (1).</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/saphir/saphir_0002.jpg" class="figure-img img-fluid rounded" title="Manuel du jeu TO8 pour ordinateur Thomson TO8">
+                    <figcaption class="figure-caption text-right">Le manuel du jeu (2).</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/saphir/saphir_0003.jpg" class="figure-img img-fluid rounded" title="Manuel du jeu TO8 pour ordinateur Thomson TO8">
+                    <figcaption class="figure-caption text-right">Le manuel du jeu (3).</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/saphir/saphir_0004.jpg" class="figure-img img-fluid rounded" title="Manuel du jeu TO8 pour ordinateur Thomson TO8">
+                    <figcaption class="figure-caption text-right">Le manuel du jeu (4).</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/saphir/saphir_0005.jpg" class="figure-img img-fluid rounded" title="Manuel du jeu TO8 pour ordinateur Thomson TO8">
+                    <figcaption class="figure-caption text-right">Le manuel du jeu (5).</figcaption>
+                </figure>
+
+            </div>
+
+            <h5 class="mt-5">Sapiens</h5>
+
+            <a href="pdf/js-42-page-63.pdf">Sapiens</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987)
+
+            <h5 class="mt-5">Sortiléges</h5>
+
+            <a href="sortileges.php">Sortiléges</a>
+
+            <h5 class="mt-5">Silent Service</h5>
+
+            <a href="silent-service.php">Silent Service</a>
+
+            <h5 class="mt-5">Speedway</h5>
+
+            <p class="text-justify">Speedway est vu par la presse de l'époque comme une simulation de course automobile de piètre qualité. Les graphismes sont grossiers, l'animation trop lente et peu précise, les commandes mal gérées et le son ridicule. Un logiciel insipide. Les auteurs de l'époque se demandent même comment pouvait-on encore vendre un tel produit en 1987 ? Le jeu était édité par Free Game Blot.</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/speedway/speedway-01.jpg" class="figure-img img-fluid rounded" title="capture d'écran du jeu Speedway pour ordinateur TO8">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/speedway/speedway-02.jpg" class="figure-img img-fluid rounded" title="capture d'écran du jeu Speedway pour ordinateur TO8">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/speedway/speedway-03.jpg" class="figure-img img-fluid rounded" title="capture d'écran du jeu Speedway pour ordinateur TO8">
+                    <figcaption class="figure-caption text-right">Capture avec l'émulateur MESS.</figcaption>
+                </figure>
+
+            </div>
+
+            <h5 class="mt-5">Temple de Quauhli (Le)</h5>
+
+            <a href="pdf/js-42-page-62.pdf">Temple de Quauhli (Le)</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987) 
+
+            <h5 class="mt-5">TNT</h5>
+            
+            <a href="pdf/js-46-page-89.pdf">TNT</a> (Jeux et Stratégie n°46 aout/septembre 1987)
+
+            <h5 class="mt-5">Las Vegas</h5>
+
+            <p>Une révolution dans le domaine de l'aventure. Plus besoin de converser avec la machine, de rechercher les mots-clefs dans ce logiciel entièrement géré par la manette ou la souris. Vous êtes l'heureux héritier d'une fortune colossale mais votre vieille tante a précisé que pour bénéficier du pactole, vous devier réitérer l'exploit qu'elle accomplit dans les années trente : gagner en une nuit un million de dollars.</p>
+
+            <p>Une course poursuite à travers la ville, les tripots, les danger, pour satisfaire les dernières volontés d'une vieille originale.</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/tilt-34-02.jpg" class="figure-img img-fluid rounded" title="publicité pour le jeu Las Vegas parue dans Tilt n°34 de septembre 1986">
+                    <figcaption class="figure-caption text-right">Une publicité dans TILT de septembre 1986.</figcaption>
+                </figure>
+
+            </div>
+      
+        </div>
+
+    </article>
+
+</section>
+
+</div>
+
+<div class="fluid-container py-4" style="background: url('img/header-bg.jpg') 0 0 repeat;" >
+
+    <footer class="container text-light">
+
+        <div class="row">
+
+            <div class="col-12 col-sm-6 col-md-6">
+                <p class="text-center">Alexis AMAND<br />Développement Web et SEO<br />---
+                <br />06.62.63.79.21<br />alexis.amand@boitasite.com</p>
+            </div>
+    
+            <div  class="col-12 col-sm-6 col-md-6">
+                <p class="text-center">Follow Moi:</p>
+                <p class="text-center">
+                    <a href="https://twitter.com/boitasite"><i class="fi-swluxl-facebook"></i></a>
+                    <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><i class="fi-swluxl-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/alexis-amand-99775817"><i class="fi-swluxl-linkedin"></i></a>
+                </p>
+            </div>
+        
+        </div>
+
+        <div class="col-12">
+
+            <p class="text-center mt-4">© 2020 - Alexis AMAND</p>
+
+        </div>
+
+    </footer>
+
+</div>
+
+<script defer src="https://friconix.com/cdn/friconix.js"> </script>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<script>
+$(function () {
+$('[data-toggle="tooltip"]').tooltip()
+})
+</script> 
 </body>
 </html>

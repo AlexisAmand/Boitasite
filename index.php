@@ -83,6 +83,8 @@
 
     </style>
 
+    <?php include('include/matomo.inc'); ?>
+
 </head>
 <body style="background: #f2f2f2;font-style: italic;color: #484848;font-size: 0.85em;">
 
@@ -108,6 +110,8 @@
                 </nav>
 
         </div>
+
+        <img src="img/monitor-1307227_1920.jpg" class="img-fluid" alt="Responsive image">
 
     </div>
 

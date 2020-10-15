@@ -83,6 +83,8 @@
 
     </style>
 
+    <?php include('include/matomo.inc'); ?>
+
 </head>
 
 <body style="background: #f2f2f2;font-style: italic;color: #484848;font-size: 0.85em;">
@@ -117,7 +119,7 @@
         <article class="row d-flex justify-content-center" style="background: ('img/line-1.gif') 0 top repeat-x;">
 
             <div class="col-12 py-5 mb-3" style="background: url('img/line-1.gif') 0 bottom repeat-x;">
-                <h1 class="text-center">Cours à domicile <span>et</span> dépannage</h1>
+                <h1 class="text-center">#dépannage : besoin d'<span>aide</span> ?</h1>
             </div>
 
             <div class="col-12">

@@ -83,6 +83,8 @@
 
     </style>
 
+    <?php include('include/matomo.inc'); ?>
+
 </head>
   <body style="background: #f2f2f2;font-style: italic;color: #484848;font-size: 0.85em;">
 
@@ -118,12 +120,14 @@
             <img src="to8/images/logo-to8.jpg" style="width:100%;">
 
             <div class="col-12 py-5 mb-3" style="background: url('img/line-1.gif') 0 bottom repeat-x;">
-                <h1 class="text-center">Le micro-<span>ordinateur</span> TO8</h1>
+                <h1 class="text-center">#to8 : Le micro-<span>ordinateur</span> de Thomson </h1>
             </div>
 
             <div class="col-12">
 
                 <p class="text-justify">Si vous avez envie de (re)découvrir le TO8, je vous conseille l'utilisation de <a href="http://dcmoto.free.fr/" title="Site officiel de l'émulateur de tous les ordinateurs 8 bits Thomson">DCMOTO</a>. C'est un logiciel qui émule sous Windows les machines telles que le Thomson MO5, le MO5E, le MO5NR, le MO6, le T9000, le TO7, le TO7/70, le TO8, le TO8D, le TO9, le TO9+ ou encore l'Olivetti Prodest PC128. Le site propose aussi un accès à plus de 850 jeux et programmes divers ainsi que plus de 160 livres et documents. Vous pouvez aussi utiliser l'emulateur MESS... à condition de vous procurer la ROM du TO8.</p>
+
+                <p class="text-justify">Si vous êtes passionné par le retrogaming, je vous invite à visiter la page consacrée aux <a href="to8/liste-jeux.php">jeux du TO8</a>.</p>
 
                 <h5 class="mt-5">Présentation du TO8</h5>
 
@@ -135,7 +139,7 @@
 
                     <figure class="figure col-6 m-3">
                         <a href="to8/images/thomson_t08_04.jpg" data-fancybox data-caption="Le TO8 pendant sa mise en route">
-                        <img src="to8/images/thumbs/thomson_t08_04.jpg" class="figure-img img-fluid rounded" alt="capture d'écran de la page de démarrage du TO8"></a>
+                        <img src="to8/images/thumbs/thomson_t08_04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la page de démarrage du TO8"></a>
                         <figcaption class="figure-caption text-right">On allume la machine !</figcaption>
                     </figure>
 
@@ -188,8 +192,6 @@
                 <ul>
                     <li><a href="to8/liste-jeux.php" title=" ">Jeux et utilitaires pour le TO8</a></li>
                     <li><a href="to8/moniteur-to8.php" title="manuel du moniteur du micro-ordinateur TO8">Le guide du moniteur pour le TO8</a></li>
-                    <li><a href="to8/manuel-saphir.php" title="Manuel du jeu Saphir pour micro-ordinateur Thomson">Le guide du jeu "Saphir"</a></li>
-                    <li><a href="to8/manuel-dieux.php" title="Manuel du jeu Les Dieux de la Glisse pour micro-ordinateur Thomson">Le guide du jeu "Les Dieux de la Glisse"</a></li>
                     <li><a href="to8/club-micro-thomson.php" title="publicité sur le Club Micro Thomson">Le Club Micro Thomson</a></li>
                     <li><a href="to8/addendum-to8.php" title="addemdum au manuel du micro-ordinateur Thomson TO8">Addendum TO8</a></li>
                 </ul>
