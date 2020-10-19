@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Cours d'informatique à domicile | Alexis AMAND - développement web et SEO à Valenciennes</title>
-    <meta name="description" content="Cours informatique à domicile et dépannage d'ordinateur sur Valenciennes et son arrondissement">
+    <title>Mentions légales du site Boitasite.com | Alexis AMAND - Développeur PHP/Web et Webmaster à Valenciennes</title>
+    <meta name="description" content="Mentions légales du site avec notes sur les cookies et les données personnelles des utilisateurs">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -51,69 +51,28 @@
         <article class="row d-flex justify-content-center ligne-dotted-top">
 
             <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
-                <h1 class="text-center">#dépannage : besoin d'<span>aide</span> ?</h1>
+                <h1 class="text-center">Mentions <span>Légales</span></h1>
             </div>
 
             <div class="col-12">
+
+            <h5 class="mt-5">Editeur du site</h5>
             
-                <h5>Cours d'informatique</h5>
+                <p>BOITASITE<br />Valenciennes (Nord)<br />SIRET : 517 501 235 000 17</p>
 
-                    <p class="text-align">Professionnel de l'informatique et fort d'une expérience professionnel de 5 ans dans ce domaine, je propose mes services pour des cours d'informatique pour débutant ou pour utilisateurs avancés souhaitant approfondir un thème en particulier : bureautique avancée, développement, base de données, technologie du web, etc. (tarif sur demande)</p>
+            <h5 class="mt-5">Création du site</h5>
+                
+                <p>BOITASITE<br />Valenciennes (Nord)<br />SIRET : 517 501 235 000 17</p>
 
-                <h5 class="mt-5">Dépannage de votre ordinateur</h5>
+            <h5 class="mt-5">Hébergeur du site</h5>
+            
+                <p>AMEN SASU<br />12-14, Rond Point des Champs Elysées 75008 Paris.<br />RCS : 421 527 797 000 11</p>
 
-                    <p class="text-align">Virus, pannes, lenteur, messages d'erreur, déconnexions... un jour ou l'autre, tout ordinateur a un souci. Parfois sans conséquence grave mais souvent c'est insupportable au quotidien voire même la catastrophe! Mais pas de panique, je suis là pour vous aider. Savez-vous que la majorité des dépannages informatiques ne nécessite pas d'intervention coûteuse? Ni-même qu'un dépanneur y passe des heures entières ?</p>
+            <h5 class="mt-5">Informations complémentaires</h5>
 
-                    <p class="text-center my-5">
-                        <a href="contacts.php" class="button btn btn-info">Me contacter pour plus d'informations</a>
-                    </p>
+                <p>Conformément à la loi n° 78-17 du 6 janvier 1978, relative à l'Informatique, aux Fichiers et aux Libertés, vous disposez d'un droit d'accès et de rectification des données à caractère personnel vous concernant et faisant l'objet de traitements.</p>
 
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Exemples de prestations propos&eacute;es</th>
-                                <th scope="col">Tarifs (TTC)</th>
-                            <tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td scope="row">Cours d'informatique à votre domicile</td>
-                                <td>23 €/h</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">R&eacute;installation de votre système d'exploitation Linux ou Windows (OS non fourni).</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Remise &agrave; z&eacute;ro de votre ordinateur pour lui redonner la configuration d'usine</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Installation et configuration de votre "box internet" (LiveBox, DartyBox, BBox, ...etc.)</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">R&eacute;cup&eacute;ration de vos donn&eacute;es</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Installation de votre nouveau PC</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Installation et configuration de votre imprimante/scanner</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Installation et param&eacute;trage de vos périphériques (webcams, disques externes,etc.)</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">S&eacute;curisation de votre connexion + logiciels pour le net (antivirus, messagerie, navigateur,etc.)</td>
-                                <td> - </td>
-                            </tr>
-                        <tbody>
-                    </table>
+                <p>En vue d'adapter le site aux demandes de ses visiteurs, je mesure le nombre de visites, le nombre de pages vues ainsi que de l'activité des visiteurs sur le site et leur fréquence de retour avec l'outil Matomo (ex Piwik). Matomo (ex Piwik), l'outil de statistiques utilisé par le site "Histoires de Poilus", génère un cookie avec un identifiant unique, dont la durée de conservation est limitée à 13 mois. Je collecte également votre adresse IP, afin de déterminer la ville depuis laquelle vous vous connectez. Celle-ci est immédiatement anonymisée après utilisation. "Histoires de Poilus" ne peut donc en aucun cas remonter par ce biais à une personne physique.</p>
 
             </div>
 
@@ -121,9 +80,7 @@
 
     </section>
 
-    </div>
-
-      <footer class="fluid-container py-4">
+    <footer class="fluid-container py-4">
 
         <div class="container text-light">
 
@@ -149,7 +106,7 @@
 
                 <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a>
                 </p>
-                
+
             </div>
 
         </div>
