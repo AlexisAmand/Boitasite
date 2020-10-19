@@ -36,7 +36,7 @@
                     <li class="nav-item m-2"><a class="nav-link" href="webmaster.php">Création de sites</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="seo.php">SEO</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">TO8</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">Retrogaming</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li> 
                 </ul> 
@@ -59,7 +59,7 @@
                 <p class="text-justify my-5">Vous êtes à la recherche d'une solution facile pour créer votre site web, et ainsi faire progresser votre entreprise et propulser votre site Web en première page de Google ? Si vous vous poser cette question, vous demandez sans doute également quelles sont les bonnes pratiques pour être visibles sur les moteurs de recherche et être en première page des moteurs de recherche ?</p>
             </div>
 
-            <div class="col-auto">
+            <div class="col-8 mx-auto">
                 <p class="text-center alert alert-success"><i class="fi-xnluhl-thumb"></i>&nbsp;Avoir un site 100 % opérationnel, 100 % efficace, 24h sur 24 et 7 jrs sur 7 !</p>
             </div>
 
@@ -179,8 +179,6 @@
         </article>
 
     </section>
-
-    </div>
 
     <footer class="fluid-container py-4">
 

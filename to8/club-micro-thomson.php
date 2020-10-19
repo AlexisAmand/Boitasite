@@ -37,7 +37,7 @@
                 <li class="nav-item m-2"><a class="nav-link" href="../webmaster.php">Création de sites</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../seo.php">SEO</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../tutoriels.php">Tutos</a></li> 
-                <li class="nav-item m-2"><a class="nav-link" href="../to8.php">TO8</a></li> 
+                <li class="nav-item m-2"><a class="nav-link" href="../to8.php">Retrogaming</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../contacts.php">Contact</a></li> 
             </ul> 
@@ -52,42 +52,44 @@
 
     <article class="row d-flex justify-content-center ligne-dotted-top">
 
-        <div class="col-12 py-5 mb-3 ligne-dotted-bottom>
-            <h1 class="text-center">#to8 : Le Club Micro <span>Thomson</span></h1>                                   
+        <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
+            <h1 class="text-center">#retrogaming : Le Club Micro <span>Thomson</span></h1>                                   
         </div>
 
         <div class="col-12">
 
-        <div class="row d-flex justify-content-center">
+            <p class="text-justify">Ma rencontre avec la gamme TO/MO de Thomson a commencé avec le TO8 que je possédais vers la fin des années 80. En parallèle, l'école primaire du village possédait une salle informatique avec des MO5. Je me souviens des scéances devant un petit jeu sur le code de la route. J'ai continué à rapoter sur les claviers en caoutcouc des MO5 au tout début de mes années colléges, pendant les cours de technologie où on nous a appris à écire nos premières lignes de Basic (j'avais un peu d'avance dans le domaine). Cette page vous présente un document que j'avais à l'époque vu comme une simple brochure publicitaire, mais avec le recul, je pense qu'il s'agissait d'une volonté de Thomson de créer une communauté autour des utilisateurs de sa gamme.</p>
+
+        <div class="row d-flex justify-content-center mt-5">
 
                 <figure class="figure col-lg-4 col-sm-6">
                     <img src="images/club/club-micro-thomson-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 1 du document sur Le Club Micro Thomson dans les années 80">
-                    <figcaption class="figure-caption text-right">Le Club Micro Thomson dans les années 80.</figcaption>
+                    <figcaption class="figure-caption text-center">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
                     <img src="images/club/club-micro-thomson-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 2 du document sur Le Club Micro Thomson dans les années 80">
-                    <figcaption class="figure-caption text-right">Le Club Micro Thomson dans les années 80.</figcaption>
+                    <figcaption class="figure-caption text-center">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
                     <img src="images/club/club-micro-thomson-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 3 du document sur Le Club Micro Thomson dans les années 80">
-                    <figcaption class="figure-caption text-right">Le Club Micro Thomson dans les années 80.</figcaption>
+                    <figcaption class="figure-caption text-center">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
                     <img src="images/club/club-micro-thomson-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 4 du document sur Le Club Micro Thomson dans les années 80">
-                    <figcaption class="figure-caption text-right">Le Club Micro Thomson dans les années 80.</figcaption>
+                    <figcaption class="figure-caption text-center">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
                     <img src="images/club/club-micro-thomson-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 5 du document sur Le Club Micro Thomson dans les années 80">
-                    <figcaption class="figure-caption text-right">Le Club Micro Thomson dans les années 80.</figcaption>
+                    <figcaption class="figure-caption text-center">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
                     <img src="images/club/club-micro-thomson-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 6 du document sur Le Club Micro Thomson dans les années 80">
-                    <figcaption class="figure-caption text-right">Le Club Micro Thomson dans les années 80.</figcaption>
+                    <figcaption class="figure-caption text-center">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
             </div>
@@ -97,8 +99,6 @@
 </article>
 
 </section>
-
-</div>
 
 <footer class="fluid-container py-4">
 

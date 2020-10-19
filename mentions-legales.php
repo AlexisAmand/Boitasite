@@ -36,7 +36,7 @@
                     <li class="nav-item m-2"><a class="nav-link" href="webmaster.php">Création de sites</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="seo.php">SEO</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">TO8</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">Retrogaming</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li> 
                 </ul> 

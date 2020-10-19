@@ -37,7 +37,7 @@
                     <li class="nav-item m-2"><a class="nav-link" href="webmaster.php">Création de sites</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="seo.php">SEO</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">TO8</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">Retrogaming</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li> 
                 </ul> 
@@ -72,9 +72,9 @@
             <div class="media">
                 <img src="img/page1-img2.png" alt="dossier jaune dessiné aux crayons de couleurs">
                 <div class="media-body">
-                    <h5 class="mt-0 mb-1">LE TO8 ?</h5>
-                    <p class="text-justify">Je vous propose de partir à la découverte du TO8, l'ordinateur qui m'a permis de découvrir l'informatique il y a presque 30 ans. Bien loin des Windows, Linux et autres MSDOS. <a href="to8.php" title="page d'information sur le TO8 de Thomson">[En savoir plus...]</a></p>
-                </div>       
+                    <h5 class="mt-0 mb-1">Retrogaming ?</h5>
+                    <p class="text-justify">Je vous propose de partir à la découverte du TO8, l'ordinateur qui m'a permis de découvrir l'informatique et les jeux vidéos il y a plus de 30 ans. Bien loin des Windows, Linux et autres MSDOS. <a href="to8.php" title="page d'informations sur le TO8 de Thomson et le retrogaming">[En savoir plus...]</a></p>
+                </div>
             </div>
         </div>
         
@@ -125,8 +125,6 @@
         </article>
 
     </section>
-
-    </div>
 
     <footer class="fluid-container py-4">
 

@@ -36,7 +36,7 @@
                     <li class="nav-item m-2"><a class="nav-link" href="webmaster.php">Création de sites</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="seo.php">SEO</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">TO8</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">Retrogaming</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li> 
                 </ul> 
@@ -54,14 +54,17 @@
             <img src="to8/images/logo-to8.jpg" style="width:100%;">
 
             <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
-                <h1 class="text-center">#to8 : Le micro-<span>ordinateur</span> de Thomson </h1>
+                <h1 class="text-center">#retrogaming : Le micro-<span>ordinateur</span> TO8 de Thomson </h1>
             </div>
 
             <div class="col-12">
 
                 <p class="text-justify">Si vous avez envie de (re)découvrir le TO8, je vous conseille l'utilisation de <a href="http://dcmoto.free.fr/" title="Site officiel de l'émulateur de tous les ordinateurs 8 bits Thomson">DCMOTO</a>. C'est un logiciel qui émule sous Windows les machines telles que le Thomson MO5, le MO5E, le MO5NR, le MO6, le T9000, le TO7, le TO7/70, le TO8, le TO8D, le TO9, le TO9+ ou encore l'Olivetti Prodest PC128. Le site propose aussi un accès à plus de 850 jeux et programmes divers ainsi que plus de 160 livres et documents. Vous pouvez aussi utiliser l'emulateur MESS... à condition de vous procurer la ROM du TO8.</p>
 
-                <p class="text-justify">Si vous êtes passionné par le retrogaming, je vous invite à visiter la page consacrée aux <a href="to8/liste-jeux.php">jeux du TO8</a>.</p>
+                <ul>
+                    <li>Si vous êtes passionné par le <strong>retrogaming</strong>, je vous invite à visiter la page consacrée aux <a href="to8/liste-jeux.php">jeux du TO8</a>.</li>
+                    <li>Si votre truc c'est plutôt le <strong>matériel</strong>, c'est sans doute la page consacré au <a href="to8/moniteur-to8.php">moniteur</a> que vous allez préférer.</li>
+                </ul>
 
                 <h5 class="mt-5">Présentation du TO8</h5>
 
@@ -74,49 +77,49 @@
                     <figure class="figure col-6 m-3">
                         <a href="to8/images/thomson_t08_04.jpg" data-fancybox data-caption="Le TO8 pendant sa mise en route">
                         <img src="to8/images/thumbs/thomson_t08_04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la page de démarrage du TO8"></a>
-                        <figcaption class="figure-caption text-right">On allume la machine !</figcaption>
+                        <figcaption class="figure-caption text-center">On allume la machine !</figcaption>
                     </figure>
 
                 </div>
         
-                <p class="text-justify mt-3">Le TO8 possède un contrôleur de disquette 3,5 pouces 640K fonctionnant avec le DOS inclus dans le Basic  512. Un connecteur pour brancher l'unité de disquettes (Sony) apparaît à l'arrière de l'unité centrale. Ce connecteur peut recevoir également un QDD. Plusieurs unités de disquettes sont connectables par chaînage. On trouve aussi le sunthétiseur de sons identique à celui du MO6, une interface pour imprimante paralléle, un connecteur pour LEP (identique à celui du TO7, mais avec un nouveau design), deux connecteurs pour manettes de jeux/souris, une prise son Cinch et un seul connecteur d'extension pour recevoir un modem, etc. Le TO8 adopte, comme toute la gamme, les 8 modes d'affichage du TO9 dont le mode 80 colonnes et la palette de 4096 couleurs. La version de base est proposée à 2990 F ttc, l'unité de disquettes à 3,5 pouces 640 K à 1990 F ttc. Une configuration comprenant un TO8, <a href="to8/moniteur-to8.php">un moniteur couleurs haute résolution</a> et une unité de disquette 640 K sera proposée à 5990 F ttc au lieu de 7470 F.</p>
+                <p class="text-justify mt-3">Le TO8 possède un contrôleur de disquette 3,5 pouces 640K fonctionnant avec le DOS inclus dans le Basic  512. Un connecteur pour brancher l'unité de disquettes (Sony) apparaît à l'arrière de l'unité centrale. Ce connecteur peut recevoir également un QDD. Plusieurs unités de disquettes sont connectables par chaînage. On trouve aussi le sunthétiseur de sons identique à celui du MO6, une interface pour imprimante paralléle, un connecteur pour LEP (identique à celui du TO7, mais avec un nouveau design), deux connecteurs pour manettes de jeux/souris, une prise son Cinch et un seul connecteur d'extension pour recevoir un modem, etc. Le TO8 adopte, comme toute la gamme, les 8 modes d'affichage du TO9 dont le mode 80 colonnes et la palette de 4096 couleurs. La version de base est proposée à 2990 F ttc, l'unité de disquettes à 3,5 pouces 640 K à 1990 F ttc. Une configuration comprenant un TO8, <a href="to8/moniteur-to8.php" title="page consacrée au moniteur du micro-ordinateur TO8">un moniteur couleurs haute résolution</a> et une unité de disquette 640 K sera proposée à 5990 F ttc au lieu de 7470 F.</p>
 
                 <div class="row d-flex justify-content-center">
 
                     <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_01.jpg" data-fancybox data-caption="L'unité centrale du TO8">
                         <img src="to8/images/thumbs/thomson_t08_01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de face de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
-                        <figcaption class="figure-caption text-right">Vue de face de l'unité centrale.</figcaption>
+                        <figcaption class="figure-caption text-center">Vue de face de l'unité centrale.</figcaption>
                     </figure>
 
                     <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_02.jpg" data-fancybox data-caption="L'unité centrale du TO8">
                         <img src="to8/images/thumbs/thomson_t08_02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de côté de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
-                        <figcaption class="figure-caption text-right">Vue de côté de l'unité centrale.</figcaption>
+                        <figcaption class="figure-caption text-center">Vue de côté de l'unité centrale.</figcaption>
                     </figure>
 
                     <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_03.jpg" data-fancybox data-caption="L'unité centrale du TO8">
                         <img src="to8/images/thumbs/thomson_t08_03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de dos de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
-                        <figcaption class="figure-caption text-right">Vue de dos de l'unité centrale.</figcaption>
+                        <figcaption class="figure-caption text-center">Vue de dos de l'unité centrale.</figcaption>
                     </figure>
 
                     <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_06.jpg" data-fancybox data-caption="L'exploitation de fichiers avec le TO8">
                         <img src="to8/images/thumbs/thomson_t08_06.jpg" class="figure-img img-fluid rounded img-thumbnail"  alt="L'exploitation de fichiers avec le TO8 "/></a>
-                        <figcaption class="figure-caption text-right">Exploitation de fichiers</figcaption>
+                        <figcaption class="figure-caption text-center">Exploitation de fichiers</figcaption>
                     </figure>
 
                     <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_07.jpg" data-fancybox data-caption="Le contenu d'une disquette en Basic">
                         <img src="to8/images/thumbs/thomson_t08_07.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="La visualisation d'une disquette en Basic"/></a>
-                        <figcaption class="figure-caption text-right">Le contenu d'une disquette</figcaption>
+                        <figcaption class="figure-caption text-center">Le contenu d'une disquette</figcaption>
                     </figure>   
 
                     <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_05.jpg" data-fancybox data-caption="La palette de couleurs du TO8">
                         <img src="to8/images/thumbs/thomson_t08_05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="La palette de couleurs du Thomson TO8"/></a>
-                        <figcaption class="figure-caption text-right">La palette de couleurs</figcaption>
+                        <figcaption class="figure-caption text-center">La palette de couleurs</figcaption>
                     </figure>
 
                 </div>
@@ -124,19 +127,19 @@
                 <h5 class="mt-5">Ressources</h5>
 
                 <ul>
-                    <li><a href="to8/liste-jeux.php" title=" ">Jeux et utilitaires pour le TO8</a></li>
+                    <li><a href="to8/liste-jeux.php" title="Liste de jeux qui étaient disponibles avec le TO8">Jeux et utilitaires pour le TO8</a></li>
                     <li><a href="to8/moniteur-to8.php" title="manuel du moniteur du micro-ordinateur TO8">Le guide du moniteur pour le TO8</a></li>
-                    <li><a href="to8/club-micro-thomson.php" title="publicité sur le Club Micro Thomson">Le Club Micro Thomson</a></li>
+                    <li><a href="to8/club-micro-thomson.php" title="publicité sur le Club Micro de Thomson">Le Club Micro Thomson</a></li>
                     <li><a href="to8/addendum-to8.php" title="addemdum au manuel du micro-ordinateur Thomson TO8">Addendum TO8</a></li>
                 </ul>
 
-                <h6 class="mt-3">Le TO8 dans la presse informatique</h6>
+                <h6 class="mt-3">Le TO8 vu par la presse informatique</h6>
 
                 <ul>
                     <li><a href="to8/pdf/js-41-page-44.pdf" title="extrait de la revue Jeux et Stratégie n°41 à propos de la nouvelle gamme Thomson">
-                    Jeux & Stratégie n°41 - Octobre/Novembre 1986 : "La nouvelle gamme Thomson" (pdf)</a></li>
+                    Jeux &amp; Stratégie n°41 - Octobre/Novembre 1986 : "La nouvelle gamme Thomson" (pdf)</a></li>
                     <li><a href="to8/pdf/svm-032.pdf" title="extrait de la revue Jeux et Vie Micro n°32 à propos de la nouvelle gamme Thomson">
-                    Science & Vie Micro n°32 - Octobre 1986 : "La nouvelle gamme Thomson" (pdf)</a></li>
+                    Science &amp; Vie Micro n°32 - Octobre 1986 : "La nouvelle gamme Thomson" (pdf)</a></li>
                     <li><a href="to8/pdf/svm-032.pdf" title="extrait de la revue Tilt n°35 à propos de la nouvelle gamme Thomson">
                     TILT n°35 - Octobre 1986 : "Thomson 86: Un bon millésime" (pdf)</a></li>
                     <li><a href="to8/pdf/Canard_PC_Hardware_HS_2016_06_07_fr_0079.pdf" title="La gamme TO de Thomson dans Canard PC Hardware HS de 2016">
@@ -147,26 +150,26 @@
 
                 <ul>
                     <li><a href="to8/pdf/svm-034.pdf" title="publicité pour le TO8 parue dans la revue Science & Vie Micro n°34">
-                    Scienve & Vie Micro n°34 - Décembre 1986 : "Une place de 1ere dans le train de l'avenir" (pdf)</a></li>
+                    Scienve &amp; Vie Micro n°34 - Décembre 1986 : "Une place de 1ere dans le train de l'avenir" (pdf)</a></li>
                     <li><a href="to8/pdf/svm-039.pdf" title="publicité pour le TO8 parue dans la revue Science & Vie Micro n°39">
-                    Scienve & Vie Micro n°39 - Mai 1987 : "Promotion sur la gamme TO8 chez Videoshop" (pdf)</a></li>                                
+                    Scienve &amp; Vie Micro n°39 - Mai 1987 : "Promotion sur la gamme TO8 chez Videoshop" (pdf)</a></li>                                
                 </ul>
 
                 <h6 class="mt-3">Articles sur les jeux</h6>
 
                 <ul>
-                    <li><a href="to8/pdf/js-38-page-70.pdf" title="Le jeu La malédiction de Thaar dans le magazine Jeux & Stratégie n°38">
-                    Jeux & Stratégie n°38 - Avril/Mai 1986 : "La malédiction de thaar" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-38-page-72.pdf" title="Le jeu Cap sur Dakar dans le magazine Jeux & Stratégie n°38">
-                    Jeux & Stratégie n°38 - Avril/Mai 1986 : "Cap sur Dakar" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-39-page-79.pdf" title="Le jeu Sortileges dans le magazine Jeux & Stratégie n°39">
-                    Jeux & Stratégie n°39 - Juin/Juillet 1986 : "Sortileges" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-42-page-64.pdf" title="Le jeu Grand Prix dans le magazine Jeux & Stratégie n°42">
-                    Jeux & Stratégie n°42 - Décembre 1986/Janvier 1987 : "Grand Prix 500 cc" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-43-page-74.pdf" title="Le jeu James Debug dans le magazine Jeux & Stratégie n°43">
-                    Jeux & Stratégie n°43 - Février/Mars 1987 : "James Debug" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-45-page-65.pdf" title="Le jeu Prohibition dans le magazine Jeux & Stratégie n°45">
-                    Jeux & Stratégie n°45 - Juin/Juillet 1987 : "Prohibition" (pdf)</a></li>                 
+                    <li><a href="to8/pdf/js-38-page-70.pdf" title="Le jeu La malédiction de Thaar dans le magazine Jeux &amp; Stratégie n°38">
+                    Jeux &amp; Stratégie n°38 - Avril/Mai 1986 : "La malédiction de thaar" (pdf)</a></li>
+                    <li><a href="to8/pdf/js-38-page-72.pdf" title="Le jeu Cap sur Dakar dans le magazine Jeux &amp; Stratégie n°38">
+                    Jeux &amp; Stratégie n°38 - Avril/Mai 1986 : "Cap sur Dakar" (pdf)</a></li>
+                    <li><a href="to8/pdf/js-39-page-79.pdf" title="Le jeu Sortileges dans le magazine Jeux &amp; Stratégie n°39">
+                    Jeux &amp; Stratégie n°39 - Juin/Juillet 1986 : "Sortileges" (pdf)</a></li>
+                    <li><a href="to8/pdf/js-42-page-64.pdf" title="Le jeu Grand Prix dans le magazine Jeux &amp; Stratégie n°42">
+                    Jeux &amp; Stratégie n°42 - Décembre 1986/Janvier 1987 : "Grand Prix 500 cc" (pdf)</a></li>
+                    <li><a href="to8/pdf/js-43-page-74.pdf" title="Le jeu James Debug dans le magazine Jeux &amp; Stratégie n°43">
+                    Jeux &amp; Stratégie n°43 - Février/Mars 1987 : "James Debug" (pdf)</a></li>
+                    <li><a href="to8/pdf/js-45-page-65.pdf" title="Le jeu Prohibition dans le magazine Jeux &amp; Stratégie n°45">
+                    Jeux &amp; Stratégie n°45 - Juin/Juillet 1987 : "Prohibition" (pdf)</a></li>                 
                 </ul>
 
                 <h6 class="mt-3">La revue Microtom</h6>
@@ -184,8 +187,6 @@
                 </ul>
 
                 </div>
-
-            </div>
 
         </article>
 

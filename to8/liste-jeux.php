@@ -37,7 +37,7 @@
                 <li class="nav-item m-2"><a class="nav-link" href="../webmaster.php">Création de sites</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../seo.php">SEO</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../tutoriels.php">Tutos</a></li> 
-                <li class="nav-item m-2"><a class="nav-link" href="../to8.php">TO8</a></li> 
+                <li class="nav-item m-2"><a class="nav-link" href="../to8.php">Retrogaming</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../contacts.php">Contact</a></li> 
             </ul> 
@@ -66,17 +66,17 @@
 
                 <figure class="figure col-3 m-3">
                     <img src="images/androide/androide_01.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu pour thomson TO8 Androïdes réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/androide/androide_02.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu pour thomson TO8 Androïdes réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/androide/androide_03.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu pour thomson TO8 Androïdes réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
             </div>
@@ -85,6 +85,17 @@
                 
             <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-46-page-89.pdf" title="article sur le jeu Arkanoïd paru dans Jeux et Stratégie n°46 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987.</p>
 
+            <h5 class="mt-5">Asterix</h5>
+            
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/asterix/asterix-01.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+            </div>
+            
             <h5 class="mt-5">La Bataille des Brevets</h5>
             
             <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-64.pdf" title="article sur le jeu La Bataille des Brevets paru dans Jeux et Stratégie n°43 de février/mars 1987">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
@@ -95,13 +106,13 @@
 
             <h5 class="mt-5">Cap sur Dakar</h5>
 
-            <p class="text-justify">Edité par Coktel Vision, Cap sur Dakar est une simulation réaliste de la célèbre course Paris-Dakar: de la recherche des sponsors, vitale, jusqu'aux épreuves de conduite sur pistes, de plus en plus sportives, vivez toutes les péripéties de ce très grand raid. Ce jeu a fait l'objet d'un <a href="pdf/js-38-page-74.pdf" title="Le jeu Cap sur Dakar dans le magazine Jeux & Stratégie n°38">article</a> dans la revue Jeux et Stratégie n°38 d'avril/mai 1986.</p>
+            <p class="text-justify">Edité par Coktel Vision, Cap sur Dakar est une simulation réaliste de la célèbre course Paris-Dakar: de la recherche des sponsors, vitale, jusqu'aux épreuves de conduite sur pistes, de plus en plus sportives, vivez toutes les péripéties de ce très grand raid. Ce jeu a fait l'objet d'un <a href="pdf/js-38-page-74.pdf" title="Le jeu Cap sur Dakar dans le magazine Jeux &amp; Stratégie n°38">article</a> dans la revue Jeux et Stratégie n°38 d'avril/mai 1986.</p>
 
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
                     <img src="images/tilt-37-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu Cap sur Dakar parue dans la revue TILT de décembre 1986">
-                    <figcaption class="figure-caption text-right">Une publicité dans TILT de décembre 1986.</figcaption>
+                    <figcaption class="figure-caption text-center">Une publicité dans TILT de décembre 1986.</figcaption>
                 </figure>
 
             </div>
@@ -114,12 +125,12 @@
 
                 <figure class="figure col-3 m-3">
                     <img src="images/choplifter/choplifter-01.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu Choplifter pour thomson TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/choplifter/choplifter-02.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu Choplifter pour thomson TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
             </div>
@@ -132,7 +143,7 @@
 
                 <figure class="figure col-3 m-3">
                     <img src="images/tilt-39-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu Dakar 4x4 parue dans la revue TILT de février 1987">
-                    <figcaption class="figure-caption text-right">Une publicité dans TILT de février 1987.</figcaption>
+                    <figcaption class="figure-caption text-center">Une publicité dans TILT de février 1987.</figcaption>
                 </figure>
 
             </div>
@@ -159,17 +170,17 @@
 
                 <figure class="figure col-3 m-3">
                     <img src="images/entropie/entropie-01.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/entropie/entropie-02.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/entropie/entropie-03.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
             </div>
@@ -180,7 +191,7 @@
 
                 <figure class="figure col-3 m-3">
                     <img src="images/entropie/entropie-04.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
             </div>
@@ -189,26 +200,26 @@
 
             <p>Un jeu édité par Microïds.</p>
  
-            <p class="text-justify">Cette version perd le son, le graphisme ne progresse pas: douze circuits à choisir mais le décor reste identique en Hollande ou en Afrique du Sud ! Deux motos indépendantes, à la direction déroutante, une résistance au choc et une adhérence exceptionnelles (Tilt n°41 - avril 1987). Ce jeu a fait l'objet d'un <a href="pdf/js-42-page-64.pdf" title="Le jeu Grand Prix dans le magazine Jeux & Stratégie n°42">article</a> dans la revue Jeux et Stratégie n°42 de décembre 1986-Janvier 1987.</p>
+            <p class="text-justify">Cette version perd le son, le graphisme ne progresse pas: douze circuits à choisir mais le décor reste identique en Hollande ou en Afrique du Sud ! Deux motos indépendantes, à la direction déroutante, une résistance au choc et une adhérence exceptionnelles (Tilt n°41 - avril 1987). Ce jeu a fait l'objet d'un <a href="pdf/js-42-page-64.pdf" title="Le jeu Grand Prix dans le magazine Jeux &amp; Stratégie n°42">article</a> dans la revue Jeux et Stratégie n°42 de décembre 1986-Janvier 1987.</p>
 
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
                     <img src="images/tilt-38-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu Grand Prix 500 cc parue dans la revue TILT de janvier 1987">
-                    <figcaption class="figure-caption text-right">Une publicité dans TILT de janvier 1987.</figcaption>
+                    <figcaption class="figure-caption text-center">Une publicité dans TILT de janvier 1987.</figcaption>
                 </figure>
 
             </div>
       
             <h5 class="mt-5">James Debug</h5>
 
-            <p class="text-justify">Dans ce jeu d'arcade-aventure, le joueur guide un petit personnage sur un terrain vu en coup et tente de rassembler les preuves (pièces graphiques à collecter). Les déplacemements sont assez lents et le jeu ne déclenche pas une folle passion. Il faut cependant faire preuve d'astuce pour progresser régulièrement. On ne peut que déplorer la différence entre le scénario (une grande puissance implante un centre informatique stratégique secret dans une île perdu du Pacifique. Suite à un incident majeur, un déversement massif de programmes buggés envahit les centres serveurs de la planète...) et le contenu réel du jeu. Un jeu édité par Coktel Vision. Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-74.pdf" title="Le jeu James Debug dans le magazine Jeux & Stratégie n°43">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
+            <p class="text-justify">Dans ce jeu d'arcade-aventure, le joueur guide un petit personnage sur un terrain vu en coup et tente de rassembler les preuves (pièces graphiques à collecter). Les déplacemements sont assez lents et le jeu ne déclenche pas une folle passion. Il faut cependant faire preuve d'astuce pour progresser régulièrement. On ne peut que déplorer la différence entre le scénario (une grande puissance implante un centre informatique stratégique secret dans une île perdu du Pacifique. Suite à un incident majeur, un déversement massif de programmes buggés envahit les centres serveurs de la planète...) et le contenu réel du jeu. Un jeu édité par Coktel Vision. Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-74.pdf" title="Le jeu James Debug dans le magazine Jeux &amp; Stratégie n°43">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
 
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
                     <img src="images/tilt-37-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu James Debug parue dans la revue TILT de décembre 1986">
-                    <figcaption class="figure-caption text-right">Une publicité dans TILT de décembre 1986.</figcaption>
+                    <figcaption class="figure-caption text-center">Une publicité dans TILT de décembre 1986.</figcaption>
                 </figure>
 
             </div>
@@ -221,20 +232,20 @@
 
                 <figure class="figure col-3 m-3">
                     <img src="images/tilt-34-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu James Debug parue dans la revue TILT de décembre 1986">
-                    <figcaption class="figure-caption text-right">Une publicité dans TILT de décembre 1986.</figcaption>
+                    <figcaption class="figure-caption text-center">Une publicité dans TILT de décembre 1986.</figcaption>
                 </figure>
 
             </div>
 
             <h5 class="mt-5">Malediction de Thaar (La)</h5>
 
-            <p class="text-justify">Une aventure dans les entrailles du globe. Vous devrez affronter des monstres préhistoriques, de belles créatures inquiétantes, des esprits démoniaques, mais aussi un mystérieux sorcier nommé Thaar. Ce jeu, édité par Coktel Vision, a fait l'objet d'un <a href="to8/pdf/js-38-page-70.pdf" title="Le jeu La malédiction de Thaar dans le magazine Jeux & Stratégie n°38">article</a> dans la revue Jeux et Stratégie n°38 d'avril/mai 1986.</p>
+            <p class="text-justify">Une aventure dans les entrailles du globe. Vous devrez affronter des monstres préhistoriques, de belles créatures inquiétantes, des esprits démoniaques, mais aussi un mystérieux sorcier nommé Thaar. Ce jeu, édité par Coktel Vision, a fait l'objet d'un <a href="to8/pdf/js-38-page-70.pdf" title="Le jeu La malédiction de Thaar dans le magazine Jeux &amp; Stratégie n°38">article</a> dans la revue Jeux et Stratégie n°38 d'avril/mai 1986.</p>
 
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
                     <img src="images/tilt-37-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour la malédiction de Thaar parue dans la revue TILT de décembre 1986">
-                    <figcaption class="figure-caption text-right">Une publicité dans TILT de décembre 1986.</figcaption>
+                    <figcaption class="figure-caption text-center">Une publicité dans TILT de décembre 1986.</figcaption>
                 </figure>
 
             </div>
@@ -259,41 +270,62 @@
 
                 <figure class="figure col-3 m-3">
                     <img src="images/templiers/templiers-04.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/templiers/templiers-02.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/templiers/templiers-03.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
             </div>
           
             <h5 class="mt-5">Passagers du vent (Les)</h5>
             	
-            <a href="pdf/js-42-page-75.pdf" title="Le jeu Les Passagers du vent dans le magazine Jeux & Stratégie n°42">Passagers du vent (Les)</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987)
+            <a href="pdf/js-42-page-75.pdf" title="Le jeu Les Passagers du vent dans le magazine Jeux &amp; Stratégie n°42">Passagers du vent (Les)</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987)
 
             <h5 class="mt-5">Passagers du vent 2 (Les)</h5>
 
-            <a href="pdf/js-46-page-84.pdf" title="Le jeu Les Passagers du vent dans le magazine Jeux & Stratégie n°46">Passagers du vent 2 (Les)</a> (Jeux et Stratégie n°46 aout/septembre 1987)
+            <a href="pdf/js-46-page-84.pdf" title="Le jeu Les Passagers du vent dans le magazine Jeux &amp; Stratégie n°46">Passagers du vent 2 (Les)</a> (Jeux et Stratégie n°46 aout/septembre 1987)
         
             <h5 class="mt-5">Passagers du vent 2 (Les)</h5>
 
-            <a href="pdf/js-45-page-65.pdf" title="Le jeu Prohibition dans le magazine Jeux & Stratégie n°45">Prohibition</a> (Jeux et Stratégie n°45 - Juin/Juillet 1987)
+            <a href="pdf/js-45-page-65.pdf" title="Le jeu Prohibition dans le magazine Jeux &amp; Stratégie n°45">Prohibition</a> (Jeux et Stratégie n°45 - Juin/Juillet 1987)
 
             <h5 class="mt-5">Réussites</h5>
             
-            <a href="pdf/js-46-page-85.pdf" title="Le jeu Réussites dans le magazine Jeux & Stratégie n°46">Réussites</a> (Jeux et Stratégie n°46 aout/septembre 1987)
+            <a href="pdf/js-46-page-85.pdf" title="Le jeu Réussites dans le magazine Jeux &amp; Stratégie n°46">Réussites</a> (Jeux et Stratégie n°46 aout/septembre 1987)
 
             <h5 class="mt-5">Robinson Crusoé</h5>
 
-            <a href="pdf/js-46-page-88.pdf" title="Le jeu Robinson Crusoé dans le magazine Jeux & Stratégie n°46">Robinson Crusoé</a> (Jeux et Stratégie n°46 aout/septembre 1987)
+            <a href="pdf/js-46-page-88.pdf" title="Le jeu Robinson Crusoé dans le magazine Jeux &amp; Stratégie n°46">Robinson Crusoé</a> (Jeux et Stratégie n°46 aout/septembre 1987)
 
+            <h5 class="mt-5">Runway II</h5>
+            
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/runway2/runway2-01.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/runway2/runway2-02.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/runway2/runway2-03.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+            </div>
+            
             <h5 class="mt-5">Saphir</h5>
             
             <p class="text-justify">Vous êtes ruiné, mais un vieux mage vous a indiqué une mine de saphirs désaffectée. Vous n'avez plus rien à perdre et partez l'explorer. Ah ! si vous aviez su ! mais maintenant il est trop tard. Vous êtes pris au piège. Et il faut vous défendre des assauts répétés des monstres qui règnent dans ces galeries. Un jeu d'arcade passionnant d'une part, par la multiplicité des galeries, d'autre part, par son éditeur de tableau très performant qui vous permet de créer vos propres galeries.</p>
@@ -302,17 +334,17 @@
 
                 <figure class="figure col-3 m-3">
                     <img src="images/saphir/saphir_0006.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/saphir/saphir_0007.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/saphir/saphir_0008.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
             </div>
@@ -321,42 +353,58 @@
 
                 <figure class="figure col-3 m-3">
                     <img src="images/saphir/saphir_0001.jpg" class="figure-img img-fluid rounded" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
-                    <figcaption class="figure-caption text-right">Le manuel du jeu (1).</figcaption>
+                    <figcaption class="figure-caption text-center">Le manuel du jeu (1).</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/saphir/saphir_0002.jpg" class="figure-img img-fluid rounded" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
-                    <figcaption class="figure-caption text-right">Le manuel du jeu (2).</figcaption>
+                    <figcaption class="figure-caption text-center">Le manuel du jeu (2).</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/saphir/saphir_0003.jpg" class="figure-img img-fluid rounded" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
-                    <figcaption class="figure-caption text-right">Le manuel du jeu (3).</figcaption>
+                    <figcaption class="figure-caption text-center">Le manuel du jeu (3).</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/saphir/saphir_0004.jpg" class="figure-img img-fluid rounded" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
-                    <figcaption class="figure-caption text-right">Le manuel du jeu (4).</figcaption>
+                    <figcaption class="figure-caption text-center">Le manuel du jeu (4).</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/saphir/saphir_0005.jpg" class="figure-img img-fluid rounded" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
-                    <figcaption class="figure-caption text-right">Le manuel du jeu (5).</figcaption>
+                    <figcaption class="figure-caption text-center">Le manuel du jeu (5).</figcaption>
                 </figure>
 
             </div>
 
             <h5 class="mt-5">Sapiens</h5>
 
-            <a href="pdf/js-42-page-63.pdf" title="Le jeu Sapiens dans le magazine Jeux & Stratégie n°42">Sapiens</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987)
+            <a href="pdf/js-42-page-63.pdf" title="Le jeu Sapiens dans le magazine Jeux &amp; Stratégie n°42">Sapiens</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987)
 
             <h5 class="mt-5">Sortiléges</h5>
 
-            <a href="sortileges.php">Sortiléges</a>
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/tilt-34-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu Sortiléges parue dans la revue TILT de septembre 1986">
+                    <figcaption class="figure-caption text-center">Une publicité dans TILT de septembre 1986.</figcaption>
+                </figure>
+
+            </div>
+
+            <a href="to8/pdf/js-39-page-79.pdf" title="Le jeu Sortileges dans le magazine Jeux &amp; Stratégie n°39">Jeux et Stratégie n°39 - Juin/Juillet 1986 : "Sortileges" (pdf)</a>
 
             <h5 class="mt-5">Silent Service</h5>
 
-            <a href="silent-service.php">Silent Service</a>
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/tilt-40-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu Silent Service parue dans la revue TILT de mars 1987">
+                    <figcaption class="figure-caption text-center">Une publicité dans TILT de mars 1987.</figcaption>
+                </figure>
+
+            </div>
 
             <h5 class="mt-5">Speedway</h5>
 
@@ -366,28 +414,51 @@
 
                 <figure class="figure col-3 m-3">
                     <img src="images/speedway/speedway-01.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu Speedway pour ordinateur TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/speedway/speedway-02.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu Speedway pour ordinateur TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/speedway/speedway-03.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu Speedway pour ordinateur TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-right">Capture du jeu avec l'émulateur MESS.</figcaption>
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
             </div>
+            
+            <h5 class="mt-5">Stone Zone</h5>
+            
+            <p>L'action de Stone Zone se déroule dans les mines de diamant du mont Karaz. Dans ce jeu, qui n'est pas sans rapeller <em>Boulder Dash</em>, il y a des boules qui tombent, des galeries qu'il faut creuser et des monstres auquel il faut échapper dans 50 niveaux aux allures de labyrinthes.</p>
+                
+            <div class="row d-flex justify-content-center">
 
+                <figure class="figure col-3 m-3">
+                    <img src="images/stone-zone/stone-zone-01.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+               	<figure class="figure col-3 m-3">
+                    <img src="images/stone-zone/stone-zone-02.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <img src="images/stone-zone/stone-zone-03.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">La disquette du jeu.</figcaption>
+                </figure>
+
+            </div>
+          
             <h5 class="mt-5">Temple de Quauhli (Le)</h5>
 
-            <a href="pdf/js-42-page-62.pdf" title="Le jeu Le Temple de Quauhli dans le magazine Jeux & Stratégie n°42">Temple de Quauhli (Le)</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987) 
+            <a href="pdf/js-42-page-62.pdf" title="Le jeu Le Temple de Quauhli dans le magazine Jeux &amp; Stratégie n°42">Temple de Quauhli (Le)</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987) 
 
             <h5 class="mt-5">TNT</h5>
             
-            <a href="pdf/js-46-page-89.pdf" title="Le jeu TNT dans le magazine Jeux & Stratégie n°46">TNT</a> (Jeux et Stratégie n°46 aout/septembre 1987)
+            <a href="pdf/js-46-page-89.pdf" title="Le jeu TNT dans le magazine Jeux &amp; Stratégie n°46">TNT</a> (Jeux et Stratégie n°46 aout/septembre 1987)
 
             <h5 class="mt-5">Las Vegas</h5>
 
@@ -396,8 +467,17 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
+                    <img src="images/lasvegas/lasvegas-01.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+            </div>
+            
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
                     <img src="images/tilt-34-02.jpg" class="figure-img img-fluid rounded" alt="publicité pour le jeu Las Vegas parue dans Tilt n°34 de septembre 1986">
-                    <figcaption class="figure-caption text-right">Une publicité dans TILT de septembre 1986.</figcaption>
+                    <figcaption class="figure-caption text-center">Une publicité dans TILT de septembre 1986.</figcaption>
                 </figure>
 
             </div>
@@ -408,11 +488,9 @@
 
 </section>
 
-</div>
-
 <footer class="fluid-container py-4">
 
-    <footer class="container text-light">
+    <div class="container text-light">
 
         <div class="row">
 

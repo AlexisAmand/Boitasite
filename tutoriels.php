@@ -36,7 +36,7 @@
                     <li class="nav-item m-2"><a class="nav-link" href="webmaster.php">Création de sites</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="seo.php">SEO</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">TO8</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">Retrogaming</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li> 
                 </ul> 
@@ -59,9 +59,13 @@
 
             <p class="text-justify">Vous retrouvez ci-dessous la liste de tous les tutos, trucs et astuces et cours d'informatique consultables sur mon site. Bien sûr, ils ne sont pas de moi, je me contente de les centraliser dans une sorte d'annuaire. Faites toutefois attention à bien vérifier la version du logiciel ou du langage dont traite le guide que vous consultez. :)</p>
 
-            <div class="col-auto">
+            </div> 
+
+            <div class="col-8 mx-auto">
                 <p class="text-center alert alert-info"><i class="fi-ctluxl-exclamation-mark-rounded"></i>&nbsp;Certains liens sont des pdf, ils peuvent parfois être long à charger !</p>
             </div>
+
+            <div class="col-md-6 col-12">
 
             <h5 class="mt-5">Algorithmes</h5>
             
@@ -109,7 +113,7 @@
                 Les exception en C++</a></li>
                 <li><a href="pdf/cpp/flux.pdf" title="cours sur les flux en C++" target="_blank">
                 Les flux en C++</a></li>
-                <li><a href="pdf/cpp/heritage.pdf" title="cours sur l'héritage en C target="_blank"
+                <li><a href="pdf/cpp/heritage.pdf" title="cours sur l'héritage en C" target="_blank">
                 L'héritage en C++</a></li>
                 <li><a href="pdf/cpp/meilleur.pdf" title="cours d'introduction au C++" target="_blank">
                 Le C++ : un meilleur C</a></li>
@@ -137,8 +141,8 @@
                 Guide Utilisateur de Macromedia-Dreamweaver MX 6.0 (Macromedia)</a></li>
 				<li><a href="pdf/html/html_fr.pdf" title="Cours de HTML de la CCIM" target="_blank">
                 Apprendre le HTML (CCIM)</a></li>
-				<li><a href="codes-couleurs.php" title="Guide sur les codes hexadécimaux des couleurs en HTML" target="_blank">
-                Liste des codes couleur en HTML (Par Boitasite)</a></li>
+				<li><a href="codes-couleurs.php" title="Guide sur l'utilisation des couleurs en HTML et en CSS" target="_blank">
+                Comment fonctionnent les couleurs en html ? (Par Boitasite)</a></li>
                 <li><a href="pdf/html/apprendre-html-zeros.pdf" title="Cours de HTML du site des zéros" target="_blank">
                 Apprendre HTML pour les zéros</a></li>
             </ul>
@@ -199,18 +203,18 @@
             <ul>
                 <li><a href="pdf/logiciels/tutorial_openoffice_writer.pdf" title=" " target="_blank">
                 Tutoriel OpenOffice Writer</a></li>
-			</ul>
-
+            </ul>
+            
             <h5 class="mt-5">Linux et Unix</h5>
 
             <ul>        
-                <li><a href="pdf/linux/abc-unix.pdf" title="Abécédaire Unix pour la maîtrise de biochimie de l'Université d'Aix Marseille target="_blank"
+                <li><a href="pdf/linux/abc-unix.pdf" title="Abécédaire Unix pour la maîtrise de biochimie de l'Université d'Aix Marseille" target="_blank">
                 Abécédaire Unix (Maîtrise de Biochimie - Université Aix Marseille)</a></li>
                 <li><a href="pdf/linux/debian.pdf" title="Formation à Debian de l'Ecole Centrale de Paris" target="_blank">
                 Formation à Debian (École Centrale de Paris)</a></li>
                 <li><a href="pdf/sed/Sed.pdf" title="Guide sur la commande sed" target="_blank">
                 La commande sed</a></li>
-                <li><a href="pdf/linux/Rappel-commandes-Unix-de-base.pdf" title="Guide récapitulatif des principales commandes Unix target="_blank"
+                <li><a href="pdf/linux/Rappel-commandes-Unix-de-base.pdf" title="Guide récapitulatif des principales commandes Unix" target="_blank">
                 des commandes Unix de base</a></li>
                 <li><a href="pdf/linux/Awk.pdf" title="Guide sur la commande awk" target="_blank">
                 commande awk</a></li>
@@ -218,7 +222,10 @@
                 Administration système Unix</a></li>
                 <li><a href="pdf/linux/Korn_shell.pdf" title="Guide du KornShell sous unix" target="_blank">
                 Guide du KornShell sous Unix</a></li>
-            </ul>     
+            </ul>
+
+            </div>
+            <div class="col-md-6 col-12">
 
             <h5 class="mt-5">MS-DOS</h5>
 
@@ -246,8 +253,6 @@
             <h5 class="mt-5">PHP</h5>
 
             <ul>
-                <li><a href="php/index.html" title="documentation officielle de PHP en français" target="_blank">
-                Doc officielle de PHP (octobre 2020)</a></li>
 				<li><a href="pdf/php/PHP_v1.pdf" title="cours pour apprendre à programmer en PHP" target="_blank">
                 Programmer en PHP (via Alcôve)</a></li>
 				<li><a href="pdf/php/cours-php-5.pdf" title="Cours sur la version 5 du langage PHP" target="_blank">
@@ -341,8 +346,6 @@
         </article>
 
     </section>
-
-    </div>
 
     <footer class="fluid-container py-4">
 

@@ -37,7 +37,7 @@
                 <li class="nav-item m-2"><a class="nav-link" href="../webmaster.php">Création de sites</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../seo.php">SEO</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../tutoriels.php">Tutos</a></li> 
-                <li class="nav-item m-2"><a class="nav-link" href="../to8.php">TO8</a></li> 
+                <li class="nav-item m-2"><a class="nav-link" href="../to8.php">Retrogaming</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../contacts.php">Contact</a></li> 
             </ul> 
@@ -63,7 +63,7 @@
 
                 <figure class="figure col-lg-7 col-sm-11">
                     <img src="images/addendum-to8.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="L'addemdun du micro-ordinateur TO8 de Thomson">
-                    <figcaption class="figure-caption text-right">Addemdum du micro-ordinateur Thomson TO8.</figcaption>
+                    <figcaption class="figure-caption text-center">Addemdum du micro-ordinateur Thomson TO8.</figcaption>
                 </figure>
 
             </div>
@@ -73,8 +73,6 @@
 </article>
 
 </section>
-
-</div>
 
 <footer class="fluid-container py-4">
 
