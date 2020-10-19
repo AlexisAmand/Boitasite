@@ -8,96 +8,29 @@
     <title>Création de sites web à Valenciennes  | Alexis AMAND - développement web et SEO à Valenciennes</title>
     <meta name="description" content="Webmaster à Valenciennes, Alexis AMAND propose de développer votre visibilité sur internet (SEO) grace à la création d'un site web. Site dynamique et responsive à l'image de votre activité que vous soyez professionnel, particulier ou association.">
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS --> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+    <!-- CSS perso -->
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
-    <meta name="google-site-verification" content="CT6-MJGUD82ligpXoIBjdglp4CyBIFXPum0LuBbcsD4" />
-
-    <style>
-
-        h1 {
-            font-family: 'Just Me Again Down Here',cursive;
-        }
-
-        h1 span {
-            color: #ff9000;
-        }
-
-        /*
-
-        h2 {
-            font-size: 31px;
-            line-height: 40px;
-            color: #007c9e;
-            font-weight: 400;
-        }
-
-        */
-
-        p {
-            font-family: Verdana,Geneva,sans-serif;
-        }
-
-        .navbar-light .navbar-nav a.nav-link {
-            font-family: 'Just Me Again Down Here',cursive;
-            font-size: 25px;
-            color: #f2f2f2;
-        }
-
-        .navbar-light .navbar-nav a.nav-link:link {
-            font-family: 'Just Me Again Down Here',cursive;
-            font-size: 25px;
-            color: #f2f2f2;
-        }
-
-        .navbar-light .navbar-nav a.nav-link:hover {
-            font-family: 'Just Me Again Down Here',cursive;
-            font-size: 25px;
-            color: #ff9000;
-        }
-
-        .navbar-light .navbar-toggler {
-            color: rgba(0,0,0,.5);
-            border-color: rgba(0,0,0,.1);
-            background-color: #f2f2f2;
-        }
-
-        section a{
-            text-decoration: none;
-            color: #007c9e;
-        }
-
-        footer a {
-            color: #f2f2f2;
-            font-size:1.75em;
-        }
-
-        footer a:link {
-            color: #f2f2f2;
-        }
-
-        footer a:hover {
-            color: #ff9000;
-        }
-
-    </style>
 
     <?php include('include/matomo.inc'); ?>
 
 </head>
-<body style="background: #f2f2f2;font-style: italic;color: #484848;font-size: 0.85em;">
 
-    <div class="fluid-container" style="background: url('img/header-bg.jpg') 0 0 repeat;">
+<body>
 
-        <div class="container" style="height:95px;">
+    <header class="fluid-container">
+
+        <div class="container">
 
                 <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="index.php"><img src="img/logo.png"></a>
+                <a class="navbar-brand" href="index.php"><img src="img/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup" style="z-index:1000;background: url('img/header-bg.jpg') 0 0 repeat;">
+                <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
                 <ul class="navbar-nav ml-auto"> 
                     <li class="nav-item m-2"><a class="nav-link" href="webmaster.php">Création de sites</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="seo.php">SEO</a></li> 
@@ -111,13 +44,13 @@
 
         </div>
 
-    </div>
+    </header>
 
     <section class="container">
 
-        <article class="row d-flex justify-content-center" style="background: ('img/line-1.gif') 0 top repeat-x;">
+        <article class="row d-flex justify-content-center ligne-dotted-top">
 
-            <div class="col-12 py-5 mb-3" style="background: url('img/line-1.gif') 0 bottom repeat-x;">
+            <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
                 <h1 class="text-center">#devweb : Création de <span>sites</span> web</h1>
             </div>
 
@@ -126,7 +59,7 @@
             </div>
 
             <div class="col-auto">
-                <p class="text-center alert alert-success">Avoir un site 100 % opérationnel, 100 % efficace, 24h sur 24 et 7 jrs sur 7 !</p>
+                <p class="text-center alert alert-success"><i class="fi-xnluhl-thumb" style="margin-bottom:2px"></i>&nbsp;Avoir un site 100 % opérationnel, 100 % efficace, 24h sur 24 et 7 jrs sur 7 !</p>
             </div>
 
         </article>
@@ -168,63 +101,78 @@
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thegasp.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site du jeu en ligne Le Gasp">
+                <img src="img/captures/thegasp.jpg" alt="capture d'écran du site de jeu en ligne Le Gasp"
+                class="img-thumbnail" data-toggle="tooltip" title="Site du jeu en ligne Le Gasp">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/transmediation.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site de l'entreprise Trans-Médiation">
+                <img src="img/captures/transmediation.jpg" alt="capture d'écran du site de l'entreprisse Trans-Médiation"  
+                class="img-thumbnail" data-toggle="tooltip" title="Site de l'entreprise Trans-Médiation">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/hdp.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site personel sur les soldats de la Grande Guerre">
+                <img src="img/captures/hdp.jpg" alt="capture d'écran d'un site perso sur les soldats de la Première Guerre Mondiale"  
+                class="img-thumbnail" data-toggle="tooltip" title="Site personel sur les soldats de la Grande Guerre">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/boitasite.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Le site où vous êtes">
+                <img src="img/captures/boitasite.jpg" alt="capture d'écran du site où vous êtes"  
+                class="img-thumbnail" data-toggle="tooltip" title="Le site où vous êtes">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img1.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site personnel sur la généalogie">
+                <img src="img/captures/img1.jpg" alt="capture d'écran d'un site personnel sur la généalogie"  
+                class="img-thumbnail" data-toggle="tooltip" title="Site personnel sur la généalogie">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img2.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Projet de site sur la franchise Anno">
+                <img src="img/captures/img2.jpg" alt="capture d'écran d'un projet de site sur la série de jeu Anno"  
+                class="img-thumbnail" data-toggle="tooltip" title="Projet de site sur la franchise Anno">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img4.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site du CPIE Bocage de l'Avesnois">
+                <img src="img/captures/img4.jpg" alt="capture d'écran du site du CPIE Bocage de l'Avesnois"  
+                class="img-thumbnail" data-toggle="tooltip" title="Site du CPIE Bocage de l'Avesnois">
             </div>
             
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img5.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site sur la Route 66">
+                <img src="img/captures/img5.jpg" alt="capture d'écran d'un site sur la Route 66"  
+                class="img-thumbnail" data-toggle="tooltip" title="Site sur la Route 66">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img6.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title='Site de la campagne "Un dragon ? Dans mon jardin !"'>
+                <img src="img/captures/img6.jpg" alt="capture d'écran de site de la campagne sur les dragons"   
+                class="img-thumbnail" data-toggle="tooltip" title='Site de la campagne "Un dragon ? Dans mon jardin !"'>
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img7.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title='Site de la campagne "Site sur la franchise Half-Life'>
+                <img src="img/captures/img7.jpg" alt="capture d'écran d'un site sur la série de jeu Half-Life"  
+                class="img-thumbnail" data-toggle="tooltip" title='Site de la campagne "Site sur la franchise Half-Life'>
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img8.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Projet de site pour l'entreprise Infinity Matériel">
+                <img src="img/captures/img8.jpg" alt="Capture d'écran d'un projet de site pour l'entreprise valenciennois Infinity Matériel"  
+                class="img-thumbnail" data-toggle="tooltip" title="Projet de site pour l'entreprise Infinity Matériel">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img9.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site du centre de ressources des CPIE">
+                <img src="img/captures/img9.jpg" alt="capture d'écran du centre de ressources du CPIE"  
+                class="img-thumbnail" data-toggle="tooltip" title="Site du centre de ressources des CPIE">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img10.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Blog personnel">
+                <img src="img/captures/img10.jpg" alt="Capture d'écran d'un blog personnel"  
+                class="img-thumbnail" data-toggle="tooltip" title="Blog personnel">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img11.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Blog personnel">
+                <img src="img/captures/img11.jpg" alt="Capture d'écran d'un blog personnel"  
+                class="img-thumbnail" data-toggle="tooltip" title="Blog personnel">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img3.jpg" alt=""  class="img-thumbnail" data-toggle="tooltip" title="Site du CPIE - Bocage de l'Avesnois">
+                <img src="img/captures/img3.jpg" alt="Capture d'écran du site du CPIE"  
+                class="img-thumbnail" data-toggle="tooltip" title="Site du CPIE - Bocage de l'Avesnois">
             </div>
 
         </article>
@@ -233,9 +181,9 @@
 
     </div>
 
-    <div class="fluid-container py-4" style="background: url('img/header-bg.jpg') 0 0 repeat;" >
+    <footer class="fluid-container py-4">
 
-        <footer class="container text-light">
+        <div class="container text-light">
 
             <div class="row">
 
@@ -247,9 +195,9 @@
                 <div  class="col-12 col-sm-6 col-md-6">
                     <p class="text-center">Follow Moi:</p>
                     <p class="text-center">
-                        <a href="https://twitter.com/boitasite"><i class="fi-swluxl-facebook"></i></a>
-                        <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><i class="fi-swluxl-twitter"></i></a>
-                        <a href="https://www.linkedin.com/in/alexis-amand-99775817"><i class="fi-swluxl-linkedin"></i></a>
+                        <a href="https://twitter.com/boitasite" title="lien pour me suivre sur Twitter"><i class="fi-swluxl-twitter"></i></a>
+                        <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/" title="lien pour me suivre sur Facebook"><i class="fi-swluxl-facebook"></i></a>
+                        <a href="https://www.linkedin.com/in/alexis-amand-99775817" title="lien pour me suivre sur LinkedIn"><i class="fi-swluxl-linkedin"></i></a>
                     </p>
                 </div>
             
@@ -261,9 +209,9 @@
 
             </div>
 
-        </footer>
+        </div>
 
-    </div>
+    </footer>
 
     <script defer src="https://friconix.com/cdn/friconix.js"> </script>
 

@@ -11,94 +11,26 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+    <!-- CSS perso -->
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
-    <meta name="google-site-verification" content="CT6-MJGUD82ligpXoIBjdglp4CyBIFXPum0LuBbcsD4" />
-
-    <style>
-
-        h1 {
-            font-family: 'Just Me Again Down Here',cursive;
-        }
-
-        h1 span {
-            color: #ff9000;
-        }
-
-        /*
-
-        h2 {
-            font-size: 31px;
-            line-height: 40px;
-            color: #007c9e;
-            font-weight: 400;
-        }
-
-        */
-
-        p {
-            font-family: Verdana,Geneva,sans-serif;
-        }
-
-        .navbar-light .navbar-nav a.nav-link {
-            font-family: 'Just Me Again Down Here',cursive;
-            font-size: 25px;
-            color: #f2f2f2;
-        }
-
-        .navbar-light .navbar-nav a.nav-link:link {
-            font-family: 'Just Me Again Down Here',cursive;
-            font-size: 25px;
-            color: #f2f2f2;
-        }
-
-        .navbar-light .navbar-nav a.nav-link:hover {
-            font-family: 'Just Me Again Down Here',cursive;
-            font-size: 25px;
-            color: #ff9000;
-        }
-
-        .navbar-light .navbar-toggler {
-            color: rgba(0,0,0,.5);
-            border-color: rgba(0,0,0,.1);
-            background-color: #f2f2f2;
-        }
-
-        section a{
-            text-decoration: none;
-            color: #007c9e;
-        }
-
-        footer a {
-            color: #f2f2f2;
-            font-size:1.75em;
-        }
-
-        footer a:link {
-            color: #f2f2f2;
-        }
-
-        footer a:hover {
-            color: #ff9000;
-        }
-
-    </style>
 
     <?php include('include/matomo.inc'); ?>
 
 </head>
 
-<body style="background: #f2f2f2;font-style: italic;color: #484848;font-size: 0.85em;">
+<body>
 
-    <div class="fluid-container" style="background: url('img/header-bg.jpg') 0 0 repeat;">
+    <header class="fluid-container">
 
-        <div class="container" style="height:95px;">
+        <div class="container">
 
                 <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="index.php"><img src="img/logo.png"></a>
+                <a class="navbar-brand" href="index.php"><img src="img/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup" style="z-index:1000;background: url('img/header-bg.jpg') 0 0 repeat;">
+                <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
                 <ul class="navbar-nav ml-auto"> 
                     <li class="nav-item m-2"><a class="nav-link" href="webmaster.php">Création de sites</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="seo.php">SEO</a></li> 
@@ -112,13 +44,13 @@
 
         </div>
 
-    </div>
+    </header>
 
     <section class="container">
 
-        <article class="row d-flex justify-content-center" style="background: ('img/line-1.gif') 0 top repeat-x;">
+        <article class="row d-flex justify-content-center ligne-dotted-top">
 
-            <div class="col-12 py-5 mb-3" style="background: url('img/line-1.gif') 0 bottom repeat-x;">
+            <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
                 <h1 class="text-center">#dépannage : besoin d'<span>aide</span> ?</h1>
             </div>
 
@@ -191,9 +123,9 @@
 
     </div>
 
-    <div class="fluid-container py-4" style="background: url('img/header-bg.jpg') 0 0 repeat;" >
+      <footer class="fluid-container py-4">
 
-        <footer class="container text-light">
+        <div class="container text-light">
 
             <div class="row">
 
@@ -205,9 +137,9 @@
                 <div  class="col-12 col-sm-6 col-md-6">
                     <p class="text-center">Follow Moi:</p>
                     <p class="text-center">
-                        <a href="https://twitter.com/boitasite"><i class="fi-swluxl-facebook"></i></a>
-                        <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><i class="fi-swluxl-twitter"></i></a>
-                        <a href="https://www.linkedin.com/in/alexis-amand-99775817"><i class="fi-swluxl-linkedin"></i></a>
+                        <a href="https://twitter.com/boitasite" title="lien pour me suivre sur Twitter"><i class="fi-swluxl-twitter"></i></a>
+                        <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/" title="lien pour me suivre sur Facebook"><i class="fi-swluxl-facebook"></i></a>
+                        <a href="https://www.linkedin.com/in/alexis-amand-99775817" title="lien pour me suivre sur LinkedIn"><i class="fi-swluxl-linkedin"></i></a>
                     </p>
                 </div>
             
@@ -219,9 +151,9 @@
 
             </div>
 
-        </footer>
+        </div>
 
-    </div>
+    </footer>
 
     <script defer src="https://friconix.com/cdn/friconix.js"> </script>
 

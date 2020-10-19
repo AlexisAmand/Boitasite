@@ -12,9 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!-- CSS perso -->
-
     <link rel="stylesheet" href="css/style.css">
-
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
     <meta name="google-site-verification" content="CT6-MJGUD82ligpXoIBjdglp4CyBIFXPum0LuBbcsD4" />
 
@@ -24,16 +22,16 @@
 
 <body>
 
-    <div class="fluid-container" style="background: url('img/header-bg.jpg') 0 0 repeat;">
+    <header class="fluid-container">
 
-        <div class="container" style="height:95px;">
+        <div class="container">
 
                 <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="#"><img src="img/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup" style="z-index:1000;background: url('img/header-bg.jpg') 0 0 repeat;">
+                <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
                 <ul class="navbar-nav ml-auto"> 
                     <li class="nav-item m-2"><a class="nav-link" href="webmaster.php">Création de sites</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="seo.php">SEO</a></li> 
@@ -49,7 +47,7 @@
 
         <img src="img/monitor-1307227_1920.jpg" class="img-fluid" alt="3 écrans d'ordinateur avec des fonds d'écran Matrix">
 
-    </div>
+    </header>
 
     <section class="container">
 
@@ -143,10 +141,9 @@
                 <div  class="col-12 col-sm-6 col-md-6">
                     <p class="text-center">Follow Moi:</p>
                     <p class="text-center">
-                        <a href="https://twitter.com/boitasite"><i class="fi-swluxl-facebook"></i></a>
-                        <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><i class="fi-swluxl-twitter"></i></a>
-                        <a href="https://www.linkedin.com/in/alexis-amand-99775817"><i class="fi-swluxl-linkedin"></i></a>
-                        
+                        <a href="https://twitter.com/boitasite" title="lien pour me suivre sur Twitter"><i class="fi-swluxl-twitter"></i></a>
+                        <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/" title="lien pour me suivre sur Facebook"><i class="fi-swluxl-facebook"></i></a>
+                        <a href="https://www.linkedin.com/in/alexis-amand-99775817" title="lien pour me suivre sur LinkedIn"><i class="fi-swluxl-linkedin"></i></a>
                     </p>
                 </div>
             
@@ -169,5 +166,11 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script>
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script> 
   </body>
 </html>
