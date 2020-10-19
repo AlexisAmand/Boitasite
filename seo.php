@@ -26,7 +26,8 @@
         <div class="container">
 
                 <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="index.php"><img src="img/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a>
+                <a class="navbar-brand" href="index.php" title="Retour sur la page d'accueil du site">
+                <img src="img/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -100,7 +101,7 @@
 
             <div class="col-12">
 
-                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a>
+                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a>
                 </p>
 
             </div>

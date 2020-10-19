@@ -27,7 +27,8 @@
     <div class="container">
 
             <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="../index.php"><img src="../img/logo.png"></a>
+            <a class="navbar-brand" href="../index.php" title="Retour sur la page d'accueil du site">
+            <img src="../img/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -60,32 +61,32 @@
         <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-lg-4 col-sm-6">
-                    <img src="images/club/club-micro-thomson-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Le Club Micro Thomson dans les années 80">
+                    <img src="images/club/club-micro-thomson-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 1 du document sur Le Club Micro Thomson dans les années 80">
                     <figcaption class="figure-caption text-right">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
-                    <img src="images/club/club-micro-thomson-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Le Club Micro Thomson dans les années 80">
+                    <img src="images/club/club-micro-thomson-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 2 du document sur Le Club Micro Thomson dans les années 80">
                     <figcaption class="figure-caption text-right">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
-                    <img src="images/club/club-micro-thomson-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Le Club Micro Thomson dans les années 80">
+                    <img src="images/club/club-micro-thomson-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 3 du document sur Le Club Micro Thomson dans les années 80">
                     <figcaption class="figure-caption text-right">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
-                    <img src="images/club/club-micro-thomson-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Le Club Micro Thomson dans les années 80">
+                    <img src="images/club/club-micro-thomson-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 4 du document sur Le Club Micro Thomson dans les années 80">
                     <figcaption class="figure-caption text-right">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
-                    <img src="images/club/club-micro-thomson-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Le Club Micro Thomson dans les années 80">
+                    <img src="images/club/club-micro-thomson-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 5 du document sur Le Club Micro Thomson dans les années 80">
                     <figcaption class="figure-caption text-right">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
-                    <img src="images/club/club-micro-thomson-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Le Club Micro Thomson dans les années 80">
+                    <img src="images/club/club-micro-thomson-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 6 du document sur Le Club Micro Thomson dans les années 80">
                     <figcaption class="figure-caption text-right">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
@@ -113,9 +114,9 @@
         <div  class="col-12 col-sm-6 col-md-6">
             <p class="text-center">Follow Moi:</p>
             <p class="text-center">
-                <a href="https://twitter.com/boitasite"><i class="fi-swluxl-facebook"></i></a>
-                <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/"><i class="fi-swluxl-twitter"></i></a>
-                <a href="https://www.linkedin.com/in/alexis-amand-99775817"><i class="fi-swluxl-linkedin"></i></a>
+                <a href="https://twitter.com/boitasite" title="lien pour me suivre sur Twitter"><i class="fi-swluxl-twitter"></i></a>
+                <a href="https://www.facebook.com/Alexis-AMAND-Webmaster-507308975998494/" title="lien pour me suivre sur Facebook"><i class="fi-swluxl-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/alexis-amand-99775817" title="lien pour me suivre sur LinkedIn"><i class="fi-swluxl-linkedin"></i></a>
             </p>
         </div>
     
@@ -123,7 +124,7 @@
 
     <div class="col-12">
 
-        <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/">Amen France</a> - <a href="../mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a>
+        <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="../mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a>
         </p>
 
     </div>

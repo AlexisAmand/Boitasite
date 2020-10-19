@@ -26,7 +26,8 @@
         <div class="container">
 
                 <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="index.php"><img src="img/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a>
+                <a class="navbar-brand" href="index.php" title="Retour sur la page d'accueil du site">
+                <img src="img/logo.png" alt="Alexis AMAND - Webmaster à Valenciennes"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -59,7 +60,7 @@
             <p class="text-justify">Vous retrouvez ci-dessous la liste de tous les tutos, trucs et astuces et cours d'informatique consultables sur mon site. Bien sûr, ils ne sont pas de moi, je me contente de les centraliser dans une sorte d'annuaire. Faites toutefois attention à bien vérifier la version du logiciel ou du langage dont traite le guide que vous consultez. :)</p>
 
             <div class="col-auto">
-                <p class="text-center alert alert-info"><i class="fi-ctluxl-exclamation-mark-rounded" style="margin-bottom:2px"></i>&nbsp;Certains liens sont des pdf, ils peuvent parfois être long à charger !</p>
+                <p class="text-center alert alert-info"><i class="fi-ctluxl-exclamation-mark-rounded"></i>&nbsp;Certains liens sont des pdf, ils peuvent parfois être long à charger !</p>
             </div>
 
             <h5 class="mt-5">Algorithmes</h5>
@@ -123,7 +124,7 @@
             <ul>
                 <li><a href="pdf/electronique/Bases_Ethernet.pdf" title="cours d'electronique sur les technologies ethernet" target="_blank">
                 Technologies Ethernet</a></li>
-                <li><a href="pdf/logiciels/diglog.pdf" title=" ">
+                <li><a href="pdf/logiciels/diglog.pdf" title="Guide d'utilisation de Diglog">
                 Guide du logiciel DIGLOG</a></li>
             </ul>
             
@@ -138,7 +139,7 @@
                 Apprendre le HTML (CCIM)</a></li>
 				<li><a href="codes-couleurs.php" title="Guide sur les codes hexadécimaux des couleurs en HTML" target="_blank">
                 Liste des codes couleur en HTML (Par Boitasite)</a></li>
-                <li><a href="pdf/html/apprendre-html-zeros.pdf" target="_blank">
+                <li><a href="pdf/html/apprendre-html-zeros.pdf" title="Cours de HTML du site des zéros" target="_blank">
                 Apprendre HTML pour les zéros</a></li>
             </ul>
 
@@ -147,28 +148,28 @@
             <ul>
                 <li><a href="pdf/reseaux/TutoTwitter.pdf" title="Guide pour apprendre à bien utiliser Twitter" target="_blank">
                 Comment utiliser Twitter ?</a></li>
-                <li><a href="pdf/reseaux/guide_recherche_en_ligne.pdf" title=" " target="_blank">
+                <li><a href="pdf/reseaux/guide_recherche_en_ligne.pdf" title="pdf sur la méthodologie et les astuces de recherches sur internet avec Google" target="_blank">
                 Méthodologie et astuces de recherche sur Internet</a></li>
             </ul> 
 
             <h5 class="mt-5">Java</h5>
 
             <ul>
-                <li><a href="pdf/java/APPGR6JavaP.pdf" title=" " target="_blank">
+                <li><a href="pdf/java/APPGR6JavaP.pdf" title="Cours de l'Université de Valenciennes pour créer des applications graphiques en Java" target="_blank">
                 Applications graphiques en Java (Université de Valenciennes)</a></li>
-                <li><a href="pdf/java/Cours-De-Java-2.pdf" title=" " target="_blank">
+                <li><a href="pdf/java/Cours-De-Java-2.pdf" title="Cours de Java 2" target="_blank">
                 Cours de Java 2</a></li>
-                <li><a href="pdf/java/Cours-de-Java.pdf" title=" " target="_blank">
+                <li><a href="pdf/java/Cours-de-Java.pdf" title="Cours pour apprendre à développer en Java" target="_blank">
                 Développons en Java</a></li>
-                <li><a href="pdf/java/Java-BasesP.pdf" title=" " target="_blank">
+                <li><a href="pdf/java/Java-BasesP.pdf" title="Cours d'initiation à la POO en Java de l'Université de Valenciennes" target="_blank">
                 Initiation à la POO en Java (Université de Valenciennes)</a></li>
-                <li><a href="pdf/java/JAVA2_JDBC.pdf" title=" " target="_blank">
-                Le JDBC en Java</a></li>
-                <li><a href="pdf/java/JAVA3_SWING.pdf" title=" " target="_blank">
-                Les interfaces graphiques SWING</a></li>
-                <li><a href="pdf/java/JAVA4_Thread.pdf" title=" " target="_blank">
-                Les applications multithreadées en Java</a></li>
-                <li><a href="pdf/java/JAVA5_Socket.pdf" title=" " target="_blank">
+                <li><a href="pdf/java/JAVA2_JDBC.pdf" title="Cours sur le JDBC en Java de l'Université de Valenciennes" target="_blank">
+                Le JDBC en Java (Université de Valenciennes)</a></li>
+                <li><a href="pdf/java/JAVA3_SWING.pdf" title="Cours sur les interfaces graphiquess WING en Java de l'Université de Valenciennes" target="_blank">
+                Les interfaces graphiques SWING (Université de Valenciennes)</a></li>
+                <li><a href="pdf/java/JAVA4_Thread.pdf" title="cours sur les applications multitreadées en Java de l'Université de Valenciennes" target="_blank">
+                Les applications multithreadées en Java (Université de Valenciennes)</a></li>
+                <li><a href="pdf/java/JAVA5_Socket.pdf" title="Cours sur les sockets en Java de l'Université de Valenciennes" target="_blank">
                 Les Sockets en Java</a></li>
 
             </ul>
@@ -187,9 +188,9 @@
             <h5 class="mt-5">Joomla 1.5</h5>
 
             <ul>
-				<li><a href="pdf/joomla/diaporama-joomla.pdf" title=" " target="_blank">
+				<li><a href="pdf/joomla/diaporama-joomla.pdf" title="Tutoriel pour intégrer un slideshow dans un article Joomla" target="_blank">
                 Comment mettre un slideshow dans un article Joomla 1.5 ? (Par Boitasite)</a></li>
-                <li><a href="pdf/joomla/joomla-1-5.pdf" title=" " target="_blank">
+                <li><a href="pdf/joomla/joomla-1-5.pdf" title="Guide pour dévouvrir les bases de la version 1.5 du CMS Joomla" target="_blank">
                 Joomla 1.5 : Les bases</a></li>
 			</ul>
 
@@ -231,14 +232,14 @@
             <h5 class="mt-5">Pascal</h5>
 
             <ul>
-                <li><a href="pdf/pascal/poly-pascal.pdf" title=" " target="_blank">
+                <li><a href="pdf/pascal/poly-pascal.pdf" title="Cours de l'Université de Valenciennes sur la programmation structurée et le langage Pascal" target="_blank">
                 Programmation structurée et langage Pascal (Université de Valenciennes)</a></li>
             </ul>
 
             <h5 class="mt-5">Perl</h5>
 
             <ul>
-                <li><a href="pdf/perl/guide-perl.pdf" title=" " target="_blank">
+                <li><a href="pdf/perl/guide-perl.pdf" title="Guide pour débuter et progresser avec le langage Perl" target="_blank">
                 débuter et progresser en Perl </a></li>
             </ul>
 
@@ -260,31 +261,31 @@
             <h5 class="mt-5">Python</h5>
 
             <ul>
-                <li><a href="pdf/python/python.pdf" title=" " target="_blank">
+                <li><a href="pdf/python/python.pdf" title="Guide pour apprendre à programmer avec la langage Python" target="_blank">
                 Apprendre à programmer avec Python (par Gérard Swinnen)</a></li>
-                <li><a href="pdf/python/tutoriel_python_i18n.pdf" title=" " target="_blank">
+                <li><a href="pdf/python/tutoriel_python_i18n.pdf" title="Comment internationaliser une application avec Python 2.4" target="_blank">
                 Internationalisation d'une application Python 2.4</a></li>
             </ul> 
 
             <h5 class="mt-5">Référencement (SEO)</h5>
 
             <ul>
-                <li><a href="pdf/reseaux/search-engine-optimization-starter-guide-fr.pdf" title=" " target="_blank">
+                <li><a href="pdf/reseaux/search-engine-optimization-starter-guide-fr.pdf" title="Guide SEO pour Google" target="_blank">
                 Optimisation pour les moteurs de recherche (Google)</a></li>
             </ul>
 
             <h5 class="mt-5">Réseaux</h5>
 
             <ul>
-                <li><a href="pdf/reseaux/dns.pdf" title=" " target="_blank">
+                <li><a href="pdf/reseaux/dns.pdf" title="Comment installer un domaine DNS" target="_blank">
                 Installer un domaine DNS </a></li>
-                <li><a href="pdf/reseaux/les-reseaux.pdf" title=" " target="_blank">
+                <li><a href="pdf/reseaux/les-reseaux.pdf" title="Cours sur les réseaux d'ordinateur" target="_blank">
                 Cours sur les réseaux d'ordinateur</a></li>
-                <li><a href="pdf/reseaux/les-sous-reseaux.pdf" title=" " target="_blank">
+                <li><a href="pdf/reseaux/les-sous-reseaux.pdf" title="Tutoriel pour découper un réseau IP en sous-réseaux" target="_blank">
                 Les sous-réseaux (Découpage d'un réseau IP) </a></li>
-                <li><a href="pdf/reseaux/reseau.pdf" title=" " target="_blank">
+                <li><a href="pdf/reseaux/reseau.pdf" title="Cours de l'Université d'Amiens sur les notions de base à propos des réseaux" target="_blank">
                 Notions de base sur les réseaux (Université d'Amiens)</a></li>
-                <li><a href="pdf/sed/ip.pdf" title=" " target="_blank">
+                <li><a href="pdf/sed/ip.pdf" title="Cours d'introduction aux réseaux TCP/IP de l'Université d'Amiens" target="_blank">
                 Introduction aux réseaux TCP/IP (IUT d'Amiens)</a></li>
             </ul>
 
@@ -367,7 +368,7 @@
 
             <div class="col-12">
 
-                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a>
+                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a>
                 </p>
 
             </div>
