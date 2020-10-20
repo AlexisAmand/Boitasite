@@ -85,6 +85,25 @@
                 
             <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-46-page-89.pdf" title="article sur le jeu Arkanoïd paru dans Jeux et Stratégie n°46 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987.</p>
 
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/arkanoid/arkanoid-01.png" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/arkanoid/arkanoid-02.png" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/arkanoid/arkanoid-03.png" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+            </div>
+
             <h5 class="mt-5">Asterix</h5>
             
             <div class="row d-flex justify-content-center">
@@ -397,11 +416,61 @@
 
             <h5 class="mt-5">Silent Service</h5>
 
+            <p class="text-justify">J'ai passé des centaines d'heures, enfant, à naviguer à travers les mers du globe avec cet ancêtre de Silent Hunter. Je me souviens de mon cousin, de 3 ans mon ainé, qui m'a souvent répété que je n'arriverai jamais à couler un bateau. 30 ans plus tard, je peux vous l'avouer : En effet, je n'ai jamais coulé un seul bateau. Dans sa version pour Thomson, Le jeu Silent Service, distribué par FIL, est très différent de la version pour Atari ST, surtout au niveau des graphismes et du son qui auraient, selon la presse de l'époque, rien à voir et seraient de qualité bien inférieure.</p>
+            
             <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/silent-service/silent-service-01.png" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/silent-service/silent-service-02.png" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/silent-service/silent-service-03.png" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/silent-service/silent-service-04.png" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/silent-service/silent-service-05.png" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
 
                 <figure class="figure col-3 m-3">
                     <img src="images/tilt-40-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu Silent Service parue dans la revue TILT de mars 1987">
                     <figcaption class="figure-caption text-center">Une publicité dans TILT de mars 1987.</figcaption>
+                </figure>
+
+            </div>
+
+            <h5 class="mt-5">Slap Fight</h5>
+
+            <p class="text-justify">Slap Fight est ce que nous appelons aujourd'hui un shoot them up. C'est également un jeu sur lequel je me souviens avoir passé des dizaines et des dizaines d'heure, mais je ne me souviens pas où je suis arrivé dans les niveaux. Selon sa page Wikipedia, l'histoire se déroule en l'année 2059, dans une autre galaxie où l'humanité a colonisé une planète extraterrestre qui répond au nom de Theon. Comme Orac 5 ans avant, Théon est un jour attaquée par une flotte alien.Cette fois les humains sont prêts. Votre mission si vous l'acceptez, prendre le contrôle d'un avion de combat "SW475 star fighter" au sein de "l'Allied League of Cosmic Nations (ALCON)" pour arrêter les envahisseurs.</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/slap-fight/slap-fight-01.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/slap-fight/slap-fight-02.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/slap-fight/slap-fight-03.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <figcaption class="figure-caption text-center">Capture du jeu avec l'émulateur MESS.</figcaption>
                 </figure>
 
             </div>
@@ -462,7 +531,7 @@
 
             <h5 class="mt-5">Las Vegas</h5>
 
-            <p>Une révolution dans le domaine de l'aventure. Plus besoin de converser avec la machine, de rechercher les mots-clefs dans ce logiciel entièrement géré par la manette ou la souris. Vous êtes l'heureux héritier d'une fortune colossale mais votre vieille tante a précisé que pour bénéficier du pactole, vous devier réitérer l'exploit qu'elle accomplit dans les années trente : gagner en une nuit un million de dollars. Une course poursuite à travers la ville, les tripots, les danger, pour satisfaire les dernières volontés d'une vieille originale.</p>
+            <p class="text-justify">Une révolution dans le domaine de l'aventure. Plus besoin de converser avec la machine, de rechercher les mots-clefs dans ce logiciel entièrement géré par la manette ou la souris. Vous êtes l'heureux héritier d'une fortune colossale mais votre vieille tante a précisé que pour bénéficier du pactole, vous devier réitérer l'exploit qu'elle accomplit dans les années trente : gagner en une nuit un million de dollars. Une course poursuite à travers la ville, les tripots, les danger, pour satisfaire les dernières volontés d'une vieille originale. Je me souviens avoir passé des heures à parcourir les couloirs d'un immeuble pour sonner aux portes des appartements tel un colporteur. Je me souviens aussi des heures passées devant la machine à sous ou à demander un strip tease à ma barmaid...</p>
 
             <div class="row d-flex justify-content-center">
 
