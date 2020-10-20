@@ -16,6 +16,9 @@
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
     <meta name="google-site-verification" content="CT6-MJGUD82ligpXoIBjdglp4CyBIFXPum0LuBbcsD4" />
 
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
     <?php include('../include/matomo.inc'); ?>
 
 </head>
@@ -63,32 +66,38 @@
         <div class="row d-flex justify-content-center mt-5">
 
                 <figure class="figure col-lg-4 col-sm-6">
-                    <img src="images/club/club-micro-thomson-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 1 du document sur Le Club Micro Thomson dans les années 80">
+                    <a href="images/docs/club-micro-thomson-01.jpg" data-fancybox data-caption="Le Club Micro Thomson dans les années 80.">
+                    <img src="images/docs/thumbs/club-micro-thomson-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 1 du document de présentation du Club Micro Thomson dans les années 80"></a>
                     <figcaption class="figure-caption text-center">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
-                    <img src="images/club/club-micro-thomson-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 2 du document sur Le Club Micro Thomson dans les années 80">
+                    <a href="images/docs/club-micro-thomson-02.jpg" data-fancybox data-caption="Le Club Micro Thomson dans les années 80.">
+                    <img src="images/docs/thumbs/club-micro-thomson-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 2 du document de présentation du Club Micro Thomson dans les années 80"></a>
                     <figcaption class="figure-caption text-center">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
-                    <img src="images/club/club-micro-thomson-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 3 du document sur Le Club Micro Thomson dans les années 80">
+                    <a href="images/docs/club-micro-thomson-03.jpg" data-fancybox data-caption="Le Club Micro Thomson dans les années 80.">
+                    <img src="images/docs/thumbs/club-micro-thomson-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 3 du document de présentation du Club Micro Thomson dans les années 80"></a>
                     <figcaption class="figure-caption text-center">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
-                    <img src="images/club/club-micro-thomson-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 4 du document sur Le Club Micro Thomson dans les années 80">
+                    <a href="images/docs/club-micro-thomson-04.jpg" data-fancybox data-caption="Le Club Micro Thomson dans les années 80.">
+                    <img src="images/docs/thumbs/club-micro-thomson-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 4 du document de présentation du Club Micro Thomson dans les années 80"></a>
                     <figcaption class="figure-caption text-center">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
-                    <img src="images/club/club-micro-thomson-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 5 du document sur Le Club Micro Thomson dans les années 80">
+                    <a href="images/docs/club-micro-thomson-05.jpg" data-fancybox data-caption="Le Club Micro Thomson dans les années 80.">
+                    <img src="images/docs/thumbs/club-micro-thomson-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 5 du document de présentation du Club Micro Thomson dans les années 80"></a>
                     <figcaption class="figure-caption text-center">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
                 <figure class="figure col-lg-4 col-sm-6">
-                    <img src="images/club/club-micro-thomson-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 6 du document sur Le Club Micro Thomson dans les années 80">
+                    <a href="images/docs/club-micro-thomson-06.jpg" data-fancybox data-caption="Le Club Micro Thomson dans les années 80.">
+                    <img src="images/docs/thumbs/club-micro-thomson-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Page 6 du document de présentation du Club Micro Thomson dans les années 80"></a>
                     <figcaption class="figure-caption text-center">Le Club Micro Thomson dans les années 80.</figcaption>
                 </figure>
 
@@ -140,6 +149,9 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<!-- JS de Fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 <script>
 $(function () {

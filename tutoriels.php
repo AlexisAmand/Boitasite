@@ -205,6 +205,9 @@
                 Tutoriel OpenOffice Writer</a></li>
             </ul>
             
+            </div>
+            <div class="col-md-6 col-12">
+
             <h5 class="mt-5">Linux et Unix</h5>
 
             <ul>        
@@ -223,9 +226,6 @@
                 <li><a href="pdf/linux/Korn_shell.pdf" title="Guide du KornShell sous unix" target="_blank">
                 Guide du KornShell sous Unix</a></li>
             </ul>
-
-            </div>
-            <div class="col-md-6 col-12">
 
             <h5 class="mt-5">MS-DOS</h5>
 

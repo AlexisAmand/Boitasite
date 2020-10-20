@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
 
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
     <?php include('include/matomo.inc'); ?>
 
 </head>
@@ -59,7 +62,7 @@
 
             <div class="col-12">
 
-                <p class="text-justify">Si vous avez envie de (re)découvrir le TO8, je vous conseille l'utilisation de <a href="http://dcmoto.free.fr/" title="Site officiel de l'émulateur de tous les ordinateurs 8 bits Thomson">DCMOTO</a>. C'est un logiciel qui émule sous Windows les machines telles que le Thomson MO5, le MO5E, le MO5NR, le MO6, le T9000, le TO7, le TO7/70, le TO8, le TO8D, le TO9, le TO9+ ou encore l'Olivetti Prodest PC128. Le site propose aussi un accès à plus de 850 jeux et programmes divers ainsi que plus de 160 livres et documents. Vous pouvez aussi utiliser l'emulateur MESS... à condition de vous procurer la ROM du TO8.</p>
+                <p class="text-justify">Si vous avez envie de (re)découvrir le TO8, je vous conseille l'utilisation de <a href="http://dcmoto.free.fr/" title="Site officiel de l'émulateur de tous les ordinateurs 8 bits Thomson">DCMOTO</a>. C'est un logiciel qui émule sous Windows les machines telles que le Thomson MO5, le MO5E, le MO5NR, le MO6, le T9000, le TO7, le TO7/70, le TO8, le TO8D, le TO9, le TO9+ ou encore l'Olivetti Prodest PC128. Le site propose aussi un accès à plus de 850 jeux et programmes divers ainsi que plus de 160 livres et documents. Vous pouvez aussi utiliser l'emulateur MAME... à condition de vous procurer la ROM du TO8.</p>
 
                 <ul>
                     <li>Si vous êtes passionné par le <strong>retrogaming</strong>, je vous invite à visiter la page consacrée aux <a href="to8/liste-jeux.php">jeux du TO8</a>.</li>
@@ -68,7 +71,7 @@
 
                 <h5 class="mt-5">Présentation du TO8</h5>
 
-                <p>(source: TEOphile n°6 de septembre 1986)</p>
+                <p class="text-justify">(source: TEOphile n°6 de septembre 1986)</p>
 
                 <p class="text-justify">Le TO8 est une machine ouverte et évolutive proposée à 2990 F dans sa version de base mais qui peut devenir l'équivalent d'un TO9+ avec une extension de mémoire et une unité de disquette. Le TO8 est blanc également, son clavier de 81 touches  + pavé numérique + 5 touches de fonctions, identique à celui du TO9 est, comme le TO7-70, intégré dans l'unité centrale. Au dessus du clavier, on trouve la trappe verticale à mémo 7. Doté de 256K de RAM il peut recevoir à l'arrière sur un connecteur spécial une extension de 256K portant la mémoire à 512 K comme le TO9+. Les 80 K de ROM contiennent le Basic 512 (identique au Basic 128 mais gérant les banques de RAM jusqu'à 512), le Basic Basic 1.0 et le moniteur.</p>
 
@@ -77,7 +80,7 @@
                     <figure class="figure col-6 m-3">
                         <a href="to8/images/thomson_t08_04.jpg" data-fancybox data-caption="Le TO8 pendant sa mise en route">
                         <img src="to8/images/thumbs/thomson_t08_04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la page de démarrage du TO8"></a>
-                        <figcaption class="figure-caption text-center">On allume la machine !</figcaption>
+                        <figcaption class="figure-caption text-center">On allume la machine !<br />(capture réalisée avec MAME)</figcaption>
                     </figure>
 
                 </div>
@@ -107,19 +110,19 @@
                     <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_06.jpg" data-fancybox data-caption="L'exploitation de fichiers avec le TO8">
                         <img src="to8/images/thumbs/thomson_t08_06.jpg" class="figure-img img-fluid rounded img-thumbnail"  alt="L'exploitation de fichiers avec le TO8 "/></a>
-                        <figcaption class="figure-caption text-center">Exploitation de fichiers</figcaption>
+                        <figcaption class="figure-caption text-center">Exploitation de fichiers<br />(capture réalisée avec MAME)</figcaption>
                     </figure>
 
                     <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_07.jpg" data-fancybox data-caption="Le contenu d'une disquette en Basic">
                         <img src="to8/images/thumbs/thomson_t08_07.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="La visualisation d'une disquette en Basic"/></a>
-                        <figcaption class="figure-caption text-center">Le contenu d'une disquette</figcaption>
+                        <figcaption class="figure-caption text-center">Le contenu d'une disquette<br />(capture réalisée avec MAME)</figcaption>
                     </figure>   
 
                     <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_05.jpg" data-fancybox data-caption="La palette de couleurs du TO8">
                         <img src="to8/images/thumbs/thomson_t08_05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="La palette de couleurs du Thomson TO8"/></a>
-                        <figcaption class="figure-caption text-center">La palette de couleurs</figcaption>
+                        <figcaption class="figure-caption text-center">La palette de couleurs<br />(capture réalisée avec MAME)</figcaption>
                     </figure>
 
                 </div>
@@ -232,6 +235,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <!-- JS de Fancybox -->
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
     <script>
     $(function () {

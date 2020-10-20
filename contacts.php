@@ -59,8 +59,8 @@
             <p class="text-center">Vous vous posez des questions ?<br/>Vous avez des envies, des besoins et des idées ?<br/>
             Le monde de l’internet et des ordinateurs est trop compliqué pour vous ?</p>
 
-            <p class="text-center">N'hésitez pas à me contacter en m'envoyant un message à <a href="mailto:alexis.amand@boitasite.com" title="adresse mail pour me contacter">alexis.amand@boitasite.com</a><br />
-            ou en m&#39;envoyant un SMS au 06.62.63.79.21</p>
+            <p class="text-center">N'hésitez pas à me contacter en m'envoyant un mail à <a href="mailto:alexis.amand@boitasite.com" title="adresse mail pour me contacter">alexis.amand@boitasite.com</a><br />
+            ou un petit SMS au 06.62.63.79.21</p>
 
             <p class="text-center">Si vous préférez, je suis également disponible sur les réseaux sociaux :</p>
 

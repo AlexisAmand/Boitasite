@@ -16,6 +16,9 @@
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
     <meta name="google-site-verification" content="CT6-MJGUD82ligpXoIBjdglp4CyBIFXPum0LuBbcsD4" />
 
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
     <?php include('../include/matomo.inc'); ?>
 
 </head>
@@ -62,7 +65,8 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-lg-7 col-sm-11">
-                    <img src="images/addendum-to8.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="L'addemdun du micro-ordinateur TO8 de Thomson">
+                    <a href="images/docs/addendum-to8.jpg" data-fancybox data-caption="Addemdum du micro-ordinateur Thomson TO8.">
+                    <img src="images/docs/thumbs/addendum-to8.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Scan de l'addemdun du micro-ordinateur TO8 de Thomson"></a>
                     <figcaption class="figure-caption text-center">Addemdum du micro-ordinateur Thomson TO8.</figcaption>
                 </figure>
 
@@ -114,6 +118,9 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<!-- JS de Fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 <script>
 $(function () {
