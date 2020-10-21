@@ -57,7 +57,7 @@
 		<section>
 			<article>
 			<p  style="  font-size: 0.8em;  line-height: 1.4em;  margin-bottom: 20px;  color: #444;" >
-        <a href="index.php">Retour à mon CV</a>
+        <a href="index.php">Retour à Mon CV</a>
 		</p>
 		
         <h2>Quelques réalisations de sites...<span></span></h2>
@@ -99,23 +99,20 @@
 
 <!-- Piwik -->
 <script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//www.genealexis.fr/piwik/";
+    var _paq = _paq || [];
+    _paq.push(["setDomains", ["*.www.boitasite.com"]]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+    var u="//genealexis.fr/piwik/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', 2]);
+    _paq.push(['setSiteId', '14']);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
+    })();
 </script>
-<noscript><p><img src="//www.genealexis.fr/piwik/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+<noscript><p><img src="//genealexis.fr/piwik/piwik.php?idsite=14" style="border:0;" alt="" /></p></noscript>
 <!-- End Piwik Code -->
-
-<!-- Piwik Image Tracker-->
-<img src="http://www.genealexis.fr/piwik/piwik.php?idsite=2&rec=1" style="border:0" alt="" />
-<!-- End Piwik -->
 
 </body>
 </html>

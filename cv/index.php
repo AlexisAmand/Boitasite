@@ -22,7 +22,7 @@
 <div id="cv" class="instaFade">
 	<div class="mainDetails">
 		<div id="headshot" class="quickFade">
-			<img src="headshot.jpg" alt="Alan Smith" />
+			<img src="images/headshot.jpg" alt="Alan Smith" />
 		</div>
 		
 		<div id="name">
@@ -33,7 +33,7 @@
 		<div id="contactDetails" class="quickFade delayFour">
 			<ul>
 				<li>e: <a href="mailto:alexis.amand@gmail.com" target="_blank">alexis.amand@gmail.com</a></li>
-				<li>w: <a href="http://www.genealexis.fr">www.genealexis.fr</a></li>
+				<li>w: <a href="http://www.boitasite.com">www.boitasite.com</a></li>
 				<li>t: 06.62.63.79.21</li>
 				<li>
 				
@@ -82,7 +82,8 @@
 					<h2>D&eacute;veloppeur web ind&eacute;pendant</h2>
 					<br />
 					<p class="subDetails">Juillet 2009 - Pr&eacute;sent</p>
-					<p>Je suis actuellement webmaster ind&eacute;pendant. J'ai ainsi eu l'occasion de r&eacute;aliser divers sites web, pour des associations, des entreprises ou des particuliers. Vous pouvez utiliser <a href="../webmaster.php" title="voir quelques exemples de sites que j'ai r&eacute;alis&eacute;s">ce lien</a> pour voir quelques sites que j'ai r&eacute;alis&eacute;, dont : </p>
+					<p>Je suis actuellement webmaster ind&eacute;pendant. J'ai ainsi eu l'occasion de r&eacute;aliser divers sites web, pour des associations, des entreprises ou des particuliers.</p> 
+					<p><a href="../index.php">Mon site professionel est visible à cette adresse</a></p>
 				</article>			
 			
 				<article>
@@ -116,15 +117,15 @@
 				<br />				
 				<p class="subDetails">2009 - En cours</p>
 				<p>Réalisation d'un site sur la généalogie et l'histoire locale.<br />
-				Site : <a href="http://www.genealexis.fr">http://www.genealexis.fr</a></p>
+				<a href="http://www.genealexis.fr">http://www.genealexis.fr</a></p>
 				
 				<p class="subDetails">2014 - En cours</p>
 				<p>Réalisation d'un site sur la Première Guerre Mondiale<br />
-				Site : <a href="http://histoiresdepoilus.genealexis.fr">http://histoiresdepoilus.genealexis.fr</a></p>
+				<a href="http://histoiresdepoilus.genealexis.fr">http://histoiresdepoilus.genealexis.fr</a></p>
 				
 				<p class="subDetails">2014 - En cours</p>
 				<p>Réalisation d'un site sur la Route 66<br />
-				Site : <a href="http://usroute66.boitasite.com">http://usroute66.boitasite.com</a></p>
+				<a href="http://usroute66.boitasite.com">http://usroute66.boitasite.com</a></p>
 				</article>
 				
 				<article>
@@ -132,15 +133,15 @@
 				<br />
 				<p class="subDetails">2018 - En cours</p>	
 				<p>Création d'un outil en ligne permettant le calcul et les conversions sur les calendriers (PHP, SQL, HTML et CSS)<br />	
-				Site du projet : <a href="http://imerologio.genealexis.fr/">http://imerologio.genealexis.fr</a></p>
+				<a href="http://imerologio.genealexis.fr/">http://imerologio.genealexis.fr</a></p>
 				
 				<p class="subDetails">2017 - En cours</p>	
 				<p>Création d'un petit jeu, d'après un listing de 1985 (PHP, Javascript, HTML, CSS et le framework Bootstrap). Il s'agit d'un casse-tête avec des cartes à jouer qui se joue en solo.<br />	
-				Site du projet : <a href="http://thegasp.genealexis.fr/">http://thegasp.genealexis.fr</a></p>
+				<a href="http://thegasp.genealexis.fr/">http://thegasp.genealexis.fr</a></p>
 				
 				<p class="subDetails">2017 - En cours</p>
 				<p>Réalisation d'un CMS dédié à la généalogie (PHP, SQL, HTML et CSS). Le projet est actuellement en financement participatif.<br />
-				Site du projet : <a href="https://fr.tipeee.com/genealexis">https://fr.tipeee.com/genealexis</a></p>
+				<a href="https://fr.tipeee.com/genealexis">https://fr.tipeee.com/genealexis</a></p>
 				
 				<p class="subDetails">2006 - 2007 à L'Universit&eacute; de Valenciennes</p>
 				<p>Logiciel de gestion d'un catalogue de voiture (C et Shell)</p>
@@ -195,7 +196,7 @@
 					<h2>En autodidacte</h2>
 					<br />
 					<p class="subDetails">2019-2020 via OpenClassRoom</p>
-					<p>LESS, Algorithmes, HTML5, CSS3, Bootstrap, Git, Référencement naturel (SEO)</p>
+					<p>LESS, <a href="certificats/algo.pdf">Algorithmes</a>, <a href="certificats/html5-css3.pdf">HTML5<a>, <a href="certificats/html5-css3.pdf">CSS3<a>, <a href="certificats/bootstrap.pdf">Bootstrap</a>, <a href="certificats/git-github.pdf">Git</a>, <a href="certificats/cle-referencement.pdf">Référencement naturel (SEO)</a>, <a href="certificats/cms.pdf">les CMS</a></p>
 				</article>
 			
 				<article>
@@ -255,7 +256,7 @@
 
 	<div class="FooterDetails">
 
-		<p>&copy; copyright 2015-2020 - Alexis AMAND<br/>Dernière mise à jour le 10 avril 2020</p>
+		<p>&copy; copyright 2015-2020 - Alexis AMAND<br/>Dernière mise à jour le 21 octobre 2020</p>
 		<div class="clear"></div>
 
 	</div>	
@@ -266,24 +267,20 @@
 
 <!-- Piwik -->
 <script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//www.genealexis.fr/piwik/";
+    var _paq = _paq || [];
+    _paq.push(["setDomains", ["*.www.boitasite.com"]]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+    var u="//genealexis.fr/piwik/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', 2]);
+    _paq.push(['setSiteId', '14']);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
+    })();
 </script>
-<noscript><p><img src="//www.genealexis.fr/piwik/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+<noscript><p><img src="//genealexis.fr/piwik/piwik.php?idsite=14" style="border:0;" alt="" /></p></noscript>
 <!-- End Piwik Code -->
-
-
-<!-- Piwik Image Tracker-->
-<img src="http://www.genealexis.fr/piwik/piwik.php?idsite=2&rec=1" style="border:0" alt="" />
-<!-- End Piwik -->
 
 </body>
 </html>
