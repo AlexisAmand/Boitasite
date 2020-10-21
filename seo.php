@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Référencement naturel (SEO) de votre site | Alexis AMAND - développement web et SEO à Valenciennes</title>
-    <meta name="description" content="Quelles sont les bonnes pratiques pour être visible et être bonne position sur les moteurs de recherche ? Le référencement naturel (SEO) vous permet d'optimiser votre position et votre visibilité sur les moteurs de recherche">
+    <meta name="description" content="Le référencement naturel (SEO) vous permet d'optimiser votre position et votre visibilité sur les moteurs de recherche. Nous vous accompagnons dans votre stratégie de référencement naturel pour que votre site se classe le mieux possible dans leurs résultats">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -61,9 +61,9 @@
 
         <p class="text-justify">SEO est un acronyme qui signifie "Search Engine Optimisation". Pour résumer, il s'agit de toutes les techniques qui permettent d'optimiser la visibilité des pages de otre site et leur position dans les résultats de recherche des moteurs (SERP), c'est ce qu'on appelle le <strong>référencement naturel</strong>. L'idée, c'est d'aider les robots qui parcourent votre site dans le but de l'indexer à comprendre sa thématique et le contenu des pages.</p>
 
-        <h5 class="mt-5">En quoi ça vous concerne ?</h5>
+        <h5 class="mt-5">En quoi êtes-vous concerné ?</h5>
 
-        <p class="text-justify">Si vous êtes ici, peut-être que vous vous demandez quelles sont les bonnes pratiques pour être visible sur les moteurs de recherche, être en top des pages de résultats et ainsi augmenter votre chiffre d'affaire ? N'hésitez pas, contactez moi, et nous verrons ce que nous pouvons faire ensemble.</p>
+        <p class="text-justify">L'idée générale est de se demander quelles sont les bonnes pratiques pour être visible sur les moteurs de recherche et être en top des pages de résultats. Le SEO est un élément clé de votre stratégie commerciale car chaque clic est un client potentiel. <a href="contacts.php" title="lien pour me contacter">Contactez moi</a>, et nous verrons ce que nous pouvons faire ensemble.</p>
 
         </div>
 
