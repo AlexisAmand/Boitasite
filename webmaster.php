@@ -52,47 +52,45 @@
 
     <section class="container">
 
-        <article class="row d-flex justify-content-center ligne-dotted-top">
+    <article class="row ligne-dotted-top">
 
-            <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
-                <h1 class="text-center">#devweb : Création de <span>sites</span> web</h1>
-            </div>
+        <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
+            <h1 class="text-center">#devweb : Création de <span>sites</span> web</span></h1>
+        </div>
 
-            <div class="col-12">
-                <p class="text-justify my-5">Vous êtes à la recherche d'une solution facile pour créer votre site web, et ainsi faire progresser votre entreprise et propulser votre site Web en première page de Google ? Si vous vous poser cette question, vous demandez sans doute également quelles sont les bonnes pratiques pour être visibles sur les moteurs de recherche et être en première page des moteurs de recherche ?</p>
-            </div>
+        <div class="col-12 col-md-3 align-self-center">
+            <img src="img/student-849821_1920.jpg" class="img-thumbnail img-fluid mt-5 mb-5" alt="pions de scrabble formant le mot SEO">
+        </div>
 
-            <div class="col-8 mx-auto">
-                <p class="text-center alert alert-success"><i class="fi-xnluhl-thumb"></i>&nbsp;Avoir un site 100 % opérationnel, 100 % efficace, 24h sur 24 et 7 jrs sur 7 !</p>
-            </div>
+        <div class="col-12 col-md-9 align-self-center">
 
-        </article>
+        <h5>Pourquoi créer votre site ?</h5>
 
-        <article class="row">
-         
-            <div class="col-12">
+        <p class="text-justify">Nous sommes dans l'ére du tout numérique. Avoir un site web, c'est ouvrir une vitrine virtuelle pour présenter votre activité ou vos produits. Une vitrine consultable à tous les moments de la journée, et quelque soit le support (mobile, ordinateur ou tablette) utilisé par votre visiteur. Si vous êtes à la recherche d'une solution facile pour créer ce site web, et ainsi faire progresser votre entreprise ou votre association en propulsant votre site Web en bonne position dans les résultats des moteurs de recherche, n'hésitez pas à <a href="contacts.php" title="lien pour me contacter">me contacter</a>.</p>
 
-                <h5 class="mt-5">Quelles sont les préstations proposées ?</h5>
+        </div>
 
-            </div>
+    </article>
 
-            <div class="col-12 col-md-6">
+    <article class="row d-flex justify-content-center">
+
+            <div class="col-5 mx-auto"> 
                 <ul>
                     <li> Création du site</li>
                     <li> Maintenance et mises à jour SEO</li>
                     <li> Audit de votre site</li>
                     <li> Gestion de l’hébergement</li>
                 </ul>
-            </div> 
+            </div>
 
-            <div class="col-12 col-md-6">
+            <div class="col-5 mx-auto"> 
                 <ul>
                     <li> Veille technologique</li>
                     <li> Sauvegarde mensuelle</li>
                     <li> Mises à jour de sécurité</li>
                     <li> Suivi client</li>
                 </ul>
-            </div> 
+            </div>
 
         </article>
 
@@ -105,77 +103,77 @@
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thegasp.jpg" alt="capture d'écran du site de jeu en ligne Le Gasp"
+                <img src="img/captures/thumbs/thegasp.jpg" alt="capture d'écran du site de jeu en ligne Le Gasp"
                 class="img-thumbnail" data-toggle="tooltip" title="Site du jeu en ligne Le Gasp">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/transmediation.jpg" alt="capture d'écran du site de l'entreprisse Trans-Médiation"  
+                <img src="img/captures/thumbs/transmediation.jpg" alt="capture d'écran du site de l'entreprisse Trans-Médiation"  
                 class="img-thumbnail" data-toggle="tooltip" title="Site de l'entreprise Trans-Médiation">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/hdp.jpg" alt="capture d'écran d'un site perso sur les soldats de la Première Guerre Mondiale"  
+                <img src="img/captures/thumbs/hdp.jpg" alt="capture d'écran d'un site perso sur les soldats de la Première Guerre Mondiale"  
                 class="img-thumbnail" data-toggle="tooltip" title="Site personel sur les soldats de la Grande Guerre">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/boitasite.jpg" alt="capture d'écran du site où vous êtes"  
+                <img src="img/captures/thumbs/boitasite.jpg" alt="capture d'écran du site où vous êtes"  
                 class="img-thumbnail" data-toggle="tooltip" title="Le site où vous êtes">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img1.jpg" alt="capture d'écran d'un site personnel sur la généalogie"  
+                <img src="img/captures/thumbs/img1.jpg" alt="capture d'écran d'un site personnel sur la généalogie"  
                 class="img-thumbnail" data-toggle="tooltip" title="Site personnel sur la généalogie">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img2.jpg" alt="capture d'écran d'un projet de site sur la série de jeu Anno"  
+                <img src="img/captures/thumbs/img2.jpg" alt="capture d'écran d'un projet de site sur la série de jeu Anno"  
                 class="img-thumbnail" data-toggle="tooltip" title="Projet de site sur la franchise Anno">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img4.jpg" alt="capture d'écran du site du CPIE Bocage de l'Avesnois"  
+                <img src="img/captures/thumbs/img4.jpg" alt="capture d'écran du site du CPIE Bocage de l'Avesnois"  
                 class="img-thumbnail" data-toggle="tooltip" title="Site du CPIE Bocage de l'Avesnois">
             </div>
             
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img5.jpg" alt="capture d'écran d'un site sur la Route 66"  
+                <img src="img/captures/thumbs/img5.jpg" alt="capture d'écran d'un site sur la Route 66"  
                 class="img-thumbnail" data-toggle="tooltip" title="Site sur la Route 66">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img6.jpg" alt="capture d'écran de site de la campagne sur les dragons"   
+                <img src="img/captures/thumbs/img6.jpg" alt="capture d'écran de site de la campagne sur les dragons"   
                 class="img-thumbnail" data-toggle="tooltip" title='Site de la campagne "Un dragon ? Dans mon jardin !"'>
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img7.jpg" alt="capture d'écran d'un site sur la série de jeu Half-Life"  
+                <img src="img/captures/thumbs/img7.jpg" alt="capture d'écran d'un site sur la série de jeu Half-Life"  
                 class="img-thumbnail" data-toggle="tooltip" title='Site de la campagne "Site sur la franchise Half-Life'>
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img8.jpg" alt="Capture d'écran d'un projet de site pour l'entreprise valenciennois Infinity Matériel"  
+                <img src="img/captures/thumbs/img8.jpg" alt="Capture d'écran d'un projet de site pour l'entreprise valenciennois Infinity Matériel"  
                 class="img-thumbnail" data-toggle="tooltip" title="Projet de site pour l'entreprise Infinity Matériel">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img9.jpg" alt="capture d'écran du centre de ressources du CPIE"  
+                <img src="img/captures/thumbs/img9.jpg" alt="capture d'écran du centre de ressources du CPIE"  
                 class="img-thumbnail" data-toggle="tooltip" title="Site du centre de ressources des CPIE">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img10.jpg" alt="Capture d'écran d'un blog personnel"  
+                <img src="img/captures/thumbs/img10.jpg" alt="Capture d'écran d'un blog personnel"  
                 class="img-thumbnail" data-toggle="tooltip" title="Blog personnel">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img11.jpg" alt="Capture d'écran d'un blog personnel"  
+                <img src="img/captures/thumbs/img11.jpg" alt="Capture d'écran d'un blog personnel"  
                 class="img-thumbnail" data-toggle="tooltip" title="Blog personnel">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/img3.jpg" alt="Capture d'écran du site du CPIE"  
+                <img src="img/captures/thumbs/img3.jpg" alt="Capture d'écran du site du CPIE"  
                 class="img-thumbnail" data-toggle="tooltip" title="Site du CPIE - Bocage de l'Avesnois">
             </div>
 
@@ -207,7 +205,7 @@
 
             <div class="col-12">
 
-                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a>
+                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="cv/index.php">Mon cv</a>
                 </p>
 
             </div>

@@ -63,7 +63,7 @@
 
         <h5 class="mt-5">En quoi êtes-vous concerné ?</h5>
 
-        <p class="text-justify">L'idée générale est de se demander quelles sont les bonnes pratiques pour être visible sur les moteurs de recherche et être en top des pages de résultats. Le SEO est un élément clé de votre stratégie commerciale car chaque clic est un client potentiel. <a href="contacts.php" title="lien pour me contacter">Contactez moi</a>, et nous verrons ce que nous pouvons faire ensemble.</p>
+        <p class="text-justify">L'idée générale est de se demander quelles sont les bonnes pratiques pour être visible sur les moteurs de recherche et être en top des pages de résultats. Le SEO est un élément clé de votre stratégie commerciale car chaque clic est un client potentiel. <a href="contacts.php" title="lien pour me contacter">contactez moi</a>, et nous verrons ce que nous pouvons faire ensemble.</p>
 
         </div>
 
