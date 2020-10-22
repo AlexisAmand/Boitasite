@@ -72,9 +72,9 @@
 
     </article>
 
-    <article class="row d-flex justify-content-center">
+    <article class="row d-flex justify-content-around">
 
-            <div class="col-5 mx-auto"> 
+            <div class="col-auto"> 
                 <ul>
                     <li> Création du site</li>
                     <li> Maintenance et mises à jour SEO</li>
@@ -83,7 +83,7 @@
                 </ul>
             </div>
 
-            <div class="col-5 mx-auto"> 
+            <div class="col-auto"> 
                 <ul>
                     <li> Veille technologique</li>
                     <li> Sauvegarde mensuelle</li>

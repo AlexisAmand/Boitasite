@@ -69,58 +69,60 @@
 
                 <figure class="figure col-3 m-3">
                     <a href="images/androide/androide_01.jpg" data-fancybox>
-                    <img src="images/thumbs/androide/androide_01.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu pour thomson TO8 Androïdes réalisée avec MESS"></a>
-                    <figcaption class="figure-caption text-center">Androïdes sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/androide/androide_01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu pour thomson TO8 Androïdes réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Androïdes sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/androide/androide_02.jpg" data-fancybox>
-                    <img src="images/thumbs/androide/androide_02.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu pour thomson TO8 Androïdes réalisée avec MESS"></a>
-                    <figcaption class="figure-caption text-center">Androïdes sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/androide/androide_02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu pour thomson TO8 Androïdes réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Androïdes sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/androide/androide_03.jpg" data-fancybox>
-                    <img src="images/thumbs/androide/androide_03.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu pour thomson TO8 Androïdes réalisée avec MESS"></a>
-                    <figcaption class="figure-caption text-center">Androïdes sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/androide/androide_03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu pour thomson TO8 Androïdes réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Androïdes sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
             </div>
 
             <h5 class="mt-5">Arkanoïd</h5>
-                
-            <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-46-page-89.pdf" title="article sur le jeu Arkanoïd paru dans Jeux et Stratégie n°46 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987.</p>
+
+            <p class="text-justify">Arkanoïd est un casse-brique édité par F.I.L (France Image Logiciel) qui vous place aux commandes du vaisseau « Vaus », seul rescapé d'une attaque extraterrestre qui a détruit le vaisseau spatial « Arkanoid ». Envoyé dans une autre dimension par un mystérieux ennemi, le Vaus devra passer plusieurs dispositifs de sécurité, pour finalement détruire « Doh », l'alien responsable de l'agression. Ce jeu a fait l'objet d'un <a href="pdf/js-46-page-89.pdf" title="article sur le jeu Arkanoïd paru dans Jeux et Stratégie n°46 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987.  Si vous êtes un amateur des casses-briques, Arkanoïd ne sera pas sans vous faire penser à LBreakout.</p>
 
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
                     <a href="images/arkanoid/arkanoid-01.png" data-fancybox>
-                    <img src="images/thumbs/arkanoid/arkanoid-01.png" class="figure-img img-fluid rounded" alt=" "></a>
-                    <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/arkanoid/arkanoid-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/arkanoid/arkanoid-02.png" data-fancybox>
-                    <img src="images/thumbs/arkanoid/arkanoid-02.png" class="figure-img img-fluid rounded" alt=" "></a>
-                    <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/arkanoid/arkanoid-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/arkanoid/arkanoid-03.png" data-fancybox>
-                    <img src="images/thumbs/arkanoid/arkanoid-03.png" class="figure-img img-fluid rounded" alt=" "></a>
-                    <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/arkanoid/arkanoid-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
             </div>
 
-            <h5 class="mt-5">Asterix</h5>
-            
+            <h5 class="mt-5">Asterix et la potion magique</h5>
+
+            <p class="text-justify">Dans ce jeu, inspiré par l'album Astérix le Gaulois, Panoramix est prisonnier des Romains. Vous devez réunir les ingrédients d'une potion accélérant la pousse des cheveux, qui trompera des Romains obsédés par l'envie de découvrir la recette de la Potion Magique, celle qui rend invulnérable celui qui la consomme.</p>
+
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
                     <a href="images/asterix/asterix-01.jpg" data-fancybox>
-                    <img src="images/thumbs/asterix/asterix-01.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu Asterix pour TO8"></a>
-                    <figcaption class="figure-caption text-center">Asterix sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/asterix/asterix-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <figcaption class="figure-caption text-center">Une publicité dans TILT de janvier 1987.</figcaption>
                 </figure>
 
             </div>
@@ -130,9 +132,29 @@
             <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-64.pdf" title="article sur le jeu La Bataille des Brevets paru dans Jeux et Stratégie n°43 de février/mars 1987">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
 
             <h5 class="mt-5">Bivouac</h5>
+            
+            
+            <p class="text-justify">Bivouac est le premier jeu que j'ai testé alors que je ne le possédais pas à l'époque. Il a pour theme la course en montagne et a fait l'objet d'un <a href="pdf/js-46-page-81.pdf" title="article sur le jeu Bivouac paru dans Jeux et Stratégie n°56 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987. Je ne sais pas si c'est le fait de le tester avec un émulateur, mais je n'ai absolument pas compris comment il fonctionne... (lol ?) C'est un peu dommage car c'est un sujet qui change completement de l'ordinaire et qui change des jeux que l'on a l'habitude de rencontrer.</p>
+            
+            <div class="row d-flex justify-content-center">
 
-            <p class="text-justify"> jeu a fait l'objet d'un <a href="pdf/js-46-page-81.pdf" title="article sur le jeu Bivouac paru dans Jeux et Stratégie n°56 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987.</p>
+                <figure class="figure col-3 m-3">
+                    <img src="images/thumbs/bivouac/bivouac-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <figcaption class="figure-caption text-center">Bivouac sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
 
+               	<figure class="figure col-3 m-3">
+                    <img src="images/thumbs/bivouac/bivouac-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <figcaption class="figure-caption text-center">Bivouac sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <img src="images/thumbs/bivouac/bivouac-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <figcaption class="figure-caption text-center">Bivouac sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+            </div>
+            
             <h5 class="mt-5">Cap sur Dakar</h5>
 
             <p class="text-justify">Edité par Coktel Vision, Cap sur Dakar est une simulation réaliste de la célèbre course Paris-Dakar: de la recherche des sponsors, vitale, jusqu'aux épreuves de conduite sur pistes, de plus en plus sportives, vivez toutes les péripéties de ce très grand raid. Ce jeu a fait l'objet d'un <a href="pdf/js-38-page-74.pdf" title="Le jeu Cap sur Dakar dans le magazine Jeux &amp; Stratégie n°38">article</a> dans la revue Jeux et Stratégie n°38 d'avril/mai 1986.</p>
@@ -141,7 +163,7 @@
 
                 <figure class="figure col-3 m-3">
                     <a href="images/tilt-37-01.jpg" data-fancybox>
-                    <img src="images/thumbs/tilt-37-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu Cap sur Dakar parue dans la revue TILT de décembre 1986"></a>
+                    <img src="images/thumbs/tilt-37-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Une publicité pour le jeu Cap sur Dakar parue dans la revue TILT de décembre 1986"></a>
                     <figcaption class="figure-caption text-center">Une publicité dans TILT de décembre 1986.</figcaption>
                 </figure>
 
@@ -149,20 +171,46 @@
   
             <h5 class="mt-5">Choplifter</h5>
 
-            <p class="text-justify">Dans ce jeu signé F.I.L, vous devez sauver, grâce à votre hélicoptère vos compatriotes d'un camp en pays ennemi. Bien sûr, ce camp est bien gardé, avions et chars attaquent. Ce jeu est un des best-sellers américains de l'époque dans sa catégorie.</p>
+            <p class="text-justify">Dans ce jeu signé France Image Logiciel (F.I.L), vous devez sauver, grâce à votre hélicoptère vos compatriotes d'un camp en pays ennemi. Bien sûr, ce camp est bien gardé, avions et chars attaquent. Ce jeu est un des best-sellers américains de l'époque dans sa catégorie.</p>
 
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
                     <a href="images/choplifter/choplifter-01.jpg" data-fancybox>
-                    <img src="images/thumbs/choplifter/choplifter-01.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu Choplifter pour thomson TO8 réalisée avec MESS"></a>
-                    <figcaption class="figure-caption text-center">Choplifter sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/choplifter/choplifter-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Choplifter pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Choplifter sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/choplifter/choplifter-02.jpg" data-fancybox>
-                    <img src="images/thumbs/choplifter/choplifter-02.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu Choplifter pour thomson TO8 réalisée avec MESS"></a>
-                    <figcaption class="figure-caption text-center">Choplifter sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/choplifter/choplifter-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Choplifter pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Choplifter sur TO8.<br />(capture réalisée avec MESS)</figcaption>
+                </figure>
+
+            </div>
+
+			<h5 class="mt-5">Contes de Monte-Crypto (Les)</h5>
+			
+			<p class="text-justify">Les Contes de Monte-Crypto est un jeu édité par Infogrames qui proposait le décryptage de textes à travers 20 niveaux à la difficulté croissante, tant au niveau de la syntaxe que du vocabulaire. Il se jouait au clavier ou au crayon optique.</p>
+			
+			<div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <a href="images/monte-crypto/monte-crypto-01.png" data-fancybox>
+                    <img src="images/thumbs/monte-crypto/monte-crypto-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <figcaption class="figure-caption text-center">Monte-Crypto sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <a href="images/monte-crypto/monte-crypto-02.png" data-fancybox>
+                    <img src="images/thumbs/monte-crypto/monte-crypto-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <figcaption class="figure-caption text-center">Monte-Crypto sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                                
+                <figure class="figure col-3 m-3">
+                    <a href="images/monte-crypto/monte-crypto-04.png" data-fancybox>
+                    <img src="images/thumbs/monte-crypto/monte-crypto-04.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <figcaption class="figure-caption text-center">Monte-Crypto sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
             </div>
@@ -173,19 +221,19 @@
 
                 <figure class="figure col-3 m-3">
                     <a href="images/crazy-cars/crazy-cars-01.png" data-fancybox>
-                    <img src="images/thumbs/crazy-cars/crazy-cars-01.png" class="figure-img img-fluid rounded" alt=" "></a>
+                    <img src="images/thumbs/crazy-cars/crazy-cars-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
                     <figcaption class="figure-caption text-center">Crazy Cars sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/crazy-cars/crazy-cars-02.png" data-fancybox>
-                    <img src="images/thumbs/crazy-cars/crazy-cars-02.png" class="figure-img img-fluid rounded" alt=" "></a>
+                    <img src="images/thumbs/crazy-cars/crazy-cars-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
                     <figcaption class="figure-caption text-center">Crazy Cars sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/crazy-cars/crazy-cars-03.png" data-fancybox>
-                    <img src="images/thumbs/crazy-cars/crazy-cars-03.png" class="figure-img img-fluid rounded" alt=" "></a>
+                    <img src="images/thumbs/crazy-cars/crazy-cars-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
                     <figcaption class="figure-caption text-center">Crazy Cars sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -194,12 +242,34 @@
             <h5 class="mt-5">Dakar 4x4</h5>
 
             <p class="text-justify">Dakar 4x4 est un jeu de simulation sportive édité en 1987 par Coktel Vision. Au volant de votre super 4x4, vous voilà au départ de la célèbre course. Les moteurs ronflent sous les capots, les adversaires sont prêts. Enfin c'est le départ! La poussière vole, le paysage désertique défile, et le compte-tour s'affole...</p>
+            
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <a href="images/dakar4x4/dakar4x4.png" data-fancybox>
+                    <img src="images/thumbs/dakar4x4/dakar4x4-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <figcaption class="figure-caption text-center">Dakar 4x4 sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <a href="images/dakar4x4/dakar4x4-02.png" data-fancybox>
+                    <img src="images/thumbs/dakar4x4/dakar4x4-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <figcaption class="figure-caption text-center">Dakar 4x4 sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <a href="images/dakar4x4/dakar4x4-03.png" data-fancybox>
+                    <img src="images/thumbs/dakar4x4/dakar4x4-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <figcaption class="figure-caption text-center">Dakar 4x4 sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+            </div>
 
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
                     <a href="images/tilt-39-01.jpg" data-fancybox >
-                    <img src="images/thumbs/tilt-39-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu Dakar 4x4 parue dans la revue TILT de février 1987"></a>
+                    <img src="images/thumbs/tilt-39-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Une publicité pour le jeu Dakar 4x4 parue dans la revue TILT de février 1987"></a>
                     <figcaption class="figure-caption text-center">Une publicité dans TILT de février 1987.</figcaption>
                 </figure>
 
@@ -227,20 +297,20 @@
 
                 <figure class="figure col-3 m-3">
                     <a href="images/entropie-01.jpg" data-fancybox>
-                    <img src="images/thumbs/entropie/entropie-01.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MESS"></a>
-                    <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/entropie/entropie-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/entropie-02.jpg" data-fancybox>
-                    <img src="images/thumbs/entropie/entropie-02.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MESS"></a>
-                    <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/entropie/entropie-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/entropie-03.jpg" data-fancybox>
-                    <img src="images/thumbs/entropie/entropie-03.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MESS"></a>
-                    <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/entropie/entropie-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
             </div>
@@ -250,8 +320,8 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/entropie/entropie-04.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/entropie/entropie-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MAME">
+                    <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture extraite de la revue TILT)</figcaption>
                 </figure>
 
             </div>
@@ -263,7 +333,7 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/tilt-38-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu Grand Prix 500 cc parue dans la revue TILT de janvier 1987">
+                    <img src="images/thumbs/tilt-38-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Une publicité pour le jeu Grand Prix 500 cc parue dans la revue TILT de janvier 1987">
                     <figcaption class="figure-caption text-center">Une publicité dans TILT de janvier 1987.</figcaption>
                 </figure>
 
@@ -271,16 +341,38 @@
 
             <h5 class="mt-5">Green Beret</h5>
 
-            <p class="text-justify">Green Beret, c'est l'histoire d'un para hautement entrainé qui a pour mission d'aller libérer des prisonniers. Les adversaires surgissent de tous les côtés en même et laissent aucun répis au joueur, sachant qu'au début du jeu vous êtes simplement armé d'un couteau. Qui a dit Rambo II ?</p>
-      
+            <p class="text-justify">Green Beret, c'est l'histoire d'un para hautement entrainé qui a pour mission d'aller libérer des prisonniers. Les adversaires surgissent de tous les côtés en même et laissent aucun répis au joueur, sachant qu'au début du jeu vous êtes simplement armé d'un couteau. Qui a dit Rambo II ? Comme pour les autres jeux, j'ai rejoué à Green Beret à l'occasion de la réalisation de page. Une chose est certaine, il est toujours aussi difficile. (Peut-être que je suis juste pas trés doué ?)</p>
+            
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <a href="images/green-beret/green-beret-01.png" data-fancybox>
+                    <img src="images/thumbs/green-beret/green-beret-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <figcaption class="figure-caption text-center">Green Beret sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <a href="images/green-beret/green-beret-02.png" data-fancybox>
+                    <img src="images/thumbs/green-beret/green-beret-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <figcaption class="figure-caption text-center">Green Beret sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <a href="images/green-beret/green-beret-03.png" data-fancybox>
+                    <img src="images/thumbs/green-beret/green-beret-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <figcaption class="figure-caption text-center">Green Beret sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+            </div>
+            
             <h5 class="mt-5">James Debug</h5>
 
-            <p class="text-justify">Dans ce jeu d'arcade-aventure, le joueur guide un petit personnage sur un terrain vu en coup et tente de rassembler les preuves (pièces graphiques à collecter). Les déplacemements sont assez lents et le jeu ne déclenche pas une folle passion. Il faut cependant faire preuve d'astuce pour progresser régulièrement. On ne peut que déplorer la différence entre le scénario (une grande puissance implante un centre informatique stratégique secret dans une île perdu du Pacifique. Suite à un incident majeur, un déversement massif de programmes buggés envahit les centres serveurs de la planète...) et le contenu réel du jeu. Un jeu édité par Coktel Vision. Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-74.pdf" title="Le jeu James Debug dans le magazine Jeux &amp; Stratégie n°43">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
+            <p class="text-justify">Dans ce jeu d'arcade-aventure, édité par Coktel Vision, le joueur guide un petit personnage sur un terrain vu en coupe et tente de rassembler les preuves (pièces graphiques à collecter). Les déplacemements sont assez lents et le jeu ne déclenche pas une folle passion. Il faut cependant faire preuve d'astuce pour progresser régulièrement. On ne peut que déplorer la différence entre le scénario (une grande puissance implante un centre informatique stratégique secret dans une île perdu du Pacifique. Suite à un incident majeur, un déversement massif de programmes buggés envahit les centres serveurs de la planète...) et le contenu réel du jeu. James Debug a fait l'objet d'un <a href="pdf/js-43-page-74.pdf" title="Le jeu James Debug dans le magazine Jeux &amp; Stratégie n°43">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
 
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/tilt-37-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu James Debug parue dans la revue TILT de décembre 1986">
+                    <img src="images/thumbs/tilt-37-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Une publicité pour le jeu James Debug parue dans la revue TILT de décembre 1986">
                     <figcaption class="figure-caption text-center">James Debug sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -293,7 +385,7 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/tilt-34-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu James Debug parue dans la revue TILT de décembre 1986">
+                    <img src="images/thumbs/tilt-34-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Une publicité pour le jeu James Debug parue dans la revue TILT de décembre 1986">
                     <figcaption class="figure-caption text-center">Karate sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -306,7 +398,7 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/tilt-37-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour la malédiction de Thaar parue dans la revue TILT de décembre 1986">
+                    <img src="images/thumbs/tilt-37-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Une publicité pour la malédiction de Thaar parue dans la revue TILT de décembre 1986">
                     <figcaption class="figure-caption text-center">Une publicité dans TILT de décembre 1986.</figcaption>
                 </figure>
 
@@ -331,18 +423,18 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/templiers/templiers-04.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-center">La Nuit des Templiers sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/templiers/templiers-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec MAME">
+                    <figcaption class="figure-caption text-center">La Nuit des Templiers sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/templiers/templiers-02.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-center">La Nuit des Templiers sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/templiers/templiers-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec MAME">
+                    <figcaption class="figure-caption text-center">La Nuit des Templiers sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/templiers/templiers-03.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec MESS">
-                    <figcaption class="figure-caption text-center">La Nuit des Templiers sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                    <img src="images/thumbs/templiers/templiers-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec MAME">
+                    <figcaption class="figure-caption text-center">La Nuit des Templiers sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
             </div>
@@ -369,23 +461,38 @@
 
             <h5 class="mt-5">Runway II</h5>
 
-            <p>Runway II est un jeu de course automobile édité par F.I.L. Au volant de votre F1, il s'agissait de parcourir sans encombre le circuit en fonction du nombre de tour et de la difficulté que vous avez choisi, tout en prenant garde à vos adversaires, aux sorties de route et autres carambolages.</p>
+            <p class="text-justify">Runway II est un jeu de course automobile édité par France Image Logiciel (F.I.L). Au volant de votre F1, il s'agissait de parcourir sans encombre le circuit en fonction du nombre de tour et de la difficulté que vous avez choisi, tout en prenant garde à vos adversaires, aux sorties de route et autres carambolages. A noter que la version que j'ai (re)testé posséde un éditeur de circuit (voir 6e capture). Avec Speedway et Dakar 4x4, il fait partie de mon top 3 des jeux de courses automobiles sur TO8.</p>
             
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/runway2/runway2-01.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/runway2/runway2-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/runway2/runway2-02.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/runway2/runway2-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/runway2/runway2-03.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/runway2/runway2-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <img src="images/thumbs/runway2/runway2-04.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/thumbs/runway2/runway2-05.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/thumbs/runway2/runway2-06.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <figcaption class="figure-caption text-center">L'éditeur de circuit de Runway II.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
             </div>
@@ -397,46 +504,48 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/saphir/saphir_0006.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec MESS">
+                    <img src="images/thumbs/saphir/saphir_0006.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Saphir sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/saphir/saphir_0007.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec MESS">
+                    <img src="images/thumbs/saphir/saphir_0007.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Saphir sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/saphir/saphir_0008.jpg" class="figure-img img-fluid rounded" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec MESS">
+                    <img src="images/thumbs/saphir/saphir_0008.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Saphir sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
             </div>
+            
+            <p class="text-justify">Je vous invite aussi à découvrir cette numérisation du livret fourni à l'époque avec le jeu. Il fait partie des rares reliques de mon TO8 que je posséde encore. J'ai longtemps gardé les boites de jeux orignales mais le manque de place et les années ont fait que je n'ai pas pu les conserver.</p>
 
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/saphir/saphir_0001.jpg" class="figure-img img-fluid rounded" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
+                    <img src="images/thumbs/saphir/saphir_0001.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
                     <figcaption class="figure-caption text-center">Le manuel du jeu (1).</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/saphir/saphir_0002.jpg" class="figure-img img-fluid rounded" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
+                    <img src="images/thumbs/saphir/saphir_0002.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
                     <figcaption class="figure-caption text-center">Le manuel du jeu (2).</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/saphir/saphir_0003.jpg" class="figure-img img-fluid rounded" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
+                    <img src="images/thumbs/saphir/saphir_0003.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
                     <figcaption class="figure-caption text-center">Le manuel du jeu (3).</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/saphir/saphir_0004.jpg" class="figure-img img-fluid rounded" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
+                    <img src="images/thumbs/saphir/saphir_0004.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
                     <figcaption class="figure-caption text-center">Le manuel du jeu (4).</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/saphir/saphir_0005.jpg" class="figure-img img-fluid rounded" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
+                    <img src="images/thumbs/saphir/saphir_0005.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8">
                     <figcaption class="figure-caption text-center">Le manuel du jeu (5).</figcaption>
                 </figure>
 
@@ -451,7 +560,7 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/tilt-34-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu Sortiléges parue dans la revue TILT de septembre 1986">
+                    <img src="images/thumbs/tilt-34-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Une publicité pour le jeu Sortiléges parue dans la revue TILT de septembre 1986">
                     <figcaption class="figure-caption text-center">Une publicité dans TILT de septembre 1986.</figcaption>
                 </figure>
 
@@ -466,32 +575,32 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/silent-service/silent-service-01.png" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/silent-service/silent-service-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/silent-service/silent-service-02.png" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/silent-service/silent-service-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/silent-service/silent-service-03.png" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/silent-service/silent-service-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/silent-service/silent-service-04.png" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/silent-service/silent-service-04.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/silent-service/silent-service-05.png" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/silent-service/silent-service-05.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/tilt-40-01.jpg" class="figure-img img-fluid rounded" alt="Une publicité pour le jeu Silent Service parue dans la revue TILT de mars 1987">
+                    <img src="images/thumbs/tilt-40-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Une publicité pour le jeu Silent Service parue dans la revue TILT de mars 1987">
                     <figcaption class="figure-caption text-center">Une publicité dans TILT de mars 1987.</figcaption>
                 </figure>
 
@@ -504,17 +613,17 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/slap-fight/slap-fight-01.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/slap-fight/slap-fight-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Slap Fight sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/slap-fight/slap-fight-02.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/slap-fight/slap-fight-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Slap Fight sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/slap-fight/slap-fight-03.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/slap-fight/slap-fight-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Slap Fight sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -527,17 +636,17 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/speedway/speedway-01.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu Speedway pour ordinateur TO8 réalisée avec MESS">
+                    <img src="images/thumbs/speedway/speedway-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Speedway pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Speedway sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/speedway/speedway-02.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu Speedway pour ordinateur TO8 réalisée avec MESS">
+                    <img src="images/thumbs/speedway/speedway-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Speedway pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Speedway sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/speedway/speedway-03.jpg" class="figure-img img-fluid rounded" alt="capture d'écran du jeu Speedway pour ordinateur TO8 réalisée avec MESS">
+                    <img src="images/thumbs/speedway/speedway-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Speedway pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Speedway sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -550,17 +659,17 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/stone-zone/stone-zone-01.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/stone-zone/stone-zone-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Stone Zone sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                	<figure class="figure col-3 m-3">
-                    <img src="images/stone-zone/stone-zone-02.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/stone-zone/stone-zone-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Stone Zone sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
                 
                 <figure class="figure col-3 m-3">
-                    <img src="images/stone-zone/stone-zone-03.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/stone-zone/stone-zone-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Stone Zone sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -581,7 +690,32 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/lasvegas/lasvegas-01.jpg" class="figure-img img-fluid rounded" alt=" ">
+                    <img src="images/thumbs/lasvegas/lasvegas-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <img src="images/thumbs/lasvegas/lasvegas-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <img src="images/thumbs/lasvegas/lasvegas-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <img src="images/thumbs/lasvegas/lasvegas-04.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <img src="images/thumbs/lasvegas/lasvegas-05.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <img src="images/thumbs/lasvegas/lasvegas-06.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -590,7 +724,7 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/tilt-34-02.jpg" class="figure-img img-fluid rounded" alt="publicité pour le jeu Las Vegas parue dans Tilt n°34 de septembre 1986">
+                    <img src="images/thumbs/tilt-34-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="publicité pour le jeu Las Vegas parue dans Tilt n°34 de septembre 1986">
                     <figcaption class="figure-caption text-center">Une publicité dans TILT de septembre 1986.</figcaption>
                 </figure>
 
