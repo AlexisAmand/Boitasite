@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Liste de jeux pour ordinateurs Thomson | A la découverte du Thomson TO8</title>
+    <title>Liste de jeux pour ordinateurs Thomson | Retrogaming et (re)découverte du Thomson TO8</title>
     <meta name="description" content="Pour les fans de retrogaming, une liste de jeux pour les micro-ordinateurs Thomson TO8 datant les années 80">
 
     <!-- Bootstrap CSS -->
@@ -63,25 +63,25 @@
                 
             <h5 class="mt-5">Androïdes</h5>
 
-            <p class="text-justify">Rien ne va plus dans les entrepôts depuis qu'ils ont remplacé le vieux chien de garde par des robots très perfectionnés. Votre but, récupérer tous les colis sans qu'ils vous rattrapent. Cela sera très difficile, mais bonne chance quand même. Le jeu était édité par Infogrames.</p>
+            <p class="text-justify">Rien ne va plus dans les entrepôts depuis qu'ils ont remplacé le vieux chien de garde par des robots très perfectionnés. Votre but, récupérer tous les colis sans qu'ils vous rattrapent. Cela sera très difficile, mais bonne chance quand même. Le jeu, édité par Infogrames, est l'adaptation de Lode Runner, un jeu vidéo alliant plates-formes et réflexion qui a été développé par Douglas E. Smith et publié par Brøderbund en 1983.</p>
 
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
                     <a href="images/androide/androide_01.jpg" data-fancybox>
-                    <img src="images/thumbs/androide/androide_01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu pour thomson TO8 Androïdes réalisée avec MAME"></a>
+                    <img src="images/thumbs/androide/androide_01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Androïdes pour thomson TO8 Androïdes réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">Androïdes sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/androide/androide_02.jpg" data-fancybox>
-                    <img src="images/thumbs/androide/androide_02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu pour thomson TO8 Androïdes réalisée avec MAME"></a>
+                    <img src="images/thumbs/androide/androide_02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Androïdes pour thomson TO8 Androïdes réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">Androïdes sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/androide/androide_03.jpg" data-fancybox>
-                    <img src="images/thumbs/androide/androide_03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu pour thomson TO8 Androïdes réalisée avec MAME"></a>
+                    <img src="images/thumbs/androide/androide_03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Androïdes pour thomson TO8 Androïdes réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">Androïdes sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
@@ -95,19 +95,19 @@
 
                 <figure class="figure col-3 m-3">
                     <a href="images/arkanoid/arkanoid-01.png" data-fancybox>
-                    <img src="images/thumbs/arkanoid/arkanoid-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/arkanoid/arkanoid-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 Arkanoïd réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/arkanoid/arkanoid-02.png" data-fancybox>
-                    <img src="images/thumbs/arkanoid/arkanoid-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/arkanoid/arkanoid-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 Arkanoïd réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/arkanoid/arkanoid-03.png" data-fancybox>
-                    <img src="images/thumbs/arkanoid/arkanoid-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/arkanoid/arkanoid-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 Arkanoïd réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
@@ -121,7 +121,7 @@
 
                 <figure class="figure col-3 m-3">
                     <a href="images/asterix/asterix-01.jpg" data-fancybox>
-                    <img src="images/thumbs/asterix/asterix-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/asterix/asterix-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Une publicité pour le jeu Asterix et la potion magique parue dans la reveueTILT de janvier 1987"></a>
                     <figcaption class="figure-caption text-center">Une publicité dans TILT de janvier 1987.</figcaption>
                 </figure>
 
@@ -132,24 +132,23 @@
             <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-64.pdf" title="article sur le jeu La Bataille des Brevets paru dans Jeux et Stratégie n°43 de février/mars 1987">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
 
             <h5 class="mt-5">Bivouac</h5>
-            
-            
-            <p class="text-justify">Bivouac est le premier jeu que j'ai testé alors que je ne le possédais pas à l'époque. Il a pour theme la course en montagne et a fait l'objet d'un <a href="pdf/js-46-page-81.pdf" title="article sur le jeu Bivouac paru dans Jeux et Stratégie n°56 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987. Je ne sais pas si c'est le fait de le tester avec un émulateur, mais je n'ai absolument pas compris comment il fonctionne... (lol ?) C'est un peu dommage car c'est un sujet qui change completement de l'ordinaire et qui change des jeux que l'on a l'habitude de rencontrer.</p>
+                 
+            <p class="text-justify">Bivouac est le premier jeu que j'ai testé alors que je ne le possédais pas à l'époque. Il a pour theme la course en montagne et a fait l'objet d'un <a href="pdf/js-46-page-81.pdf" title="article sur le jeu Bivouac paru dans Jeux et Stratégie n°56 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987. Je ne sais pas si c'est le fait de le tester avec un émulateur, mais je n'ai absolument pas compris comment il fonctionne... (lol ?) C'est un peu dommage car c'est un sujet qui change complètement de l'ordinaire et des jeux que l'on a l'habitude de rencontrer.</p>
             
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/bivouac/bivouac-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/bivouac/bivouac-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 Bivouac réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Bivouac sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                	<figure class="figure col-3 m-3">
-                    <img src="images/thumbs/bivouac/bivouac-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/bivouac/bivouac-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 Bivouac réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Bivouac sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
                 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/bivouac/bivouac-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/bivouac/bivouac-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 Bivouac réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Bivouac sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -177,7 +176,7 @@
 
                 <figure class="figure col-3 m-3">
                     <a href="images/choplifter/choplifter-01.jpg" data-fancybox>
-                    <img src="images/thumbs/choplifter/choplifter-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Choplifter pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/choplifter/choplifter-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu pour thomson TO8 Bivouac réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Choplifter sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
@@ -197,19 +196,19 @@
 
                 <figure class="figure col-3 m-3">
                     <a href="images/monte-crypto/monte-crypto-01.png" data-fancybox>
-                    <img src="images/thumbs/monte-crypto/monte-crypto-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/monte-crypto/monte-crypto-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 Bivouac réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Monte-Crypto sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
                 
                 <figure class="figure col-3 m-3">
                     <a href="images/monte-crypto/monte-crypto-02.png" data-fancybox>
-                    <img src="images/thumbs/monte-crypto/monte-crypto-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/monte-crypto/monte-crypto-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 Bivouac réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Monte-Crypto sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
                                 
                 <figure class="figure col-3 m-3">
                     <a href="images/monte-crypto/monte-crypto-04.png" data-fancybox>
-                    <img src="images/thumbs/monte-crypto/monte-crypto-04.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/monte-crypto/monte-crypto-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 Bivouac réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Monte-Crypto sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -221,19 +220,19 @@
 
                 <figure class="figure col-3 m-3">
                     <a href="images/crazy-cars/crazy-cars-01.png" data-fancybox>
-                    <img src="images/thumbs/crazy-cars/crazy-cars-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/crazy-cars/crazy-cars-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 Bivouac réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Crazy Cars sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/crazy-cars/crazy-cars-02.png" data-fancybox>
-                    <img src="images/thumbs/crazy-cars/crazy-cars-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/crazy-cars/crazy-cars-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 Bivouac réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Crazy Cars sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/crazy-cars/crazy-cars-03.png" data-fancybox>
-                    <img src="images/thumbs/crazy-cars/crazy-cars-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/crazy-cars/crazy-cars-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 Bivouac réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Crazy Cars sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -247,19 +246,19 @@
 
                 <figure class="figure col-3 m-3">
                     <a href="images/dakar4x4/dakar4x4.png" data-fancybox>
-                    <img src="images/thumbs/dakar4x4/dakar4x4-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/dakar4x4/dakar4x4-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 Bivouac réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Dakar 4x4 sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/dakar4x4/dakar4x4-02.png" data-fancybox>
-                    <img src="images/thumbs/dakar4x4/dakar4x4-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/dakar4x4/dakar4x4-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 Bivouac réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Dakar 4x4 sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/dakar4x4/dakar4x4-03.png" data-fancybox>
-                    <img src="images/thumbs/dakar4x4/dakar4x4-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/dakar4x4/dakar4x4-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 Bivouac réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Dakar 4x4 sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -320,7 +319,7 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/entropie/entropie-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MAME">
+                    <img src="images/thumbs/entropie/entropie-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8">
                     <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture extraite de la revue TILT)</figcaption>
                 </figure>
 
@@ -347,19 +346,19 @@
 
                 <figure class="figure col-3 m-3">
                     <a href="images/green-beret/green-beret-01.png" data-fancybox>
-                    <img src="images/thumbs/green-beret/green-beret-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/green-beret/green-beret-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Green Beret pour ordinateur Thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Green Beret sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/green-beret/green-beret-02.png" data-fancybox>
-                    <img src="images/thumbs/green-beret/green-beret-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/green-beret/green-beret-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Green Beret pour ordinateur Thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Green Beret sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
                     <a href="images/green-beret/green-beret-03.png" data-fancybox>
-                    <img src="images/thumbs/green-beret/green-beret-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    <img src="images/thumbs/green-beret/green-beret-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Green Beret pour ordinateur Thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Green Beret sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -393,7 +392,7 @@
 
             <h5 class="mt-5">Malediction de Thaar (La)</h5>
 
-            <p class="text-justify">Une aventure dans les entrailles du globe. Vous devrez affronter des monstres préhistoriques, de belles créatures inquiétantes, des esprits démoniaques, mais aussi un mystérieux sorcier nommé Thaar. Ce jeu, édité par Coktel Vision, a fait l'objet d'un <a href="to8/pdf/js-38-page-70.pdf" title="Le jeu La malédiction de Thaar dans le magazine Jeux &amp; Stratégie n°38">article</a> dans la revue Jeux et Stratégie n°38 d'avril/mai 1986.</p>
+            <p class="text-justify">Une aventure dans les entrailles du globe. Vous devrez affronter des monstres préhistoriques, de belles créatures inquiétantes, des esprits démoniaques, mais aussi un mystérieux sorcier nommé Thaar. Ce jeu, édité par Coktel Vision, a fait l'objet d'un <a href="pdf/js-38-page-70.pdf" title="Le jeu La malédiction de Thaar dans le magazine Jeux &amp; Stratégie n°38">article</a> dans la revue Jeux et Stratégie n°38 d'avril/mai 1986.</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -406,15 +405,15 @@
                 
             <h5 class="mt-5">Marche à l'ombre</h5>
 
-            <a href="pdf/js-46-page-85.pdf">Marche à l'ombre</a> (Jeux et Stratégie n°46 aout/septembre 1987)
+            <a href="pdf/js-46-page-85.pdf" title="Lien vers un article dans la presse à propos du jeu pour TO8 Marche à L'ombre">Marche à l'ombre</a> (Jeux et Stratégie n°46 aout/septembre 1987)
 
             <h5 class="mt-5">Missions en rafale</h5>
 
-            <a href="pdf/js-46-page-87.pdf">Missions en rafale</a> (Jeux et Stratégie n°46 aout/septembre 1987)
+            <a href="pdf/js-46-page-87.pdf" title="Lien vers un article dans la presse à propos du jeu pour TO8 Missions en rafale">Missions en rafale</a> (Jeux et Stratégie n°46 aout/septembre 1987)
 
             <h5 class="mt-5">Monopoly</h5>
 
-            <a href="pdf/js-43-page-72.pdf">Monopoly</a> (Jeux et Stratégie n°43 février mars 1987)
+            <a href="pdf/js-43-page-72.pdf" title="Lien vers un article dans la presse à propos du jeu pour TO8 Monopoly">Monopoly</a> (Jeux et Stratégie n°43 février mars 1987)
 
             <h5 class="mt-5">Nuit des templiers (La)</h5>
 
@@ -466,33 +465,77 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/runway2/runway2-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/runway2/runway2-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/runway2/runway2-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/runway2/runway2-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/runway2/runway2-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/runway2/runway2-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
                 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/runway2/runway2-04.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/runway2/runway2-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/runway2/runway2-05.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/runway2/runway2-05.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/runway2/runway2-06.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/runway2/runway2-06.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">L'éditeur de circuit de Runway II.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+            </div>
+            
+            <h5 class="mt-5">San Pablo</h5>
+            
+            <p class="text-justify">San Pablo est le premier de gestion/stratégie auquel j'ai joué. Il vous place dans la peau du chef d'un village mexicain qui répond au nom de San Pablo. Vous devez y gérer les récoltes pour nourrir les habitants en évitant les ravages des nuages de sauterelles, mais aussi penser à engager des mercenaires pour protéger les lieux des bandits qui rodent dans la région. Allez vous embaucher un sorcier pour faire pleuvoir ?</p>
+            
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <a href="images/san-pablo/san-pablo-01.png" data-fancybox>
+                    <img src="images/thumbs/san-pablo/san-pablo-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <a href="images/san-pablo/san-pablo-02.png" data-fancybox>
+                    <img src="images/thumbs/san-pablo/san-pablo-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <a href="images/san-pablo/san-pablo-03.png" data-fancybox>
+                    <img src="images/thumbs/san-pablo/san-pablo-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <a href="images/san-pablo/san-pablo-04.png" data-fancybox>
+                    <img src="images/thumbs/san-pablo/san-pablo-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <a href="images/san-pablo/san-pablo-05.png" data-fancybox>
+                    <img src="images/thumbs/san-pablo/san-pablo-05.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-3 m-3">
+                    <a href="images/san-pablo/san-pablo-06.png" data-fancybox>
+                    <img src="images/thumbs/san-pablo/san-pablo-06.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
             </div>
@@ -555,19 +598,6 @@
 
             <a href="pdf/js-42-page-63.pdf" title="Le jeu Sapiens dans le magazine Jeux &amp; Stratégie n°42">Sapiens</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987)
 
-            <h5 class="mt-5">Sortiléges</h5>
-
-            <div class="row d-flex justify-content-center">
-
-                <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/tilt-34-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Une publicité pour le jeu Sortiléges parue dans la revue TILT de septembre 1986">
-                    <figcaption class="figure-caption text-center">Une publicité dans TILT de septembre 1986.</figcaption>
-                </figure>
-
-            </div>
-
-            <a href="to8/pdf/js-39-page-79.pdf" title="Le jeu Sortileges dans le magazine Jeux &amp; Stratégie n°39">Jeux et Stratégie n°39 - Juin/Juillet 1986 : "Sortileges" (pdf)</a>
-
             <h5 class="mt-5">Silent Service</h5>
 
             <p class="text-justify">J'ai passé des centaines d'heures, enfant, à naviguer à travers les mers du globe avec cet ancêtre de Silent Hunter. Je me souviens de mon cousin, de 3 ans mon ainé, qui m'a souvent répété que je n'arriverai jamais à couler un bateau. 30 ans plus tard, je peux vous l'avouer : En effet, je n'ai jamais coulé un seul bateau. Dans sa version pour Thomson, Le jeu Silent Service, distribué par FIL, est très différent de la version pour Atari ST, surtout au niveau des graphismes et du son qui auraient, selon la presse de l'époque, rien à voir et seraient de qualité bien inférieure.</p>
@@ -575,27 +605,27 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/silent-service/silent-service-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/silent-service/silent-service-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/silent-service/silent-service-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/silent-service/silent-service-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/silent-service/silent-service-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/silent-service/silent-service-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/silent-service/silent-service-04.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/silent-service/silent-service-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/silent-service/silent-service-05.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/silent-service/silent-service-05.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -613,23 +643,36 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/slap-fight/slap-fight-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/slap-fight/slap-fight-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Slap Fight pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Slap Fight sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/slap-fight/slap-fight-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/slap-fight/slap-fight-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Slap Fight pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Slap Fight sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/slap-fight/slap-fight-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/slap-fight/slap-fight-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Slap Fight pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Slap Fight sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
             </div>
+            
+           <h5 class="mt-5">Sortilèges</h5>
 
-            <h5 class="mt-5">Speedway</h5>
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-3 m-3">
+                    <img src="images/thumbs/tilt-34-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Une publicité pour le jeu Sortilèges parue dans la revue TILT de septembre 1986">
+                    <figcaption class="figure-caption text-center">Une publicité dans TILT de septembre 1986.</figcaption>
+                </figure>
+
+            </div>
+
+            <a href="pdf/js-39-page-79.pdf" title="Le jeu Sortileges dans le magazine Jeux &amp; Stratégie n°39">Jeux et Stratégie n°39 - Juin/Juillet 1986 : "Sortileges" (pdf)</a>
+
+            <h5 class="mt-5">Speed Way</h5>
 
             <p class="text-justify">Speedway est vu par la presse de l'époque comme une simulation de course automobile de piètre qualité. Les graphismes sont grossiers, l'animation trop lente et peu précise, les commandes mal gérées et le son ridicule. Un logiciel insipide. Les auteurs de l'époque se demandent même comment pouvait-on encore vendre un tel produit en 1987 ? Le jeu était édité par Free Game Blot.</p>
 
@@ -659,17 +702,17 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/stone-zone/stone-zone-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/stone-zone/stone-zone-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Stone Zone pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Stone Zone sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                	<figure class="figure col-3 m-3">
-                    <img src="images/thumbs/stone-zone/stone-zone-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/stone-zone/stone-zone-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Stone Zone pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Stone Zone sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
                 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/stone-zone/stone-zone-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/stone-zone/stone-zone-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Stone Zone pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Stone Zone sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -685,37 +728,37 @@
 
             <h5 class="mt-5">Las Vegas</h5>
 
-            <p class="text-justify">Une révolution dans le domaine de l'aventure. Plus besoin de converser avec la machine, de rechercher les mots-clefs dans ce logiciel entièrement géré par la manette ou la souris. Vous êtes l'heureux héritier d'une fortune colossale mais votre vieille tante a précisé que pour bénéficier du pactole, vous devier réitérer l'exploit qu'elle accomplit dans les années trente : gagner en une nuit un million de dollars. Une course poursuite à travers la ville, les tripots, les danger, pour satisfaire les dernières volontés d'une vieille originale. Je me souviens avoir passé des heures à parcourir les couloirs d'un immeuble pour sonner aux portes des appartements tel un colporteur. Je me souviens aussi des heures passées devant la machine à sous ou à demander un strip tease à ma barmaid...</p>
+            <p class="text-justify">Une révolution dans le domaine de l'aventure. Plus besoin de converser avec la machine, de rechercher les mots-clefs dans ce logiciel entièrement géré par la manette ou la souris. Vous êtes l'heureux héritier d'une fortune colossale mais votre vieille tante a précisé que pour bénéficier du pactole, vous devier réitérer l'exploit qu'elle accomplit dans les années trente : gagner en une nuit un million de dollars. Une course poursuite à travers la ville, les tripots, les dangers, pour satisfaire les dernières volontés d'une vieille originale. Je me souviens avoir passé des heures à parcourir les couloirs d'un immeuble pour sonner aux portes des appartements tel un colporteur. Je me souviens aussi des heures passées devant la machine à sous ou à demander un strip tease à la barmaid...</p>
 
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/lasvegas/lasvegas-01.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/lasvegas/lasvegas-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
                 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/lasvegas/lasvegas-02.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/lasvegas/lasvegas-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
                 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/lasvegas/lasvegas-03.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/lasvegas/lasvegas-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
                 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/lasvegas/lasvegas-04.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/lasvegas/lasvegas-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
                 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/lasvegas/lasvegas-05.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/lasvegas/lasvegas-05.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
                 
                 <figure class="figure col-3 m-3">
-                    <img src="images/thumbs/lasvegas/lasvegas-06.png" class="figure-img img-fluid rounded img-thumbnail" alt=" ">
+                    <img src="images/thumbs/lasvegas/lasvegas-06.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME">
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -760,7 +803,7 @@
 
         <div class="col-12">
 
-            <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="../mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="../cv/index.php">Mon CV</a>
+            <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="../mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="../cv/index.php" title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
             </p>
 
         </div>

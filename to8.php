@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Le micro-ordinateur Thomson TO8</title>
+    <title>Le micro-ordinateur Thomson TO8 | Retrogaming et (re)découverte du Thomson TO8</title>
     <meta name="description" content="A la découverte des micro-ordinateurs Thomson TO8">
 
     <!-- Bootstrap CSS -->
@@ -65,64 +65,69 @@
                 <p class="text-justify">Si vous avez envie de (re)découvrir le TO8, je vous conseille l'utilisation de <a href="http://dcmoto.free.fr/" title="Site officiel de l'émulateur de tous les ordinateurs 8 bits Thomson">DCMOTO</a>. C'est un logiciel qui émule sous Windows les machines telles que le Thomson MO5, le MO5E, le MO5NR, le MO6, le T9000, le TO7, le TO7/70, le TO8, le TO8D, le TO9, le TO9+ ou encore l'Olivetti Prodest PC128. Le site propose aussi un accès à plus de 850 jeux et programmes divers ainsi que plus de 160 livres et documents. Vous pouvez aussi utiliser l'emulateur MAME... à condition de vous procurer la ROM du TO8.</p>
 
                 <ul>
-                    <li>Si vous êtes passionné par le <strong>retrogaming</strong>, je vous invite à visiter la page consacrée aux <a href="to8/liste-jeux.php">jeux du TO8</a>.</li>
-                    <li>Si votre truc c'est plutôt le <strong>matériel</strong>, c'est sans doute la page consacré au <a href="to8/moniteur-to8.php">moniteur</a> que vous allez préférer.</li>
+                    <li>Si vous êtes passionné par le <strong>retrogaming</strong>, je vous invite à visiter la page consacrée aux <a href="to8/liste-jeux.php" title="Liste de jeux qui étaient disponibles pour le TO8">jeux du TO8</a>.</li>
+                    <li>Si votre truc c'est plutôt le <strong>matériel</strong>, c'est sans doute la page consacré au <a href="to8/moniteur-to8.php" title="documentation sur le moniteur du Thomson TO8">moniteur</a> que vous allez préférer.</li>
                 </ul>
                 
-                <p class="text-justify">Je n'ai jamais été à l'aise avec le côté technique de l'informatique, je peux changer une carte graphique ou une barrette de ram mais bon, ça reste quelque chose qui me met mal à l'aiser. Aussi, pour vous présenter la machine qu'était le TO8 proposé par Thomson, je vais vous laisser en compagnie d'un article de presse paru dans la revue TEOphile n°6 de septembre 1986. Je profite aussi de l'occasion pour vous dire que si la presse informatique ancienne vous intéresse, il existe un site dédié aux <a href="http://www.abandonware-magazines.org">anciens magazines</a>.</p> 
-
-                <h5 class="mt-5">La nouvelle gamme de Thomson (Fin 1986)</h5>
-
-                <p class="text-justify">Le TO8 est une machine ouverte et évolutive proposée à 2990 F (NDLR : soit 594,62 euros) dans sa version de base mais qui peut devenir l'équivalent d'un TO9+ avec une extension de mémoire et une unité de disquette. Le TO8 est blanc également, son clavier de 81 touches  + pavé numérique + 5 touches de fonctions, identique à celui du TO9 est, comme le TO7-70, intégré dans l'unité centrale. Au dessus du clavier, on trouve la trappe verticale à mémo 7. Doté de 256K de RAM il peut recevoir à l'arrière sur un connecteur spécial une extension de 256K portant la mémoire à 512 K comme le TO9+. Les 80 K de ROM contiennent le Basic 512 (identique au Basic 128 mais gérant les banques de RAM jusqu'à 512), le Basic Basic 1.0 et le moniteur.</p>
-
+                <p class="text-justify">Je n'ai jamais été à l'aise avec le côté technique de l'informatique, je peux changer une carte graphique ou une barrette de ram mais bon, ça reste quelque chose qui me met mal à l'aise. Aussi, pour vous présenter la machine qu'était le TO8 proposé par Thomson, je vais vous laisser en compagnie d'un article de presse paru dans la revue TEOphile n°6 de septembre 1986. Je profite aussi de l'occasion pour vous dire que si la presse informatique ancienne vous intéresse, il existe un site dédié aux <a href="http://www.abandonware-magazines.org">anciens magazines</a>.</p>
+                
                 <div class="row d-flex justify-content-center">
 
                     <figure class="figure col-6 m-3">
                         <a href="to8/images/thomson_t08_04.jpg" data-fancybox data-caption="Le TO8 pendant sa mise en route">
                         <img src="to8/images/thumbs/thomson_t08_04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la page de démarrage du TO8"></a>
-                        <figcaption class="figure-caption text-center">On allume la machine !<br />(capture réalisée avec MAME)</figcaption>
+                        <figcaption class="figure-caption text-center">On allume la machine !<br />(capture réalisée avec MESS)</figcaption>
                     </figure>
 
-                </div>
+                </div> 
+
+                <h5 class="mt-5">La nouvelle gamme de Thomson (Fin 1986)</h5>
+
+                <p class="text-justify">Le TO8 est une machine ouverte et évolutive proposée à 2990 F (NDLR : soit 594,62 euros) dans sa version de base mais qui peut devenir l'équivalent d'un TO9+ avec une extension de mémoire et une unité de disquette. Le TO8 est blanc également, son clavier de 81 touches  + pavé numérique + 5 touches de fonctions, identique à celui du TO9 est, comme le TO7-70, intégré dans l'unité centrale. Au dessus du clavier, on trouve la trappe verticale à mémo 7. Doté de 256K de RAM il peut recevoir à l'arrière sur un connecteur spécial une extension de 256K portant la mémoire à 512 K comme le TO9+. Les 80 K de ROM contiennent le Basic 512 (identique au Basic 128 mais gérant les banques de RAM jusqu'à 512), le Basic Basic 1.0 et le moniteur.</p>
+        
+        		<div class="row d-flex justify-content-center">
+        
+        		    <figure class="figure col-xs-4 m-3">
+                        <a href="to8/images/thomson_t08_01.jpg" data-fancybox data-caption="L'unité centrale du TO8 de Thomson">
+                        <img src="to8/images/thumbs/thomson_t08_01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de face de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
+                        <figcaption class="figure-caption text-center">Vue de face de l'unité centrale.</figcaption>
+                    </figure>
+
+                    <figure class="figure col-xs-4 m-3">
+                        <a href="to8/images/thomson_t08_02.jpg" data-fancybox data-caption="L'unité centrale du TO8 de Thomson">
+                        <img src="to8/images/thumbs/thomson_t08_02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de côté de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
+                        <figcaption class="figure-caption text-center">Vue de côté de l'unité centrale.</figcaption>
+                    </figure>
+
+                    <figure class="figure col-xs-4 m-3">
+                        <a href="to8/images/thomson_t08_03.jpg" data-fancybox data-caption="L'unité centrale du TO8 de Thomson">
+                        <img src="to8/images/thumbs/thomson_t08_03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de dos de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
+                        <figcaption class="figure-caption text-center">Vue de dos de l'unité centrale.</figcaption>
+                    </figure>
+        
+        		
+        		</div>	
         
                 <p class="text-justify mt-3">Le TO8 possède un contrôleur de disquette 3,5 pouces 640K fonctionnant avec le DOS inclus dans le Basic  512. Un connecteur pour brancher l'unité de disquettes (Sony) apparaît à l'arrière de l'unité centrale. Ce connecteur peut recevoir également un QDD. Plusieurs unités de disquettes sont connectables par chaînage. On trouve aussi le synthétiseur de sons identique à celui du MO6, une interface pour imprimante paralléle, un connecteur pour LEP (identique à celui du TO7, mais avec un nouveau design), deux connecteurs pour manettes de jeux/souris, une prise pour crayon optique (option), une prise son Cinch et un seul connecteur d'extension pour recevoir un modem, etc. Le TO8 adopte, comme toute la gamme, les 8 modes d'affichage du TO9 dont le mode 80 colonnes et la palette de 4096 couleurs. La version de base est proposée à 2990 F ttc (NDLR : soit 594,62 euros), l'unité de disquettes à 3,5 pouces 640 K à 1990 F ttc (NDLR : soit 395,75 euros). Une configuration comprenant un TO8, <a href="to8/moniteur-to8.php" title="page consacrée au moniteur du micro-ordinateur TO8">un moniteur couleurs haute résolution</a> et une unité de disquette 640 K sera proposée à 5990 F ttc (NDLR : 1 191,23 euros) au lieu de 7470 F (NDLR : 1 485,56 Euros).</p>
 
                 <div class="row d-flex justify-content-center">
 
                     <figure class="figure col-xs-4 m-3">
-                        <a href="to8/images/thomson_t08_01.jpg" data-fancybox data-caption="L'unité centrale du TO8">
-                        <img src="to8/images/thumbs/thomson_t08_01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de face de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
-                        <figcaption class="figure-caption text-center">Vue de face de l'unité centrale.</figcaption>
-                    </figure>
-
-                    <figure class="figure col-xs-4 m-3">
-                        <a href="to8/images/thomson_t08_02.jpg" data-fancybox data-caption="L'unité centrale du TO8">
-                        <img src="to8/images/thumbs/thomson_t08_02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de côté de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
-                        <figcaption class="figure-caption text-center">Vue de côté de l'unité centrale.</figcaption>
-                    </figure>
-
-                    <figure class="figure col-xs-4 m-3">
-                        <a href="to8/images/thomson_t08_03.jpg" data-fancybox data-caption="L'unité centrale du TO8">
-                        <img src="to8/images/thumbs/thomson_t08_03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de dos de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
-                        <figcaption class="figure-caption text-center">Vue de dos de l'unité centrale.</figcaption>
-                    </figure>
-
-                    <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_06.jpg" data-fancybox data-caption="L'exploitation de fichiers avec le TO8">
-                        <img src="to8/images/thumbs/thomson_t08_06.jpg" class="figure-img img-fluid rounded img-thumbnail"  alt="L'exploitation de fichiers avec le TO8 "/></a>
-                        <figcaption class="figure-caption text-center">Exploitation de fichiers<br />(capture réalisée avec MAME)</figcaption>
+                        <img src="to8/images/thumbs/thomson_t08_06.jpg" class="figure-img img-fluid rounded img-thumbnail"  alt="L'exploitation de fichiers avec le micro ordinateur TO8 "/></a>
+                        <figcaption class="figure-caption text-center">Exploitation de fichiers<br />(capture réalisée avec MESS)</figcaption>
                     </figure>
 
                     <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_07.jpg" data-fancybox data-caption="Le contenu d'une disquette en Basic">
                         <img src="to8/images/thumbs/thomson_t08_07.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="La visualisation d'une disquette en Basic"/></a>
-                        <figcaption class="figure-caption text-center">Le contenu d'une disquette<br />(capture réalisée avec MAME)</figcaption>
+                        <figcaption class="figure-caption text-center">Le contenu d'une disquette<br />(capture réalisée avec MESS)</figcaption>
                     </figure>   
 
                     <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_05.jpg" data-fancybox data-caption="La palette de couleurs du TO8">
                         <img src="to8/images/thumbs/thomson_t08_05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="La palette de couleurs du Thomson TO8"/></a>
-                        <figcaption class="figure-caption text-center">La palette de couleurs<br />(capture réalisée avec MAME)</figcaption>
+                        <figcaption class="figure-caption text-center">La palette de couleurs<br />(capture réalisée avec MESS)</figcaption>
                     </figure>
 
                 </div>
@@ -219,7 +224,7 @@
 
             <div class="col-12">
 
-                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="cv/index.php">Mon CV</a>
+                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="cv/index.php" title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
                 </p>
 
             </div>

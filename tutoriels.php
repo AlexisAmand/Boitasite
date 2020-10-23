@@ -201,7 +201,7 @@
             <h5 class="mt-5">OpenOffice</h5>
 
             <ul>
-                <li><a href="pdf/logiciels/tutorial_openoffice_writer.pdf" title=" " target="_blank">
+                <li><a href="pdf/logiciels/tutorial_openoffice_writer.pdf" title="Lien vers un ancien tutoriel d'OpenOffice Writer" target="_blank">
                 Tutoriel OpenOffice Writer</a></li>
             </ul>
             
@@ -371,7 +371,7 @@
 
             <div class="col-12">
 
-                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="cv/index.php">Mon CV</a>
+                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="cv/index.php" title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
                 </p>
 
             </div>

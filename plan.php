@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Cours d'informatique à domicile | Alexis AMAND - développement web et SEO à Valenciennes</title>
-    <meta name="description" content="Cours informatique à domicile et dépannage d'ordinateur sur Valenciennes et son arrondissement">
+    <title>  | Alexis AMAND - Développeur PHP/Web et Webmaster à Valenciennes</title>
+    <meta name="description" content=" ">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -14,6 +14,7 @@
     <!-- CSS perso -->
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
+    <meta name="google-site-verification" content="CT6-MJGUD82ligpXoIBjdglp4CyBIFXPum0LuBbcsD4" />
 
     <?php include('include/matomo.inc'); ?>
 
@@ -49,80 +50,66 @@
 
     <section class="container">
 
-        <article class="row d-flex justify-content-center ligne-dotted-top">
+        <article class="row ligne-dotted-top">
 
-            <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
-                <h1 class="text-center">#dépannage : besoin d'<span>aide</span> ?</h1>
-            </div>
+        <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
+            <h1 class="text-center">La page demandée <span>n'existe</span> plus !</h1>
+        </div>
 
-            <div class="col-12">
-            
-                <h5>Cours d'informatique</h5>
+		<div class="col-12 col-md-6 align-self-center">
+        
+        <h5>Services</h5>
+        
+        	<ul>
+        		<li><a href="webmaster.php">Audit de site web</a></li>
+        		<li><a href="webmaster.php">Création de site web</a></li>
+        		<li><a href="seo.php">Référencement Naturel (SEO)</a></li>
+        		<li><a href="cours.php">Cours d'informatique</a></li>
+        	</ul>
+        
+        <h5>Projets</h5>
+        
+        	<ul>
+        		<li><a href=" ">Le Gasp</a></li>
+        		<li><a href=" ">Publiged</a></li>
+        	</ul>	
+           	
+        <h5>Tutoriels</h5>
+        
+        	<ul>
+        		<li><a href="tutoriel.php">Liste de tutoriels divers</a></li>
+        		<li><a href="codes-couleurs.php">les couleurs en HTML</a></li>
+        	</ul>
+        		
+        <h5>TO8 et retrogaming</h5>
+        
+        	<ul>
+        		<li><a href="to8.php">Présentation du TO8</a></li>
+        		<li><a href="to8/liste-jeux..php">Liste de jeux pour le TO8</a></li>
+        		<li><a href="to8/addemtum-to8.php">Addendum du TO8</a></li>
+        		<li><a href="to8/club-micro-thomson.php">Le Club Micro Thomson</a></li>
+        		<li><a href="to8/moniteur-to8.php">Le moniteur du TO8</a></li>
+        	</ul>
+        	
+        <h5>Divers</h5>
+        
+        	<ul>
+        		<li><a href="contact.php">Page de contact</a></li>
+        		<li><a href="mentions-legales.php">Mentions légales</a></li>
+        		<li><a href="cv/index.php">Mon CV en ligne</a></li>
+        	</ul>
+        	
+        </div>
 
-                    <p class="text-align">Professionnel de l'informatique et fort d'une expérience professionnel de 5 ans dans ce domaine, je propose mes services pour des cours d'informatique pour débutant ou pour utilisateurs avancés souhaitant approfondir un thème en particulier : bureautique avancée, développement, base de données, technologie du web, etc. (tarif sur demande)</p>
-
-                <h5 class="mt-5">Dépannage de votre ordinateur</h5>
-
-                    <p class="text-align">Virus, pannes, lenteur, messages d'erreur, déconnexions... un jour ou l'autre, tout ordinateur a un souci. Parfois sans conséquence grave mais souvent c'est insupportable au quotidien voire même la catastrophe! Mais pas de panique, je suis là pour vous aider. Savez-vous que la majorité des dépannages informatiques ne nécessite pas d'intervention coûteuse? Ni-même qu'un dépanneur y passe des heures entières ?</p>
-
-                    <p class="text-center my-5">
-                        <a href="contacts.php" class="button btn btn-info">Me contacter pour plus d'informations</a>
-                    </p>
-
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Exemples de prestations propos&eacute;es</th>
-                                <th scope="col">Tarifs (TTC)</th>
-                            <tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td scope="row">Cours d'informatique à votre domicile</td>
-                                <td>23 €/h</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">R&eacute;installation de votre système d'exploitation Linux ou Windows (OS non fourni).</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Remise &agrave; z&eacute;ro de votre ordinateur pour lui redonner la configuration d'usine</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Installation et configuration de votre "box internet" (LiveBox, DartyBox, BBox, ...etc.)</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">R&eacute;cup&eacute;ration de vos donn&eacute;es</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Installation de votre nouveau PC</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Installation et configuration de votre imprimante/scanner</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Installation et param&eacute;trage de vos périphériques (webcams, disques externes,etc.)</td>
-                                <td> - </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">S&eacute;curisation de votre connexion + logiciels pour le net (antivirus, messagerie, navigateur,etc.)</td>
-                                <td> - </td>
-                            </tr>
-                        <tbody>
-                    </table>
-
-            </div>
-
+        <div class="col-12 col-md-6 align-self-center">
+            <img src="img/magnifying-4340698_1920.jpg" class="img-thumbnail img-fluid mt-5 mb-5" alt=" ">
+        </div>
+                
         </article>
 
     </section>
 
-      <footer class="fluid-container py-4">
+    <footer class="fluid-container py-4">
 
         <div class="container text-light">
 
@@ -148,7 +135,7 @@
 
                 <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="cv/index.php" title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
                 </p>
-                
+
             </div>
 
         </div>

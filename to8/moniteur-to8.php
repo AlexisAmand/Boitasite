@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Manuel du mmoniteur Thomson pour micro-ordinateurs | A la découverte du Thomson TO8</title>
+    <title>Manuel du moniteur Thomson pour micro-ordinateurs | Retrogaming et (re)découverte du Thomson TO8</title>
     <meta name="description" content="Le manuel du moniteur des micro-ordinateurs Thomson TO8 dans les années 80">
 
     <!-- Bootstrap CSS -->
@@ -155,7 +155,7 @@
 
     <div class="col-12">
 
-        <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="../mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="../cv/index.php">Mon CV</a>
+        <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="../mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="../cv/index.php" title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
         </p>
 
     </div>
