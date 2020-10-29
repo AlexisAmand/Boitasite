@@ -33,7 +33,7 @@
 		<div id="contactDetails" class="quickFade delayFour">
 			<ul>
 				<li>e: <a href="mailto:alexis.amand@gmail.com" target="_blank">alexis.amand@gmail.com</a></li>
-				<li>w: <a href="http://www.boitasite.com">www.boitasite.com</a></li>
+				<li>w: <a href="https://www.boitasite.com">www.boitasite.com</a></li>
 				<li>t: 06.62.63.79.21</li>
 				<li>
 				
@@ -123,9 +123,10 @@
 				<p>Réalisation d'un site sur la Première Guerre Mondiale<br />
 				<a href="http://histoiresdepoilus.genealexis.fr">http://histoiresdepoilus.genealexis.fr</a></p>
 				
-				<p class="subDetails">2014 - En cours</p>
+				<p class="subDetails">2014 - 2020</p>
 				<p>Réalisation d'un site sur la Route 66<br />
-				<a href="http://usroute66.boitasite.com">http://usroute66.boitasite.com</a></p>
+				<a href="#">http://usroute66.boitasite.com</a><br />
+				(le site sera bientôt de retour)</p>
 				</article>
 				
 				<article>
