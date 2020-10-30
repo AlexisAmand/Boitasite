@@ -286,19 +286,19 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="https://via.placeholder.com/450" data-fancybox data-caption=" ">
+                    <a href="https://via.placeholder.com/450" data-fancybox data-caption="Capture d'écran du jeu Don Camillo sur TO8">
                     <img src=" https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Don Camillo pour ordinateur Thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Don Camillo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href=" https://via.placeholder.com/450" data-fancybox data-caption=" ">
+                    <a href=" https://via.placeholder.com/450" data-fancybox data-caption="Capture d'écran du jeu Don Camillo sur TO8">
                     <img src=" https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Don Camillo pour ordinateur Thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Don Camillo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href=" https://via.placeholder.com/450" data-fancybox data-caption=" ">
+                    <a href=" https://via.placeholder.com/450" data-fancybox data-caption="Capture d'écran du jeu Don Camillo sur TO8">
                     <img src="https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Don Camillo pour ordinateur Thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Don Camillo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>

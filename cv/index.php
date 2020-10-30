@@ -124,9 +124,15 @@
 				<a href="http://histoiresdepoilus.genealexis.fr">http://histoiresdepoilus.genealexis.fr</a></p>
 				
 				<p class="subDetails">2014 - 2020</p>
+				<p>Réalisation d'un site sur les jeux Half-Life et Portal<br />
+				<a href="https://zone-half-life.boitasite.com/index.php">https://zone-half-life.boitasite.com/index.php</a><br />
+				(En cours de migration vers Bootstrap 4)</p>
+				
+				<p class="subDetails">2014 - 2020</p>
 				<p>Réalisation d'un site sur la Route 66<br />
 				<a href="#">http://usroute66.boitasite.com</a><br />
 				(le site sera bientôt de retour)</p>
+
 				</article>
 				
 				<article>
