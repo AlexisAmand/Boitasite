@@ -73,7 +73,7 @@
                 <i class="fi-swluxl-linkedin" style="font-size:2em"></i></a>
             </p>
 
-            <img src="img/wifi.png" class="mx-auto d-block">
+            <img src="img/wifi.jpg" class="mx-auto d-block">
 
             </div>
 

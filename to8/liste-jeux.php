@@ -250,7 +250,7 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/dakar4x4/dakar4x4.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <a href="images/dakar4x4/dakar4x4-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/dakar4x4/dakar4x4-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 Bivouac réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Dakar 4x4 sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
@@ -318,19 +318,19 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/entropie-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <a href="images/entropie/entropie-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
                     <img src="images/thumbs/entropie/entropie-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/entropie-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <a href="images/entropie/entropie-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
                     <img src="images/thumbs/entropie/entropie-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/entropie-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <a href="images/entropie/entropie-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
                     <img src="images/thumbs/entropie/entropie-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>

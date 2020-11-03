@@ -61,42 +61,42 @@
         <h5>Services</h5>
         
         	<ul>
-        		<li><a href="webmaster.php">Audit de site web</a></li>
-        		<li><a href="webmaster.php">Création de site web</a></li>
-        		<li><a href="seo.php">Référencement Naturel (SEO)</a></li>
+        		<li><a href="webmaster.php" title="audit de site web à Valenciennes et dans les Hauts-de-France">Audit de site web</a></li>
+        		<li><a href="webmaster.php" title="création de site web à Valenciennes et dans les Hauts-de-France">Création de site web</a></li>
+        		<li><a href="seo.php" title="référencement de site web à Valenciennes et dans les Hauts-de-France">Référencement Naturel (SEO)</a></li>
         		<li><a href="cours.php">Cours d'informatique</a></li>
         	</ul>
         
         <h5>Projets</h5>
         
         	<ul>
-        		<li><a href=" ">Le Gasp</a></li>
-        		<li><a href=" ">Publiged</a></li>
+        		<li><a href="http://thegasp.genealexis.fr" title="projet de jeu en ligne gratuit avec des cartes">Le Gasp</a></li>
+        		<li><a href="https://fr.tipeee.com/genealexis" title="projet de CMS dédié à la publication de généalogie">Publiged</a></li>
         	</ul>	
            	
         <h5>Tutoriels</h5>
         
         	<ul>
-        		<li><a href="tutoriel.php">Liste de tutoriels divers</a></li>
-        		<li><a href="codes-couleurs.php">les couleurs en HTML</a></li>
+        		<li><a href="tutoriel.php" title="Liste de tutoriels d'informatique en téléchargement libre et gratuit">Liste de tutoriels divers</a></li>
+        		<li><a href="codes-couleurs.php" title="guide pour apprendre à utiliser les couleurs en HTML et en CSS">les couleurs en HTML</a></li>
         	</ul>
         		
         <h5>TO8 et retrogaming</h5>
         
         	<ul>
-        		<li><a href="to8.php">Présentation du TO8</a></li>
-        		<li><a href="to8/liste-jeux..php">Liste de jeux pour le TO8</a></li>
+        		<li><a href="to8.php" title="présentation du micro-ordinateur TO8 fabriqué par Thomson dans les années 80">Présentation du TO8</a></li>
+        		<li><a href="to8/liste-jeux..php" title="selection de jeux fonctionnant sur le TO8 de Thomson">Liste de jeux pour le TO8</a></li>
         		<li><a href="to8/addemtum-to8.php">Addendum du TO8</a></li>
-        		<li><a href="to8/club-micro-thomson.php">Le Club Micro Thomson</a></li>
-        		<li><a href="to8/moniteur-to8.php">Le moniteur du TO8</a></li>
+        		<li><a href="to8/club-micro-thomson.php" title="brochure présentant l'ordinateur Thomson TO8">Le Club Micro Thomson</a></li>
+        		<li><a href="to8/moniteur-to8.php" title="guide d'utilisation du moniteur Thomson pour le TO8">Le moniteur du TO8</a></li>
         	</ul>
         	
         <h5>Divers</h5>
         
         	<ul>
-        		<li><a href="contact.php">Page de contact</a></li>
-        		<li><a href="mentions-legales.php">Mentions légales</a></li>
-        		<li><a href="cv/index.php">Mon CV en ligne</a></li>
+        		<li><a href="contact.php" title="contacter le webmaster du site">Page de contact</a></li>
+        		<li><a href="mentions-legales.php" title="mentions légales du site">Mentions légales</a></li>
+        		<li><a href="cv/index.php" title="CV en ligne d'Alexis AMAND">Mon CV en ligne</a></li>
         	</ul>
         	
         </div>

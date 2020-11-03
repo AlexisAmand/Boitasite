@@ -166,18 +166,16 @@
                 <h6 class="mt-3">Articles sur les jeux</h6>
 
                 <ul>
-                    <li><a href="to8/pdf/js-38-page-70.pdf" title="Le jeu La malédiction de Thaar dans le magazine Jeux &amp; Stratégie n°38">
+                    <li><a href="to8/pdf/js-38-page-70.pdf" title="Le jeu La malédiction de Thaar dans le magazine Jeux & Stratégie n°38">
                     Jeux &amp; Stratégie n°38 - Avril/Mai 1986 : "La malédiction de thaar" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-38-page-72.pdf" title="Le jeu Cap sur Dakar dans le magazine Jeux &amp; Stratégie n°38">
-                    Jeux &amp; Stratégie n°38 - Avril/Mai 1986 : "Cap sur Dakar" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-39-page-79.pdf" title="Le jeu Sortileges dans le magazine Jeux &amp; Stratégie n°39">
+                    <li><a href="to8/pdf/js-39-page-79.pdf" title="Le jeu Sortileges dans le magazine Jeux & Stratégie n°39">
                     Jeux &amp; Stratégie n°39 - Juin/Juillet 1986 : "Sortileges" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-42-page-64.pdf" title="Le jeu Grand Prix dans le magazine Jeux &amp; Stratégie n°42">
+                    <li><a href="to8/pdf/js-42-page-64.pdf" title="Le jeu Grand Prix dans le magazine Jeux & Stratégie n°42">
                     Jeux &amp; Stratégie n°42 - Décembre 1986/Janvier 1987 : "Grand Prix 500 cc" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-43-page-74.pdf" title="Le jeu James Debug dans le magazine Jeux &amp; Stratégie n°43">
+                    <li><a href="to8/pdf/js-43-page-74.pdf" title="Le jeu James Debug dans le magazine Jeux & Stratégie n°43">
                     Jeux &amp; Stratégie n°43 - Février/Mars 1987 : "James Debug" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-45-page-65.pdf" title="Le jeu Prohibition dans le magazine Jeux &amp; Stratégie n°45">
-                    Jeux &amp; Stratégie n°45 - Juin/Juillet 1987 : "Prohibition" (pdf)</a></li>                 
+                    <li><a href="to8/pdf/js-45-page-65.pdf" title="Le jeu Prohibition dans le magazine Jeux & Stratégie n°45">
+                    Jeux &amp; Stratégie n°45 - Juin/Juillet 1987 : "Prohibition" (pdf)</a></li>
                 </ul>
 
                 <h6 class="mt-3">La revue Microtom</h6>
