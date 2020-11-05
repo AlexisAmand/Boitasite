@@ -144,38 +144,103 @@
                 <h6 class="mt-3">Le TO8 vu par la presse informatique</h6>
 
                 <ul>
-                    <li><a href="to8/pdf/js-41-page-44.pdf" title="extrait de la revue Jeux et Stratégie n°41 à propos de la nouvelle gamme Thomson">
-                    Jeux &amp; Stratégie n°41 - Octobre/Novembre 1986 : "La nouvelle gamme Thomson" (pdf)</a></li>
-                    <li><a href="to8/pdf/svm-032.pdf" title="extrait de la revue Jeux et Vie Micro n°32 à propos de la nouvelle gamme Thomson">
-                    Science &amp; Vie Micro n°32 - Octobre 1986 : "La nouvelle gamme Thomson" (pdf)</a></li>
-                    <li><a href="to8/pdf/svm-032.pdf" title="extrait de la revue Tilt n°35 à propos de la nouvelle gamme Thomson">
-                    TILT n°35 - Octobre 1986 : "Thomson 86: Un bon millésime" (pdf)</a></li>
-                    <li><a href="to8/pdf/Canard_PC_Hardware_HS_2016_06_07_fr_0079.pdf" title="La gamme TO de Thomson dans Canard PC Hardware HS de 2016">
-                    Canard PC Hardware HS - Eté 2016 : "La gamme TO de Thomson" (pdf)</a></li>
+                    <li><a href="to8/pdf/js-41-page-42.pdf" title="extrait de la revue Jeux et Stratégie n°41 à propos de la nouvelle gamme Thomson">La nouvelle gamme Thomson (pdf)</a>
+                    &nbsp(Jeux & Stratégie n°41 - Octobre/Novembre 1986)</li>
+                    <li><a href="to8/pdf/svm-032.pdf" title="extrait de la revue Jeux et Vie Micro n°32 à propos de la nouvelle gamme Thomson">La nouvelle gamme Thomson (pdf)</a>
+                    &nbsp(Science & Vie Micro n°32 - Octobre 1986)</a></li>
+                    <li><a href="to8/pdf/svm-032.pdf" title="extrait de la revue Tilt n°35 à propos de la nouvelle gamme Thomson">Thomson 86: Un bon millésime" (pdf)</a>
+                    &nbsp(TILT n°35 - Octobre 1986)</a></li>
+                    <li><a href="to8/pdf/Canard_PC_Hardware_HS_2016_06_07_fr_0079.pdf" title="La gamme TO de Thomson dans Canard PC Hardware HS de 2016">La gamme TO de Thomson (pdf)</a>
+                    &nbsp(Canard PC Hardware HS - Eté 2016)</a></li>
                 </ul>
 
                 <h6 class="mt-3">Publicités pour le TO8</h6>
-
+              
                 <ul>
-                    <li><a href="to8/pdf/svm-034.pdf" title="publicité pour le TO8 parue dans la revue Science & Vie Micro n°34">
-                    Scienve &amp; Vie Micro n°34 - Décembre 1986 : "Une place de 1ere dans le train de l'avenir" (pdf)</a></li>
-                    <li><a href="to8/pdf/svm-039.pdf" title="publicité pour le TO8 parue dans la revue Science & Vie Micro n°39">
-                    Scienve &amp; Vie Micro n°39 - Mai 1987 : "Promotion sur la gamme TO8 chez Videoshop" (pdf)</a></li>                                
+                    <li><a href="to8/pdf/js-42-page-67.pdf" title=" ">Une place de 1ere dans le train de l'avenir (pdf)</a>
+                    &nbsp;(Jeux & Stratégie n°42 - Décembre 1986/Janvier 1987)</li>
+                    <li><a href="to8/pdf/svm-034.pdf" title="publicité pour le TO8 parue dans la revue Science & Vie Micro n°34">Une place de 1ere dans le train de l'avenir (pdf)</a>
+                    &nbsp;(Scienve & Vie Micro n°34 - Décembre 1986)</li>
+                    <li><a href="to8/pdf/svm-039.pdf" title="publicité pour le TO8 parue dans la revue Science & Vie Micro n°39">Promotion sur la gamme TO8 chez Videoshop (pdf)</a>
+                    &nbsp;(Scienve & Vie Micro n°39 - Mai 1987)</li>                                
                 </ul>
+
+                <div id="listejeux"></div>
 
                 <h6 class="mt-3">Articles sur les jeux</h6>
 
                 <ul>
-                    <li><a href="to8/pdf/js-38-page-70.pdf" title="Le jeu La malédiction de Thaar dans le magazine Jeux & Stratégie n°38">
-                    Jeux &amp; Stratégie n°38 - Avril/Mai 1986 : "La malédiction de thaar" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-39-page-79.pdf" title="Le jeu Sortileges dans le magazine Jeux & Stratégie n°39">
-                    Jeux &amp; Stratégie n°39 - Juin/Juillet 1986 : "Sortileges" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-42-page-64.pdf" title="Le jeu Grand Prix dans le magazine Jeux & Stratégie n°42">
-                    Jeux &amp; Stratégie n°42 - Décembre 1986/Janvier 1987 : "Grand Prix 500 cc" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-43-page-74.pdf" title="Le jeu James Debug dans le magazine Jeux & Stratégie n°43">
-                    Jeux &amp; Stratégie n°43 - Février/Mars 1987 : "James Debug" (pdf)</a></li>
-                    <li><a href="to8/pdf/js-45-page-65.pdf" title="Le jeu Prohibition dans le magazine Jeux & Stratégie n°45">
-                    Jeux &amp; Stratégie n°45 - Juin/Juillet 1987 : "Prohibition" (pdf)</a></li>
+                    <li><a href="to8/pdf/js-46-page-86-87.pdf" title="Le jeu Arkanoïd dans un article de presse paru dans la presse en 1987">Arkanoïd</a>
+                    &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
+
+                    <li><a href="to8/pdf/js-42-page-60.pdf" title="Le jeu Bactron dans un article de presse paru dans la presse en 1986">Bactron</a>
+                    &nbsp;(Jeux & Stratégie n°42 - Décembre 1986)</li>
+                    
+                    <li><a href="to8/pdf/js-38-page-72.pdf" title="Le jeux Cap sur Dakar dans un article de presse paru dans la presse en 1986">Cap sur Dakar</a>
+                    &nbsp;(Jeux & Stratégie n°38 - Avril/Mai 1986)</li>
+
+                    <li><a href="to8/pdf/js-46-page-86-87.pdf" title="Le jeu Don Camillo dans un article de presse paru dans la presse en 1987">Don Camillo</a>
+                    &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
+
+                    <li><a href="to8/pdf/js-43-page-66.pdf" title="Le jeu Dossier Boerhaave dans un article de presse paru dans la presse en 1987">Dossier Boerhaave</a>
+                    &nbsp;(Jeux & Stratégie n°43 - Février/Mars 1987)</li>
+
+                    <li><a href="to8/pdf/tilt-42-55.pdf" title=" ">Entropie</a>
+                    &nbsp;(Tilt n°42 - Mai 1987)</li>
+
+                    <li><a href="to8/pdf/js-42-page-62.pdf" title="Le jeu Grand Prix 500 cc dans un article de presse paru dans la presse en 1986">Grand Prix 500 cc</a>
+                    &nbsp;(Jeux & Stratégie n°42 - Décembre 1986)</li>
+
+                    <li><a href="to8/pdf/js-43-page-73.pdf" title="Le jeu James Debug dans un article de presse paru dans la presse en 1987">James Debug (version TO9)</a>
+                    &nbsp;(Jeux & Stratégie n°43 - Février/Mars 1987)</li>
+
+                    <li><a href="to8/pdf/tilt-37-53.pdf" title=" ">James Debug</a>
+                    &nbsp;(Tilt n°37 - Décembre 1986)</li>
+
+                    <li><a href="to8/pdf/js-38-page-70.pdf" title="Le jeu La Malédiction de Thaar dans un article de presse paru dans la presse en 1986">La Malédiction de Thaar</a>
+                    &nbsp;(Jeux & Stratégie n°38 - Avril/Mai 1986)</li>
+
+                    <li><a href="to8/pdf/js-42-page-60.pdf" title="Le jeu Le temple de Quauhli dans un article de presse paru dans la presse en 1986">Le Temple de Quauhli</a>
+                    &nbsp;(Jeux & Stratégie n°42 - Décembre 1986)</li>
+
+                    <li><a href="to8/pdf/js-42-page-75.pdf" title="Le jeu Les Passagers du Vent dans un article de presse paru dans la presse en 1986">Les Passagers du Vent</a>
+                    &nbsp;(Jeux & Stratégie n°42 - Décembre 1986)</li>
+
+                    <li><a href="to8/pdf/js-46-page-82.pdf" title="Le jeu Les Passagers du Vent 2 dans un article de presse paru dans la presse en 1986">Les passagers du Vent n°2</a>
+                    &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
+
+                    <li><a href="to8/pdf/js-46-page-83.pdf" title="Le jeu Marche à l'Ombre dans un article de presse paru dans la presse en 1987">Marche à l'Ombre</a>
+                    &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
+
+                    <li><a href="to8/pdf/js-46-page-87.pdf" title="Le jeu Missions en Rafale dans un article de presse paru dans la presse en 1987">Missions en Rafale</a>
+                    &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
+
+                    <li><a href="to8/pdf/js-43-page-72.pdf" title="Le jeu Monopoly dans un article de presse paru dans la presse en 1987">Monopoly</a>
+                    &nbsp;(Jeux & Stratégie n°43 - Février/Mars 1987)</li>
+
+                    <li><a href="to8/pdf/js-45-page-65.pdf" title="Le jeu Prohibition dans un article de presse paru dans la presse en 1987">Prohibition</a>
+                    &nbsp;(Jeux & Stratégie n°45 - Juin/Juillet 1987)</li>
+
+                    <li><a href="to8/pdf/js-46-page-83.pdf" title="Le jeu Réussites dans un article de presse paru dans la presse en 1987">Réussites</a>
+                    &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
+
+                    <li><a href="to8/pdf/js-46-page-86-87.pdf" title="Le jeu Robinson Crusoë dans un article de presse paru dans la presse en 1987">Robinson Crusoë</a>
+                    &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
+
+                    <li><a href="to8/pdf/js-42-page-60-61.pdf" title="Le jeu Sapiens dans un article de presse paru dans la presse en 1986">Sapiens</a>
+                    &nbsp;(Jeux & Stratégie n°42 - Décembre 1986)</li>
+
+                    <li><a href="to8/pdf/js-39-page-77.pdf" title="Le jeu Sortileges dans un article de presse paru dans la presse en 1986">Sortileges</a>
+                    &nbsp;(Jeux & Stratégie n°38 - Avril/Mai 1986)</li>
+
+                    <li><a href="to8/pdf/tilt-37-59.pdf" title=" ">Stone Zone</a>
+                    &nbsp;(Tilt n°37 - Décembre 1986)</li>
+
+                    <li><a href="to8/pdf/tilt-38-130.pdf" title=" ">Super Tennis</a>
+                    &nbsp;(Tilt n°38 - Janvier 1987)</li>
+
+                    <li><a href="to8/pdf/js-46-page-86-87.pdf" title="Le jeu TNT dans un article de presse paru dans la presse en 1987">TNT</a>
+                    &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
                 </ul>
 
                 <h6 class="mt-3">La revue Microtom</h6>

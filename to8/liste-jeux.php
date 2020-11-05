@@ -60,6 +60,8 @@
         </div>
 
         <div class="col-12">
+
+            <p class="text-justify">Cette page contient uniquement les jeux que j'ai retestés et redécouverts avec <a href="">l'émulateur MAME</a>. Pour plus d'information sur les jeux de l'époque, je vous invite à consulter ma <a href="../to8.php#listejeux">compilation d'articles</a> paru dans la presse de l'époque.<p>
                 
             <h5 class="mt-5">Androïdes</h5>
 
@@ -89,7 +91,7 @@
 
             <h5 class="mt-5">Arkanoïd</h5>
 
-            <p class="text-justify">Arkanoïd est un casse-brique édité par F.I.L (France Image Logiciel) qui vous place aux commandes du vaisseau « Vaus », seul rescapé d'une attaque extraterrestre qui a détruit le vaisseau spatial « Arkanoid ». Envoyé dans une autre dimension par un mystérieux ennemi, le Vaus devra passer plusieurs dispositifs de sécurité, pour finalement détruire « Doh », l'alien responsable de l'agression. Ce jeu a fait l'objet d'un <a href="pdf/js-46-page-89.pdf" title="article sur le jeu Arkanoïd paru dans Jeux et Stratégie n°46 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987.  Si vous êtes un amateur des casses-briques, Arkanoïd ne sera pas sans vous faire penser à LBreakout.</p>
+            <p class="text-justify">Arkanoïd est un casse-brique édité par F.I.L (France Image Logiciel) qui vous place aux commandes du vaisseau « Vaus », seul rescapé d'une attaque extraterrestre qui a détruit le vaisseau spatial « Arkanoid ». Envoyé dans une autre dimension par un mystérieux ennemi, le Vaus devra passer plusieurs dispositifs de sécurité, pour finalement détruire « Doh », l'alien responsable de l'agression. Ce jeu a fait l'objet d'un <a href="pdf/js-46-page-86-87.pdf" title="article sur le jeu Arkanoïd paru dans Jeux et Stratégie n°46 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987.  Si vous êtes un amateur des casses-briques, Arkanoïd ne sera pas sans vous faire penser à LBreakout.</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -127,13 +129,9 @@
 
             </div>
             
-            <h5 class="mt-5">La Bataille des Brevets</h5>
-            
-            <p class="text-justify">Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-64.pdf" title="article sur le jeu La Bataille des Brevets paru dans Jeux et Stratégie n°43 de février/mars 1987">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
-
             <h5 class="mt-5">Bivouac</h5>
                  
-            <p class="text-justify">Bivouac est le premier jeu que j'ai testé alors que je ne le possédais pas à l'époque. Il a pour theme la course en montagne et a fait l'objet d'un <a href="pdf/js-46-page-81.pdf" title="article sur le jeu Bivouac paru dans Jeux et Stratégie n°56 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987. Je ne sais pas si c'est le fait de le tester avec un émulateur, mais je n'ai absolument pas compris comment il fonctionne... (lol ?) C'est un peu dommage car c'est un sujet qui change complètement de l'ordinaire et des jeux que l'on a l'habitude de rencontrer.</p>
+            <p class="text-justify">Bivouac est le premier jeu que j'ai testé alors que je ne le possédais pas à l'époque. Il a pour theme la course en montagne et a fait l'objet d'un <a href="pdf/js-46-page-79.pdf" title="article sur le jeu Bivouac paru dans Jeux et Stratégie n°56 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987. Je ne sais pas si c'est le fait de le tester avec un émulateur, mais je n'ai absolument pas compris comment il fonctionne... (lol ?) C'est un peu dommage car c'est un sujet qui change complètement de l'ordinaire et des jeux que l'on a l'habitude de rencontrer.</p>
             
             <div class="row d-flex justify-content-center">
 
@@ -159,7 +157,7 @@
             
             <h5 class="mt-5">Cap sur Dakar</h5>
 
-            <p class="text-justify">Edité par Coktel Vision, Cap sur Dakar est une simulation réaliste de la célèbre course Paris-Dakar: de la recherche des sponsors, vitale, jusqu'aux épreuves de conduite sur pistes, de plus en plus sportives, vivez toutes les péripéties de ce très grand raid. Ce jeu a fait l'objet d'un <a href="pdf/js-38-page-74.pdf" title="Le jeu Cap sur Dakar dans le magazine Jeux &amp; Stratégie n°38">article</a> dans la revue Jeux et Stratégie n°38 d'avril/mai 1986.</p>
+            <p class="text-justify">Edité par Coktel Vision, Cap sur Dakar est une simulation réaliste de la célèbre course Paris-Dakar: de la recherche des sponsors, vitale, jusqu'aux épreuves de conduite sur pistes, de plus en plus sportives, vivez toutes les péripéties de ce très grand raid. Ce jeu a fait l'objet d'un <a href="pdf/js-38-page-72.pdf" title="Le jeu Cap sur Dakar dans le magazine Jeux &amp; Stratégie n°38">article</a> dans la revue Jeux et Stratégie n°38 d'avril/mai 1986.</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -219,7 +217,7 @@
 
             <h5 class="mt-5">Crazy Cars</h5>
 
-            <p>Développé en 1987 par la société française Titus Interactive, Crazy Cars est le premier volet d'une série de jeux vidéos qui comprend trois épisodes. Il vous met au volant de plusieurs bolides (Porsche 911, Ferrari, Mercedes, etc) sur les routes de divers États américain. </p>
+            <p class="text-justify">Développé en 1987 par la société française Titus Interactive, Crazy Cars est le premier volet d'une série de jeux vidéos qui comprend trois épisodes. Il vous met au volant de plusieurs bolides (Porsche 911, Ferrari, Mercedes, etc) sur les routes de divers États américain. </p>
 
             <div class="row d-flex justify-content-center">
 
@@ -281,25 +279,23 @@
 
             <h5 class="mt-5">Don Camillo</h5>
 
-            <p class="text-justify">Le jeu Don Camillo a fait l'objet d'un <a href="pdf/js-46-page-88.pdf" title="article sur le jeu Don Camillo paru dans la revue Jeux et Stratégie n°46 d'aout/septemble 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987. On y retrouve le héros interprété au cinéma par Fernandel. Une nuit, il entend une voix qui lui demande l'allumer tous les cierges de son église jusqu'à Rome. Votre mission ? Aider Don Camillo à remplir sa mission tout en évitant les embuches envoyées par le Diable.</p>
-
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="https://via.placeholder.com/450" data-fancybox data-caption="Capture d'écran du jeu Don Camillo sur TO8">
-                    <img src=" https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Don Camillo pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/dom-camillo/dom-camillo-01.jpg" data-fancybox data-caption="Capture d'écran du jeu Dom Camillo sur TO8">
+                    <img src="images/thumbs/dom-camillo/dom-camillo-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Dom Camillo pour ordinateur Thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Don Camillo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href=" https://via.placeholder.com/450" data-fancybox data-caption="Capture d'écran du jeu Don Camillo sur TO8">
-                    <img src=" https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Don Camillo pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <a href=" images/dom-camillo/dom-camillo-02.jpg" data-fancybox data-caption="Capture d'écran du jeu Dom Camillo sur TO8">
+                    <img src="images/thumbs/dom-camillo/dom-camillo-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Dom Camillo pour ordinateur Thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Don Camillo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href=" https://via.placeholder.com/450" data-fancybox data-caption="Capture d'écran du jeu Don Camillo sur TO8">
-                    <img src="https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Don Camillo pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <a href=" images/dom-camillo/dom-camillo-03.jpg" data-fancybox data-caption="Capture d'écran du jeu Dom Camillo sur TO8">
+                    <img src="images/thumbs/dom-camillo/dom-camillo-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Dom Camillo pour ordinateur Thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Don Camillo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -309,7 +305,7 @@
 
             <p class="text-justify">Meurtre ? Vous avez dit meurtre ?</p>
 
-            <p class="text-justify">Une vieille dame vient d'être assassinée dans sa baignoire, vide! La porte était fermée à clef de l'extérieur. Que s'est-il donc passé ? Une vraie bande dessinée animée signé Infogrames. Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-68.pdf" title="article sur le jeu Dossier Boerhaave paru dans la revue Jeux et Stratégie n°43 de février/mars 1987">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
+            <p class="text-justify">Une vieille dame vient d'être assassinée dans sa baignoire, vide! La porte était fermée à clef de l'extérieur. Que s'est-il donc passé ? Une vraie bande dessinée animée signé Infogrames. Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-66.pdf" title="article sur le jeu Dossier Boerhaave paru dans la revue Jeux et Stratégie n°43 de février/mars 1987">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
              
             <h5 class="mt-5">Entropie</h5>
 
@@ -349,9 +345,53 @@
 
             </div>
 
+            <h5 class="mt-5">FBI</h5>
+
+            <p class="text-justify">Ce jeu de 1984 voit s'affronter les gangsters et les incorruptibles au temps de la prohibition. Les balles fusent, les tonneaux d'alcool s'enflamment dans ce jeu qui ressemble étrangement à un ancêtre de GTA...</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/fbi/fbi-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/fbi/fbi-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/fbi/fbi-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/fbi/fbi-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeuFBI pour thomson TO8  réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                                
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/fbi/fbi-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/fbi/fbi-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/fbi/fbi-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/fbi/fbi-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/fbi/fbi-05.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/fbi/fbi-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeuFBI pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                                
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/fbi/fbi-06.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/fbi/fbi-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+            </div>
+
             <h5 class="mt-5">Grand Prix 500cc</h5>
 
-            <p class="text-justify">Cette version perd le son, le graphisme ne progresse pas: douze circuits à choisir mais le décor reste identique en Hollande ou en Afrique du Sud ! Deux motos indépendantes, à la direction déroutante, une résistance au choc et une adhérence exceptionnelles (Tilt n°41 - avril 1987). Ce jeu a fait l'objet d'un <a href="pdf/js-42-page-64.pdf" title="Le jeu Grand Prix dans le magazine Jeux &amp; Stratégie n°42">article</a> dans la revue Jeux et Stratégie n°42 de décembre 1986-Janvier 1987. Ce jeu était édité par Microïds.</p>
+            <p class="text-justify">Cette version perd le son, le graphisme ne progresse pas: douze circuits à choisir mais le décor reste identique en Hollande ou en Afrique du Sud ! Deux motos indépendantes, à la direction déroutante, une résistance au choc et une adhérence exceptionnelles (Tilt n°41 - avril 1987). Ce jeu a fait l'objet d'un <a href="pdf/js-42-page-62.pdf" title="Le jeu Grand Prix dans le magazine Jeux &amp; Stratégie n°42">article</a> dans la revue Jeux et Stratégie n°42 de décembre 1986-Janvier 1987. Ce jeu était édité par Microïds.</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -415,7 +455,7 @@
 
             </div>
                         
-            <p class="text-justify">James Debug a fait l'objet d'un <a href="pdf/js-43-page-74.pdf" title="Le jeu James Debug dans le magazine Jeux &amp; Stratégie n°43">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
+            <p class="text-justify">James Debug a fait l'objet d'un <a href="pdf/js-43-page-73.pdf" title="Le jeu James Debug dans le magazine Jeux &amp; Stratégie n°43">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -538,42 +578,10 @@
             <h5 class="mt-5">Les Dieux de la Glisse - Savoie 92</h5>
 
             <p class="text-justify">Savoie, 1992. Cette année les Jeux Olympiques auront lieu en Savoie. Les français sont fiers, tous leurs supporteurs seront sur place pour les encourager. Aujourd'hui, trois épreuves sont prévues: Le saut à ski, le saut acrobatique et le patinage de vitesse. Chacune de ces épreuves requiert des qualités physiques exceptionnelles. La puissance de l'effort tout autant que le style des mouvements seront sévèrement notés par des juges impartiaux. Les meilleurs seront récompensés.</p>
-            
-            <h5 class="mt-5">Les Passagers du Vent</h5>
-
-            <p>Les Passagers du Vent est l'adaptation par Infogrames de la bande dessinée de François Bourgeon dans une aventure où vous incarnez, tour à tour, ISA, l'héroïne audacieuse à la recherche d'un idéal, HOEL, marin breton courageux et amoureux, ou plus de quinze autres personnages baroques de cette fin du dix-huitième siècle : un chirurgien de la Royale, un esclave noir philosophe, une libertine entreprenante, un enseigne de vaisseau timide...</p>
-
-            <div class="row d-flex justify-content-center">
-
-                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="https://via.placeholder.com/255x193" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Les Passagers du Vent pour ordinateur TO8 réalisée avec MAME"></a>
-                    <figcaption class="figure-caption text-center">Les Passagers du Vent sur TO8.<br />(capture réalisée avec MAME)</figcaption>
-                </figure>
-
-                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="https://via.placeholder.com/255x193" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Les Passagers du Vent pour ordinateur TO8 réalisée avec MAME"></a>
-                    <figcaption class="figure-caption text-center">Les Passagers du Vent sur TO8.<br />(capture réalisée avec MAME)</figcaption>
-                </figure>
-
-                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="https://via.placeholder.com/255x193" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Les Passagers du Vent pour ordinateur TO8 réalisée avec MAME"></a>
-                    <figcaption class="figure-caption text-center">Les Passagers du Vent sur TO8.<br />(capture réalisée avec MAME)</figcaption>
-                </figure>
-
-            </div>
-
-            <a href="pdf/js-42-page-75.pdf" title="Le jeu Les Passagers du vent dans le magazine Jeux &amp; Stratégie n°42">Passagers du vent (Les)</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987)
-
-            <h5 class="mt-5">Les Passagers du vent 2</h5>
-
-            <a href="pdf/js-46-page-84.pdf" title="Le jeu Les Passagers du vent dans le magazine Jeux &amp; Stratégie n°46">Passagers du vent 2 (Les)</a> (Jeux et Stratégie n°46 aout/septembre 1987)
-    
+                
             <h5 class="mt-5">Marche à l'Ombre</h5>
 
-            <p class="text-justify">Le jeu <em>Marche à l'Ombre</em> a fait l'objet d'un <a href="pdf/js-46-page-85.pdf" title="Lien vers un article dans la presse à propos du jeu pour TO8 Marche à L'ombre">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987.</p>
+            <p class="text-justify">Le jeu <em>Marche à l'Ombre</em> a fait l'objet d'un <a href="pdf/js-46-page-83.pdf" title="Lien vers un article dans la presse à propos du jeu pour TO8 Marche à L'ombre">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987.</p>
 
             <h5 class="mt-5">Missions en rafale</h5>
 
@@ -582,6 +590,28 @@
             <h5 class="mt-5">Monopoly</h5>
 
             <p class="text-justify">Le jeu Monopoly a fait l'objet d'un <a href="pdf/js-43-page-72.pdf" title="Lien vers un article dans la presse à propos du jeu pour TO8 Monopoly">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/monopoly/monopoly-01.jpg" data-fancybox data-caption="Le jeu Monopoly sur Thomson TO8">
+                    <img src="images/thumbs/monopoly/monopoly-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de l'adaptation sur ordinateur TO8 du jeu Thomson"></a>
+                    <figcaption class="figure-caption text-center">Monopoly sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/monopoly/monopoly-02.jpg" data-fancybox data-caption="Le jeu Monopoly sur Thomson TO8">
+                    <img src="images/thumbs/monopoly/monopoly-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de l'adaptation sur ordinateur TO8 du jeu Thomson"></a>
+                    <figcaption class="figure-caption text-center">Monopoly sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/monopoly/monopoly-03.jpg" data-fancybox data-caption="Le jeu Monopoly sur Thomson TO8">
+                    <img src="images/thumbs/monopoly/monopoly-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de l'adaptation sur ordinateur TO8 du jeu Thomson"></a>
+                    <figcaption class="figure-caption text-center">Monopoly sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+            </div>
 
             <h5 class="mt-5">Prohibition</h5>
 
@@ -608,14 +638,6 @@
                 </figure>
 
             </div>
-
-            <h5 class="mt-5">Réussites</h5>
-            
-            <a href="pdf/js-46-page-85.pdf" title="Le jeu Réussites dans le magazine Jeux &amp; Stratégie n°46">Réussites</a> (Jeux et Stratégie n°46 aout/septembre 1987)
-
-            <h5 class="mt-5">Robinson Crusoé</h5>
-
-            <a href="pdf/js-46-page-88.pdf" title="Le jeu Robinson Crusoé dans le magazine Jeux &amp; Stratégie n°46">Robinson Crusoé</a> (Jeux et Stratégie n°46 aout/septembre 1987)
 
             <h5 class="mt-5">Runway II</h5>
 
@@ -767,10 +789,6 @@
 
             </div>
 
-            <h5 class="mt-5">Sapiens</h5>
-
-            <a href="pdf/js-42-page-63.pdf" title="Le jeu Sapiens dans le magazine Jeux &amp; Stratégie n°42">Sapiens</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987)
-
             <h5 class="mt-5">Silent Service</h5>
 
             <p class="text-justify">J'ai passé des centaines d'heures, enfant, à naviguer à travers les mers du globe avec cet ancêtre de Silent Hunter. Je me souviens de mon cousin, de 3 ans mon ainé, qui m'a souvent répété que je n'arriverai jamais à couler un bateau. 30 ans plus tard, je peux vous l'avouer : En effet, je n'ai jamais coulé un seul bateau. Dans sa version pour Thomson, Le jeu Silent Service, distribué par FIL, est très différent de la version pour Atari ST, surtout au niveau des graphismes et du son qui auraient, selon la presse de l'époque, rien à voir et seraient de qualité bien inférieure.</p>
@@ -853,8 +871,6 @@
 
             </div>
 
-            <a href="pdf/js-39-page-79.pdf" title="Le jeu Sortileges dans le magazine Jeux &amp; Stratégie n°39">Jeux et Stratégie n°39 - Juin/Juillet 1986 : "Sortileges" (pdf)</a>
-
             <h5 class="mt-5">Speed Way</h5>
 
             <p class="text-justify">Speedway est vu par la presse de l'époque comme une simulation de course automobile de piètre qualité. Les graphismes sont grossiers, l'animation trop lente et peu précise, les commandes mal gérées et le son ridicule. Un logiciel insipide. Les auteurs de l'époque se demandent même comment pouvait-on encore vendre un tel produit en 1987 ? Le jeu était édité par Free Game Blot.</p>
@@ -906,14 +922,6 @@
                 </figure>
 
             </div>
-          
-            <h5 class="mt-5">Temple de Quauhli (Le)</h5>
-
-            <a href="pdf/js-42-page-62.pdf" title="Le jeu Le Temple de Quauhli dans le magazine Jeux &amp; Stratégie n°42">Temple de Quauhli (Le)</a> (Jeux et Stratégie n°42 - Décembre 1986/Janvier 1987) 
-
-            <h5 class="mt-5">TNT</h5>
-            
-            <a href="pdf/js-46-page-89.pdf" title="Le jeu TNT dans le magazine Jeux &amp; Stratégie n°46">TNT</a> (Jeux et Stratégie n°46 aout/septembre 1987)
 
         </div>
 
