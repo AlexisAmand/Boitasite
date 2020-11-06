@@ -347,7 +347,7 @@
 
             <h5 class="mt-5">FBI</h5>
 
-            <p class="text-justify">Ce jeu de 1984 voit s'affronter les gangsters et les incorruptibles au temps de la prohibition. Les balles fusent, les tonneaux d'alcool s'enflamment dans ce jeu qui ressemble étrangement à un ancêtre de GTA...</p>
+            <p class="text-justify">Ce jeu de 1984 voit s'affronter les gangsters et les incorruptibles au temps de la prohibition. Les balles fusent, les tonneaux d'alcool s'enflamment dans ce jeu qui ressemble étrangement à un ancêtre de GTA. Un conseil : surveillez bien vos jauges de munissions et de carburant !</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -387,6 +387,50 @@
                     <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
+            </div>
+
+            <h5 class="mt-5">Glouton</h5>
+
+            <p class="text-justify">Rond comme un ballon et tout jaune comme un citron ! Glouton est un ersatz de PacMan proposé par Titus Interactive en 1989 dans lequel vous devez, là aussi, parcourir des labyrinthes à la recherche des pac-gommes en évitant - ou pas - les fantômes.</p> 
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/glouton/glouton-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/glouton/glouton-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Glouton sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/glouton/glouton-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/glouton/glouton-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Glouton sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/glouton/glouton-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/glouton/glouton-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Glouton sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/glouton/glouton-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/glouton/glouton-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Glouton sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/glouton/glouton-05.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/glouton/glouton-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Glouton sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/glouton/glouton-06.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/glouton/glouton-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Glouton sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+                
             </div>
 
             <h5 class="mt-5">Grand Prix 500cc</h5>
@@ -919,6 +963,50 @@
                     <a href="images/stone-zone/stone-zone-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/stone-zone/stone-zone-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Stone Zone pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Stone Zone sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+            </div>
+
+            <h5 class="mt-5">Vol Solo</h5>
+
+            <p>Possible ancêtre des Flight Simulator, Vol Solo est un simulateur d'avion réalisé en 1986 par Joel SANA d'après Solo Flight (de Microprose) et dont l'auteur n'est rien d'autre que Sid Meier, le papa de Civilization. A l'époque j'avais une manette, ça rendait le jeu un poil plus fun qu'avec le clavier de mon pc.</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/vol-solo/vol-solo-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/vol-solo/vol-solo-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Vol Solo pour ordinateur TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Vol Solo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/vol-solo/vol-solo-02jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/vol-solo/vol-solo-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Vol Solo pour ordinateur TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Vol Solo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/vol-solo/vol-solo-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/vol-solo/vol-solo-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Vol Solo pour ordinateur TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Vol Solo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/vol-solo/vol-solo-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/vol-solo/vol-solo-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Vol Solo pour ordinateur TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Vol Solo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/vol-solo/vol-solo-05.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/vol-solo/vol-solo-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Vol Solo pour ordinateur TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Vol Solo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/vol-solo/vol-solo-06.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/vol-solo/vol-solo-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Vol Solo pour ordinateur TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Vol Solo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
             </div>
