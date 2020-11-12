@@ -35,14 +35,14 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
-                <ul class="navbar-nav ml-auto"> 
-                    <li class="nav-item m-2"><a class="nav-link" href="webmaster.php">Création de sites</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="seo.php">SEO</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">Retrogaming</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li> 
-                </ul> 
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item m-2"><a class="nav-link" href="webmaster.php" title="Création et audit de site web à Valenciennes">Création de sites</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="seo.php" title="Référencement de site web à Valenciennes">SEO</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="to8.php" title="Retrogaming sur le TO8 de Thomson">Retrogaming</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li>
+                </ul>
                 </div>
                 </nav>
 
@@ -62,15 +62,15 @@
 
             <div class="col-12">
 
-                <p class="text-justify">Si vous avez envie de (re)découvrir le TO8, je vous conseille l'utilisation de <a href="http://dcmoto.free.fr/" title="Site officiel de l'émulateur de tous les ordinateurs 8 bits Thomson">DCMOTO</a>. C'est un logiciel qui émule sous Windows les machines telles que le Thomson MO5, le MO5E, le MO5NR, le MO6, le T9000, le TO7, le TO7/70, le TO8, le TO8D, le TO9, le TO9+ ou encore l'Olivetti Prodest PC128. Le site propose aussi un accès à plus de 850 jeux et programmes divers ainsi que plus de 160 livres et documents. Vous pouvez aussi utiliser l'emulateur MAME... à condition de vous procurer la ROM du TO8.</p>
+                <p class="text-justify">Si vous avez envie de (re)découvrir le TO8, je vous conseille l'utilisation de <a href="http://dcmoto.free.fr/" title="Site officiel de l'émulateur de tous les ordinateurs 8 bits Thomson">DCMOTO</a>. C'est un logiciel qui émule sous Windows les machines telles que le Thomson MO5, le MO5E, le MO5NR, le MO6, le T9000, le TO7, le TO7/70, le TO8, le TO8D, le TO9, le TO9+ ou encore l'Olivetti Prodest PC128. Le site propose aussi un accès à plus de 850 jeux et programmes divers ainsi que plus de 160 livres et documents. Vous pouvez aussi utiliser l'émulateur MAME... à condition de vous procurer la ROM du TO8.</p>
 
                 <ul>
                     <li>Si vous êtes passionné par le <strong>retrogaming</strong>, je vous invite à visiter la page consacrée aux <a href="to8/liste-jeux.php" title="Liste de jeux qui étaient disponibles pour le TO8">jeux du TO8</a>.</li>
-                    <li>Si votre truc c'est plutôt le <strong>matériel</strong>, c'est sans doute la page consacré au <a href="to8/moniteur-to8.php" title="documentation sur le moniteur du Thomson TO8">moniteur</a> que vous allez préférer.</li>
+                    <li>Si votre truc, c'est plutôt le <strong>matériel</strong>, c'est sans doute la page consacré au <a href="to8/moniteur-to8.php" title="documentation sur le moniteur du Thomson TO8">moniteur</a> que vous allez préférer.</li>
                 </ul>
-                
+
                 <p class="text-justify">Je n'ai jamais été à l'aise avec le côté technique de l'informatique, je peux changer une carte graphique ou une barrette de ram mais bon, ça reste quelque chose qui me met mal à l'aise. Aussi, pour vous présenter la machine qu'était le TO8 proposé par Thomson, je vais vous laisser en compagnie d'un article de presse paru dans la revue TEOphile n°6 de septembre 1986. Je profite aussi de l'occasion pour vous dire que si la presse informatique ancienne vous intéresse, il existe un site dédié aux <a href="http://www.abandonware-magazines.org">anciens magazines</a>.</p>
-                
+
                 <div class="row d-flex justify-content-center">
 
                     <figure class="figure col-6 m-3">
@@ -79,14 +79,14 @@
                         <figcaption class="figure-caption text-center">On allume la machine !<br />(capture réalisée avec MESS)</figcaption>
                     </figure>
 
-                </div> 
+                </div>
 
                 <h5 class="mt-5">La nouvelle gamme de Thomson (Fin 1986)</h5>
 
-                <p class="text-justify">Le TO8 est une machine ouverte et évolutive proposée à 2990 F (NDLR : soit 594,62 euros) dans sa version de base mais qui peut devenir l'équivalent d'un TO9+ avec une extension de mémoire et une unité de disquette. Le TO8 est blanc également, son clavier de 81 touches  + pavé numérique + 5 touches de fonctions, identique à celui du TO9 est, comme le TO7-70, intégré dans l'unité centrale. Au dessus du clavier, on trouve la trappe verticale à mémo 7. Doté de 256K de RAM il peut recevoir à l'arrière sur un connecteur spécial une extension de 256K portant la mémoire à 512 K comme le TO9+. Les 80 K de ROM contiennent le Basic 512 (identique au Basic 128 mais gérant les banques de RAM jusqu'à 512), le Basic Basic 1.0 et le moniteur.</p>
-        
+                <p class="text-justify">Le TO8 est une machine ouverte et évolutive proposée à 2990 F (NDLR : soit 594,62 euros) dans sa version de base, mais qui peut devenir l'équivalent d'un TO9+ avec une extension de mémoire et une unité de disquette. Le TO8 est blanc également, son clavier de 81 touches  + pavé numérique + 5 touches de fonctions, identique à celui du TO9 est, comme le TO7-70, intégré dans l'unité centrale. Au-dessus du clavier, on trouve la trappe verticale à mémo 7. Doté de 256K de RAM il peut recevoir à l'arrière sur un connecteur spécial une extension de 256K portant la mémoire à 512 K comme le TO9+. Les 80 K de ROM contiennent le Basic 512 (identique au Basic 128 mais gérant les banques de RAM jusqu'à 512), le Basic Basic 1.0 et le moniteur.</p>
+
         		<div class="row d-flex justify-content-center">
-        
+
         		    <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_01.jpg" data-fancybox data-caption="L'unité centrale du TO8 de Thomson">
                         <img src="to8/images/thumbs/thomson_t08_01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de face de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
@@ -104,10 +104,10 @@
                         <img src="to8/images/thumbs/thomson_t08_03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="vue de dos de l'unité centrale et le clavier du micro-ordinateur Thomson TO8"></a>
                         <figcaption class="figure-caption text-center">Vue de dos de l'unité centrale.</figcaption>
                     </figure>
-        
-        		
-        		</div>	
-        
+
+
+        		</div>
+
                 <p class="text-justify mt-3">Le TO8 possède un contrôleur de disquette 3,5 pouces 640K fonctionnant avec le DOS inclus dans le Basic  512. Un connecteur pour brancher l'unité de disquettes (Sony) apparaît à l'arrière de l'unité centrale. Ce connecteur peut recevoir également un QDD. Plusieurs unités de disquettes sont connectables par chaînage. On trouve aussi le synthétiseur de sons identique à celui du MO6, une interface pour imprimante paralléle, un connecteur pour LEP (identique à celui du TO7, mais avec un nouveau design), deux connecteurs pour manettes de jeux/souris, une prise pour crayon optique (option), une prise son Cinch et un seul connecteur d'extension pour recevoir un modem, etc. Le TO8 adopte, comme toute la gamme, les 8 modes d'affichage du TO9 dont le mode 80 colonnes et la palette de 4096 couleurs. La version de base est proposée à 2990 F ttc (NDLR : soit 594,62 euros), l'unité de disquettes à 3,5 pouces 640 K à 1990 F ttc (NDLR : soit 395,75 euros). Une configuration comprenant un TO8, <a href="to8/moniteur-to8.php" title="page consacrée au moniteur du micro-ordinateur TO8">un moniteur couleurs haute résolution</a> et une unité de disquette 640 K sera proposée à 5990 F ttc (NDLR : 1 191,23 euros) au lieu de 7470 F (NDLR : 1 485,56 Euros).</p>
 
                 <div class="row d-flex justify-content-center">
@@ -122,7 +122,7 @@
                         <a href="to8/images/thomson_t08_07.jpg" data-fancybox data-caption="Le contenu d'une disquette en Basic">
                         <img src="to8/images/thumbs/thomson_t08_07.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="La visualisation d'une disquette en Basic"/></a>
                         <figcaption class="figure-caption text-center">Le contenu d'une disquette<br />(capture réalisée avec MESS)</figcaption>
-                    </figure>   
+                    </figure>
 
                     <figure class="figure col-xs-4 m-3">
                         <a href="to8/images/thomson_t08_05.jpg" data-fancybox data-caption="La palette de couleurs du TO8">
@@ -155,14 +155,14 @@
                 </ul>
 
                 <h6 class="mt-3">Publicités pour le TO8</h6>
-              
+
                 <ul>
                     <li><a href="to8/pdf/js-42-page-67.pdf" title=" ">Une place de 1ere dans le train de l'avenir (pdf)</a>
                     &nbsp;(Jeux & Stratégie n°42 - Décembre 1986/Janvier 1987)</li>
                     <li><a href="to8/pdf/svm-034.pdf" title="publicité pour le TO8 parue dans la revue Science & Vie Micro n°34">Une place de 1ere dans le train de l'avenir (pdf)</a>
                     &nbsp;(Scienve & Vie Micro n°34 - Décembre 1986)</li>
                     <li><a href="to8/pdf/svm-039.pdf" title="publicité pour le TO8 parue dans la revue Science & Vie Micro n°39">Promotion sur la gamme TO8 chez Videoshop (pdf)</a>
-                    &nbsp;(Scienve & Vie Micro n°39 - Mai 1987)</li>                                
+                    &nbsp;(Scienve & Vie Micro n°39 - Mai 1987)</li>
                 </ul>
 
                 <div id="listejeux"></div>
@@ -175,7 +175,7 @@
 
                     <li><a href="to8/pdf/js-42-page-60.pdf" title="Le jeu Bactron dans un article de presse paru dans la presse en 1986">Bactron</a>
                     &nbsp;(Jeux & Stratégie n°42 - Décembre 1986)</li>
-                    
+
                     <li><a href="to8/pdf/js-38-page-72.pdf" title="Le jeux Cap sur Dakar dans un article de presse paru dans la presse en 1986">Cap sur Dakar</a>
                     &nbsp;(Jeux & Stratégie n°38 - Avril/Mai 1986)</li>
 
@@ -251,7 +251,7 @@
                     <li><a href="to8/pdf/microtom_03.pdf" title="revue Microtom n°3 de novembre et décembre 1985">Microtom n°3 - Novembre/Décembre 1985 (pdf)</a></li>
                     <li><a href="to8/pdf/microtom_04.pdf" title="revue Microtom n°4 de janvier et fécrier 1986">Microtom n°4 - Janvier/Février 1986 (pdf)</a></li>
                     <li><a href="to8/pdf/microtom_05.pdf" title="revue Microtom n°5 de mars et avril 1986">Microtom n°5 - Mars/Avril 1986 (pdf)</a></li>
-                    <li><a href="to8/pdf/microtom_06.pdf" title="revue Microtom n°6 de mai et juin 1986">Microtom n°6 - Mai/Juin 1986 (pdf)</a></li>               
+                    <li><a href="to8/pdf/microtom_06.pdf" title="revue Microtom n°6 de mai et juin 1986">Microtom n°6 - Mai/Juin 1986 (pdf)</a></li>
                     <li><a href="to8/pdf/microtom_08.pdf" title="revue Microtom n°8 de septembre et octobre 1986">Microtom n°8 - Septembre/Octobre 1986 (pdf)</a></li>
                     <li><a href="to8/pdf/microtom_09.pdf" title="revue Microtom n°9 de novembre 1986">Microtom n°9 - Novembre 1986 (pdf)</a></li>
                     <li><a href="to8/pdf/microtom_10.pdf" title="revue Microtom n°10 de décembre 1986 et janvier 1987">Microtom n°10 - décembre 1986/Janvier 1987 (pdf)</a></li>
@@ -273,7 +273,7 @@
                     <p class="text-center">Alexis AMAND<br />Développement Web et SEO<br />---
                     <br />06.62.63.79.21<br />alexis.amand@boitasite.com</p>
                 </div>
-        
+
                 <div  class="col-12 col-sm-6 col-md-6">
                     <p class="text-center">Follow Moi:</p>
                     <p class="text-center">
@@ -282,7 +282,7 @@
                         <a href="https://www.linkedin.com/in/alexis-amand-99775817" title="lien pour me suivre sur LinkedIn"><i class="fi-swluxl-linkedin"></i></a>
                     </p>
                 </div>
-            
+
             </div>
 
             <div class="col-12">
@@ -311,6 +311,6 @@
     $(function () {
     $('[data-toggle="tooltip"]').tooltip()
     })
-    </script> 
+    </script>
   </body>
 </html>

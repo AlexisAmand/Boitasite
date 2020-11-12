@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Création de sites web à Valenciennes  | Alexis AMAND - développement web et SEO à Valenciennes</title>
-    <meta name="description" content="Webmaster à Valenciennes, Alexis AMAND propose de développer votre visibilité sur internet (SEO) grace à la création d'un site web. Site dynamique et responsive à l'image de votre activité que vous soyez professionnel, particulier ou association.">
+    <meta name="description" content="Webmaster à Valenciennes, je propose la création d'un site web, de votre blog ou forum d'entreprise, de votre site vitrine. Un site dynamique et responsive à l'image de votre activité que vous soyez professionnel, particulier ou association.">
 
-    <!-- Bootstrap CSS --> 
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!-- CSS perso -->
@@ -35,14 +35,14 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
-                <ul class="navbar-nav ml-auto"> 
-                    <li class="nav-item m-2"><a class="nav-link" href="webmaster.php">Création de sites</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="seo.php">SEO</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">Retrogaming</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li> 
-                </ul> 
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item m-2"><a class="nav-link" href="webmaster.php" title="Création et audit de site web à Valenciennes">Création de sites</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="seo.php" title="Référencement de site web à Valenciennes">SEO</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="to8.php" title="Retrogaming sur le TO8 de Thomson">Retrogaming</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li>
+                </ul>
                 </div>
                 </nav>
 
@@ -66,7 +66,7 @@
 
         <h5>Pourquoi créer votre site ?</h5>
 
-        <p class="text-justify">Nous sommes dans l'ére du tout numérique. Avoir un site web, c'est ouvrir une vitrine virtuelle pour présenter votre activité ou vos produits. Une vitrine consultable à tous les moments de la journée, et quelque soit le support (mobile, ordinateur ou tablette) utilisé par votre visiteur. Si vous êtes à la recherche d'une solution facile pour créer ce site web, et ainsi faire progresser votre entreprise ou votre association en propulsant votre site Web en bonne position dans les résultats des moteurs de recherche, n'hésitez pas à <a href="contacts.php" title="lien pour me contacter">me contacter</a>.</p>
+        <p class="text-justify">Nous sommes dans l'ère du tout numérique. Avoir un site web, c'est ouvrir une vitrine virtuelle pour présenter votre activité ou vos produits. Une vitrine consultable à tous les moments de la journée, et quel que soit le support (mobile, ordinateur ou tablette) utilisé par votre visiteur. Si vous êtes à la recherche d'une solution facile pour créer ce site web, et ainsi faire progresser votre entreprise ou votre association en propulsant votre site Web en bonne position dans les résultats des moteurs de recherche, n'hésitez pas à <a href="contacts.php" title="lien pour me contacter">me contacter</a>.</p>
 
         </div>
 
@@ -74,7 +74,7 @@
 
     <article class="row d-flex justify-content-around">
 
-            <div class="col-auto"> 
+            <div class="col-auto">
                 <ul>
                     <li> Création du site</li>
                     <li> Maintenance et mises à jour SEO</li>
@@ -83,7 +83,7 @@
                 </ul>
             </div>
 
-            <div class="col-auto"> 
+            <div class="col-auto">
                 <ul>
                     <li> Veille technologique</li>
                     <li> Sauvegarde mensuelle</li>
@@ -108,72 +108,72 @@
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/transmediation.jpg" alt="capture d'écran du site de l'entreprisse Trans-Médiation"  
+                <img src="img/captures/thumbs/transmediation.jpg" alt="capture d'écran du site de l'entreprisse Trans-Médiation"
                 class="img-thumbnail" data-toggle="tooltip" title="Site de l'entreprise Trans-Médiation">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/hdp.jpg" alt="capture d'écran d'un site perso sur les soldats de la Première Guerre Mondiale"  
+                <img src="img/captures/thumbs/hdp.jpg" alt="capture d'écran d'un site perso sur les soldats de la Première Guerre Mondiale"
                 class="img-thumbnail" data-toggle="tooltip" title="Site personel sur les soldats de la Grande Guerre">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/boitasite.jpg" alt="capture d'écran du site où vous êtes"  
+                <img src="img/captures/thumbs/boitasite.jpg" alt="capture d'écran du site où vous êtes"
                 class="img-thumbnail" data-toggle="tooltip" title="Le site où vous êtes">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/img1.jpg" alt="capture d'écran d'un site personnel sur la généalogie"  
+                <img src="img/captures/thumbs/img1.jpg" alt="capture d'écran d'un site personnel sur la généalogie"
                 class="img-thumbnail" data-toggle="tooltip" title="Site personnel sur la généalogie">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/img2.jpg" alt="capture d'écran d'un projet de site sur la série de jeu Anno"  
+                <img src="img/captures/thumbs/img2.jpg" alt="capture d'écran d'un projet de site sur la série de jeu Anno"
                 class="img-thumbnail" data-toggle="tooltip" title="Projet de site sur la franchise Anno">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/img4.jpg" alt="capture d'écran du site du CPIE Bocage de l'Avesnois"  
+                <img src="img/captures/thumbs/img4.jpg" alt="capture d'écran du site du CPIE Bocage de l'Avesnois"
                 class="img-thumbnail" data-toggle="tooltip" title="Site du CPIE Bocage de l'Avesnois">
             </div>
-            
+
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/img5.jpg" alt="capture d'écran d'un site sur la Route 66"  
+                <img src="img/captures/thumbs/img5.jpg" alt="capture d'écran d'un site sur la Route 66"
                 class="img-thumbnail" data-toggle="tooltip" title="Site sur la Route 66">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/img6.jpg" alt="capture d'écran de site de la campagne sur les dragons"   
+                <img src="img/captures/thumbs/img6.jpg" alt="capture d'écran de site de la campagne sur les dragons"
                 class="img-thumbnail" data-toggle="tooltip" title='Site de la campagne "Un dragon ? Dans mon jardin !"'>
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/img7.jpg" alt="capture d'écran d'un site sur la série de jeu Half-Life"  
+                <img src="img/captures/thumbs/img7.jpg" alt="capture d'écran d'un site sur la série de jeu Half-Life"
                 class="img-thumbnail" data-toggle="tooltip" title='Site de la campagne "Site sur la franchise Half-Life'>
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/img8.jpg" alt="Capture d'écran d'un projet de site pour l'entreprise valenciennois Infinity Matériel"  
+                <img src="img/captures/thumbs/img8.jpg" alt="Capture d'écran d'un projet de site pour l'entreprise valenciennois Infinity Matériel"
                 class="img-thumbnail" data-toggle="tooltip" title="Projet de site pour l'entreprise Infinity Matériel">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/img9.jpg" alt="capture d'écran du centre de ressources du CPIE"  
+                <img src="img/captures/thumbs/img9.jpg" alt="capture d'écran du centre de ressources du CPIE"
                 class="img-thumbnail" data-toggle="tooltip" title="Site du centre de ressources des CPIE">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/img10.jpg" alt="Capture d'écran d'un blog personnel"  
+                <img src="img/captures/thumbs/img10.jpg" alt="Capture d'écran d'un blog personnel"
                 class="img-thumbnail" data-toggle="tooltip" title="Blog personnel">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/img11.jpg" alt="Capture d'écran d'un blog personnel"  
+                <img src="img/captures/thumbs/img11.jpg" alt="Capture d'écran d'un blog personnel"
                 class="img-thumbnail" data-toggle="tooltip" title="Blog personnel">
             </div>
 
             <div class="col-xs-3 m-3">
-                <img src="img/captures/thumbs/img3.jpg" alt="Capture d'écran du site du CPIE"  
+                <img src="img/captures/thumbs/img3.jpg" alt="Capture d'écran du site du CPIE"
                 class="img-thumbnail" data-toggle="tooltip" title="Site du CPIE - Bocage de l'Avesnois">
             </div>
 
@@ -191,7 +191,7 @@
                     <p class="text-center">Alexis AMAND<br />Développement Web et SEO<br />---
                     <br />06.62.63.79.21<br />alexis.amand@boitasite.com</p>
                 </div>
-        
+
                 <div  class="col-12 col-sm-6 col-md-6">
                     <p class="text-center">Follow Moi:</p>
                     <p class="text-center">
@@ -200,7 +200,7 @@
                         <a href="https://www.linkedin.com/in/alexis-amand-99775817" title="lien pour me suivre sur LinkedIn"><i class="fi-swluxl-linkedin"></i></a>
                     </p>
                 </div>
-            
+
             </div>
 
             <div class="col-12">
@@ -229,6 +229,6 @@
     $(function () {
     $('[data-toggle="tooltip"]').tooltip()
     })
-    </script> 
+    </script>
   </body>
 </html>

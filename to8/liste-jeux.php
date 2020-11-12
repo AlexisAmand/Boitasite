@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Liste de jeux pour ordinateurs Thomson | Retrogaming et (re)découverte du Thomson TO8</title>
+    <title>selection de jeux pour micro-ordinateurs Thomson | Retrogaming et (re)découverte du Thomson TO8</title>
     <meta name="description" content="Pour les fans de retrogaming, une liste de jeux pour les micro-ordinateurs Thomson TO8 datant les années 80">
 
     <!-- Bootstrap CSS -->
@@ -36,14 +36,14 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
-            <ul class="navbar-nav ml-auto"> 
-                <li class="nav-item m-2"><a class="nav-link" href="../webmaster.php">Création de sites</a></li> 
-                <li class="nav-item m-2"><a class="nav-link" href="../seo.php">SEO</a></li> 
-                <li class="nav-item m-2"><a class="nav-link" href="../tutoriels.php">Tutos</a></li> 
-                <li class="nav-item m-2"><a class="nav-link" href="../to8.php">Retrogaming</a></li> 
-                <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
-                <li class="nav-item m-2"><a class="nav-link" href="../contacts.php">Contact</a></li> 
-            </ul> 
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item m-2"><a class="nav-link" href="../webmaster.php" title="Création et audit de site web à Valenciennes">Création de sites</a></li>
+                <li class="nav-item m-2"><a class="nav-link" href="../seo.php" title="Référencement de site web à Valenciennes">SEO</a></li>
+                <li class="nav-item m-2"><a class="nav-link" href="../tutoriels.php">Tutos</a></li>
+                <li class="nav-item m-2"><a class="nav-link" href="../to8.php" title="Retrogaming sur le TO8 de Thomson">Retrogaming</a></li>
+                <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li>
+                <li class="nav-item m-2"><a class="nav-link" href="../contacts.php">Contact</a></li>
+            </ul>
             </div>
             </nav>
 
@@ -56,13 +56,13 @@
     <article class="row d-flex justify-content-center ligne-dotted-top">
 
         <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
-            <h1 class="text-center">#retrogaming : Les <span>jeux</span> du T08</h1>                                     
+            <h1 class="text-center">#retrogaming : Les <span>jeux</span> du T08</h1>
         </div>
 
         <div class="col-12">
 
-            <p class="text-justify">Cette page contient uniquement les jeux que j'ai retestés et redécouverts avec <a href="">l'émulateur MAME</a>. Pour plus d'information sur les jeux de l'époque, je vous invite à consulter ma <a href="../to8.php#listejeux">compilation d'articles</a> paru dans la presse de l'époque.<p>
-                
+            <p class="text-justify">Cette page contient uniquement les jeux que j'ai retestés et redécouverts avec <a href="">l'émulateur MAME</a>. Pour plus d'information sur les jeux de l'époque, je vous invite à consulter ma <a href="../to8.php#listejeux">compilation d'articles</a> parus dans la presse de l'époque.<p class="text-justify">
+
             <h5 class="mt-5">Androïdes</h5>
 
             <p class="text-justify">Rien ne va plus dans les entrepôts depuis qu'ils ont remplacé le vieux chien de garde par des robots très perfectionnés. Votre but, récupérer tous les colis sans qu'ils vous rattrapent. Cela sera très difficile, mais bonne chance quand même. Le jeu, édité par Infogrames, est l'adaptation de Lode Runner, un jeu vidéo alliant plates-formes et réflexion qui a été développé par Douglas E. Smith et publié par Brøderbund en 1983.</p>
@@ -71,20 +71,64 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/androide/androide_01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/androide/androide_01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Androïdes pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <img src="images/thumbs/androide/androide_01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Androïdes pour thomson TO8 réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">Androïdes sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/androide/androide_02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/androide/androide_02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Androïdes pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <img src="images/thumbs/androide/androide_02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Androïdes pour thomson TO8 réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">Androïdes sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/androide/androide_03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/androide/androide_03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Androïdes pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <img src="images/thumbs/androide/androide_03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Androïdes pour thomson TO8 réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">Androïdes sur TO8.<br />(capture réalisée avec MESS)</figcaption>
+                </figure>
+
+            </div>
+
+            <h5 class="mt-5">Aquanaute</h5>
+
+            <p class="text-justify">Aquanaute est une simulation de plongée sous-marine éditée par France Image Logiciel (F.I.L). Le héros que vous incarnez est chargé de partir à la recherche d'un mystérieux trésor englouti dans les abîmes de l'océan. Cette aventure va vous mener au cœur des profondeurs, au milieu des civilisations englouties peuplées par les créatures les plus étranges.</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/aquanaute/aquanaute-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <img src="images/thumbs/aquanaute/aquanaute-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Aquanaute pour thomson TO8 réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">Aquanaute sur TO8.<br />(capture réalisée avec MESS)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/aquanaute/aquanaute-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <img src="images/thumbs/aquanaute/aquanaute-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Aquanaute pour thomson TO8 réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">Aquanaute sur TO8.<br />(capture réalisée avec MESS)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/aquanaute/aquanaute-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <img src="images/thumbs/aquanaute/aquanaute-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Aquanaute pour thomson TO8 réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">Aquanaute sur TO8.<br />(capture réalisée avec MESS)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/aquanaute/aquanaute-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <img src="images/thumbs/aquanaute/aquanaute-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Aquanaute pour thomson TO8 réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">Aquanaute sur TO8.<br />(capture réalisée avec MESS)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/aquanaute/aquanaute-05.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <img src="images/thumbs/aquanaute/aquanaute-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Aquanaute pour thomson TO8 réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">Aquanaute sur TO8.<br />(capture réalisée avec MESS)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/aquanaute/aquanaute-06.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <img src="images/thumbs/aquanaute/aquanaute-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Aquanaute pour thomson TO8 réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">Aquanaute sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
             </div>
@@ -97,19 +141,19 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/arkanoid/arkanoid-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/arkanoid/arkanoid-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 Arkanoïd réalisée avec MESS"></a>
+                    <img src="images/thumbs/arkanoid/arkanoid-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/arkanoid/arkanoid-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/arkanoid/arkanoid-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 Arkanoïd réalisée avec MESS"></a>
+                    <img src="images/thumbs/arkanoid/arkanoid-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/arkanoid/arkanoid-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/arkanoid/arkanoid-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 Arkanoïd réalisée avec MESS"></a>
+                    <img src="images/thumbs/arkanoid/arkanoid-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
@@ -128,33 +172,33 @@
                 </figure>
 
             </div>
-            
+
             <h5 class="mt-5">Bivouac</h5>
-                 
-            <p class="text-justify">Bivouac est le premier jeu que j'ai testé alors que je ne le possédais pas à l'époque. Il a pour theme la course en montagne et a fait l'objet d'un <a href="pdf/js-46-page-79.pdf" title="article sur le jeu Bivouac paru dans Jeux et Stratégie n°56 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987. Je ne sais pas si c'est le fait de le tester avec un émulateur, mais je n'ai absolument pas compris comment il fonctionne... (lol ?) C'est un peu dommage car c'est un sujet qui change complètement de l'ordinaire et des jeux que l'on a l'habitude de rencontrer.</p>
-            
+
+            <p class="text-justify">Bivouac est le premier jeu que j'ai testé alors que je ne le possédais pas à l'époque. Il a pour theme la course en montagne et a fait l'objet d'un <a href="pdf/js-46-page-79.pdf" title="article sur le jeu Bivouac paru dans Jeux et Stratégie n°56 d'aout/septembre 1987">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987. Je ne sais pas si c'est le fait de le tester avec un émulateur, mais je n'ai absolument pas compris comment il fonctionne... (lol ?) C'est un peu dommage, car c'est un sujet qui change complètement de l'ordinaire et des jeux que l'on a l'habitude de rencontrer.</p>
+
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/bivouac/bivouac-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/bivouac/bivouac-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/bivouac/bivouac-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Bivouac sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                	<figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/bivouac/bivouac-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/bivouac/bivouac-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/bivouac/bivouac-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Bivouac sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/bivouac/bivouac-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/bivouac/bivouac-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/bivouac/bivouac-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Bivouac sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
             </div>
-            
+
             <h5 class="mt-5">Cap sur Dakar</h5>
 
             <p class="text-justify">Edité par Coktel Vision, Cap sur Dakar est une simulation réaliste de la célèbre course Paris-Dakar: de la recherche des sponsors, vitale, jusqu'aux épreuves de conduite sur pistes, de plus en plus sportives, vivez toutes les péripéties de ce très grand raid. Ce jeu a fait l'objet d'un <a href="pdf/js-38-page-72.pdf" title="Le jeu Cap sur Dakar dans le magazine Jeux &amp; Stratégie n°38">article</a> dans la revue Jeux et Stratégie n°38 d'avril/mai 1986.</p>
@@ -168,7 +212,7 @@
                 </figure>
 
             </div>
-  
+
             <h5 class="mt-5">Choplifter</h5>
 
             <p class="text-justify">Dans ce jeu signé France Image Logiciel (F.I.L), vous devez sauver, grâce à votre hélicoptère vos compatriotes d'un camp en pays ennemi. Bien sûr, ce camp est bien gardé, avions et chars attaquent. Ce jeu est un des best-sellers américains de l'époque dans sa catégorie.</p>
@@ -177,7 +221,7 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/choplifter/choplifter-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/choplifter/choplifter-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/choplifter/choplifter-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Choplifter sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
@@ -190,26 +234,26 @@
             </div>
 
 			<h5 class="mt-5">Contes de Monte-Crypto (Les)</h5>
-			
+
 			<p class="text-justify">Les Contes de Monte-Crypto est un jeu édité par Infogrames qui proposait le décryptage de textes à travers 20 niveaux à la difficulté croissante, tant au niveau de la syntaxe que du vocabulaire. Il se jouait au clavier ou au crayon optique.</p>
-			
+
 			<div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/monte-crypto/monte-crypto-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/monte-crypto/monte-crypto-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/monte-crypto/monte-crypto-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Monte-Crypto sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/monte-crypto/monte-crypto-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/monte-crypto/monte-crypto-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/monte-crypto/monte-crypto-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Monte-Crypto sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/monte-crypto/monte-crypto-04.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/monte-crypto/monte-crypto-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/monte-crypto/monte-crypto-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Monte-Crypto sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -223,19 +267,19 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/crazy-cars/crazy-cars-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/crazy-cars/crazy-cars-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/crazy-cars/crazy-cars-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Crazy Cars sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/crazy-cars/crazy-cars-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/crazy-cars/crazy-cars-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/crazy-cars/crazy-cars-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Crazy Cars sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/crazy-cars/crazy-cars-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/crazy-cars/crazy-cars-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/crazy-cars/crazy-cars-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Crazy Cars sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -243,25 +287,25 @@
 
             <h5 class="mt-5">Dakar 4x4</h5>
 
-            <p class="text-justify">Dakar 4x4 est un jeu de simulation sportive édité en 1987 par Coktel Vision. Au volant de votre super 4x4, vous voilà au départ de la célèbre course. Les moteurs ronflent sous les capots, les adversaires sont prêts. Enfin c'est le départ! La poussière vole, le paysage désertique défile, et le compte-tour s'affole...</p>
-            
+            <p class="text-justify">Dakar 4x4 est un jeu de simulation sportive édité en 1987 par Coktel Vision. Au volant de votre super 4x4, vous voilà au départ de la célèbre course. Les moteurs ronflent sous les capots, les adversaires sont prêts. Enfin, c'est le départ! La poussière vole, le paysage désertique défile, et le compte-tour s'affole...</p>
+
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/dakar4x4/dakar4x4-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/dakar4x4/dakar4x4-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/dakar4x4/dakar4x4-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Dakar 4x4 sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/dakar4x4/dakar4x4-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/dakar4x4/dakar4x4-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/dakar4x4/dakar4x4-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Dakar 4x4 sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/dakar4x4/dakar4x4-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/dakar4x4/dakar4x4-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/dakar4x4/dakar4x4-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Dakar 4x4 sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -305,12 +349,12 @@
 
             <p class="text-justify">Meurtre ? Vous avez dit meurtre ?</p>
 
-            <p class="text-justify">Une vieille dame vient d'être assassinée dans sa baignoire, vide! La porte était fermée à clef de l'extérieur. Que s'est-il donc passé ? Une vraie bande dessinée animée signé Infogrames. Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-66.pdf" title="article sur le jeu Dossier Boerhaave paru dans la revue Jeux et Stratégie n°43 de février/mars 1987">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
-             
+            <p class="text-justify">Une vieille dame vient d'être assassinée dans sa baignoire, vide ! La porte était fermée à clef de l'extérieur. Que s'est-il donc passé ? Une vraie bande dessinée animée signé Infogrames. Ce jeu a fait l'objet d'un <a href="pdf/js-43-page-66.pdf" title="article sur le jeu Dossier Boerhaave paru dans la revue Jeux et Stratégie n°43 de février/mars 1987">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
+
             <h5 class="mt-5">Entropie</h5>
 
-            <p class="text-justify">Un coup d'oeil au Petit Robert tout d'abord, pour se remémorer la notion d'entropie: "En thermodynamique, se dit d'une fonction définissant l'état de désorde d'un système, croissante lorsque celle-ci évolue vers un autre état de désordre accru." Le message est clair, vous êtes chargé, sous les traits du robot Explorer 3, de rétablir l'équilibre des forces sur une planète en plein chaos. Monté sur coussin d'air, l'androïde arpente des cavernes en trois dimensions en collectant informations et objets sur son passage.</p>
-            
+            <p class="text-justify">Un coup d'oeil au Petit Robert tout d'abord, pour se remémorer la notion d'entropie: "En thermodynamique, se dit d'une fonction définissant l'état de désordre d'un système, croissante lorsque celle-ci évolue vers un autre état de désordre accru." Le message est clair, vous êtes chargé, sous les traits du robot Explorer 3, de rétablir l'équilibre des forces sur une planète en plein chaos. Monté sur coussin d'air, l'androïde arpente des cavernes en trois dimensions en collectant informations et objets sur son passage.</p>
+
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
@@ -333,7 +377,7 @@
 
             </div>
 
-            <p class="text-justify">Comme dans tous les jeux d'aventure et d'action, sa marche est entravée par une multitude de robots et de formes bizarroïdes. Mais le premier obstacle est sans nul doute le contrôle des déplacements. Les directions sont calculées en fonction de la position du robot et non de celle du joueur, ce qui est toujours déroutant au début. Lors des premières parties, Explorer 3 limite son parcours à quelques salles immédiatement accessibles avant de mourir prématurément. Puis, peu à peu, il découvre de nouveaux horizons, fait parler les objets et déméle l'écheveau des forces en présences. L'animations est rapide et déliée et les graphismes sont réussis malgré la quasi-absence de couleurs. La première aventure soi-disant logique est déjà très ardue. Imaginez les scénarios aléatoires que l'on appelle lors du chargement... De beaux sacs de noeuds en perspective, rappelez-vous l'entropie définit un état de désordre croissant...</p>
+            <p class="text-justify">Comme dans tous les jeux d'aventure et d'action, sa marche est entravée par une multitude de robots et de formes bizarroïdes. Mais le premier obstacle est sans nul doute le contrôle des déplacements. Les directions sont calculées en fonction de la position du robot et non de celle du joueur, ce qui est toujours déroutant au début. Lors des premières parties, Explorer 3 limite son parcours à quelques salles immédiatement accessibles avant de mourir prématurément. Puis, peu à peu, il découvre de nouveaux horizons, fait parler les objets et démêle l'écheveau des forces en présence. L'animation est rapide et déliée et les graphismes sont réussis malgré la quasi-absence de couleurs. La première aventure soi-disant logique est déjà très ardue. Imaginez les scénarios aléatoires que l'on appelle lors du chargement... De beaux sacs de noeud en perspective, rappelez-vous l'entropie définit un état de désordre croissant...</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -347,7 +391,7 @@
 
             <h5 class="mt-5">FBI</h5>
 
-            <p class="text-justify">Ce jeu de 1984 voit s'affronter les gangsters et les incorruptibles au temps de la prohibition. Les balles fusent, les tonneaux d'alcool s'enflamment dans ce jeu qui ressemble étrangement à un ancêtre de GTA. Un conseil : surveillez bien vos jauges de munissions et de carburant !</p>
+            <p class="text-justify">Ce jeu de 1984 voit s'affronter les gangsters et les incorruptibles au temps de la prohibition. Les balles fusent, les tonneaux d'alcool s'enflamment dans ce jeu qui ressemble étrangement à un ancêtre de GTA. Un conseil : surveillez bien vos jauges de munitions et de carburant !</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -356,13 +400,13 @@
                     <img src="images/thumbs/fbi/fbi-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/fbi/fbi-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/fbi/fbi-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeuFBI pour thomson TO8  réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/fbi/fbi-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/fbi/fbi-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec MAME"></a>
@@ -374,13 +418,13 @@
                     <img src="images/thumbs/fbi/fbi-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/fbi/fbi-05.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/fbi/fbi-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeuFBI pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/fbi/fbi-06.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/fbi/fbi-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec MAME"></a>
@@ -391,7 +435,7 @@
 
             <h5 class="mt-5">Glouton</h5>
 
-            <p class="text-justify">Rond comme un ballon et tout jaune comme un citron ! Glouton est un ersatz de PacMan proposé par Titus Interactive en 1989 dans lequel vous devez, là aussi, parcourir des labyrinthes à la recherche des pac-gommes en évitant - ou pas - les fantômes.</p> 
+            <p class="text-justify">Rond comme un ballon et tout jaune comme un citron ! Glouton est un ersatz de PacMan proposé par Titus Interactive en 1989 dans lequel vous devez, là aussi, parcourir des labyrinthes à la recherche des pac-gommes en évitant - ou pas - les fantômes.</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -430,12 +474,12 @@
                     <img src="images/thumbs/glouton/glouton-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Glouton sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
             </div>
 
             <h5 class="mt-5">Grand Prix 500cc</h5>
 
-            <p class="text-justify">Cette version perd le son, le graphisme ne progresse pas: douze circuits à choisir mais le décor reste identique en Hollande ou en Afrique du Sud ! Deux motos indépendantes, à la direction déroutante, une résistance au choc et une adhérence exceptionnelles (Tilt n°41 - avril 1987). Ce jeu a fait l'objet d'un <a href="pdf/js-42-page-62.pdf" title="Le jeu Grand Prix dans le magazine Jeux &amp; Stratégie n°42">article</a> dans la revue Jeux et Stratégie n°42 de décembre 1986-Janvier 1987. Ce jeu était édité par Microïds.</p>
+            <p class="text-justify">Cette version perd le son, le graphisme ne progresse pas: douze circuits à choisir, mais le décor reste identique en Hollande ou en Afrique du Sud ! Deux motos indépendantes, à la direction déroutante, une résistance au choc et une adhérence exceptionnelles (Tilt n°41 - avril 1987). Ce jeu a fait l'objet d'un <a href="pdf/js-42-page-62.pdf" title="Le jeu Grand Prix dans le magazine Jeux &amp; Stratégie n°42">article</a> dans la revue Jeux et Stratégie n°42 de décembre 1986-Janvier 1987. Ce jeu était édité par Microïds.</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -449,8 +493,8 @@
 
             <h5 class="mt-5">Green Beret</h5>
 
-            <p class="text-justify">Green Beret, c'est l'histoire d'un para hautement entrainé qui a pour mission d'aller libérer des prisonniers. Les adversaires surgissent de tous les côtés en même et laissent aucun répis au joueur, sachant qu'au début du jeu vous êtes simplement armé d'un couteau. Qui a dit Rambo II ? Comme pour les autres jeux, j'ai rejoué à Green Beret à l'occasion de la réalisation de page. Une chose est certaine, il est toujours aussi difficile. (Peut-être que je suis juste pas trés doué ?)</p>
-            
+            <p class="text-justify">Green Beret, c'est l'histoire d'un para hautement entraîné qui a pour mission d'aller libérer des prisonniers. Les adversaires surgissent de tous les côtés en même et laissent aucun répis au joueur, sachant qu'au début du jeu vous êtes simplement armé d'un couteau. Qui a dit Rambo II ? Comme pour les autres jeux, j'ai rejoué à Green Beret à l'occasion de la réalisation de page. Une chose est certaine, il est toujours aussi difficile. (Peut-être que je suis juste pas trés doué ?)</p>
+
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
@@ -472,11 +516,11 @@
                 </figure>
 
             </div>
-            
+
             <h5 class="mt-5">James Debug</h5>
 
-            <p class="text-justify">Dans ce jeu d'arcade-aventure, édité par Coktel Vision, le joueur guide un petit personnage sur un terrain vu en coupe et tente de rassembler les preuves (pièces graphiques à collecter). Les déplacemements sont assez lents et le jeu ne déclenche pas une folle passion. Il faut cependant faire preuve d'astuce pour progresser régulièrement. On ne peut que déplorer la différence entre le scénario (une grande puissance implante un centre informatique stratégique secret dans une île perdu du Pacifique. Suite à un incident majeur, un déversement massif de programmes buggés envahit les centres serveurs de la planète...) et le contenu réel du jeu.</p>
-            
+            <p class="text-justify">Dans ce jeu d'arcade-aventure, édité par Coktel Vision, le joueur guide un petit personnage sur un terrain vu en coupe et tente de rassembler les preuves (pièces graphiques à collecter). Les déplacements sont assez lents et le jeu ne déclenche pas une folle passion. Il faut cependant faire preuve d'astuce pour progresser régulièrement. On ne peut que déplorer la différence entre le scénario (Une grande puissance implante un centre informatique stratégique secret dans une île perdu du Pacifique. Suite à un incident majeur, un déversement massif de programmes bugués envahit les centres serveurs de la planète...) et le contenu réel du jeu.</p>
+
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
@@ -498,7 +542,7 @@
                 </figure>
 
             </div>
-                        
+
             <p class="text-justify">James Debug a fait l'objet d'un <a href="pdf/js-43-page-73.pdf" title="Le jeu James Debug dans le magazine Jeux &amp; Stratégie n°43">article</a> dans la revue Jeux et Stratégie n°43 de février/mars 1987.</p>
 
             <div class="row d-flex justify-content-center">
@@ -513,7 +557,7 @@
 
             <h5 class="mt-5">Karate</h5>
 
-            <p class="text-justify">Un superbe jeu de karaté édité par Infogrames. Vous pourrez combattre vos adversaires en utilisant tous les coups autorisés par la fédération. Mais attention, les autres peuvent vous disqualifier.</p>
+            <p class="text-justify">Un superbe jeu de karaté édité par Infogrames dans lequel vous pourrez combattre vos adversaires en utilisant tous les coups autorisés par la fédération. Mais attention, les autres peuvent vous disqualifier.</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -567,7 +611,7 @@
 
             <h5 class="mt-5">Las Vegas</h5>
 
-            <p class="text-justify">Une révolution dans le domaine de l'aventure. Plus besoin de converser avec la machine, de rechercher les mots-clefs dans ce logiciel entièrement géré par la manette ou la souris. Vous êtes l'heureux héritier d'une fortune colossale mais votre vieille tante a précisé que pour bénéficier du pactole, vous devier réitérer l'exploit qu'elle accomplit dans les années trente : gagner en une nuit un million de dollars. Une course poursuite à travers la ville, les tripots, les dangers, pour satisfaire les dernières volontés d'une vieille originale. Je me souviens avoir passé des heures à parcourir les couloirs d'un immeuble pour sonner aux portes des appartements tel un colporteur. Je me souviens aussi des heures passées devant la machine à sous ou à demander un strip tease à la barmaid...</p>
+            <p class="text-justify">Une révolution dans le domaine de l'aventure. Plus besoin de converser avec la machine, de rechercher les mots-clefs dans ce logiciel entièrement géré par la manette ou la souris. Vous êtes l'heureux héritier d'une fortune colossale, mais votre vieille tante a précisé que pour bénéficier du pactole, vous devez réitérer l'exploit qu'elle accomplit dans les années trente : gagner en une nuit un million de dollars. Une course-poursuite à travers la ville, les tripots, les dangers, pour satisfaire les dernières volontés d'une vieille originale. Je me souviens avoir passé des heures à parcourir les couloirs d'un immeuble pour sonner aux portes des appartements tel un colporteur. Je me souviens aussi des heures passées devant la machine à sous ou à demander un strip-tease à la barmaid...</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -576,31 +620,31 @@
                     <img src="images/thumbs/lasvegas/lasvegas-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/lasvegas/lasvegas-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/lasvegas/lasvegas-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/lasvegas/lasvegas-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/lasvegas/lasvegas-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/lasvegas/lasvegas-04.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/lasvegas/lasvegas-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/lasvegas/lasvegas-05.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/lasvegas/lasvegas-05.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/lasvegas/lasvegas-06.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/lasvegas/lasvegas-06.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME"></a>
@@ -608,7 +652,7 @@
                 </figure>
 
             </div>
-            
+
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
@@ -622,7 +666,7 @@
             <h5 class="mt-5">Les Dieux de la Glisse - Savoie 92</h5>
 
             <p class="text-justify">Savoie, 1992. Cette année les Jeux Olympiques auront lieu en Savoie. Les français sont fiers, tous leurs supporteurs seront sur place pour les encourager. Aujourd'hui, trois épreuves sont prévues: Le saut à ski, le saut acrobatique et le patinage de vitesse. Chacune de ces épreuves requiert des qualités physiques exceptionnelles. La puissance de l'effort tout autant que le style des mouvements seront sévèrement notés par des juges impartiaux. Les meilleurs seront récompensés.</p>
-                
+
             <h5 class="mt-5">Marche à l'Ombre</h5>
 
             <p class="text-justify">Le jeu <em>Marche à l'Ombre</em> a fait l'objet d'un <a href="pdf/js-46-page-83.pdf" title="Lien vers un article dans la presse à propos du jeu pour TO8 Marche à L'ombre">article</a> dans la revue Jeux et Stratégie n°46 d'aout/septembre 1987.</p>
@@ -659,25 +703,25 @@
 
             <h5 class="mt-5">Prohibition</h5>
 
-            <p class="text-justify">Prohibition est un jeu vidéo de tir à la première personne développé et édité par Infogrames qui vous place dans la peau d'un mercenaire chargé d'éliminer les truands qui sévissent dans les bas fonds d'une ville que vous pouvez imaginer être New-York ou Chicago. Le jeu, inspiré du jeu d'arcade Empire City: 1931, a fait l'objet d'un <a href="pdf/js-45-page-65.pdf" title="Le jeu Prohibition dans le magazine Jeux &amp; Stratégie n°45">article</a> dans la revue Jeux et Stratégie n°45 datée de Juin/Juillet 1987. Comme pour les autres jeux présents sur cette page, j'ai voulu le retester avec l'émulateur MAME, mais la prise en charge du clavier est un peu galère et j'ai juste pu vous sortir les trois captures d'écran ci-dessous.</p>
+            <p class="text-justify">Prohibition est un jeu vidéo de tir à la première personne développé et édité par Infogrames qui vous place dans la peau d'un mercenaire chargé d'éliminer les truands qui sévissent dans les bas-fonds d'une ville que vous pouvez imaginer être New-York ou Chicago. Le jeu, inspiré du jeu d'arcade Empire City: 1931, a fait l'objet d'un article dans la revue Jeux et Stratégie n°45 datée de Juin/Juillet 1987. Comme pour les autres jeux présents sur cette page, j'ai voulu le retester avec l'émulateur MAME, mais la prise en charge du clavier est un peu galère et j'ai juste pu vous sortir les trois captures d'écran ci-dessous.</p>
 
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/prohibition/prohibition-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/prohibition/prohibition-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Prohibition pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/prohibition/prohibition-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Prohibition pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Prohibition sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/prohibition/prohibition-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/prohibition/prohibition-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Prohibition pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/prohibition/prohibition-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Prohibition pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Prohibition sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/prohibition/prohibition-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/prohibition/prohibition-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Prohibition pour thomson TO8 Bivouac réalisée avec MAME"></a>
+                    <img src="images/thumbs/prohibition/prohibition-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Prohibition pour thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Prohibition sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -685,8 +729,8 @@
 
             <h5 class="mt-5">Runway II</h5>
 
-            <p class="text-justify">Runway II est un jeu de course automobile édité par France Image Logiciel (F.I.L). Au volant de votre F1, il s'agissait de parcourir sans encombre le circuit en fonction du nombre de tour et de la difficulté que vous avez choisi, tout en prenant garde à vos adversaires, aux sorties de route et autres carambolages. A noter que la version que j'ai (re)testé posséde un éditeur de circuit (voir 6e capture). Avec Speedway et Dakar 4x4, il fait partie de mon top 3 des jeux de courses automobiles sur TO8.</p>
-            
+            <p class="text-justify">Runway II est un jeu de course automobile édité par France Image Logiciel (F.I.L). Au volant de votre F1, il s'agissait de parcourir sans encombre le circuit en fonction du nombre de tours et de la difficulté que vous avez choisi, tout en prenant garde à vos adversaires, aux sorties de route et autres carambolages. À noter que la version que j'ai (re)testée possède un éditeur de circuit (voir 6e capture). Avec Speedway et Dakar 4x4, il fait partie de mon top 3 des jeux de courses automobiles sur TO8.</p>
+
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
@@ -706,7 +750,7 @@
                     <img src="images/thumbs/runway2/runway2-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/runway2/runway2-04.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/runway2/runway2-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME"></a>
@@ -726,54 +770,54 @@
                 </figure>
 
             </div>
-            
+
             <h5 class="mt-5">San Pablo</h5>
-            
-            <p class="text-justify">San Pablo est le premier de gestion/stratégie auquel j'ai joué. Il vous place dans la peau du chef d'un village mexicain qui répond au nom de San Pablo. Vous devez y gérer les récoltes pour nourrir les habitants en évitant les ravages des nuages de sauterelles, mais aussi penser à engager des mercenaires pour protéger les lieux des bandits qui rodent dans la région. Allez vous embaucher un sorcier pour faire pleuvoir ?</p>
-            
+
+            <p class="text-justify">San Pablo est le premier de gestion/stratégie auquel j'ai joué. Il vous place dans la peau du chef d'un village mexicain qui répond au nom de San Pablo. Vous devez y gérer les récoltes pour nourrir les habitants en évitant les ravages des nuages de sauterelles, mais aussi penser à engager des mercenaires pour protéger les lieux des bandits qui rôdent dans la région. Allez-vous embaucher un sorcier pour faire pleuvoir ?</p>
+
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/san-pablo/san-pablo-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/san-pablo/san-pablo-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <img src="images/thumbs/san-pablo/san-pablo-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/san-pablo/san-pablo-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/san-pablo/san-pablo-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <img src="images/thumbs/san-pablo/san-pablo-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/san-pablo/san-pablo-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/san-pablo/san-pablo-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <img src="images/thumbs/san-pablo/san-pablo-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/san-pablo/san-pablo-04.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/san-pablo/san-pablo-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <img src="images/thumbs/san-pablo/san-pablo-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/san-pablo/san-pablo-05.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/san-pablo/san-pablo-05.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <img src="images/thumbs/san-pablo/san-pablo-05.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/san-pablo/san-pablo-06.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/san-pablo/san-pablo-06.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 Androïdes réalisée avec MESS"></a>
+                    <img src="images/thumbs/san-pablo/san-pablo-06.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 réalisée avec MESS"></a>
                     <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
             </div>
-            
+
             <h5 class="mt-5">Saphir</h5>
-            
-            <p class="text-justify">Vous êtes ruiné, mais un vieux mage vous a indiqué une mine de saphirs désaffectée. Vous n'avez plus rien à perdre et partez l'explorer. Ah ! si vous aviez su ! mais maintenant il est trop tard. Vous êtes pris au piège. Et il faut vous défendre des assauts répétés des monstres qui règnent dans ces galeries. Un jeu d'arcade passionnant d'une part, par la multiplicité des galeries, d'autre part, par son éditeur de tableau très performant qui vous permet de créer vos propres galeries.</p>
+
+            <p class="text-justify">Vous êtes ruiné, mais un vieux mage vous a indiqué une mine de saphirs désaffectée. Vous n'avez plus rien à perdre et partez l'explorer. Ah ! Si vous aviez su ! Mais maintenant il est trop tard. Vous êtes pris au piège. Et il faut vous défendre des assauts répétés des monstres qui règnent dans ces galeries. Un jeu d'arcade passionnant d'une part, par la multiplicité des galeries, d'autre part, par son éditeur de tableau très performant qui vous permet de créer vos propres galeries.</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -796,8 +840,8 @@
                 </figure>
 
             </div>
-            
-            <p class="text-justify">Je vous invite aussi à découvrir cette numérisation du livret fourni à l'époque avec le jeu. Il fait partie des rares reliques de mon TO8 que je posséde encore. J'ai longtemps gardé les boites de jeux orignales mais le manque de place et les années ont fait que je n'ai pas pu les conserver.</p>
+
+            <p class="text-justify">Je vous invite aussi à découvrir cette numérisation du livret fourni à l'époque avec le jeu. Il fait partie des rares reliques de mon TO8 que je possède encore. J'ai longtemps gardé les boites de jeux originales, mais le manque de place et les années ont fait que je n'ai pas pu les conserver.</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -835,8 +879,8 @@
 
             <h5 class="mt-5">Silent Service</h5>
 
-            <p class="text-justify">J'ai passé des centaines d'heures, enfant, à naviguer à travers les mers du globe avec cet ancêtre de Silent Hunter. Je me souviens de mon cousin, de 3 ans mon ainé, qui m'a souvent répété que je n'arriverai jamais à couler un bateau. 30 ans plus tard, je peux vous l'avouer : En effet, je n'ai jamais coulé un seul bateau. Dans sa version pour Thomson, Le jeu Silent Service, distribué par FIL, est très différent de la version pour Atari ST, surtout au niveau des graphismes et du son qui auraient, selon la presse de l'époque, rien à voir et seraient de qualité bien inférieure.</p>
-            
+            <p class="text-justify">J'ai passé des centaines d'heures, enfant, à naviguer à travers les mers du globe avec cet ancêtre de Silent Hunter. Je me souviens de mon cousin, de 3 ans mon ainé, qui m'a souvent répété que je n'arriverai jamais à couler un bateau. 30 ans plus tard, je peux vous l'avouer : En effet, je n'ai jamais coulé un seul bateau. Dans sa version pour Thomson, le jeu Silent Service, distribué par FIL, est très différent de la version pour Atari ST, surtout au niveau des graphismes et du son qui auraient, selon la presse de l'époque, rien à voir et seraient de qualité bien inférieure.</p>
+
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
@@ -879,7 +923,7 @@
 
             <h5 class="mt-5">Slap Fight</h5>
 
-            <p class="text-justify">Slap Fight est ce que nous appelons aujourd'hui un shoot them up. C'est également un jeu sur lequel je me souviens avoir passé des dizaines et des dizaines d'heure, mais je ne me souviens pas où je suis arrivé dans les niveaux. Selon sa page Wikipedia, l'histoire se déroule en l'année 2059, dans une autre galaxie où l'humanité a colonisé une planète extraterrestre qui répond au nom de Theon. Comme Orac 5 ans avant, Théon est un jour attaquée par une flotte alien.Cette fois les humains sont prêts. Votre mission si vous l'acceptez, prendre le contrôle d'un avion de combat "SW475 star fighter" au sein de "l'Allied League of Cosmic Nations (ALCON)" pour arrêter les envahisseurs.</p>
+            <p class="text-justify">Slap Fight est ce que nous appelons aujourd'hui un shoot them up. C'est également un jeu sur lequel je me souviens avoir passé des dizaines et des dizaines d'heure, mais je ne me souviens pas où je suis arrivé dans les niveaux. Selon sa page Wikipédia, l'histoire se déroule en l'année 2059, dans une autre galaxie où l'humanité a colonisé une planète extraterrestre qui répond au nom de Theon. Comme Orac 5 ans avant, Théon est un jour attaquée par une flotte alien.Cette fois, les humains sont prêts. Votre mission si vous l'acceptez, prendre le contrôle d'un avion de combat "SW475 star fighter" au sein de "l'Allied League of Cosmic Nations (ALCON)" pour arrêter les envahisseurs.</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -902,7 +946,7 @@
                 </figure>
 
             </div>
-            
+
            <h5 class="mt-5">Sortilèges</h5>
 
             <div class="row d-flex justify-content-center">
@@ -940,11 +984,11 @@
                 </figure>
 
             </div>
-            
+
             <h5 class="mt-5">Stone Zone</h5>
-            
+
             <p class="text-justify">L'action de Stone Zone se déroule dans les mines de diamant du mont Karaz. Dans ce jeu, qui n'est pas sans rapeller <em>Boulder Dash</em>, il y a des boules qui tombent, des galeries qu'il faut creuser et des monstres auquel il faut échapper dans 50 niveaux aux allures de labyrinthes.</p>
-                
+
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
@@ -958,7 +1002,7 @@
                     <img src="images/thumbs/stone-zone/stone-zone-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Stone Zone pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Stone Zone sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
-                
+
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/stone-zone/stone-zone-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/stone-zone/stone-zone-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Stone Zone pour ordinateur TO8 réalisée avec MAME"></a>
@@ -967,9 +1011,35 @@
 
             </div>
 
+            <h5 class="mt-5">Super Tennis</h5>
+
+            <p class="text-justify">Super Tennis est un jeu... de Tennis proposé en 1986 par France Image Logiciel et D&L Research. La version que j'ai testée en octobre 2020 ne m'a pas permis de jouer, elle semblait bloquée sur une fonction de démonstration. Toutefois, si je fais appel à mes souvenirs de la fin des années 80, il me semble qu'on pouvait y entendre les bruits de rebond de la balle sur le sol ainsi que la voix de l'arbitre qui indiquait le nombre de jeux ou le numéro du joueur qui devait servir.</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/super-tennis/super-tennis_01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <img src="images/thumbs/super-tennis/super-tennis_01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Super Tennis pour thomson TO8 réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">Super Tennis sur TO8.<br />(capture réalisée avec MESS)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/super-tennis/super-tennis_02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <img src="images/thumbs/super-tennis/super-tennis_02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Super Tennis pour thomson TO8 réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">Super Tennis sur TO8.<br />(capture réalisée avec MESS)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/super-tennis/super-tennis_03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <img src="images/thumbs/super-tennis/super-tennis_03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Super Tennis pour thomson TO8 réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">Super Tennis sur TO8.<br />(capture réalisée avec MESS)</figcaption>
+                </figure>
+
+            </div>
+
             <h5 class="mt-5">Vol Solo</h5>
 
-            <p>Possible ancêtre des Flight Simulator, Vol Solo est un simulateur d'avion réalisé en 1986 par Joel SANA d'après Solo Flight (de Microprose) et dont l'auteur n'est rien d'autre que Sid Meier, le papa de Civilization. A l'époque j'avais une manette, ça rendait le jeu un poil plus fun qu'avec le clavier de mon pc.</p>
+            <p class="text-justify">Possible ancêtre des Flight Simulator, Vol Solo est un simulateur d'avion réalisé en 1986 par Joel SANA d'après Solo Flight (de Microprose) et dont l'auteur n'est rien d'autre que Sid Meier, le papa de Civilization. A l'époque j'avais une manette, ça rendait le jeu un poil plus fun qu'avec le clavier de mon pc.</p>
 
             <div class="row d-flex justify-content-center">
 
@@ -1011,6 +1081,48 @@
 
             </div>
 
+            <h5 class="mt-5">YRprod Tetris</h5>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/tetris-yr/tetris-yr-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/tetris-yr/tetris-yr-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu YRprod Tetris pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">YRprod Tetris sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/tetris-yr/tetris-yr-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/tetris-yr/tetris-yr-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu YRprod Tetris pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">YRprod Tetris sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/tetris-yr/tetris-yr-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/tetris-yr/tetris-yr-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu YRprod Tetris pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">YRprod Tetris sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/tetris-yr/tetris-yr-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/tetris-yr/tetris-yr-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu YRprod Tetris pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">YRprod Tetris sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/tetris-yr/tetris-yr-05.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/tetris-yr/tetris-yr-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu YRprod Tetris pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">YRprod Tetris sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/tetris-yr/tetris-yr-06.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/tetris-yr/tetris-yr-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu YRprod Tetris pour thomson TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">YRprod Tetris sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+            </div>
+
         </div>
 
     </article>
@@ -1027,7 +1139,7 @@
                 <p class="text-center">Alexis AMAND<br />Développement Web et SEO<br />---
                 <br />06.62.63.79.21<br />alexis.amand@boitasite.com</p>
             </div>
-    
+
             <div  class="col-12 col-sm-6 col-md-6">
                 <p class="text-center">Follow Moi:</p>
                 <p class="text-center">
@@ -1036,7 +1148,7 @@
                     <a href="https://www.linkedin.com/in/alexis-amand-99775817" title="lien pour me suivre sur LinkedIn"><i class="fi-swluxl-linkedin"></i></a>
                 </p>
             </div>
-        
+
         </div>
 
         <div class="col-12">
@@ -1065,6 +1177,6 @@
 $(function () {
 $('[data-toggle="tooltip"]').tooltip()
 })
-</script> 
+</script>
 </body>
 </html>

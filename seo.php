@@ -10,7 +10,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    
+
     <!-- CSS perso -->
     <link rel="stylesheet" href="css/style.min.css">
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
@@ -32,14 +32,14 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
-                <ul class="navbar-nav ml-auto"> 
-                    <li class="nav-item m-2"><a class="nav-link" href="webmaster.php">Création de sites</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="seo.php">SEO</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">Retrogaming</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li> 
-                </ul> 
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item m-2"><a class="nav-link" href="webmaster.php" title="Création et audit de site web à Valenciennes">Création de sites</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="seo.php" title="Référencement de site web à Valenciennes">SEO</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="to8.php" title="Retrogaming sur le TO8 de Thomson">Retrogaming</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li>
+                    <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li>
+                </ul>
                 </div>
                 </nav>
 
@@ -56,14 +56,14 @@
         </div>
 
         <div class="col-12 col-md-6 align-self-center">
-        
+
         <h5>C'est que le SEO ?</h5>
 
-        <p class="text-justify">SEO est un acronyme qui signifie "Search Engine Optimisation". Pour résumer, il s'agit de toutes les techniques qui permettent d'optimiser la visibilité des pages de otre site et leur position dans les résultats de recherche des moteurs (SERP), c'est ce qu'on appelle le <strong>référencement naturel</strong>. L'idée, c'est d'aider les robots qui parcourent votre site dans le but de l'indexer à comprendre sa thématique et le contenu des pages.</p>
+        <p class="text-justify">SEO est un acronyme qui signifie "Search Engine Optimisation". Pour résumer, il s'agit de toutes les techniques qui permettent d'optimiser la visibilité des pages de votre site et leur position dans les résultats de recherche des moteurs (SERP), c'est ce qu'on appelle le <strong>référencement naturel</strong>. L'idée, c'est d'aider les robots qui parcourent votre site dans le but de l'indexer à comprendre sa thématique et le contenu des pages.</p>
 
         <h5 class="mt-5">En quoi êtes-vous concerné ?</h5>
 
-        <p class="text-justify">L'idée générale est de se demander quelles sont les bonnes pratiques pour être visible sur les moteurs de recherche et être en top des pages de résultats. Le SEO est un élément clé de votre stratégie commerciale car chaque clic est un client potentiel. <a href="contacts.php" title="lien pour me contacter">contactez moi</a>, et nous verrons ce que nous pouvons faire ensemble.</p>
+        <p class="text-justify">L'idée générale est de se demander quelles sont les bonnes pratiques pour être visible sur les moteurs de recherche et être en top des pages de résultats. Le SEO est un élément clé de votre stratégie commerciale car chaque clic est un client potentiel. <a href="contacts.php" title="lien pour me contacter">contactez-moi</a>, et nous verrons ce que nous pouvons faire ensemble.</p>
 
         </div>
 
@@ -85,7 +85,7 @@
                     <p class="text-center">Alexis AMAND<br />Développement Web et SEO<br />---
                     <br />06.62.63.79.21<br />alexis.amand@boitasite.com</p>
                 </div>
-        
+
                 <div  class="col-12 col-sm-6 col-md-6">
                     <p class="text-center">Follow Moi:</p>
                     <p class="text-center">
@@ -94,7 +94,7 @@
                         <a href="https://www.linkedin.com/in/alexis-amand-99775817" title="lien pour me suivre sur LinkedIn"><i class="fi-swluxl-linkedin"></i></a>
                     </p>
                 </div>
-            
+
             </div>
 
             <div class="col-12">
@@ -120,6 +120,6 @@
     $(function () {
     $('[data-toggle="tooltip"]').tooltip()
     })
-    </script> 
+    </script>
   </body>
 </html>

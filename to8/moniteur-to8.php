@@ -37,8 +37,8 @@
             </button>
             <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
             <ul class="navbar-nav ml-auto"> 
-                <li class="nav-item m-2"><a class="nav-link" href="../webmaster.php">Création de sites</a></li> 
-                <li class="nav-item m-2"><a class="nav-link" href="../seo.php">SEO</a></li> 
+                <li class="nav-item m-2"><a class="nav-link" href="../webmaster.php" title="Création et audit de site web à Valenciennes">Création de sites</a></li> 
+                <li class="nav-item m-2"><a class="nav-link" href="../seo.php" title="Référencement de site web à Valenciennes">SEO</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../tutoriels.php">Tutos</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../to8.php">Retrogaming</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
