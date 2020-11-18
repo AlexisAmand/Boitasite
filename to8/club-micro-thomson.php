@@ -133,7 +133,7 @@
 
     <div class="col-12">
 
-        <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="../mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="../cv/index.php" title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
+        <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="../mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="http://cv.genealexis.fr/ title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
         </p>
 
     </div>
