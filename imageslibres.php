@@ -55,7 +55,7 @@
         <article class="row d-flex justify-content-center ligne-dotted-top">
 
             <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
-                <h1 class="text-center">#web : Les banques d'<span>images</span> libres</h1>
+                <h1 class="text-center">#web : Les banques d'<span>images</span> gratuites</h1>
             </div>
 
             <div class="col-12">
@@ -72,12 +72,12 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/creativecommons-2020-01.jpg" data-fancybox data-caption="La banque d'images Creative Commons">
-                    <img src="img/tutos/creativecommons-2020-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Creative Commons"></a>
+                    <img src="img/tutos/thumbs/creativecommons-2020-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Creative Commons"></a>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/creativecommons-2020-02.jpg" data-fancybox data-caption="La banque d'images Creative Commons">
-                    <img src="img/tutos/creativecommons-2020-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Creative Commons"></a>
+                    <img src="img/tutos/thumbs/creativecommons-2020-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Creative Commons"></a>
                 </figure>
 
             </div>
@@ -92,12 +92,12 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/freeimages-01.jpg" data-fancybox data-caption="La banque d'images Freeimages">
-                    <img src="img/tutos/freeimages-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Freeimages"></a>
+                    <img src="img/tutos/thumbs/freeimages-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Freeimages"></a>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/freeimages-02.jpg" data-fancybox data-caption="La banque d'images Freeimages">
-                    <img src="img/tutos/freeimages-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Freeimages"></a>
+                    <img src="img/tutos/thumbs/freeimages-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Freeimages"></a>
                 </figure>
 
             </div>
@@ -112,12 +112,12 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/freepick-2020-01.jpg" data-fancybox data-caption="La banque d'images Freepick">
-                    <img src="img/tutos/freepick-2020-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Freepick"></a>
+                    <img src="img/tutos/thumbs/freepick-2020-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Freepick"></a>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/freepick-2020-02.jpg" data-fancybox data-caption="La banque d'images Freepick">
-                    <img src="img/tutos/freepick-2020-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Freepick"></a>
+                    <img src="img/tutos/thumbs/freepick-2020-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Freepick"></a>
                 </figure>
 
             </div>
@@ -132,12 +132,12 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/pexels-01.jpg" data-fancybox data-caption="La banque d'images Pexels">
-                    <img src="img/tutos/pexels-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Pexels"></a>
+                    <img src="img/tutos/thumbs/pexels-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Pexels"></a>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/pexels-02.jpg" data-fancybox data-caption="La banque d'images Pexels">
-                    <img src="img/tutos/pexels-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Pexels"></a>
+                    <img src="img/tutos/thumbs/pexels-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Pexels"></a>
                 </figure>
 
             </div>
@@ -152,12 +152,12 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/picjumbo-01.jpg" data-fancybox data-caption="La banque d'images Picjumbo">
-                    <img src="img/tutos/picjumbo-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Picjumbo"></a>
+                    <img src="img/tutos/thumbs/picjumbo-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Picjumbo"></a>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/picjumbo-02.jpg" data-fancybox data-caption="La banque d'images Picjumbo">
-                    <img src="img/tutos/picjumbo-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Picjumbo"></a>
+                    <img src="img/tutos/thumbs/picjumbo-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Picjumbo"></a>
                 </figure>
 
             </div>
@@ -172,12 +172,12 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/pixabay-2020-01.jpg" data-fancybox data-caption="La banque d'images Pixabay">
-                    <img src="img/tutos/pixabay-2020-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Pixabay"></a>
+                    <img src="img/tutos/thumbs/pixabay-2020-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Pixabay"></a>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/pixabay-2020-02.jpg" data-fancybox data-caption="La banque d'images Pixabay">
-                    <img src="img/tutos/pixabay-2020-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Pixabay"></a>
+                    <img src="img/tutos/thumbs/pixabay-2020-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Pixabay"></a>
                 </figure>
 
             </div>
@@ -192,12 +192,12 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/unsplash-2020-01.jpg" data-fancybox data-caption="La banque d'images Unsplash">
-                    <img src="img/tutos/unsplash-2020-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Unsplash"></a>
+                    <img src="img/tutos/thumbs/unsplash-2020-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Unsplash"></a>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="img/tutos/unsplash-2020-02.jpg" data-fancybox data-caption="La banque d'images Unsplash">
-                    <img src="img/tutos/unsplash-2020-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Unsplash"></a>
+                    <img src="img/tutos/thumbs/unsplash-2020-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de la banque d'images gratuites Unsplash"></a>
                 </figure>
 
             </div>
