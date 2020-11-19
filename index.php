@@ -16,7 +16,44 @@
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here&display=swap" rel="stylesheet">
     <meta name="google-site-verification" content="CT6-MJGUD82ligpXoIBjdglp4CyBIFXPum0LuBbcsD4" />
 
-    <?php include('include/matomo.inc'); ?>
+    <script type="text/javascript" src="tarteaucitron/tarteaucitron.js"></script>
+
+    <script type="text/javascript">
+    tarteaucitron.init({
+    "privacyUrl": "", /* Privacy policy url */
+
+    "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
+    "cookieName": "tarteaucitron", /* Cookie name */
+
+    "orientation": "middle", /* Banner position (top - bottom) */
+                    
+    "showAlertSmall": false, /* Show the small banner on bottom right */
+    "cookieslist": false, /* Show the cookie list */
+                    
+    "showIcon": true, /* Show cookie icon to manage cookies */
+    "iconPosition": "BottomRight", /* BottomRight, BottomLeft, TopRight and TopLeft */
+
+    "adblocker": false, /* Show a Warning if an adblocker is detected */
+                    
+    "DenyAllCta" : true, /* Show the deny all button */
+    "AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
+    "highPrivacy": true, /* HIGHLY RECOMMANDED Disable auto consent */
+                    
+    "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
+
+    "removeCredit": false, /* Remove credit link */
+    "moreInfoLink": true, /* Show more info link */
+
+    "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
+    "useExternalJs": false, /* If false, the tarteaucitron.js file will be loaded */
+
+    //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
+                    
+    "readmoreLink": "", /* Change the default readmore link */
+
+    "mandatory": true, /* Show a message about mandatory cookies */
+    });
+    </script>
 
 </head>
 
@@ -152,7 +189,7 @@
 
             <div class="col-12">
 
-                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="http://cv.genealexis.fr/ title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
+                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="http://cv.genealexis.fr/" title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
                 </p>
 
             </div>
@@ -173,6 +210,8 @@
     $('[data-toggle="tooltip"]').tooltip()
     })
     </script> 
+
+    <?php include('include/matomo.inc'); ?>
 
   </body>
 </html>

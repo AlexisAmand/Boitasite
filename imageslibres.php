@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Les meilleures banques d'images libres de droit - développement web et SEO à Valenciennes</title>
-    <meta name="description" content="selection de 10 banques d’images libres de droits et/ou gratuites sélectionnées par mes soins pour illustrer vos supports personnels et professionnels : rapports de stage, sites web, blogs, brochures, invitations">
+    <title>Les meilleures banques d'images libres de droit et/ou gratuites - développement web et SEO à Valenciennes</title>
+    <meta name="description" content="selection de banques d’images libres de droits et/ou gratuites sélectionnées par mes soins pour illustrer vos supports personnels et professionnels : rapports de stage, sites web, blogs, brochures, invitations">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -234,7 +234,7 @@
 
             <div class="col-12">
 
-                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="http://cv.genealexis.fr/ title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
+                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="http://cv.genealexis.fr/" title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
                 </p>
 
             </div>
