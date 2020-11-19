@@ -141,19 +141,19 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/arkanoid/arkanoid-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/arkanoid/arkanoid-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 réalisée avec MESS"></a>
+                    <img src="images/thumbs/arkanoid/arkanoid-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 réalisée avec l'émulateur MESS"></a>
                     <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/arkanoid/arkanoid-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/arkanoid/arkanoid-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 réalisée avec MESS"></a>
+                    <img src="images/thumbs/arkanoid/arkanoid-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 réalisée avec  l'émulateur MESS"></a>
                     <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/arkanoid/arkanoid-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/arkanoid/arkanoid-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 réalisée avec MESS"></a>
+                    <img src="images/thumbs/arkanoid/arkanoid-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Arkanoïd pour thomson TO8 réalisée avec  l'émulateur MESS"></a>
                     <figcaption class="figure-caption text-center">Arkanoïd sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
@@ -180,20 +180,20 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/bivouac/bivouac-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/bivouac/bivouac-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/bivouac/bivouac-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/bivouac/bivouac-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 réalisée avec  l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Bivouac sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                	<figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/bivouac/bivouac-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/bivouac/bivouac-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/bivouac/bivouac-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/bivouac/bivouac-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 réalisée avec  l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Bivouac sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/bivouac/bivouac-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/bivouac/bivouac-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/bivouac/bivouac-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/bivouac/bivouac-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Bivouac pour thomson TO8 réalisée avec  l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Bivouac sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -221,13 +221,13 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/choplifter/choplifter-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/choplifter/choplifter-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/choplifter/choplifter-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Choplifter sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/choplifter/choplifter-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/choplifter/choplifter-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Choplifter pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/choplifter/choplifter-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Choplifter pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Choplifter sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
@@ -240,20 +240,20 @@
 			<div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/monte-crypto/monte-crypto-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/monte-crypto/monte-crypto-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/monte-crypto/monte-crypto-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/monte-crypto/monte-crypto-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 réalisée l'émulateur avec MAME"></a>
                     <figcaption class="figure-caption text-center">Monte-Crypto sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/monte-crypto/monte-crypto-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/monte-crypto/monte-crypto-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/monte-crypto/monte-crypto-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/monte-crypto/monte-crypto-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 réalisée l'émulateur avec MAME"></a>
                     <figcaption class="figure-caption text-center">Monte-Crypto sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/monte-crypto/monte-crypto-04.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/monte-crypto/monte-crypto-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/monte-crypto/monte-crypto-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/monte-crypto/monte-crypto-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Monte-Crypto pour thomson TO8 réalisée l'émulateur avec MAME"></a>
                     <figcaption class="figure-caption text-center">Monte-Crypto sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -266,20 +266,20 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/crazy-cars/crazy-cars-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/crazy-cars/crazy-cars-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/crazy-cars/crazy-cars-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/crazy-cars/crazy-cars-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Crazy Cars sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/crazy-cars/crazy-cars-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/crazy-cars/crazy-cars-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/crazy-cars/crazy-cars-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/crazy-cars/crazy-cars-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Crazy Cars sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/crazy-cars/crazy-cars-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/crazy-cars/crazy-cars-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/crazy-cars/crazy-cars-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/crazy-cars/crazy-cars-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Crazy Cars pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Crazy Cars sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -292,20 +292,20 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/dakar4x4/dakar4x4-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/dakar4x4/dakar4x4-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/dakar4x4/dakar4x4-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/dakar4x4/dakar4x4-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Dakar 4x4 sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/dakar4x4/dakar4x4-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/dakar4x4/dakar4x4-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/dakar4x4/dakar4x4-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/dakar4x4/dakar4x4-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 réalisée l'émulateur avec MAME"></a>
                     <figcaption class="figure-caption text-center">Dakar 4x4 sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/dakar4x4/dakar4x4-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/dakar4x4/dakar4x4-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/dakar4x4/dakar4x4-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/dakar4x4/dakar4x4-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Dakar 4x4 pour thomson TO8 réalisée l'émulateur avec MAME"></a>
                     <figcaption class="figure-caption text-center">Dakar 4x4 sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -327,19 +327,19 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/dom-camillo/dom-camillo-01.jpg" data-fancybox data-caption="Capture d'écran du jeu Dom Camillo sur TO8">
-                    <img src="images/thumbs/dom-camillo/dom-camillo-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Dom Camillo pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/dom-camillo/dom-camillo-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Dom Camillo pour ordinateur Thomson TO8 réalisée l'émulateur avec MAME"></a>
                     <figcaption class="figure-caption text-center">Don Camillo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href=" images/dom-camillo/dom-camillo-02.jpg" data-fancybox data-caption="Capture d'écran du jeu Dom Camillo sur TO8">
-                    <img src="images/thumbs/dom-camillo/dom-camillo-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Dom Camillo pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/dom-camillo/dom-camillo-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Dom Camillo pour ordinateur Thomson TO8 réalisée l'émulateur avec MAME"></a>
                     <figcaption class="figure-caption text-center">Don Camillo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href=" images/dom-camillo/dom-camillo-03.jpg" data-fancybox data-caption="Capture d'écran du jeu Dom Camillo sur TO8">
-                    <img src="images/thumbs/dom-camillo/dom-camillo-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Dom Camillo pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/dom-camillo/dom-camillo-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Dom Camillo pour ordinateur Thomson TO8 réalisée l'émulateur avec MAME"></a>
                     <figcaption class="figure-caption text-center">Don Camillo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -359,19 +359,19 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/entropie/entropie-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/entropie/entropie-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/entropie/entropie-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée l'émulateur avec MAME"></a>
                     <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/entropie/entropie-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/entropie/entropie-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/entropie/entropie-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée l'émulateur avec MAME"></a>
                     <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/entropie/entropie-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/entropie/entropie-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/entropie/entropie-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Entropie pour ordinateur Thomson TO8 réalisée l'émulateur avec MAME"></a>
                     <figcaption class="figure-caption text-center">Entropie sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
@@ -397,37 +397,37 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/fbi/fbi-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/fbi/fbi-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/fbi/fbi-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/fbi/fbi-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/fbi/fbi-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeuFBI pour thomson TO8  réalisée avec MAME"></a>
+                    <img src="images/thumbs/fbi/fbi-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8  réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/fbi/fbi-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/fbi/fbi-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/fbi/fbi-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/fbi/fbi-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/fbi/fbi-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/fbi/fbi-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée l'émulateur l'émulateur avec MAME"></a>
                     <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/fbi/fbi-05.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/fbi/fbi-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeuFBI pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/fbi/fbi-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeuFBI pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/fbi/fbi-06.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/fbi/fbi-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/fbi/fbi-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu FBI pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">FBI sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -441,31 +441,31 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/glouton/glouton-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/glouton/glouton-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/glouton/glouton-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Glouton sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/glouton/glouton-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/glouton/glouton-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/glouton/glouton-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Glouton sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/glouton/glouton-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/glouton/glouton-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/glouton/glouton-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Glouton sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/glouton/glouton-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/glouton/glouton-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/glouton/glouton-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Glouton sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/glouton/glouton-05.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/glouton/glouton-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/glouton/glouton-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Glouton pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Glouton sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -498,20 +498,20 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/green-beret/green-beret-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/green-beret/green-beret-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Green Beret pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/green-beret/green-beret-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/green-beret/green-beret-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Green Beret pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Green Beret sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/green-beret/green-beret-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/green-beret/green-beret-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Green Beret pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/green-beret/green-beret-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/green-beret/green-beret-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Green Beret pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Green Beret sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/green-beret/green-beret-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/green-beret/green-beret-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Green Beret pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/green-beret/green-beret-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/green-beret/green-beret-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Green Beret pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Green Beret sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -525,19 +525,19 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="https://via.placeholder.com/450" data-fancybox data-caption=" ">
-                    <img src=" https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu James Debug pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <img src=" https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu James Debug pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">James Debug sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href=" https://via.placeholder.com/450" data-fancybox data-caption=" ">
-                    <img src=" https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu James Debug pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <img src=" https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu James Debug pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">James Debug sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href=" https://via.placeholder.com/450" data-fancybox data-caption=" ">
-                    <img src="https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu James Debug pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <img src="https://via.placeholder.com/255x193" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu James Debug pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">James Debug sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -591,19 +591,19 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/templiers/templiers-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/templiers/templiers-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/templiers/templiers-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">La Nuit des Templiers sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/templiers/templiers-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/templiers/templiers-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/templiers/templiers-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">La Nuit des Templiers sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/templiers/templiers-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
-                    <img src="images/thumbs/templiers/templiers-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/templiers/templiers-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu La nuit des templiers pour thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">La Nuit des Templiers sur TO8.<br />(capture réalisée avec MESS)</figcaption>
                 </figure>
 
@@ -616,38 +616,38 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/lasvegas/lasvegas-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/lasvegas/lasvegas-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME"></a>
+                    <a href="images/lasvegas/lasvegas-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/lasvegas/lasvegas-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/lasvegas/lasvegas-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/lasvegas/lasvegas-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME"></a>
+                    <a href="images/lasvegas/lasvegas-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/lasvegas/lasvegas-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/lasvegas/lasvegas-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/lasvegas/lasvegas-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME"></a>
+                    <a href="images/lasvegas/lasvegas-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/lasvegas/lasvegas-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/lasvegas/lasvegas-04.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/lasvegas/lasvegas-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME"></a>
+                    <a href="images/lasvegas/lasvegas-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/lasvegas/lasvegas-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/lasvegas/lasvegas-05.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/lasvegas/lasvegas-05.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME"></a>
+                    <a href="images/lasvegas/lasvegas-05.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/lasvegas/lasvegas-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/lasvegas/lasvegas-06.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/lasvegas/lasvegas-06.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec MAME"></a>
+                    <a href="images/lasvegas/lasvegas-06.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/lasvegas/lasvegas-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Las Vegas pour ordinateur TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Las Vegas sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -683,19 +683,19 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/monopoly/monopoly-01.jpg" data-fancybox data-caption="Le jeu Monopoly sur Thomson TO8">
-                    <img src="images/thumbs/monopoly/monopoly-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de l'adaptation sur ordinateur TO8 du jeu Thomson"></a>
+                    <img src="images/thumbs/monopoly/monopoly-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de l'adaptation sur ordinateur TO8 du jeu Thomson réalisée avec l'émulateur MAME "></a>
                     <figcaption class="figure-caption text-center">Monopoly sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/monopoly/monopoly-02.jpg" data-fancybox data-caption="Le jeu Monopoly sur Thomson TO8">
-                    <img src="images/thumbs/monopoly/monopoly-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de l'adaptation sur ordinateur TO8 du jeu Thomson"></a>
+                    <img src="images/thumbs/monopoly/monopoly-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de l'adaptation sur ordinateur TO8 du jeu Thomson réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Monopoly sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/monopoly/monopoly-03.jpg" data-fancybox data-caption="Le jeu Monopoly sur Thomson TO8">
-                    <img src="images/thumbs/monopoly/monopoly-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de l'adaptation sur ordinateur TO8 du jeu Thomson"></a>
+                    <img src="images/thumbs/monopoly/monopoly-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran de l'adaptation sur ordinateur TO8 du jeu Thomson réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Monopoly sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -708,20 +708,20 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/prohibition/prohibition-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/prohibition/prohibition-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Prohibition pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/prohibition/prohibition-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/prohibition/prohibition-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Prohibition pour Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Prohibition sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/prohibition/prohibition-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/prohibition/prohibition-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Prohibition pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/prohibition/prohibition-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/prohibition/prohibition-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Prohibition pour Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Prohibition sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/prohibition/prohibition-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/prohibition/prohibition-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Prohibition pour thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/prohibition/prohibition-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/prohibition/prohibition-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Prohibition pour Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Prohibition sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -734,38 +734,38 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/runway2/runway2-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/runway2/runway2-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/runway2/runway2-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/runway2/runway2-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/runway2/runway2-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/runway2/runway2-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/runway2/runway2-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/runway2/runway2-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/runway2/runway2-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/runway2/runway2-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/runway2/runway2-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/runway2/runway2-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/runway2/runway2-04.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/runway2/runway2-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/runway2/runway2-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/runway2/runway2-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/runway2/runway2-05.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/runway2/runway2-05.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/runway2/runway2-05.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/runway2/runway2-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Runway II sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/runway2/runway2-06.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/runway2/runway2-06.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec MAME"></a>
+                    <a href="images/runway2/runway2-06.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/runway2/runway2-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Runway II pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">L'éditeur de circuit de Runway II.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -778,38 +778,38 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/san-pablo/san-pablo-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/san-pablo/san-pablo-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 réalisée avec MESS"></a>
+                    <a href="images/san-pablo/san-pablo-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/san-pablo/san-pablo-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour ordinateur Thomson TO8 réalisée avec l'émulateur MESS"></a>
                     <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/san-pablo/san-pablo-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/san-pablo/san-pablo-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 réalisée avec MESS"></a>
+                    <a href="images/san-pablo/san-pablo-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/san-pablo/san-pablo-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour ordinateur Thomson TO8 réalisée avec l'émulateur MESS"></a>
                     <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/san-pablo/san-pablo-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/san-pablo/san-pablo-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 réalisée avec MESS"></a>
+                    <a href="images/san-pablo/san-pablo-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/san-pablo/san-pablo-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour ordinateur Thomson TO8 réalisée avec l'émulateur MESS"></a>
                     <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/san-pablo/san-pablo-04.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/san-pablo/san-pablo-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 réalisée avec MESS"></a>
+                    <a href="images/san-pablo/san-pablo-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/san-pablo/san-pablo-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour ordinateur Thomson TO8 réalisée avec l'émulateur MESS"></a>
                     <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/san-pablo/san-pablo-05.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/san-pablo/san-pablo-05.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 réalisée avec MESS"></a>
+                    <a href="images/san-pablo/san-pablo-05.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/san-pablo/san-pablo-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour ordinateur Thomson TO8 réalisée avec l'émulateur MESS"></a>
                     <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/san-pablo/san-pablo-06.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/san-pablo/san-pablo-06.png" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour thomson TO8 réalisée avec MESS"></a>
+                    <a href="images/san-pablo/san-pablo-06.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/san-pablo/san-pablo-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu San Pablo pour ordinateur Thomson TO8 réalisée avec l'émulateur MESS"></a>
                     <figcaption class="figure-caption text-center">San Pablo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -823,19 +823,19 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/saphir/saphir_0006.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/saphir/saphir_0006.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/saphir/saphir_0006.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Saphir sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/saphir/saphir_0007.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/saphir/saphir_0007.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/saphir/saphir_0007.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Saphir sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/saphir/saphir_0008.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/saphir/saphir_0008.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec MAME"></a>
+                    <img src="images/thumbs/saphir/saphir_0008.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Saphir pour ordinateur TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Saphir sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -847,31 +847,31 @@
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/saphir/saphir_0001.jpg" data-fancybox data-caption="Manuel du jeu Saphir">
-                    <img src="images/thumbs/saphir/saphir_0001.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8"></a>
+                    <img src="images/thumbs/saphir/saphir_0001.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Le manuel du jeu (1).</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/saphir/saphir_0002.jpg" data-fancybox data-caption="Manuel du jeu Saphir">
-                    <img src="images/thumbs/saphir/saphir_0002.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8"></a>
+                    <img src="images/thumbs/saphir/saphir_0002.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Le manuel du jeu (2).</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/saphir/saphir_0003.jpg" data-fancybox data-caption="Manuel du jeu Saphir">
-                    <img src="images/thumbs/saphir/saphir_0003.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8"></a>
+                    <img src="images/thumbs/saphir/saphir_0003.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Le manuel du jeu (3).</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/saphir/saphir_0004.jpg" data-fancybox data-caption="Manuel du jeu Saphir">
-                    <img src="images/thumbs/saphir/saphir_0004.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8"></a>
+                    <img src="images/thumbs/saphir/saphir_0004.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Le manuel du jeu (4).</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/saphir/saphir_0005.jpg" data-fancybox data-caption="Manuel du jeu Saphir">
-                    <img src="images/thumbs/saphir/saphir_0005.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8"></a>
+                    <img src="images/thumbs/saphir/saphir_0005.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Manuel du jeu Saphir pour ordinateur Thomson TO8 réalisée avec l'émulateur MAME"></a>
                     <figcaption class="figure-caption text-center">Le manuel du jeu (5).</figcaption>
                 </figure>
 
@@ -884,32 +884,32 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/silent-service/silent-service-01.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/silent-service/silent-service-01.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME"></a>
+                    <a href="images/silent-service/silent-service-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/silent-service/silent-service-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/silent-service/silent-service-02.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/silent-service/silent-service-02.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME"></a>
+                    <a href="images/silent-service/silent-service-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/silent-service/silent-service-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/silent-service/silent-service-03.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/silent-service/silent-service-03.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME"></a>
+                    <a href="images/silent-service/silent-service-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/silent-service/silent-service-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/silent-service/silent-service-04.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/silent-service/silent-service-04.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME"></a>
+                    <a href="images/silent-service/silent-service-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/silent-service/silent-service-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/silent-service/silent-service-05.png" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
-                    <img src="images/thumbs/silent-service/silent-service-05.png" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME"></a>
+                    <a href="images/silent-service/silent-service-05.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/silent-service/silent-service-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Silent Service pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Silent Service sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 
@@ -980,6 +980,24 @@
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                     <a href="images/speedway/speedway-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/speedway/speedway-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Speedway pour ordinateur TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Speedway sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/speedway/speedway-04.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/speedway/speedway-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Speedway pour ordinateur TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Speedway sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/speedway/speedway-05.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/speedway/speedway-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Speedway pour ordinateur TO8 réalisée avec MAME"></a>
+                    <figcaption class="figure-caption text-center">Speedway sur TO8.<br />(capture réalisée avec MAME)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/speedway/speedway-06.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <img src="images/thumbs/speedway/speedway-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu Speedway pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Speedway sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
 

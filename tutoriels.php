@@ -205,9 +205,6 @@
                 Tutoriel OpenOffice Writer</a></li>
             </ul>
             
-            </div>
-            <div class="col-md-6 col-12">
-
             <h5 class="mt-5">Linux et Unix</h5>
 
             <ul>        
@@ -226,6 +223,9 @@
                 <li><a href="pdf/linux/Korn_shell.pdf" title="Guide du KornShell sous unix" target="_blank">
                 Guide du KornShell sous Unix</a></li>
             </ul>
+
+            </div>
+            <div class="col-md-6 col-12">
 
             <h5 class="mt-5">MS-DOS</h5>
 
@@ -293,6 +293,13 @@
                 <li><a href="pdf/sed/ip.pdf" title="Cours d'introduction aux réseaux TCP/IP de l'Université d'Amiens" target="_blank">
                 Introduction aux réseaux TCP/IP (IUT d'Amiens)</a></li>
             </ul>
+
+            <h5 class="mt-5">Ressources</h5>
+
+            <ul>                   
+				<li><a href="imageslibres.php" title="Les meilleures banques d'images libres de droit " target="_blank">
+                Banques d'images gratuites et/ou libres de droits</a></li>
+			</ul>
 
             <h5 class="mt-5">SQL</h5>
 
