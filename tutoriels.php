@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!-- CSS perso -->
-    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/style.dev.css">
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
 
     <script type="text/javascript" src="tarteaucitron/tarteaucitron.js"></script>
@@ -94,7 +94,33 @@
 
             <div class="col-12">
 
-            <p class="text-justify">Vous retrouvez ci-dessous la liste de tous les tutos, trucs et astuces et cours d'informatique consultables sur mon site. Bien sûr, ils ne sont pas de moi, je me contente de les centraliser dans une sorte d'annuaire. Faites toutefois attention à bien vérifier la version du logiciel ou du langage dont traite le guide que vous consultez. :)</p>
+            <h2 class="mt-5">Les tutos pour le web de Boitasite</h2>
+            <p>(Par Alexis AMAND)</p>
+
+            <p class="text-justify"></p>
+
+            <ul>
+                <li><a href="guide-seo.php" title="Guide pour faire ses premiers pas en SEO">
+                Premiers pas en référencement naturel</a></li>
+                <li><a href="imageslibres.php" title="Les meilleures banques d'images libres de droit " target="_blank">
+                Banques d'images gratuites et/ou libres de droits</a></li>
+                <li><a href="pdf/joomla/diaporama-joomla.pdf" title="Tutoriel pour intégrer un slideshow dans un article Joomla" target="_blank">
+                Comment mettre un slideshow dans un article Joomla 1.5 ? (pdf)</a></li>
+                <li><a href="code-ascii.php" title="liste des codes ascii de 0 à 255">
+                Les codes ASCII de 0 à 255</a></li>
+                <li><a href="codes-couleurs.php" title="Guide sur l'utilisation des couleurs en HTML et en CSS">
+                Comment fonctionnent les couleurs en html ?</a></li>
+                <li><a href="phpsimul.php" title=" ">
+                Comment créer facilement un jeu web ?</a></li>
+            </ul>
+
+            </div>
+
+            <div class="col-12">
+
+            <h2 class="mt-5">Autres cours et tutoriels</h2>
+
+            <p class="text-justify">Vous retrouvez ci-dessous la liste de tous les tutos, trucs et astuces et cours d'informatique consultables sur mon site. Ils ne sont pas de moi, je me contente de les centraliser dans une sorte d'annuaire. Faites toutefois attention à bien vérifier la version du logiciel ou du langage dont traite le guide que vous consultez. :)</p>
 
             </div> 
 
@@ -178,10 +204,10 @@
                 Guide Utilisateur de Macromedia-Dreamweaver MX 6.0 (Macromedia)</a></li>
 				<li><a href="pdf/html/html_fr.pdf" title="Cours de HTML de la CCIM" target="_blank">
                 Apprendre le HTML (CCIM)</a></li>
-				<li><a href="codes-couleurs.php" title="Guide sur l'utilisation des couleurs en HTML et en CSS" target="_blank">
-                Comment fonctionnent les couleurs en html ? (Par Boitasite)</a></li>
+				
                 <li><a href="pdf/html/apprendre-html-zeros.pdf" title="Cours de HTML du site des zéros" target="_blank">
                 Apprendre HTML pour les zéros</a></li>
+               
             </ul>
 
             <h5 class="mt-5">Internet</h5>
@@ -229,8 +255,6 @@
             <h5 class="mt-5">Joomla 1.5</h5>
 
             <ul>
-				<li><a href="pdf/joomla/diaporama-joomla.pdf" title="Tutoriel pour intégrer un slideshow dans un article Joomla" target="_blank">
-                Comment mettre un slideshow dans un article Joomla 1.5 ? (Par Boitasite)</a></li>
                 <li><a href="pdf/joomla/joomla-1-5.pdf" title="Guide pour dévouvrir les bases de la version 1.5 du CMS Joomla" target="_blank">
                 Joomla 1.5 : Les bases</a></li>
 			</ul>
@@ -331,12 +355,7 @@
                 Introduction aux réseaux TCP/IP (IUT d'Amiens)</a></li>
             </ul>
 
-            <h5 class="mt-5">Ressources</h5>
 
-            <ul>                   
-				<li><a href="imageslibres.php" title="Les meilleures banques d'images libres de droit " target="_blank">
-                Banques d'images gratuites et/ou libres de droits</a></li>
-			</ul>
 
             <h5 class="mt-5">SQL</h5>
 
