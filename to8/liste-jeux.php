@@ -100,6 +100,30 @@
 
             <p class="text-justify">Cette page contient uniquement les jeux que j'ai retestés et redécouverts avec <a href="">l'émulateur MAME</a>. Pour plus d'information sur les jeux de l'époque, je vous invite à consulter ma <a href="../to8.php#listejeux">compilation d'articles</a> parus dans la presse de l'époque.<p class="text-justify">
 
+            <h5 class="mt-5">20000 avant JC</h5>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/20000-avant-jc/20000-avant-jc-01.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <img src="images/thumbs/20000-avant-jc/20000-avant-jc-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu 20000 avant JC pour thomson TO8 réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">20000 avant JC sur TO8.<br />(capture réalisée avec MESS)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/20000-avant-jc/20000-avant-jc-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <img src="images/thumbs/20000-avant-jc/20000-avant-jc-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu 20000 avant JC pour thomson TO8 réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">20000 avant JC sur TO8.<br />(capture réalisée avec MESS)</figcaption>
+                </figure>
+
+                <figure class="figure col-9 col-sm-5 col-md-3 m-3">
+                    <a href="images/20000-avant-jc/20000-avant-jc-03.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MESS">
+                    <img src="images/thumbs/20000-avant-jc/20000-avant-jc-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du jeu 20000 avant JC pour thomson TO8 réalisée avec MESS"></a>
+                    <figcaption class="figure-caption text-center">20000 avant JC sur TO8.<br />(capture réalisée avec MESS)</figcaption>
+                </figure>
+
+            </div>
+
             <h5 class="mt-5">Androïdes</h5>
 
             <p class="text-justify">Rien ne va plus dans les entrepôts depuis qu'ils ont remplacé le vieux chien de garde par des robots très perfectionnés. Votre but, récupérer tous les colis sans qu'ils vous rattrapent. Cela sera très difficile, mais bonne chance quand même. Le jeu, édité par Infogrames, est l'adaptation de Lode Runner, un jeu vidéo alliant plates-formes et réflexion qui a été développé par Douglas E. Smith et publié par Brøderbund en 1983.</p>

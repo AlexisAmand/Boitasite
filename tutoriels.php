@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!-- CSS perso -->
-    <link rel="stylesheet" href="css/style.dev.css">
+    <link rel="stylesheet" href="css/style.min.css">
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
 
     <script type="text/javascript" src="tarteaucitron/tarteaucitron.js"></script>
@@ -102,7 +102,7 @@
             <ul>
                 <li><a href="guide-seo.php" title="Guide pour faire ses premiers pas en SEO">
                 Premiers pas en référencement naturel</a></li>
-                <li><a href="imageslibres.php" title="Les meilleures banques d'images libres de droit " target="_blank">
+                <li><a href="imageslibres.php" title="Les meilleures banques d'images libres de droit">
                 Banques d'images gratuites et/ou libres de droits</a></li>
                 <li><a href="pdf/joomla/diaporama-joomla.pdf" title="Tutoriel pour intégrer un slideshow dans un article Joomla" target="_blank">
                 Comment mettre un slideshow dans un article Joomla 1.5 ? (pdf)</a></li>
