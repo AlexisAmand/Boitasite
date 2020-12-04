@@ -185,7 +185,7 @@
                     &nbsp(Jeux & Stratégie n°41 - Octobre/Novembre 1986)</li>
                     <li><a href="to8/pdf/svm-032.pdf" title="extrait de la revue Jeux et Vie Micro n°32 à propos de la nouvelle gamme Thomson">La nouvelle gamme Thomson (pdf)</a>
                     &nbsp(Science & Vie Micro n°32 - Octobre 1986)</a></li>
-                    <li><a href="to8/pdf/svm-032.pdf" title="extrait de la revue Tilt n°35 à propos de la nouvelle gamme Thomson">Thomson 86: Un bon millésime" (pdf)</a>
+                    <li><a href="to8/pdf/svm-032.pdf" title="extrait de la revue Tilt n°35 à propos de la nouvelle gamme Thomson">Thomson 86: Un bon millésime (pdf)</a>
                     &nbsp(TILT n°35 - Octobre 1986)</a></li>
                     <li><a href="to8/pdf/Canard_PC_Hardware_HS_2016_06_07_fr_0079.pdf" title="La gamme TO de Thomson dans Canard PC Hardware HS de 2016">La gamme TO de Thomson (pdf)</a>
                     &nbsp(Canard PC Hardware HS - Eté 2016)</a></li>
@@ -231,11 +231,17 @@
                     <li><a href="to8/pdf/js-43-page-73.pdf" title="Le jeu James Debug dans un article de presse paru dans la presse en 1987">James Debug (version TO9)</a>
                     &nbsp;(Jeux & Stratégie n°43 - Février/Mars 1987)</li>
 
+                    <li><a href="to8/pdf/teo-14-p45.pdf" title="Le jeu Jeu de Dames américains dans un article de presse paru dans la presse en 1987">Jeu de Dames américains</a>
+                    &nbsp;(Teo n°14 - Mai 1987)</li>
+
                     <li><a href="to8/pdf/tilt-37-53.pdf" title=" ">James Debug</a>
                     &nbsp;(Tilt n°37 - Décembre 1986)</li>
 
                     <li><a href="to8/pdf/js-38-page-70.pdf" title="Le jeu La Malédiction de Thaar dans un article de presse paru dans la presse en 1986">La Malédiction de Thaar</a>
                     &nbsp;(Jeux & Stratégie n°38 - Avril/Mai 1986)</li>
+
+                    <li><a href="to8/pdf/svm-34-p14.pdf" title="le jeu La Mine aux Oeufs d'or dans un article de presse">La Mine aux Oeufs d'or</a>
+                    &nbsp;(SVM n°34 - Décembre 1986)</li>
 
                     <li><a href="to8/pdf/js-42-page-60.pdf" title="Le jeu Le temple de Quauhli dans un article de presse paru dans la presse en 1986">Le Temple de Quauhli</a>
                     &nbsp;(Jeux & Stratégie n°42 - Décembre 1986)</li>
@@ -278,20 +284,23 @@
 
                     <li><a href="to8/pdf/js-46-page-86-87.pdf" title="Le jeu TNT dans un article de presse paru dans la presse en 1987">TNT</a>
                     &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
+
+                    <li><a href="to8/pdf/teo-14-p45.pdf" title="Le jeu X-Ray dans un article de presse paru dans la presse en 1987">X-Ray</a>
+                    &nbsp;(Teo n°14 - Mai 1987)</li>
                 </ul>
 
                 <h6 class="mt-3">La revue Microtom</h6>
 
                 <ul>
-                    <li><a href="to8/pdf/microtom_01.pdf" title="revue Microtom n°1 de juillet et aout 1985">Microtom n°1 - Juillet/Aout 1985 (pdf)</a></li>
-                    <li><a href="to8/pdf/microtom_02.pdf" title="revue Microtom n°2 de septembre et acotobre 1985">Microtom n°2 - Septembre/Octobre 1985 (pdf)</a></li>
-                    <li><a href="to8/pdf/microtom_03.pdf" title="revue Microtom n°3 de novembre et décembre 1985">Microtom n°3 - Novembre/Décembre 1985 (pdf)</a></li>
-                    <li><a href="to8/pdf/microtom_04.pdf" title="revue Microtom n°4 de janvier et fécrier 1986">Microtom n°4 - Janvier/Février 1986 (pdf)</a></li>
-                    <li><a href="to8/pdf/microtom_05.pdf" title="revue Microtom n°5 de mars et avril 1986">Microtom n°5 - Mars/Avril 1986 (pdf)</a></li>
-                    <li><a href="to8/pdf/microtom_06.pdf" title="revue Microtom n°6 de mai et juin 1986">Microtom n°6 - Mai/Juin 1986 (pdf)</a></li>
-                    <li><a href="to8/pdf/microtom_08.pdf" title="revue Microtom n°8 de septembre et octobre 1986">Microtom n°8 - Septembre/Octobre 1986 (pdf)</a></li>
-                    <li><a href="to8/pdf/microtom_09.pdf" title="revue Microtom n°9 de novembre 1986">Microtom n°9 - Novembre 1986 (pdf)</a></li>
-                    <li><a href="to8/pdf/microtom_10.pdf" title="revue Microtom n°10 de décembre 1986 et janvier 1987">Microtom n°10 - décembre 1986/Janvier 1987 (pdf)</a></li>
+                    <li>Microtom n°1 - Juillet/Aout 1985 (<a href="to8/pdf/microtom_01.pdf" title="revue Microtom n°1 de juillet et aout 1985">pdf</a>)</li>
+                    <li>Microtom n°2 - Septembre/Octobre 1985 (<a href="to8/pdf/microtom_02.pdf" title="revue Microtom n°2 de septembre et acotobre 1985">pdf</a>)</li>
+                    <li>Microtom n°3 - Novembre/Décembre 1985 (<a href="to8/pdf/microtom_03.pdf" title="revue Microtom n°3 de novembre et décembre 1985">pdf</a>)</li>
+                    <li>Microtom n°4 - Janvier/Février 1986 (<a href="to8/pdf/microtom_04.pdf" title="revue Microtom n°4 de janvier et fécrier 1986">pdf</a>)</li>
+                    <li>Microtom n°5 - Mars/Avril 1986 (<a href="to8/pdf/microtom_05.pdf" title="revue Microtom n°5 de mars et avril 1986">pdf</a>)</li>
+                    <li>Microtom n°6 - Mai/Juin 1986 (<a href="to8/pdf/microtom_06.pdf" title="revue Microtom n°6 de mai et juin 1986">pdf</a>)</li>
+                    <li>Microtom n°8 - Septembre/Octobre 1986 (<a href="to8/pdf/microtom_08.pdf" title="revue Microtom n°8 de septembre et octobre 1986">pdf</a>)</li>
+                    <li>Microtom n°9 - Novembre 1986 (<a href="to8/pdf/microtom_09.pdf" title="revue Microtom n°9 de novembre 1986">pdf</a>)</li>
+                    <li>Microtom n°10 - décembre 1986/Janvier 1987 (<a href="to8/pdf/microtom_10.pdf" title="revue Microtom n°10 de décembre 1986 et janvier 1987">pdf</a>)</li>
                 </ul>
 
                 </div>

@@ -108,7 +108,7 @@
             <div class="row d-flex justify-content-center">
 
                 <figure class="figure">
-                    <img src="img/tuto-seo/guide-seo-01.jpg." class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation la balise <title> dans un onglet de navigateur">
+                    <img src="img/tuto-seo/guide-seo-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation la balise <title> dans un onglet de navigateur">
                     <figcaption class="figure-caption text-right">Un titre dans un onglet de navigateur</figcaption>
                 </figure>
 
@@ -159,7 +159,7 @@
 
             <p class="text-justify mt-3">Un autre point, de plus en plus important pour Google : le contenu. </p>
             
-            <p class="text-justify">Par exemple, les titres que l’on peut trouver quand on utilise des éditeurs visuels tels que Tinymce dans Wordpress ne doivent être utilisez juste pour le fun de mettre un texte en grand. Il faut les utiliser pour structurer votre page et son contenu, un peu comme un livre. Si j’enlève tout le que contient votre page en terme de texte ou d’image, et que je laisse juste ces titres, je dois pouvoir deviner de quoi elle parle.</p>
+            <p class="text-justify">Par exemple, les titres que l’on peut trouver quand on utilise des éditeurs visuels tels que Tinymce (dans Wordpress il me semble) ne doivent être utilisez juste pour le fun de mettre un texte en grand. Il faut les utiliser pour structurer votre page et son contenu, un peu comme un livre. Si j’enlève tout le que contient votre page en terme de texte ou d’image, et que je laisse juste ces titres, je dois pouvoir deviner de quoi elle parle.</p>
 
             <p class="text-justify">On peut par exemple essayer avec la page que Wikipédia consacre au Second Empire. D’un simple coup d’œil, on découvre les titres « Le coup d’état de 1851 », « la constitution française de 1852 » ou encore « La montée des difficultés et des contestations », vous voyez où je veux en venir ? Oui ! C’est ça ! Comme pour la balise méta description et le titre dont je parlais tout à l’heure, les niveaux de titre que vous allez utiliser vont aider Google à comprendre de quoi parle votre site, et même pouvoir créer un contexte autour de vos images.</p>
 
