@@ -166,8 +166,6 @@
             <ul>
                 <li><a href="pdf/c/objetcpp.pdf" title="cours d'introduction à la POO et à C++ de l'Université de Nancy" target="_blank">
                 Intro à la POO et à C++ (Université de Nancy)</a></li>
-                <li><a href="pdf/c/Base-du-PP.pdf" title="cours sur les bases du C++ de l'Université de Valenciennes" target="_blank">
-                Les bases du C++ (Université de Valenciennes)</a></li>
                 <li><a href="pdf/cpp/introduction-au-cpp.pdf" title="cours d'introduction au C++" target="_blank">
                 Introduction au C++</a></li>
                 <li><a href="pdf/cpp/classes.pdf" title="cours sur le langage C++" target="_blank">

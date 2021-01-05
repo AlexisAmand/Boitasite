@@ -19,7 +19,7 @@
     <!-- Fancybox -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-    <script type="text/javascript" src="tarteaucitron/tarteaucitron.js"></script>
+    <script type="text/javascript" src="../tarteaucitron/tarteaucitron.js"></script>
 
     <script type="text/javascript">
     tarteaucitron.init({
@@ -1129,7 +1129,7 @@
                 </figure>
 
                 <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                    <a href="images/vol-solo/vol-solo-02jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
+                    <a href="images/vol-solo/vol-solo-02.jpg" data-fancybox data-caption="Capture du jeu réalisée avec MAME">
                     <img src="images/thumbs/vol-solo/vol-solo-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="Capture d'écran du jeu Vol Solo pour ordinateur TO8 réalisée avec MAME"></a>
                     <figcaption class="figure-caption text-center">Vol Solo sur TO8.<br />(capture réalisée avec MAME)</figcaption>
                 </figure>
