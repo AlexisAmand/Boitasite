@@ -110,7 +110,7 @@
                 Les codes ASCII de 0 à 255</a></li>
                 <li><a href="codes-couleurs.php" title="Guide sur l'utilisation des couleurs en HTML et en CSS">
                 Comment fonctionnent les couleurs en html ?</a></li>
-                <li><a href="phpsimul.php" title=" ">
+                <li><a href="phpsimul.php" title="Comment créer facilement un jeu web avec PHPSimul ?">
                 Comment créer facilement un jeu web ?</a></li>
             </ul>
 

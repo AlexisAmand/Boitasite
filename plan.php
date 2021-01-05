@@ -139,7 +139,7 @@
         </div>
 
         <div class="col-12 col-md-6 align-self-center">
-            <img src="img/magnifying-4340698_1920.jpg" class="img-thumbnail img-fluid mt-5 mb-5" alt=" ">
+            <img src="img/magnifying-4340698_1920.jpg" class="img-thumbnail img-fluid mt-5 mb-5" alt="Plan du site">
         </div>
                 
         </article>

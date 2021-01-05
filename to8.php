@@ -194,7 +194,7 @@
                 <h6 class="mt-3">Publicités pour le TO8</h6>
 
                 <ul>
-                    <li><a href="to8/pdf/js-42-page-67.pdf" title=" ">Une place de 1ere dans le train de l'avenir (pdf)</a>
+                    <li><a href="to8/pdf/js-42-page-67.pdf" title="Publicité pour le TO8 parue dans une revue Jeux et Stratégie datée de 1986">Une place de 1ere dans le train de l'avenir (pdf)</a>
                     &nbsp;(Jeux & Stratégie n°42 - Décembre 1986/Janvier 1987)</li>
                     <li><a href="to8/pdf/svm-034.pdf" title="publicité pour le TO8 parue dans la revue Science & Vie Micro n°34">Une place de 1ere dans le train de l'avenir (pdf)</a>
                     &nbsp;(Scienve & Vie Micro n°34 - Décembre 1986)</li>
@@ -219,11 +219,20 @@
                     <li><a href="to8/pdf/js-46-page-86-87.pdf" title="Le jeu Don Camillo dans un article de presse paru dans la presse en 1987">Don Camillo</a>
                     &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
 
+                    <li><a href="to8/pdf/teo-13-p49.pdf" title="Le jeu Don Camillo dans un article de presse paru dans la presse en 1987">Dom Camillo</a>
+                    &nbsp;(Teo n°13 - Avril 1987)</li>
+
                     <li><a href="to8/pdf/js-43-page-66.pdf" title="Le jeu Dossier Boerhaave dans un article de presse paru dans la presse en 1987">Dossier Boerhaave</a>
                     &nbsp;(Jeux & Stratégie n°43 - Février/Mars 1987)</li>
 
-                    <li><a href="to8/pdf/tilt-42-55.pdf" title=" ">Entropie</a>
+                    <li><a href="to8/pdf/teo-13-p49.pdf" title="Le jeu Duel au Colorado dans un article de presse paru dans la presse en 1987">Duel au Colorado</a>
+                    &nbsp;(Teo n°13 - Avril 1987)</li>
+
+                    <li><a href="to8/pdf/tilt-42-55.pdf" title="Le jeu Entropie dans un article de presse paru dans la presse en 1987">Entropie</a>
                     &nbsp;(Tilt n°42 - Mai 1987)</li>
+
+                    <li><a href="to8/pdf/teo-13-p48.pdf" title="Le jeu Felonies dans un article de presse paru dans la presse en 1987">Felonies</a>
+                    &nbsp;(Teo n°13 - Avril 1987 - version mo5/mo6)</li>
 
                     <li><a href="to8/pdf/js-42-page-62.pdf" title="Le jeu Grand Prix 500 cc dans un article de presse paru dans la presse en 1986">Grand Prix 500 cc</a>
                     &nbsp;(Jeux & Stratégie n°42 - Décembre 1986)</li>
@@ -234,7 +243,7 @@
                     <li><a href="to8/pdf/teo-14-p45.pdf" title="Le jeu Jeu de Dames américains dans un article de presse paru dans la presse en 1987">Jeu de Dames américains</a>
                     &nbsp;(Teo n°14 - Mai 1987)</li>
 
-                    <li><a href="to8/pdf/tilt-37-53.pdf" title=" ">James Debug</a>
+                    <li><a href="to8/pdf/tilt-37-53.pdf" title="Le jeu James Debug dans un article de presse paru dans la presse en 1987">James Debug</a>
                     &nbsp;(Tilt n°37 - Décembre 1986)</li>
 
                     <li><a href="to8/pdf/js-38-page-70.pdf" title="Le jeu La Malédiction de Thaar dans un article de presse paru dans la presse en 1986">La Malédiction de Thaar</a>
@@ -252,6 +261,9 @@
                     <li><a href="to8/pdf/js-46-page-82.pdf" title="Le jeu Les Passagers du Vent 2 dans un article de presse paru dans la presse en 1986">Les passagers du Vent n°2</a>
                     &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
 
+                    <li><a href="to8/pdf/teo-13-p48.pdf" title="Le jeu Les Passagers du Vent 2 dans un article de presse paru dans la presse en 1986">Les passagers du Vent n°2</a>
+                    &nbsp;(Teo n°13 - Avril 1987)</li>
+
                     <li><a href="to8/pdf/js-46-page-83.pdf" title="Le jeu Marche à l'Ombre dans un article de presse paru dans la presse en 1987">Marche à l'Ombre</a>
                     &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
 
@@ -264,6 +276,9 @@
                     <li><a href="to8/pdf/js-45-page-65.pdf" title="Le jeu Prohibition dans un article de presse paru dans la presse en 1987">Prohibition</a>
                     &nbsp;(Jeux & Stratégie n°45 - Juin/Juillet 1987)</li>
 
+                    <li><a href="to8/pdf/teo-13-p49.pdf" title="Le jeu Qrisp dans un article de presse paru dans la presse en 1986">Qrisp</a>
+                    &nbsp;(Teo n°13 - Avril 1987)</li>
+
                     <li><a href="to8/pdf/js-46-page-83.pdf" title="Le jeu Réussites dans un article de presse paru dans la presse en 1987">Réussites</a>
                     &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
 
@@ -273,13 +288,16 @@
                     <li><a href="to8/pdf/js-42-page-60-61.pdf" title="Le jeu Sapiens dans un article de presse paru dans la presse en 1986">Sapiens</a>
                     &nbsp;(Jeux & Stratégie n°42 - Décembre 1986)</li>
 
+                    <li><a href="to8/pdf/teo-13-p48.pdf" title="Le jeu Silent Service dans un article de presse paru dans la presse en 1986">Silent Service</a>
+                    &nbsp;(Teo n°13 - Avril 1987)</li>
+
                     <li><a href="to8/pdf/js-39-page-77.pdf" title="Le jeu Sortileges dans un article de presse paru dans la presse en 1986">Sortileges</a>
                     &nbsp;(Jeux & Stratégie n°38 - Avril/Mai 1986)</li>
 
-                    <li><a href="to8/pdf/tilt-37-59.pdf" title=" ">Stone Zone</a>
+                    <li><a href="to8/pdf/tilt-37-59.pdf" title="Le jeu Stone Zone dans un article de presse paru dans la presse en 1986">Stone Zone</a>
                     &nbsp;(Tilt n°37 - Décembre 1986)</li>
 
-                    <li><a href="to8/pdf/tilt-38-130.pdf" title=" ">Super Tennis</a>
+                    <li><a href="to8/pdf/tilt-38-130.pdf" title="Le jeu Super Tennis dans un article de presse paru dans la presse en 1986">Super Tennis</a>
                     &nbsp;(Tilt n°38 - Janvier 1987)</li>
 
                     <li><a href="to8/pdf/js-46-page-86-87.pdf" title="Le jeu TNT dans un article de presse paru dans la presse en 1987">TNT</a>

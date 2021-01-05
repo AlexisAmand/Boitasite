@@ -104,12 +104,12 @@
 
             <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                 <a href="img/phpsimul/capture001.jpg" data-fancybox data-caption=" ">
-                <img src="img/phpsimul/capture001.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                <img src="img/phpsimul/capture001.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du cms de création de jeux web PHPSimul"></a>
             </figure>
 
             <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                 <a href="img/phpsimul/capture002.jpg" data-fancybox data-caption=" ">
-                <img src="img/phpsimul/capture002.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                <img src="img/phpsimul/capture002.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du cms de création de jeux web PHPSimul"></a>
             </figure>
 
         </div>
@@ -118,12 +118,12 @@
 
             <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                 <a href="img/phpsimul/capture003.jpg" data-fancybox data-caption=" ">
-                <img src="img/phpsimul/capture003.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                <img src="img/phpsimul/capture003.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du cms de création de jeux web PHPSimul"></a>
             </figure>
 
             <figure class="figure col-9 col-sm-5 col-md-3 m-3">
                 <a href="img/phpsimul/capture004.jpg" data-fancybox data-caption=" ">
-                <img src="img/phpsimul/capture004.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                <img src="img/phpsimul/capture004.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du cms de création de jeux web PHPSimul"></a>
             </figure>
 
         </div>
