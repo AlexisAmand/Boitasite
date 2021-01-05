@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / Fonctions Perl / Fonctions pour les date et heure</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"     content="Quelles fonctions en Perl existent pour rechercher un instant et partant de l&agrave;, la date et l'heure.">
+<meta name="keywords"        content="SELFHTML, Perl, fonctions, Fonctions Perl, date, heure, temps, gmtime, localtime, time, ctime-Standard">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/fonctions/dateheure.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // Fonctions Perl == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Fonctions Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Fonctions pour les date et heure</h2></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur ces fonctions</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#gmtime"><b>gmtime</b></a> - d&eacute;chiffrer le moment en &eacute;l&eacute;ments date et heure (heure de Greenwich)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#localtime"><b>localtime</b></a> - d&eacute;chiffrer le moment en &eacute;l&eacute;ments date et heure (heure locale)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#time"><b>time</b></a> - rechercher le moment<br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur ces fonctions</a></h2>
+
+<p>La fonction de base pour le calcul du temps sous Perl est <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#time"><b>time</b></a>. Elle recherche le moment actuel et cela en secondes qui se sont &eacute;coul&eacute;es depuis le &quot;bang&quot; Unix logique, le 1/1/1970, &agrave; 0.00 heures. Avec ce chiffre, il est possible d'alimenter une des fonctions <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#localtime"><b>localtime</b></a> ou <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#gmtime"><b>gmtime</b></a> pour recevoir les diff&eacute;rent &eacute;l&eacute;ments de la date et de l'heure du moment pr&eacute;sent, donc par exemple le jour, le mois l'ann&eacute;e ou bien la partie heures et la partie minutes de l'heure.</p>
+
+<p>Le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/modulesstandard.htm"><b>module standard</b></a> <code>Time::Local</code> est lui aussi digne d'int&eacute;r&ecirc;t. Vous y trouverez les fonctions inverses &agrave; celles qui sont pr&eacute;sent&eacute;es ici <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#localtime"><b>localtime</b></a> et <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#gmtime"><b>gmtime</b></a>.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="gmtime">gmtime - d&eacute;chiffrer le moment en &eacute;l&eacute;ments date et heure (heure de Greenwich)</a></h2>
+
+<p>Fonctionne exactement comme <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#localtime"><b>localtime</b></a>, &agrave; la diff&eacute;rence pr&egrave;s que ce n'est pas l'heure de l'ordinateur qui est trouv&eacute;e mais celle du m&eacute;ridien de Greenwich (m&eacute;ridien z&eacute;ro).</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="localtime">localtime - d&eacute;chiffrer le moment en &eacute;l&eacute;ments date et heure (heure locale)</a></h2>
+
+<p>Recherche pour un moment pr&eacute;cis les diff&eacute;rentes mentions de temps.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le nombre de secondes &eacute;coul&eacute;es &agrave; partir du 1/1/1970, jusqu'au moment pr&eacute;cis d&eacute;sir&eacute;. Pour rechercher les donn&eacute;es pour l'instant pr&eacute;sent, ne rien transmettre ou simplement <code>time</code>.</p>
+
+<p>Renvoie au choix une liste qui comprend 9 &eacute;l&eacute;ments dans lesquels les diff&eacute;rentes donn&eacute;es sont sauvegard&eacute;es ou bien une cha&icirc;ne de caract&egrave;res conforme &agrave; la fonction C <code>ctime</code>, qui fait partie du standard  ANSI.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my ($secondes, $minutes, $heures, $jour_mois, $mois,
+    $an, $jour_semaine, $jour_calendaire, $heure_ete) = localtime(time);
+my $CTIME_String = localtime(time);
+$mois+=1;
+$jour_calendaire+=1;
+$mois = $mois &lt; 10 ? $mois = &quot;0&quot;.$mois : $mois;
+$jour_mois = $jour_mois &lt; 10 ? $jour_mois = &quot;0&quot;.$jour_mois : $jour_mois;
+$heures = $heures &lt; 10 ? $heures = &quot;0&quot;.$heures : $heures;
+$minutes = $minutes &lt; 10 ? $minutes = &quot;0&quot;.$minutes : $minutes;
+$secondes = $secondes &lt; 10 ? $secondes = &quot;0&quot;.$secondes : $secondes;
+$an+=1900;
+my @noms_de_jours = (&quot;Dimanche&quot;,&quot;Lundi&quot;,&quot;Mardi&quot;,&quot;Mercredi&quot;,&quot;Jeudi&quot;,&quot;Vendredi&quot;,&quot;Samedi&quot;);
+my @noms_de_mois = (&quot;&quot;,&quot;Janvier&quot;,&quot;F&amp;eacute;vrier&quot;,&quot;Mars&quot;,&quot;Avril&quot;,&quot;Mai&quot;,&quot;Juin&quot;,
+           &quot;Juillet&quot;,&quot;Ao&amp;ucirc;t&quot;,&quot;Septembre&quot;,&quot;Octobre&quot;,&quot;Novembre&quot;,&quot;D&amp;eacute;cembre&quot;);
+
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;Datum (Variante 1): $noms_de_jours[$jour_semaine], le $jour_mois.$mois.$an&lt;br&gt;\n&quot;;
+print &quot;Datum (Variante 2): $noms_de_jours[$jour_semaine], le $jour_mois. $noms_de_mois[$mois] $an&lt;br&gt;\n&quot;;
+print &quot;heure (Variante 1): $heures.$minutes Uhr&lt;br&gt;\n&quot;;
+print &quot;heure (Variante 2): $heures.$minutes:$secondes Uhr&lt;br&gt;\n&quot;;
+print &quot;Aujourd'hui nous sommes le $jour_calendaire&amp;egrave;me jour de l'ann�e&lt;br&gt;\n&quot;;
+print &quot;La sortie CTIME de ces date et heure donne: $CTIME_String&lt;br&gt;\n&quot;;
+$heure_ete ? print &quot;est l'heure d'&amp;eavute;t&amp;eacute;\n&quot; : print &quot;est l'heure normale (pas  l'heure d'&amp;eavute;t&amp;eacute;)\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple recherche les mentions de temps des date et heure actuelles et cela une fois dans un contexte de liste (premier appel de  <code>localtime</code>), et une fois dans un contexte scalaire (deuxi&egrave;me appel). Ensuite, le script pr&eacute;pare les donn&eacute;es trouv&eacute;es pour la sortie. Car les valeurs renvoy&eacute;es sont dans de nombreux cas plut&ocirc;t des &quot;donn&eacute;es brutes&quot;, qui doivent encore &ecirc;tre trait&eacute;es pour une sortie correcte.<br>
+Les valeurs pour <code>$mois</code> et <code>$jour_calendaire</code> sont tout d'abord augment&eacute;es de 1, &eacute;tant donn&eacute; que le comptage commence &agrave; 0 en interne pour la valeur renvoy&eacute;e, pour les mois les valeurs trouv&eacute;es vont donc par exemple de 0 &agrave; 11 et non pas comme il est d'usage de 1 &agrave; 12.<br>
+Ensuite, certaines de mentions sont format&eacute;es de telle fa&ccedil;on qu'elles commencent par 0 au cas o&ugrave; leur valeur est inf&eacute;rieure &agrave; 10. car une mention de l'heure comme <code>8.1</code> est bien s&ucirc;r ind&eacute;sirable, mais la sortie doit &ecirc;tre finalement <code>08.01</code>. On obtient cela &agrave; l'aide d'une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/conditions.htm#soit_soit"><b>Simple requ&ecirc;te soit..., soit...</b></a>.<br>
+L'ann&eacute;e est augment&eacute;e de 1900. La raison en est que la valeur renvoy&eacute;e pour l'ann&eacute;e est le nombre d'ann&eacute;es depuis 1900. Pour l'ann&eacute;e 2000 donc c'est donc 100 par exemple qui est renvoy&eacute;. En y ajoutant 1900, on arrive donc au nombre d'ann&eacute;es effectif.<br>
+Les listes d&eacute;finies ensuite pour les jours de semaine et les noms de mois offrent la possibilit&eacute; d'employer des d&eacute;signations en langue fran&ccedil;aise de la date pour une sortie ult&eacute;rieure.<br>
+Le script en exemple envoie du code HTML au navigateur et sort les donn&eacute;es trouv&eacute;es. Ici le script peut se fier aux donn&eacute;es apr&egrave;s traitement.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="time">time - rechercher le moment</a></h2>
+
+<p>Recherche le nombre de secondes qui se sont &eacute;coul&eacute;es depuis le 1/1/1970 jusqu'au moment de l'appel.</p>
+
+<p>N'attend aucun param&egrave;tre.</p>
+
+<p>Renvoie le nombre de secondes.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $secondes = time();
+my $heures = int($secondes / 3600);
+my $jours = int($secondes / (24 * 3600));
+my $semaines = int($secondes / (7 * 24 * 3600));
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;depuis le 1/1/1970 � 0.00 heure se sont �coul�es $secondes secondes.&lt;br&gt;\n&quot;;
+print &quot;Ce qui donne $heures heures, $jours jours et $semaines semaines.\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple appelle <code>time</code> et sauvegarde la valeur retourn&eacute;e par la fonction dans la scalaire <code>$secondes</code>. Ensuite, le script calcule &agrave; partir du nombre de secondes, l'&eacute;quivalent en heures, en jours et en semaines. Pour obtenir &agrave; chaque fois la partie avant la virgule des r&eacute;sultats pr&eacute;sentant des d&eacute;cimales, la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="calculs.htm#int"><b>int</b></a> leur est appliqu&eacute;e. Pour le contr&ocirc;le, le script envoie du code HTML au navigateur et sort les nombres trouv&eacute;s.</p>
+
+
+
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="entreesortie.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="entreesortie.htm"><b>Fonctions pour l'entr&eacute;e et la sortie et la lecture et l'&eacute;criture de donn&eacute;es</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="controle.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="controle.htm"><b>Fonctions pour le contr&ocirc;le du script en cours</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Fonctions Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

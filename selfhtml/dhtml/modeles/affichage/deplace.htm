@@ -1,0 +1,80 @@
+<html><head><title>Test</title>
+<style type="text/css">
+<!--
+layer { font-size:10pt; font-family:Arial }
+layer.entete { color:#FFFFFF; padding:1mm; cursor:hand; }
+layer.Text { color:#000000; padding-top:30px; padding-left:1mm; padding-right:1mm }
+-->
+</style>
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head><body>
+
+<layer id="vert" class="Text" bgcolor="#99FF99" top="170" left="10" width="200" height="180">
+<layer id="entete_vert" class="entete" bgcolor="#000000" top="0" left="0" width="200" height="25">
+Barre de titre du calque vert
+</layer>
+Cliquez donc avec la souris sur la barre de titre de ce calque,
+maintenez la touche appuy&eacute;e et d&eacute;placez la souris &agrave; un autre endroit.
+</layer>
+<layer id="jaune" class="Text" bgcolor="#FFFF66" top="10" left="310" width="300" height="120">
+<layer id="entete_jaune" class="entete" bgcolor="#000000" top="0" left="0" width="300" height="25">
+Barre de titre du calque jaune
+</layer>
+Cliquez donc avec la souris sur la barre de titre de ce calque,
+maintenez la touche appuy&eacute;e et d&eacute;placez la souris &agrave; un autre endroit.
+</layer>
+
+<script type="text/javascript">
+<!--
+vert = document.layers['vert'];
+titre_vert = document.layers['vert'].document.layers['entete_vert'].document;
+
+jaune = document.layers['jaune'];
+titre_jaune = document.layers['jaune'].document.layers['entete_jaune'].document;
+
+titre_vert.captureEvents(Event.MOUSEUP|Event.MOUSEDOWN|Event.MOUSEDRAG);
+titre_vert.onmousedown=depart_vert;
+titre_vert.onmouseup=fin_vert;
+document.layers['vert'].document.layers['entete_vert'].onload=initial_vert;
+
+titre_jaune.captureEvents(Event.MOUSEUP|Event.MOUSEDOWN|Event.MOUSEDRAG);
+titre_jaune.onmousedown=depart_jaune;
+titre_jaune.onmouseup=fin_jaune;
+document.layers['jaune'].document.layers['entete_jaune'].onload=GelbReset;
+
+function initial_vert()
+ { titre_vert.captureEvents(Event.MOUSEUP|Event.MOUSEDOWN|Event.MOUSEDRAG); }
+function GelbReset()
+ { titre_jaune.captureEvents(Event.MOUSEUP|Event.MOUSEDOWN|Event.MOUSEDRAG); }
+
+function depart_vert()
+ { titre_vert.captureEvents(Event.MOUSEMOVE); titre_vert.onmousemove=tire_vert; }
+function depart_jaune()
+ { titre_jaune.captureEvents(Event.MOUSEMOVE); titre_jaune.onmousemove=tire_jaune; }
+
+function tire_vert(evenement)
+ { vert.left = evenement.pageX; vert.top = evenement.pageY; }
+function tire_jaune(evenement)
+ { jaune.left = evenement.pageX; jaune.top = evenement.pageY; }
+
+function fin_vert()
+ { titre_vert.onmousemove=0; titre_vert.releaseEvents(Event.MOUSEMOVE); }
+function fin_jaune()
+ { titre_jaune.onmousemove=0; titre_jaune.releaseEvents(Event.MOUSEMOVE); }
+//-->
+</script>
+</body></html>

@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / Exemples d'application / Surveiller les modifications de la taille de la fen&ecirc;tre </title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment surveiller les modifications de la taille de la fen&ecirc;tre .">
+<meta name="keywords"       content="SELFHTML, JavaScript, Resize, onresize, taille de la fen&ecirc;tre">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/exemples/surveillance_taille_fenetre.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // Exemples d'application == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Surveiller les modifications de la taille de la fen&ecirc;tre </h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#remarques"><b>Remarques sur cet exemple</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#texte_source"><b>Texte source avec explications</b></a><br>
+</p>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/surveillance_taille_fenetre.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="remarques">Remarques sur cet exemple</a></h2>
+
+<p>Une modification de la taille de la fen&ecirc;tre par l'utilisateur a occasionnellement pour cons&eacute;quence chez Netscape 4.x que celui-ci &quot;oublie&quot; les variables fix&eacute;es, les positionnements dynamiques ou les mentions de feuilles de style. Il est pourtant possible de surveiller les modifications de la taille de la fen&ecirc;tre pour r&eacute;agir ainsi de fa&ccedil;on cibl&eacute;e &agrave; la modification. M&ecirc;me chez l'Explorer Internet MS ou chez Netscape 6.x il peut &ecirc;tre judicieux de pouvoir r&eacute;agir aux modifications.</p>
+
+<p>On utilise, pour la surveillance de la taille de la fen&ecirc;tre le gestionnaire d'&eacute;v&eacute;nement <code>onResize</code>. Ce gestionnaire d'&eacute;v&eacute;nement entre en action quand l'utilisateur modifie la taille de la fen&ecirc;tre. Vous pouvez affecter une fonction, qui est ex&eacute;cut&eacute;e lors des modifications de taille, &agrave; ce gestionnaire d'&eacute;v&eacute;nement .</p>
+
+<p>Fa&icirc;tes attention qu'avec cet exemple, vous n'obtenez qu'une nouvelle construction de la page. Les variables et valeurs &eacute;ventuellement modifi&eacute;es sont perdues. Avec Opera 5.12, il <b>n</b>'est <b>pas</b> possible de surveiller les modifications de la taille de la fen&ecirc;tre avec le gestionnaire d'&eacute;v&eacute;nement <code>onResize</code> .</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="texte_source">Texte source avec explications</a></h2>
+
+<p>Dans l'exemple, la taille de la fen&ecirc;tre est surveill&eacute;e si elle est chang&eacute;e. D&egrave;s qu'elle est modifi&eacute;e, la page est reconstruite et les nouvelles tailles sont &eacute;crites pour contr&ocirc;le dans le document avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/document.htm#write"><b>document.write()</b></a>.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/surveillance_taille_fenetre.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;Surveiller les modifications de la taille de la fen�tre &lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+
+function largeur_fenetre()
+{
+ if (window.innerWidth) return window.innerWidth;
+ else if (document.body &amp;&amp; document.body.offsetWidth) return document.body.offsetWidth;
+ else return 0;
+}
+
+function hauteur_fenetre()
+{
+ if (window.innerHeight) return window.innerWidth;
+ else if (document.body &amp;&amp; document.body.offsetHeight) return document.body.offsetHeight;
+ else return 0;
+}
+
+
+function reconstruction()
+{
+ if (largeur != largeur_fenetre() || hauteur != hauteur_fenetre())
+ window.history.go(0);
+}
+
+/*initialiser la surveillance de Netscape*/
+if(!window.largeur &amp;&amp; window.innerWidth)
+  {
+   window.onresize = reconstruction;
+   largeur = largeur_fenetre();
+   hauteur = hauteur_fenetre();
+  }
+
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ /*initialiser la surveillance par l'Explorer Internet MS*/
+ if(!window.largeur &amp;&amp; document.body &amp;&amp; document.body.offsetWidth)
+  {
+   window.onresize = reconstruction;
+   largeur = largeur_fenetre();
+   hauteur = hauteur_fenetre();
+  }
+//--&gt;
+&lt;/script&gt;
+&lt;div id=&quot;exemple&quot; style=&quot;position:absolute;top:100px;left:100px;border:solid 1px #000000;&quot;&gt;
+Text
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ document.write(&quot;largeur: &quot;+largeur +&quot; hauteur: &quot;+hauteur);
+//--&gt;
+&lt;/script&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<h4>Les fonctions largeur_fenetre() et hauteur_fenetre()</h4>
+
+<p>Ces deux fonctions servent &agrave; rechercher les dimensions de la fen&ecirc;tre. La fonction <code>largeur_fenetre()</code> v&eacute;rifie si le navigateur conna&icirc;t la propri&eacute;t&eacute; <code>window.innerWidth</code>  (c'est le cas pour Netscape, mais pas pour l'Explorer Internet). Si c'est le cas, alors la valeur sauvegard&eacute;e dans cette propri&eacute;t&eacute;  est retourn&eacute;e. Si le navigateur ne conna&icirc;t pas cette propri&eacute;t&eacute;, alors il est v&eacute;rifi&eacute; s'il conna&icirc;t l'objet <code>document.body </code> et si cet objet conna&icirc;t la propri&eacute;t&eacute; <code>document.body.offsetWidth</code>  (c'est le cas pour l'Explorer Internet mais pas pour Netscape). Si c'est le cas, alors la valeur de la propri&eacute;t&eacute; <code>document.body.offsetWidth</code> est retourn&eacute;e. Si le navigateur ne devait pas pouvoir suivre non plus cet embranchement de l'instruction, 0 est retourn&eacute;.<br>
+La fonction <code>hauteur_fenetre()</code> travaille de fa&ccedil;on analogue et utilise les propri&eacute;t&eacute;s <code>window.innerHeight</code> ou bien <code>document.body.offsetHeight</code>.</p>
+
+<h4>initialiser la surveillance pour Netscape</h4>
+
+<p>Au chargement du fichier, la variable <code>largeur</code> n'existe pas encore. &Eacute;tant donn&eacute; qu'une variable globale est toujours une propri&eacute;t&eacute; ou un objet de l'objet fen&ecirc;tre, il peut &ecirc;tre v&eacute;rifi&eacute; avec <code>window.largeur</code> si celui-ci existe. Netscape conna&icirc;t pour cet objet la propri&eacute;t&eacute; <code>window.innerWidth</code>. C'est pourquoi il traite l'instruction correspondante. Tout d'abord, la surveillance du gestionnaire d'&eacute;v&eacute;nement <code>onresize</code> est initialis&eacute;e (pour la compr&eacute;hension voir aussi pour l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/event.htm#generalites"><b>event: g&eacute;n&eacute;ralit&eacute;s sur l'utilisation</b></a>). <code>onResize</code> est d&eacute;clench&eacute; d&egrave;s que la taille de la fen&ecirc;tre est modifi&eacute;e et appelle alors la fonction de traitement <code>reconstruction()</code>. Enfin est sauvegard&eacute;e dans la variable <code>largeur</code> la valeur retourn&eacute;e par la fonction <code>largeur_fenetre()</code> et dans la variable <code>hauteur</code> la valeur retourn&eacute;e par la fonction <code>hauteur_fenetre()</code>. Ainsi, les deux variables sont disponibles pour d'autres t&acirc;ches dans le traitement.</p>
+
+<h4>initialiser la surveillance pour l'Explorer Internet MS</h4>
+
+<p>La surveillance pour l'Explorer Internet est structur&eacute;e de fa&ccedil;on similaire. &Agrave; la diff&eacute;rence du navigateur Netscape, il lui faut toutefois l'objet <code>document.body</code>. Cet objet n'est cependant disponible qu'apr&egrave;s le chargement du rep&egrave;re Body. C'est pourquoi le passage script correspondant n'est pas not&eacute; dans l'ent&ecirc;te de fichier mais au contraire dans le passage <code>body</code> du document. Netscape 6 conna&icirc;t &eacute;galement l'objet <code>document.body</code> et ses propri&eacute;t&eacute;s. Il n'ex&eacute;cute cependant pas ce passage script &eacute;tant donn&eacute; que ce navigateur conna&icirc;t d&eacute;j&agrave;, &agrave; cet instant du d&eacute;roulement, la variable <code>largeur</code>.</p>
+
+<h4>La fonction de traitement reconstruction()</h4>
+
+<p>La fonction <code>reconstruction()</code> est appel&eacute;e quand le gestionnaire d'&eacute;v&eacute;nement <code>onResize</code> est actif. Elle compare la valeur de la variable <code>window.largeur</code> avec la valeur retourn&eacute;e par la fonction <code>largeur_fenetre()</code> et la valeur de la variable <code>window.hauteur</code> avec la valeur retourn&eacute;e par la fonction <code>hauteur_fenetre()</code>. C'est &agrave; cela qu'elle reconna&icirc;t si la taille de la fen&ecirc;tre a &eacute;t&eacute; modifi&eacute;e. Dans ce cas, une reconstruction de la page a lieu, sans qu'elle ait &agrave; &ecirc;tre recharg&eacute;e du serveur, par l'utilisation de la m&eacute;thode  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/history.htm#go"><b>history.go()</b></a>, . Si le gestionnaire d'&eacute;v&eacute;nement <code>onResize</code> est appel&eacute; sans que une modification tangible de la fen&ecirc;tre ait eu lieu - ce qui peut se concevoir - il ne se passe rien &eacute;tant donn&eacute; que la condition pour recharger la page n'est pas remplie.</p>
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="../../dhtml/intro.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../../dhtml/intro.htm"><b>G&eacute;n&eacute;ralit&eacute;s sur HTML dynamique</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="traitement_erreur_try_catch.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="traitement_erreur_try_catch.htm"><b>Traitement d'erreur avec la commande try..catch</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

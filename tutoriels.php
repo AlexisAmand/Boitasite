@@ -204,9 +204,10 @@
                 Guide Utilisateur de Macromedia-Dreamweaver MX 6.0 (Macromedia)</a></li>
 				<li><a href="pdf/html/html_fr.pdf" title="Cours de HTML de la CCIM" target="_blank">
                 Apprendre le HTML (CCIM)</a></li>
-				
                 <li><a href="pdf/html/apprendre-html-zeros.pdf" title="Cours de HTML du site des zéros" target="_blank">
                 Apprendre HTML pour les zéros</a></li>
+                <li><a href="selfhtml/index.htm" title=" ">
+                SELFHTML 8.0 (réaliser soi-même des fichiers HTML)</li>
                
             </ul>
 

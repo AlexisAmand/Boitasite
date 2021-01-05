@@ -1,0 +1,1186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / Fonctions Perl / Fonctions pour la gestion de fichiers et de r&eacute;pertoires</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quelles fonctions en Perl permettent de rechercher les propri&eacute;t&eacute;s de fichiers et de r&eacute;pertoires et pour g&eacute;rer le syst&egrave;me de fichiers.">
+<meta name="keywords"       content="SELFHTML, Perl, fonctions, Fonctions Perl, fichiers, r&eacute;pertoires, syst&egrave;me de fichiers, gestion de fichiers, op&eacute;rateurs de test fichier, chdir, chmod, chown, chroot, glob, link, lstat, mkdir, readlink, rename, rmdir, stat, symlink, umask, unlink, utime">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/fonctions/gestionfichiers.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // Fonctions Perl == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Fonctions Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Fonctions pour la gestion de fichiers et de r&eacute;pertoires</h2></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur ces fonctions</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#test_fichier"><b>-[x]</b></a>  - op&eacute;rateurs de test fichier pour fichiers et r&eacute;pertoires<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#chdir"><b>chdir</b></a> - changer de r&eacute;pertoire<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#chmod"><b>chmod</b></a> - modifier les droits d'acc&egrave;s aux fichiers et r&eacute;pertoires<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#chown"><b>chown</b></a> - changer le propri&eacute;taire ou groupe du propri&eacute;taire de fichiers<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#chroot"><b>chroot</b></a> - modifier le r&eacute;pertoire racine pour les noms de chemins<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#glob"><b>glob</b></a> - choisir des fichiers avec des caract&egrave;res de remplacement<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#link"><b>link</b></a> - cr&eacute;er un nouveau fichier comme lien &agrave; un fichier existant<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#lstat"><b>lstat</b></a> - propri&eacute;t&eacute; d'un fichier lien<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#mkdir"><b>mkdir</b></a> - cr&eacute;er un r&eacute;pertoire<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#readlink"><b>readlink</b></a> - lire la valeur d'un fichier-lien<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#rename"><b>rename</b></a> - renommer un fichier ou un r&eacute;pertoire<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#rmdir"><b>rmdir</b></a> - effacer un r&eacute;pertoire<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#stat"><b>stat</b></a> - rechercher les propri&eacute;t&eacute;s d'un fichier<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#symlink"><b>symlink</b></a> - cr&eacute;er un nouveau fichier comme lien symbolique &agrave; un fichier existant<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#umask"><b>umask</b></a> - modifier l'Umask du processus en cours<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#unlink"><b>unlink</b></a> - effacer des fichiers<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#utime"><b>utime</b></a> - modifier la date et l'heure de fichiers et de r&eacute;pertoires<br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur ces fonctions</a></h2>
+
+<p>Perl vient de l'univers Unix et c'est la raison pour laquelle les fonctions touchant la gestion de fichiers de fichiers et de r&eacute;pertoires sont orient&eacute;es &eacute;galement sur les propri&eacute;t&eacute;s typiques de Unix. Quelques unes de ces fonctions ne sont applicables que si le script Perl est ex&eacute;cut&eacute; sur un syst&egrave;me Unix. Les fonctions qui peuvent &ecirc;tre transmises &agrave; d'autres syst&egrave;mes d'exploitation fonctionnent &eacute;galement sous Unix. Au cours des descriptions des diff&eacute;rentes fonctions, l'attention sera attir&eacute;e si des restrictions existent pour certains types de syst&egrave;mes d'exploitation.</p>
+
+<p>Il existe &eacute;galement d'autres fonctions pour la gestion de fichiers, par exemple pour copier et d&eacute;placer des fichiers, mais elles ne font pas partie du noyau de Perl. Ces fonctions sont accessibles par le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/modulesstandard.htm"><b>module standard</b></a> <code>FILE</code>.</p>
+
+
+<h3 class="xpl"><a name="noms_chemin">Noms de chemin et r&eacute;pertoires:</a></h3>
+
+<p>Les fonctions d&eacute;crites ici attendent comme param&egrave;tre des mentions de chemin. Utilisez toujours comme signe de s&eacute;paration entre les noms de r&eacute;pertoires la barre oblique simple pour des raisons de compatibilit&eacute; entre syst&egrave;mes d'exploitation, m&ecirc;me pour les scripts Perl qui doivent tourner sous  MS Windows. Perl les transforme sous MS Windows en interne, en barres obliques invers&eacute;es sp&eacute;cifiques &agrave; Microsoft. Exemple:</p>
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left">Exemple de syntaxe</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Signification</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&quot;..&quot;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">mention relative, r&eacute;pertoire un niveau sup&eacute;rieur</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&quot;../../bin&quot;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">mention relative, r&eacute;pertoire deux niveaux sup&eacute;rieur et de l&agrave; le sous-r&eacute;pertoire &quot;bin&quot;</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&quot;images&quot;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">mention relative, sous-r&eacute;pertoire &quot;images&quot; dans le r&eacute;pertoire actuel</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&quot;/&quot;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">mention absolue, r&eacute;pertoire racine</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&quot;/usr/bin/perl&quot;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">mention absolue &agrave; partir du r&eacute;pertoire racine</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&quot;c:/windows/system&quot;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">mention absolue avec mention de l'unit&eacute; - typique Windows</td>
+</tr>
+</table>
+</td></tr></table>
+
+
+<p>N'utilisez des mentions relatives que lorsque le r&eacute;pertoire de travail actuel vous est connu.<br>
+Pour rechercher le r&eacute;pertoire de travail actuel en Perl, vous pouvez noter:</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+use Cwd;
+my $repertoire_travail = cwd;
+</pre></td></tr></table>
+
+<p>Dans la scalaire <code>$repertoire_travail</code> figure alors ensuite le chemin complet du r&eacute;pertoire de travail actuel. Pour le faire, le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/modulesstandard.htm"><b>module standard</b></a> <code>cwd</code> est utilis&eacute;.</p>
+
+
+<h3 class="xpl"><a name="mentions_droits">Mentions de droits pour fichiers et r&eacute;pertoires:</a></h3>
+
+<p>Beaucoup des fonctions d&eacute;crites ici attendent comme param&egrave;tre une mention de droits.</p>
+
+<p>Dans les syst&egrave;mes Unix tous les &eacute;l&eacute;ments d'un syst&egrave;me de fichiers ont des droits. Chaque fichier, chaque r&eacute;pertoire appartient &agrave; un utilisateur, et chaque utilisateur fait partie d'un groupe d'utilisateurs. Celui qu'on appelle le super-utilisateur, l'utilisateur avec ce qu'on nomme l'identification racine, peut organiser les utilisateurs et groupes d'utilisateurs et attribuer les donn&eacute;es  d'identification pour les diff&eacute;rents utilisateurs du syst&egrave;me.</p>
+
+<p>Un utilisateur qui se connecte &agrave; un syst&egrave;me Unix re&ccedil;oit du syst&egrave;me d'exploitation une identification d'utilisateur individuelle, la User-ID (UID). De la m&ecirc;me fa&ccedil;on chaque groupe d'utilisateurs re&ccedil;oit une Group-ID (GID). les deux ID sont des num&eacute;ros. Dans certaines des fonctions d&eacute;crites ici, ces ID jouent un r&ocirc;le. Ces fonctions ne sont alors applicables, en r&egrave;gle g&eacute;n&eacute;rale, que si le script Perl doit tourner dans un environnement Unix.</p>
+
+<p>Le syst&egrave;me sait toujours quel utilisateur connect&eacute; cr&eacute;e un fichier ou un r&eacute;pertoire. Le fichier ou le r&eacute;pertoire appartiennent alors &agrave; cet utilisateur ou &agrave; son groupe primaire d'utilisateurs. En plus de cela, il est aussi possible sur des syst&egrave;mes Unix, de fixer les droits d'acc&egrave;s de l'utilisateur d&eacute;tenteur, de son groupe d'utilisateurs primaire et des autres (&quot;reste du monde&quot;), et ce  pour chaque fichier ou chaque r&eacute;pertoire. Ici une distinction est faite entre les droits en lecture, en &eacute;criture et les droits en ex&eacute;cution. Chacune de ces trois sortes de droits (lecture, &eacute;criture, ex&eacute;cution) peut &ecirc;tre fix&eacute;e individuellement sur &quot;oui&quot; ou &quot;non&quot; pour chacun des trois groupes d'utilisateurs (propri&eacute;taire, groupe auquel il appartient et reste du monde). La repr&eacute;sentation de ces droits a lieu habituellement de deux fa&ccedil;ons: soit comme cha&icirc;ne de caract&egrave;res de 3 fois 3, donc 9 caract&egrave;res ou bien en octal avec 3 chiffres.</p>
+
+<p><b>Repr&eacute;sentation comme cha&icirc;ne de caract&egrave;res (exemples):</b></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+rwxrwxrwx
+rw-r--r--
+rwx------
+</pre></td></tr></table>
+
+<p>La lettre <code>r</code> figure pour la lecture (<i>read</i>), <code>w</code> pour l'&eacute;criture (<i>write</i>), et <code>x</code> pour l'ex&eacute;cution (<i>execute</i>). Si la lettre est mise, le droit correspondant est accord&eacute;. Si le droit correspondant n'est pas accord&eacute;, un trait d'union <code>-</code> est not&eacute; &agrave; la place. Les trois premiers des neuf caract&egrave;res repr&eacute;sentent les droits en lecture, en &eacute;criture et en ex&eacute;cution pour l'utilisateur propri&eacute;taire du fichier, les trois caract&egrave;res suivants, les droits en lecture, en &eacute;criture et en ex&eacute;cution pour son groupe, et les trois derniers caract&egrave;res les droits en lecture, en &eacute;criture et en ex&eacute;cution pour le &quot;reste du monde&quot;;.<br>
+La valeur <code>rwxrwxrwx</code> signifie: les trois types d'utilisateurs (utilisateur propri&eacute;taire, groupe auquel il appartient et reste du monde) ont les trois sortes de droits sur le fichier.<br>
+La valeur <code>rw-r--r--</code> signifie: l'utilisateur propri&eacute;taire a les droits en  &quot;lecture &quot; et en  &quot;&eacute;criture&quot;, mais pas en &quot;ex&eacute;cution&quot;, son groupe et le reste du monde n'ont que le droit en  &quot;lecture&quot;, mais pas les droits en &quot;&eacute;criture&quot; et en  &quot;ex&eacute;cution&quot;.<br>
+La valeur <code>rwx------</code> signifie: l'utilisateur propri&eacute;taire a tous les droits, son groupe et le reste du monde n'en ont absolument aucun.</p>
+
+<p><b>Repr&eacute;sentation comme nombre octal (m&ecirc;mes exemples qu'auparavant):</b></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+0777
+0644
+0700
+</pre></td></tr></table>
+
+<p>Pour cette repr&eacute;sentation qui est exig&eacute;e par le plupart des fonctions d&eacute;crites ici, le nombre est pr&eacute;c&eacute;d&eacute; par 0, ce qui permet &agrave; Perl d'interpr&eacute;ter le nombre comme nombre octal. Le nombre proprement-dit est constitu&eacute; des trois chiffres suivants. Dans le syst&egrave;me octal, seuls sont permis les chiffres entre 0 et 7. Le premier chiffre figure pour les droits de l'utilisateur propri&eacute;taire, le deuxi&egrave;me pour les droits de son groupe et le troisi&egrave;me pour le &quot;reste du monde&quot;. Le droit en &quot;lecture&quot; donne 4 &quot;points&quot;, le droit en &eacute;criture 2 points et le droit en &quot;ex&eacute;cution&quot; 1 point. C'est en additionnant les points que l'on obtient les droits respectifs.<br>
+La valeur <code>0777</code> signifie: Les trois types d'utilisateurs (utilisateur propri&eacute;taire, groupe auquel il appartient et reste du monde) ont les trois sortes de droits sur le fichier (4+2+1).<br>
+La valeur <code>0644</code> signifie: l'utilisateur propri&eacute;taire a les droits en &quot;lecture &quot; et en &quot;&eacute;criture&quot; (4+2), son groupe et le reste du monde n'ont que les droits en &quot;lecture&quot; (4).<br>
+La valeur <code>0700</code> signifie: l'utilisateur propri&eacute;taire a tous les droits, son groupe et le reste du monde n'en ont absolument aucun.</p>
+
+
+<h3 class="inf">Attention:</h3>
+
+<p>Comme aide pour les droits sur les fichiers, vous pouvez utiliser le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../petitsassistants/chmod.htm"><b>modificateur Unix de droits sur les fichiers (chmod)</b></a>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="test_fichier">-[x] - op&eacute;rateurs de test fichier pour fichiers et r&eacute;pertoires</a></h2>
+
+<p>La m&eacute;thode la plus simple et la plus rapide d'acc&eacute;der de fa&ccedil;on cibl&eacute;e &agrave; certaines propri&eacute;t&eacute;s d'un fichier ou d'un r&eacute;pertoire est celle que Perl propose avec ses op&eacute;rateurs de test fichier. Certains des op&eacute;rateurs de test fichier renvoient un nombre, par exemple la taille d'un fichier en octets, d'autres seulement si une affirmation est vraie ou non. Vous trouverez le r&eacute;capitulatif des op&eacute;rateurs de test fichier dans le  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#tableau_operateurs_test_fichier"><b>
+tableau des op&eacute;rateurs de test fichier</b></a>.</p>
+
+<h3 class="xmp">Exemple 1 d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $fichier_texte = &quot;/usr/bin/myprog/readme.txt&quot;;
+my $fichier_inconnu = &quot;/usr/bin/myprog/doit&quot;;
+my $fichier_Perl = &quot;/usr/webcgi-local/montant.pl&quot;;
+my $fichier_log = &quot;/usr/web/logs/ce_jour.log&quot;;
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;body&gt;\n&quot;;
+print &quot;Le fichier texte a une taille de &quot;,-s $fichier_texte,&quot; octets&lt;br&gt;\n&quot;;
+printf &quot;La derni�re modification du fichier texte remonte � %.3f jours &lt;br&gt;\n&quot;,-M $fichier_texte;
+print &quot;Le fichier inconnu   &quot;,-d $fichier_inconnu ? &quot;est un r�pertoire&lt;br&gt;\n&quot; : &quot;n'est pas un r�pertoire&lt;br&gt;\n&quot;;
+print &quot;Le fichier Perl &quot;,-e $fichier_Perl ? &quot;existe&lt;br&gt;\n&quot; : &quot;n'existe pas&lt;br&gt;\n&quot;;
+print &quot;Il y a eu des acc�s&quot; if not -z $fichier_log;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Tous les op&eacute;rateurs de test fichier pour s'enqu&eacute;rir sur les propri&eacute;t&eacute;s comportent un signe moins suivi d'une lettre sans espace les s&eacute;parant. Derri&egrave;re suit un espace et la mention du fichier d&eacute;sir&eacute; avec le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#noms_chemin"><b>nom de chemin</b></a> complet si c'est indispensable.</p>
+
+<p>Dans l'exemple 1 ci-dessus trois scalaires sont d&eacute;finies et sauvegardent les noms de fichier avec la mention de chemin. Ensuite, du code HTML est envoy&eacute; au navigateur. Ici, diverses affirmations sur les propri&eacute;t&eacute;s des trois fichiers sont concern&eacute;es.<br>
+La premi&egrave;re instruction <code>print</code> contient comme param&egrave;tre un op&eacute;rateur de test fichier (voir aussi &agrave; ce sujet la syntaxe de <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#print"><b>print</b></a>). Dans l'instruction, la taille du fichier est recherch&eacute;e par l'application de <code>-s $fichier_texte</code> et elle est sortie &agrave; l'endroit correspondant.<br>
+Dans la deuxi&egrave;me commande, un appel de <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#printf"><b>printf</b></a>, il est recherch&eacute; avec <code>-M $fichier_texte</code> depuis combien de jours le fichier n'a plus &eacute;t&eacute; modifi&eacute;. Cette valeur est elle aussi sortie. Comme <code>-M</code> renvoie un nombre &agrave; virgule flottante, la sortie est ramen&eacute;e &agrave; trois chiffres apr&egrave;s la virgule &agrave; l'aide de la fonction <code>printf</code>.<br>
+Dans les deux commandes  <code>print</code> suivantes, vous avez une construction typique montrant comment les op&eacute;rateurs de test fichier qui ne renvoient que &quot;vrai&quot; ou &quot;faux&quot; sont appliqu&eacute;s. Pour leur emploi intervient dans les deux cas une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/conditions.htm#soit_soit"><b>simple requ&ecirc;te soit..., soit...</b></a>. Dans le premier cas il est demand&eacute; avec un op&eacute;rateur de test fichier <code>-d</code> si le fichier inconnu sans extension est un r&eacute;pertoire ou un fichier normal. Dans le deuxi&egrave;me cas il est demand&eacute; avec <code>-e</code> si le fichier Perl existe ou non.<br>
+Le dernier exemple montre comment un op&eacute;rateur de test fichier peut &ecirc;tre plac&eacute; dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/conditions.htm#placees_apres"><b>condition plac&eacute;e apr&egrave;s</b></a>  - l&agrave; aussi une construction typique. L'exemple recherche &agrave; l'aide de l'op&eacute;rateur de test fichier <code>-z</code>, si le fichier est vide ou pas. S'il n'est pas vide un message est sorti que des acc&egrave;s ont d&eacute;j&agrave; eu lieu.</p>
+
+
+<h3 class="inf">Attention:</h3>
+
+<p>Les op&eacute;rateurs de test fichier peuvent aussi s'appliquer &agrave; des descripteurs de fichier attribu&eacute;s &agrave; la place des mentions directes sur le fichier. Quand par exemple, vous ouvrez un fichier en lecture avec <code>open(FILE,&quot;&lt;fichier.htm&quot;)</code>, vous pouvez rechercher la taille du fichier avec <code>-s FILE</code>.</p>
+
+
+<h3 class="xpl"><a name="tableau_operateurs_test_fichier"> tableau des op&eacute;rateurs de test fichier:</a></h3>
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left">Syntaxe</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Remarque</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Signification</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Exemple</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Explication</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-A</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">&nbsp;</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche le temps &eacute;coul&eacute; entre le dernier acc&egrave;s &agrave; un fichier et le lancement du programme. La valeur renvoy&eacute;e est la dur&eacute;e en jours exprim&eacute;e par un nombre &agrave; virgule flottante.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>printf(&quot;%.3f jours<br>&nbsp;&nbsp;date d'acc&egrave;s&quot;,-A $fichier);</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Pour le fichier <code>$fichier</code> trait&eacute; par le script, est sorti &agrave; quand remonte le dernier acc&egrave;s.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-B</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">&nbsp;</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche s'il s'agit d'un fichier binaire.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>binmode(FILE) if -B FILE;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si le fichier du descripteur de fichier FILE est un fichier binaire, <code>binmode</code> est appel&eacute;.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-b</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche si un fichier de p&eacute;riph&eacute;rique est orient&eacute; sur les blocs.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>exit(-1) unless -b &quot;/cdrom&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si &quot;/cdrom&quot; est un p&eacute;riph&eacute;rique orient&eacute; sur les blocs, le script est termin&eacute;.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-C</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">&nbsp;</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche le temps de la modification Inode d'un fichier depuis le lancement du programme.<br>La valeur renvoy&eacute;e  est la dur&eacute;e en jours exprim&eacute;e par un nombre &agrave; virgule flottante.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>if(-C $fichier &gt; 10) {<br>&nbsp;&nbsp;print &quot;Avertissement!&quot;; }</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Quand la dur&eacute;e Inode du fichier <code>$fichier</code> est sup&eacute;rieure &agrave; 10 jours, &quot;Avertissement!&quot; est sorti.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-c</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche si un fichier de p&eacute;riph&eacute;rique est orient&eacute; sur les caract&egrave;res.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>exit(-1) if -c &quot;/cdrom&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si &quot;/cdrom&quot; est un p&eacute;riph&eacute;rique orient&eacute; sur les caract&egrave;res, le script est termin&eacute;.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-d</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">&nbsp;</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche s'il s'agit d'un r&eacute;pertoire.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>chdir(&quot;texte&quot;) if -d &quot;texte&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si &quot;texte&quot; est un r&eacute;pertoire, on passe dans ce r&eacute;pertoire.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-e</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">&nbsp;</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche si un &eacute;l&eacute;ment de r&eacute;pertoire existe.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>print &quot;text.txt existe!&quot;<br>&nbsp;&nbsp;if -e &quot;text.txt&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si le fichier &quot;text.txt&quot; existe, une sortie correspondante est faite.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-f</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche s'il s'agit d'un fichier normal (ni fichier de p&eacute;riph&eacute;rique, ni r&eacute;pertoire etc...).</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>traiter() if -f &quot;text.txt&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si le fichier &quot;text.txt&quot; est un fichier normal, un sous-programme est appel&eacute;.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-g</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Recherche si le bit <i>setgid</i> (set-group-ID-Bit) est pos&eacute; pour un fichier.<br></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>chmod 02771, &quot;donnees&quot;<br>
+&nbsp;&nbsp;unless -g &quot;donnees&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si le r&eacute;pertoire &quot;donnees&quot; ne poss&egrave;de pas de bit <i>setgid</i>, les droits correspondants sont fix&eacute;s.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-k</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche,  si <i>Sticky</i> est pos&eacute; pour un fichier (Bit &agrave; conserver en m&eacute;moire par exemple pour l'instruction, le code d'un programme apr&egrave;s son ex&eacute;cution parce qu'il est pr&eacute;vu de l'utiliser plus souvent).</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>print &quot;test.pl est sticky&quot;<br>&nbsp;&nbsp;if -k &quot;test.pl&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si le fichier  &quot;text.pl&quot; a pos&eacute; le bit <i>Sticky</i>, une sortie correspondante est faite.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-l</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche s'il s'agit d'un lien symbolique.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>print readlink(&quot;text.txt&quot;)<br>&nbsp;&nbsp;if -l &quot;text.txt&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si le fichier &quot;text.txt&quot; est un lien symbolique, sa valeur est sortie.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-M</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">&nbsp;</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche depuis combien de temps un programme n'a pas &eacute;t&eacute; modifi&eacute; depuis le d&eacute;but du programme. La valeur renvoy&eacute;e est la dur&eacute;e en jours exprim&eacute;e par un nombre &agrave; virgule flottante.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>printf(&quot;depuis %.3f jours<br>&nbsp;&nbsp;inchang&eacute;&quot;,<br>&nbsp;&nbsp;-M $fichier);</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Pour le fichier  <code>$fichier</code> est sorti depuis combien de temps il est inchang&eacute;.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-o</code>/<code>-O</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche si le fichier fait partie de l'<i>UID effective</i> (<code>-o</code>) ou de l'<i>UID r&eacute;elle</i> (<code>-O</code>).<br></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>traiter()<br>&nbsp;&nbsp;if -o &quot;text.txt&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si le fichier &quot;text.txt&quot; fait partie de l'UID effective, un sous-programme est appel&eacute;.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-r</code>/<code>-R</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche si l'<i>UID/GID effective</i> (<code>-r</code>) ou l'<i>UID/GID r&eacute;elle</i> (<code>-R</code>) poss&egrave;de des droits en lecture sur le fichier.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>open(FILE,&quot;&lt;text.txt&quot;)<br>&nbsp;&nbsp;if -r &quot;text.txt&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si l'UID/GID effective a des droits en lecture sur le fichier &quot;text.txt&quot;, celui-ci est ouvert en lecture.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-p</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche s'il s'agit d'un canal nomm&eacute; (<i>named pipe</i>) (FIFO).</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>print &quot;pipe&quot; if -p &quot;myprog&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si le fichier &quot;myprog&quot; est un canal nomm&eacute;, une sortie correspondante est faite.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-S</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche si le fichier est un fichier d'interface de connexion <i>Socket</i> (est utilis&eacute; comme interface par les processus client-serveur qui tournent sur un ordinateur).</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>next if -S $_;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si le fichier actuel, dans une boucle imaginaire v&eacute;rifiant tous les &eacute;l&eacute;ment d'un r&eacute;pertoire, est une interface de connexion (Socket), la boucle suivante est lanc&eacute;e.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-s</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">&nbsp;</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche la taille du fichier en octets.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>print -s $element_dir<br>&nbsp;&nbsp;if not -d $element_dir;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si l'&eacute;l&eacute;ment de r&eacute;pertoire <code>$element_dir</code> n'est pas un r&eacute;pertoire, la taille du fichier est sortie.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-t</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche si l'&eacute;l&eacute;ment du r&eacute;pertoire est un <i>tty</i>, c'est &agrave; dire un p&eacute;riph&eacute;rique raccord&eacute; (terminal)  (sous Unix, les p&eacute;riph&eacute;riques sont trait&eacute;s comme des fichiers).</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>print &quot;STDIN est tty&quot;<br>&nbsp;&nbsp;if -t &quot;STDIN&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si le canal standard d'entr&eacute;e est tty, une sortie correspondante est faite.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-u</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche si le bit <i>setuid</i>  (Set-User-Id-Bit), est pos&eacute; pour un fichier.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>die &quot;pas de bit  uid&quot;<br>&nbsp;&nbsp;if not -u &quot;text.pl&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si pour le fichier &quot;text.pl&quot; aucun bit <i>setuid</i> n'est pos&eacute;, le script se termine avec un message d'erreur.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-w</code>/<code>-W</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche si l'<i>UID/GID effective</i> (<code>-w</code>) ou bien l'<i>UID/GID r&eacute;elle </i> (<code>-W</code>) poss&egrave;de des droits en &eacute;criture sur le fichier.<br></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>open(FILE,&quot;&gt;text.txt&quot;)<br>&nbsp;&nbsp;if -W &quot;text.txt&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si l'UID/GID r&eacute;elle a des droits en &eacute;criture sur le fichier &quot;text.txt&quot;, celui-ci est ouvert en &eacute;criture.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-x</code>/<code>-X</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sp&eacute;cifique<br>&agrave; Unix</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche si l'<i>UID/GID effective</i> (<code>-x</code>) ou bien l'<i>UID/GID r&eacute;elle </i> (<code>-X</code>) poss&egrave;de des droits en ex&eacute;cution sur le fichier.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>system(&quot;myprog&quot;)<br>&nbsp;&nbsp;if -x &quot;myprog&quot;;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si l'UID/GID effective a des droits en ex&eacute;cution sur le fichier &quot;myprog&quot;, celui-ci est ex&eacute;cut&eacute; par un appel <code>system</code>.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-z</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">&nbsp;</td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">recherche si un fichier est vide, donc s'il a 0 octet.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>open(FILE,&quot;&lt;text.txt&quot;)<br>&nbsp;&nbsp;if not -z &quot;text.txt&quot;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Si le fichier &quot;text.txt&quot; n'est pas vide, il est ouvert en lecture.</td>
+</tr>
+</table>
+</td></tr></table>
+<p>&nbsp;</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="chdir">chdir - changer de r&eacute;pertoire</a></h2>
+
+<p>Fait d'un r&eacute;pertoire le r&eacute;pertoire de travail actuel. Il est ainsi possible apr&egrave;s &ecirc;tre pass&eacute; dans un r&eacute;pertoire, d'ouvrir les fichiers qu'il contient sans se soucier du nom de chemin.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#noms_chemin"><b>nom de chemin et r&eacute;pertoire</b></a> du r&eacute;pertoire dans lequel il faut passer. Il peut s'agir d'une mention de chemin relative ou absolue.<br>
+Il est aussi possible de ne transmettre aucun param&egrave;tre. Dans ce cas, la fonction passe dans le r&eacute;pertoire qui est sauvegard&eacute; dans la variable d'environnement <var>HOME</var>.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+chdir(&quot;/usr/txt/rfc&quot;);
+open(FICHIER,&quot;&lt;rfc1867.txt&quot;);
+my @lignes = &lt;FICHIER&gt;;
+close(FICHIER);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;pre&gt;\n&quot;;
+print &quot;@lignes&quot;;
+print &quot;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple change de r&eacute;pertoire avec <code>chdir</code> et passe dans le r&eacute;pertoire <code>/usr/local/txt/rfc</code>, donc dans un sous-r&eacute;pertoire d&eacute;termin&eacute; du r&eacute;pertoire racine. L&agrave; un fichier est ouvert, lu et referm&eacute; (explications sur ces commandes voir <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#open"><b>open</b></a>). Ensuite, du code HTML est envoy&eacute; au navigateur et sort les lignes du fichier lu.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="chmod">chmod - modifier les droits d'acc&egrave;s aux fichiers et r&eacute;pertoires</a></h2>
+
+<p>fixe les droits en lecture, en &eacute;criture et en ex&eacute;cution d'un ou plusieurs fichiers pour l'utilisateur, le groupe d'utilisateurs et le reste du monde (sp&eacute;cifique &agrave; Unix).</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> une <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#mentions_droits"><b>Mention de droits pour fichiers et r&eacute;pertoires</b></a>. La valeur doit &ecirc;tre transmise sous forme num&eacute;rique octale, et pas sous forme de cha&icirc;ne de caract&egrave;res!<br>
+<b>2.</b> &agrave; <b>n.</b> un ou plusieurs fichiers ou r&eacute;pertoires pour lesquels ces droits doivent &ecirc;tre fix&eacute;s, avec le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#noms_chemin"><b>nom de chemin et r&eacute;pertoire</b></a> si n&eacute;cessaire.</p>
+
+<p>Renvoie le nombre des modifications effectu&eacute;es.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $repertoire = &quot;/usr/web/docs/cgi-bin&quot;;
+chdir($repertoire);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+my @fichiers = glob(&quot;*.pl&quot;);
+my $fichier;
+foreach $fichier (@fichiers) {
+  chmod(0755,$fichier);
+  print &quot;$fichier fix� �  0755&lt;br&gt;\n&quot;;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple fixe les droits de tous les fichiers Perl d'un r&eacute;pertoire CGI sur <code>0755</code> - ce qui est un r&eacute;glage judicieux pour les scripts CGI sur de nombreux serveurs. Dans ce but, tous les fichiers du r&eacute;pertoire  <code>$repertoire</code> (le r&eacute;pertoire CGI) sont choisis avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#glob"><b>glob</b></a>. La liste <code>@fichiers</code>, dans laquelle figurent ensuite les fichiers choisis, est alors trait&eacute;e dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#foreach"><b>boucle foreach</b></a>. Avec <code>chmod(0755,$fichier)</code> le fichier Perl respectivement actuel se verra attribuer les droits d&eacute;sir&eacute;s. Pour le contr&ocirc;le, le script en exemple sort les fichiers qui ont &eacute;t&eacute; modifi&eacute;s.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="chown">chown - changer le propri&eacute;taire ou le groupe de propri&eacute;taires de fichiers</a></h2>
+
+<p>Chaque fichier sous Unix a un propri&eacute;taire qui est identifi&eacute; par deux nombres: l'identification utilisateur personnelle  (User-ID), (UID) et l'identification du groupe auquel il appartient (Group-ID) (GID). La fonction change le propri&eacute;taire et le groupe de propri&eacute;taires d'un ou de plusieurs fichiers. Pour ce faire, une identification-racine est indispensable sur la plupart des syst&egrave;mes Unix.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> l'UID <b>num&eacute;rique</b> (User-ID du propri&eacute;taire),<br>
+<b>2.</b> la GID <b>num&eacute;rique</b> (Group-ID du groupe de propri&eacute;taires),<br>
+<b>3.</b> &agrave; <b>n.</b> un ou plusieurs fichiers pour lesquels doivent s'appliquer l'UID et la GID mentionn&eacute;es, si n&eacute;cessaire avec le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#noms_chemin"><b>Nom de chemin et r&eacute;pertoires</b></a>.</p>
+
+<p>Renvoie le nombre des modifications effectu&eacute;es.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+
+chdir(&quot;/usr/data/web/htdocs&quot;);
+opendir(DIR, &quot;/usr/data/web/htdocs&quot;) || die &quot;$!\n&quot;;
+my @elements = readdir(DIR);
+closedir(DIR);
+foreach (@elements) {
+ chown(1034, 518, $_) if -f $_;
+}
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple modifie la propri&eacute;t&eacute; pour tous les fichiers r&eacute;guliers du r&eacute;pertoire imaginaire <code>/usr/data/web/htdocs</code> pour l'utilisateur avec l'User-Id 1034 et la Group-Id 518.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="chroot">chroot - modifier le r&eacute;pertoire racine pour les noms de chemins</a></h2>
+
+<p>D&eacute;termine un nouveau r&eacute;pertoire comme r&eacute;pertoire racine &quot;virtuel&quot;. Les mentions de chemin absolues qui commencent par <code>/</code>, s'y r&eacute;f&egrave;rent ensuite. Sur la plupart des syst&egrave;mes Unix, une identification racine est indispensable pour appliquer cette fonction.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#noms_chemin"><b>nom de chemin et r&eacute;pertoires</b></a> du r&eacute;pertoire qui doit &ecirc;tre le r&eacute;pertoire racine. Il peut s'agir d'une mention de chemin relative ou absolue.<br>
+Il est aussi possible de ne transmettre aucun param&egrave;tre. Dans ce cas, le contenu de la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/predefini.htm"><b>variable pr&eacute;d&eacute;finie</b></a> <code>$_</code> est interpr&eacute;t&eacute; comme nom de chemin du r&eacute;pertoire d&eacute;sir&eacute;.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+
+chroot(&quot;/usr/local/web/domains/tralalere&quot;);
+chdir(&quot;/&quot;);
+opendir(DIR, &quot;.&quot;);
+my @elements = readdir(DIR);
+closedir(DIR);
+
+foreach(@elements) {
+  print &quot;$_\n&quot;;
+}
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple fixe comme nouveau r&eacute;pertoire racine, le chemin <code>/usr/local/web/domains/tralalere</code>. Ensuite le script passe dans le nouveau r&eacute;pertoire racine <code>(&quot;/&quot;)</code> avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#chdir"><b>chdir</b></a>. Pour le contr&ocirc;le, le script lit le r&eacute;pertoire actuel <code>(&quot;.&quot;)</code> et dresse ensuite la liste des &eacute;l&eacute;ments de r&eacute;pertoire lus (voir pour les explications sur ces commandes <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#opendir"><b>opendir</b></a>).</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="glob">glob - choisir des fichiers avec des caract&egrave;res de remplacement</a></h2>
+
+<p>Choisit dans un r&eacute;pertoire tous les fichiers qui correspondent &agrave; un certain mod&egrave;le de nom de fichier. C'est infiniment plus simple que d'op&eacute;rer avec les fonctions <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#opendir"><b>opendir</b></a>, <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#readdir"><b>readdir</b></a> et <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#closedir"><b>closedir</b></a>. L'inconv&eacute;nient de <code>glob</code> est en effet que cette fonction d&eacute;marre une console Unix pour arriver &agrave; son r&eacute;sultat. C'est pourquoi la fonction n'est disponible que sur des syst&egrave;mes Unix de m&ecirc;me qu'elle n'est ex&eacute;cutable que si le script a suffisamment de droits pour d&eacute;marrer la console. Il y a cependant dans les  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/modulesstandard.htm#gestion_fichiers"><b>Modules pour la gestion de fichiers</b></a> un module qui ex&eacute;cute compl&egrave;tement l'algorithme de <code>glob</code> en Perl.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le mod&egrave;le de nom de fichier si n&eacute;cessaire avec le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#noms_chemin"><b>nom de chemin et r&eacute;pertoires</b></a>.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @fichiers_HTML = glob(&quot;/usr/web/docroot/*.htm&quot;);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+foreach (@fichiers_HTML) {
+  print &quot;$_&lt;br&gt;\n&quot;;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script en exemple choisit dans le r&eacute;pertoire <code>/usr/web/docroot</code> tous les fichiers dont l'extension est <code>htm</code>. Pour le contr&ocirc;le, le script envoie du code HTML au navigateur et sort tous les fichiers trouv&eacute;s.</p>
+
+<p>Le tableau suivant contient des exemples de mod&egrave;les de noms de fichiers:</p>
+
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left">Mod&egrave;les de noms de fichier</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Signification</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">choisit tous les fichiers et r&eacute;pertoires y compris ceux qui n'ont aucune extension. </td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.*</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">choisit tous les fichiers et r&eacute;pertoires qui comportent un nom et une extension.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.gif</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">choisit tous les fichiers GIF</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>index.*</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">choisit tous les fichiers qui ont pour nom <code>index</code>, ind&eacute;pendamment de leur extension.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>???.*</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">choisit tous les fichiers dont le nom comporte trois caract&egrave;res, peu importe leur extension.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>????.txt</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">choisit tous les fichiers TXT dont le nom comporte quatre caract&egrave;res.</td>
+</tr>
+</table>
+</td></tr></table>
+
+<p>&nbsp;</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="link">link - cr&eacute;er un nouveau fichier comme lien &agrave; un fichier existant</a></h2>
+
+<p>La fonction link qui correspond &agrave; la commande Unix <code>ln</code>, fait, du point de vue de l'utilisateur, une copie d'un fichier. Il s'agit cependant en interne comme avant d'un seul et m&ecirc;me fichier qui somme toute peut &ecirc;tre maintenant trouv&eacute; sous deux noms diff&eacute;rents (et le cas &eacute;ch&eacute;ant &agrave; deux emplacements dans l'arborescence). Si le fichier est modifi&eacute; &agrave; l'un des endroits o&ugrave; il est repr&eacute;sent&eacute;, la modification s'applique &eacute;galement aux autres endroits o&ugrave; il est repr&eacute;sent&eacute;. Si l'un des fichiers est effac&eacute; (par exemple avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#unlink"><b>unlink</b></a>), les autres repr&eacute;sentations du fichier n'en sont pas affect&eacute;es. Ce n'est que lorsque la derni&egrave;re repr&eacute;sentation du fichier est effac&eacute;e que le fichier est effac&eacute; d&eacute;finitivement.</p>
+<p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le fichier d&eacute;j&agrave; existant duquel une nouvelle repr&eacute;sentation doit &ecirc;tre cr&eacute;&eacute;e, si n&eacute;cessaire avec le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#noms_chemin"><b>nom de chemin et r&eacute;pertoires</b></a>,<br>
+<b>2.</b> la nouvelle repr&eacute;sentation &agrave; cr&eacute;er du fichier,  si n&eacute;cessaire avec le nom de chemin.</p>
+
+<p>Renvoie <code>1</code> quand l'op&eacute;ration a &eacute;t&eacute; couronn&eacute;e de succ&egrave;s et <code>0</code>, si elle ne l'a pas &eacute;t&eacute; (par exemple parce il n'y avait aucun droit en &eacute;criture dans le r&eacute;pertoire cible).</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $succes = link(&quot;single.txt&quot;,&quot;../double.txt&quot;);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+$succes ? print &quot;succ�s&quot; : print &quot;�chec&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple applique la fonction <code>link</code> pour cr&eacute;er une nouvelle repr&eacute;sentation du fichier <code>single.txt</code> du r&eacute;pertoire actuel, qui  appara&icirc;t dans le r&eacute;pertoire parent (<code>../</code>) sous le nom <code>double.txt</code>. La valeur renvoy&eacute;e est sauvegard&eacute;e dans la scalaire <code>$succes</code>. Pour le contr&ocirc;le, l'exemple envoie du code HTML au navigateur et sort &agrave; l'aide d'une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/conditions.htm#soit_soit"><b>Simple requ&ecirc;te soit..., soit...</b></a> l'&eacute;tat du r&eacute;sultat de l'op&eacute;ration.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="lstat">lstat - propri&eacute;t&eacute; d'un fichier lien
+</a></h2>
+
+<p>Cette fonction fait la m&ecirc;me chose que la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#stat"><b>stat</b></a>. S'y r&eacute;f&eacute;rer pour une description plus pr&eacute;cise et un exemple.<br>
+&Agrave; la diff&eacute;rence de <code>stat</code>,  <code>lstat</code> ne recherche pas les propri&eacute;t&eacute;s d'un fichier, mais d'un lien &agrave; un fichier, de ce qu'on appelle un lien symbolique. Quand il ne s'agit pas d'une repr&eacute;sentation d'un fichier (donc si le fichier n'appara&icirc;t qu'une fois dans l'arborescence), &agrave; l'appel de <code>lstat</code> sera lanc&eacute; automatiquement en interne un appel normal de <code>stat</code>. <code>lstat</code> englobe donc &eacute;galement les repr&eacute;sentations de fichiers &agrave; la diff&eacute;rence de <code>stat</code>, raison pour laquelle il est davantage employ&eacute; que <code>stat</code> dans la pratique.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="mkdir">mkdir - cr&eacute;er un r&eacute;pertoire</a></h2>
+
+<p>Cr&eacute;e un nouveau r&eacute;pertoire et permet d'attribuer &agrave; ce nouveau r&eacute;pertoire, les droits en &eacute;criture, en lecture et en ex&eacute;cution (actif seulement pour les syst&egrave;mes Unix).</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le nom du nouveau r&eacute;pertoire si n&eacute;cessaire avec le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#noms_chemin"><b>nom de chemin et r&eacute;pertoires</b></a>.<br>
+<b>2.</b> une <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#mentions_droits"><b>mention de droits pour fichiers et r&eacute;pertoires</b></a>. La valeur doit &ecirc;tre transmise exprim&eacute;e sous forme num&eacute;rique en octal, et non pas comme cha&icirc;ne de caract&egrave;res! Pour rechercher le nombre octal d&eacute;sir&eacute;, vous pouvez utiliser le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../petitsassistants/chmod.htm"><b>modificateur Unix de droits sur les fichiers (chmod)</b></a> dans les petits assistants.<br>
+Sur les syst&egrave;mes qui ne connaissent pas la gestion des droits Unix, donc par exemple sous MS Windows, le deuxi&egrave;me param&egrave;tre n'a pas lieu d'&ecirc;tre.</p>
+
+<p>Renvoie <code>1</code> ou bien <code>TRUE</code> quand l'op&eacute;ration est couronn&eacute;e de succ&egrave;s et <code>0</code> ou bien <code>FALSE</code>, si la cr&eacute;ation du r&eacute;pertoire s'est av&eacute;r&eacute;e impossible (par exemple faute de droits en &eacute;criture dans le r&eacute;pertoire o&ugrave; le sous-r&eacute;pertoire devait &ecirc;tre cr&eacute;&eacute;). Le texte exact de l'erreur peut &ecirc;tre recherch&eacute; dans ce cas par la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/predefini.htm"><b>variable pr&eacute;d&eacute;finie</b></a> <code>$!</code>.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @arborescence = (
+&quot;textes&quot;,
+&quot;textes/correspondance&quot;,
+&quot;textes/factures&quot;,
+&quot;textes/factures/vieux&quot;,
+&quot;textes/factures/actuel&quot;,
+&quot;graphiques&quot;,
+&quot;graphiques/photos&quot;,
+&quot;graphiques/photos/autres&quot;,
+&quot;graphiques/cliparts&quot;,
+);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+chdir(&quot;/temp&quot;);
+foreach(@arborescence) {
+  mkdir($_,0777);
+  print &quot;Sous-r�pertoire &lt;b&gt;$_&lt;/b&gt; cr��&lt;br&gt;\n&quot;;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une liste nomm&eacute;e <code>@arborescence</code>. Y sont sauvegard&eacute;s les &eacute;l&eacute;ments qui repr&eacute;sentent une structure arborescente &agrave; cr&eacute;er. Plus bas dans le script d'exemple, cette liste est trait&eacute;e dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#foreach"><b>boucle foreach</b></a>. Ici chacun des diff&eacute;rents r&eacute;pertoires est cr&eacute;&eacute; avec <code>mkdir</code>. Le r&eacute;pertoire respectivement actuel de la liste se trouve &agrave; l'int&eacute;rieur de la boucle dans <code>$_</code>. Comme deuxi&egrave;me param&egrave;tre, le nombre octal <code>0777</code> est transmis. Ainsi, tous les utilisateurs des r&eacute;pertoires re&ccedil;oivent tous les droits. Le script en exemple envoie du code HTML au navigateur et sort pour chacun des r&eacute;pertoires cr&eacute;&eacute;s une phrase ad&eacute;quate.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="readlink">readlink - lire la valeur d'un fichier-lien</a></h2>
+
+<p>Lit la valeur d'un fichier-lien symbolique. Ce sont des fichiers-liens qui ont &eacute;t&eacute; cr&eacute;&eacute;s par exemple &agrave; l'aide de <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#symlink"><b>symlink</b></a>.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le nom du fichier-lien symbolique si n&eacute;cessaire avec le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#noms_chemin"><b>nom de chemin et r&eacute;pertoires</b></a>.<br>
+Il est aussi possible de ne transmettre aucun param&egrave;tre. Dans ce cas, c'est le contenu de la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/predefini.htm"><b>variable pr&eacute;d&eacute;finie</b></a> <code>$_</code>  qui est employ&eacute;.</p>
+
+<p>renvoie le chemin complet du fichier auquel le fichier-lien se r&eacute;f&egrave;re. En cas d'erreur, la fonction renvoie <code>undefined</code> et &eacute;crit le texte de l'erreur dans la variable pr&eacute;d&eacute;finie <code>$!</code>. Sur les syst&egrave;mes d'exploitation qui ne connaissent pas les liens symboliques, donc par exemple sous MS Windows, l'appel de cette fonction provoque une erreur grave.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+chdir(&quot;/tmp&quot;);
+symlink(&quot;/usr/local/webdocs/index.htm&quot;,&quot;webindex.sym&quot;);
+my $contenu = readlink(&quot;webindex.sym&quot;);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;Contenu du fichier  symbolique: $contenu\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script en exemple passe d'abord dans le r&eacute;pertoire <code>/tmp</code> avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#chdir"><b>chdir</b></a>. L&agrave; il cr&eacute;&eacute;e avec <code>symlink</code> un fichier-lien symbolique nomm&eacute; <code>webindex.sym</code> qui est un lien symbolique au fichier <code>/usr/local/webdocs/index.htm</code>. La valeur qui est attribu&eacute;e au fichier symbolique est finalement lue avec <code>readlink</code>. Pour le contr&ocirc;le, le script en exemple envoie du code HTML au navigateur. Ici est sorti le nom de chemin au fichier li&eacute; attribu&eacute; &agrave; <code>webindex.sym</code>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="rename">rename - renommer un fichier ou un r&eacute;pertoire</a></h2>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le nom d'un fichier ou d'un r&eacute;pertoire &agrave; renommer, si n&eacute;cessaire avec le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#noms_chemin"><b>Nom de chemin et r&eacute;pertoires</b></a>.<br>
+<b>2.</b> le nouveau nom du fichier ou du r&eacute;pertoire si n&eacute;cessaire avec le nouveau nom de chemin.<br>
+Si le premier param&egrave;tre est un fichier et le deuxi&egrave;me param&egrave;tre le nom d'un autre r&eacute;pertoire le fichier est d&eacute;plac&eacute; dans cet autre r&eacute;pertoire. Il n'est cependant pas possible avec cette fonction de mentionner comme premier et deuxi&egrave;me param&egrave;tres deux r&eacute;pertoires diff&eacute;rents pour d&eacute;placer le premier r&eacute;pertoire dans le second,.</p>
+
+<p>Renvoie <code>true</code> quand l'op&eacute;ration a &eacute;t&eacute; couronn&eacute;e de succ&egrave;s et <code>false</code> dans le cas contraire.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+chdir(&quot;/htmldocs&quot;);
+opendir(DIR,&quot;.&quot;);
+my @elements = readdir(DIR);
+closedir(DIR);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+my $element;
+my $nom;
+my $nouvel_element;
+foreach $element (@elements) {
+ if($element =~ /(.+)\.htm/) {
+   $nom = $1;
+   $nouvel_element = $nom.&quot;.html&quot;;
+   rename($element,$nouvel_element);
+   print &quot;$element renomm� en $nouvel_element&lt;br&gt;\n&quot;;
+ }
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple fait en sorte que tous les fichiers d'un r&eacute;pertoire qui se terminent par l'extension <code>.htm</code> , soient renomm&eacute;s en fichiers du m&ecirc;me nom se terminant avec l'extension <code>.html</code>.<br>
+Le script passe d'abord dans le r&eacute;pertoire <code>/htmldocs</code> avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#chdir"><b>chdir</b></a>.  Ensuite il lit ce r&eacute;pertoire actuel (<code>&quot;.&quot;</code>) et le copie dans la liste <code>@elements</code> (voir les explications sur ces commandes <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#opendir"><b>opendir</b></a>). Le script de l'exemple envoie du code HTML au navigateur. Ici, les &eacute;l&eacute;ments du r&eacute;pertoire lu sont trait&eacute;s dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#foreach"><b>boucle foreach</b></a>. Pour chaque &eacute;l&eacute;ment il est v&eacute;rifi&eacute; s'il s'agit d'un fichier avec l'extension <code>.htm</code>. Si oui, le nom proprement-dit du fichier est sauvegard&eacute; dans  <code>$nom</code> et un nouveau nom de fichier constitu&eacute; de le valeur de <code>$nom</code> et de l'extension <code>.html</code> est d&eacute;fini. Enfin, la fonction <code>rename</code> est appel&eacute;e. Ici l'&eacute;l&eacute;ment tel qu'il &eacute;tait jusqu'alors, donc un fichier <code>.htm</code>, est renomm&eacute; en un nouvel &eacute;l&eacute;ment donc un fichier au nom proprement-dit identique mais dont l'extension est <code>.html</code>. Pour le contr&ocirc;le, le script sort tous les nouveaux noms affect&eacute;s.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="rmdir">rmdir - effacer un r&eacute;pertoire</a></h2>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le nom du r&eacute;pertoire &agrave; effacer si n&eacute;cessaire avec le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#noms_chemin"><b>nom de chemin et r&eacute;pertoires</b></a>.<br>
+Le r&eacute;pertoire doit &ecirc;tre vide, faute de quoi il ne peut pas &ecirc;tre effac&eacute; avec cette fonction.</p>
+
+<p>Renvoie <code>1</code> quand le r&eacute;pertoire a &eacute;t&eacute; effac&eacute;. Dans le cas o&ugrave; une erreur est survenue, c'est <code>0</code> qui est renvoy&eacute; et le message d'erreur figure dans la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/predefini.htm"><b>variable pr&eacute;d&eacute;finie</b></a> <code>$!</code>.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $repertoire = $ENV{'QUERY_STRING'};
+my $resultat = rmdir($repertoire);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+if($resultat == 1) {
+  print &quot;$R&amp;eacute;pertoire effac&amp;eacute;!&quot;;
+}
+else {
+ print &quot;$!&quot;;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script transmet un param&egrave;tre lors de l'appel qui est not&eacute; par l'URI derri&egrave;re un point d'interrogation &agrave; l'appel. Le param&egrave;tre transmis est constitu&eacute; par la mention de chemin du r&eacute;pertoire &agrave; effacer. Exemple:<br>
+<code>/mydocs/textes/dechets</code>.<br>
+Le script essaie d'effacer le r&eacute;pertoire transmis. La valeur renvoy&eacute;e par la tentative est sauvegard&eacute;e dans la scalaire <code>$resultat</code>.<br>
+Enfin, le script envoie su code HTML au navigateur. Ce faisant, il est sorti si le r&eacute;pertoire transmis a &eacute;t&eacute; effac&eacute; avec succ&egrave;s ou non. Si ce n'est pas le cas, le message d'erreur g&eacute;n&eacute;r&eacute; est sorti.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="stat">stat - rechercher les propri&eacute;t&eacute;s d'un fichier</a></h2>
+
+<p>Recherche les diff&eacute;rentes propri&eacute;t&eacute;s d'un fichier en une seule fois sous forme de liste. La plupart de ces propri&eacute;t&eacute;s sont sp&eacute;cifiques &agrave; Unix. Certaines de ces propri&eacute;t&eacute;s peuvent certes &eacute;galement &ecirc;tre questionn&eacute;es sur d'autres plates-formes, pourtant il est &agrave; vrai dire plus simple pour le faire d'utiliser les <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#test_fichier"><b>op&eacute;rateurs de test fichier pour fichiers et r&eacute;pertoires</b></a>. La fonction  <code>stat</code> ne peut pas, contrairement &agrave;  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#lstat"><b>lstat</b></a>, s'appliquer aux repr&eacute;sentations de fichiers nais seulement aux &quot;originaux&quot; de fichiers.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le nom du fichier d&eacute;sir&eacute;, si n&eacute;cessaire avec le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#noms_chemin"><b>nom de chemin et r&eacute;pertoires</b></a>. En alternative, le nom d'un descripteur de fichier peut aussi &ecirc;tre transmis.</p>
+
+<p>Renvoie une liste de 13 &eacute;l&eacute;ments. Chaque &eacute;l&eacute;ment contient une certaine propri&eacute;t&eacute; de fichier recherch&eacute;e.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $fichier = &quot;/usr/webperldoc/index.html&quot;;
+my @Info = stat($fichier);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;pre&gt;\n&quot;;
+print &quot;&lt;b&gt;Fichier:&lt;/b&gt;                      $fichier\n&quot;;
+print &quot;&lt;b&gt;Num�ro de p�riph�rique:&lt;/b&gt;            $Info[0]\n&quot;;
+print &quot;&lt;b&gt;Num�ro Inode:&lt;/b&gt;               $Info[1]\n&quot;;
+printf &quot;&lt;b&gt;Droits d'acc�s:&lt;/b&gt;             %o\n&quot;, $Info[2];
+print &quot;&lt;b&gt;Nombre de liens au fichier:&lt;/b&gt;     $Info[3]\n&quot;;
+print &quot;&lt;b&gt;User-ID du propri�taire:&lt;/b&gt;      $Info[4]\n&quot;;
+print &quot;&lt;b&gt;Group-ID du propri�taire:&lt;/b&gt;   $Info[5]\n&quot;;
+print &quot;&lt;b&gt;Num�ro brut du p�riph�rique:&lt;/b&gt;          $Info[6]\n&quot;;
+print &quot;&lt;b&gt;Taille du fichier:&lt;/b&gt;               $Info[7]\n&quot;;
+print &quot;&lt;b&gt;Date du dernier acc�s:&lt;/b&gt;        $Info[8]\n&quot;;
+print &quot;&lt;b&gt;Date de la derni�re modification:&lt;/b&gt;     $Info[9]\n&quot;;
+print &quot;&lt;b&gt;Date de la modification Inode:&lt;/b&gt;      $Info[10]\n&quot;;
+print &quot;&lt;b&gt;Taille de bloc id�ale:&lt;/b&gt;        $Info[11]\n&quot;;
+print &quot;&lt;b&gt;Nombre de blocs occup�s:&lt;/b&gt;     $Info[12]\n&quot;;
+print &quot;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple recherche pour un fichier d&eacute;termin&eacute; (/usr/webperldoc/index.html) avec <code>stat</code> les propri&eacute;t&eacute;s disponibles du fichier. La valeur renvoy&eacute;e par la fonction est sauvegard&eacute;e dans une liste <code>@Info</code>. L'exemple envoie du code HTML au navigateur en dressant la liste des 13 propri&eacute;t&eacute;s distinctes qui peuvent &ecirc;tre appel&eacute;es par <code>$Info[0]</code> jusqu'&agrave; <code>$Info[12]</code>. Le tableau suivant contient des informations compl&eacute;mentaires sur les diff&eacute;rentes propri&eacute;t&eacute;s.</p>
+
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left">Num&eacute;ro d'index:</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Explication:</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[0]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><b>Num&eacute;ro de p&eacute;riph&eacute;rique:</b> le num&eacute;ro du syst&egrave;me de fichier sur lequel se trouve le fichier univoque au niveau du syst&egrave;me.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[1]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><b>Num&eacute;ro Inode:</b> le num&eacute;ro du fichier univoque au niveau du syst&egrave;me de fichiers dans le syst&egrave;me de fichier du p&eacute;riph&eacute;rique [0].</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[2]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><b>Type de fichier/droits d'acc&egrave;s:</b> la valeur retourn&eacute;e doit &ecirc;tre interpr&eacute;t&eacute;e comme nombre octal (ce qui explique aussi dans l'exemple la sortie avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#printf"><b>printf</b></a> comme nombre octal. L'estimation en octal du nombre montre certes un seul nombre qui comporte cependant deux parties. Les trois derniers chiffres repr&eacute;sentent les <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#mentions_droits"><b>mentions de droits pour fichiers et r&eacute;pertoires</b></a> pour le fichier et les chiffres qui pr&eacute;c&egrave;dent repr&eacute;sentent le type de fichier. Les nombres correspondants sont d&eacute;finis sur les syst&egrave;mes Unix dans le fichier <code>sys/stat.h</code>.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[3]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><b>Nombre de liens au fichier:</b> nombre de repr&eacute;sentations physiques existantes du fichier, donc au moins 1. Le nombre s'&eacute;l&egrave;ve avec les liens pos&eacute;s, comme il est possible de le faire en Perl par exemple avec la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#link"><b>link</b></a>.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[4]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><b>User-ID du propri&eacute;taire:</b> le num&eacute;ro du propri&eacute;taire du fichier.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[5]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><b>Group-ID du propri&eacute;taire:</b> le num&eacute;ro de groupe auquel appartient le propri&eacute;taire du fichier.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[6]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><b>Num&eacute;ro brut du p&eacute;riph&eacute;rique:</b> int&eacute;ressant seulement pour les fichiers de p&eacute;riph&eacute;riques.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[7]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><b>Taille du fichier:</b> la taille logique du fichier en octets.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[8]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><b>Date du dernier acc&egrave;s:</b> date et heure du dernier acc&egrave;s en lecture ou en &eacute;criture au fichier. Le nombre renvoy&eacute; repr&eacute;sente le nombre de secondes &eacute;coul&eacute;es entre le 1/1/1970 et la date du dernier acc&egrave;s.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[9]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><b>Date de la derni&egrave;re modification:</b> date et heure du dernier acc&egrave;s en &eacute;criture au fichier. Le nombre renvoy&eacute; repr&eacute;sente le nombre de secondes &eacute;coul&eacute;es entre le 1/1/1970 et la date du dernier acc&egrave;s.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[10]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><b>Date de la modification Inode:</b> date et heure du dernier acc&egrave;s au fichier ayant occasionn&eacute; une modification du num&eacute;ro Inode. Le nombre renvoy&eacute; repr&eacute;sente le nombre de secondes &eacute;coul&eacute;es entre le 1/1/1970 et la date de la derni&egrave;re modification Inode.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[11]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><b>Taille de bloc id&eacute;ale:</b> le nombre d'octets optimal pour la lecture ou l'&eacute;criture en blocs du fichier  - en Perl avec des fonctions comme <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#sysread"><b>sysread</b></a> ou bien <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#syswrite"><b>syswrite</b></a>.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[12]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><b>Nombre de blocs occup&eacute;s:</b> le nombre de blocs m&eacute;moire utilis&eacute;s par le syst&egrave;me d'exploitation pour sauvegarder le fichier.</td>
+</tr>
+</table>
+</td></tr></table>
+
+<br>&nbsp;
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="symlink">symlink - cr&eacute;er un nouveau fichier comme lien symbolique &agrave; un fichier existant</a></h2>
+
+<p>Cr&eacute;e un lien symbolique &agrave; un fichier sauvegard&eacute; ailleurs. L'&eacute;l&eacute;ment de r&eacute;pertoire ainsi cr&eacute;&eacute; appara&icirc;t &agrave; la diff&eacute;rence d'un &eacute;l&eacute;ment qui a &eacute;t&eacute; cr&eacute;&eacute; avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#link"><b>link</b></a>, non pas comme une repr&eacute;sentation effective de l'autre fichier mais comme une liaison &agrave; l'autre fichier (sp&eacute;cifique &agrave; Unix).</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le fichier existant auquel un lien symbolique doit &ecirc;tre cr&eacute;&eacute;, si n&eacute;cessaire avec le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#noms_chemin"><b>nom de chemin et r&eacute;pertoires</b></a>,<br>
+<b>2.</b> le fichier-lien symbolique &agrave; cr&eacute;er si n&eacute;cessaire avec le nom de chemin et r&eacute;pertoires.</p>
+
+<p>Renvoie <code>1</code> quand l'op&eacute;ration a &eacute;t&eacute; couronn&eacute;e de succ&egrave;s et  <code>0</code>, quand elle ne l'a pas &eacute;t&eacute;. Sur les syst&egrave;mes d'exploitation qui ne connaissent pas les liens symboliques, cette fonction peut conduire &agrave; une erreur grave lors de l'ex&eacute;cution du script!</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $symlink_exists = eval { symlink(&quot;&quot;,&quot;&quot;); 1 };
+if($symlink_exists) {
+  symlink(&quot;/usr/local/people/serge.htm&quot;,&quot;/usr/local/links/serge.link&quot;);
+}
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+opendir(DIR, &quot;/usr/local/links&quot;);
+my @fichiers = readdir(DIR);
+closedir(DIR);
+foreach (@fichiers) {
+  print &quot;$_&lt;br&gt;\n&quot;;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple v&eacute;rifie d'abord &agrave; l'aide de la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="controle.htm#eval"><b>eval</b></a>, si le syst&egrave;me d'exploitation sous lequel le script est ex&eacute;cut&eacute;, les liens symboliques sont possibles. Utilisez pour une telle v&eacute;rification, la commande telle qu'elle est not&eacute;e dans l'exemple. Dans la valeur renvoy&eacute;e qui est sauvegard&eacute;e dans l'exemple dans la scalaire <code>$symlink_exists</code>, se trouve la valeur 1 (true), au cas o&ugrave; les liens symboliques sont possibles. Avec la construction <code>if($symlink_exists)</code> l'ex&eacute;cution conditionnelle de <code>symlink</code> est alors possible. Dans l'exemple un fichier-lien nomm&eacute; <code>serge.link</code> est cr&eacute;&eacute; et pointe sur le fichier original <code>serge.htm</code> qui se trouve dans un autre r&eacute;pertoire. L'exemple lit pour le contr&ocirc;le, le r&eacute;pertoire dans lequel le fichier lien a &eacute;t&eacute; cr&eacute;&eacute; (Explications sur ces commandes voir <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#opendir"><b>opendir</b></a>) et envoie le code HTML correspondant au navigateur.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="umask">umask - modifier l'Umask du processus en cours</a></h2>
+
+<p>Cette fonction n'est significative que pour les syst&egrave;mes Unix. Quand sous Unix un nouveau fichier est &eacute;crit, les droits d'acc&egrave;s qui lui sont attribu&eacute;s sont influenc&eacute;s par l'<b>Umask</b> du processus actuel en cours (par exemple le script qui cr&eacute;&eacute;e le fichier). Par l'appel de la <b>fonction</b> <code>umask</code> vous pouvez modifier l'Umask du processus en cours et influencer ainsi les droits d'acc&egrave;s des fichiers nouvellement cr&eacute;&eacute;s.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> un masque de bits pour les <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#mentions_droits"><b>mentions de droits pour fichiers et r&eacute;pertoires</b></a>. La valeur doit &ecirc;tre transmise exprim&eacute;e sous forme num&eacute;rique en octal. Chaque bit pos&eacute; dans un masque de bits fait en sorte que le bit correspondant dans un fichier cr&eacute;&eacute; par le processus en cours est <b>&eacute;teint</b>.</p>
+
+<p>Renvoie l'ancienne valeur de l'Umask.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+
+use Fcntl;
+sysopen(FICHIER,&quot;/usr/web/temp/test.txt&quot;, O_CREAT,0666);
+umask(0077);
+sysopen(FICHIER2,&quot;/usr/web/temp/test2.txt&quot;, O_CREAT,0666);
+open(LS,&quot;ls -la /usr/web/temp |&quot;);
+print while(&lt;LS&gt;);
+close(FICHIER);
+close(FICHIER2);
+close(LS);
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple cr&eacute;e deux fichiers nomm&eacute;s <code>test.txt</code> et <code>test2.txt</code> avec deux appels de <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#sysopen"><b>sysopen</b></a>. Pour les deux fichiers a &eacute;t&eacute; mentionn&eacute;e comme mention de droits d&eacute;sir&eacute;s  <code>0666</code>. Entre les deux appels de <code>sysopen</code> figure cependant un appel de <code>umask</code>. &Agrave; la fonction est transmis ici <code>077</code> comme nombre octal pr&eacute;c&eacute;d&eacute; d'un <code>0</code>. Ceci a pour effet que pour le fichier <code>test2.txt</code> les droits d'acc&egrave;s effectifs sont fix&eacute;s &agrave;  <code>0600</code>. Pour le contr&ocirc;le, le script envoie au navigateur le r&eacute;sultat de la commande Unix <code>ls</code> pour le r&eacute;pertoire dans lequel les deux fichiers ont &eacute;t&eacute; cr&eacute;&eacute;s.</p>
+
+<p>La fa&ccedil;on d'agir de <code>umask</code> est plus facile &agrave; comprendre quand on d&eacute;crypte le mod&egrave;le de bits du nombre octal en le comparant &agrave; l'&eacute;criture des droits d'acc&egrave;s sous forme de cha&icirc;ne de caract&egrave;res.<br>
+Le mod&egrave;le de bits du nombre octal <code>077</code> &eacute;quivaut &agrave;: <code>000111111</code> (un 7 correspond &agrave; 111 en binaire!).<br>
+La fa&ccedil;on d'&eacute;crire <code>0666</code> sous forme de caract&egrave;res est: <code>rw-rw-rw-</code>.<br>
+Il y a donc 9 bits et 9 caract&egrave;res d'un c&ocirc;t&eacute; et de l'autre. Chaque bit pos&eacute; (<code>1</code>) du nombre octal fixe le caract&egrave;re analogue du m&ecirc;me emplacement sur <code>-</code>, dans la mesure ou y figurait auparavant <code>r</code>, <code>w</code> ou bien <code>x</code>.<br>
+Le mod&egrave;le de bits <code>000111111</code> a donc pour effet que pour un droit <code>rw-rw-rw-</code>, les six derniers caract&egrave;res sont fix&eacute;s sur <code>-</code>, de sorte que l'on obtient  <code>rw-------</code>  (ce qui correspond en octal &agrave; <code>0600</code>).</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="unlink">unlink - effacer des fichiers</a></h2>
+
+<p>Efface un ou plusieurs fichiers en m&ecirc;me temps. Les r&eacute;pertoires ne peuvent pas &ecirc;tre effac&eacute;s avec cette commande, la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#rmdir"><b>rmdir</b></a> &eacute;tant faite pour &ccedil;a.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> une liste de fichiers qui doivent &ecirc;tre effac&eacute;s.</p>
+
+<p>Renvoie le nombre de fichiers effac&eacute;s avec succ&egrave;s.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+chdir(&quot;/tmp&quot;);
+opendir(DIR,&quot;.&quot;);
+my @elements = readdir(DIR);
+closedir(DIR);
+my $nombre = 0;
+foreach (@elements) {
+ unless( -d $_) {
+   $nombre+= unlink($_);
+ }
+}
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;$nombre de fichiers retir�s!\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script en exemple passe dans le r&eacute;pertoire o&ugrave; quelque chose doit &ecirc;tre effac&eacute; avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#chdir"><b>chdir</b></a> . Ensuite le r&eacute;pertoire est lu avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#opendir"><b>opendir</b></a>, <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#readdir"><b>readdir</b></a> et <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#closedir"><b>closedir</b></a>. Les &eacute;l&eacute;ments du r&eacute;pertoire figurent ensuite dans la liste <code>@elements</code>. Dans une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#foreach"><b>boucle foreach</b></a> la liste est ensuite trait&eacute;e. Il est demand&eacute; avec <code>unless( -d $_)</code> si l'&eacute;l&eacute;ment actuel n'est pas un r&eacute;pertoire. Si ce n'est pas le cas, l'&eacute;l&eacute;ment, donc un fichier est effac&eacute; avec <code>unlink</code>. Quand l'effacement est couronn&eacute; de succ&egrave;s, la variable <code>$nombre</code> est incr&eacute;ment&eacute;e de 1. &Agrave; la fin, le script sort du code HTML au navigateur appelant en faisant part du nombre de fichiers effac&eacute;s.</p>
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="utime">utime - modifier la date et l'heure de fichiers et de r&eacute;pertoires</a></h2>
+
+<p>Modifie la date et l'heure du dernier acc&egrave;s en lecture et du dernier acc&egrave;s en &eacute;criture d'un ou de plusieurs fichiers.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> une mention de temps pour le dernier acc&egrave;s en lecture. Il doit s'agir d'une mention en secondes depuis le 1/1/1970 telle qu'elle est renvoy&eacute;e par exemple, par la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="dateheure.htm#time"><b>time</b></a>.<br>
+<b>2.</b> une mention de temps pour le dernier acc&egrave;s en &eacute;criture. Il doit s'agir d'une mention en secondes depuis le 1/1/1970.<br>
+<b>3.</b> une liste de fichiers dont la date et l'heure doivent &ecirc;tre chang&eacute;s.</p>
+
+<p>Renvoie le nombre de fichiers &quot;affect&eacute;s&quot; par la modification.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $fichier = $ENV{'QUERY_STRING'};
+my $maintenant = time();
+utime($maintenant,$maintenant,$fichier);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;La date et l'heure de $fichier ont �t� actualis�es!\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script actualise la date et l'heure d'un fichier. &Agrave; l'appel, il attend la transmission d'un param&egrave;tre qui est not&eacute; dans l'URI derri&egrave;re un point d'interrogation. Le param&egrave;tre transmis comprend la mention de chemin d'un fichier dont la date et l'heure doivent &ecirc;tre actualis&eacute;es. Exemple:<br>
+<code>http://localhost/cgi-bin/test.pl?/mydocs/textes/important.txt</code>. Le param&egrave;tre transmis est sauvegard&eacute; par le script dans la scalaire <code>$fichier</code>. Pour rechercher la date et l'heure actuelles, la fonction <code>time</code> est appel&eacute;e. Elle donne le nombre de secondes &eacute;coul&eacute;es depuis le 1/1/1970, donc exactement la forme attendue par <code>utime</code>. La valeur renvoy&eacute;e est sauvegard&eacute;e dans <code>$maintenant</code>. Maintenant le script peut appeler la fonction <code>utime</code> et lui transmettre les param&egrave;tres souhait&eacute;s. Quand vous d&eacute;sirez traiter plus d'un fichier en une seule fois, mentionnez tous les fichiers d&eacute;sir&eacute;s s&eacute;par&eacute;s par des virgules.<br>
+Enfin, le script envoie du code HTML au navigateur qui confirme la modification du fichier.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Tous les syst&egrave;mes d'exploitation ne distinguent pas comme Unix deux dates et heures diff&eacute;rentes: Sous Windows par exemple il n'y a pas de date et heure pour le dernier acc&egrave;s en lecture mais seulement pour le dernier acc&egrave;s en &eacute;criture. Transmettez n&eacute;anmoins toujours les deux param&egrave;tres &agrave; <code>utime</code>. Sous Windows seules la date et l'heure existantes seront alors modifi&eacute;es.</p>
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="appelssysteme.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="appelssysteme.htm"><b>Fonctions pour les appels du syst&egrave;me d'exploitation</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="entreesortie.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="entreesortie.htm"><b>  Fonctions pour l'entr&eacute;e et la sortie et la lecture et l'&eacute;criture de donn&eacute;es</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Fonctions Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,935 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / Fonctions Perl / Fonctions pour les listes et les hashes</title>
+<meta name="description" content="Quelles sont en Perl, les fonctions pour manipuler des listes ou arrays et des hashes par exemple ajouter, effacer des &eacute;l&eacute;ments etc...">
+<meta name="keywords" content="SELFHTML, CGI, Perl, fonctions, fonctions Perl, listes, Arrays, Hashes, , delete, each, exists, grep, join, keys, map, pop, push, reverse, shift, sort, splice, undef, unshift, values">
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/fonctions/hashlistes.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // Fonctions Perl == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Fonctions Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Fonctions pour les listes et les hashes</h2></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur ces fonctions</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#delete"><b>delete</b></a> - effacer une paire d'&eacute;l&eacute;ments du hash<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#each"><b>each</b></a> - rechercher la paire d'&eacute;l&eacute;ments suivante dans le hash<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#exists"><b>exists</b></a> - rechercher si un nom existe dans un hash<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#grep"><b>grep</b></a> - extraire une partie de la liste au moyen d'une condition<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#join"><b>join</b></a> - changer une liste en cha&icirc;ne de caract&egrave;res<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#keys"><b>keys</b></a> - rechercher tous les noms d'un hash<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#map"><b>map</b></a> - appliquer des commandes sur tous les &eacute;l&eacute;ments de la liste<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#pop"><b>pop</b></a> - effacer le dernier &eacute;l&eacute;ment d'une liste<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#push"><b>push</b></a> - ajouter des &eacute;l&eacute;ments &agrave; une liste<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#reverse"><b>reverse</b></a> - inverser l'ordre des &eacute;l&eacute;ments de la liste<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#shift"><b>shift</b></a> - effacer le premier &eacute;l&eacute;ment d'une liste<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sort"><b>sort</b></a> - trier les &eacute;l&eacute;ments d'une liste<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#splice"><b>splice</b></a> - effacer, ajouter ou remplacer des &eacute;l&eacute;ments dans une liste<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#undef"><b>undef</b></a> - retirer une valeur d'un hash ou d'une liste<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#unshift"><b>unshift</b></a> - ajouter des &eacute;l&eacute;ments au d&eacute;but d'une liste<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#values"><b>values</b></a> - rechercher toutes les valeurs d'un hash<br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur ces fonctions</a></h2>
+
+<p>Pour comprendre les fonctions r&eacute;unies ici, vous devez conna&icirc;tre la signification des listes, arrays et hashes en Perl comment ils sont d&eacute;finis et quelles particularit&eacute;s il pr&eacute;sentent. Ceci est trait&eacute; dans les parties sur les  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/listes.htm"><b>listes</b></a> et les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/hashes.htm"><b>hashes</b></a>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="delete">delete - effacer une paire d'&eacute;l&eacute;ments du hash</a></h2>
+
+<p>Efface une paire d'&eacute;l&eacute;ments quelconque d'un hash. Contrairement &agrave; la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#undef"><b>undef</b></a>, qui n'efface que la valeur, en laissant cependant figurer la paire d'&eacute;l&eacute;ments, <code>delete</code> retire la paire compl&egrave;te d'&eacute;l&eacute;ments.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> la cl&eacute; de l'&eacute;l&eacute;ment &agrave; effacer.</p>
+
+<p>Renvoie la valeur de la paire d'&eacute;l&eacute;ments effac&eacute;e ou bien <code>undefined</code>, au cas o&ugrave; rien n'a &eacute;t&eacute; effac&eacute;.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my %couleurs_body = (&quot;text&quot;,&quot;#000000&quot;,&quot;link&quot;,&quot;#FF0000&quot;,&quot;alink&quot;,&quot;0000FF&quot;,&quot;vlink&quot;,&quot;#990000&quot;,&quot;bgcolor&quot;,&quot;#FFFFFF&quot;);
+delete $couleurs_body{'bgcolor'};
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;text = $couleurs_body{'text'}&lt;br&gt;\n&quot;;
+print &quot;link = $couleurs_body{'link'}&lt;br&gt;\n&quot;;
+print &quot;alink = $couleurs_body{'alink'}&lt;br&gt;\n&quot;;
+print &quot;vlink = $couleurs_body{'vlink'}&lt;br&gt;\n&quot;;
+print &quot;bgcolor = $couleurs_body{'bgcolor'}\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un hash nomm&eacute; <code>%couleurs_body</code>. Y sont d&eacute;finies les paires d'&eacute;l&eacute;ments pour les attributs habituels de l'&eacute;l&eacute;ment <code>body</code> de HTML. &Agrave; l'aide de la fonction <code>delete</code> la paire d'&eacute;l&eacute;ments compl&egrave;te pour <code>bgcolor</code> est ensuite effac&eacute;e. Pour le contr&ocirc;le, du code HTML est envoy&eacute; au navigateur et sort toutes les paires d'&eacute;l&eacute;ments. La tentative de sortir l'&eacute;l&eacute;ment <code>bgcolor</code> qui n'existe plus provoque ici une erreur.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Vous pouvez &eacute;galement appliquer <code>delete</code> sur des hashes pr&eacute;d&eacute;finis tels que <code>%ENV</code>. Ce qui a pour cons&eacute;quence de modifier les variables d'environnement!</p>
+
+<p>L'exemple ci dessus est peu satisfaisant dans la mesure o&ugrave; la sortie de <code>bgcolor = </code> continue &agrave; exister vide. Comment cela peut &ecirc;tre &eacute;vit&eacute;, c'est ce que montre l'extension de l'exemple en relation avec la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#exists"><b>exists</b></a>.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="each">each - rechercher la paire d'&eacute;l&eacute;ments suivante dans le hash</a></h2>
+
+<p>Recherche la paire d'&eacute;l&eacute;ments suivante dans le hash et se pr&ecirc;te bien avant tout pour traiter toutes les paires d'&eacute;l&eacute;ments dans une boucle.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le hash.</p>
+
+<p>Renvoie au choix soit une liste de deux &eacute;l&eacute;ments avec le nom et la valeur de la paire d'&eacute;l&eacute;ments suivante, ou bien une scalaire avec le nom de la prochaine paire d'&eacute;l&eacute;ments.</p>
+
+
+<pre></pre>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my %courriel = (&quot;expediteur&quot;,&quot;tabaluga\@dragon.net&quot;,
+          &quot;Received&quot;,&quot;from smtp\@mailout.fr&quot;,
+          &quot;Date&quot;, &quot;Sat, 01 Apr 2000 01:45:35 +0200&quot;,
+          &quot;X-Mailer&quot;,&quot;Mozilla 4.72 [en] (WinNT; U)&quot;,
+          &quot;To&quot;,&quot;selfhtml\@selfhtml.com.fr&quot;,
+          &quot;Content-Type&quot;,&quot;text/plain; charset=us-ascii&quot;);
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;pre&gt;\n&quot;;
+while (my ($nom, $valeur) = each %courriel) {
+  print &quot;$nom: $valeur\n&quot;;
+}
+print &quot;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un hash avec des paires d'&eacute;l&eacute;ments qui repr&eacute;sentent les donn&eacute;es d'ent&ecirc;te typiques d'un courriel. Ensuite, l'exemple envoie du code HTML au navigateur dans lequel sont sorties toutes les paires d'&eacute;l&eacute;ments du hash ligne par ligne. Pour ce faire, les paires d'&eacute;l&eacute;ments sont trait&eacute;es dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#while"><b>boucle while</b></a> avec <code>each</code>. La valeur renvoy&eacute;e par <code>each</code> est sauvegard&eacute;e, dans l'exemple, dans une liste de deux &eacute;l&eacute;ments <code>my ($nom, $valeur)</code>. S'il ne figurait &agrave; cet endroit qu'une scalaire, donc par exemple <code>$element_suivant</code>, seul le nom de l'&eacute;l&eacute;ment suivant y serait sauvegard&eacute;, donc par exemple <code>expediteur</code>, et pas la valeur correspondante (<code>tabaluga@dragon.net</code>). L'exemple sort &agrave; chaque boucle pour contr&ocirc;le, les donn&eacute;es trouv&eacute;es.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="exists">exists - rechercher si un nom existe dans un hash</a></h2>
+
+<p>Recherche si un nom existe dans un hash, et est en principe utilis&eacute; en relation avec une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/conditions.htm#if_else_elsif"><b>requ&ecirc;te if</b></a>.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le nom d'&eacute;l&eacute;ment.</p>
+
+<p>Renvoie <code>true</code>, si le nom d'&eacute;l&eacute;ment existe dans le hash.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my %couleurs_body = (&quot;text&quot;,&quot;#000000&quot;,&quot;link&quot;,&quot;#FF0000&quot;,&quot;alink&quot;,&quot;0000FF&quot;,&quot;vlink&quot;,&quot;#990000&quot;,&quot;bgcolor&quot;,&quot;#FFFFFF&quot;);
+delete $couleurs_body{'bgcolor'};
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+print &quot;text = $couleurs_body{'text'}&lt;br&gt;\n&quot; if exists $couleurs_body{'text'};
+print &quot;link = $couleurs_body{'link'}&lt;br&gt;\n&quot; if exists $couleurs_body{'link'};
+print &quot;alink = $couleurs_body{'alink'}&lt;br&gt;\n&quot; if exists $couleurs_body{'alink'};
+print &quot;vlink = $couleurs_body{'vlink'}&lt;br&gt;\n&quot; if exists $couleurs_body{'vlink'};
+print &quot;bgcolor = $couleurs_body{'bgcolor'}\n&quot; if exists $couleurs_body{'bgcolor'};
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un hash nomm&eacute; <code>%couleurs_body</code>. Y sont d&eacute;finies les paires d'&eacute;l&eacute;ments pour les attributs habituels de l'&eacute;l&eacute;ment <code>body</code> de HTML. &Agrave; l'aide de la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#delete"><b>delete</b></a> la paire d'&eacute;l&eacute;ments compl&egrave;te pour  <code>bgcolor</code> est ensuite effac&eacute;e. Pour le contr&ocirc;le, du code HTML est envoy&eacute; au navigateur et sort toutes les paires d'&eacute;l&eacute;ments. Les paires d'&eacute;l&eacute;ments ne sont toutefois sorties que si elles existent. Pour cela, la fonction <code>exists</code> est appliqu&eacute;e sur la paire d'&eacute;l&eacute;ments &agrave; sortir dans une requ&ecirc;te if plac&eacute;e apr&egrave;s. Les donn&eacute;es sont sorties uniquement si le nom de la paire d'&eacute;l&eacute;ments est trouv&eacute;. Dans l'exemple, on &eacute;vite par ce moyen que la ligne <code>bgcolor = </code> soit sortie avec une valeur vide.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="grep">grep - extraire une partie de la liste au moyen d'une condition</a></h2>
+
+<p>Extrait certains &eacute;l&eacute;ments d'une liste, &agrave; savoir ceux qui satisfont &agrave; une condition d&eacute;termin&eacute;e, donc par exemple tous les chiffres impairs d'une liste de chiffres ou tous les fichiers &agrave; partir d'une certaine taille d'une liste de fichiers. Les &eacute;l&eacute;ments extraits sont sauvegard&eacute;s dans une nouvelle liste distincte.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> la condition &agrave; laquelle doivent satisfaire les &eacute;l&eacute;ments &agrave; extraire de la liste. Il peut s'agir par exemple d'une expression r&eacute;guli&egrave;re mais aussi d'une comparaison,<br>
+<b>2.</b> la liste &agrave; partir de laquelle les &eacute;l&eacute;ments doivent &ecirc;tre extraits.</p>
+
+<p>Renvoie une liste avec les &eacute;l&eacute;ments extraits qui remplissent la condition.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+opendir(DIR, &quot;/usr/texte/articles&quot;);
+my @Eintraege = readdir(DIR);
+closedir(DIR);
+
+chdir(&quot;/usr/texte/articles&quot;);
+
+my @fichiers_HTML = grep(/\.htm/,@elements);
+my @grands_fichiers = grep(-s &gt; 50 * 1024, @elements);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;&lt;h2&gt;Fichiers HTML du r�pertoire&lt;/h2&gt;\n&quot;;
+foreach(@fichiers_HTML) {
+  print &quot;$_&lt;br&gt;\n&quot;;
+}
+print &quot;&lt;h2&gt;Fichiers de plus de  50 kilo-octets dans le r�pertoire&lt;/h2&gt;\n&quot;;
+foreach(@grands_fichiers) {
+  print &quot;$_&lt;br&gt;\n&quot;;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple un r&eacute;pertoire est lu. Les fichiers sont sauvegard&eacute;s dans la liste <code>@elements</code>  (pour la lecture de fichiers voir <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entreesortie.htm#readdir"><b>readdir</b></a>). Ensuite et avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="gestionfichiers.htm#chdir"><b>chdir</b></a> il est pass&eacute; dans le r&eacute;pertoire lu pr&eacute;c&eacute;demment, parce que le deuxi&egrave;me des appels <code>grep</code> qui suivent exige que le r&eacute;pertoire lu soit le r&eacute;pertoire actuel.</p>
+
+<p>Le premier des deux appels de <code>grep</code> recherche dans la liste lue <code>@elements</code> tous les &eacute;l&eacute;ments dans lesquels on trouve <code>.htm</code>. De cette fa&ccedil;on,  <code>grep</code> recherche tous les fichiers HTML de la liste. Les fichiers trouv&eacute;s sont sauvegard&eacute;s dans la liste renvoy&eacute;e <code>@fichiers_HTML</code>.</p>
+
+<p>Tandis que lors du premier appel de <code>grep</code> une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/expresreg.htm"><b>expression r&eacute;guli&egrave;re</b></a> est employ&eacute;e, pour formuler la condition d'extraction, il s'agit lors du deuxi&egrave;me appel d'une comparaison, similaire &agrave; ce que l'on conna&icirc;t par exemple des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/conditions.htm#if_else_elsif"><b>Instructions conditionnelles avec if, else et elsif</b></a>. Dans l'exemple tous les &eacute;l&eacute;ments sont extraits pour lesquels la taille de fichier exc&egrave;de 50 Kilo-octets (50*1024 octets) . on se sert ici de l'un des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="gestionfichiers.htm#test_fichier"><b>op&eacute;rateurs de test fichier pour fichiers et r&eacute;pertoires</b></a> <code>-s</code>. Les fichiers trouv&eacute;s sont sauvegard&eacute;s dans la liste renvoy&eacute;e <code>@grands_fichiers</code>.</p>
+
+<p>L'exemple ci-dessus envoie ensuite du code HTML au navigateur et sort les deux listes trouv&eacute;es pour les fichiers HTML et les fichiers dont la taille exc&egrave;de 50 kilo-octets.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="join">join - changer une liste en cha&icirc;ne de caract&egrave;res</a></h2>
+
+<p>Relie les &eacute;l&eacute;ments d'une liste en une cha&icirc;ne de caract&egrave;res. Dans la cha&icirc;ne de caract&egrave;res, les anciens &eacute;l&eacute;ments de la leste sont s&eacute;par&eacute;s les uns des autres par un signe d&eacute;termin&eacute; ou une suite de signes d&eacute;termin&eacute;e.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le signe  ou la suite de signes qui doit servir &agrave; s&eacute;parer les &eacute;l&eacute;ments de la liste,<br>
+<b>2.</b> la liste.</p>
+
+<p>Renvoie une liste de caract&egrave;res dans laquelle sont not&eacute;s tous les &eacute;l&eacute;ments de la liste transmises s&eacute;par&eacute;s par le signe ou la suite de signes mentionn&eacute;s pour la s&eacute;paration.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @valeurs;
+for(my $i=0; $i&lt;16; $i++) {
+    $valeurs[$i] = 2 ** ($i+1);
+}
+my $chaine_valeurs = join(&quot;;&quot;,@valeurs);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;$chaine_valeurs\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple g&eacute;n&egrave;re une liste nomm&eacute;e <code>@valeurs</code> dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for"><b>boucle for</b></a>. Y sont sauvegard&eacute;s les r&eacute;sultats des op&eacute;rations de 2<sup>1</sup> &agrave; 2<sup>16</sup>  (&agrave; cet effet sert l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/operateurs.htm#calculs"><b>op&eacute;rateur de calcul</b></a> <code>**</code>). Cette liste est ensuite transmise &agrave; la fonction <code>join</code>. Un point virgule (<code>;</code>) est d&eacute;termin&eacute; comme signe de s&eacute;paration. Le r&eacute;sultat est sauvegard&eacute; dans la scalaire <code>$chaine_valeurs</code>, une simple cha&icirc;ne de caract&egrave;res. Pour le contr&ocirc;le, du code HTML est envoy&eacute; au navigateur qui sort le r&eacute;sultat.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>La fonction inverse pour cr&eacute;er une liste &agrave; partir d'une cha&icirc;ne de caract&egrave;res avec des signes de s&eacute;paration et des valeurs est  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="chainescaracteres.htm#split"><b>split</b></a>.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="keys">keys - rechercher tous les noms d'un hash</a></h2>
+
+<p>Sauvegarde tous les noms de paire d'&eacute;l&eacute;ments d'un hash dans une liste.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le hash.</p>
+
+<p>Renvoie une liste des paires d'&eacute;l&eacute;ments.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @variables_environnement = keys(%ENV);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;&lt;p&gt;Les variables d'environnement suivantes sont d�finies:&lt;/p&gt;\n&quot;;
+print &quot;&lt;ul&gt;\n&quot;;
+foreach(@variables_environnement) {
+  print &quot;&lt;li&gt;$_&lt;/li&gt;\n&quot;;
+}
+print &quot;&lt;/ul&gt;\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple recherche tous les noms du hash <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/predefini.htm"><b>pr&eacute;d&eacute;fini</b></a> <code>%ENV</code> dans la liste <code>@variables_environnement</code>. Pour le contr&ocirc;le, du code HTML est envoy&eacute; au navigateur dans lequel sont list&eacute;es toutes les variables d'environnement.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Dans l'exemple ne sont list&eacute;s que les noms des variables d'environnement disponibles et pas leur valeur actuelle! La fonction pour ne rechercher que les valeurs d'un hash et pas leur nom est <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#values"><b>values</b></a>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="map">map - appliquer des commandes sur tous les &eacute;l&eacute;ments de la liste</a></h2>
+
+<p>Applique des commandes sur tous les &eacute;l&eacute;ments d'une liste. Pratiquement pour &eacute;viter une boucle <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for"><b>for</b></a>- ou <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#foreach"><b>foreach</b></a>.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> une commande qui doit &ecirc;tre appliqu&eacute;e &agrave; tous les &eacute;l&eacute;ments de la liste. Il peut s'agir d'une fonction mais aussi de toute une s&eacute;rie d'instructions qui sont rassembl&eacute;es dans un bloc,
+<b>2.</b> la liste sur laquelle la commande doit &ecirc;tre appliqu&eacute;e.</p>
+
+<p>Renvoie la liste apr&egrave;s traitement.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @fichiers = (&quot;Index.htm&quot;,&quot;ACDC.html&quot;,&quot;acdc.jpg&quot;,&quot;oasis.htm&quot;,&quot;Oasis.jpg&quot;);
+@fichiers = map(lc, @fichiers);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+foreach(@fichiers) {
+  print &quot;$_&lt;br&gt;\n&quot;;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple est d&eacute;finie une liste avec des noms le fichiers. Les noms de fichiers contiennent en partie aussi des majuscules. Ensuite la fonction <code>map</code> est appliqu&eacute;e sur la liste. Ici la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="chainescaracteres.htm#lc"><b>lc</b></a> est appliqu&eacute;e &agrave; tous les &eacute;l&eacute;ments de la liste et impose une &eacute;criture en minuscules de tous les signes. Pour le contr&ocirc;le, l'exemple envoie du code HTML au navigateur et sort ainsi les &eacute;l&eacute;ments de la liste apr&egrave;s traitement.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="pop">pop - effacer le dernier &eacute;l&eacute;ment d'une liste</a></h2>
+
+<p>Retire d'une liste le dernier &eacute;l&eacute;ment. La liste est raccourcie d'un &eacute;l&eacute;ment.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> la liste.</p>
+
+<p>Renvoie l'&eacute;l&eacute;ment effac&eacute;.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $phrase = &quot;Ne repousse pas � demain ce que tu peux faire le jour m�me&quot;;
+my $longueur_phrase = length($phrase);
+my @signes;
+for(my $i=0;$i&lt;$longueur_phrase;$i++) {
+  $signes[$i] = substr($phrase,$i,1);
+}
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+for(my $i=0; $i&lt;$longueur_phrase; $i++) {
+  print &quot;@signes&lt;br&gt;\n&quot;;
+  pop(@signes);
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une phrase et en extrait les diff&eacute;rents signes dans une liste (explications &agrave; ce sujet, voir la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="chainescaracteres.htm#substr"><b>substr</b></a>). L'exemple envoie du code HTML au navigateur. Ici dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for"><b>boucle for</b></a>, qui d&eacute;filera aussi souvent qu'il y a de signes dans la phrase d'origine, la liste compl&egrave;te <code>@signes</code> est sortie &agrave; chaque fois. La liste est toutefois raccourcie du dernier &eacute;l&eacute;ment &agrave; chaque boucle avec la fonction <code>pop</code>. Ainsi &agrave; chaque boucle un signe de moins est-il sorti.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="push">push - ajouter des &eacute;l&eacute;ments &agrave; une liste</a></h2>
+
+<p>Ajoute un ou plusieurs nouveaux &eacute;l&eacute;ments &agrave; la fin d'une liste.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> la liste &agrave; laquelle l'&eacute;l&eacute;ment doit &ecirc;tre ajout&eacute;,<br>
+<b>2.</b> &agrave; <b>n.</b> un ou plusieurs &eacute;l&eacute;ments &agrave; ajouter.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @villes = (&quot;Wien&quot;,&quot;Madrid&quot;,&quot;Rome&quot;,&quot;Stockholm&quot;,&quot;Riga&quot;);
+my @nouvelles_villes = (&quot;Paris&quot;,&quot;Lisbonne&quot;,&quot;Sofia&quot;);
+foreach(@nouvelles_villes) {
+  push(@villes,$_);
+}
+@villes = sort(@villes);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+foreach(@villes) {
+  print &quot;$_&lt;br&gt;\n&quot;;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple deux listes sont d&eacute;finies: <code>@villes</code> et <code>@nouvelles_villes</code>. Dans une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#foreach"><b>boucle foreach</b></a> les &eacute;l&eacute;ments de la liste  <code>@nouvelles_villes</code> sont ajout&eacute;s l'un apr&egrave;s l'autre &agrave; la liste <code>@villes</code>. &Agrave; l'aide de la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sort"><b>sort</b></a> la nouvelle liste avec toutes les villes est tri&eacute;e en suite dans l'ordre &quot;asciib&eacute;tique&quot; (d'apr&egrave;s l'ordre des signes dans le jeu de caract&egrave;res ASCII). L'exemple envoie du code HTML au navigateur dans lequel la nouvelle liste compl&egrave;te sera sortie pour le contr&ocirc;le.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="reverse">reverse - inverser l'ordre des &eacute;l&eacute;ments de la liste</a></h2>
+
+<p>Inverse une liste de telle sorte que le premier &eacute;l&eacute;ment est ensuite le dernier, le deuxi&egrave;me l'avant dernier etc...</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> la liste souhait&eacute;e.</p>
+
+<p>Renvoie la liste apr&egrave;s traitement.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @nombres = (1..100);
+@nombres = reverse(@nombres);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+foreach(@nombres) {
+  print &quot;$_&lt;br&gt;\n&quot;;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une liste avec les  nombres de 1 &agrave; 100. Ensuite la fonction <code>reverse</code> est appliqu&eacute;e &agrave; la liste, de telle fa&ccedil;on qu'y soient sauvegard&eacute;s les nombres de 100 &agrave; 1. Pour le contr&ocirc;le du code HTML est envoy&eacute; au navigateur et sort la liste apr&egrave;s traitement.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>La fonction peut aussi &ecirc;tre appliqu&eacute;e &agrave; des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/hashes.htm"><b>hashes</b></a>. Exemple:<br>
+<code>%Mailheader = reverse(%Mailheader);</code><br>
+Ici la cl&eacute; et la valeur des &eacute;l&eacute;ments sont &eacute;chang&eacute;es l'une avec l'autre. Ce qui pose pourtant probl&egrave;me quand un hash a plusieurs valeurs identiques. Dans ce cas, seule une des valeurs du hash trait&eacute; (qui sert maintenant de cl&eacute;) est prise en compte.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="shift">shift - effacer le premier &eacute;l&eacute;ment d'une liste</a></h2>
+
+<p>Retire le premier &eacute;l&eacute;ment d'une liste. le deuxi&egrave;me &eacute;l&eacute;ment est ensuite le premier etc... La liste est raccourcie d'un &eacute;l&eacute;ment.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> la liste devant &ecirc;tre trait&eacute;e.</p>
+
+<p>Renvoie l'&eacute;l&eacute;ment effac&eacute;.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @etats_d_esprit = (&quot;peur, &quot;,&quot;m�lancolie, &quot;,&quot;tristesse, &quot;,&quot;rage, &quot;,&quot;dissension, &quot;,&quot;haine&quot;);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+my $max = @etats_d_esprit;
+for(my $i = 0; $i &lt; $max; $i++) {
+  print &quot;&lt;p&gt;maintenant  pr�domine encore la @etats_d_esprit&lt;br&gt;\n&quot;;
+  shift(@etats_d_esprit);
+}
+print &quot;&lt;p&gt;et maintenant r�gne la paix!&lt;/p&gt;\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une liste avec des mauvais &eacute;tats d'esprit. Dans le code HTML qui est envoy&eacute; au navigateur est not&eacute;e une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for"><b>boucle for</b></a>. Elle sera parcourue aussi souvent que la liste d'origine compte d'&eacute;l&eacute;ments. Pour cela la longueur de la liste est sauvegard&eacute;e dans la scalaire <code>$max</code>. &Agrave; chaque passage de la boucle est sorti lesquels des mauvais &eacute;tats d'esprit pr&eacute;dominent encore. &Agrave; chaque passage de la boucle, le premier des &eacute;tats d'esprit de la liste est effac&eacute; avec <code>shift</code>. Ce qui fait que la liste devient toujours plus petite et les &eacute;tats d'esprits moins nombreux. &Agrave; la fin il n'y en a plus. Ensuite la boucle est &eacute;galement termin&eacute;e et une phrase triomphale est encore sortie.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>La fonction <code>shift</code> est aussi volontiers employ&eacute;e dans la pratique pour &quot;traiter&quot; des param&egrave;tres transmis dans des sous-programmes. Vous trouverez un exemple dans la partie expliquant comment <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/sousroutines.htm#parametres"><b>appeler des sous-programmes avec des param&egrave;tres</b></a>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="sort">sort - trier les &eacute;l&eacute;ments d'une liste</a></h2>
+
+<p>Trie les &eacute;l&eacute;ments d'une liste . Il y a ici deux possibilit&eacute;s. Soit vous triez la liste d'apr&egrave;s l'algorithme de tri par d&eacute;faut. Celui-ci trie par ordre alphab&eacute;tique ou plus exactement  &quot;asciib&eacute;tiquement&quot; (d'apr&egrave;s l'ordre des signes dans le jeu de caract&egrave;res ASCII). Ou bien vous imposez votre propre algorithme de tri. Pour cela, vous d&eacute;finissez par exemple un  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/sousroutines.htm"><b>sous-programme</b></a>, qui accomplit l'algorithme correspondant. Ceci est important par exemple pour trier les &eacute;l&eacute;ments d'une liste num&eacute;riquement.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>soit:</b><br>
+<b>1.</b> la liste &agrave; trier.<br>
+<b>soit:</b><br>
+<b>1.</b> l'instruction ou le nom du sous programme avec l'algorithme de tri,<br>
+<b>2.</b> la liste &agrave; trier.
+</p>
+
+<p>Renvoie la liste tri&eacute;e. Toutefois, il est important que la valeur renvoy&eacute;e soit sauvegard&eacute;e dans une autre liste que celle transmise en param&egrave;tre.</p>
+
+
+<h3 class="xmp">Exemple 1 d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @amies = (&quot;Ninon&quot;,&quot;Martine&quot;,&quot;Dani�le&quot;,&quot;Christine&quot;,&quot;Isabelle&quot;,&quot;Sabine&quot;);
+my @ordre = sort(@amies);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+for(@ordre)
+ {
+  print &quot;$_&lt;br&gt;\n&quot;;
+ }
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Cet exemple montre le tri simple standard. Il d&eacute;finit une liste de noms d'amies. Ensuite la liste est tri&eacute;e &agrave; l'aide de <code>sort</code>. La liste renvoy&eacute;e est sauvegard&eacute;e dans la nouvelle liste <code>@ordre</code>. Pour le contr&ocirc;le, du code HTML est envoy&eacute; au navigateur et sort la liste tri&eacute;e.</p>
+
+
+
+<h3 class="xmp">Exemple 2 d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @liste_meilleurs_resultats = (9834,9837,5989,4509,4329,6509,2837,8289,10845);
+my @liste_triee = sort(tri_numerique @liste_meilleurs_resultats);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+for(@liste_triee) {
+  print &quot;$_&lt;br&gt;\n&quot;;
+ }
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+
+sub tri_numerique {
+ if($a &lt; $b)
+  { return -1; }
+ elsif($a == $b)
+  { return 0; }
+ else
+  { return 1; }
+}
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le deuxi&egrave;me exemple d&eacute;finit une liste nomm&eacute;e <code>@liste_meilleurs_resultats</code>. Ensuite la liste est tri&eacute;e &agrave; l'aide de <code>sort</code>. &Eacute;tant donn&eacute; qu'il s'agit de valeurs num&eacute;riques une fonction est utilis&eacute;e qui met &agrave; disposition l'algorithme de tri num&eacute;rique. Car tri&eacute;e &quot;asciib&eacute;tiquement&quot;, la derni&egrave;re valeur 10845 appara&icirc;trait au d&eacute;but de la liste tri&eacute;e dans l'ordre croissant ce qui ne doit pas &ecirc;tre le cas &eacute;tant donn&eacute; qu'elle est la valeur la plus &eacute;lev&eacute;e qui doit appara&icirc;tre en dernier. C'est pourquoi le nom du sous-programme est d'abord transmis &agrave; l'appel de <code>sort</code> et ensuite s&eacute;par&eacute;e par un espace (et non pas par une virgule!), la liste &agrave; trier. La liste renvoy&eacute;e est sauvegard&eacute;e dans l'exemple dans la nouvelle liste <code>@liste_triee</code>. Pour le contr&ocirc;le du code HTML est envoy&eacute; au navigateur et sort la liste apr&egrave;s traitement.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Le sous-programme <code>tri_numerique</code> not&eacute; dans l'exemple est &eacute;crit de fa&ccedil;on g&eacute;n&eacute;rale et accomplit un simple tri num&eacute;rique, tel qu'on l'attend de la fonction <code>sort</code>. Vous pouvez donc toujours utiliser ce sous-programme quand vous d&eacute;sirez trier des listes num&eacute;riquement.</p>
+
+<p>Pour obtenir un tri d&eacute;croissant, vous pouvez par exemple , apr&egrave;s l'application de  <code>sort</code>, appliquer encore la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#reverse"><b>reverse</b></a> &agrave; la liste.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="splice">splice - effacer, ajouter ou remplacer des &eacute;l&eacute;ments dans une liste</a></h2>
+
+<p>retire un ou plusieurs &eacute;l&eacute;ments dans une liste et peut en outre ins&eacute;rer au m&ecirc;me endroit un ou plusieurs &eacute;l&eacute;ments. C'est pourquoi <code>splice</code> est  une esp&egrave;ce de fonction universelle pour la manipulation de listes qui permet entre autre tout ce que permettent de faire les diff&eacute;rentes fonctions  pop, push, shift et unshift et partant de l&agrave; encore beaucoup plus.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> la liste devant &ecirc;tre trait&eacute;e,<br>
+<b>2.</b> num&eacute;ro d'index de l'&eacute;l&eacute;ment &agrave; partir duquel il faut effacer (pour celui-l&agrave; le comptage commence &agrave;  0 pour le premier &eacute;l&eacute;ment de la liste),<br>
+<b>3.</b> (facultatif) nombre d'&eacute;l&eacute;ments &agrave; effacer. Si rien n'est mentionn&eacute;, tous les &eacute;l&eacute;ments jusqu'&agrave; la fin de la liste sont effac&eacute;s! Pour n'effacer aucun &eacute;l&eacute;ment donc pour en ins&eacute;rer seulement, il faut transmettre 0 &agrave; cet endroit.<br>
+<b>4.</b> &agrave; <b>n.</b> (facultatif) un &agrave; n &eacute;l&eacute;ments, qui doivent &ecirc;tre ins&eacute;r&eacute;s  (&agrave; la place des &eacute;l&eacute;ments effac&eacute;s).
+</p>
+
+<p>Renvoie une liste avec les &eacute;l&eacute;ments effac&eacute;s.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @enregistrement = (&quot;Henri&quot;,&quot;Quatre&quot;,&quot;1 rue de la poule au pot&quot;,&quot;59100 Roubaix&quot;);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;&lt;h2&gt;Nouvelle adresse �lectronique et nouveau site Web:&lt;/h2&gt;\n&quot;;
+splice(@enregistrement,2,0,&quot;hdl\@ravaillac.net&quot;,&quot;http://www.ravaillac.net/hdl/&quot;);
+my $Feld;
+foreach $champ (@enregistrement) {
+  print &quot;$champ&lt;br&gt;\n&quot;;
+}
+print &quot;&lt;h2&gt;Nouvelle adresse:&lt;/h2&gt;\n&quot;;
+splice(@enregistrement,4,1);
+splice(@enregistrement,-1,1,&quot;Boite postale 1234, France&quot;);
+foreach $champ (@enregistrement) {
+  print &quot;$champ&lt;br&gt;\n&quot;;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple une liste nomm&eacute;e <code>@enregistrement</code> est d&eacute;finie et comprend plusieurs &eacute;l&eacute;ments. Du code HTML est envoy&eacute; au navigateur et sort la liste. La liste est ici cependant manipul&eacute;e plusieurs fois avec <code>splice</code>. Dans un premier temps, les &eacute;l&eacute;ments pour l'adresse &eacute;lectronique et le site Web sont ins&eacute;r&eacute;s dans l'enregistrement - &agrave; savoir derri&egrave;re les deux premiers &eacute;l&eacute;ments, donc derri&egrave;re le pr&eacute;nom et le nom. Pour ce faire le num&eacute;ro d'index 2 est transmis comme deuxi&egrave;me param&egrave;tre pour le troisi&egrave;me &eacute;l&eacute;ment. Aucun &eacute;l&eacute;ment ne doit &ecirc;tre effac&eacute;, les donn&eacute;es doivent seulement &ecirc;tre ins&eacute;r&eacute;es. C'est pourquoi 0 est transmis comme troisi&egrave;me param&egrave;tre. Enfin, les deux nouveaux &eacute;l&eacute;ments  pour l'adresse &eacute;lectronique et le site Web sont encore transmis. Pour le contr&ocirc;le, la liste est ensuite d'abord sorti. Elle comprend &agrave; ce moment les &eacute;l&eacute;ments:<br>
+<code>Henri,Quatre,hdl@ravaillac.net,http://www.ravaillac.net/hdl/,1 rue de la poule au pot,59100 Roubaix</code></p>
+
+<p>La liste dans l'exemple continue n&eacute;anmoins &agrave; &ecirc;tre manipul&eacute;e. D'abord l'&eacute;l&eacute;ment avec le num&eacute;ro d'index 4 est effac&eacute; (dans l'&eacute;tat actuel de <code>@enregistrement</code> la mention de rue. Le 1 transmis comme troisi&egrave;me param&egrave;tre fait en sorte que ce seul &eacute;l&eacute;ment uniquement est effac&eacute;. <code>@enregistrement</code> comprend &agrave; ce moment les &eacute;l&eacute;ments:<br>
+<code>Henri,Quatre,hdl@ravaillac.net,http://www.ravaillac.net/hdl/,59100 Roubaix</code></p>
+
+<p>Tout de suite apr&egrave;s dans l'exemple  suit cependant un troisi&egrave;me appel de <code>splice</code>. Celui-ci remplace le dernier &eacute;l&eacute;ment de la liste par un nouveau. Dans ce but est transmis comme deuxi&egrave;me param&egrave;tre <code>-1</code>. &Eacute;tant donn&eacute; que l'interpr&eacute;teur Perl commence &agrave; compter &agrave; partir de la fin pour les nombres n&eacute;gatifs, <code>-1</code> correspond donc au dernier num&eacute;ro d'index, <code>-2</code> &agrave; l'avant dernier etc.... Le troisi&egrave;me param&egrave;tre transmis est <code>1</code> de fa&ccedil;on &agrave; ce que ce dernier &eacute;l&eacute;ment soit effac&eacute;. Enfin un autre param&egrave;tre est encore transmis, &agrave; savoir l'&eacute;l&eacute;ment de remplacement. Ainsi est cr&eacute;&eacute; l'effet que simplement une nouvelle valeur est affect&eacute;e au dernier &eacute;l&eacute;ment de la liste. En interne, il s'en passe pourtant davantage.</p>
+
+<p>La liste a apr&egrave;s le troisi&egrave;me appel de <code>splice</code> l'apparence suivante:<br>
+Elle comprend &agrave; ce moment les &eacute;l&eacute;ments:<br>
+<code>Henri,Quatre,hdl@ravaillac.net,http://www.ravaillac.net/hdl/,Boite postale 1234, France</code>.<br>
+Pour le contr&ocirc;le, cet &eacute;tat est sorti encore une fois.</p>
+
+<p>Le tableau suivant montre pour illustrer encore quelques exemples <code>splice</code> et leur correspondance par l'application d'autres fonctions pour les listes:</p>
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left">Instruction avec <code>splice</code>:</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">correspond &agrave; l'instruction suivante:</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">voir aussi:</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>splice(@Array,@Array,0,&quot;Element&quot;)</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>push(@Array,&quot;Element&quot;)</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#push"><b>push</b></a>
+</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>splice(@Array,-1)</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>pop(@Array)</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#pop"><b>pop</b></a>
+</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>splice(@Array,0,1)</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>shift(@Array)</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#shift"><b>shift</b></a>
+</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>splice(@Array,0,0,&quot;Element&quot;)</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>unshift(@Array,&quot;Element&quot;)</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#unshift"><b>unshift</b></a>
+</td>
+</tr>
+</table>
+</td></tr></table>
+<p>&nbsp;</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="undef">undef - retirer une valeur d'un hash ou d'une liste</a></h2>
+
+<p>Retire une valeur d'un hash ou d'une liste. L'&eacute;l&eacute;ment lui m&ecirc;me est conserv&eacute;. La valeur est en fin de compte fix&eacute;e &agrave; la valeur <code>undef</code>.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b>pour un hash le nom d'&eacute;l&eacute;ment et pour une liste la mention du num&eacute;ro d'ordre de l'&eacute;l&eacute;ment. Peut en outre &ecirc;tre &eacute;galement appliqu&eacute; &agrave; de simples scalaires ou &agrave; des sous-programmes pour fixer leur valeur  ou la valeur qu'ils renvoient sur <code>undef</code>.</p>
+
+<p>Renvoie <code>undef</code> dans tous les cas.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @joueurs = (&quot;Richard&quot;,&quot;Annie&quot;,&quot;Fr�d�ric&quot;,&quot;Myriam&quot;);
+my %points = (&quot;Richard&quot;,&quot;350&quot;,&quot;Annie&quot;,&quot;400&quot;,&quot;Fr�d�ric&quot;,&quot;150&quot;,&quot;Myriam&quot;,&quot;700&quot;);
+
+undef($joueurs[2]);
+undef($points{'Fr�d�ric'});
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;&lt;p&gt;Les joueurs suivants prennent part au jeu:&lt;/p&gt;\n&quot;;
+print &quot;&lt;ul&gt;\n&quot;;
+foreach(@joueurs) {
+  print &quot;&lt;li&gt;$_&lt;/li&gt;\n&quot;;
+}
+print &quot;&lt;/ul&gt;\n&quot;;
+print &quot;&lt;p&gt;Les points suivants sont � jour:&lt;/p&gt;\n&quot;;
+print &quot;&lt;ul&gt;\n&quot;;
+my @noms = keys(%points);
+foreach(@noms) {
+  print &quot;&lt;li&gt;$_: $points{$_} points&lt;/li&gt;\n&quot;;
+}
+print &quot;&lt;/ul&gt;\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une liste nomm&eacute;e <code>@joueurs</code> et un hash nomm&eacute; <code>%points</code>. Le joueur Fr&eacute;d&eacute;ric, qui s'est retir&eacute; du jeu, est retir&eacute; des deux structures de donn&eacute;es avec <code>undef</code>. L'&eacute;l&eacute;ment de la liste pour Fr&eacute;d&eacute;ric et la paire d'&eacute;l&eacute;ments correspondants dans le hash sont toutefois conserv&eacute;s. Dans la liste, la valeur donc le nom est retir&eacute; par <code>undef</code>, et dans le hash, le nom <code>Fr&eacute;d&eacute;ric</code> est conserv&eacute;, seule sa valeur attribu&eacute;e <code>100</code> est retir&eacute;e. &quot;Retir&eacute;&quot; signifie dans les deux cas que la valeur est fix&eacute;e sur undef <code>undef</code>. Pour le contr&ocirc;le, du code HTML est envoy&eacute; au navigateur dans l'exemple et sort toutes les donn&eacute;es. Les &eacute;l&eacute;ments retir&eacute;s sont sortis parce qu'ils existent encore, sans valeur visible toutefois. Au lieu de cela, il y a lors de l'acc&egrave;s &agrave; ces &eacute;l&eacute;ments un message d'erreur. La valeur  <code>undef</code> signifie que la scalaire correspondante ou l'&eacute;l&eacute;ment correspondant n'a pas (encore) de valeur. Il est &quot;ind&eacute;fini&quot;. La requ&ecirc;te peut cependant porter sur <code>undef</code>. Exemple:<br>
+<code>unless (defined $points{'Fr&eacute;d&eacute;ric'}) { print &quot;Fr&eacute;d&eacute;ric a quitt&eacute; la partie&quot;; }</code>.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Pour effacer compl&egrave;tement une paire d'&eacute;l&eacute;ments dans un hash, il y a la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#delete"><b>delete</b></a>. Pour effacer compl&egrave;tement un &eacute;l&eacute;ment d'une liste, vous disposez des fonctions <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#pop"><b>pop</b></a>, <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#shift"><b>shift</b></a> et <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#splice"><b>splice</b></a>.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="unshift">unshift - ajouter des &eacute;l&eacute;ments au d&eacute;but d'une liste</a></h2>
+
+<p>Ajouter un ou plusieurs nouveaux &eacute;l&eacute;ments au d&eacute;but d'une liste. La liste se rallonge d'autant.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> la liste d&eacute;sir&eacute;e,<br>
+<b>2.</b> &agrave; <b>n.</b> le ou les &eacute;l&eacute;ments &agrave; ins&eacute;rer au d&eacute;but de la liste.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @liens=(&quot;&lt;a href=\&quot;http://www.selfhtml/selfhtml.com.fr/\&quot;&gt;selfhtml.com.fr&lt;/a&gt;&lt;br&gt;\n&quot;,
+        &quot;&lt;a href=\&quot;http://www.ac-toulouse.fr/\&quot;&gt;toulouse.fr&lt;/a&gt;&lt;br&gt;\n&quot;,
+        &quot;&lt;a href=\&quot;http://www.willy-online.de/\&quot;&gt;willy-online.de&lt;/a&gt;&lt;br&gt;\n&quot;);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+unshift(@liens,&quot;&lt;a href=\&quot;http://www.gtands-gars.fr/\&quot;&gt;grands-gars.fr&lt;/a&gt;&lt;br&gt;\n&quot;);
+print &quot;@liens&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une liste avec trois liens WWW, not&eacute;s tout pr&ecirc;ts comme liens HTML. Du code HTML est envoy&eacute; au navigateur. Avant que la liste avec les liens ne soit sortie, un nouvel &eacute;l&eacute;ment est ajout&eacute; au d&eacute;but de la liste avec <code>unshift</code>. Ensuite toute la liste est alors sortie avec maintenant quatre liens, le lien ajout&eacute; figurant en premier.</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="values">values - rechercher toutes les valeurs d'un hash</a></h2>
+
+<p>Sauvegarde toutes les valeurs des paires d'&eacute;l&eacute;ments d'un hash dans une liste.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le hash.</p>
+
+<p>Renvoie une liste avec les valeurs des paires d'&eacute;l&eacute;ments.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @valeurs_environnement = values(%ENV);
+my @variables_environnement = keys(%ENV);
+my @environnement;
+for(my $i=0; $i &lt; @valeurs_environnement; $i++) {
+  $environnement[$i] = $variables_environnement[$i].&quot; = &quot;.$valeurs_environnement[$i];
+}
+@environnement = sort(@environnement);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;&lt;p&gt;Les valeurs d'environnement suivantes sont d�finies:&lt;/p&gt;\n&quot;;
+print &quot;&lt;ul&gt;\n&quot;;
+foreach(@environnement) {
+  print &quot;&lt;li&gt;$_&lt;/li&gt;\n&quot;;
+}
+print &quot;&lt;/ul&gt;\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple recherche avec <code>values</code> toutes les valeurs du hash <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/predefini.htm"><b>pr&eacute;d&eacute;fini</b></a> <code>%ENV</code> dans la liste <code>@valeurs_environnement</code>. &agrave; l'aide de la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#keys"><b>keys</b></a> une liste correspondante <code>@variables_environnement</code> est cr&eacute;&eacute;e pour les noms d'&eacute;l&eacute;ments du hash. Ensuite est cr&eacute;&eacute;e une nouvelle liste <code>@environnement</code>. Dans cette liste sont fusionn&eacute;es les deux listes pour les noms et les valeurs dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for"><b>boucle for</b></a>. Chaque &eacute;l&eacute;ment de la liste <code>@environnement</code> comporte le nom respectif d'une variable d'environnement, d'un signe &eacute;gal et de la valeur qui s'y rapporte (voir aussi: <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/operateurs.htm#concatener_chaines"><b>Op&eacute;rateur pour concat&eacute;ner des cha&icirc;nes de caract&egrave;res</b></a>). Cette nouvelle liste est tri&eacute;e &agrave; l'aide de la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#sort"><b>sort</b></a>. Ensuite du code HTML est envoy&eacute; au navigateur et sort la liste tri&eacute;e.</p>
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="calculs.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="calculs.htm"><b>Fonctions pour les calculs</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="chainescaracteres.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="chainescaracteres.htm"><b>Fonctions pour les cha&icirc;nes de caract&egrave;res</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Fonctions Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

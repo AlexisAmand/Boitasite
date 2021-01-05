@@ -1,0 +1,437 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / R&eacute;f&eacute;rence objet / Number</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quels sont le r&ocirc;le et les propri&eacute;t&eacute;s de l'objet Number en JavaScript.">
+<meta name="keywords"       content="SELFHTML, JavaScript, objets, nombres, valeurs num&eacute;riques, Number, MAX_VALUE, MIN_VALUE, NaN, NEGATIVE_INFINITY, POSITIVE_INFINITY, toExponential(), toFixed(), toPrecision()">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/objets/number.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // R&eacute;f&eacute;rence objet == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Number</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+
+<p><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>g&eacute;n&eacute;ralit&eacute;s sur l'utilisation</b></a> </p>
+
+<h3>Propri&eacute;t&eacute;s:</h3>
+
+<p><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#max_value"><b>MAX_VALUE</b></a> (plus grand nombre pouvant &ecirc;tre sauvegard&eacute;)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#min_value"><b>MIN_VALUE</b></a> (plus petit nombre pouvant &ecirc;tre sauvegard&eacute;)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#nan"><b>NaN</b></a> (nombre non valable)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#negative_infinity"><b>NEGATIVE_INFINITY</b></a> (nombre trop petit)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#positive_infinity"><b>POSITIVE_INFINITY</b></a> (nombre trop grand)
+</p>
+
+<h3>M&eacute;thodes:</h3>
+
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#to_exponential"><b>toExponential()</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#to_fixed"><b>toFixed()</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#to_precision"><b>toPrecision()</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#to_string"><b>toString()</b></a><br>
+</p>
+
+
+
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">Number: g&eacute;n&eacute;ralit&eacute;s sur l'utilisation</a></h2>
+
+<p>Par l'objet <code>Number</code> vous avez acc&egrave;s aux propri&eacute;t&eacute;s des valeurs num&eacute;riques. Vous pouvez ainsi rechercher si une valeur est un nombre valable, ou quel est le plus grand nombre ou le plus petit nombre pouvant &ecirc;tre sauvegard&eacute; dans une variable num&eacute;rique.</p>
+
+<p>Vous pouvez adresser directement les propri&eacute;t&eacute;s de l'objet Number en les faisant pr&eacute;c&eacute;der de <code>Number</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/number_generalites.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var grand_nombre = Number.MAX_VALUE;
+alert(grand_nombre);
+var mois = 13;
+if (mois &lt; 1 || mois &gt; 12)
+{
+ mois = Number.NaN;
+ alert(mois);
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit dans un premier temps une variable nomm&eacute;e <code>grand_nombre</code>. &Agrave; cette variable est affect&eacute;e la propri&eacute;t&eacute; <code>Number.MAX_VALUE</code>. Apr&egrave;s quoi, <code>grand_nombre</code> contient le plus grand nombre pouvant &ecirc;tre trait&eacute; par JavaScript. Le nombre est affich&eacute; pour le contr&ocirc;le. &Eacute;tant donn&eacute; que le nombre est beaucoup trop grand pour &ecirc;tre repr&eacute;sent&eacute; directement, automatiquement son &eacute;criture par JavaScript est exponentielle.</p>
+
+<p>Ensuite, l'exemple d&eacute;finit une variable nomm&eacute;e <code>mois</code> et affecte &agrave; cette variable la valeur <code>13</code>. Apr&egrave;s, il est demand&eacute; si la valeur de <code>mois</code> est comprise entre 1 et 12 - comme il est normal pour les mois de l'ann&eacute;e. Si ce n'est pas le cas (ce qui arrive dans l'exemple), la propri&eacute;t&eacute; <code>Number.NaN</code> est affect&eacute;e &agrave; la variable <code>mois</code>. La valeur de <code>mois</code> est donc ensuite <code>NaN</code>, ce qui signifie &agrave; peu de chose pr&egrave;s: en aucun cas un nombre - ou bien un nombre non-valide. Pour le contr&ocirc;le, la nouvelle valeur de <code>mois</code> est sortie.</p>
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="lecture"> <a class="an" name="max_value">MAX_VALUE</a></h2>
+
+<p>Sauvegarde le plus grand nombre permis.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/number_max_value.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var grand_nombre = Number.MAX_VALUE;
+ alert(grand_nombre);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une variable nomm&eacute;e <code>grand_nombre</code>. La propri&eacute;t&eacute; <code>Number.MAX_VALUE</code> est affect&eacute;e &agrave; cette variable. Apr&egrave;s quoi, <code>grand_nombre</code> contient le plus grand nombre pouvant &ecirc;tre trait&eacute; par JavaScript. Le r&eacute;sultat est sorti pour contr&ocirc;le.</p>
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="lecture"> <a class="an" name="min_value">MIN_VALUE</a></h2>
+
+<p>Sauvegarde le plus petit (n&eacute;gatif) nombre permis.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/number_min_value.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var petit_nombre = Number.MIN_VALUE;
+ alert(petit_nombre);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une variable nomm&eacute;e <code>petit_nombre</code>. La propri&eacute;t&eacute; <code>Number.MIN_VALUE</code> est affect&eacute;e &agrave; cette variable. Apr&egrave;s quoi, <code>petit_nombre</code> contient &quot;le plus grand&quot; nombre n&eacute;gatif pouvant &ecirc;tre trait&eacute; par JavaScript. Le r&eacute;sultat est sorti pour contr&ocirc;le.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="lecture"> <a class="an" name="nan">NaN</a></h2>
+
+<p><code>NaN</code> est une valeur pr&eacute;d&eacute;finie (<i>nombre non valide</i>). Cette valeur peut &ecirc;tre utilis&eacute;e comme valeur retourn&eacute;e pour des nombres non valides.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/number_nan.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var nombre_1 = &quot;3a&quot;;
+var nombre_2 = &quot;3&quot;;
+if(nombre_1 != 3) nombre_1 = Number.NaN;
+if(nombre_2 != 3) nombre_2 = Number.NaN;
+alert(nombre_1);
+alert(nombre_2);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit deux variables <code>nombre_1</code> et <code>nombre_2</code>. <code>nombre_1</code>  se voit affecter la valeur <code>3a</code>, <code>nombre_2</code> la valeur <code>3</code>. Apr&egrave;s quoi, il est demand&eacute; pour les deux variables si la variable est diff&eacute;rente du nombre 3. Si c'est le cas, donc si la valeur n'est pas 3, <code>Number.NaN</code> est affect&eacute; &agrave; la variable correspondante. &Agrave; la fin, le contenu des deux variables est sorti. <code>nombre_1</code> a maintenant la valeur <code>NaN</code> <i>(nombre non valide)</i>, parce qu'il diff&eacute;rait de 3 et que pour cette raison la propri&eacute;t&eacute; <code>NaN</code> lui a &eacute;t&eacute; affect&eacute;e. <code>nombre_2</code> par contre a la valeur <code>3</code>, &eacute;tant donn&eacute; qu'il a &eacute;t&eacute; reconnu comme chiffre valide 3 - bien que lors de l'initialisation, le 3 lui a &eacute;t&eacute; affect&eacute; en tant que cha&icirc;ne de caract&egrave;res : ici intervient la transformation de type automatique de JavaScript.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Avec la propri&eacute;t&eacute; <code>Number.NaN</code>, vous <b>ne</b> pouvez <b>pas</b> v&eacute;rifier la validit&eacute; d'un nombre mais seulement lui affecter la propri&eacute;t&eacute;  <i>nombre non valide</i>. Vous pouvez v&eacute;rifier la validit&eacute; d'un nombre avec la m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="independant.htm#is_nan"><b>isNaN()</b></a>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="lecture"> <a class="an" name="negative_infinity">NEGATIVE_INFINITY</a></h2>
+
+
+<p>Ceci est une valeur pr&eacute;d&eacute;finie (valeur sortie: <code>-Infinity</code>). Elle indique si un chiffre (n&eacute;gatif) est trop petit pour JavaScript, donc s'il est situ&eacute; hors du domaine dont la limite est marqu&eacute;e par <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#min_value"><b>MIN_VALUE</b></a>. La valeur peut &ecirc;tre utilis&eacute;e comme valeur retourn&eacute;e pour des nombres trop petits.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/number_negative_infinity.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var nombre = Number.MAX_VALUE * -2;
+ alert(nombre);
+ var mois=-1;
+ if (mois&lt;1)  mois=Number.NEGATIVE_INFINITY;
+ alert(mois);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une variable <code>nombre</code> qui re&ccedil;oit comme valeur le produit de <code>Number.MAX_VALUE</code>, donc le plus grand nombre possible, et de -2. La multiplication produit un nombre n&eacute;gatif plus petit que le plus petit nombre permis. Ainsi la variable <code>nombre</code> re&ccedil;oit la valeur <code>-Infinity</code>. Celle-ci signifie que le domaine des valeurs permises a &eacute;t&eacute; d&eacute;pass&eacute;. Dans la premi&egrave;re partie de l'exemple, JavaScript affecte automatiquement au r&eacute;sultat la valeur de <code>Number.NEGATIVE_INFINITY</code>. Dans la deuxi&egrave;me partie, une variable <code>mois</code> est d&eacute;clar&eacute;e et re&ccedil;oit une valeur non valide de -1. Dans la requ&ecirc;te qui suit, il est v&eacute;rifi&eacute; si <code>mois</code>  est plus petit que 1 et dans ce cas la propri&eacute;t&eacute; <code>Number.NEGATIVE_INFINITY</code> lui est affect&eacute;e.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Avec la propri&eacute;t&eacute;  <code>Number.NEGATIVE_INFINITY</code> vous <b>ne</b> pouvez <b>pas</b> v&eacute;rifier si un nombre est trop petit pour JavaScript. Vous pouvez v&eacute;rifier la validit&eacute; d'un nombre avec la m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="independant.htm#is_finite"><b>isFinite()</b></a> .</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="lecture"> <a class="an" name="positive_infinity">POSITIVE_INFINITY</a></h2>
+
+<p>Ceci est une valeur pr&eacute;d&eacute;finie (valeur sortie: <code>Infinity</code>). Elle indique si un chiffre est trop grand pour JavaScript, donc s'il est situ&eacute; hors du domaine dont la limite est marqu&eacute;e par <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#max_value"><b>MAX_VALUE</b></a>. La valeur peut &ecirc;tre utilis&eacute;e comme valeur retourn&eacute;e pour des nombres trop grands.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/number_positive_infinity.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ nombre = Number.MAX_VALUE * 2;
+ alert(nombre);
+ var mois=13;
+ if (mois>12)  mois=Number.POSITIVE_INFINITY;
+ alert(mois);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une variable <code>nombre</code> qui re&ccedil;oit comme valeur le produit de <code>Number.MAX_VALUE</code>, donc le plus grand nombre possible, et de 2. La multiplication produit un nombre plus grand que le plus grand nombre permis. Ainsi la variable <code>nombre</code> re&ccedil;oit la valeur <code>Infinity</code>. Celle-ci signifie que le domaine des valeurs permises a &eacute;t&eacute; d&eacute;pass&eacute; . Dans la premi&egrave;re partie de l'exemple, JavaScript affecte automatiquement au r&eacute;sultat la valeur de  <code>Number.POSITIVE_INFINITY</code>. Dans la deuxi&egrave;me partie, une variable <code>mois</code> est d&eacute;clar&eacute;e et re&ccedil;oit une valeur non valide de <code>13</code>. Dans la requ&ecirc;te qui suit, il est v&eacute;rifi&eacute; si mois est plus grand que 13 et dans ce cas la propri&eacute;t&eacute; <code>Number.POSITIVE_INFINITY</code> lui est affect&eacute;e.</p>
+
+<h3 class="inf">Attention:  </h3>
+
+<p>Avec la propri&eacute;t&eacute; <code>Number.POSITIVE_INFINITY</code> vous <b>ne</b> pouvez <b>pas</b> v&eacute;rifier si un nombre est trop grand pour JavaScript. Vous pouvez v&eacute;rifier la validit&eacute; d'un nombre avec la m&eacute;thode
+ <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="independant.htm#is_finite"><b>isFinite()</b></a> .</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="to_exponential">toExponential()</a></h2>
+
+<p>impose la formulation exponentielle d'un nombre.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/number_to_exponential.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var valeur = 13.000012345;
+document.write(valeur.toExponential());
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une valeur et &eacute;crit le r&eacute;sultat de l'application de <code>toExponential()</code> sur cette valeur dans le document. Il est &eacute;crit <code>1.3000012345e+1</code>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="to_fixed">toFixed()</a></h2>
+
+<p>impose un certain nombre de chiffres apr&egrave;s la virgule.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/number_to_fixed.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var valeur = 7123.203848;
+document.write(valeur.toFixed(2));
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une valeur  et &eacute;crit le r&eacute;sultat de l'application de  <code>toFixed(2)</code> sur cette valeur dans le document. Il est &eacute;crit  <code>7123.20</code>, parce que la  valeur <code>2</code> transmise &agrave; la m&eacute;thode dans l'exemple veut dire ni plus ni moins que: ne consid&eacute;rer que les 2 premiers chiffres apr&egrave;s la virgule.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Cette m&eacute;thode op&egrave;re automatiquement l'arrondi commercial. Si la valeur dans l'exemple avait &eacute;t&eacute; <code>7123.209848</code>, le r&eacute;sultat aurait alors &eacute;t&eacute; <code>7123.21</code>. Pour emp&ecirc;cher cet automatisme, vous pouvez employer <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#to_precision"><b>toPrecision()</b></a>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="to_precision">toPrecision()</a></h2>
+
+<p>Impose une certaine exactitude pour la repr&eacute;sentation d'un nombre.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/number_to_precision.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+valeur = 7123.209;
+document.write(&quot;precision(1) = &quot; + valeur.toPrecision(1) + &quot;&lt;br&gt;&quot;);
+document.write(&quot;precision(2) = &quot; + valeur.toPrecision(2) + &quot;&lt;br&gt;&quot;);
+document.write(&quot;precision(3) = &quot; + valeur.toPrecision(3) + &quot;&lt;br&gt;&quot;);
+document.write(&quot;precision(4) = &quot; + valeur.toPrecision(4) + &quot;&lt;br&gt;&quot;);
+document.write(&quot;precision(5) = &quot; + valeur.toPrecision(5) + &quot;&lt;br&gt;&quot;);
+document.write(&quot;precision(6) = &quot; + valeur.toPrecision(6) + &quot;&lt;br&gt;&quot;);
+document.write(&quot;precision(7) = &quot; + valeur.toPrecision(7) + &quot;&lt;br&gt;&quot;);
+document.write(&quot;precision(8) = &quot; + valeur.toPrecision(8) + &quot;&lt;br&gt;&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un valeur et &eacute;crit ensuite plusieurs fois le r&eacute;sultat des diff&eacute;rentes applications de <code>toPrecision(x)</code> sur cette valeur dans le document. Il est &eacute;crit :<br>
+<code>precision(1) = 7e+3<br>
+precision(2) = 7.1e+3<br>
+precision(3) = 7.12e+3<br>
+precision(4) = 7123<br>
+precision(5) = 7123.2<br>
+precision(6) = 7123.21<br>
+precision(7) = 7123.209<br>
+precision(8) = 7123.2090</code></p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="to_string">to_string()</a></h2>
+
+<p>Transforme un nombre en une cha&icirc;ne de caract&egrave;res (String). Cette m&eacute;thode est n&eacute;cessaire quand vous voulez appliquer des m&eacute;thodes de l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="string.htm"><b>String</b></a> sur un nombre. La m&eacute;thode <code>toString()</code> poss&egrave;de un param&egrave;tre facultatif. Le param&egrave;tre donne la base du syst&egrave;me num&eacute;rique d&eacute;sir&eacute; (par exemple 10 pour le syst&egrave;me d&eacute;cimal ou 16 pour le syst&egrave;me hexad&eacute;cimal). Le param&egrave;tre facultatif peut accepter une valeur comprise entre 2 et 36. Si aucun param&egrave;tre n'est mentionn&eacute;, le nombre est trait&eacute; en tant que nombre d&eacute;cimal.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/number_to_string.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var nombre_decimal = 15.5;
+var nombre_hybride=nombre_decimal.toString(2);
+alert(nombre_hybride);
+
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une variable nomm&eacute;e <code>nombre_decimal</code>. Cette variable contient le nombre d&eacute;cimal <code>15.5</code>. Enfin la valeur retourn&eacute;e par la m&eacute;thode <code>toString()</code> avec le param&egrave;tre <code>2</code> est affect&eacute;e &agrave; la variable <code>nombre_hybride</code>. dans la variable <code>nombre_hybride</code> est maintenant sauvegard&eacute; le nombre <code>15.5</code> comme nombre hybride/cha&icirc;ne de caract&egrave;res. Dans l'exemple, est sortie dans une fen&ecirc;tre de dialogue <code>1111.1</code>. Ainsi la m&eacute;thode  <code>toString()</code> fonctionne t-elle en m&ecirc;me temps comme convertisseur de nombres du syst&egrave;me num&eacute;rique d&eacute;cimal en nombres d'autres syst&egrave;mes num&eacute;riques. Avec la m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="independant.htm#parse_int"><b>parseInt()</b></a> vous pouvez inversement convertir des cha&icirc;nes de caract&egrave;res de nombres d'autres syst&egrave;mes num&eacute;riques dans le syst&egrave;me num&eacute;rique d&eacute;cimal.</p>
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="regexp.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="regexp.htm"><b>RegExp</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="plugins.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="plugins.htm"><b>plugins</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table>
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

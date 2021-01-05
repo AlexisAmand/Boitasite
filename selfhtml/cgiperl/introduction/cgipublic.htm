@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / Introduction / Installer des scripts CGI sur un serveur Web public</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment installer des scripts CGI sur la toile et &agrave; quoi faut il veiller pour le faire.">
+<meta name="keywords"       content="SELFHTML, CGI, scripts CGI">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/introduction/cgipublic.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // Introduction == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Introduction</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Installer des scripts CGI sur un serveur Web public</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#gestion_ftp"><b>G&eacute;rer un r&eacute;pertoire CGI avec acc&egrave;s FTP</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#tuyaux_pratiques"><b>Tuyaux pratiques</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#probleme"><b>Probl&egrave;mes lors de l'ex&eacute;cution de scripts sur le serveur</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="gestion_ftp">G&eacute;rer un r&eacute;pertoire CGI avec acc&egrave;s FTP</a></h2>
+
+<p>Si vous n'exploitez pas votre propre serveur WWW public, que vous pouvez contr&ocirc;ler directement au clavier, vous devez alors &quot;t&eacute;l&eacute;commander&quot; la gestion de vos donn&eacute;es sur l'ordinateur serveur WWW public. De nos jours, cela s'effectue normalement &agrave; l'aide du protocole FTP. . Pour la gestion FTP de vos propres fichiers sur l'ordinateur serveur, il vous faut avoir un bon  programme FTP.
+Dans l'index des liens de l'offre en ligne de SELFHTML actuel, un r&eacute;capitulatif des produits avec des liens aux programmes FTP:</p>
+
+<p><img src="../../src/serverdoc.gif" width="15" height="10" border="0" alt="Page d'information: connexion exig&eacute;e">&nbsp;<a target="_top" href="http://www.selfhtml.com.fr/liens/programmes_ftp.htm"><b>Index des liens SELFHTML: programmes FTP</b></a></p>
+
+<p>&Agrave; l'aide d'un programme FTP, vous pouvez transmettre des scripts CGI dans le r&eacute;pertoire pr&eacute;vu &agrave; cet effet. Le plus souvent, ce r&eacute;pertoire a un nom appropri&eacute;, par exemple <var>cgi-bin</var> ou <var>cgi-local</var>. Votre administrateur Web ou fournisseur d'acc&egrave;s doit vous avoir am&eacute;nag&eacute; un tel r&eacute;pertoire. Ce qui signifie que dans les  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="ordiserveurweb.htm#reglages_base"><b>R&eacute;glages de base </b></a> sur l'ordinateur serveur Web, il doit avoir d&eacute;sign&eacute; un tel r&eacute;pertoire et vous en avoir autoris&eacute; l'acc&egrave;s. En cas de doute, posez la question &agrave; votre administrateur Web ou fournisseur d'acc&egrave;s! (Vous trouverez &eacute;galement des g&eacute;n&eacute;ralit&eacute;s sur ce sujet dans la partie expliquant comment <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../projet/publier.htm"><b>Publier des projets WWW</b></a>).</p>
+
+<p>Lors de la transmission de scripts CGI ou de programmes CGI dans le r&eacute;pertoire CGI, vous devez veiller aux choses suivantes:</p>
+<ul>
+<li>Les scripts Perl doivent toujours &ecirc;tre transmis en mode ASCII. Veillez, avant la transmission de fichiers Perl, &agrave; ce que dans les r&eacute;glages de votre programme FTP le mode de transmission choisi soit le mode ASCII.</li>
+<li>Les programmes compil&eacute;s ou vis&eacute;s par des liens, par contre, doivent toujours &ecirc;tre transmis en mode binaire. Veillez, avant la transmission de tels programmes, &agrave; ce que dans les r&eacute;glages de votre programme FTP le mode de transmission choisi soit le mode binaire. Pensez que pour des programmes compil&eacute;s ou vis&eacute;s par des liens, ceux-ci ne peuvent &ecirc;tre ex&eacute;cut&eacute;s sur l'ordinateur serveur que s'ils ont &eacute;t&eacute; compil&eacute;s pour le syst&egrave;me d'exploitation de l'ordinateur serveur. Ainsi il est inepte de transmettre dans le r&eacute;pertoire CGI d'un ordinateur Unix un programme C compil&eacute; en fichier EXE sous DOS/Windows.</li>
+<li>Quelques serveurs WWW sont install&eacute;s de telle fa&ccedil;on que les scripts CGI doivent recevoir l'extension de fichier <var>.cgi</var> posez la question le cas &eacute;ch&eacute;ant &agrave; votre administrateur Web ou fournisseur d'acc&egrave;s! Si c'est le cas chez vous, renommez par exemple un script Perl <var>counter.pl</var> simplement en <var>counter.cgi</var>.</li>
+<li>Si l'ordinateur serveur est un ordinateur Unix, vous devez d'autre part mentionner par qui le fichier programme ou le script peut &ecirc;tre ex&eacute;cut&eacute;. Pour que tous les visiteurs de vos pages puissent ex&eacute;cuter votre script CGI ou programme CGI, il vous faut r&eacute;gler le droit de lecture et d'ex&eacute;cution &quot;pour tous&quot;. Cela se fait avec la commande Unix <kbd>chmod 755 fichier.ext</kbd>. Si par exemple vous transmettez un script CGI nomm&eacute; <var>counter.pl</var>, vous devez le rendre ex&eacute;cutable g&eacute;n&eacute;ralement avec <kbd>chmod 755 counter.pl</kbd>. Lisez en cas de doute la documentation de votre programme FTP pour savoir comment pouvoir r&eacute;gler les droits d'acc&egrave;s aux fichiers sur l'ordinateur &eacute;loign&eacute;.</li>
+</ul>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="tuyaux_pratiques">Tuyaux pratiques</a></h2>
+
+<p>Tenez compte &eacute;galement des remarques et des r&eacute;flexions sur l'organisation suivantes:</p>
+<ul>
+<li>testez vos scripts ou vos programmes CGI avant la mise en service publique sur le Web. De pr&eacute;f&eacute;rence faites-le dans le calme, hors connexion, sur votre ordinateur local. Pour cela, il vous faut <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="ordiserveurweb.htm"><b>installer un serveur Web localement sur un ordinateur personnel</b></a>. Si vous voulez mettre en oeuvre des scripts Perl, vous devez en outre  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="ordiperl.htm"><b>installer Perl localement</b></a>.</li>
+<li>n'utilisez pas une page fr&eacute;quemment visit&eacute;e de votre site WWW pour appeler vos nouveaux scripts ou programmes CGI: transmettez d'abord un fichier-test HTML avec l'appel du programme CGI. Ainsi, vous pouvez &eacute;galement tester en connexion si tout fonctionne impeccablement. S'il s'agit d'applications importantes comme des paniers d'achat &eacute;lectroniques etc., il est recommand&eacute; de faire tester le script par un panel de diff&eacute;rentes personnes avant de le mettre publiquement &agrave; disposition.</li>
+<li>la plupart des scripts CGI sauvegardent des donn&eacute;es dans des fichiers et/ou lisent ces fichiers. S'il s'agit d'un seul fichier de donn&eacute;es, rien ne s'oppose &agrave; le placer dans le r&eacute;pertoire CGI. Pour un simple compteur d'acc&egrave;s, r&eacute;alis&eacute; avec un script Perl nomm&eacute; <var>counter.pl</var>, il est judicieux par exemple de sauvegarder l'&eacute;tat du compteur dans un fichier <var>counter.dat</var> et de mettre celui-ci, comme le fichier Perl, dans le r&eacute;pertoire CGI. Si cependant un script ou un programme CGI g&egrave;re plusieurs fichiers, il est pr&eacute;f&eacute;rable de mettre ceux-ci dans un r&eacute;pertoire distinct. Cr&eacute;ez pour cela des sous-r&eacute;pertoires au r&eacute;pertoire CGI. Ainsi un forum de nouvelles (Bulletin-Board) bas&eacute; sur CGI portant le nom <var>bulletin.pl</var> pourrait avoir ses divers fichiers de configuration et de donn&eacute;es actuelles dans un sous-r&eacute;pertoire appropri&eacute; nomm&eacute;: <var>bulletin</var>.</li>
+</ul>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="probleme">Probl&egrave;mes lors de l'ex&eacute;cution de scripts sur le serveur</a></h2>
+
+
+<p>Les raisons sont nombreuses pour lesquelles des scripts CGI ne fonctionnent pas sur des serveurs Web publics. La liste de v&eacute;rification suivante peut aider &agrave; &eacute;viter les erreurs typiques:</p>
+
+<ul>
+<li>Au cas o&ugrave;, &agrave; l'appel du script CGI vous recevez une <b>erreur avec le num&eacute;ro 500</b>  (<i>Internal Server Error</i>) , cela peut indiquer une erreur de syntaxe dans le script Perl. Notez pour cela dans le script Perl, avant toute autre instruction concr&egrave;te, l'instruction suivante en premier:<br>
+<code>use CGI::Carp qw(fatalsToBrowser);</code><br>
+Vous obtenez ainsi que les messages d'erreur de l'interpr&eacute;teur Perl soient &eacute;crits directement dans la fen&ecirc;tre du navigateur. Au cas o&ugrave; le script contient encore des erreurs, il vous sera plus facile d'en trouver les causes. L'erreur avec le num&eacute;ro 500 peut aussi avoir d'autres causes.  Contr&ocirc;lez par exemple que le script Perl a vraiment &eacute;t&eacute; transmis au serveur avec le module ASCII de FTP. Assurez vous que vous n'avez pas, dans le script Perl, d'instructions qui ne fonctionnent pas sur le serveur (par exemple un appel de fonction sp&eacute;cifique au syst&egrave;me d'exploitation, une utilisation de modules Perl sp&eacute;ciaux qui ne font pas partie du standard et qui ne sont pas install&eacute;s sur le serveur etc...). V&eacute;rifiez si dans la premi&egrave;re ligne du script Perl, vous avez mentionn&eacute; le chemin correct de l'interpr&eacute;teur Perl.<br>
+Si vous avez acc&egrave;s au fichier log d'erreurs de votre serveur Web, il est recommand&eacute; d'aller y voir. Dans le fichier log d'erreurs, sont inscrites toutes les erreurs survenues pendant l'activit&eacute; du serveur. Ainsi vous avez la possibilit&eacute; en cas de doute de localiser l'origine exacte de l'erreur.</li>
+<li>Au cas o&ugrave;, &agrave; l'appel du script CGI vous recevez une <b>erreur avec le num&eacute;ro 404</b> (<i>Document not found</i>), v&eacute;rifiez la casse du nom de fichier sur le serveur, si l'ordinateur serveur tourne avec un syst&egrave;me d'exploitation Unix. Si cous avez not&eacute; par exemple dans un formulaire HTML:<br> <code>&lt;form action=&quot;/cgi-bin/evaluation.cgi&quot;&gt;</code>,<br>
+alors le fichier doit &eacute;galement s'appeler effectivement <var>evaluation.cgi</var> et non pas par exemple  <var>Evaluation.cgi</var>.</li>
+<li>Au cas o&ugrave;, &agrave; l'appel du script CGI vous recevez une <b>erreur avec le num&eacute;ro  403</b> (<i>Forbidden</i>, V&eacute;rifiez que le script, au cas o&ugrave; le serveur Web tourne avec un syst&egrave;me d'exploitation Unix, a au moins les droits <kbd>755</kbd>. Modifiez les droits le cas &eacute;ch&eacute;ant avec la commande <kbd>chmod</kbd> dans le programme FTP.</li>
+<li>Au cas o&ugrave;, &agrave; l'appel du script CGI vous recevez un <b>message d'erreur</b> <i>Premature end of script headers</i>, v&eacute;rifiez dans le code source du script Perl les sorties que le script envoie au navigateur. Il doit envoyer quelque chose au navigateur et au d&eacute;but des sorties, doit &ecirc;tre not&eacute; un ent&ecirc;te de fichier valide. Ce qui est obtenu pour des sorties HTML au navigateur de fa&ccedil;on typique par une commande telle que:<br>
+<code>print &quot;Content-type: text/html\n\n&quot;;</code>.</li>
+</ul>
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="variablesenvironnement.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="variablesenvironnement.htm"><b> Variables d'environnement CGI</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="ordiperl.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="ordiperl.htm"><b> Installer Perl localement sur un ordinateur personnel</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Introduction</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

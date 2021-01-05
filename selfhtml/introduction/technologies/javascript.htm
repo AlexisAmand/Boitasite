@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: Introduction / Technologies du Web / JavaScript/DOM</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quel est le r&ocirc;le du langage script JavaScript, qu'est-ce qui se cache derri&egrave;re DOM et pourquoi font-ils partie d'un ensemble.">
+<meta name="keywords"       content="SELFHTML, Technologies du Web, Technologies, JavaScript, DOM">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/introduction/technologies/javascript.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // Introduction == ../index.htm // Technologies du Web == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>Introduction</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Technologies du Web</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>JavaScript/DOM</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#applications"><b>Pages Web en tant qu'applications</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#infos"><b>Informations JavaScript</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="applications">Pages Web en tant qu'applications</a></h2>
+
+<p>En HTML vous pouvez entre autres d&eacute;finir des formulaires. De tels formulaires peuvent contenir des champs de saisie, des listes de choix, des boutons etc. L'utilisateur peut remplir un formulaire et l'envoyer par le Web. C'est pour pas mal de choses une invention b&eacute;nie. Pourtant, HTML ne vous permet pas en tant que &quot;fournisseur&quot; du formulaire par exemple de v&eacute;rifier si les saisies de l'utilisateur sont compl&egrave;tes et vraisemblables avant qu'il n'envoie le formulaire. Avec JavaScript, c'est pourtant possible.</p>
+
+<p>Ou bien un autre cas: Vous pouvez bien incorporer des fichiers multim&eacute;dia en HTML mais quand ce fichier HTML est sur le Web, vous ne pouvez pas savoir si les visiteurs de vos pages disposent d'un navigateur pouvant afficher le format multim&eacute;dia correspondant. L&agrave; il serait pratique de faire d&eacute;pendre l'incorporation du fichier multim&eacute;dia du fait que le navigateur de l'utilisateur puisse afficher le format correspondant ou non. M&ecirc;me &ccedil;a c'est possible avec JavaScript.</p>
+
+<p>Pour ces choses et d'autres innombrables choses utiles, cependant certaines moins utiles aussi, Netscape inventa un langage de programmation du nom de JavaScript. Par JavaScript, des pages Web compos&eacute;es de texte structur&eacute; par <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="html.htm"><b>HTML</b></a> et mises en forme avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="css.htm"><b>CSS</b></a> ces pages donc peuvent perdre leur caract&eacute;ristique de  &quot;document&quot; pur et simple et se comporter davantage comme des applications. JavaScript permet de traiter les saisies de l'utilisateur a faites au clavier ou avec la souris et d'y r&eacute;agir avec des sorties &agrave; l'&eacute;cran ou des modifications dynamiques dans la page Web affich&eacute;e. Ainsi on peut transformer  un formulaire JavaScript en calculatrice d'int&eacute;r&ecirc;ts compos&eacute;s. L'utilisateur entre quelques valeurs, JavaScript calcule quelque chose et affiche le r&eacute;sultat.</p>
+
+<p>Toutes ces choses se passent dans le navigateur Web de l'utilisateur pendant qu'une page Web est affich&eacute;e &agrave; l'&eacute;cran. Aucune communication suppl&eacute;mentaire entre le navigateur Web et le serveur Web n'est n&eacute;cessaire. Quand une page Web a &eacute;t&eacute; transmise au navigateur et se trouve de ce fait dans la m&eacute;moire de travail de l'ordinateur de l'utilisateur, Les script JavaScript int&eacute;gr&eacute; dans cette page Web sont ex&eacute;cutables localement. Afin que les programmeurs ne puissent rien faire de r&eacute;pr&eacute;hensible sur l'ordinateur de l'utilisateur, JavaScript est cependant tr&egrave;s limit&eacute; dans ses possibilit&eacute;s. Il n'est par exemple pas possible avec JavaScript de lire un fichier sur l'ordinateur de l'utilisateur ou de l'effacer compl&egrave;tement. Les possibilit&eacute;s de JavaScript sont limit&eacute;es au contexte de la page Web et dans la page Web o&ugrave; ils sont incorpor&eacute;s.</p>
+
+<p>Vous pouvez noter les scripts JavaScript comme les CSS soit directement dans les fichiers HTML soit les incorporer comme fichier s&eacute;par&eacute;. C'est ainsi qu'un tel script JavaScript se r&eacute;f&egrave;re &agrave; la page dans laquelle il est incorpor&eacute; et peut acc&eacute;der au contexte imm&eacute;diat et aux &eacute;l&eacute;ments de cette page. En ce qui concerne l'acc&egrave;s aux &eacute;l&eacute;ments d'un fichier HTML, il faut cependant faire une diff&eacute;rence importante: avec le JavaScript classique, tel qu'il a &eacute;t&eacute; introduit au d&eacute;but par Netscape, on ne peut acc&eacute;der qu'&agrave; certains &eacute;l&eacute;ments, par exemple &agrave; des &eacute;l&eacute;ments de formulaire. Entre-temps pourtant des apports s'imposent qui permettent l'acc&egrave;s des langages script &agrave; des &eacute;l&eacute;ments HTML au choix que ce soit pour la lecture ou pour l'&eacute;criture. Un texte de paragraphe peut par exemple &ecirc;tre remplac&eacute dynamiquement par un autre par un simple cliquement de souris de l'utilisateur &agrave; un endroit donn&eacute;. De cette fa&ccedil;on, les fichiers HTML deviennent de v&eacute;ritables applications interactives - ce qui peut se r&eacute;v&eacute;ler formidable pour un emploi &agrave; des fins p&eacute;dagogiques. Pour la modification dynamique de pages Web affich&eacute;es &agrave; l'&eacute;cran Le terme de <b>HTML dynamique</b> s'est impos&eacute;.</p>
+
+<p>L'acc&egrave;s aux &eacute;l&eacute;ments vari&eacute;s est r&eacute;gi par le <b>Document Object Model (DOM)</b>. Il ne s'agit pas ici d'un langage de programmation mais au contraire d'un sch&eacute;ma pour langages de programmation, qui d&eacute;crit comment il peut &ecirc;tre acc&eacute;d&eacute; &agrave; des &eacute;l&eacute;ments de HTML et aussi aux &eacute;l&eacute;ments de votre choix de documents bas&eacute;s sur  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="xml.htm"><b>XML</b></a>. Le DOM r&egrave;gle par exemple quelles possibilit&eacute;s JavaScript doit mettre &agrave; disposition pour permettre au programmeur de rechercher dans un fichier le texte d'un titre N�1, pour le remplacer par un autre texte . Le DOM n'est par opposition au JavaScript pas un langage de programmation concret. C'est &agrave; vrai dire un avantage qui doit &ecirc;tre mis &agrave; profit dans tous les langages script modernes pour pages Web. Car le DOM est standardis&eacute; par le consortium W3 de la m&ecirc;me fa&ccedil;on que  HTML, CSS et JavaScript et ses caract&eacute;ristiques sont ainsi norm&eacute;es. Dans les modules JavaScript des navigateurs r&eacute;pandus le DOM est peu &agrave; peu adapt&eacute;. L'Explorer Internet MS soutient JavaScript conforme au DOM depuis sa version 5.x, Netscape depuis sa version 6.x.</p>
+
+<p>La plupart des pages Web aujourd'hui met JavaScript en &#156;uvre sous une forme quelconque - La plupart ainsi qu'il est con&ccedil;u &agrave; savoir pour assurer certaines t&acirc;ches qui ne peuvent &ecirc;tre r&eacute;solues par HTML. Quelques pages sont aussi enti&egrave;rement bas&eacute;es sur JavaScript. Les utilisateurs qui ont d&eacute;sactiv&eacute; JavaScript sur leur navigateur (ce qui est possible sur tous les navigateurs), ne voient absolument rien sur de telles pages.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="infos">Informations JavaScript</a></h2>
+
+<p>JavaScript n'est pas &agrave; la diff&eacute;rence de HTML, CSS ou XML une technologie ind&eacute;pendante, mais un langage de programmation dont la licence est d&eacute;pos&eacute;e par Netscape. Bien que JavaScript fonctionne exactement dans l'Explorer Internet MS comme dans le navigateur Netscape, c'est un autre langage du nom de  <b>JScript</b> qui se trouve dans l'Explorer Internet Microsoft JScript est la riposte de Microsoft &agrave;  JavaScript, ce qui ne doit d'ailleurs pas inqui&eacute;ter les d&eacute;veloppeurs de pages Web, car l'interpr&eacute;teur JScript de l'Explorer Internet n'a pas de probl&egrave;mes avec JavaScript.
+Comme cr&eacute;ateur de pages Web, vous pouvez programmer ce que vous voulez en JavaScript sans vous inqui&eacute;ter de probl&egrave;mes de licence. Le d&eacute;veloppement de JavaScript est certes du ressort du propri&eacute;taire de la licence et non dans celles d'une organisation ind&eacute;pendante comme le consortium W3. Du ressort du consortium W3 par contre est la standardisation du DOM, qui est une base importante du JavaScript moderne. Vous trouverez le document sur DOM dans la version 1.0 sur les pages Web du consortium W3:</p>
+
+<p><img src="../../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.w3.org/TR/REC-DOM-Level-1/"><b>Sp&eacute;cifications sur le Document Object Model (DOM) 1.0</b></a></p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Dans l'index des liens de l'offre en ligne de SELFHTML actuel vous trouverez d'autres liens importants et actuels par exemple &agrave; des traductions fran&ccedil;aises et &agrave; d'autres sources:</p>
+
+<p><img src="../../src/serverdoc.gif" width="15" height="10" border="0" alt="Page d'information: connexion exig&eacute;e">&nbsp;<a target="_top" href="http://www.selfhtml.com.fr/liens/javascript.htm"><b>Index des liens SELFHTML: JavaScript/DOM</b></a></p>
+
+<p>Dans la pr&eacute;sente documentation, JavaScript et DOM sont trait&eacute;s dans le chapitre   <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../javascript/index.htm"><b>JavaScript/DOM</b></a>. Le chapitre qui d&eacute;crit certaines techniques pour l'acc&egrave;s aux &eacute;l&eacute;ments d'une page Web <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../dhtml/index.htm"><b>HTML dynamique</b></a>, est lui aussi important.</p>
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="cgiperl.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="cgiperl.htm"><b>CGI et Perl</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="xml.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="xml.htm"><b>XML et d&eacute;riv&eacute;s XML</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>Introduction</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Technologies du Web</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

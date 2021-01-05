@@ -1,0 +1,631 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: XML/DTD / D&eacute;finitions de type de document (DTD) / &Eacute;l&eacute;ments et r&egrave;gles d'imbrication</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment les &eacute;l&eacute;ments sont d&eacute;clar&eacute;s dans une DTD XML et comment les r&egrave;gles d'imbrication des &eacute;l&eacute;ment sont &eacute;tablies.">
+<meta name="keywords"       content="SELFHTML, XML, DTD, DTDs, Document Type Definition, d&eacute;claration de type de document, types d'&eacute;l&eacute;ment, &eacute;l&eacute;ments, &eacute;l&eacute;ments XML, d&eacute;claration d'&eacute;l&eacute;ments">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/xml/dtd/elements.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // XML/DTD == ../index.htm // D&eacute;finitions de type de document (DTD) == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>XML/DTD</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>D&eacute;finitions de type de document (DTD)</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>&Eacute;l&eacute;ments et r&egrave;gles d'imbrication</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur les &eacute;l&eacute;ments, les types d'&eacute;l&eacute;ment et les rep&egrave;res</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#schema"><b>Sch&eacute;ma de d&eacute;finition de types d'&eacute;l&eacute;ment</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#contenu_signes"><b>D&eacute;finir des types d'&eacute;l&eacute;ments contenant des caract&egrave;res</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#contenu_element"><b>D&eacute;finir des types d'&eacute;l&eacute;ment avec un contenu d'&eacute;l&eacute;ments</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#beaucoup_elements"><b>D&eacute;finir autant de r&eacute;p&eacute;titions que l'on veut pour un type d'&eacute;l&eacute;ment</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#alternative_facultatifs"><b>D&eacute;finir des types d'&eacute;l&eacute;ments en alternative ou facultatifs pour le contenu d'&eacute;l&eacute;ments</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#contenu_mixte"><b>D&eacute;finir des &eacute;l&eacute;ments avec un contenu mixte</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#contenu_choisi"><b>D&eacute;finir des &eacute;l&eacute;ments au contenu libre</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sans_contenu"><b>D&eacute;finir des &eacute;l&eacute;ments vides sans contenu</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#groupes_elements"><b>R&eacute;capituler des groupes d'&eacute;l&eacute;ments</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#exemple_livre"><b>Exemple li&eacute; au contexte: un livre</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur les &eacute;l&eacute;ments, les types d'&eacute;l&eacute;ment et les rep&egrave;res</a></h2>
+
+<p>Un <b>&eacute;l&eacute;ment</b> est ce qui dans un langage de marquage bas&eacute; sur XML est repr&eacute;sent&eacute; par une notation comme par exemple <code>&lt;date_naissance&gt;...&lt;/date_naissance&gt;</code>. Dans une DTD, vous pouvez d&eacute;finir le <b>type d'&eacute;l&eacute;ment</b> qui en fait partie, donc par exemple le type d'&eacute;l&eacute;ment <code>date_naissance</code>. Ce faisant, vous d&eacute;finissez le nom de l'&eacute;l&eacute;ment et mentionnez quel contenu l'&eacute;l&eacute;ment peut avoir.</p>
+
+<p>Les &eacute;l&eacute;ments peuvent aussi &ecirc;tre imbriqu&eacute;s et des r&egrave;gles sont possibles pour fixer &agrave; quel endroit et combien de fois un &eacute;l&eacute;ment peut &ecirc;tre plac&eacute;. Ainsi en HTML par exemple, l'&eacute;l&eacute;ment <code>&lt;tr&gt;...&lt;/tr&gt;</code> ne peut &ecirc;tre plac&eacute; que dans <code>&lt;table&gt;...&lt;/table&gt;</code>. Entre <code>&lt;table&gt;</code> et <code>&lt;/table&gt;</code> vous ne pouvez en cons&eacute;quence noter aucun texte mais devez respecter la structure du tableau qui exige des &eacute;l&eacute;ments int&eacute;rieurs tels que <code>&lt;tr&gt;...&lt;/tr&gt;</code>. Vous d&eacute;terminez  ces r&egrave;gles en d&eacute;finissant les types d'&eacute;l&eacute;ments de votre DTD.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="schema">Sch&eacute;ma de d&eacute;finition de types d'&eacute;l&eacute;ment</a></h2>
+
+<p>Les types d'&eacute;l&eacute;ments sont not&eacute;s dans une DTD d'apr&egrave;s le sch&eacute;ma suivant:</p>
+
+<h3 class="xmp">Sch&eacute;ma:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ELEMENT Nom(contenu)&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>La d&eacute;finition d'un &eacute;l&eacute;ment commence par la parenth&egrave;se pointue d'ouverture <code>&lt;</code> suivie imm&eacute;diatement d'un point d'exclamation <code>!</code>. Derri&egrave;re en majuscules suit le mot cl&eacute; <code>ELEMENT</code>. &Agrave; la suite enfin un nom pour l'&eacute;l&eacute;ment. Vous pouvez choisir librement le nom. Il doit cependant satisfaire aux <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="regles_traitement.htm#noms"><b>r&egrave;gles pour les noms</b></a> en XML. Derri&egrave;re le nom, notez des mentions sur le contenu du type d'&eacute;l&eacute;ment. Ces mentions peuvent &ecirc;tre tr&egrave;s compliqu&eacute;es et r&eacute;gir ce qui doit constituer un &eacute;l&eacute;ment. La d&eacute;finition du type d'&eacute;l&eacute;ment se termine par une parenth&egrave;se pointue de fermeture <code>&gt;</code>. Les diff&eacute;rentes parties de la d&eacute;finition du type d'&eacute;l&eacute;ment sont s&eacute;par&eacute;es par un ou plusieurs espaces.</p>
+
+<p>Vous pouvez d&eacute;finir une telle d&eacute;finition de type d'&eacute;l&eacute;ment &agrave; n'importe quel endroit dans la DTD - avant ou apr&egrave;s d'autres d&eacute;finitions comme <code>&lt;!ATTLIST...&gt;</code> (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="attributs.htm"><b>attributs</b></a>), <code>&lt;!ENTITY...&gt;</code> (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entites.htm"><b>entit&eacute;s</b></a>) ou bien <code>&lt;!NOTATION...&gt;</code> (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="notations.htm"><b>notations</b></a>).</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="contenu_signes">D&eacute;finir des types d'&eacute;l&eacute;ments contenant des caract&egrave;res</a></h2>
+
+<p>Contenir des caract&egrave;res signifie qu'un &eacute;l&eacute;ment peut contenir le texte que vous d&eacute;sirez dans la quantit&eacute; que vous d&eacute;sirez mais sans autres &eacute;l&eacute;ments. Un contenu en caract&egrave;res est une cha&icirc;ne de caract&egrave;res choisie, d'une longueur choisie donc du texte, des chiffres et des caract&egrave;res sp&eacute;ciaux.</p>
+
+
+<h3 class="xmp">Exemple de DTD <var>telephone.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ELEMENT telephone (#PCDATA)&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple un type d'&eacute;l&eacute;ment est d&eacute;fini qui, dans l'application, pourra &ecirc;tre not&eacute; comme &eacute;l&eacute;ment <code>&lt;telephone&gt;...&lt;/telephone&gt;</code>. Le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#schema"><b>sch&eacute;ma de d&eacute;finition de types d'&eacute;l&eacute;ment</b></a> s'applique ici. Le contenu de caract&egrave;res est indiqu&eacute; par l'identificateur-cl&eacute; <code>#PCDATA</code> (abr&eacute;viation pour <i>parsed character data</i>, en fran&ccedil;ais <i>donn&eacute;es en caract&egrave;res analys&eacute;es</i>). Le signe di&egrave;se est indispensable, PCDATA doit &ecirc;tre &eacute;crit en majuscules et le tout doit &ecirc;tre mis entre parenth&egrave;ses.</p>
+
+<h3 class="xmp">Exemple d'une application valide:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/telephone.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple la structure de donn&eacute;es)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE telephone SYSTEM &quot;telephone.dtd&quot;&gt;
+&lt;telephone&gt;123456&lt;/telephone&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le type d'&eacute;l&eacute;ment <code>telephone</code> permet des donn&eacute;es en caract&egrave;res, une cha&icirc;ne de caract&egrave;res telle que <code>123456</code> est donc un contenu correct.</p>
+
+
+<h3 class="inf">Attention:</h3>
+
+<p>L'&eacute;l&eacute;ment <code>telephone</code> est dans cet exemple simplifi&eacute; &agrave; l'extr&ecirc;me en m&ecirc;me temps l'&eacute;l&eacute;ment document.</p>
+
+<p><code>#PCDATA</code> signifie certes &agrave; peu pr&egrave;s  &quot;autant de texte que vous voulez&quot;,  mais il signifie aussi &quot;aucun autre &eacute;l&eacute;ment int&eacute;rieur&quot;. Une application comme <code>&lt;telephone&gt;&lt;gras&gt;123456&lt;/gras&gt;&lt;/telephone&gt;</code> n'est donc pas permise d'apr&egrave;s la d&eacute;finition de l'&eacute;l&eacute;ment <code>telephone</code>. Pour ces cas l&agrave;, vous devez <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#contenu_element"><b>d&eacute;finir des types d'&eacute;l&eacute;ment avec un contenu d'&eacute;l&eacute;ment</b></a> ou bien <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#contenu_mixte"><b>d&eacute;finir des &eacute;l&eacute;ments avec un contenu mixte</b></a> .</p>
+
+<p>Le <code>P</code> dans <code>PCDATA</code> signifie, que le contenu est analys&eacute; compl&egrave;tement par l'analyseur syntaxique XML. En pratique, cela signifie dans le contenu d'un &eacute;l&eacute;ment ainsi d&eacute;fini, s'appliquent les r&egrave;gles pour les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../regles/signes.htm"><b>signes, jeux de caract&egrave;res </b></a>.</p>
+
+<p>Dans la version 1.0  XML ne fait pas de distinction entre les diff&eacute;rents types de donn&eacute;es par exemple pour les donn&eacute;es num&eacute;riques ou les donn&eacute;es alphanum&eacute;riques. Le type de donn&eacute;es PCDATA correspond au type de donn&eacute;es alphanum&eacute;riques pour les cha&icirc;nes de caract&egrave;res (Strings) dans les langages de programmation - il n'y a pas de type de donn&eacute;es pour les nombres, le format de date ou autres. Cela est d&eacute;j&agrave; ressenti comme gros inconv&eacute;nient par les d&eacute;veloppeurs, et les versions futures de XML proposeront vraisemblablement &agrave; c&ocirc;t&eacute; de PCDATA plusieurs types de donn&eacute;es.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="contenu_element">D&eacute;finir des types d'&eacute;l&eacute;ment avec un contenu d'&eacute;l&eacute;ments</a></h2>
+
+<p>&Agrave; la diff&eacute;rence d'un <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#contenu_signes"><b>type d'&eacute;l&eacute;ment contenant des caract&egrave;res</b></a> un <b>type d'&eacute;l&eacute;ment avec un contenu d'&eacute;l&eacute;ments</b> est un &eacute;l&eacute;ment qui contient d'autres types d'&eacute;l&eacute;ments internes. Il ne peut toutefois pas contenir lui m&ecirc;me de donn&eacute;es en caract&egrave;res mais ne comporte que des autres &eacute;l&eacute;ments.</p>
+
+
+<h3 class="xmp">Exemple de DTD <var>annuaire.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ELEMENT annuaire (code_etranger, telephone)&gt;
+&lt;!ELEMENT code_etranger (#PCDATA)&gt;
+&lt;!ELEMENT telephone (#PCDATA)&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple trois types d'&eacute;l&eacute;ments sont d&eacute;finis. La premi&egrave;re des trois d&eacute;finitions est un type d'&eacute;l&eacute;ment avec un contenu d'&eacute;l&eacute;ments. Cette d&eacute;finition a la m&ecirc;me construction que la d&eacute;finition d'un  type d'&eacute;l&eacute;ment contenant des caract&egrave;res. Le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#schema"><b>sch&eacute;ma de d&eacute;finition de types d'&eacute;l&eacute;ment</b></a> s'applique ici. La diff&eacute;rence r&eacute;side en ce que dans les parenth&egrave;ses dans lesquelles est d&eacute;fini le contenu du type d'&eacute;l&eacute;ment, sont not&eacute;s les noms d'autres types d'&eacute;l&eacute;ments, s&eacute;par&eacute;s par des virgules.</p>
+
+<p>Dans le premier des exemples ci-dessus une <b>suite invariable</b> d'&eacute;l&eacute;ments  est d&eacute;finie pour le type d'&eacute;l&eacute;ment <code>annuaire</code>; elle comprend les types d'&eacute;l&eacute;ment <code>code_etranger</code> et <code>telephone</code>. Le type d'&eacute;l&eacute;ment <code>annuaire</code> peut donc d'apr&egrave;s la d&eacute;finition ci-dessus contenir exactement une fois les &eacute;l&eacute;ments <code>code_etranger</code> et <code>telephone</code>, et cela dans cet ordre.</p>
+
+<p>Par la m&ecirc;me occasion, l'&eacute;l&eacute;ment <code>annuaire</code> de l'exemple est l'&eacute;l&eacute;ment document, donc l'&eacute;l&eacute;ment situ&eacute; le plus &agrave; l'ext&eacute;rieur des donn&eacute;es.</p>
+
+<h3 class="xmp">Exemple d'une application valide:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/annuaire.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple la structure de donn&eacute;es)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE annuaire SYSTEM &quot;annuaire.dtd&quot;&gt;
+&lt;annuaire&gt;
+  &lt;code_etranger&gt;0049&lt;/code_etranger&gt;
+  &lt;telephone&gt;974791003&lt;/telephone&gt;
+&lt;/annuaire&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Les types d'&eacute;l&eacute;ment <code>annuaire</code>, <code>code_etranger</code> et <code>telephone</code> sont imbriqu&eacute;s de la fa&ccedil;on d&eacute;finie dans la DTD. Les types d'&eacute;l&eacute;ment <code>code_etranger</code> et <code>telephone</code> ne contiennent rien d'autre que des donn&eacute;es en caract&egrave;res et ont ainsi un contenu correct.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="beaucoup_elements">D&eacute;finir autant de r&eacute;p&eacute;titions que l'on veut pour un type d'&eacute;l&eacute;ment</a></h2>
+
+<p>En l'absence de toute autre mention, un type d'&eacute;l&eacute;ment ne peut &ecirc;tre plac&eacute; qu'une fois. Afin que l'&eacute;l&eacute;ment d'un type d'&eacute;l&eacute;ment puisse &ecirc;tre not&eacute; plusieurs fois, vous devez l'exprimer dans la DTD.</p>
+
+<h3 class="xmp">Exemple de DTD <var>recettes.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ELEMENT recettes (liste_ingredients, suite_instructions)&gt;
+
+&lt;!ELEMENT liste_ingredients (ingredient)+&gt;
+&lt;!ELEMENT ingredient (#PCDATA)&gt;
+
+&lt;!ELEMENT suite_instructions (instruction)*&gt;
+&lt;!ELEMENT instruction (#PCDATA)&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre une DTD simple  pour une recette de cuisine. Pour toutes les d&eacute;finitions de l'exemple, le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#schema"><b>sch&eacute;ma de d&eacute;finition de types d'&eacute;l&eacute;ment</b></a> s'applique. Dans un premier temps, le type d'&eacute;l&eacute;ment <code>recettes</code> est d&eacute;fini comme &eacute;l&eacute;ment document. Ce type d'&eacute;l&eacute;ment est un <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#contenu_element"><b> type d'&eacute;l&eacute;ment avec un contenu d'&eacute;l&eacute;ments</b></a>. Son contenu se compose des deux types d'&eacute;l&eacute;ment <code>liste_ingredients</code> et <code>suite_instructions</code>. Ces deux types d'&eacute;l&eacute;ments sont d&eacute;finis. Tous deux comportent eux aussi un contenu d'&eacute;l&eacute;ments.</p>
+
+<p>Le type d'&eacute;l&eacute;ment <code>liste_ingredients</code> peut contenir un ou plusieurs types d'&eacute;l&eacute;ment <code>ingredient</code>. La raison en est le <b>signe plus</b> <code>+</code> dans la d&eacute;finition derri&egrave;re la mention du contenu. Par le signe plus, vous mentionnez que le contenu, dans l'exemple le type d'&eacute;l&eacute;ment  <code>ingredient</code>, doit &ecirc;tre plac&eacute; au moins une fois, autrement aussi souvent que souhait&eacute; dans <code>liste_ingredients</code>. Pour l'exemple de la recette, une telle construction est judicieuse car une recette doit comporter au moins un ingr&eacute;dient.</p>
+
+<p>Le type d'&eacute;l&eacute;ment <code>suite_instructions</code> peut contenir de la m&ecirc;me fa&ccedil;on un ou plusieurs types d'&eacute;l&eacute;ment  <code>instruction</code> mais peut cependant &eacute;galement rester vide. La raison dans ce cas-ci est l'<b>&eacute;toile</b> <code>*</code>  dans la d&eacute;finition derri&egrave;re la mention du contenu. Par l'&eacute;toile,  vous mentionnez que le contenu, dans l'exemple le type d'&eacute;l&eacute;ment <code>instruction</code>, peut ne pas &ecirc;tre plac&eacute;, &ecirc;tre plac&eacute; une fois ou  aussi souvent que souhait&eacute; dans <code>suite_instructions</code>. Pour l'exemple de la recette, cela signifie qu'il peut aussi y avoir des recettes avec ingr&eacute;dients mais sans instructions.</p>
+
+<h3 class="xmp">Exemple d'une application valide:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/recettes.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple la structure de donn&eacute;es)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE recettes SYSTEM &quot;recettes.dtd&quot;&gt;
+&lt;recettes&gt;
+  &lt;liste_ingredients&gt;
+     &lt;ingredient&gt;300 g  pommes de terre �pluch�es&lt;/ingredient&gt;
+     &lt;ingredient&gt;2  poireaux&lt;/ingredient&gt;
+     &lt;ingredient&gt;1 oignon&lt;/ingredient&gt;
+     &lt;ingredient&gt;1 tb beurre&lt;/ingredient&gt;
+     &lt;ingredient&gt;600 ml eau&lt;/ingredient&gt;
+  &lt;/liste_ingredients&gt;
+  &lt;suite_instructions&gt;
+     &lt;instruction&gt;couper les pommes de terre en petits d�s.&lt;/instruction&gt;
+     &lt;instruction&gt;laver les poireaux, les couper en fines rondelles.&lt;/instruction&gt;
+     &lt;instruction&gt;�plucher l'oignon, le couper fin et le faire r�duire au beurre.&lt;/instruction&gt;
+     &lt;instruction&gt;ajouter les pommes de terre, les poireaux et l'eau et cuire 18 � 20 minutes.&lt;/instruction&gt;
+  &lt;/suite_instructions&gt;
+&lt;/recettes&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Les types d'&eacute;l&eacute;ments sont imbriqu&eacute;s de la fa&ccedil;on d&eacute;finie dans la DTD. Les types d'&eacute;l&eacute;ments <code>ingredient</code> et <code>instruction</code> sont plac&eacute;s plusieurs fois dans <code>liste_ingredients</code> ou dans <code>suite_instructions</code>, ce qui est permis d'apr&egrave;s la d&eacute;finition. Dans  <code>ingredient</code> et dans <code>instruction</code> n'ont &eacute;t&eacute; plac&eacute;es en tous cas rien d'autre que des  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#contenu_signes"><b>contenus en caract&egrave;res</b></a> ainsi que ces types d'&eacute;l&eacute;ments ont &eacute;t&eacute; d&eacute;finis dans la DTD avec l'identificateur-cl&eacute; <code>#PCDATA</code>.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Si l'exemple ne devait contenir aucun &eacute;l&eacute;ment du type <code>instruction</code>, ce qui d'apr&egrave;s la d&eacute;finition serait tout &agrave; fait permis gr&acirc;ce &agrave; l'&eacute;toile, vous devriez malgr&eacute; tout noter dans l'explication valide:<br>
+<code>&lt;suite_instructions&gt;&lt;/suite_instructions&gt;</code><br>
+La raison en est que, lors de la d&eacute;finition du type d'&eacute;l&eacute;ment <code>recettes</code> dans l'exemple ci-dessus, on a fix&eacute; qu'il devait comporter les deux types d'&eacute;l&eacute;ment <code>liste_ingredients</code> et <code>suite_instructions</code>, et que ces deux types d'&eacute;l&eacute;ments doivent &ecirc;tre plac&eacute;s, &agrave; savoir exactement une fois.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="alternative_facultatifs">D&eacute;finir des types d'&eacute;l&eacute;ments en alternative ou facultatifs pour le contenu d'&eacute;l&eacute;ments</a></h2>
+
+<p>Quand vous <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#contenu_element"><b>d&eacute;finissez des types d'&eacute;l&eacute;ment avec un contenu d'&eacute;l&eacute;ments</b></a>, il peut arriver que cette suite rigide d'&eacute;l&eacute;ments que vous pr&eacute;voyez pour l'&eacute;l&eacute;ment, ne soit pas toujours appropri&eacute;e dans la pratique. Pour une adresse postale par exemple, on pourrait faire la distinction alternativement  entre la mention de la rue et du num&eacute;ro et une mention de boite postale, et la mention du titre d'une personne est un exemple typique de mention facultative, quelque chose donc que l'on d&eacute;sire mentionner pour quelques adresses mais par contre pas pour d'autres.</p>
+
+<h3 class="xmp">Exemple de DTD <var>adresses.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ELEMENT adresses (adresse)*&gt;
+
+&lt;!ELEMENT adresse (titre?, nom, (boite_postale | numero_rue), codepostal_ville)&gt;
+
+&lt;!ELEMENT titre (#PCDATA)&gt;
+&lt;!ELEMENT nom (#PCDATA)&gt;
+&lt;!ELEMENT boite_postale (#PCDATA)&gt;
+&lt;!ELEMENT numero_rue (#PCDATA)&gt;
+&lt;!ELEMENT codepostal_ville (#PCDATA)&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre une DTD simple pour la gestion d'adresses. Pour toutes les d&eacute;finitions de l'exemple, le  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#schema"><b>Sch&eacute;ma de d&eacute;finition de types d'&eacute;l&eacute;ment</b></a> s'applique. Un type d'&eacute;l&eacute;ment nomm&eacute;  <code>adresses</code> est d&eacute;fini comme &eacute;l&eacute;ment document. Celui-ci peut  contenir <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#beaucoup_elements"><b>autant de r&eacute;p&eacute;titions que l'on veut pour le type d'&eacute;l&eacute;ment</b></a>  <code>adresse</code>. Le type d'&eacute;l&eacute;ment <code>adresse</code>  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#contenu_element"><b>d&eacute;finit un type d'&eacute;l&eacute;ment avec un contenu d'&eacute;l&eacute;ments</b></a>. Le contenu comprend diff&eacute;rents types d'&eacute;l&eacute;ments pour les diff&eacute;rentes donn&eacute;es d'une adresse . Ces types d'&eacute;l&eacute;ment sont  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#contenu_signes"><b>d&eacute;finis comme types d'&eacute;l&eacute;ments contenant des caract&egrave;res</b></a> tout simples.</p>
+
+<p>Le titre est d&eacute;fini dans l'exemple comme &eacute;tant facultatif. Cela est permis par le <b>point d'interrogation</b> <code>?</code> plac&eacute; dans la d&eacute;finition derri&egrave;re la mention de contenu pr&eacute;s du nom du type d'&eacute;l&eacute;ment. La simple notation de <code>titre</code> d&eacute;finirait l'utilisation du type d'&eacute;l&eacute;ment comme  &eacute;tant absolument indispensable, alors que la mention <code>titre?</code> d&eacute;signe son utilisation comme &eacute;tant facultative.</p>
+
+<p>Par ailleurs il a &eacute;t&eacute; d&eacute;fini dans l'exemple que le choix est possible entre une mention de boite postale ou d'adresse g&eacute;ographique. Pour cela, les types d'&eacute;l&eacute;ments au choix sont mis dans de nouvelles parenth&egrave;ses. Dans ces parenth&egrave;ses les types d'&eacute;l&eacute;ment au choix sont not&eacute;s, s&eacute;par&eacute;s par une <b>barre verticale</b>  <code>|</code>.</p>
+
+<h3 class="xmp">Exemple d'une application valide:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/adresses.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple la structure de donn&eacute;es)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE adresses SYSTEM &quot;adresses.dtd&quot;&gt;
+&lt;adresses&gt;
+&lt;adresse&gt;
+  &lt;nom&gt;Soci�t� G�n�rale&lt;/nom&gt;
+  &lt;boite_postale&gt;7001&lt;/boite_postale&gt;
+  &lt;codepostal_ville&gt;13100 Aix en Provence&lt;/codepostal_ville&gt;
+&lt;/adresse&gt;
+&lt;adresse&gt;
+  &lt;titre&gt;Monsieur&lt;/titre&gt;
+  &lt;nom&gt;Luc Minighetti&lt;/nom&gt;
+  &lt;numero_rue&gt;112 rue de Lyon&lt;/numero_rue&gt;
+  &lt;codepostal_ville&gt;13000 Marseille&lt;/codepostal_ville&gt;
+&lt;/adresse&gt;
+&lt;/adresses&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, deux adresses sont not&eacute;es. La premi&egrave;re adresse est celle d'une banque, pour cette raison, le titre peut &ecirc;tre omis pour cette adresse, car il n'est n&eacute;cessaire que pour des personnes. &Eacute;tant donn&eacute; que le type d'&eacute;l&eacute;ment titre a &eacute;t&eacute; d&eacute;fini comme facultatif, l'omission est possible. Dans l'exemple de la banque l'adresse est une boite postale. &Eacute;tant donn&eacute; qu'&agrave; cet endroit d'apr&egrave;s la d&eacute;finition, soit le type d'&eacute;l&eacute;ment <code>boite_postale</code> soit le type d'&eacute;l&eacute;ment <code>numero_rue</code> peuvent &ecirc;tre plac&eacute;s, l'application est correcte. Pour la deuxi&egrave;me adresse, il s'agit de celle d'une personne. Dans ce cas, le titre est not&eacute; et &agrave; la place d'une boite postale, une mention de rue et de num&eacute;ro dans l'&eacute;l&eacute;ment en alternative <code>numero_rue</code>.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Pour les types d'&eacute;l&eacute;ment au choix, vous pouvez mentionner aussi bien s&ucirc;r plus de deux types d'&eacute;l&eacute;ments.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="contenu_mixte">D&eacute;finir des &eacute;l&eacute;ments avec un contenu mixte</a></h2>
+
+<p>Quand vous d&eacute;sirez d&eacute;finir des applications XML dans lesquelles ne doivent pas &ecirc;tre group&eacute;s de fa&ccedil;on si rigide, mais peuvent &ecirc;tre not&eacute;s dans un ordre relativement libre,  - comme par exemple en HTML - alors, vous devez d&eacute;finir des &eacute;l&eacute;ments avec un contenu mixte. En HTML  <code>&lt;body&gt;...&lt;/body&gt;</code> en est un tel &eacute;l&eacute;ment typique. Dans cet &eacute;l&eacute;ment, vous pouvez noter la plupart des autres &eacute;l&eacute;ments HTML dans un ordre relativement libre et en respectant quelques r&egrave;gles d'imbrication peu nombreuses. Pour les applications qui sont en g&eacute;n&eacute;ral moins orient&eacute;es sur les bases de donn&eacute;es pour l'&ecirc;tre davantage sur le texte libre, vous avez besoin de ces contenus mixtes.</p>
+
+<h3 class="xmp">Exemple de DTD <var>texte.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ELEMENT texte (#PCDATA | menace | rire | question | cynique)*&gt;
+&lt;!ELEMENT menace (#PCDATA)&gt;
+&lt;!ELEMENT rire (#PCDATA | clignant_oeil)*&gt;
+&lt;!ELEMENT question (#PCDATA)&gt;
+&lt;!ELEMENT clignant_oeil (#PCDATA)&gt;
+&lt;!ELEMENT cynique (#PCDATA)&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple repr&eacute;sente une DTD pour du texte dans lequel les &eacute;motions sont signal&eacute;es comme telles.  Pour toutes les d&eacute;finitions de l'exemple, le  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#schema"><b>sch&eacute;ma de d&eacute;finition de types d'&eacute;l&eacute;ment</b></a> s'applique. Une type d'&eacute;l&eacute;ment nomm&eacute;  <code>texte</code> est d&eacute;fini comme &eacute;l&eacute;ment document avec contenu mixte. Vous d&eacute;terminez un contenu mixte en notant pour le contenu de l'&eacute;l&eacute;ment, donc entre parenth&egrave;ses, l'identificateur-cl&eacute; <code>#PCDATA</code> pour des <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#contenu_signes"><b>contenus de caract&egrave;res</b></a> et en plus une s&eacute;rie de types d'&eacute;l&eacute;ment autoris&eacute;s pour d'autres <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#contenu_element"><b>types d'&eacute;l&eacute;ment avec un contenu d'&eacute;l&eacute;ments</b></a>. Les mentions doivent &ecirc;tre s&eacute;par&eacute;s par la barre verticale <code>|</code> pour <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#alternative_facultatifs"><b>des types d'&eacute;l&eacute;ments en alternative</b></a>. Par ailleurs tout le contenu doit recevoir &agrave; la fin l'&eacute;toile comme dans l'exemple <code>*</code> pour <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#beaucoup_elements"><b>autant de r&eacute;p&eacute;titions que l'on veut </b></a>. Ainsi, chacun de ces &eacute;l&eacute;ments peut &ecirc;tre r&eacute;p&eacute;t&eacute; &agrave; souhait dans le passage dans lequel il est permis. Un contenu mixte est donc une combinaison de toutes les possibilit&eacute;s de d&eacute;finition trait&eacute;es jusqu'ici.</p>
+
+<p>Dans l'exemple les autres types d'&eacute;l&eacute;ments not&eacute;s pour <code>texte</code> sont d&eacute;finis de la m&ecirc;me fa&ccedil;on. &Agrave; l'exception du type d'&eacute;l&eacute;ment <code>rire</code> il n'a &eacute;t&eacute; permis pour tous les types d'&eacute;l&eacute;ment rien d'autre que des contenus de caract&egrave;res (<code>#PCDATA</code>). Le type d'&eacute;l&eacute;ment <code>rire</code> correspond par contre lui aussi au mod&egrave;le pour contenu mixte. Outre le contenu de caract&egrave;res purs un autre type d'&eacute;l&eacute;ment <code>clignant_oeil</code> est permis dans ce type d'&eacute;l&eacute;ment .</p>
+
+<h3 class="xmp">Exemple d'une application valide:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/texte.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple la structure de donn&eacute;es)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE text SYSTEM &quot;texte.dtd&quot;&gt;
+&lt;texte&gt;
+Quelquefois la conscience nous dit: &lt;menace&gt;tu dois penser
+ davantage aux femmes et aux hommes.&lt;/menace&gt;
+Alors, bien s�r, on se demande parfois
+, &lt;question&gt;pourquoi il y a l� tant
+mati�re � reflexion,&lt;/question&gt;
+mais quelquefois aussi, on ob�it et r�fl�chit.
+La femme dit � l'homme: &lt;rire&gt;Oh ch�ri, &lt;clignant_oeil&gt;tu vaux
+ton poids d'or!&lt;/clignant_oeil&gt;&lt;/rire&gt;
+Et l'homme r�pond: &lt;cynique&gt;Oui, parceque je pousse le chariot  et que j'y ai mis une pi�ce de dix francs!&lt;/cynique&gt;
+La femme r�torque: &lt;rire&gt;tu as tout compris!&lt;/rire&gt;
+&lt;/texte&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d'application contient l'&eacute;l&eacute;ment document <code>&lt;texte&gt;..&lt;/text&gt;</code> qui contient un contenu mixte typique. Du texte normal est plac&eacute; (donn&eacute;es en caract&egrave;res) mais &eacute;galement des autres &eacute;l&eacute;ments. L'&eacute;l&eacute;ment  <code>rire</code> est plac&eacute; deux fois en tout. Cela pourrait tout aussi bien &ecirc;tre l'&eacute;l&eacute;ment <code>menace</code> qui serait utilis&eacute; deux ou plusieurs fois dans l'&eacute;l&eacute;ment <code>texte</code>. Cela est permis en raison de l'utilisation de l'&eacute;toile <code>*</code> lors de la d&eacute;finition de tous les types d'&eacute;l&eacute;ment int&eacute;rieurs. L'&eacute;l&eacute;ment <code>clignant_oeil</code> est plac&eacute; &agrave; l'int&eacute;rieur de <code>rire</code> comme c'est permis par la DTD - &agrave; l'ext&eacute;rieur il ne pourrait cependant pas &ecirc;tre plac&eacute;.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="contenu_choisi">D&eacute;finir des &eacute;l&eacute;ments au contenu libre</a></h2>
+
+<p>Les &eacute;l&eacute;ments au contenu libre sont une forme plus souple encore des &eacute;l&eacute;ments &agrave; contenu mixte. Il s'agit ici plus ou moins d'&eacute;l&eacute;ments joker ou passe-partout, dont le contenu n'est pas du tout fix&eacute;. Tous les autres types d'&eacute;l&eacute;ment d&eacute;finis dans la DTD peuvent &ecirc;tre plac&eacute;s dans un &eacute;l&eacute;ment au contenu libre.</p>
+
+<h3 class="xmp">Exemple de DTD <var>anytext.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ELEMENT anytext ANY&gt;
+&lt;!ELEMENT anglais (#PCDATA)&gt;
+&lt;!ELEMENT italiano (#PCDATA)&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Pour toutes les d&eacute;finitions de l'exemple, le  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#schema"><b>sch&eacute;ma de d&eacute;finition de types d'&eacute;l&eacute;ment</b></a> s'applique. Par le mot cl&eacute;  <code>ANY</code> (en majuscules) au lieu de la d&eacute;finition concr&egrave;te du contenu d'un &eacute;l&eacute;ment, vous mentionnez que cet &eacute;l&eacute;ment  (dans l'exemple l'&eacute;l&eacute;ment document) peut contenir des <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#contenu_signes"><b>contenus de caract&egrave;res</b></a> et des <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#contenu_element"><b>types d'&eacute;l&eacute;ment avec un contenu d'&eacute;l&eacute;ments</b></a>. Dans l'exemple, deux autres types d'&eacute;l&eacute;ments sont d&eacute;finis qui peuvent &ecirc;tre eux aussi plac&eacute;s.</p>
+
+<h3 class="xmp">Exemple d'une application valide:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/anytext.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple la structure de donn&eacute;es)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE anytext SYSTEM &quot;anytext.dtd&quot;&gt;
+&lt;anytext&gt;
+c'est un peu de  texte qui signifie en anglais:
+&lt;anglais&gt;this is some text&lt;/anglais&gt; et en italien:
+&lt;italiano&gt;ci� � un certo testo&lt;/italiano&gt;
+&lt;/anytext&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple l'&eacute;l&eacute;ment document  <code>&lt;anytext&gt;...&lt;/anytext&gt;</code> est d&eacute;fini. Des donn&eacute;es en caract&egrave;res et tous les autres &eacute;l&eacute;ments de votre choix pour lesquels un type d'&eacute;l&eacute;ment existe dans la DTD peuvent y &ecirc;tre plac&eacute;s. L'exemple montre un m&eacute;lange simple.</p>
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="sans_contenu">D&eacute;finir des &eacute;l&eacute;ments vides sans contenu</a></h2>
+
+<p>Les &eacute;l&eacute;ments vides sont ceux qui n'ont pas de contenu. En HTML classique par exemple <code>&lt;br&gt;</code> ou bien <code>&lt;img&gt;</code> font partie de ce genre d'&eacute;l&eacute;ments. En HTML on les appelle aussi &eacute;l&eacute;ments autonomes. Dans la philosophie de XML, &agrave; vrai dire, un contenu est pr&eacute;vu pour chaque &eacute;l&eacute;ment. Quand vous voulez d&eacute;finir des types d'&eacute;l&eacute;ment qui n'ont pas de contenu, vous devez le mentionner sp&eacute;cialement. M&ecirc;me la notation des &eacute;l&eacute;ments dans l'application indique qu'il s'agit d'un cas particulier.</p>
+
+<h3 class="xmp">Exemple de DTD <var>lignes_texte.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ELEMENT lignes_texte (#PCDATA | nouvelle_ligne)*&gt;
+&lt;!ELEMENT nouvelle_ligne EMPTY&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, deux types d'&eacute;l&eacute;ment sont d&eacute;finis: un type d'&eacute;l&eacute;ment <code>lignes_texte</code> pour l'&eacute;l&eacute;ment document avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#contenu_mixte"><b>un contenu mixte</b></a>, et un type d'&eacute;l&eacute;ment <code>nouvelle_ligne</code> qui peut &ecirc;tre plac&eacute; &agrave; volont&eacute; dans le type d'&eacute;l&eacute;ment <code>lignes_texte</code> . Pour  les deux d&eacute;finitions de l'exemple, le  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#schema"><b>Sch&eacute;ma de d&eacute;finition de types d'&eacute;l&eacute;ment</b></a> s'applique.</p>
+
+<p>Le type d'&eacute;l&eacute;ment <code>nouvelle_ligne</code> est ici un type d'&eacute;l&eacute;ment vide. Cela est signal&eacute; par le mot cl&eacute; <code>EMPTY</code> (en fran&ccedil;ais: <i>vide</i>) &agrave; l'endroit o&ugrave; le contenu du type d'&eacute;l&eacute;ment est d&eacute;fini.</p>
+
+<h3 class="xmp">Exemple d'une application valide:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/lignes_texte.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple la structure de donn&eacute;es)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE lignes_texte SYSTEM &quot;lignes_texte.dtd&quot;&gt;
+&lt;lignes_texte&gt;
+Ceci est le texte, mais o� commence la  &lt;nouvelle_ligne /&gt;
+nouvelle ligne?
+&lt;/lignes_texte&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple l'&eacute;l&eacute;ment sans contenu est not&eacute;  conform&eacute;ment aux <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../regles/valattrrepere.htm#leere_elemente"><b>r&egrave;gles pour les rep&egrave;res, attributs, affectations de valeur</b></a>. La transcription de la signification de &quot;nouvelle_ligne&quot; peut naturellement n'&ecirc;tre assur&eacute;e que par un langage de style comme les CSS ou XSL.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="groupes_elements">R&eacute;capituler des groupes d'&eacute;l&eacute;ments</a></h2>
+
+<p>Pour la cr&eacute;ation de DTD plus importantes avec de nombreux types d'&eacute;l&eacute;ments, vous remarquerez vite qu'il y a beaucoup de r&eacute;p&eacute;titions en particulier pour les contenus de types d'&eacute;l&eacute;ments. De nombreux types d'&eacute;l&eacute;ments forment souvent d'un point de vue logique un groupe de caract&eacute;ristiques communes qui peut &ecirc;tre plac&eacute; enferm&eacute; comme contenu d'&eacute;l&eacute;ment de plusieurs autres &eacute;l&eacute;ments qui lui sont hi&eacute;rarchiquement sup&eacute;rieurs. Pour ces cas-l&agrave;, la syntaxe DTD offre la possibilit&eacute; de r&eacute;capituler ces types d'&eacute;l&eacute;ments dans de tels groupes logiques. Un groupe logique de types d'&eacute;l&eacute;ment est d&eacute;sign&eacute; comme param&egrave;tre entit&eacute;. La mise en &#339;uvre de param&egrave;tres entit&eacute;s augmente la lisibilit&eacute; dans des DTD complexes ainsi que la convivialit&eacute; pour les modifications. Cette possibilit&eacute; est d&eacute;crite dans la partie sur les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entites.htm#parameter_entites"><b>param&egrave;tres entit&eacute;s pour DTD plus complexes</b></a>.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="exemple_livre">Exemple li&eacute; au contexte: un livre</a></h2>
+
+<p>Pour repr&eacute;senter les relations et r&egrave;gles complexes lors de la d&eacute;finition  de types d'&eacute;l&eacute;ment, il est important de se poser les bonnes questions et de se faire un mod&egrave;le d'&eacute;l&eacute;ments pr&eacute;vus.</p>
+
+<p>Beaucoup de structures de donn&eacute;es affichent une forte hi&eacute;rarchie logique. C'est ce que l'exemple d'un livre met bien en lumi&egrave;re. Un livre comprend de fa&ccedil;on typique des chapitres, des index, des pages sp&eacute;ciales comme les informations, des titres etc... Chaque chapitre comporte un titre de chapitre et des sections. Chaque section comprend un titre de section et le contenu de la section. Un contenu de section peut contenir des choses comme des paragraphes de texte normaux, des &eacute;num&eacute;rations, des r&eacute;f&eacute;rences de graphique etc.... Chaque paragraphe de texte courant, chaque point d'une &eacute;num&eacute;ration peut contenir des lignes de texte avec des formatages sp&eacute;ciaux par exemple pour les caract&egrave;res gras, l'&eacute;criture en italique etc.... L'id&eacute;al pour de telles structures de donn&eacute;es est de penser lors de la cr&eacute;ation des types d'&eacute;l&eacute;ments et de leurs relations du plus g&eacute;n&eacute;ral (le livre) au plus particulier ( le terme en caract&egrave;res gras au milieu d'un paragraphe). XML soutient particuli&egrave;rement bien ce genre de structures de donn&eacute;es fortement hi&eacute;rarchis&eacute;es &eacute;tant donn&eacute; qu'un document d'apr&egrave;s la philosophie de XML peut &ecirc;tre repr&eacute;sent&eacute; sous forme d'une arborescence. La transcription d'une structure d'&eacute;l&eacute;ments fortement hi&eacute;rarchis&eacute;e dans une DTD XML est donc &eacute;galement relativement simple tout en pouvant bien &ecirc;tre retrac&eacute;e.</p>
+
+<h3 class="xmp">Exemple de DTD <var>livre.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ENTITY % texte &quot;rehausse | remarque | exigeant | passage_ligne&quot;&gt;
+
+&lt;!ELEMENT livre                   (titre,informations,index_contenu,(chapitre)+,index_motscles)&gt;
+
+&lt;!ELEMENT titre                  (titre_principal,soustitre)&gt;
+&lt;!ELEMENT titre_principal             (#PCDATA)&gt;
+&lt;!ELEMENT soustitre             (#PCDATA)&gt;
+
+&lt;!ELEMENT informations              (cip,copyright,editeur)&gt;
+&lt;!ELEMENT cip                    (#PCDATA | %texte;)*&gt;
+&lt;!ELEMENT droits_auteur              (#PCDATA | %texte;)*&gt;
+&lt;!ELEMENT editeur                 (#PCDATA | %texte;)*&gt;
+
+&lt;!ELEMENT index_contenu     (titre_ic,(mentionchap_ic | mentionsection_ic)*)&gt;
+&lt;!ELEMENT titre_ic       (#PCDATA)&gt;
+&lt;!ELEMENT mentionchap_ic     (#PCDATA)&gt;
+&lt;!ELEMENT mentionsection_ic  (#PCDATA)&gt;
+
+&lt;!ELEMENT chapitre                (titre_chapitre,(section)+)&gt;
+&lt;!ELEMENT titre_chapitre       (#PCDATA)&gt;
+
+&lt;!ELEMENT section              (titre_section,(texte_courant | enumeration | graphique)+)&gt;
+&lt;!ELEMENT titre_section        (#PCDATA)&gt;
+
+&lt;!ELEMENT texte_courant             (#PCDATA | %texte;)*&gt;
+&lt;!ELEMENT enumeration            (point_enumeration)+&gt;
+&lt;!ELEMENT point_enumeration      (#PCDATA | %texte;)*&gt;
+&lt;!ELEMENT graphique                 (fichier_graphique)&gt;
+&lt;!ELEMENT fichier_graphique            (#PCDATA)&gt;
+
+&lt;!ELEMENT index_motscles   (titre_imc,(mention_imc)*)&gt;
+&lt;!ELEMENT titre_imc       (#PCDATA)&gt;
+&lt;!ELEMENT mention_imc            (#PCDATA)&gt;
+
+&lt;!ELEMENT rehausse          (#PCDATA)&gt;
+&lt;!ELEMENT remarque             (#PCDATA)&gt;
+&lt;!ELEMENT exigeant            (#PCDATA)&gt;
+&lt;!ELEMENT passage_ligne          EMPTY&gt;
+</pre></td></tr></table>
+
+<h3 class="xmp">Exemple d'une application valide</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/livre.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple la structure de donn&eacute;es)</p>
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#E4EEFF"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE livre SYSTEM &quot;livre.dtd&quot;&gt;
+&lt;?xml:stylesheet type=&quot;text/css&quot; href=&quot;livre.css&quot; ?&gt;
+
+&lt;livre&gt;
+
+&lt;titre&gt;
+&lt;titre_principal&gt;Je suis Valentin&lt;/titre_principal&gt;
+&lt;soustitre&gt;Comment ma vie est devenue ce qu'elle est&lt;/soustitre&gt;
+&lt;/titre&gt;
+
+&lt;informations&gt;
+&lt;cip&gt;Biblioth�que nationale de France -unite_commande-CIP:&lt;passage_ligne /&gt;
+titre disponible � la  biblioth�que nationale de France&lt;/cip&gt;
+&lt;droits_auteur&gt;&#169;2000 tous droits r�serv�s chez l'�diteur&lt;/droits_auteur&gt;
+&lt;editeur&gt;Mon �dition, Derri�re la rotonde&lt;/editeur&gt;
+&lt;/informations&gt;
+
+&lt;index_contenu&gt;
+&lt;titre_ic&gt;index_contenu&lt;/titre_ic&gt;
+
+&lt;mentionchap_ic&gt;Mes jeunes ann�es&lt;/mentionchap_ic&gt;
+&lt;mentionsection_ic&gt;enfance&lt;/mentionsection_ic&gt;
+&lt;mentionsection_ic&gt;jeunesse&lt;/mentionsection_ic&gt;
+
+&lt;mentionchap_ic&gt;Comment je suis devenu un homme&lt;/mentionchap_ic&gt;
+&lt;mentionsection_ic&gt;Le premier amour&lt;/mentionsection_ic&gt;
+
+&lt;/index_contenu&gt;
+
+&lt;chapitre&gt;
+&lt;titre_chapitre&gt;Mes jeunes ann�es&lt;/titre_chapitre&gt;
+
+&lt;section&gt;
+&lt;titre_section&gt;Enfance&lt;/titre_section&gt;
+
+&lt;texte_courant&gt;
+Mon enfance comprend deux sections de m vie:
+&lt;/texte_courant&gt;
+
+&lt;enumeration&gt;
+&lt;point_enumeration&gt;- l'�ge du nourrisson&lt;/point_enumeration&gt;
+&lt;point_enumeration&gt;- l'�ge du gar&ccedil;onnet&lt;/point_enumeration&gt;
+&lt;/enumeration&gt;
+
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;titre_section&gt;Jeunesse&lt;/titre_section&gt;
+
+&lt;texte_courant&gt;Ma jeunesse se r�sume pour l'essentiel � l'acn� juv�nile.
+&lt;/texte_courant&gt;
+
+&lt;/section&gt;
+
+&lt;/chapitre&gt;
+
+&lt;chapitre&gt;
+&lt;titre_chapitre&gt;Comment je suis devenu un homme&lt;/titre_chapitre&gt;
+
+&lt;section&gt;
+&lt;titre_section&gt;Le premier amour&lt;/titre_section&gt;
+
+&lt;texte_courant&gt;Sie &lt;rehausse&gt;surgit&lt;/rehausse&gt;, &lt;rehausse&gt;se v�cut&lt;/rehausse&gt;, et &lt;rehausse&gt;s'en fut&lt;/rehausse&gt; � nouveau.
+&lt;/texte_courant&gt;
+
+&lt;graphique&gt;
+&lt;fichier_graphique&gt;premieramour.tif&lt;/fichier_graphique&gt;
+&lt;/graphique&gt;
+
+&lt;/section&gt;
+
+&lt;/chapitre&gt;
+
+&lt;index_motscles&gt;
+&lt;titre_imc&gt;Index des mots cl�&lt;/titre_imc&gt;
+
+&lt;mention_imc&gt;acn�&lt;/mention_imc&gt;
+&lt;mention_imc&gt;amour&lt;/mention_imc&gt;
+&lt;mention_imc&gt;enfance&lt;/mention_imc&gt;
+&lt;mention_imc&gt;jeunesse&lt;/mention_imc&gt;
+&lt;mention_imc&gt;nourrisson&lt;/mention_imc&gt;
+
+&lt;/index_motscles&gt;
+
+&lt;/livre&gt;
+</pre></td></tr></table>
+
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple ne peut bien s&ucirc;r ne d&eacute;tailler que de fa&ccedil;on grossi&egrave;re un livre complet - si vous essayez effectivement de d&eacute;crire une structure de livre compl&egrave;te avec XML, vous aurez certainement besoin d'encore plus de d&eacute;tails. L'exemple veut simplement montrer de quoi une telle description doit avoir l'air dans son principe.</p>
+
+<p>Dans l'exemple, un  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="entites.htm#parameter_entities"><b>param&egrave;tre entit&eacute; pour DTD plus complexes</b></a>  est d&eacute;fini dans un premier temps. Quatre types d'&eacute;l&eacute;ment  <code>rehausse</code>, <code>remarque</code>, <code>exigeant</code> et <code>passage_ligne</code> y sont r&eacute;capitul&eacute;s; ils peuvent &ecirc;tre plac&eacute;s dans diff&eacute;rents paragraphes de texte.</p>
+
+<p>Le reste de la DTD comporte la d&eacute;finition des types d'&eacute;l&eacute;ments d&eacute;sir&eacute;s. L'ordre n'a &agrave; vrai dire pas grande importance, pourtant l'exemple respecte une certaine logique et essaie d'aller du plus g&eacute;n&eacute;ral au particulier. L'&eacute;l&eacute;ment dans lequel tout le livre se trouve est d&eacute;fini avec le nom <code>livre</code>. L'&eacute;l&eacute;ment est un <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#contenu_element"><b>type d'&eacute;l&eacute;ment avec un contenu d'&eacute;l&eacute;ments</b></a>. Les types d'&eacute;l&eacute;ments <code>titre</code>, <code>informations</code>, <code>index_contenu</code> et <code>index_motscles</code> peuvent y &ecirc;tre plac&eacute;s une fois exactement, et cela dans l'ordre not&eacute;. En fait, le type d'&eacute;l&eacute;ments  <code>chapitre</code> situ&eacute; dans la suite indiqu&eacute;e entre <code>index_contenu</code> et <code>index_motscles</code>, doit &ecirc;tre plac&eacute; au moins une fois et peut &ecirc;tre plac&eacute; avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#beaucoup_elements"><b>autant de r&eacute;p&eacute;titions que l'on veut </b></a>. La structure de base du livre est ainsi fix&eacute;e.</p>
+
+<p>Les passages <code>titre</code> et <code>informations</code> contiennent comme contenus d'&eacute;l&eacute;ment, les types d'&eacute;l&eacute;ment correspondants. Pour les types d'&eacute;l&eacute;ment subordonn&eacute;s &agrave; <code>informations</code> le param&egrave;tre entit&eacute; d&eacute;fini est d'abord utilis&eacute;. Les types d'&eacute;l&eacute;ment correspondants <code>rehausse</code>, <code>remarque</code>, <code>exigeant</code> et <code>passage_ligne</code> peuvent &ecirc;tre plac&eacute; &agrave; volont&eacute; dans <code>cip</code>, <code>droits_auteur</code> et <code>editeur</code>. Les autres passages du livre se divisent en diff&eacute;rents types d'&eacute;l&eacute;ment d'apr&egrave;s un sch&eacute;ma semblable.</p>
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="attributs.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="attributs.htm"><b>Attributs et affectation de valeurs</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="regles_traitement.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="regles_traitement.htm"><b>R&egrave;gles de traitement pour les DTD</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>XML/DTD</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>D&eacute;finitions de type de document (DTD)</b></a></td>
+</tr>
+</table>
+
+ <p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

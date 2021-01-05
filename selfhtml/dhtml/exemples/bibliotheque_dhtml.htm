@@ -1,0 +1,461 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: HTML dynamique / Solutions pour la pratique / Biblioth&egrave;que DHTML g&eacute;n&eacute;rale</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment cr&eacute;er une biblioth&egrave;que de fonctions facilitant DHTML, en tant que JavaScript externe.">
+<meta name="keywords"       content="SELFHTML, HTML dynamique, mod&egrave;le DOM, Dynamic HTML, DHTML, Document Object Model, DOM, fonctions de biblioth&egrave;que, biblioth&egrave;que DHTML">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/dhtml/exemples/bibliotheque_dhtml.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // HTML dynamique == ../index.htm // Solutions pour la pratique == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>HTML dynamique</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Solutions pour la pratique</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Biblioth&egrave;que DHTML g&eacute;n&eacute;rale</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#remarques"><b>Remarques sur cet exemple</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#texte_source"><b>Texte source avec explications</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#test"><b>Test de la biblioth&egrave;que DHTML</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#agrandir"><b>&Eacute;largir la biblioth&egrave;que DHTML</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="remarques">Remarques sur cet exemple</a></h2>
+
+<p>En raison des nombreux mod&egrave;les DHTML qui ont encore cours aujourd'hui, il est souvent compliqu&eacute; pour les programmeurs de retenir toutes les commandes diff&eacute;rentes et les possibilit&eacute;s d'acc&egrave;s. En outre les fichiers contenant des scripts plus grands gonflent quand on note toujours les m&ecirc;mes requ&ecirc;tes pour le navigateur et les constructions pour l'acc&egrave;s aux &eacute;l&eacute;ments. C'est pourquoi, il est pr&eacute;f&eacute;rable d'&eacute;crire une fois pour toutes, une biblioth&egrave;que de fonctions DHTML de port&eacute;e g&eacute;n&eacute;rale et de la ranger dans un fichier JavaScript externe, et d'incorporer ensuite ce fichier JavaScript dans les fichiers o&ugrave; le code des fonctions DHTML est n&eacute;cessaire.</p>
+
+<p>L'exemple de cette page pr&eacute;sente une telle biblioth&egrave;que pour fonctions DHTML. Les diff&eacute;rentes fonctions sont &eacute;galement expliqu&eacute;es pr&eacute;cis&eacute;ment. Dans les autres exemples de ce chapitre,  la biblioth&egrave;que cr&eacute;&eacute;e ici sera utilis&eacute;e pratiquement.</p>
+
+<p>Vous pouvez, bien entendu, &eacute;largir la biblioth&egrave;que de fonctions pour l'adapter &agrave; vos besoins. Ainsi est-il pensable par exemple d'y ajouter des fonctions de port&eacute;e g&eacute;n&eacute;rale &eacute;crites pour le formatage CSS ou pour le positionnement d'&eacute;l&eacute;ments. Le stock de base de fonctions pr&eacute;sent&eacute; ici doit avant tout faciliter l'acc&egrave;s aux &eacute;l&eacute;ments et r&eacute;duire la quantit&eacute; d'interrogations au navigateur.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="texte_source">Texte source avec explications</a></h2>
+
+<p>Le texte source qui suit montre la biblioth&egrave;que DHTML compl&egrave;te. Copiez le texte source complet et sauvegardez le dans un fichier texte nomm&eacute; <var>dhtml.js</var>. Alors vous aurez le fichier JavaScript externe avec les fonctions DHTML.</p>
+
+<h3 class="xmp">Exemple - fichier <var>dhtml.js</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+/* Biblioth&amp;egrave;que DHTML */
+
+var DHTML = 0, DOM = 0, MS = 0, NS = 0, OP = 0;
+
+function DHTML_init() {
+
+ if (window.opera) {
+     OP = 1;
+ }
+ if(document.getElementById) {
+   DHTML = 1;
+   DOM = 1;
+ }
+ if(document.all &amp;&amp; !OP) {
+   DHTML = 1;
+   MS = 1;
+ }
+if(document.layers &amp;&amp; !OP) {
+   DHTML = 1;
+   NS = 1;
+ }
+}
+
+function getElem(p1,p2,p3) {
+ var Elem;
+ if(DOM) {
+   if(p1.toLowerCase()==&quot;id&quot;) {
+     if (typeof document.getElementById(p2) == &quot;object&quot;)
+     Elem = document.getElementById(p2);
+     else Elem = void(0);
+     return(Elem);
+   }
+   else if(p1.toLowerCase()==&quot;name&quot;) {
+     if (typeof document.getElementsByName(p2) == &quot;object&quot;)
+     Elem = document.getElementsByName(p2)[p3];
+     else Elem = void(0);
+     return(Elem);
+   }
+   else if(p1.toLowerCase()==&quot;tagname&quot;) {
+     if (typeof document.getElementsByTagName(p2) == &quot;object&quot; ||
+        (OP &amp;&amp; typeof document.getElementsByTagName(p2) == &quot;function&quot;))
+     Elem = document.getElementsByTagName(p2)[p3];
+     else Elem = void(0);
+     return(Elem);
+   }
+   else return void(0);
+ }
+ else if(MS) {
+   if(p1.toLowerCase()==&quot;id&quot;) {
+     if (typeof document.all[p2] == &quot;object&quot;)
+     Elem = document.all[p2];
+     else Elem = void(0);
+     return(Elem);
+   }
+   else if(p1.toLowerCase()==&quot;tagname&quot;) {
+     if (typeof document.all.tags(p2) == &quot;object&quot;)
+     Elem = document.all.tags(p2)[p3];
+     else Elem = void(0);
+     return(Elem);
+   }
+   else if(p1.toLowerCase()==&quot;name&quot;) {
+     if (typeof document[p2] == &quot;object&quot;)
+     Elem = document[p2];
+     else Elem = void(0);
+     return(Elem);
+   }
+   else return void(0);
+ }
+ else if(NS) {
+   if(p1.toLowerCase()==&quot;id&quot; || p1.toLowerCase()==&quot;name&quot;) {
+   if (typeof document[p2] == &quot;object&quot;)
+     Elem = document[p2];
+     else Elem = void(0);
+     return(Elem);
+   }
+   else if(p1.toLowerCase()==&quot;index&quot;) {
+    if (typeof document.layers[p2] == &quot;object&quot;)
+     Elem = document.layers[p2];
+    else Elem = void(0);
+     return(Elem);
+   }
+   else return void(0);
+ }
+}
+
+function getCont(p1,p2,p3) {
+   var Cont;
+   if(DOM &amp;&amp; getElem(p1,p2,p3) &amp;&amp; getElem(p1,p2,p3).firstChild) {
+     if(getElem(p1,p2,p3).firstChild.nodeType == 3)
+       Cont = getElem(p1,p2,p3).firstChild.nodeValue;
+     else
+       Cont = &quot;&quot;;
+     return(Cont);
+   }
+   else if(MS &amp;&amp; getElem(p1,p2,p3)) {
+     Cont = getElem(p1,p2,p3).innerText;
+     return(Cont);
+   }
+   else return void(0);
+}
+
+function getAttr(p1,p2,p3,p4) {
+   var Attr;
+   if((DOM || MS) &amp;&amp; getElem(p1,p2,p3)) {
+     Attr = getElem(p1,p2,p3).getAttribute(p4);
+     return(Attr);
+   }
+   else if (NS &amp;&amp; getElem(p1,p2)) {
+       if (typeof getElem(p1,p2)[p3] == &quot;object&quot;)
+        Attr=getElem(p1,p2)[p3][p4]
+       else
+        Attr=getElem(p1,p2)[p4]
+         return Attr;
+       }
+   else return void(0);
+}
+
+function setCont(p1,p2,p3,p4) {
+   if(DOM &amp;&amp; getElem(p1,p2,p3) &amp;&amp; getElem(p1,p2,p3).firstChild)
+     getElem(p1,p2,p3).firstChild.nodeValue = p4;
+   else if(MS &amp;&amp; getElem(p1,p2,p3))
+     getElem(p1,p2,p3).innerText = p4;
+   else if(NS &amp;&amp; getElem(p1,p2,p3)) {
+     getElem(p1,p2,p3).document.open();
+     getElem(p1,p2,p3).document.write(p4);
+     getElem(p1,p2,p3).document.close();
+   }
+}
+
+DHTML_init();
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le fichier externe JavaScript ne peut rien contenir d'autre que du code JavaScript tel qu'il est montr&eacute; dans l'exemple. Ci-apr&egrave;s sont d&eacute;crites les variables globales et les fonctions. Car vous pouvez travailler avec ces variables et fonctions si vous voulez utiliser la biblioth&egrave;que.</p>
+
+<h4>Variable globale <code>DHTML</code>:</h4>
+
+<p>Cette variable sauvegarde si HTML dynamique est disponible sur le navigateur utilis&eacute; par l'utilisateur ou s'il ne l'est pas. Dans la fonction <code>DHTML_init()</code> cette variable re&ccedil;oit une valeur qui ne devrait plus &ecirc;tre modifi&eacute;e ensuite. Si HTML dynamique est disponible pour l'un des <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../modeles/index.htm"><b>diff&eacute;rents mod&egrave;les DHTML</b></a> connus, alors elle re&ccedil;oit la valeur <code>1</code>, si ce n'est pas le cas, alors la valeur <code>0</code>. Avec la requ&ecirc;te simple et &eacute;l&eacute;gante <code>if(DHTML)</code> vous pouvez ensuite v&eacute;rifier dans le cours de l'un de vos scripts, si HTML dynamique est possible ou non..</p>
+
+<h4>Variable globale <code>DOM</code>:</h4>
+
+<p>Cette variable sauvegarde si HTML dynamique est possible d'apr&egrave;s la syntaxe DOM ou non (valeur <code>1</code> ou valeur <code>0</code>). Dans la fonction <code>DHTML_init()</code> cette variable re&ccedil;oit une valeur qui ne devrait plus &ecirc;tre modifi&eacute;e ensuite. Avec <code>if(DOM)</code> vous pouvez ensuite interroger si un navigateur r&eacute;cent est en service, qui soutient d&eacute;j&agrave; DOM dans son impl&eacute;mentation JavaScript.</p>
+
+<h4>Variable globale <code>MS</code>:</h4>
+
+<p>Cette variable aussi re&ccedil;oit une valeur dans la fonction  <code>DHTML_init()</code> . Quand sa valeur est <code>1</code>, alors votre script tourne, c'est une quasi-certitude, sur l'Explorer Internet MS. S'il s'agit d'un navigateur de la 4 &egrave;me g&eacute;n&eacute;ration, la valeur <code>0</code> est sauvegard&eacute;e dans la variable <code>DOM</code>, pour les navigateurs plus r&eacute;cents par contre, c'est  <code>1</code>. Avec <code>if(MS&nbsp;&amp;&amp;&nbsp;!DOM)</code> vous pouvez donc demander dans votre script, s'il faut travailler avec la syntaxe DHTML de l'Explorer Internet 4.x.</p>
+
+<h4>Variable globale <code>NS</code>:</h4>
+
+<p>Comme <code>MS</code> cette variable re&ccedil;oit aussi une valeur dans la fonction <code>DHTML_init()</code>. Si sa valeur est ensuite <code>1</code>, alors votre script tourne, c'est une quasi-certitude, sur un navigateur  Netscape de la 4 &egrave;me g&eacute;n&eacute;ration. Car si un navigateur Netscape 6.x ou autre rejeton du navigateur nouvellement programm&eacute;  Mozilla est en service, c'est &agrave; la place la variable <code>DOM</code> qui est &eacute;gale &agrave; <code>1</code>, alors que <code>NS</code> est &eacute;gal &agrave; <code>0</code>. Avec <code>if(NS)</code> vous pouvez donc demander dans votre script, s'il faut travailler avec la syntaxe DHTML de l'ancien Netscape 4.x.</p>
+
+
+<h4>Variable globale <code>OP</code>:</h4>
+
+<p>Comme <code>MS</code> cette variable re&ccedil;oit aussi une valeur dans la fonction <code>DHTML_init()</code>. Si sa valeur est ensuite <code>1</code>, alors votre script tourne, c'est une quasi-certitude, sur un navigateur Opera. Avec <code>if(OP)</code> vous pouvez donc demander dans votre script, si un navigateur Opera est en service. S'il s'agit en outre, d'un navigateur Opera r&eacute;cent, la valeur <code>1</code> est sauvegard&eacute;e dans les variables <code>DOM</code> et <code>DHTML</code>.</p>
+
+
+<h4>Fonction <code>DHTML_init()</code> - initialiser la biblioth&egrave;que:</h4>
+
+<p>Appel:<br>
+<code>DHTML_init();</code></p>
+
+<p>
+Cette fonction est appel&eacute;e automatiquement si vous voulez utiliser la biblioth&egrave;que pr&eacute;sent&eacute;e ici. &Agrave; cet effet est not&eacute; &agrave; la fin du fichier biblioth&egrave;que l'appel <code>DHTML_init()</code>. Ensuite les variables globales importantes re&ccedil;oivent leur valeur respective. Si <code>DHTML_init()</code> n'est pas appel&eacute;e avant tous les autres appels de fonctions de cette biblioth&egrave;que, il ne se passe pas ce qui est escompt&eacute;, &eacute;tant donn&eacute; qu'alors la version du navigateur est suppos&eacute;e ancienne. La fa&ccedil;on d'agir des autres fonctions d&eacute;pend de ce que les variables globales aient re&ccedil;u des valeurs correctes. On en acquiert toutefois la certitude par la notation &agrave; la fin du fichier et les variables globales seront disponibles dans tous les fichiers dans lesquels cette biblioth&egrave;que est incorpor&eacute;e.<br>
+La fonction <code>DHTML_init()</code> se sert de la possibilit&eacute; des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../javascript/langage/objets.htm#demande_existence"><b>demandes sur l'existence d'un objet</b></a>. D&egrave;s la premi&egrave;re requ&ecirc;te, Il est v&eacute;rifi&eacute; s'il s'agit d'un navigateur Opera. Cela est n&eacute;cessaire &eacute;tant donn&eacute; qu'Opera pr&eacute;tend conna&icirc;tre, selon les r&eacute;glages de l'utilisateur, <code>document.all</code> ou bien <code>document.layers</code>. Pour v&eacute;rifier si le mod&egrave;le DOM est disponible, la requ&ecirc;te si <code>document.getElementById</code> est disponible, est appropri&eacute;e car il s'agit d'une m&eacute;thode importante du mod&egrave;le DOM qui devrait exister dans toutes les impl&eacute;mentations du DOM.<br>
+Pour v&eacute;rifier l'existence des anciennes syntaxes Microsoft et Netscape la requ&ecirc;te porte sur leur objet DHTML essentiel. Si <code>document.all</code> est disponible, il s'agit de la syntaxe d'apr&egrave;s l'ancien mod&egrave;le Microsoft. Si <code>document.layers</code> est disponible, c'est la syntaxe d'apr&egrave;s l'ancien mod&egrave;le Netscape. Dans les deux cas, le navigateur Opera est exclu gr&acirc;ce &agrave; <code>!OP</code>, pour le cas o&ugrave; les r&eacute;glages de l'utilisateur permettent la connaissance de ces objets.</p>
+
+<h4>Fonction <code>getElem()</code> - rechercher l'objet &eacute;l&eacute;ment:</h4>
+
+<p>Exemples d'appel:<br>
+<code>objet_element = getElem(&quot;id&quot;,&quot;remarque&quot;,null);</code><br>
+<code>objet_element = getElem(&quot;name&quot;,&quot;champ_saisie&quot;,0);</code><br>
+<code>objet_element = getElem(&quot;tagname&quot;,&quot;p&quot;,8);</code><br>
+<code>objet_layer = getElem(&quot;index&quot;,2,null,null);</code></p>
+
+<p>Cette fonction est &agrave; vrai dire la fonction essentielle de la biblioth&egrave;que pr&eacute;sent&eacute;e ici. Elle acc&egrave;de &agrave; un certain &eacute;l&eacute;ment du document et retourne l'objet de cet &eacute;l&eacute;ment. Cela fonctionne aussi bien avec les navigateurs supportant le mod&egrave;le DOM qu'avec l'ancien Explorer Internet 4.x et de fa&ccedil;on plus restreinte (seulement en relation avec les &eacute;l&eacute;ments <code>layer</code> ou bien <code>div</code>) &eacute;galement avec Netscape 4.x.<br>
+Dans la plupart des cas, vous n'avez pas besoin d'appeler cette fonction vous-m&ecirc;me. Il s'agit davantage d'une fonction de base utilis&eacute;e par les autres fonctions de la biblioth&egrave;que. Il y a pourtant &eacute;galement des cas dans lesquels un appel direct de cette fonction est indiqu&eacute;. La fonction attend les param&egrave;tres suivants:</p>
+
+<p><b><code>p1</code></b> est l'art et la mani&egrave;re &agrave; employer pour acc&eacute;der &agrave; un &eacute;l&eacute;ment. Il y a quatre valeurs permises pour ce param&egrave;tre: <code>&quot;id&quot;</code>, <code>&quot;name&quot;</code>, <code>&quot;tagname&quot;</code> et <code>&quot;index&quot;</code>. Transmettez <code>&quot;id&quot;</code>, quand vous voulez acc&eacute;der &agrave; un &eacute;l&eacute;ment qui a un attribut <code>id</code> par exemple <code>&lt;div&nbsp;id=&quot;passage&quot;&gt;</code>. Transmettez <code>&quot;name&quot;</code>, quand vous voulez acc&eacute;der &agrave; un &eacute;l&eacute;ment qui n'a pas d'attribut <code>id</code>, mais qui a un attribut <code>name</code>, par exemple <code>&lt;a&nbsp;name=&quot;ancre&quot;&gt;</code>. Transmettez <code>&quot;tagname&quot;</code>, quand vous voulez acc&eacute;der &agrave; un &eacute;l&eacute;ment qui n'a  ni attribut <code>id</code> ni attribut <code>name</code>. Ne transmettez <code>&quot;index&quot;</code> que lorsqu'il s'agit de calques Netscape, qui doivent &ecirc;tre adress&eacute;s par l'objet <code>layers</code> &agrave; l'aide de num&eacute;ros d'index.</p>
+
+<p><b><code>p2</code></b> est une mention plus pr&eacute;cise de ce que vous avez fix&eacute; pour <code>p1</code>: Si vous avez transmis pour <code>p1</code> la valeur <code>&quot;id&quot;</code>, alors la fonction attend pour <code>p2</code> la valeur de l'attribut <code>id</code>. Si vous avez transmis pour <code>p1</code> la valeur <code>&quot;name&quot;</code>, alors la fonction attend pour <code>p2</code> la valeur de l'attribut <code>name</code>. Si vous avez transmis pour <code>p1</code> la valeur <code>tagname</code>, alors  <code>p2</code> attend le nom d'&eacute;l&eacute;ment d&eacute;sir&eacute;, donc par exemple <code>h1</code> ou bien <code>div</code>. Si vous avez transmis pour <code>p1</code> la valeur <code>&quot;index&quot;</code>,  <code>p2</code> attend le num&eacute;ro d'index du calque Netscape souhait&eacute;.</p>
+
+<p><b><code>p3</code></b> n'est n&eacute;cessaire que lorsque pour  <code>p1</code>, c'est l'une des deux valeurs <code>&quot;name&quot;</code> ou <code>&quot;tagname&quot;</code> qui a &eacute;t&eacute; mentionn&eacute;e. Dans ce cas, il vous faut mentionner pour <code>p3</code> un num&eacute;ro d'index avec le nom ou le nom d'&eacute;l&eacute;ment correspondant &agrave; votre choix; ce num&eacute;ro d'index est le num&eacute;ro d'ordre dans le document de l'&eacute;l&eacute;ment en question. Le premier &eacute;l&eacute;ment a le num&eacute;ro d'index  <code>0</code>, le deuxi&egrave;me le num&eacute;ro <code>1</code> etc...</p>
+
+<p>Transmettez pour les param&egrave;tres sans mention de valeur tout simplement le mot <code>null</code> (sans guillemets!).</p>
+
+
+<p>La fonction <code>getElem()</code> parcourt dans l'ordre les mod&egrave;les DHTML possibles et interroge d'abord avec <code>if(DOM)</code> la variable globale <code>DOM</code> pour savoir si la syntaxe du mod&egrave;le DOM est disponible. Si oui. l'&eacute;l&eacute;ment souhait&eacute; est recherch&eacute; d'apr&egrave;s la syntaxe du mod&egrave;le DOM, en fonction des param&egrave;tres transmis puis il est renvoy&eacute;. Seulement quand la syntaxe du mod&egrave;le DOM n'est pas disponible, il est tent&eacute; d'appliquer les anciens mod&egrave;les DHTML. D'abord il est v&eacute;rifi&eacute; avec <code>if(MS)</code>, si l'ancien mod&egrave;le DHTML de Microsoft est disponible. Si oui, l'&eacute;l&eacute;ment est recherch&eacute; d'apr&egrave;s cette syntaxe, par l'objet <code>document.all</code>. Si m&ecirc;me la syntaxe Microsoft n'y parvient pas, il reste encore l'ancienne syntaxe Netscape interrog&eacute;e avec <code>if(NS)</code>. Dans ce cas un acc&egrave;s &agrave; un objet Layer est construit &agrave; partir des param&egrave;tres transmis.</p>
+
+<p>En m&ecirc;me temps intervient dans la fonction un traitement d'erreur. Dans cet embranchement de la fonction, il est v&eacute;rifi&eacute; au moyen de l'op&eacute;rateur <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../javascript/langage/operateurs.htm#typeof"><b>typeof</b></a> si l'&eacute;l&eacute;ment d&eacute;sir&eacute; existe bien et s'il repr&eacute;sente un objet. Si c'est le cas, l'&eacute;l&eacute;ment est cr&eacute;&eacute; et retourn&eacute;. Autrement, c'est <i>undefined</i> qui est renvoy&eacute; gr&acirc;ce &agrave; l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../javascript/langage/operateurs.htm#void"><b>op&eacute;rateur void</b></a>.</p>
+
+<h4>Fonction <code>getCont()</code> - rechercher le contenu de l'&eacute;l&eacute;ment:</h4>
+
+<p>Exemples d'appel:<br>
+<code>if(! NS) contenu_element = getCont(&quot;id&quot;,&quot;remarque&quot;,null);</code><br>
+<code>if(! NS) contenu_element = getCont(&quot;name&quot;,&quot;lien&quot;,3);</code><br>
+<code>if(! NS) contenu_element = getCont(&quot;tagname&quot;,&quot;p&quot;,8);</code></p>
+
+<p>Par cette fonction qui acc&egrave;de de son c&ocirc;t&eacute; &agrave; la fonction <code>getElem()</code>, vous pouvez rechercher commod&eacute;ment rechercher le contenu d'un &eacute;l&eacute;ment - tout au moins si le mod&egrave;le DOM ou l'ancien mod&egrave;le DHTML de Microsoft est disponible. L'ancien mod&egrave;le de Netscape ne peut lire le contenu d'&eacute;l&eacute;ment. Dans les exemples d'appel, l'appel de la fonction se fait &agrave; condition qu'il ne soit pas travaill&eacute; d'apr&egrave;s l'ancienne syntaxe de Netscape (<code>if(!NS)</code>).<br>
+La fonction retourne une cha&icirc;ne de caract&egrave;res vide lorsqu'elle emploie le mod&egrave;le DOM et au cas o&ugrave; le contenu de l'&eacute;l&eacute;ment n'est pas du texte mais un autre &eacute;l&eacute;ment. Si donc par exemple est not&eacute;:<br>
+<code>&lt;p&gt;le texte&lt;/p&gt;</code><br>
+Alors la fonction retourne la valeur <code>le texte</code>. Mais s'il est not&eacute;:<br>
+<code>&lt;p&gt;&lt;b&gt;le texte&lt;/b&gt;&lt;/p&gt;</code><br>
+Alors la fonction retourne, lorsque le mod&egrave;le DOM est appliqu&eacute;, une cha&icirc;ne de caract&egrave;res vide, &eacute;tant donn&eacute; qu'il n'y a aucun texte comme contenu d'&eacute;l&eacute;ment de  <code>p</code>, mais le contenu d'un autre &eacute;l&eacute;ment, &agrave; savoir l'&eacute;l&eacute;ment <code>b</code> .<br>
+Les param&egrave;tres pour <code>getCont()</code> sont les m&ecirc;mes que pour <code>getElem()</code>. Seule la valeur <code>&quot;index&quot;</code> pour le param&egrave;tre <code>p1</code> n'est pas trait&eacute;e par cette fonction. Transmettez pour les param&egrave;tres sans mention de valeur tout simplement le mot <code>null</code>.</p>
+
+<p>La fonction <code>getCont()</code> se sert donc de la fonction de base <code>getElem()</code> et passe simplement ses trois param&egrave;tres transmis &agrave; celle-ci. Pour la syntaxe DOM, elle essaie d'acc&eacute;der au contenu texte de l'&eacute;l&eacute;ment avec <code>firstChild.nodeValue</code>, pour la syntaxe  Microsoft, par la propri&eacute;t&eacute; <code>innerText</code> de l'objet <code>all</code>. &Agrave; la mani&egrave;re dont la fonction <code>getCont()</code> appelle la fonction <code>getElem()</code>, vous pouvez &eacute;galement voir comment vous pouvez appeler directement la fonction de base <code>getElem()</code> d'une autre fa&ccedil;on. &Eacute;tant donn&eacute; que cette fonction renvoie un objet &eacute;l&eacute;ment, vous pouvez joindre les propri&eacute;t&eacute;s et fonctions d'un tel objet &agrave; l'appel de la fonction. En tout &eacute;tat de cause, il vous faut demander vous-m&ecirc;me d'apr&egrave;s quel mod&egrave;le il est travaill&eacute;. Si c'est d'apr&egrave;s le mod&egrave;le DOM (interrogation possible avec <code>if(DOM)</code>), des m&eacute;thodes et propri&eacute;t&eacute;s des  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../javascript/objets/elementshtml.htm"><b>objets &eacute;l&eacute;ments HTML</b></a> peuvent &ecirc;tre attach&eacute;es, &agrave; l'appel de  <code>getElem()</code> ou bien &eacute;galement celles de l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../javascript/objets/node.htm"><b>node</b></a>.</p>
+
+<p>La fonction <code>getCont()</code> tient compte &eacute;galement de navigateurs comme Opera qui ne peuvent pas encore lire les contenus de fa&ccedil;on dynamique mais interpr&egrave;tent cependant d'autres parties de la biblioth&egrave;que. Avant de tenter de lire des contenus, elle demande avec <code>if (DOM  &amp;&amp; getElem(p1,p2,p3) &amp;&amp; getElem(p1,p2,p3).firstChild))</code>, si l'objet d&eacute;sir&eacute; existe et si l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../javascript/objets/node.htm#first_child"><b>firstChild</b></a> est &eacute;galement pr&eacute;sent. Ce n'est que lorsque cette condition est remplie, qu'il est essay&eacute; de lire le contenu. Par ce biais on &eacute;vite dans tous les cas un message d'erreur.</p>
+
+<h4>Fonction <code>getAttr()</code> - rechercher le contenu d'un attribut:</h4>
+
+<p>Exemples d'appel:<br>
+<code>Attribut=getAttr(&quot;name&quot;,&quot;nom_image&quot;,0,&quot;height&quot;);</code><br>
+<code>Attribut=getAttr(&quot;id&quot;,&quot;passage&quot;,null,&quot;id&quot;);</code><br>
+<code>if (!NS) Attribut=getAttr(&quot;name&quot;,&quot;ancre&quot;,0,&quot;href&quot;)</code><br>
+<code>if (NS) Attribut=getAttr(&quot;name&quot;,&quot;links&quot;,0,&quot;href&quot;)</code>
+</p>
+
+<p>Par cette fonction qui acc&egrave;de de son c&ocirc;t&eacute; &agrave; la fonction <code>getElem()</code>, vous pouvez rechercher commod&eacute;ment rechercher la valeur d'un attribut dans un &eacute;l&eacute;ment - tout au moins quand le mod&egrave;le DOM ou l'ancien mod&egrave;le DHTML Microsoft est disponible. Pour certains objets, c'est m&ecirc;me possible avec Netscape 4. Outre les trois param&egrave;tres d&eacute;j&agrave; connus, cette fonction attend le quatri&egrave;me param&egrave;tre <code>p4</code>. Pour celui-ci, vous devez transmettre le nom de l'attribut d&eacute;sir&eacute;. Transmettez pour les param&egrave;tres sans mention de valeur tout simplement le mot <code>null</code>.</p>
+
+<p>La fonction <code>getAttr()</code> utilise les m&eacute;thodes objet <code>getAttribute()</code>, disponibles aussi bien dans le mod&egrave;le DOM que dans l'ancien mod&egrave;le  Microsoft.<br>
+Pour Netscape 4 par contre la propri&eacute;t&eacute; d&eacute;sir&eacute;e est interrog&eacute;e directement. Pour ce navigateur, il est possible dans certains cas d'acc&eacute;der &agrave; la propri&eacute;t&eacute; d&eacute;sir&eacute;e uniquement par des sous-objets, par exemple pour les liens et les ancres. Vous pouvez y acc&eacute;der en notant dans le param&egrave;tre <code>p2</code> le nom du sous-objet (par exemple <code>links</code> ou <code>elements</code>) et dans le param&egrave;tre <code>p3</code> le nom ou bien le num&eacute;ro d'index de l'objet.<br>
+Le choix de l'objet correct est pris en charge par la fonction de base <code>getElem()</code>. Bien s&ucirc;r, intervient dans ce cas, la v&eacute;rification si l'objet d&eacute;sir&eacute; existe bien.</p>
+
+<h4>Fonction <code>setCont()</code> - modifier le contenu de l'&eacute;l&eacute;ment de fa&ccedil;on dynamique:</h4>
+
+<p>Exemples d'appel:<br>
+<code>setCont(&quot;id&quot;,&quot;remarque&quot;,null,&quot;nouvelle remarque&quot;);</code><br>
+<code>setCont(&quot;name&quot;,&quot;lien&quot;,3,&quot;nouveau lien&quot;);</code><br>
+<code>setCont(&quot;tagname&quot;,&quot;p&quot;,8,&quot;nouveau contenu de texte de l'&eacute;l&eacute;ment&quot;);</code><br>
+<code>if(NS) setCont(&quot;index&quot;,&quot;2&quot;,null,&quot;nouveau contenu du calque&quot;);</code></p>
+
+<p>Avec cette fonction, vous pouvez changer le contenu d'un &eacute;l&eacute;ment de fa&ccedil;on dynamique. La fonction <code>setCont()</code> se sert pour l'acc&egrave;s &agrave; l'&eacute;l&eacute;ment d&eacute;sir&eacute; de la fonction de base <code>getElem()</code>. Les trois premiers param&egrave;tres qui sont les m&ecirc;mes pour cette fonction que pour les autres fonctions sont pour cela pass&eacute;s &agrave;  <code>getElem()</code>. Comme quatri&egrave;me param&egrave;tre <code>p4</code>, la fonction <code>setCont()</code> attend le contenu texte d&eacute;sir&eacute;. Fa&icirc;tes attention que ce texte, tout au moins pour le mod&egrave;le DOM et pour l'ancien mod&egrave;le Microsoft, n'est interpr&eacute;t&eacute; que comme du pur texte. Les formatages HTML dans le texte y sont interpr&eacute;t&eacute;s comme texte en clair.<br>
+Transmettez pour les param&egrave;tres sans mention de valeur tout simplement le mot
+ <code>null</code>.<br>
+Pour les calques Netscape, la fonction <code>setCont()</code> utilise automatiquement les commandes habituelles pour l'ouverture du document calque (<code>document.Layer.document.open()</code>), pour &eacute;crire (<code>document.Layer.document.write()</code>) et pour fermer (<code>document.Layer.document.close()</code>).</p>
+<p>La fonction <code>setCont()</code> tient compte &eacute;galement de navigateurs comme Opera qui ne peuvent pas encore modifier les contenus de fa&ccedil;on dynamique mais interpr&egrave;tent cependant d'autres parties de la biblioth&egrave;que. Avant de tenter de modifier des contenus, elle demande avec   <code>if (DOM  &amp;&amp; getElem(p1,p2,p3) &amp;&amp; getElem(p1,p2,p3).firstChild))</code>, si l'objet d&eacute;sir&eacute; existe et si l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../javascript/objets/node.htm#first_child"><b>firstChild</b></a> est &eacute;galement pr&eacute;sent. Ce n'est que lorsque cette condition est remplie qu'il est essay&eacute; de modifier le contenu. Par ce biais on &eacute;vite dans tous les cas un message d'erreur.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="test">Test de la biblioth&egrave;que DHTML</a></h2>
+
+<p>L'exemple suivant montre comment vous pouvez utiliser la biblioth&egrave;que DHTML. Les diff&eacute;rentes fonctions sont appel&eacute;es dans ce fichier d'exemple avec des cas concrets. La meilleure fa&ccedil;on de tester la mani&egrave;re de fonctionner est d'appeler l'aper&ccedil;u avec diff&eacute;rents navigateurs.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/testdhtml.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;dhtml.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function tester() {
+   var texte_sorti = &quot;&quot;;
+   if(DHTML) texte_sorti += &quot;DHTML est activ�!\n&quot;
+   else      texte_sorti += &quot;DHTML n'est pas activ�!\n&quot;;
+   if(DOM)   texte_sorti += &quot;DOM est support�!\n&quot;;
+   else      texte_sorti += &quot;DOM n'est pas support�!\n&quot;;
+   if(MS)    texte_sorti += &quot;Vieille technologie Microsoft sans DOM!\n&quot;;
+   if(NS)    texte_sorti += &quot;Vieille technologie Netscape sans DOM!\n&quot;;
+
+   contenu_h1 = getCont(&quot;tagname&quot;,&quot;h1&quot;,0);
+   if(contenu_h1)  texte_sorti += &quot;Contenu de l'�l�ment h1: &quot; + contenu_h1 + &quot;!\n&quot;;
+   else           texte_sorti += &quot;Contenu de l'�l�ment h1 n'a pu �tre trouv�!\n&quot;;
+
+   contenu_p = getCont(&quot;id&quot;,&quot;paragraphe_remarque&quot;,null);
+   if(contenu_p)   texte_sorti += &quot;Contenu de l'�l�ment p: &quot; + contenu_p + &quot;!\n&quot;;
+   else           texte_sorti += &quot;Contenu de l'�l�ment p n'a pu �tre trouv�!\n&quot;;
+
+   if (NS)  lien = getAttr(&quot;name&quot;,&quot;anchors&quot;,&quot;ancre&quot;,&quot;text&quot;);
+   else lien = getCont(&quot;name&quot;,&quot;ancre&quot;,0);
+   if(lien)    texte_sorti += &quot;Texte du lien: &quot; + lien + &quot;!\n&quot;;
+   else           texte_sorti += &quot;Texte du lien n'a pu �tre trouv�!\n&quot;;
+
+   alignement_h1 = getAttr(&quot;tagname&quot;,&quot;h1&quot;,0,&quot;align&quot;);
+   if(alignement_h1)   texte_sorti += &quot;Alignement de l'�l�ment h1: &quot; + alignement_h1 + &quot;!\n&quot;;
+   else           texte_sorti += &quot;Alignement de l'�l�ment h1 n'a pu �tre trouv�!\n&quot;;
+
+   hauteur_image= getAttr(&quot;name&quot;,&quot;oeil&quot;,0,&quot;height&quot;);
+   if(hauteur_image) texte_sorti += &quot;Hauteur d'image: &quot; + hauteur_image + &quot;px.\n&quot;;
+   else          texte_sorti += &quot;La hauteur d'image n'a pu �tre trouv�e!\n&quot;;
+
+   passage_id = getAttr(&quot;id&quot;,&quot;passage&quot;,null,&quot;id&quot;);
+   if(passage_id) texte_sorti += &quot;Nom id du passage: &quot; + passage_id + &quot;!\n&quot;;
+   else           texte_sorti += &quot;Nom id du passage n'a pu �tre trouv�!\n&quot;;
+
+   setCont(&quot;id&quot;,&quot;passage&quot;,null,&quot;Les tests sont termin�s!&quot;);
+
+   alert(texte_sorti);
+}
+//--&gt;
+&lt;/script&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+&lt;!--
+#passage {position:absolute; top:200px; left:10px; width:500px; height:100px; }
+--&gt;
+&lt;/style&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1 align=&quot;left&quot;&gt;Test de dhtml.js&lt;/h1&gt;
+&lt;hr noshade size=&quot;1&quot;&gt;
+&lt;p id=&quot;paragraphe_remarque&quot;&gt;Les tests v�rifient les fonctions de la biblioth�que DHTML&lt;/p&gt;
+&lt;p&gt;&lt;img name=&quot;oeil&quot; src=&quot;../../../src/oeil.gif&quot; width=&quot;24&quot; height=&quot;16&quot;
+  border=&quot;0&quot; alt=&quot;image test&quot;&gt;
+&lt;a name=&quot;ancre&quot; href=&quot;javascript:tester()&quot;&gt;lancer les tests&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&quot;passage&quot;&gt;&amp;nbsp;&lt;/div&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple contient, dans le passage visible du fichier HTML, un titre N�1, un paragraphe de texte, un autre paragraphe de texte avec un lien avant lequel d'ailleurs est incorpor&eacute; un graphique, et enfin un passage  <code>div</code>, qui est positionn&eacute; de fa&ccedil;on absolue &agrave; l'aide de CSS. Les mentions CSS pour le positionnement se trouvent dans l'ent&ecirc;te de fichier, dans un passage <code>style</code> o&ugrave; sont not&eacute;s les formats pour <code>#passage</code>. En g&eacute;n&eacute;ral, il est pr&eacute;f&eacute;rable de noter dans une feuille de style globale de l'ent&ecirc;te de fichier, en raison de quelques lacunes de Netscape, les formatages CSS des  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modeles/netscape.htm#simuler"><b>calques simul&eacute;s</b></a>, et non pas dans le rep&egrave;re d'introduction <code>&lt;div&gt;</code>.</p>
+
+<p>Dans l'ent&ecirc;te de fichier deux passages JavaScript sont par ailleurs d&eacute;finis. Le premier est vide et incorpore somme toute la biblioth&egrave;que qui est sauvegard&eacute;e dans le fichier JavaScript externe <code>dhtml.js</code>. Le deuxi&egrave;me passage Script contient le code JavaScript qui ex&eacute;cute les appels de tests.</p>
+
+<p>Le JavaScript dans l'ent&ecirc;te de fichier est appel&eacute; quand l'utilisateur clique sur le lien qui est not&eacute; dans le fichier. Alors la fonction  <code>tester()</code> est appel&eacute;e. Cette fonction peut , comme l'ensemble du JavaScript, acc&eacute;der sans d&eacute;tour &agrave; toutes les variables globales et aux fonctions de la biblioth&egrave;que DHTML.</p>
+
+<p>Dans un premier temps, la fonction <code>tester()</code> acc&egrave;de aux variables initialis&eacute;es de la biblioth&egrave;que et v&eacute;rifie quel est le mod&egrave;le DHTML disponible. En fonction de ce qui est disponible, la variable <code>texte_sorti</code> est assortie d'un texte.</p>
+
+<p>&Agrave; l'&eacute;tape suivante s la fonction <code>getCont()</code> de la biblioth&egrave;que DHTML entre en jeu.<br>
+Avec <code>getCont(&quot;tagname&quot;,&quot;h1&quot;,0)</code>, il est acc&eacute;d&eacute; par le nom d'&eacute;l&eacute;ment au premier &eacute;l&eacute;ment <code>h1</code> (compteur d'index 0). La valeur renvoy&eacute;e par <code>getCont()</code> est sauvegard&eacute;e dans la variable <code>contenu_h1</code>. En fonction de ce qu'elle contient apr&egrave;s l'appel de la fonction une cha&icirc;ne de caract&egrave;res d'une longueur sup&eacute;rieure &agrave;  0  (<code>if(contenu_h1)</code>), la variable <code>texte_sorti</code> est &agrave; nouveau assortie d'un autre texte.</p>
+
+<p>Suivent deux autres appels de <code>getCont()</code> qui essaient les autres variantes des param&egrave;tres transmis.<br>
+Avec <code>getCont(&quot;id&quot;,&quot;paragraphe_remarque&quot;,null)</code>, il est acc&eacute;d&eacute; &agrave; l'&eacute;l&eacute;ment avec l'attribut <code>id=&quot;paragraphe_remarque&quot;</code>.<br>
+Avec <code>getCont(&quot;name&quot;,&quot;ancre&quot;,0)</code>, il est acc&eacute;d&eacute; au premier &eacute;l&eacute;ment du document pour lequel l'attribut  <code>name=&quot;ancre&quot;</code> est not&eacute;. &Eacute;tant donn&eacute; qu'il est &eacute;galement possible avec Netscape 4 d'acc&eacute;der au texte d'un lien, ce n'est pas la fonction <code>getCont()</code> qui est appel&eacute;e pour ce navigateur mais la fonction <code>getAttr()</code>. Il a &eacute;t&eacute; tenu compte par ailleurs que d&egrave;s qu'un lien constitue en m&ecirc;me temps une ancre, le texte du lien ne puisse &ecirc;tre lu que par l'objet anchor.</p>
+
+<p>&Agrave; la suite de quoi la fonction <code>tester()</code> essaie la fonction de la biblioth&egrave;que <code>getAttr()</code> avec trois appels, une fois par le nom d'&eacute;l&eacute;ment, une fois par le nom de rep&egrave;re et une fois par l'attribut <code>id</code>.</p>
+
+<p>Enfin est &eacute;galement encore appel&eacute;e la fonction <code>setCont()</code>. Afin que cela fonctionne dans tous les navigateurs y compris  Netscape 4.x, le contenu du passage  <code>div</code> positionn&eacute; de fa&ccedil;on absolue et que Netscape reconna&icirc;t comme calque, a &eacute;t&eacute; fix&eacute; &agrave; nouveau.</p>
+
+<p>&Agrave; la fin, la fonction <code>tester()</code> sort les r&eacute;sultats r&eacute;unis qu'elle a accumul&eacute;s dans la variable <code>texte_sorti</code>, dans une fen&ecirc;tre de dialogue.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><a class="an" name="agrandir">&Eacute;largir la biblioth&egrave;que DHTML</a></h2>
+
+<p>La biblioth&egrave;que DHTML pr&eacute;sent&eacute;e ici ne contient que quelques fonctions de base peu nombreuses, facilite un peu l'acc&egrave;s aux &eacute;l&eacute;ments et rend dans de nombreux cas le code JavaScript un peu plus clair et mieux lisible. Mais il reste encore beaucoup de choses qu'elle ne fait pas. Si vous travaillez souvent avec HTML dynamique, il est recommand&eacute; d'&eacute;largir la biblioth&egrave;que avec d'autres fonctions qui vous sont propres. L'important pour une telle biblioth&egrave;que de fonctions est que toutes les fonctions &eacute;crites soient de port&eacute;e g&eacute;n&eacute;rale. C'est la raison pour laquelle les fonctions attendent en r&egrave;gle g&eacute;n&eacute;rale, plusieurs param&egrave;tres pour recevoir de quoi traiter les donn&eacute;es.<p>
+
+<p>Il serait encore possible d'imaginer par exemple des fonctions qui acc&egrave;dent directement aux propri&eacute;t&eacute;s CSS d'&eacute;l&eacute;ments ou bien des fonctions qui sont en mesure de repositionner un &eacute;l&eacute;ment de fa&ccedil;on dynamique. Partant de l&agrave;, des foncions sont &eacute;galement possibles qui calculent certains mouvements circulaires par exemple au moyen desquels elle positionne les &eacute;l&eacute;ments. Toutes les autres fonctions imaginables peuvent se consacrer &agrave; la gestion d'&eacute;v&eacute;nements, malheureusement encore assez compliqu&eacute;e  parce que tr&egrave;s diversement impl&eacute;ment&eacute;e, et y simplifier plusieurs choses.</p>
+
+<p>Une biblioth&egrave;que de fonctions ne doit pas d'un autre c&ocirc;t&eacute; devenir trop grande. Car si &agrave; la fin vous incorporez un JavaScript externe de plusieurs dizaines de Kilooctets pour noter trois instructions banales , alors une biblioth&egrave;que de fonctions n'est pas adapt&eacute;e. Dans ces cas l&agrave;, il est pr&eacute;f&eacute;rable de noter les quelques instructions sans recourir &agrave; une biblioth&egrave;que de fonctions.</p>
+
+<p>Veillez toujours &agrave; ce que vos biblioth&egrave;ques ex&eacute;cutent un traitement d'erreur qui v&eacute;rifie la disponibilit&eacute; respective des objets adress&eacute;s.</p>
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="navigation.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="navigation.htm"><b> Barre de navigation dynamique</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="../modeles/filtres_dynamiques.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../modeles/filtres_dynamiques.htm"><b>Filtres dynamiques (seulement Microsoft)</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>HTML dynamique</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Solutions pour la pratique</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

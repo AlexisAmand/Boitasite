@@ -1,0 +1,512 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / R&eacute;f&eacute;rence objet / Fonctions ind&eacute;pendantes de l'objet</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quelles sont les fonctions qui ne sont pas li&eacute;es &agrave; un objet en  JavaScript.">
+<meta name="keywords"       content="SELFHTML, JavaScript, objets, fonctions ind&eacute;pendantes de l'objet, decodeURI(), decodeURIComponent(), encodeURI(), encodeURIComponent(), escape(), eval(), isNaN(), parseFloat(), parseInt(), Number(), String(), unescape()">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/objets/independant.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // R&eacute;f&eacute;rence objet == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Fonctions ind&eacute;pendantes de l'objet</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+
+<p><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur les fonctions ind&eacute;pendantes de l'objet</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#decode_uri"><b>decodeURI()</b></a> (d&eacute;code une URI cod&eacute;e)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#decode_uri_component"><b>decodeURIComponent()</b></a> (d&eacute;code une URI cod&eacute;e - II)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#encode_uri"><b>encodeURI()</b></a> (coder une URI)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#encode_uri_component"><b>encodeURIComponent()</b></a> (code une URI - II)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#eval"><b>eval()</b></a> (interpr&eacute;ter une expression )<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#escape"><b>escape()</b></a> (transforme des signes ASCII en nombres)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#is_finite"><b>isFinite()</b></a> (v&eacute;rifie le domaine num&eacute;rique de valeurs )<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#is_nan"><b>isNaN()</b></a> (v&eacute;rifie si la valeur n'est pas un nombre)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#parse_float"><b>parseFloat()</b></a> (transforme en nombre avec d&eacute;cimales)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#parse_int"><b>parseInt()</b></a> (transforme en nombre entier)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#number"><b>Number()</b></a> (transforme un objet en nombre)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#string"><b>String()</b></a> (transforme le contenu d'un objet en une cha&icirc;ne de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#unescape"><b>unescape()</b></a> (transforme des nombres en caract&egrave;res ASCII)
+</p>
+
+
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur les fonctions ind&eacute;pendantes de l'objet</a></h2>
+
+<p>Les fonctions ind&eacute;pendantes de l'objet sont, par opposition aux  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/fonctions.htm"><b>fonctions</b></a> que vous d&eacute;finissez vous-m&ecirc;mes, d&eacute;j&agrave; pr&eacute;d&eacute;finies en JavaScript. Ce qui veut dire que vous pouvez &agrave; tout moment appeler ces fonctions.</p>
+
+<p>Il s'agit de commandes JavaScript d&eacute;termin&eacute;es, puissantes pour certaines, et qui n'entrent dans aucun des objets JavaScript &eacute;chappant ainsi au sens d'orientation sur l'objet de JavaScript.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="decode_uri">decodeURI()</a></h2>
+
+<p>D&eacute;code une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/generalites/referencer.htm#uri"><b>URI</b></a>, qui a &eacute;t&eacute; cod&eacute;e avec  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#encode_uri"><b>encodeURI()</b></a>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/independant_decode_uri.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+Adresse = &quot;http://www.my.fr/cgi-bin/script.pl?Text=le texte transmis&amp;Nom=Serge Fran&ccedil;ois&quot;;
+document.write(&quot;&lt;b&gt;Adresse d�cod�e:&lt;\/b&gt; &quot; + Adresse + &quot;&lt;br&gt;&quot;);
+Adresse = encodeURI(Adresse);
+document.write(&quot;&lt;b&gt;Adresse cod�e:&lt;\/b&gt; &quot; + Adresse + &quot;&lt;br&gt;&quot;);
+Adresse = decodeURI(Adresse);
+document.write(&quot;&lt;b&gt;Adresse d�cod�e � nouveau:&lt;\/b&gt; &quot; + Adresse + &quot;&lt;br&gt;&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une adresse typique avec des param&egrave;tres &agrave; transmettre &agrave; un script. D'abord celui-ci &eacute;crit l'adresse telle quelle dans le document. Ensuite l'adresse est trait&eacute;e avec <code>encodeURI()</code> et sortie pour contr&ocirc;le. Enfin et d'apr&egrave;s le m&ecirc;me sch&eacute;ma <code>decodeURI()</code> est appliqu&eacute;e et l'adresse est sortie encore une fois.</p>
+
+<h3>Attention:</h3>
+
+<p>Opera 5.12 n'interpr&egrave;te pas cette m&eacute;thode.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="decode_uri_component">decodeURIComponent()</a></h2>
+
+<p>Comme <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#decode_uri"><b>decodeURI()</b></a>. Ne doit &ecirc;tre toutefois appliqu&eacute;e qu'&agrave; des adresses ou des lignes d'adresses ayant &eacute;t&eacute; cod&eacute;es avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#encode_uri"><b>encodeURIComponent()</b></a>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="encode_uri">encodeURI()</a></h2>
+
+<p>Crypte une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/generalites/referencer.htm#uri"><b>URI</b></a> de telle fa&ccedil;on que tous les caract&egrave;res sp&eacute;ciaux sont transform&eacute;s en s&eacute;quences de signes ASCII. Particuli&egrave;rement important pour les appels de scripts CGI avec param&egrave;tres. Car HTML 4.0 r&eacute;clame par exemple dans l'attribut <code>href</code>  pour les liens, des cha&icirc;nes de caract&egrave;res crypt&eacute;es dans la mesure o&ugrave; les adresses contiennent des caract&egrave;res sp&eacute;ciaux.</p>
+
+<p>Code tout sauf les caract&egrave;res suivants:<br>
+<code>A</code> &agrave; <code>Z</code><br>
+<code>a</code> &agrave; <code>z</code><br>
+<code>- _ . ! ~ * ' ( )</code><br>
+<code>, / ? : @ & = + $</code></p>
+
+<p>Les caract&egrave;res avec accents en fran&ccedil;ais par exemple - ou avec Umlaut en allemand-, les caract&egrave;res sp&eacute;ciaux ainsi que les espaces, les parenth&egrave;ses accolades ou pointues etc... sont  donc cod&eacute;s.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/independant_encode_uri.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var Adresse = encodeURI(&quot;http://www.my.fr/cgi-bin/script.pl?Texte=le texte transmis&amp;Nom=Serge Fran&ccedil;ois&quot;);
+document.write(&quot;&lt;a href=\&quot;&quot; + Adresse + &quot;\&quot;&gt;lien&lt;\/a&gt;&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple appelle la fonction <code>encodeURI()</code> et lui transmet une  URI typique avec des param&egrave;tres. La valeur renvoy&eacute;e par la fonction est sauvegard&eacute;e dans la variable <code>Adresse</code>. Enfin, un lien est &eacute;crit de fa&ccedil;on dynamique dans le fichier, alors que l'adresse crypt&eacute;e auparavant est ins&eacute;r&eacute;e dans l'attribut <code>href</code>.</p>
+
+<h3>Attention:</h3>
+
+<p>Opera 5.12 n'interpr&egrave;te pas cette m&eacute;thode.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="encode_uri_component">encodeURIComponent()</a></h2>
+
+<p>Comme <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#encode_uri"><b>encodeURI()</b></a>, &agrave; la diff&eacute;rence pr&egrave;s que les signes suivants sont &eacute;galement cod&eacute;s:<br>
+<code>, / ? : @ & = + $</code></p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="escape">escape()</a></h2>
+
+<p>Transforme les caract&egrave;res de commande (caract&egrave;res de commande avec des codes ASCII de 0 &agrave; 31) dans leurs valeurs ASCII num&eacute;riques et cela sous forme hexad&eacute;cimale. Fait devancer chaque valeur du signe de s&eacute;paration &quot;%&quot; et renvoie la cha&icirc;ne de caract&egrave;res ainsi cr&eacute;&eacute;e. Pour les signes autres que les caract&egrave;res de commande, <code>escape()</code> renvoie les signes inchang&eacute;s. Il s'agit donc d'une fonction qui enl&egrave;ve des valeurs les caract&egrave;res de commande et des caract&egrave;res sp&eacute;ciaux  pour les traduire en cha&icirc;ne de caract&egrave;res.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/independant_escape.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var exemple = &quot;\n\r\t&quot;;
+document.write(escape(exemple));
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une variable <code>exemple</code>, &agrave; laquelle sont affect&eacute;s diff&eacute;rents caract&egrave;res de commande (voir &agrave; ce sujet la partie traitant des  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/notations.htm#zeichenketten"><b>caract&egrave;res de commande</b></a>). Cette variable est transmise comme param&egrave;tre &agrave; la fonction <code>escape()</code>. Le r&eacute;sultat est &eacute;crit dans le fichier pour le contr&ocirc;le.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Cette fonction sera remplac&eacute;e &agrave; l'avenir par <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#encode_uri"><b>encodeURI()</b></a>!</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="eval">eval()</a></h2>
+
+<p>Interpr&egrave;te un argument &agrave; transmettre et renvoie le r&eacute;sultat.<br>
+Si l'argument transmis peut &ecirc;tre interpr&eacute;t&eacute; comme une op&eacute;ration de calcul, l'op&eacute;ration  est effectu&eacute;e et son r&eacute;sultat est retourn&eacute;. Cette m&eacute;thode permet aussi des op&eacute;rations de calcul complexes avec expressions entre parenth&egrave;ses. Cette fonctionnalit&eacute; est tr&egrave;s pratique pour, avec une seule commande, faire calculer des op&eacute;rations not&eacute;es en tant que cha&icirc;nes de caract&egrave;res.<br>
+Si l'argument transmis peut &ecirc;tre interpr&eacute;t&eacute; en tant qu'objet ou propri&eacute;t&eacute; d'objet, l'objet ou la propri&eacute;t&eacute; d'objet est retourn&eacute;e. Ce qui est important quand une cha&icirc;ne de caract&egrave;res (par exemple le contenu d'un champ de formulaire ou le param&egrave;tre transmis &agrave; une fonction) doit &ecirc;tre interpr&eacute;t&eacute; en tant qu'objet.<br>
+Provoque un message d'erreur si l'expression transmise ne peut &ecirc;tre interpr&eacute;t&eacute;e.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/independant_eval.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form action=&quot;&quot;&gt;
+&lt;input size=&quot;30&quot; name=&quot;saisie&quot;&gt;
+&lt;input type=&quot;button&quot; value=&quot;Calculer&quot;
+onClick=&quot;alert(eval(this.form.saisie.value))&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple contient un formulaire avec un champ de saisie et un bouton. Dans le champ de saisie, l'utilisateur peut entrer une op&eacute;ration, par exemple: <code>1+2+3+4+5+6+7+8+9</code> ou <code>12.78*5.13</code>. En cliquant sur le bouton, la valeur du formulaire est calcul&eacute;e avec <code>eval()</code> et sortie dans une boite de dialogue.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js13.gif" width="30" height="30" border="0" alt="JavaScript 1.3"><img src="../../src/netsc4x.gif" width="30" height="30" border="0" alt="Netscape 4.x"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="is_finite">isFinite()</a></h2>
+
+<p>Recherche si une valeur fait partie d'une plage de nombres que  JavaScript peut traiter, donc si elle repr&eacute;sente un nombre valide d'apr&egrave;s  JavaScript.<br>
+Renvoie <code>true</code> si la valeur est un nombre valide, et <code>false</code>, si ce n'est pas un nombre ou si le nombre se situe en dehors des plages de valeurs interpr&eacute;t&eacute;es par  JavaScript. Aussi bien les nombres entiers que les nombres avec d&eacute;cimales sont reconnus comme nombres valides. Pour les nombres avec d&eacute;cimales, le signe de s&eacute;paration doit &ecirc;tre le point.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/independant_is_finite.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var nombre=Number.MAX_VALUE;
+ if (!isFinite(nombre*2)) alert(&quot;Le nombre ne peut �tre trait�.&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une variable <code>nombre</code> &agrave; la quelle est affect&eacute;e la valeur <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="number.htm#max_value"><b>Number.MAX_VALUE</b></a>, le plus grand nombre possible. Dans la requ&ecirc;te qui suit, il est v&eacute;rifi&eacute; si le produit de ce nombre par 2 se situe dans la plage des nombres que JavaScript peut traiter. Si ce n'est pas le cas, un message ad&eacute;quat est sorti.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="is_nan">isNaN()</a></h2>
+
+<p>Recherche si une valeur &agrave; transmettre est un nombre invalide (NaN = Not a Number).<br>
+Renvoie <code>true</code> si la valeur <b>n'est pas</b> un nombre et <code>false</code>, si c'en est un. Aussi bien les nombres entiers que les nombres avec d&eacute;cimales sont reconnus comme nombres valides. Pour les nombres avec d&eacute;cimales, le symbole d&eacute;cimal doit &ecirc;tre un point.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/independant_is_nan.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function verification(valeur)
+{
+ if(isNaN(valeur) == true)
+ {
+  alert(valeur + &quot; n'est pas un nombre!&quot;);
+  return false;
+ }
+ else return true;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form action=&quot;&quot;&gt;
+&lt;input size=&quot;30&quot; name=&quot;saisie&quot;&gt;
+&lt;input type=&quot;button&quot; value=&quot;Check&quot;
+onClick=&quot;verification(this.form.saisie.value)&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple contient un formulaire avec un champ de saisie et un bouton. En cliquant sur le bouton, la fonction <code>verification()</code> est appel&eacute;e. La valeur du champ de saisie du formulaire est transmise comme param&egrave;tre. <code>verification()</code> v&eacute;rifie si la valeur transmise est un nombre. Pour ce faire, <code>isNaN()</code> est appliqu&eacute; &agrave; la valeur transmise. Si ce n'est pas un nombre, un message d'erreur est sorti.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Pour cette m&eacute;thode, m&ecirc;me les nombres situ&eacute;s en dehors des plages de nombres de JavaScript sont des nombres valides. Pour v&eacute;rifier l'ordre de grandeur des nombres, vous devez utiliser la m&eacute;thode <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"><a href="#is_finite"><b>isFinite()</b></a>.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="parse_float">parseFloat()</a></h2>
+
+<p>Transforme la cha&icirc;ne de caract&egrave;res transmise en nombre et renvoie la valeur num&eacute;rique de celle-ci. Quand le nombre peut &ecirc;tre interpr&eacute;t&eacute; comme nombre avec d&eacute;cimales, cela est pris en consid&eacute;ration. Comme signe d&eacute;cimal, il n'y a cependant que le point qui est reconnu. Judicieux pour transformer les saisies de l'utilisateur en nombres, avec lesquels il est ensuite possible de calculer.<br>
+Retourne <code>NaN</code> (Not a Number) si la cha&icirc;ne de caract&egrave;res commence par une lettre ne pouvant &ecirc;tre interpr&eacute;t&eacute;e comme partie d'un nombre.<br>
+Quand la cha&icirc;ne de caract&egrave;res contient des signes non valables apr&egrave;s des chiffres, le nombre est interpr&eacute;t&eacute; jusqu'au premier signe non valable et la partie interpr&eacute;t&eacute;e est renvoy&eacute;e.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/independant_parse_float.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var elements = new Array(&quot;18&quot;,&quot;18.1&quot;,&quot;18,9&quot;,&quot;abc&quot;,&quot;1a&quot;);
+document.write(&quot;&lt;h1&gt;Application de  &lt;i&gt;parseFloat()&lt;\/i&gt;&lt;\/h1&gt;&quot;);
+for(var i=0;i&lt;elements.length;++i)
+ document.write(elements[i] + &quot; = &lt;b&gt; &quot; + parseFloat(elements[i]) + &quot;&lt;\/b&gt;&lt;br&gt;&quot;);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="array.htm"><b>Array</b></a> avec diff&eacute;rents &eacute;l&eacute;ments qui sont en partie des nombres entiers, en partie des nombres avec des d&eacute;cimales, et pour le reste pas de nombres du tout. Ensuite, tous les &eacute;l&eacute;ments du tableau sont &eacute;crits dans le fichier de fa&ccedil;on dynamique avec la m&eacute;thode  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="document.htm#write"><b>write()</b></a>. Ce faisant, la fonction <code>parseFloat()</code> est appliqu&eacute;e &agrave; chaque &eacute;l&eacute;ment du tableau.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="parse_int">parseInt()</a></h2>
+
+<p>Transforme la cha&icirc;ne de caract&egrave;res &agrave; transmettre en nombre entier et renvoie la valeur num&eacute;rique de celle-ci comme r&eacute;sultat. Fonction judicieuse, par exemple pour transformer les saisies de l'utilisateur en nombres avec lesquels on peut ensuite calculer.<br>
+Retourne <code>NaN</code> (Not a Number) si la cha&icirc;ne de caract&egrave;res commence par une lettre ne pouvant &ecirc;tre interpr&eacute;t&eacute;e comme partie d'un nombre.<br>
+Quand la cha&icirc;ne de caract&egrave;res contient des signes non valables apr&egrave;s des chiffres, le nombre est interpr&eacute;t&eacute; jusqu'au premier signe non valable et la partie interpr&eacute;t&eacute;e est renvoy&eacute;e. Ici aussi pour <code>parseInt()</code>, la r&egrave;gle du point est valable.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/independant_parse_int.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var elements = new Array(&quot;18&quot;,&quot;18.1&quot;,&quot;18.9&quot;,&quot;abc&quot;,&quot;1a&quot;);
+document.write(&quot;&lt;h1&gt;application de &lt;i&gt;parseInt()&lt;\/i&gt;&lt;\/h1&gt;&quot;);
+for(var i=0;i&lt;elements.length;++i)
+ document.write(elements[i] + &quot; = &lt;b&gt; &quot; + parseInt(elements[i]) + &quot;&lt;\/b&gt;&lt;br&gt;&quot;);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="array.htm"><b>Array</b></a> avec diff&eacute;rents &eacute;l&eacute;ments qui sont en partie des nombres entiers, en partie des nombres avec des d&eacute;cimales, et pour le reste pas de nombres du tout. Ensuite, tous les &eacute;l&eacute;ments du tableau sont &eacute;crits dans une boucle for dans le fichier de fa&ccedil;on dynamique avec la m&eacute;thode  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="document.htm#write"><b>write()</b></a>. Ce faisant, la fonction <code>parseInt()</code> est appliqu&eacute;e &agrave; chaque &eacute;l&eacute;ment du tableau.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>La m&eacute;thode <code>parseInt()</code> permet un deuxi&egrave;me param&egrave;tre facultatif <i>radix</i>. Ce param&egrave;tre contient la base du syst&egrave;me num&eacute;rique utilis&eacute;. L'appel de <code>parseInt(string,radix)</code> recherche dans la cha&icirc;ne qui repr&eacute;sente un nombre d'un autre syst&egrave;me num&eacute;rique, le nombre d&eacute;cimal correspondant. La m&eacute;thode <code>parseInt()</code> peut donc en m&ecirc;me temps &ecirc;tre utilis&eacute;e pour transformer des nombres d'autres syst&egrave;mes num&eacute;riques en nombres du syst&egrave;me num&eacute;rique d&eacute;cimal. Ainsi par exemple l'appel de <code>parseInt(&quot;11111&quot;,2)</code> donne-t il le nombre 31. Le param&egrave;tre facultatif accepte des valeurs comprises entre 2 et 36. Avec la m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="number.htm#to_string"><b>toString()</b></a> de l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="number.htm"><b>Number</b></a> vous pouvez convertir dans l'autre sens, des nombres du syst&egrave;me d&eacute;cimal en cha&icirc;nes de caract&egrave;res de nombres d'autres syst&egrave;mes num&eacute;riques. Il est &eacute;galement possible pour le faire - contrairement &agrave; la m&eacute;thode <code>parseInt()</code> - de convertir des nombres avec d&eacute;cimales.</p>
+
+
+<p>Tout particuli&egrave;rement dans le domaine du calcul de la date des nombres commen&ccedil;ant par un z&eacute;ro sont souvent utilis&eacute;s. Des t&acirc;ches simples telles que <code>alert(08*60)</code> donnent alors un r&eacute;sultat erron&eacute; ou m&ecirc;me un message d'erreur. La cl&eacute; du myst&egrave;re en est que JavaScript interpr&egrave;te les nombre commen&ccedil;ant par z&eacute;ro comme des nombres du syst&egrave;me octal, et non pas du syst&egrave;me d&eacute;cimal. Avec une instruction telle que <code>alert(parseInt(&quot;08&quot;,10)*60)</code> vous pouvez &eacute;viter ce probl&egrave;me et imposer que la valeur soit interpr&eacute;t&eacute;e comme nombre d&eacute;cimal.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="number">Number()</a></h2>
+
+<p>Convertit le contenu d'un objet en nombre et renvoie le nombre. Attend comme param&egrave;tre le contenu de l'objet. Si le param&egrave;tre transmis ne peut &ecirc;tre interpr&eacute;t&eacute; comme nombre, <code>NaN</code> (Not a Number) est renvoy&eacute;.
+Utilisable avant tout en relation avec l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="date.htm"><b>Date</b></a>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/independant_number.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var d = new Date (&quot;March 15, 1998 08:27:00&quot;);�
+ document.write(Number(d));
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple d&eacute;finit un nouvel objet Date et l'initialise avec une valeur dans le format GMT. L'objet Date est sauvegard&eacute; dans la variable <code>d</code>. Ensuite, cette variable est transmise &agrave; la fonction <code>Number()</code> comme param&egrave;tre. La fonction <code>Number()</code> y a le m&ecirc;me effet que la m&eacute;thode <code>d.getTime()</code>, c'est &agrave; dire que le nombre de milli&egrave;mes de secondes entre le 1/1/1970 et la date et l'heure sauvegard&eacute;s dans <code>d</code> est calcul&eacute;. Dans l'exemple, le r&eacute;sultat est &eacute;crit dans le fichier pour le contr&ocirc;le.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="string">String()</a></h2>
+
+<p>Convertit le contenu d'un objet en cha&icirc;ne de caract&egrave;res et renvoie la cha&icirc;ne de caract&egrave;res.<br>
+Utilisable avant tout en relation avec l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="date.htm"><b>Date</b></a>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/independant_string.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var d = new Date ();�
+ document.write(String(d));
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple d&eacute;finit un nouvel objet Date avec l'heure et la date actuelles. L'objet Date est sauvegard&eacute; dans la variable <code>d</code>. Ensuite, cette variable est transmise comme param&egrave;tre &agrave; la fonction <code>String()</code>. La fonction en fait une cha&icirc;ne de caract&egrave;res qui repr&eacute;sente l'heure et la date sauvegard&eacute;es au format GMT. Dans l'exemple, le r&eacute;sultat est &eacute;crit dans le fichier pour le contr&ocirc;le.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="unescape">unescape()</a></h2>
+
+<p>Transforme tous les signes de la cha&icirc;ne &agrave; transmettre en caract&egrave;res ASCII normaux et renvoie la cha&icirc;ne de caract&egrave;res ainsi cr&eacute;&eacute;e. La cha&icirc;ne de caract&egrave;res &agrave; transmettre doit contenir pour chaque signe &agrave; transformer un signe pourcentage (&quot;%&quot;) et la valeur hexad&eacute;cimale du caract&egrave;re dans la table de caract&egrave;res ASCII.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/independant_unescape.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var exemple = &quot;"%53%65%72%67%65&quot;;
+document.write(unescape(exemple));
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une variable nomm&eacute;e <code>exemple</code> et lui affecte une cha&icirc;ne de caract&egrave;res. La cha&icirc;ne de caract&egrave;res est compos&eacute;e d'une s&eacute;rie de signes cod&eacute;s en hexad&eacute;cimal. Chaque signe est pr&eacute;c&eacute;d&eacute; d'un signe pourcentage, suivi de la valeur hexad&eacute;cimale du caract&egrave;re. Cette variable est transmise &agrave; la fonction <code>unescape()</code> comme param&egrave;tre. Le r&eacute;sultat est inscrit pour le contr&ocirc;le dans le fichier. Dans l'exemple, le mot &quot;Serge&quot; est cr&eacute;&eacute;.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Cette fonction sera remplac&eacute;e &agrave; l'avenir par  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#decode_uri"><b>decodeURI()</b></a>!</p>
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="../exemples/deux_frames.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../exemples/deux_frames.htm"><b>Changer simultan&eacute;ment deux frames</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="string.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="string.htm"><b>String</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

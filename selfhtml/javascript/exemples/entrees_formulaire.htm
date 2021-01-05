@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / Exemples d'application / V&eacute;rifier les saisies de formulaire</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Wie Sie mit Hilfe von JavaScript Eingaben in einem Formular &uuml;berpr&uuml;fen k&ouml;nnen, bevor das Formular abgesendet wird.">
+<meta name="keywords"       content="SELFHTML, JavaScript, Formular, Eingabepr&uuml;fung, Formular-Check">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/exemples/entrees_formulaire.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // Exemples d'application == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Navigationshilfen</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>V&eacute;rifier les saisies de formulaire</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#remarques"><b>Remarques sur cet exemple</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#texte_source"><b>Texte source avec explications</b></a><br>
+</p>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/entrees_formulaire.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="remarques">Remarques sur cet exemple</a></h2>
+
+<p>Quand vous proposez sur le WWW des <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../html/formulaires/index.htm"><b>formulaires</b></a> bas&eacute;s sur HTML, chaque utilisateur peut &eacute;crire une sottise quelconque dans le formulaire et l'envoyer ensuite. Avant tout concern&eacute;s sont les champs de saisie &agrave; une ligne et les champs de saisie &agrave; plusieurs lignes. C'est la source de courriers &eacute;lectroniques superflus, ou bien c'est un script <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../cgiperl/index.htm"><b>CGI</b></a> traitant les entr&eacute;es du formulaire qui sauvegarde ensuite des donn&eacute;es vides ou inutilisables. &Agrave; l'aide de JavaScript, vous pouvez v&eacute;rifier les saisies d'un formulaire avant qu'il ne soit envoy&eacute;. Lors de saisies manquantes ou visiblement erron&eacute;es, vous pouvez emp&ecirc;cher l'envoi du formulaire.</p>
+
+<p>L'exemple de cette page montre comment une telle v&eacute;rification fonctionne dans le principe. Suivant ce que contient votre formulaire, vous devez bien s&ucirc;r compl&eacute;ter l'exemple.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="texte_source">Texte source avec explications</a></h2>
+
+<p>L'exemple montre le fichier HTML complet et le JavaScript destin&eacute; &agrave; v&eacute;rifier les entr&eacute;es de formulaire. Le formulaire en exemple appelle apr&egrave;s avoir &eacute;t&eacute; envoy&eacute; avec succ&egrave;s un Script CGI sur le serveur de <var>selfhtml.com.fr</var>.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/entrees_formulaire.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;V&amp;eacute;rifier les saisies de formulaire&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function verif_formulaire()
+{
+ if(document.formulaire.nom.value == &quot;&quot;)  {
+   alert(&quot;Veuillez entrer votre nom!&quot;);
+   document.formulaire.nom.focus();
+   return false;
+  }
+ if(document.formulaire.lieu.value == &quot;&quot;) {
+   alert(&quot;Veuillez entrer votre lieu de r�sidence!&quot;);
+   document.formulaire.lieu.focus();
+   return false;
+  }
+ if(document.formulaire.courriel.value == &quot;&quot;) {
+   alert(&quot;Veuillez entrer votre adresse �lectronique!&quot;);
+   document.formulaire.courriel.focus();
+   return false;
+  }
+ if(document.formulaire.courriel.value.indexOf('@') == -1) {
+   alert(&quot;Ce n'est pas une adresse �lectronique!&quot;);
+   document.formulaire.courriel.focus();
+   return false;
+  }
+ if(document.formulaire.age.value == &quot;&quot;) {
+   alert(&quot;Veuillez entrer votre �ge!&quot;);
+   document.formulaire.age.focus();
+   return false;
+  }
+ var chkZ = 1;
+ for(i=0;i&lt;document.formulaire.age.value.length;++i)
+   if(document.formulaire.age.value.charAt(i) &lt; &quot;0&quot;
+   || document.formulaire.age.value.charAt(i) &gt; &quot;9&quot;)
+     chkZ = -1;
+ if(chkZ == -1) {
+   alert(&quot;Cette mention n'est pas un nombre!&quot;);
+   document.formulaire.age.focus();
+   return false;
+  }
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body bgcolor=&quot;#EEEEEE&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h1&gt;formulaire&lt;/h1&gt;
+
+&lt;form name=&quot;formulaire&quot; action=&quot;http://www.selfhtml.com.fr/cgi-bin/formview.pl&quot; method=&quot;post&quot; onSubmit=&quot;return verif_formulaire()&quot;&gt;
+&lt;pre&gt;
+Nom:     &lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;nom&quot;&gt;
+R�sidence:  &lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;lieu&quot;&gt;
+Courriel:   &lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;courriel&quot;&gt;
+�ge:    &lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;age&quot;&gt;
+formulaire: &lt;input type=&quot;submit&quot; value=&quot;Envoyer&quot;&gt;&lt;input type=&quot;reset&quot; value=&quot;Interrompre&quot;&gt;
+
+Pour envoyer vous devez �tre connect� � Internet!
+&lt;/pre&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<h4>D&eacute;finir un formulaire:</h4>
+
+<p>Dans l'exemple est d&eacute;fini un  formulaire HTML courant avec quelques champs de saisie, un bouton d'initialisation pour annuler le formulaire et un bouton d'envoi pour envoyer le formulaire. La seule particularit&eacute; est l'instruction <code>onSubmit=&quot;return verif_formulaire()&quot;</code> dans le rep&egrave;re d'ouverture <code>&lt;form&gt;</code>. Le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/gestevenements.htm"><b>gestionnaire d'&eacute;v&eacute;nement</b></a> <code>onSubmit=</code> est activ&eacute; quand l'utilisateur clique sur le bouton d'envoi pour envoyer le formulaire. Ensuite, la fonction JavaScript <code>verif_formulaire()</code>, not&eacute;e dans l'ent&ecirc;te de fichier, est appel&eacute;e. Si la fonction trouve des erreurs dans les saisies, elle renvoie la valeur <code>false</code> (<i>faux</i>), sinon, elle renvoie la valeur <code>true</code> (<i>vrai</i>). Avec <code>return</code>, cette valeur dans le rep&egrave;re d'ouverture <code>&lt;form&gt;</code> est renvoy&eacute;e au navigateur. Le navigateur conna&icirc;t les deux valeurs <code>true</code> et <code>false</code>. En relation avec <code>onSubmit=</code>, il r&eacute;agit de telle fa&ccedil;on qu'il n'envoie le formulaire que si la valeur est <code>true</code>. Si la valeur est <code>false</code>, l'envoi du formulaire est emp&ecirc;ch&eacute;.</p>
+
+<h4>v&eacute;rifier le formulaire:</h4>
+
+<p>La v&eacute;rification proprement-dite du formulaire a lieu, dans l'exemple, dans la fonction <code>verif_formulaire()</code>, qui est not&eacute;e dans l'ent&ecirc;te de fichier. Dans l'exemple doit &ecirc;tre v&eacute;rifi&eacute; pour chaque champ de formulaire s'il a un contenu, c'est &agrave; dire si l'utilisateur l'a rempli. Pour la mention de l'adresse &eacute;lectronique, il doit &ecirc;tre en plus contr&ocirc;l&eacute; si elle contient le signe @. Si ce n'est pas le cas, il est probable que l'utilisateur a saisi une absurdit&eacute; dans le champ correspondant. Pour la mention de l'&acirc;ge enfin, il doit en plus &ecirc;tre v&eacute;rifi&eacute; qu'il s'agit d'un nombre positif entier. Autrement, il faut supposer qu'il y a l&agrave; aussi quelque ineptie.</p>
+
+<p>Avec une requ&ecirc;te telle que <code>if(document.formulaire.nom.value == &quot;&quot;)</code>, il est recherch&eacute; si, dans le champ de formulaire correspondant (dans l'exemple le champ nomm&eacute; <code>nom</code> dans le formulaire nomm&eacute; <code>formulaire</code>), un contenu existe. La v&eacute;rification se fait avec une cha&icirc;ne de caract&egrave;res <code>&quot;&quot;</code> vide.</p>
+
+<p>Avec une requ&ecirc;te telle que <code>if(document.formulaire.courriel.value.indexOf('@') == -1)</code>, il est recherch&eacute; si dans la saisie ne manque pas un signe d&eacute;termin&eacute; (ici le signe @ qui est caract&eacute;ristique des adresses &eacute;lectroniques).</p>
+
+<p>Avec une expression telle que:<br>
+<code>for(i=0;i&lt;document.formulaire.age.value.length;++i)</code><br>
+<code> if(document.formulaire.age.value.charAt(i) &lt; &quot;0&quot;</code><br>
+<code> || document.formulaire.age.value.charAt(i) &gt; &quot;9&quot;)</code><br>
+il est recherch&eacute; signe par signe si la valeur entr&eacute;e ne contient rien d'autre que des chiffres. Si non, donc si l'utilisateur a entr&eacute; d'autres caract&egrave;res, une variable rep&egrave;re du nom de <code>chkZ</code> dans l'exemple est fix&eacute;e &agrave; <code>-1</code>.</p>
+
+<p>Pour toutes les requ&ecirc;tes de ce genre sont ex&eacute;cut&eacute;es &agrave; chaque fois trois instructions, si les saisies de l'utilisateur ne satisfont pas au contr&ocirc;le. D'abord, ce que l'utilisateur n'a pas ou mal rempli est sorti avec <code>alert()</code> dans une boite de dialogue. Dans la deuxi&egrave;me instruction, le curseur est positionn&eacute; avec la m&eacute;thode <code>focus()</code> sur l'&eacute;l&eacute;ment de formulaire o&ugrave; se situe l'erreur ou l'omission. L'utilisateur peut alors de suite corriger son erreur. La troisi&egrave;me instruction enfin retourne la valeur <code>false</code>. Ce qui emp&ecirc;che l'envoi du formulaire.</p>
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="boutons.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="boutons.htm"><b>Boutons graphiques dynamiques</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="visites_pages.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="visites_pages.htm"><b>Compter les visites de pages personnelles avec des cookies</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2002 <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

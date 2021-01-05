@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / &Eacute;l&eacute;ments de langage Perl / Op&eacute;rateurs</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quels sont les op&eacute;rateurs en Perl et quel est leur r&ocirc;le.">
+<meta name="keywords"       content="SELFHTML, Perl, Op&eacute;rateurs, affectation, op&eacute;rateurs d'affectation, comparaison, op&eacute;rateurs de comparaison, op&eacute;rations de calcul, op&eacute;rateur de calcul, op&eacute;rateurs logique, op&eacute;rateurs de bits, Concat&eacute;ner des cha&icirc;nes de caract&egrave;res, r&eacute;p&eacute;tition de cha&icirc;nes de caract&egrave;res, Ordre de priorit&eacute; des op&eacute;rateurs">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/langage/operateurs.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // &Eacute;l&eacute;ments de langage Perl == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Op&eacute;rateurs</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#affectation"><b>Op&eacute;rateurs d'affectation</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#comparaison"><b>Op&eacute;rateurs de comparaison</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#calculs"><b>Op&eacute;rateurs de calcul</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#logiques"><b>Op&eacute;rateurs logiques</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#bit"><b>Op&eacute;rateurs de bits</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#concatener_chaines"><b>Op&eacute;rateur pour concat&eacute;ner des cha&icirc;nes de caract&egrave;res</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#repetition_chaines_caracteres"><b>Op&eacute;rateurs de r&eacute;p&eacute;tition de cha&icirc;nes de caract&egrave;res</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#preeminence"><b>Ordre de priorit&eacute; des op&eacute;rateurs</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="affectation">Op&eacute;rateurs d'affectation</a></h2>
+
+<p>Vous pouvez par exemple affecter une valeur &agrave; une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="scalaires.htm"><b>scalaire</b></a>. Pour cela, l'op&eacute;rateur d'affectation est le signe &eacute;gal</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+my $Nom = &quot;Serge Fran&ccedil;ois&quot;;
+my $Code = 4711;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Une valeur est affect&eacute;e aux variables respectives au moyen du signe &eacute;gal <code>=</code>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="comparaison">Op&eacute;rateurs de comparaison</a></h2>
+
+<p>Vous avez besoin d'op&eacute;rateurs de comparaison quand vous voulez comparez deux valeurs, par exemple le contenu actuel d'une  scalaire  avec une constante..</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+if($sens_de_la_vie  == 42)
+ { print &quot;Vous avez compris la vie!\n&quot; };
+if($sens_de_la_vie  != 42)
+ { print &quot;Vous n'avez rien compris � la vie!\n&quot; };
+if($sens_de_la_vie  &gt; 42)
+ { print &quot;�a va pas?\n&quot; };
+if($sens_de_la_vie  &lt; 42)
+ { print &quot;Vous ne faites pas le poids pour la vie!\n&quot; };
+if($age &gt;= 18)
+ { print &quot;Vous avez m�me le droit de voir cette b�tise-ci!\n&quot; };
+if($age &lt;= 17)
+ { print &quot;Vous n'avez m�me pas l'�ge pour pour cette b�tise!\n&quot; };
+
+if($mot_de_passe eq &quot;Hexasex&quot;)
+ { print &quot;Vous avez acc�s au sexe en dimension hexad�cimale!\n&quot; };
+if($mot_de_passe ne &quot;Hexasex&quot;)
+ { print &quot;Contentez vous de sexe en une dimension chez vous au lit!\n&quot; };
+if($nom gt &quot;Y&quot;)
+ { print &quot;Vous �tes aussi toujours le dernier!\n&quot; };
+if($nom lt &quot;B&quot;)
+ { print &quot;Vous �tes aussi toujours le premier!\n&quot; };
+if($nom ge &quot;ZZ Top&quot;)
+ { print &quot;Votre groupe favori est ZZ Top ou quelque chose de pervers!\n&quot; };
+if($nom le &quot;Abba&quot;)
+ { print &quot;Votre groupe favori est Abba ou quelque chose de pervers!\n&quot; };
+
+if($age =~ /[^0-9]/)
+ { print &quot;Ce n'est pas du tout un chiffre!\n&quot; };
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Perl diff&eacute;rencie les op&eacute;rateurs de comparaison pour les nombres et pour les cha&icirc;nes de caract&egrave;res. En outre, il existe un op&eacute;rateur sp&eacute;cial pour les comparaisons avec des   <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="expresreg.htm"><b> expressions r&eacute;guli&egrave;res</b></a>.</p>
+
+<p>Pour demander si deux nombres sont &eacute;gaux, notez deux signes &eacute;gal <code>==</code> &agrave; la suite.<br>
+Pour demander si deux nombres sont diff&eacute;rents, notez entre les deux valeurs les signes <code>!=</code>.<br>
+Pour demander si un nombre est plus grand ou &eacute;gal &agrave; un autre notez les signes <code>&gt;=</code>.<br>
+Pour demander si un nombre est dans tous les cas plus grand qu'un autre notez le signe <code>&gt;</code>.<br>
+Pour demander si un nombre est plus petit ou &eacute;gal &agrave; un autre notez les signes <code>&lt;=</code>.<br>
+Pour demander si un nombre est dans tous les cas plus petit qu'un autre notez le signe <code>&lt;</code>.</p>
+
+<p>Pour demander si deux cha&icirc;nes de caract&egrave;res sont identiques notez <code>eq</code> entre les deux valeurs &agrave; comparer (<i>eq = equal = &eacute;gal</i>).<br>
+Pour demander si deux cha&icirc;nes de caract&egrave;res sont diff&eacute;rentes, notez <code>ne</code> entre les deux valeurs &agrave; comparer (<i>ne = not equal = diff&eacute;rent de </i>). <br>
+Pour demander si une premi&egrave;re cha&icirc;ne de caract&egrave;res est plac&eacute;e plus loin dans l'ordre alphab&eacute;tique qu'une deuxi&egrave;me, notez <code>gt</code> entre les deux valeurs &agrave; comparer d(<i>gt = greater than = plus grand que</i>).<br>
+Pour demander si une premi&egrave;re cha&icirc;ne de caract&egrave;res est plac&eacute;e plus avant dans l'ordre alphab&eacute;tique qu'une deuxi&egrave;me, notez <code>lt</code> entre les deux valeurs &agrave; comparer (<i>lt = less than = plus petit que</i>) <br>.
+Pour demander si une premi&egrave;re cha&icirc;ne de caract&egrave;res se trouve au m&ecirc;me endroit ou est plac&eacute;e plus loin dans l'ordre alphab&eacute;tique qu'une deuxi&egrave;me, notez <code>ge</code> entre les deux valeurs &agrave; comparer (<i>ge = greater or equal = plus grand ou &eacute;gal</i>)..<br>
+Pour demander si une premi&egrave;re cha&icirc;ne de caract&egrave;res se trouve au m&ecirc;me endroit ou est plac&eacute;e plus avant dans l'ordre alphab&eacute;tique qu'une deuxi&egrave;me, notez <code>le</code> entre les deux valeurs &agrave; comparer (<i>le = less or equal = plus petit ou &eacute;gal</i>).</p>
+
+<p>Pour comparer la valeur d'une variable scalaire simple, qu'il s'agisse d'un nombre ou d'une cha&icirc;ne de caract&egrave;res, avec une  expression r&eacute;guli&egrave;re, utilisez l'op&eacute;rateur de comparaison <code>=~</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="calculs">Op&eacute;rateurs de calcul</a></h2>
+
+<p>Pour effectuer des calculs avec des valeurs num&eacute;riques, vous avez besoin d'op&eacute;rateurs de calcul.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+$classe_cent = 83 + 17;
+$classe_cent = 113 - 13;
+$classe_cent = 4 * 25;
+$classe_cent = 450 / 4.5;
+$classe_cent = 450 / 2 - 125;
+$classe_cent = 10 * (2 + 8);
+$classe_cent = 10 ** 2;
+$x = $classe_cent % 4;
+if($x == 0)
+ { print $classe_cent, &quot; est une ann&amp;eacute;e bissextile \n&quot; }
+
+# notations sp&amp;eacute;ciales :
+
+$nombre = 100;
+$nombre++;      # augmenter $nombre de 1
+$nombre--;      # diminuer $nombre de 1
+$nombre += 10;  # augmenter $nombre de 10
+$nombre -= 10;  # diminuer $nombre de 10
+$nombre *= 10;  # multiplier $nombre par 10
+$nombre /= 10;  # diviser $nombre par 10
+$nombre %= 10;  # faire avec $nombre une division modulo par 10
+$nombre **= 2;  # �lever $nombre � la puissance 2
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Notez les op&eacute;rateurs math&eacute;matiques avec les signes qui leur sont habituels. Avec <code>+</code> vous notez une addition, avec <code>-</code> une soustraction, avec <code>*</code> une multiplication et avec <code>/</code> une division et avec <code>**</code> vous &eacute;levez &agrave; une puissance &quot;x puissance y&quot;. L'op&eacute;rateur <code>%</code> repr&eacute;sente une particularit&eacute;. Il permet d'effectuer ce qu'on appelle une division modulo. Lors d'une op&eacute;ration modulo, deux valeurs sont divis&eacute;es. Ici cependant, &agrave; la diff&eacute;rence de la division normale, le r&eacute;sultat n'est que le reste de la division. Si vous notez par exemple: <code>13 % 5</code>, vous obtenez comme r&eacute;sultat 3, parce que 13 divis&eacute; par 5 &eacute;gale 2 et que le reste est 3. C'est ce 3 qui donne le r&eacute;sultat de la division modulo.</p>
+
+<p>Vous pouvez noter plusieurs op&eacute;rations &agrave; la suite. Ici, la r&egrave;gle habituelle de "priorit&eacute; du point sur le trait" est &agrave; respecter. Si vous voulez imposer une autre r&egrave;gle, vous devez utiliser les parenth&egrave;ses comme dans l'exemple ci-dessus <code>$classe_cent&nbsp;=&nbsp;10&nbsp;*&nbsp;(2&nbsp;+&nbsp;8);</code>.</p>
+
+<p>Vous pouvez utiliser les notations particuli&egrave;res que vous trouvez dans les exemples ci-dessus si vous voulez abr&eacute;ger des additions ou des soustractions :<br>
+<code>$nombre++;</code> est une abr&eacute;viation pour <code>$nombre = $nombre + 1;</code><br>
+<code>$nombre--;</code> est une abr&eacute;viation pour <code>$nombre = $nombre - 1;</code><br>
+<code>$nombre += 10;</code> est une abr&eacute;viation pour <code>$nombre = $nombre + 10;</code><br>
+etc... pour les op&eacute;rations du m&ecirc;me genre.</p>
+
+<p>L'op&eacute;rateur <code>++</code> est aussi d&eacute;sign&eacute; comme op&eacute;rateur d'incr&eacute;mentation, l'op&eacute;rateur <code>--</code> comme op&eacute;rateur de d&eacute;cr&eacute;mentation.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Pour les op&eacute;rateurs <code>++</code> et <code>--</code> il y a  une particularit&eacute; qui est attribu&eacute;e &agrave; C ou m&ecirc;me au langage machine (assembleur). Les op&eacute;rateurs peuvent aussi bien &ecirc;tre not&eacute;s avant qu'apr&egrave;s les variables (donc par exemple aussi bien <code>$nombre++</code> que  <code>++$nombre</code>). S'ils sont plac&eacute;s avant, l'op&eacute;ration est effectu&eacute;e avant que l'expression soit &eacute;valu&eacute;e (jargon de la branche: pr&eacute;-incr&eacute;mentation et pr&eacute;-d&eacute;cr&eacute;mentation). L'inverse s'applique aussi: si l'op&eacute;rateur est plac&eacute; apr&egrave;s la variable, l'op&eacute;ration est effectu&eacute;e apr&egrave;s que l'expression a &eacute;t&eacute; &eacute;valu&eacute;e (jargon de la branche: post-incr&eacute;mentation et post-d&eacute;cr&eacute;mentation). La sortie du code qui suit ne devrait donc pas vous surprendre:<br>
+<code>my $nombre=1;<br>
+print $nombre++;<br>
+print --$nombre;</code>
+Il est sorti deux fois <code>1</code>. La premi&egrave;re fois, parce que  <code>$nombre</code> est sorti avant que 1 lui soit ajout&eacute;. La deuxi&egrave;me fois. parce que 1 est soustrait et que  <code>$nombre</code> est sorti ensuite.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="logiques">Op&eacute;rateurs logiques</a></h2>
+
+<p>Vous avez besoin d'op&eacute;rateurs logiques pour formuler des expressions qui peuvent &ecirc;tre vraies ou fausses. Vous trouverez l'emploi de telles expressions particuli&egrave;rement pour les conditions pour les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="conditions.htm"><b>instructions conditionnelles</b></a> ou pour les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="boucles.htm"><b>boucles</b></a>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+if($a == 1 && $b == 2) {
+  # si a = 1 et que b = 2
+}
+if($a == 1 and $b == 2) {
+  # si a = 1 et que b = 2
+}
+if($a == 1 || $b == 1) {
+  # si a = 1 ou que b = 1
+}
+if($a == 1 or $b == 1) {
+  # si a = 1 ou que b = 1
+}
+if($a == 1 ^ $b == 1) {
+  # si soit a = 1 ou soit b = 1
+}
+if($a == 1 xor $b == 1) {
+  # si soit a = 1 ou soit b = 1
+}
+if (! ($a == 2)) {
+  # a n'est pas �gal � 2
+}
+if (not ($a == 2)) {
+  # a n'est pas �gal � 2
+}
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec l'op&eacute;rateur logique <code>&amp;&amp;</code> ou son &eacute;quivalent litt&eacute;ral (<code>and</code>) vous associez deux ou plusieurs conditions avec &quot;et&quot;, ce qui veut dire que les deux ou toutes les conditions doivent &ecirc;tre remplies pour que la condition globale soit remplie.<br>
+Avec l'op&eacute;rateur logique <code>||</code> ou son &eacute;quivalent litt&eacute;ral (<code>or</code>) vous associez deux ou plusieurs conditions avec le &quot;ou&quot; inclusif c'est &agrave; dire qu'il suffit que l'une des conditions soit remplie pour que la condition globale soit remplie.<br>
+Avec l'op&eacute;rateur logique <code>^</code> ou son &eacute;quivalent litt&eacute;ral (<code>xor</code>) vous associez deux ou plusieurs conditions avec le &quot;ou&quot; exclusif, c'est &agrave; dire qu'il faut que soit l'une ou soit l'autre condition soit remplie pour que la condition globale soit remplie.<br>
+Avec l'op&eacute;rateur logique <code>!</code> ou son &eacute;quivalent litt&eacute;ral (<code>not</code>) vous niez la condition qui suit, c'est &agrave; dire que vous ne demandez pas si la condition est vraie mais au contraire si elle est fausse.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="bit">Op&eacute;rateurs de bits</a></h2>
+
+<p>Pour se servir correctement des op&eacute;rateurs de bits vous devez comprendre les processus de mise en m&eacute;moire internes &agrave; l'ordinateur. C'est pourquoi les op&eacute;rateurs de bits ne sont mentionn&eacute;s que bri&egrave;vement ici.</p>
+
+<p><code>&gt;&gt;</code> d&eacute;place les bits vers la droite<br>
+<code>&lt;&lt;</code> d&eacute;place les bits vers la gauche<br>
+<code>&amp;</code> associe deux valeurs avec ET pour les bits<br>
+<code>|</code> associe deux valeurs avec OU pour les bits<br>
+<code>^</code> associe deux valeurs avec ou exclusif pour les bits (XOR) pour les bits<br>
+<code>~</code> forme le compl&eacute;ment d'une valeur (tous les bits sont invers&eacute;s)</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="concatener_chaines">Op&eacute;rateur pour concat&eacute;ner des cha&icirc;nes de caract&egrave;res</a></h2>
+
+<p>En Perl vous n'avez pas besoin comme dans certains autres langage d'une fonction pour concat&eacute;ner les cha&icirc;nes de caract&egrave;res. Il existe pour cela un op&eacute;rateur.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $sortie_HTML = &quot;La variable d'environnement &lt;b&gt;HTTP_USER_AGENT&lt;/b&gt; a la valeur &lt;b&gt;&quot;.$ENV{HTTP_USER_AGENT}.&quot;&lt;/b&gt;&lt;br&gt;&quot;;
+$sortie_HTML .= &quot;&lt;hr&gt;fin de la sortie&quot;;
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+print $sortie_HTML;
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le point <code>.</code> est l'op&eacute;rateur pour concat&eacute;ner les cha&icirc;nes de caract&egrave;res. Les cha&icirc;nes de caract&egrave;res concat&eacute;n&eacute;es peuvent &ecirc;tre litt&eacute;rales, donc contenir simplement du texte, mais aussi &ecirc;tre une variable. Dans le script d'exemple vous voyez un cas d'application typique pour des scripts CGI pour l'op&eacute;rateur pour concat&eacute;ner des cha&icirc;nes de caract&egrave;res. L&agrave; est sauvegard&eacute;e une sortie HTML assez longue dans la scalaire <code>$sortie_HTML</code>, qui est trafiqu&eacute;e avec diff&eacute;rentes cha&icirc;nes de caract&egrave;res. Entre autres y est ins&eacute;r&eacute;e la valeur de la variable d'environnement <code>HTTP_USER_AGENT</code>, qui contient le nom et la version du navigateur appelant.</p>
+
+<p>L'exemple de script montre aussi dans la deuxi&egrave;me instruction comment de nouvelles cha&icirc;nes de caract&egrave;res peuvent &ecirc;tre accroch&eacute;es &agrave; une cha&icirc;ne d&eacute;j&agrave; existante. Avec <code>.=</code> ce qui est plac&eacute; &agrave; droite du signe est simplement affect&eacute; &agrave; la variable qui est plac&eacute;e &agrave; gauche du signe. La m&ecirc;me instruction peut &ecirc;tre not&eacute;e sous la forme longue suivante:<br>
+<code>$sortie_HTML = $sortie_HTML.&quot;&lt;hr&gt;fin de la sortie&quot;;</code>
+</p>
+
+<p>Le script sort la cha&icirc;ne de caract&egrave;res ainsi form&eacute;e dans le navigateur avec une instruction <code>print</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="repetition_chaines_caracteres">Op&eacute;rateurs de r&eacute;p&eacute;tition de cha&icirc;nes de caract&egrave;res</a></h2>
+
+<p>En Perl vous pouvez &quot;multiplier&quot; les cha&icirc;nes de caract&egrave;res avec <code>x</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+print &quot;A&quot;.&quot;h&quot; x 10, &quot;!\n&quot;;
+# cr�e la sortie &quot;Ahhhhhhhhhh!&quot;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Notez l'op&eacute;rateur <code>x</code> derri&egrave;re la cha&icirc;ne de caract&egrave;res que vous voulez multiplier. Derri&egrave;re l'op&eacute;rateur, notez le nombre de fois que doit &ecirc;tre r&eacute;p&eacute;t&eacute;e la cha&icirc;ne de caract&egrave;res.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="preeminence">Ordre de priorit&eacute; des op&eacute;rateurs</a></h2>
+
+
+<p>Pour les op&eacute;rateurs de Perl, existe un ordre de priorit&eacute; bien &eacute;tabli. Si vous effectuez des op&eacute;rations complexes ou combinez plusieurs conditions entre elles, pr&eacute;vaut pour la r&eacute;solution interne de telles expressions complexes la pr&eacute;&eacute;minence suivante:</p>
+
+<ol>
+<li>ordre de priorit&eacute;: <code>++ --</code> (incr&eacute;menter. d&eacute;cr&eacute;menter)</li>
+<li>ordre de priorit&eacute;: <code>**</code> (puissance)</li>
+<li>ordre de priorit&eacute;: <code>! ~</code> (n&eacute;gation logique et pour les bits)</li>
+<li>ordre de priorit&eacute;: <code>=~ !~</code> (Liaison &agrave; des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="expresreg.htm"><b>expressions r&eacute;guli&egrave;res</b></a>)</li>
+<li>ordre de priorit&eacute;: <code>* / % x</code> (multiplication, division, division modulo, r&eacute;p&eacute;tition de cha&icirc;nes de caract&egrave;res)</li>
+<li>ordre de priorit&eacute;: <code>+ - .</code> (addition, soustraction, concat&eacute;nation de cha&icirc;nes de caract&egrave;res)</li>
+<li>ordre de priorit&eacute;: <code>&lt;&lt; &gt;&gt;</code> (d&eacute;placement de bits)</li>
+<li>ordre de priorit&eacute;: <code>&lt; &lt;= &gt; &gt;= lt le gt ge</code> (comparaison plus grand que, plus petit que)</li>
+<li>ordre de priorit&eacute;: <code>== != eq ne</code> (&eacute;galit&eacute;/in&eacute;galit&eacute;)</li>
+<li>ordre de priorit&eacute;: <code>&amp;</code> (ET pour les bits)</li>
+<li>ordre de priorit&eacute;: <code>| ^</code> (OU pour les bit - inclusif/exclusif)</li>
+<li>ordre de priorit&eacute;: <code>&amp;&amp;</code> (ET logique)</li>
+<li>ordre de priorit&eacute;: <code>||</code> (OU logique)</li>
+<li>ordre de priorit&eacute;: <code>..</code> (d&eacute;finitions de passages dans des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="listes.htm"><b>listes</b></a>)</li>
+<li>ordre de priorit&eacute;: <code>?:</code> (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="conditions.htm#entweder_oder"><b>Condition soit... soit...</b></a>)</li>
+<li>ordre de priorit&eacute;: <code>= += -= &amp;= ^= |= </code>  (affectation)</li>
+<li>ordre de priorit&eacute;: <code>, =&gt;</code> (&eacute;num&eacute;ration)</li>
+<li>ordre de priorit&eacute;: <code>not</code> (n&eacute;gation logique)</li>
+<li>ordre de priorit&eacute;: <code>and</code> (ET logique)</li>
+<li>ordre de priorit&eacute;: <code>or xor</code> (OU logique (inclusif/exclusif)</li>
+</ol>
+
+<p>&Agrave; l'aide de parenth&egrave;ses, vous pouvez influencer l'ordre de priorit&eacute; des op&eacute;rateurs et &eacute;valuer des expressions comme vous le d&eacute;sirez.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+$statistique_officielle = 3.29 * 3 + 4.71;
+$Ma_statistique = 3.29 * (3 + 4.71);
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Par les parenth&egrave;ses dans l'exemple, la r&egrave;gle du &quot;trait avant le point&quot; qui s'applique aux op&eacute;rateurs de calcul de Perl, est lev&eacute;e.</p>
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="expresreg.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="expresreg.htm"><b>Expressions r&eacute;guli&egrave;res</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="commandessaut.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="commandessaut.htm"><b>Commandes de saut</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

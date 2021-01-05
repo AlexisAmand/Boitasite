@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: XML/DTDs / R&egrave;gles pour les fichiers XML / R&egrave;gles pour les rep&egrave;res, attributs, affectations de valeur et commentaires</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quels points essentiels sont &agrave; observer pour noter rep&egrave;res, attributs etleurs affectations de valeurs dans des fichiers XML et comment placer des commentaires.">
+<meta name="keywords"       content="SELFHTML, XML, XML-Tags, rep&egrave;res XML, attributs XML">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/xml/regles/valattrrepere.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // XML/DTDs == ../index.htm // R&egrave;gles pour les fichiers XML == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>XML/DTDs</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&egrave;gles pour les fichiers XML</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>R&egrave;gles pour les rep&egrave;res, attributs, affectations de valeur et commentaires</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#repere_attribut_valeur"><b>Rep&egrave;res, attributs et affectations de valeurs</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#commentaires"><b>Commentaires</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="repere_attribut_valeur">Rep&egrave;res, attributs et affectations de valeurs</a></h2>
+
+<p>Pour les rep&egrave;res, attributs et leurs affectations de valeur, existent certaines r&egrave;gles en XML qu'il vous faut conna&icirc;tre.</p>
+
+<h3>Majuscules-/minuscules de noms d'&eacute;l&eacute;ments et d'attributs</h3>
+
+<p>XML diff&eacute;rencie strictement les majuscules et les minuscules contrairement au HTML classique. Les deux notations suivantes sont toutes deux conformes &agrave; XML mais ne signifient pas la m&ecirc;me chose du point de vue de XML:</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#E4EEFF"><pre>
+&lt;animal art=&quot;poisson&quot;&gt;...&lt;/animal&gt;
+&lt;Animal Art=&quot;Poisson&quot;&gt;...&lt;/Animal&gt;
+</pre></td></tr></table>
+
+<p>Quand vous d&eacute;finissez dans une DTD les rep&egrave;res et les attributs pour un langage bas&eacute; sur XML, vous devez tout de suite faire attention sur la mani&egrave;re d'&eacute;crire que vous d&eacute;sirez. Si vous notez par exemple dans le passage DTD:<br>
+<code>&lt;!ELEMENT Typeplatine (#PCDATA)&gt;</code><br>
+Alors vous <b>devez</b> noter dans le passage de donn&eacute;es:<br>
+<code>&lt;Typeplatine&gt;...&lt;/Typeplatine&gt;</code>.<br>
+Par contre les mentions telles que:<br>
+<code>&lt;typeplatine&gt;...&lt;/typeplatine&gt;</code> ou bien<br>
+<code>&lt;TYPEPLATINE&gt;...&lt;/TYPEPLATINE&gt;</code> sont <b>fausses</b>.</p>
+
+<p>M&ecirc;me pour les affectations de valeur, la distinction entre majuscules et minuscules s'applique. C'est particuli&egrave;rement important quand dans une DTD, vous n'autorisez que certaines affectations de valeur pour un attribut, par exemple <code>gauche</code>, <code>droite</code> ou bien <code>centre</code>.</p>
+
+<h3>Guillemets pour les affectations de valeurs</h3>
+
+<p>En XML la r&egrave;gle suivante sans exception s'applique: toutes les affectation de valeur &agrave; des attributs doivent &ecirc;tre plac&eacute;es entre guillemets.</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#E4EEFF"><pre>
+&lt;passage langue=allemand dialecte=bavarois&gt;     &lt;!-- faux --&gt;
+&lt;passage langue=&quot;allemand&quot; dialecte=&quot;bavarois&quot;&gt; &lt;!-- correct --&gt;
+</pre></td></tr></table>
+
+<p>Dans les affectations de valeur &agrave; des attributs vous pouvez &eacute;galement utiliser l'apostrophe <code>'</code> et le guillemet <code>&quot;</code>. Il vous faut alors absolument masquer ces deux signes, &agrave; savoir sous la forme <code>&amp;apos;</code> pour <code>'</code> et <code>&amp;quot;</code> pour <code>&quot;</code>.</p>
+
+<h3><a name="elements">Les &eacute;l&eacute;ments sont constitu&eacute;s de rep&egrave;res d'ouverture et de rep&egrave;res de fermeture</a></h3>
+
+<p>En XML il n'y a pas de rep&egrave;re autonome comme en HTML par exemple <code>&lt;br&gt;</code>, <code>&lt;img&gt;</code> ou <code>&lt;hr&gt;</code> - chaque &eacute;l&eacute;ment doit comprendre un rep&egrave;re d'ouverture et une rep&egrave;re de fermeture. Il n'y a pas non plus en XML de rep&egrave;res de fermeture facultatifs comme cela est le cas en HTML avec par exemple <code>&lt;/li&gt;</code> ou <code>&lt;/option&gt;</code>.</p>
+
+<h3><a name="elements_vides">Exception: Les &eacute;l&eacute;ments vides</a></h3>
+
+<p>Les exceptions sont ce qu'on appelle des &eacute;l&eacute;ments vides, donc des &eacute;l&eacute;ments sans contenu. Ces &eacute;l&eacute;ments peuvent &ecirc;tre not&eacute;s sans rep&egrave;re de fermeture correspondant mais doivent &ecirc;tre marqu&eacute;s comme &eacute;tant vides.</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#E4EEFF"><pre>
+&lt;ligne&gt;         &lt;!-- faux --&gt;
+&lt;ligne/&gt;        &lt;!-- correct --&gt;
+&lt;ligne /&gt;       &lt;!-- correct --&gt;
+</pre></td></tr></table>
+
+<p>Pour marquer un &eacute;l&eacute;ment comme &eacute;tant vide, il faut noter &agrave; la fin avant la parenth&egrave;se pointue, une barre oblique. L'espace qui la pr&eacute;c&egrave;de est facultatif, mais recommand&eacute;. Car <code>&lt;ligne/&gt;</code> pourrait &ecirc;tre mal interpr&eacute;t&eacute; par un analyseur syntaxique primaire et pas au point, comme signe non autoris&eacute; du nom d'&eacute;l&eacute;ment  <code>ligne</code>.</p>
+
+<p>Comme alternative &agrave; cette notation, vous pouvez aussi noter les &eacute;l&eacute;ments vides sous la forme
+<code>&lt;ligne&gt;&lt;/ligne&gt;</code>. La raison en est que XML pr&eacute;voit en r&eacute;alit&eacute; un contenu pour chaque &eacute;l&eacute;ment et qu'un &eacute;l&eacute;ment vide est ni plus ni moins qu'un &eacute;l&eacute;ment sans contenu. Il est cependant important avec cette m&eacute;thode de noter le rep&egrave;re d'ouverture et le rep&egrave;re de fermeture &agrave; la suite sans le moindre signe entre eux!</p>
+
+<h3>Noms d'&eacute;l&eacute;ments</h3>
+
+<p>Les noms d'&eacute;l&eacute;ments doivent respecter certaines r&egrave;gles:</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#E4EEFF"><pre>
+&lt;xml-fichier&gt;         &lt;!-- faux --&gt;
+&lt;fichier-xml&gt;         &lt;!-- correct --&gt;
+&lt;1a&gt;                &lt;!-- faux --&gt;
+&lt;a1&gt;                &lt;!-- correct --&gt;
+&lt;egal=egal&gt;     &lt;!-- faux --&gt;
+&lt;egal-egal&gt;     &lt;!-- correct --&gt;
+&lt;mon element&gt;      &lt;!-- faux --&gt;
+&lt;mon-element&gt;      &lt;!-- correct --&gt;
+</pre></td></tr></table>
+
+<p>Les noms d'&eacute;l&eacute;ment ne peuvent pas commencer par la suite de caract&egrave;res <code>xml</code> ni par des chiffres et ils ne peuvent contenir ni signe &eacute;gal, ni espace. De plus amples d&eacute;tails &agrave; ce sujet dans la partie sur les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../dtd/regles_traitement.htm#noms"><b>r&egrave;gles pour les noms</b></a>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="commentaires">Commentaires</a></h2>
+
+
+<p>&Agrave; l'int&eacute;rieur de fichiers XML - comme &agrave; l'int&eacute;rieur de fichier DTD ou des passages DTD dans un fichier XML, vous pouvez documenter vos donn&eacute;es ou d&eacute;finitions pour la compr&eacute;hension g&eacute;n&eacute;rale avec des commentaires. Ici s'appliquent les m&ecirc;mes r&egrave;gles qu'en HTML.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#E4EEFF"><pre>
+&lt;tempmagasin&gt;4�&lt;/tempmagasin&gt;
+&lt;!-- temp�rature de conservation conseill�e --&gt;
+</pre></td></tr></table>
+
+<p>Un commentaire commence par la suite de caract&egrave;res <code>&lt;!--</code> et se termine par <code>--&gt;</code>. Il peut occuper plusieurs lignes. Ce qui est plac&eacute; dans le commentaire n'est pas interpr&eacute;t&eacute;.</p>
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="conception.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="conception.htm"><b>Conformit&eacute;, validit&eacute; et int&eacute;gralit&eacute; d'un fichier XML</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="declaration_type_document.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="declaration_type_document.htm"><b>La d&eacute;claration de type de document</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>XML/DTDs</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&egrave;gles pour les fichiers XML</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

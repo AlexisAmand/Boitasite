@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / &Eacute;l&eacute;ments de langage Perl /  Commandes de saut</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Welche Sprungbefehle es in Perl gibt, und welche Auswirkungen sie auf den Programmablauf haben">
+<meta name="keywords"       content="SELFHTML, Perl,  Commandes de saut, goto, next, continue, last, redo, boucles">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/langage/commandessaut.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // &Eacute;l&eacute;ments de langage Perl == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2> Commandes de saut</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#goto"><b>goto</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#next"><b>next</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#continue"><b>continue</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#last"><b>last</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#redo"><b>redo</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="goto">goto</a></h2>
+
+<p>La commande de saut <code>goto</code>, qui permet de sauter &agrave; un autre endroit de son choix pouvant &ecirc;tre d&eacute;termin&eacute; dans le script au cours de son ex&eacute;cution, est marqu&eacute;e depuis longtemps au fer comme &eacute;tant caract&eacute;ristique d'une mauvaise programmation et de programmeurs de code d&eacute;cousu. Elle peut &ecirc;tre aussi &eacute;vit&eacute;e en temps normal par des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="boucles.htm"><b>boucles</b></a> programm&eacute;es correctement ou bien par des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="conditions.htm"><b>instructions conditionnelles</b></a> bien structur&eacute;es.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+print &quot;&lt;h1&gt;Bonjour utilisateur&lt;/h1&gt;\n&quot;;
+goto MESSAGE;
+
+ENCOURAGEMENT:
+print &quot;&lt;p&gt;Il fait si beau que l'on pourrait organiser quelque chose&lt;/p&gt;&quot;;
+goto FIN;
+
+MESSAGE:
+print &quot;&lt;p&gt;Ce service n'est pas disponible pour l'instant&lt;/p&gt;\n&quot;;
+goto ENCOURAGEMENT;
+
+FIN:
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script renvoie du code HTML au navigateur appelant. Pour trouver dans quel ordre les instructions  <code>print</code> sont sorties, vous devez suivre les instructions <code>goto</code>. &Agrave; chaque instruction  <code>goto</code> est mentionn&eacute;e une marque de saut, ce qu'on appelle une  <b>&eacute;tiquette</b>. Ce sont dans l'exemple, les noms &eacute;crits en majuscules. Sous ce nom on doit retrouver l'&eacute;tiquette quelque part dans le script et ce, seule sur une ligne et suivie de deux points. Au dessous se poursuit alors l'ex&eacute;cution du script quand l'&eacute;tiquette est atteinte.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="next">next</a></h2>
+
+<p>La commande de saut <code>next</code> est con&ccedil;ue pour &ecirc;tre employ&eacute;e dans des boucles. Le parcours actuel de la boucle est interrompu. La boucle suivante est lanc&eacute;e apr&egrave;s une nouvelle &eacute;valuation de la condition de la boucle.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+my $clef;
+my $valeur;
+while (($clef, $valeur) = each(%ENV)) {
+  next unless $clef =~ /^HTTP_.*/;
+  print &quot;&lt;b&gt;$clef&lt;/b&gt; a la  valeur &lt;b&gt;$valeur&lt;/b&gt;&lt;br&gt;\n&quot;;
+}
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script en exemple sort dans le navigateur les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../introduction/variablesenvironnement.htm"><b>variables d'environnement CGI</b></a> , seulement celles cependant qui commencent par <code>HTTP_</code>. Pour ce faire, le script lit le  Hash <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="predefini.htm"><b>pr&eacute;d&eacute;fini</b></a> <code>%ENV</code> dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="boucles.htm#hashes_boucles"><b>boucle pour les hashes</b></a>. Avec <code>next</code> et une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="conditions.htm#placees_apres"><b>condition plac&eacute;e apr&egrave;s</b></a> ainsi qu'une   <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="expresreg.htm"><b>expression r&eacute;guli&egrave;re</b></a> correspondante <code>/^HTTP_.*/</code> comme condition, qui est ni&eacute;e avec  <code>unless</code>, l'instruction obtient que la commande <code>print</code> qui suit, ne soit pas interpr&eacute;t&eacute;e, quand la variable d'environnement actuelle ne commence pas par <code>HTTP_</code>. De cette fa&ccedil;on, ne seront donc sorties que les variables pour lesquelles c'est le cas.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="continue">continue</a></h2>
+
+<p><code>continue</code> - n'appartient pas aux commandes de saut au sens strict du terme, mais leur est &eacute;troitement apparent&eacute; &eacute;tant donn&eacute; que <code>continue</code> est atteint par un saut. Le mot cl&eacute; introduit un bloc d'instructions distinct. &Agrave; l'int&eacute;rieur de ce bloc d'instructions qui est marqu&eacute; comme d'habitude avec des parenth&egrave;ses <b>accolades</b> { et }, vous pouvez noter des instructions de votre choix. Quand un tel bloc <code>continue</code> figure imm&eacute;diatement <b>derri&egrave;re</b> un bloc de boucle, il est ex&eacute;cut&eacute; &agrave; chaque ex&eacute;cution de la boucle et ensuite (except&eacute; pour la toute premi&egrave;re ex&eacute;cution de la boucle) ex&eacute;cut&eacute; directement avant la v&eacute;rification de la condition de la boucle.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+my $i = 1;
+while($i &lt;= 100) {
+  next if ($i % 7 != 0);
+  print &quot;$i est divisible par 7 &lt;br&gt;\n&quot;;
+}
+continue {
+     $i++;
+}
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple sort dans le navigateur appelant tous les chiffres entre 1 et 100 qui sont divisibles par 7. Ici est utilis&eacute;e une boucle <code>while</code> dont la condition demande si  <code>$i</code> est plus petit ou &eacute;gal &agrave; <code>100</code>. &Eacute;tant donn&eacute; que  <code>$i</code> est initialis&eacute; avec <code>1</code>, le bloc de la boucle est donc atteint. <code>$i</code> n'est cependant pas incr&eacute;ment&eacute; &agrave; l'int&eacute;rieur du bloc de la boucle, cela conduirait &agrave; une d&eacute;sesp&eacute;rante boucle sans fin. Dans l'exemple le bloc <code>continue</code> plac&eacute; apr&egrave;s la parenth&egrave;se accolade de fermeture du bloc de la boucle sert &agrave; cela . &Agrave; l'int&eacute;rieur du bloc <code>continue</code>, <code>$i</code> est incr&eacute;ment&eacute;.</p>
+
+<p>&Agrave; l'int&eacute;rieur de la boucle, il est demand&eacute; avec la condition <code>$i % 7 != 0</code>, si la valeur actuelle de <code>$i</code> divis&eacute;e par 7 a un reste &eacute;gal &agrave;  0  (voir division modulo dans les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="operateurs.htm#calculs"><b>op&eacute;rateurs de calcul</b></a>). Par <code>next</code> est aussit&ocirc;t lanc&eacute; le passage de boucle suivant, si le nombre n'est pas divisible par 7 sans donner de reste, toutefois l'instruction du bloc  <code>continue</code> est encore ex&eacute;cut&eacute;e quelque soit le cas.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="last">last</a></h2>
+
+<p>La commande de saut <code>last</code> interrompt imm&eacute;diatement une boucle.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+while(1) {
+  my $maintenant = time;
+  print &quot;$maintenant \n&quot;;
+  last if ($maintenant % 2 == 0);
+}
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script en exemple recherche avec la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/dateheure.htm#time"><b>time</b></a>, &agrave; l'int&eacute;rieur d'une boucle sans fin classique formul&eacute;e avec <code>while(1)</code> (&quot;La condition est toujours vraie&quot;), la valeur du temps actuelle en secondes et la sauvegarde dans la scalaire <code>$maintenant</code>. Avec la condition <code>$i&nbsp;%&nbsp;2&nbsp;==&nbsp;0</code> il est demand&eacute; si la valeur actuelle de <code>$maintenant</code> divis&eacute;e a un reste &eacute;gal &agrave; 0 (voir division modulo dans les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="operateurs.htm#calculs"><b>op&eacute;rateurs de calcul</b></a>). Si la condition plac&eacute;e apr&egrave;s l'instruction  <code>if</code> est remplie, la commande <code>last</code> qui pr&eacute;c&egrave;de est ex&eacute;cut&eacute;e. La boucle est alors interrompue. Au cas o&ugrave; le script est appel&eacute; &agrave; un moment o&ugrave; la valeur des secondes est impaire, la valeur actuelle des secondes est sortie jusqu'&agrave; ce que <code>time</code> renvoie la valeur des secondes imm&eacute;diatement sup&eacute;rieure.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="redo">redo</a></h2>
+
+
+<p>La commande de saut <code>redo</code> r&eacute;p&egrave;te simplement encore une fois le parcours de la boucle actuelle. Pour cette r&eacute;p&eacute;tition, la valeur de la boucle n'est pas &eacute;valu&eacute;e encore une  fois.</p>
+
+<h3 class="xmp">Exemple du fichier texte <var>texte.txt</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+Ceci est \
+un fichier avec une convention.
+une barre oblique invers�e � la fin \
+d'une ligne signifie: \
+une nouvelle ligne!
+</pre></td></tr></table>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+open(FH,&quot;&lt;texte.txt&quot;);
+my @lignes;
+while(&lt;FH&gt;) {
+  chomp;
+  if(s/\\$//) {
+   $_ .= &lt;FH&gt;;
+   redo unless(eof(FH));
+  }
+  push(@lignes,$_.&quot;\n&quot;);
+}
+close(FH);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;&lt;pre&gt;\n&quot;;
+print @lignes;
+print &quot;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre une utilisation classique de <code>redo</code>. Il s'agit ici de regrouper plusieurs lignes sur la base d'une convention en une seule. Le fichier texte qui pr&eacute;c&egrave;de contient bien cinq lignes, mais &agrave; la fin doivent en r&eacute;sulter deux lignes seulement. Les lignes qui se terminent par une barre oblique invers&eacute;e, doivent de poursuivre sur la ligne suivante.</p>
+
+<p>Le script ouvre le fichier texte avec la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#open"><b>open</b></a>. Dans une boucle <code>while</code> il lit &agrave; chaque fois la ligne suivante du fichier. La condition de la boucle est ici <code>&lt;FH&gt;</code>. Cela signifie: portion suivante du fichier li&eacute; au descripteur de fichier <code>FH</code> et cela dans le contexte scalaire. Dans ce contexte la ligne suivante du fichier est alors livr&eacute;e.</p>
+
+<p>&Agrave; l'int&eacute;rieur de la boucle, le signe final de passage &agrave; la ligne de la ligne actuelle est retir&eacute; avec la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/chainescaracteres.htm#chomp"><b>chomp</b></a> . Ensuite on recherche et remplace avec l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="expresreg.htm"><b>expression r&eacute;guli&egrave;re</b></a> <code>s/\\$//</code> une barre oblique invers&eacute;e &eacute;ventuellement pr&eacute;sente &agrave; la fin de la ligne. Dans le cas o&ugrave; une barre oblique invers&eacute;e a effectivement &eacute;t&eacute; trouv&eacute;e et remplac&eacute;e, la condition pour le  <code>if</code> est vraie, et le bloc d'instructions qui en d&eacute;pend est ex&eacute;cut&eacute;. Dans ce bloc la ligne suivante est lue avec <code>$_&nbsp;.= &nbsp;&lt;FH&gt;;</code> et elle est accroch&eacute;e &agrave; la ligne actuelle. Ici est utilis&eacute;e la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="predefini.htm"><b>variable pr&eacute;d&eacute;finie</b></a> <code>$_</code> et l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="operateurs.htm#concatener_chaines"><b>op&eacute;rateur pour concat&eacute;ner des cha&icirc;nes de caract&egrave;res</b></a> (<code>.</code>). Enfin, il est saut&eacute; &agrave; nouveau au d&eacute;but de la boucle avec <code>redo</code>, dans la mesure o&ugrave; n'est pas (<code>unless</code>) atteinte la fin du fichier (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#eof"><b>eof</b></a>).</p>
+
+<p><code>redo</code> fait en sorte que la condition de la boucle ne soit pas r&eacute;&eacute;valu&eacute;e. Aucune ligne suivante n'est donc lue. La variable <code>$_</code>, &agrave; laquelle se r&eacute;f&egrave;rent tant l'instruction <code>chomp;</code> que l'expression r&eacute;guli&egrave;re, s'est d&eacute;j&agrave; vu affecter une nouvelle valeur &agrave; l'int&eacute;rieur du bloc <code>if</code>. Pour la compr&eacute;hension: avec <code>chomp;</code> on veut dire quelque chose comme: <code>chomp($_);</code>, et avec <code>if(s/\\$//)</code> quelque chose comme: <code>if($_&nbsp;=~&nbsp;s/\\$//)</code>. Aussi bien le retrait du passage &agrave; ligne que l'&eacute;valuation de la pr&eacute;sence d'une barre oblique invers&eacute;e qui la termine, se r&eacute;f&egrave;rent donc implicitement &agrave; la variable pr&eacute;d&eacute;finie <code>$_</code>.</p>
+
+<p>Quant dans l'exemple la condition  <code>if</code> n'est plus vraie, le script aboutit l&agrave; o&ugrave; la ligne actuelle est ajout&eacute;e dans le tableau <code>@lignes</code> avec la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/hashlistes.htm#push"><b>push</b></a>. N'y sont sauvegard&eacute;es &agrave; la fin que les deux lignes du fichier qui doivent rester par convention. Le script sort le contenu de <code>@lignes</code> &agrave; la fin, dans le navigateur appelant.</p>
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="operateurs.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="operateurs.htm"><b> Op&eacute;rateurs</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="boucles.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="boucles.htm"><b>Boucles</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

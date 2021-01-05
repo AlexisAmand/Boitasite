@@ -1,0 +1,508 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: Feuilles de style CSS / Propri&eacute;t&eacute;s CSS / Mises en page pour modes d'impression</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quelles sont les propri&eacute;t&eacute;s CSS pour contr&ocirc;ler la sortie de pages Web &agrave; l'impression, par exemple &agrave; l'imprimante.">
+<meta name="keywords"       content="SELFHTML, CSS, feuilles de style en cascade CSS, Cascading Stylesheets, HTML, propri&eacute;t&eacute;s CSS, modes d'impression, imprimante, mise en page, taille de la page, traits de coupe, rep&egrave;res de montage, saut de page, ligne de pied, ligne d'ent&ecirc;te, @page, size, margin, marks, running-head, page-break-before, page-break-after, orphans, widows">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/css/proprietes/printlayout.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // Feuilles de style CSS == ../index.htm // Propri&eacute;t&eacute;s CSS == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>Feuilles de style CSS</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Propri&eacute;t&eacute;s CSS</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Mises en page pour modes d'impression</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur  mise en page et saut de page</b></a> <br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#page"><b>@page</b></a> (D&eacute;finir une mise en page)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#size"><b>size (Taille de la page)</b></a> <br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#margin"><b>margin</b></a> (Marges de la page)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#marks"><b>marks</b></a> (Traits de coupe et rep&egrave;res de montage)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#droite_gauche_premiere"><b>Pages droite/gauche et premi&egrave;re page</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#page_break_before"><b>page-break-before</b></a> (Saut de page avant un &eacute;l&eacute;ment)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#page_break_after"><b>page-break-after</b></a> (Saut de page apr&egrave;s un &eacute;l&eacute;ment)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#orphans"><b>orphans</b></a> (Lignes seules en fin de page - orphelines)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#widows"><b>widows</b></a> (Lignes seules en d&eacute;but de  page - veuves)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#nommees"><b>Pages nomm&eacute;es</b></a>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur  mise en page et saut de page</a></h2>
+
+<p>Les mentions de feuilles de style d&eacute;crites ici ouvrent &agrave; HTML et &agrave; son langage de compl&eacute;ment CSS des horizons tout &agrave; fait nouveaux car avec ces mentions, il devient possible de d&eacute;finir des mises en page &agrave; l'impression. La possibilit&eacute; d'une &eacute;dition &agrave; deux voies est aussi soutenu par la possibilit&eacute; de d&eacute;finir diff&eacute;rentes feuilles de style pour diff&eacute;rents modes de sortie, comme il est d&eacute;crit dans la partie expliquant comment <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/incorporer.htm"><b>incorporer des feuilles de style en HTML</b></a>.</p>
+
+<p>Les mentions de feuilles de style pour les mise en page et saut de page ne
+sont toutefois pas seulement int&eacute;ressantes pour des produits d'impression. Un
+outil de pr&eacute;sentation correspondant ou un navigateur WWW mis au point
+pour le faire pourrait utiliser ces mentions &eacute;galement pour une pr&eacute;sentation de pages destin&eacute;e &agrave; l'&eacute;cran.</p>
+
+<p>Tout cela n'est pourtant pour l'instant encore qu'une musique du futur. Les
+commandes de feuilles de style existent, pourtant les navigateurs ne les soutiennent pas encore. L'Explorer Internet MS depuis la version 4.x  interpr&egrave;te de ces commandes celles qui concernent le saut de page.</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0">&nbsp;<a class="an" name="page">@page (D&eacute;finir une mise en page)</a></h2>
+
+<p>Une mise en page est d&eacute;finie dans un passage <code>style</code> global.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;style type=&quot;text/css&quot;&gt;
+  @page { /* mentions sur la mise en page */ }
+&lt;/style&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>@page</code> vous pouvez &eacute;tablir une mise en page. La mention est un r&eacute;servoir pour des mentions distinctes pour l'aspect de la mise en page. En font partie des propri&eacute;t&eacute;s comme la <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#size"><b>size (Taille de la page)</b></a>, <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#margin"><b>margin (Marges de la page)</b></a>  et si besoin est, &eacute;galement des mentions sur les <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#marks"><b>marks (Traits de coupe et rep&egrave;res de montage)</b></a>. Ces mentions figurent dans les parenth&egrave;ses
+accolades &agrave; la suite de <code>@page</code>.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p><code>@page</code> v&eacute;rifie que les d&eacute;finitions de mise en page dans les guillemets accolade concernent uniquement des pages imprim&eacute;es et des pages &eacute;cran et qu'elles ne seront pas interpr&eacute;t&eacute;es par erreur par le navigateur comme d&eacute;finitions pour l'apparence normale du fichier HTML &agrave; l'&eacute;cran. Ainsi vous pouvez gr&acirc;ce &agrave; cette mention ind&eacute;pendamment de toute autre mention de feuille de style dans le m&ecirc;me passage, &eacute;tablir une mise en page pour l'impression de vos pages Web.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0">&nbsp;<a class="an" name="size">size (Taille de la page)</a></h2>
+
+<p>Vous pouvez d&eacute;terminer quelle largeur et quelle hauteur doit avoir votre
+mise en page. Pour des documents &agrave; imprimer, vous d&eacute;finissez ainsi le format du papier d&eacute;sir&eacute;. Pour des pr&eacute;sentations destin&eacute;es &agrave; l'&eacute;cran, vous pouvez d&eacute;terminer la taille de toutes les pages &eacute;cran.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/size.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;size&lt;/title&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+  @page { size:landscape; }
+&lt;/style&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;#FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;p&gt;Cette page appara&amp;icirc;t � l'&amp;eacute;cran exactement comme d'habitude. Si pourtant votre navigateur conna&amp;icirc;t les mentions de feuilles de style pour la mise en page, essayez donc d'imprimer ce fichier par la commande normale &quot;imprimer&quot; de votre navigateur.&lt;/p&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>size:</code> vous pouvez d&eacute;finir &agrave; la suite de <code>@page</code> la taille de la page. Deux <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/affectationvaleur.htm#numeriques"><b>mentions num&eacute;riques</b></a>, sont permises, s&eacute;par&eacute;es par un espace. La premi&egrave;re mention d&eacute;signe la largeur de la page (par exemple <code>21.0cm</code>) et la deuxi&egrave;me mention d&eacute;signe la hauteur de la page (par exemple <code>29.7cm</code>). De plus, les mentions suivantes sont permises:</p>
+
+<p>
+<code>auto</code> = Le format normal du mode de sortie (r&eacute;glage normal).<br>
+<code>landscape</code> = Le format normal du mode de sortie, pour un format  rectangulaire paysage (ou &agrave; l'italienne).<br>
+<code>portrait</code> = Le format normal du mode de sortie, pour un format
+rectangulaire portrait.<br>
+</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0">&nbsp;<a class="an" name="margin">margin (Marges de la page)</a></h2>
+
+<p>Vous pouvez fixer les espaces entre le bord de la feuille et le contenu de la feuille.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/margin_page.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;margin (page)&lt;/title&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+@page { size:21.0cm 14.85cm;
+        margin-top:1.7cm;
+        margin-bottom:1.4cm;
+        margin-left:2cm;
+        margin-right:2cm
+}
+&lt;/style&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;#FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;p&gt;Cette page appara&amp;icirc;t � l'&amp;eacute;cran exactement comme d'habitude.
+Pour l'impression ont pourtant &amp;eacute;t&amp;eacute; fix&amp;eacute;s des espaces entre le contenu de la feuille et le bord de la feuille.&lt;/p&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Pour d&eacute;finir s&eacute;par&eacute;ment les marges de pages, vous disposez des mentions suivantes:</p>
+
+<p>
+<code>margin-top</code> = marge sup&eacute;rieure.<br>
+<code>margin-bottom</code> = marge inf&eacute;rieure.<br>
+<code>margin-left</code> = marge gauche.<br>
+<code>margin-right</code> = marge droite.<br>
+</p>
+
+<p>Si vous voulez d&eacute;finir une valeur unique pour les quatre marges, vous pouvez utiliser &agrave; la place de ces mentions, la mention <code>margin</code>.</p>
+
+<p>Pour toutes les mentions de marges, une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/affectationvaleur.htm#numeriques"><b>mention num&eacute;rique</b></a> est permise.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Ces mentions n'ont aucune influence sur les marges de page pour la
+pr&eacute;sentation normale du navigateur &agrave; l'&eacute;cran, &eacute;tant donn&eacute; qu'elles se trouvent derri&egrave;re la mention de mise en page  <code>@page</code>. Pour la pr&eacute;sentation HTML normale sur le navigateur WWW, il y a des mentions de <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="marge.htm"><b>Marges et espace</b></a>.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0">&nbsp;<a class="an" name="marks">marks (Traits de coupe et rep&egrave;res de montage)</a></h2>
+
+<p>Les traits de coupes (en anglais  <i>cut marks</i>) sont des lignes d'aide
+qui sont utilis&eacute;es dans la photocopie et dans l'impression (massicot) pour la coupe de pages.</p>
+
+<p>Les rep&egrave;res de montage (anglais <i>cross marks</i> ou <i>register marks</i>) sont des marques pour l'alignement exact de la page pour la photocopie et l'impression.</p>
+
+<p>Quand par exemple vous d&eacute;finissez un format de papier de 10.8cm par 18.2cm  et que vous imprimez sur du papier DIN A 4, vous pouvez poser de telles marques qui apparaissent &agrave; l'impression et qui d&eacute;signent pour la photocopie ou pour l'imprimerie, le format exact du papier.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/marks.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;marks&lt;/title&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+@page { size:11.3cm 19.85cm; margin:1.7cm; marks:cross;  }
+&lt;/style&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;#FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;p&gt;Cette page appara&amp;icirc;t &amp;agrave; l'&amp;eacute;cran exactement comme d'habitude.
+Pour le traitement des modes d'impression, des rep&amp;egrave;res de montage ont pourtant &amp;eacute;t&amp;eacute; pos&amp;eacute;s.&lt;/p&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>marks:</code> vous pouvez d&eacute;finir &agrave; la suite de <code>@page</code> des traits de coupe et des rep&egrave;res de montage. Les mentions suivantes sont permises:</p>
+
+<p>
+<code>none</code> = pas de traits ni de rep&egrave;res(r&eacute;glage normal).<br>
+<code>crop</code> = poser des traits de coupe.<br>
+<code>cross</code> = poser des rep&egrave;res de montage.<br>
+</p>
+
+<p>Les mentions <code>crop</code> et <code>cross</code> peuvent &ecirc;tre d&eacute;finies toutes les deux, s&eacute;par&eacute;es par des espaces. Alors les deux types de marque seront pris en compte.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0">&nbsp;<a class="an" name="droite_gauche_premiere">Pages droite/gauche et premi&egrave;re page</a></h2>
+
+<p>Vous pouvez noter pour les pages de gauche et de droite des mentions
+diff&eacute;rentes. Ainsi par exemple, vous pouvez &eacute;galiser les marges pour
+l'agrafage ou pour la reliure.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/droite_gauche_prem.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Pages droite/gauche&lt;/title&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+  @page { size:21.0cm 14.85cm; margin-top:1.5cm; margin-bottom:2cm  }
+  @page :left { margin-left:1.5cm; margin-right:2cm  }
+  @page :right { margin-left:2cm; margin-right:1.5cm  }
+&lt;/style&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;#FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;p&gt;Voici la premi&amp;egrave;re page.&lt;/p&gt;
+&lt;p style=&quot;page-break-before:always&quot;&gt;et voici l'autre (&amp;agrave; cause du saut de page forc&amp;eacute;)&lt;/p&gt;
+&lt;p&gt;Les deux pages ont des marges de page diff&amp;eacute;rentes.&lt;/p&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Vous cr&eacute;ez des pages droite et gauche diff&eacute;rentes en notant derri&egrave;re <code>@page</code>, s&eacute;par&eacute; par un espace un double point suivi imm&eacute;diatement de l'un des mots cl&eacute;s <code>left</code> (pour d&eacute;signer les pages de gauche), <code>right</code> (pour
+d&eacute;signer les pages de droite) ou <code>first</code> (pour d&eacute;signer la premi&egrave;re page). Derri&egrave;re vous pouvez noter dans les
+parenth&egrave;ses accolade des mentions sur la taille, les marges de page, les traits de coupe et rep&egrave;res de montage pour les deux types de page. Dans la pratique la diff&eacute;renciation est utile avant tout (comme dans l'exemple ci-dessus) pour mentionner des valeurs inversement sym&eacute;triques pour la marge gauche et la marge droite: Il est ainsi possible d'&eacute;galiser les marges pour l'agrafage ou la reliure.</p>
+
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="page_break_before">page-break-before (Saut de page avant un &eacute;l&eacute;ment)</a></h2>
+
+<p>Vous pouvez imposer ou emp&ecirc;cher un saut de page <b>avant</b> un &eacute;l&eacute;ment HTML.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/page_break_before.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;page-break-before&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;#FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h1&gt;Premi&amp;egrave;re page&lt;/h1&gt;
+&lt;p&gt;et son texte&lt;/p&gt;
+&lt;h1 style=&quot;page-break-before:always&quot;&gt;Et deuxi&amp;egrave;me page&lt;/h1&gt;
+&lt;p&gt;et son texte&lt;/p&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>page-break-before:</code> vous pouvez imposer ou emp&ecirc;cher un saut de page avant l'&eacute;l&eacute;ment actuel. Les mentions suivantes sont permises:</p>
+
+<p>
+<code>always</code> = toujours ins&eacute;rer un saut de page avant l'&eacute;l&eacute;ment actuel.<br>
+<code>avoid</code> = ne jamais ins&eacute;rer de saut de page avant l'&eacute;l&eacute;ment actuel.<br>
+<code>left</code> = avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#droite_gauche_premiere"><b>Pages droite/gauche et premi&egrave;re page</b></a> ins&eacute;rer un saut de page, &eacute;l&eacute;ment actuel sur la prochaine page de gauche.<br>
+<code>right</code> = avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#droite_gauche_premiere"><b>Pages droite/gauche et premi&egrave;re page</b></a> ins&eacute;rer un saut de page, &eacute;l&eacute;ment actuel sur la prochaine page de droite.<br>
+<code>inherit</code> = prendre la mention de saut de page de l'&eacute;l&eacute;ment parent (h&eacute;riter).<br>
+<code>auto</code> = pas de mention de saut de page (r&eacute;glage normal).<br>
+</p>
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="page_break_after">page-break-after (Saut de page apr&egrave;s un &eacute;l&eacute;ment)</a></h2>
+
+<p>Vous pouvez imposer ou emp&ecirc;cher un saut de page  <b>apr&egrave;s</b> un &eacute;l&eacute;ment HTML.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/page_break_after.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;page-break-after&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;#FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h1&gt;Premi&amp;egrave;re page&lt;/h1&gt;
+&lt;p style=&quot;page-break-after:avoid; height:22cm; border:thin solid black; padding:0.5cm&quot;&gt;espace&lt;/p&gt;
+&lt;p&gt;Commentaire &amp;agrave; ce sujet&lt;/p&gt;
+&lt;h1&gt;Nouveau titre&lt;/h1&gt;
+&lt;p&gt;et son texte&lt;/p&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>page-break-after:</code> vous pouvez imposer ou emp&ecirc;cher un saut de page apr&egrave;s l'&eacute;l&eacute;ment actuel. Les mentions suivantes sont permises:</p>
+
+<p>
+<code>always</code> = toujours ins&eacute;rer un saut de page apr&egrave;s l'&eacute;l&eacute;ment actuel.<br>
+<code>avoid</code> = ne jamais ins&eacute;rer de saut de page apr&egrave;s l'&eacute;l&eacute;ment actuel.<br>
+<code>left</code> = avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#droite_gauche_premiere"><b>Pages droite/gauche et premi&egrave;re page</b></a> ins&eacute;rer un saut de page, &eacute;l&eacute;ment suivant sur la prochaine page de gauche.<br>
+<code>right</code> = avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#droite_gauche_premiere"><b>Pages droite/gauche et premi&egrave;re page</b></a> ins&eacute;rer un saut de page, &eacute;l&eacute;ment suivant sur la prochaine page de droite.<br>
+<code>inherit</code> = prendre la mention de saut de page de l'&eacute;l&eacute;ment parent (h&eacute;riter).<br>
+<code>auto</code> =  pas de mention de saut de page (r&eacute;glage normal).<br>
+</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0">&nbsp;<a class="an" name="orphans">orphans (Lignes seules en fin de page - orphelines)</a></h2>
+
+<p>Vous pouvez emp&ecirc;cher que des sauts de page dans du texte courant se fassent si malencontreusement qu'une seule ligne se trouve sur une page et toutes les autres lignes du paragraphe sur la page suivante.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/orphans.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;orphans&lt;/title&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+ p,blockquote { orphans:3; }
+&lt;/style&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;#FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h1&gt;Au sujet de cette page&lt;/h1&gt;
+&lt;p&gt;Sur cette page, il y a des paragraphes de texte.&lt;/p&gt;
+&lt;blockquote&gt;et des citations&lt;/blockquote&gt;
+&lt;p&gt;et tous ont une chose en commun: ils ne seront pas malencontreusement coup&amp;eacute;s!&lt;/p&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>orphans:</code> vous pouvez sp&eacute;cifier combien de lignes d'un texte courant plus long doivent au minimum figurer sur la page avant le saut de page. Un chiffre est permis qui exprime le nombre de lignes. Le r&eacute;glage par d&eacute;faut est 2.</p>
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0">&nbsp;<a class="an" name="widows">widows (Lignes seules en d&eacute;but de  page - veuves)</a></h2>
+
+<p>Vous pouvez emp&ecirc;cher que des sauts de pages dans du texte courant se fassent si malencontreusement qu'une seule ligne se trouve sur la nouvelle page et que toutes les autres lignes du paragraphe se trouvent sur la page pr&eacute;c&eacute;dente avant le saut de page.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/widows.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;widows&lt;/title&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+ p,blockquote { widows:3; }
+&lt;/style&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;#FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h1&gt;Au sujet de cette page&lt;/h1&gt;
+&lt;p&gt;Sur cette page, il y a des paragraphes de texte.&lt;/p&gt;
+&lt;blockquote&gt;et des citations&lt;/blockquote&gt;
+&lt;p&gt;et tous ont une chose en commun: ils ne seront pas malencontreusement coup&amp;eacute;s!&lt;/p&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>widows:</code> vous pouvez sp&eacute;cifier combien de lignes d'un texte courant plus long doivent au minimum figurer sur la page apr&egrave;s le saut de page sur la nouvelle page. Un chiffre est permis qui exprime le nombre de lignes. Le r&eacute;glage par d&eacute;faut est 2.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0">&nbsp;<a class="an" name="nommees">Pages nomm&eacute;es</a></h2>
+
+<p>Pour des formats de pages sp&eacute;ciaux, vous pouvez d&eacute;finir diff&eacute;rents types de pages nomm&eacute;es.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;style type=&quot;text/css&quot;&gt;
+  @page italienne { size:landscape; }
+  div.recapitulatif { page:italienne; /* autres mentions CSS */ }
+&lt;/style&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>En notant derri&egrave;re <code>@page</code> un nom que vous attribuez vous-m&ecirc;me - dans l'exemple ci-dessus le nom est <code>italienne</code> - vous pouvez &eacute;tablir une mise en page sp&eacute;ciale. Dans les parenth&egrave;ses accolades, vous pouvez noter les mentions habituelles concernant la mise en page. Les pages nomm&eacute;es ne sont pourtant pas utilis&eacute;es syst&eacute;matiquement, mais seulement quand est plac&eacute; un &eacute;l&eacute;ment pour lequel est not&eacute; la propri&eacute;t&eacute; CSS <code>page:</code>. Dans l'exemple il est stipul&eacute; que les &eacute;l&eacute;ments <code>div</code> avec le nom de classe <code>recapitulatif</code> utilisent le type de page <code>italienne</code>. Si donc dans le code source HTML on trouve:<br>
+<code>&lt;div class=&quot;recapitulatif&quot;&gt;...&lt;/div&gt;</code>,<br>
+alors le type de page <code>italienne</code> est impos&eacute; pour la repr&eacute;sentation de cet &eacute;l&eacute;ment.</p>
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="sortievocale.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="sortievocale.htm"><b>Contr&ocirc;le du son pour sortie vocale</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="positionnement.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="positionnement.htm"><b>Positionnement et affichage d'&eacute;l&eacute;ments</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>Feuilles de style CSS</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Propri&eacute;t&eacute;s CSS</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

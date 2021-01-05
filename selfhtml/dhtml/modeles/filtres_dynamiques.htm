@@ -1,0 +1,587 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: HTML dynamique / Les diff&eacute;rents mod&egrave;les DHTML / Filtres dynamiques (seulement Microsoft) </title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment r&eacute;aliser des fondus encha&icirc;n&eacute;s d'images, de textes ou de pages avec l'Explorer Internet &agrave; partir de la version 4.x.">
+<meta name="keywords"       content="SELFHTML, HTML dynamique, Dynamic HTML, DHTML, Microsoft, Explorer Internet, Filtres, filtres dynamiques">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/dhtml/modeles/filtres_dynamiques.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // HTML dynamique == ../index.htm // Les diff&eacute;rents mod&egrave;les DHTML == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>HTML dynamique</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Les diff&eacute;rents mod&egrave;les DHTML</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Filtres dynamiques (seulement Microsoft) </h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur les filtres dynamiques</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#modifications"><b>Modification dynamique simple des valeurs de filtres</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#blend_trans"><b>Fondus-encha&icirc;n&eacute;s avec le filtre blendTrans</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#reveal_trans"><b>Fondus-encha&icirc;n&eacute;s avec le filtre revealTrans</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#fondu_enchaine"><b>Fondus encha&icirc;n&eacute;s </b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#transition_pages"><b>Fondus encha&icirc;n&eacute;s de pages Web</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><img src="../../src/msjs.gif" width="30" height="30" border="0" alt="MS JScript"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur les filtres dynamiques</a></h2>
+
+<p>L'Explorer Internet MS supporte &agrave; partir de la version 4.x des mentions de style sp&eacute;ciales, appel&eacute;es les  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../css/proprietes/filtres_ms.htm"><b>filtres</b></a>. &Agrave; l'aide de tels filtres, des effets graphiques, tels qu'ils sont connus dans les programmes graphiques professionnels, sont possibles: les effets d'ombrage pour les textes ou aussi des d&eacute;finitions de transparence pour les graphiques qui sont affich&eacute;s sur une page WWW, font partie du r&eacute;pertoire des mentions possibles. En tant que feuilles de style proprement dites, ces filtres sont statiques. &Agrave; l'aide de scripts vous pouvez influencer les mentions concernant ces filtres. De plus il y a deux filtres sp&eacute;ciaux pour des effets de fondu ou divers effets d'encha&icirc;nement. Avec quelques connaissances en programmation et un temp&eacute;rament d'esth&egrave;te, presque tous les r&ecirc;ves secrets des concepteurs Web peuvent se r&eacute;aliser gr&acirc;ce &agrave; eux: des graphiques qui apparaissent et disparaissent lentement comme par la main d'un fant&ocirc;me, des encha&icirc;nements entre les &eacute;l&eacute;ments, des textes qui s'effacent etc...</p>
+
+<p>L'acc&egrave;s du script &agrave; des filtres d&eacute;finis se fait par l'objet filtre en JScript/JavaScript. Les exemples ici ne peuvent pas traiter toutes les possibilit&eacute;s de l'objet filtre. Ils ne servent qu'&agrave; &eacute;clairer comment les filtres peuvent &ecirc;tre modifi&eacute;s de fa&ccedil;on dynamique par un script.</p>
+
+<p>La technique des filtres de Microsoft n'est cependant jamais devenue un standard et on peut se poser la question si elle en fera jamais partie.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/msjs.gif" width="30" height="30" border="0" alt="MS JScript"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="modifications">Modification dynamique simple des valeurs de filtres</a></h2>
+
+<p>Par une modification minut&eacute;e des propri&eacute;t&eacute;s de feuilles de style des filtres, vous pouvez obtenir des effets int&eacute;ressants.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/textetremble.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;div id=&quot;texte_tremblant&quot; style=&quot;width:100%; font-size:72pt; font-weight:bold; color:#FF6666;
+filter:Wave(freq=5, light=0, phase=80, strength=1);&quot;&gt;l�gers parasites&lt;/div&gt;
+&lt;script language=&quot;JScript&quot; type=&quot;text/jscript&quot;&gt;
+&lt;!--
+function DynWave() {
+  if(document.all.texte_tremblant.filters[0].freq &gt; 30)
+     document.all.texte_tremblant.filters[0].freq = 5;
+  document.all.texte_tremblant.filters[0].freq += 1;
+  if(document.all.texte_tremblant.filters[0].phase &gt; 100)
+     document.all.texte_tremblant.filters[0].phase = 0;
+  document.all.texte_tremblant.filters[0].phase += 10;
+  if(document.all.texte_tremblant.filters[0].strength &gt; 10)
+     document.all.texte_tremblant.filters[0].strength = 1;
+  document.all.texte_tremblant.filters[0].strength += 1;
+  window.setTimeout(&quot;DynWave()&quot;,100);
+}
+DynWave();
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple le texte (<code>l&eacute;gers parasites</code>) faisant partie d'un passage <code>&lt;div&gt;</code> a &eacute;t&eacute; format&eacute; &agrave; l'aide de  <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../css/proprietes/index.htm"><b> mentions de feuilles de style</b></a>. L'utilisation du  filtre <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../css/proprietes/filtres_ms.htm"><b>Filters</b></a> <code>Wave()</code> fait aussi partie du formatage. Ainsi l'effet du filtre est bien affich&eacute;, mais rien ne bouge encore. Dans un script situ&eacute; en dessous du passage <code>&lt;div&gt;</code> ainsi d&eacute;fini, les mentions de ce filtre sont modifi&eacute;es de fa&ccedil;on dynamique. &Eacute;tant donn&eacute; qu'un effet sans fin, avec des valeurs et des combinaisons nouvelles &agrave; chaque fois est ins&eacute;r&eacute;, on obtient un effet de tremblement.</p>
+
+<p>La fonction JavaScript dans l'exemple ci-dessus est d&eacute;finie sous le passage auquel elle se r&eacute;f&egrave;re. La raison en est que les instructions JavaScript sont ex&eacute;cut&eacute;es imm&eacute;diatement. Le passage <code>&lt;div&gt;</code> aux donn&eacute;es duquel les instructions doivent acc&eacute;der de fa&ccedil;on dynamique doit &agrave; cet instant avoir d&eacute;j&agrave; &eacute;t&eacute; lu et &ecirc;tre connu du navigateur. C'est pourquoi le script se trouve apr&egrave;s le passage <code>&lt;div&gt;</code>, faute de quoi des messages d'erreur pourraient appara&icirc;tre.</p>
+
+<p>Dans le passage script est tout d'abord d&eacute;finie une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../javascript/langage/fonctions.htm"><b>fonction</b></a> nomm&eacute;e <code>DynWave()</code>. Cette fonction modifie les param&egrave;tres <code>freq</code>, <code>phase</code> et <code>strength</code> du filtre Wave, d&eacute;finis dans le rep&egrave;re <code>&lt;div&gt;</code>. &Agrave; fin la fonction se rappelle elle-m&ecirc;me. C'est ainsi qu'appara&icirc;t l'effet sans fin. L'appel a lieu avec un retardement de 100 milli&egrave;mes de seconde. C'est important, &eacute;tant donn&eacute; que l'appel de la fonction par elle-m&ecirc;me serait autrement &quot;infiniment rapide &quot;, et provoquerait un probl&egrave;me dans la m&eacute;moire de travail (les appels de fonctions par elles-m&ecirc;mes ne sont pas &agrave; vrai dire tout &agrave; fait sans danger, &eacute;tant donn&eacute; que pour chaque appel de fonction, de la place doit &ecirc;tre r&eacute;serv&eacute;e en m&eacute;moire).</p>
+
+<p>&Eacute;tant donn&eacute; qu'au d&eacute;but, la fonction doit au moins &ecirc;tre appel&eacute;e une fois (sinon, il ne se passerait rien), est not&eacute; &agrave; la fin du passage script - et en dehors de la fonction <code>DynWave()</code> - l'unique appel de fonction <code>DynWave();</code>.</p>
+
+<p>Dans la fonction de l'exemple, vous pouvez reconna&icirc;tre comment on acc&egrave;de aux filtres de fa&ccedil;on dynamique. L'acc&egrave;s intervient &agrave; l'aide de l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="microsoft.htm#all_objekt"><b>objet all</b></a>. La r&eacute;f&eacute;rence est la mention <code>id=&quot;texte_tremblant&quot;</code>, qui est affect&eacute;e dans le rep&egrave;re <code>&lt;div&gt;</code> Avec <code>document.all.texte_tremblant</code>, l'acc&egrave;s &agrave; cet &eacute;l&eacute;ment HTML est rendu possible.</p>
+
+<p>Deux particularit&eacute;s sont &agrave; observer avec les filtres:<br>
+Avec une expression telle que <code>document.all.texte_tremblant.filters[0].strength</code>, vous acc&eacute;dez &agrave; la valeur qui avec la mention <code>strength=</code> est not&eacute;e comme param&egrave;tre pour le filtre d&eacute;fini en premier de l'&eacute;l&eacute;ment HTML. &Eacute;tant donn&eacute; que les filtres font partie des mentions de feuilles de style, devrait &agrave; vrai dire &ecirc;tre not&eacute; <code>document.all.texte_tremblant.style.filters[0].strength</code> Ceci provoque cependant des messages d'erreur chez l'Explorer Internet MS. Laissez donc tomber la mention <code>style</code> du milieu.<br>
+&Eacute;tant donn&eacute; qu'un &eacute;l&eacute;ment peut avoir plusieurs filtres, il vous faut mentionner exactement quel est le filtre que vous voulez adresser de fa&ccedil;on dynamique. Dans l'exemple ci-dessus, c'est le premier filtre d&eacute;fini qui est adress&eacute; avec <code>filters[0]</code>. Au cas o&ugrave; un deuxi&egrave;me filtre serait encore d&eacute;fini dans le m&ecirc;me rep&egrave;re <code>&lt;div&gt;</code>, vous pourriez l'adresser avec <code>filters[1]</code>. Donc le comptage commence &agrave; 0. Microsoft permet &eacute;galement d'autres possibilit&eacute;s de notation, pour l'exemple ci-dessus par exemple <code>document.all.texte_tremblant.filters[&quot;wave&quot;].strength</code> ou <code>document.all.texte_tremblant.filters.wave.strength</code>.</p>
+
+<p>Avec d'autres filtres, vous pouvez utiliser de la m&ecirc;me fa&ccedil;on le sch&eacute;ma d&eacute;crit ici pour acc&eacute;der aux valeurs d'un filtre - m&ecirc;me avec les filtres qui sont avant tout int&eacute;ressants en relation avec des graphiques..</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/msjs.gif" width="30" height="30" border="0" alt="MS JScript"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="blend_trans">Fondus-encha&icirc;n&eacute;s avec le filtre blendTrans</a></h2>
+
+<p>Le filtre blendTrans est un filtre sp&eacute;cial qui n'est judicieux qu'en relation avec des scripts. Il permet de d&eacute;finir un fondu encha&icirc;n&eacute; d'un graphique sur un autre graphique ou d'un passage de texte sur un autre passage de texte. C'est ainsi que sont rendus possibles des effets comme des s&eacute;ances de diapositives professionnelles ou comme des images de t&eacute;l&eacute;vision sur pages WWW.</p>
+
+<h3 class="xmp">Exemple pour les graphiques:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/madrid.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script language=&quot;JScript&quot; type=&quot;text/jscript&quot;&gt;
+&lt;!--
+image1 = new Image();
+image1.src = &quot;madrid1.jpg&quot;;
+image2 = new Image();
+image2.src = &quot;madrid2.jpg&quot;;
+var image = 1;
+function changement_image() {
+ if (image == 1) {
+  image = 2;
+  document.all.Madrid.filters.blendTrans.Apply();
+  document.all.Madrid.src = image2.src;
+  document.all.Madrid.filters.blendTrans.Play();
+ }
+ else {
+  image = 1;
+  document.all.Madrid.filters.blendTrans.Apply();
+  document.all.Madrid.src = image1.src;
+  document.all.Madrid.filters.blendTrans.Play();
+ }
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;p&gt;Cliquez sur l'imge quand elle est affich�e compl�tement.&lt;/p&gt;
+&lt;img id=&quot;Madrid&quot; src=&quot;madrid1.jpg&quot; style=&quot;cursor:hand; filter:blendTrans(Duration=4, Transition=16)&quot; onClick=&quot;changement_image()&quot; width=&quot;433&quot; height=&quot;278&quot; border=&quot;0&quot; alt=&quot;c'est Madrid&quot;&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple fait en sorte qu'en cliquant sur une image, celle-ci se transforme lentement en une autre image. Si on clique alors sur cette autre image, elle se transforme &agrave; son tour lentement en la premi&egrave;re image.</p>
+
+<p>Dans un premier temps est not&eacute;e pour cela &agrave; la d&eacute;finition de l'image avec <code>&lt;img...&gt;</code> une mention sp&eacute;ciale de feuilles de style: le filtre <code>blendTrans(...)</code>. Ce filtre attend un param&egrave;tre, &agrave; savoir la mention concernant <code>Duration=</code>. Avec elle, vous pouvez mentionner combien de temps doit durer le passage d'une image &agrave; l'autre. Dans l'exemple, on a mentionn&eacute; 4 - qui signifie 4 secondes. Vous pouvez &eacute;galement mentionner des fractions de seconde jusqu'au milli&egrave;me, par exemple 2.450 (le signe d&eacute;cimal est un point !).</p>
+
+<p>Avec cette mention, l'effet d'encha&icirc;n&eacute; n'est cependant que &quot;r&eacute;f&eacute;renc&eacute;&quot;. Pour l'ex&eacute;cuter r&eacute;ellement, un script est n&eacute;cessaire. Dans l'exemple ci-dessus, un passage JavaScript est d&eacute;fini dans l'ent&ecirc;te de fichier. C'est l&agrave; que les deux images concern&eacute;es (<code>image1</code> et <code>image2</code>) sont d'abord d&eacute;finies comme objets &agrave; l'aide de l'objet image <code>image</code> La propri&eacute;t&eacute; <code>src</code> des objets images sont affect&eacute;s aux fichiers image souhait&eacute;s. Ce travail pr&eacute;alable avec l'objet image n'est &agrave; vrai dire pas absolument indispensable, mais il pr&eacute;sente l'avantage que les deux images concern&eacute;es sont d&eacute;j&agrave; dans la m&eacute;moire de travail quand l'encha&icirc;nement commence.</p>
+
+<p>Dans la  fonction <code>changement_image()</code> se fait ensuite l'encha&icirc;nement proprement dit. Cette fonction est appel&eacute;e quand l'utilisateur clique sur l'image. Pour cela est not&eacute; dans le rep&egrave;re <code>&lt;img&gt;</code> le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../javascript/langage/gestevenements.htm"><b>gestionnaire d'&eacute;v&eacute;nement</b></a> <code>onClick=</code>.</p>
+
+<p>Dans la fonction <code>changement_image()</code> est d'abord appel&eacute;e la m&eacute;thode <code>Apply()</code> du filtre blendTrans. Cet appel est n&eacute;cessaire pour identifier l'objet qui doit remplacer l'autre. Dans l'exemple, c'est le graphique adress&eacute; par l'objet all et le nom attribu&eacute; <code>Madrid</code>. Comme instruction suivante est assign&eacute; au graphique le nouveau graphique par lequel il doit &ecirc;tre remplac&eacute;. Ce n'est qu'ensuite que toutes les conditions sont remplies pour commencer l'encha&icirc;nement proprement dit. Pour ce faire, la m&eacute;thode <code>Play()</code> de l'objet filtre est utilis&eacute;e.</p>
+
+<p>La variable <code>image</code> et l'embranchement else de la fonction en exemple servent &agrave; assurer l'effet de changement. Gr&acirc;ce aux commandes d&eacute;crites, l'encha&icirc;nement a lieu exactement une fois.</p>
+
+<p>L'effet d'encha&icirc;nement n'est pas seulement possible pour les graphiques mais aussi pour le texte.</p>
+
+<h3 class="xmp">Exemple pour le texte:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/honorepas.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script language=&quot;JScript&quot; type=&quot;text/jscript&quot;&gt;
+&lt;!--
+var texte_normal = &quot;Celui qui ne respecte pas HTML&quot;;
+var autre_texte = &quot;n'est pas digne du dynamique&quot;;
+var Text = 1;
+function changement() {
+ if (Text == 1) {
+  Text = 2;
+  document.all.mon_texte.filters.blendTrans.Apply();
+  document.all.mon_texte.innerText = autre_texte;
+  document.all.mon_texte.filters.blendTrans.Play();
+ }
+ else {
+  Text = 1;
+  document.all.mon_texte.filters.blendTrans.Apply();
+  document.all.mon_texte.innerText = texte_normal;
+  document.all.mon_texte.filters.blendTrans.Play();
+ }
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;p&gt;Cliquez sur le texte qui suit:&lt;/p&gt;
+
+&lt;div id=&quot;mon_texte&quot; style=&quot;cursor:hand; font-size:32pt; color:red; width:600; height:200; filter:blendTrans(Duration=0.5)&quot; onClick=&quot;changement()&quot;&gt;
+Celui qui ne respecte pas HTML&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Pour du texte, le filtre blendTrans peut &ecirc;tre appliqu&eacute; aux &eacute;l&eacute;ments HTML:<br>
+<code>&lt;body&gt;</code>...<code>&lt;/body&gt;</code><br>
+<code>&lt;div&gt;</code>...<code>&lt;/div&gt;</code><br>
+<code>&lt;span&gt;</code>...<code>&lt;/span&gt;</code><br>
+<code>&lt;input&gt;</code><br>
+<code>&lt;button&gt;</code><br>
+<code>&lt;textarea&gt;</code>...<code>&lt;/textarea&gt;</code><br>
+<code>&lt;marquee&gt;</code>...<code>&lt;/marquee&gt;</code><br>
+comme &agrave; tous les &eacute;l&eacute;ments de tableau. Pour les rep&egrave;res <code>&lt;div&gt;</code>...<code>&lt;/div&gt;</code> et pour <code>&lt;span&gt;</code>...<code>&lt;/span&gt;</code>, vous devez noter des mentions de feuilles de style relatives &agrave; la largeur et &agrave; la hauteur de l'&eacute;l&eacute;ment, faute de quoi cela ne fonctionne pas.</p>
+
+<p>L'exemple ci-dessus est pour l'essentiel semblable &agrave; celui des graphiques, &agrave; la diff&eacute;rence qu'ici est d&eacute;fini un encha&icirc;nement entre deux textes. Le premier texte est d&eacute;fini conform&eacute;ment aux r&egrave;gles dans le corps du fichier HTML avec <code>&lt;div&gt;</code>...<code>&lt;/div&gt;</code>. La r&eacute;alisation du passage entre les deux textes est semblable &agrave; celle pour les graphiques. Au lieu d'utiliser la propri&eacute;t&eacute; <code>src</code> (pour les graphiques) vous devez utiliser pour les textes la propri&eacute;t&eacute; <code>innerText</code> (comme dans l'exemple) ou <code>innerHTML</code>. Ces propri&eacute;t&eacute;s permettent l'&eacute;change dynamique du contenu de l'&eacute;l&eacute;ment HTML adress&eacute;.</p>
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/msjs.gif" width="30" height="30" border="0" alt="MS JScript"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="reveal_trans">Fondus-encha&icirc;n&eacute;s avec le filtre revealTrans</a></h2>
+
+<p>Le filtre revealTrans est tout &agrave; fait similaire dans la manipulation que le  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#reveal_trans"><b>filtre blendTrans</b></a>. Alors que le filtre blendTrans ne permet toutefois qu'un simple encha&icirc;nement d'un contenu &agrave; un autre, le filtre revealTrans met tout un arsenal d'effets graphiques de fondus-encha&icirc;n&eacute;s &agrave; disposition.</p>
+
+
+<h3 class="xmp">Exemple (pour les graphiques):</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/soleilpluie.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;img id=&quot;image_dyna&quot; src=&quot;pluie.gif&quot;
+style=&quot;filter:revealTrans(Duration=2,Transition=12)&quot; width=&quot;150&quot;
+   height=&quot;145&quot; alt=&quot;soleil?&quot;&gt;
+&lt;script language=&quot;JScript&quot; type=&quot;text/jscript&quot;&gt;
+&lt;!--
+ window.setTimeout(&quot;changement()&quot;,5000);
+ function changement()
+ {
+  document.all.image_dyna.filters.revealTrans.Apply();
+  document.all.image_dyna.src = &quot;soleil.gif&quot;;
+  document.all.image_dyna.filters.revealTrans.Play();
+ }
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<p>L' exemple fait en sorte que dans un laps de temps de 5 secondes (5000 milli&egrave;mes de seconde), l'image affich&eacute;e <code>&quot;pluie.gif&quot;</code> soit dispers&eacute;e et remplac&eacute;e par l'image <code>&quot;soleil.gif&quot;</code>.</p>
+
+<h3 class="xmp">Exemple (pour le texte):</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/honorepas2.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;div id=&quot;mon_texte&quot; style=&quot;width:600px; height:100px; font-size:24pt; filter:revealTrans(Duration=1,Transition=7)&quot;&gt;
+Celui qui ne respecte pas HTML
+&lt;/div&gt;
+&lt;script language=&quot;JScript&quot; type=&quot;text/jscript&quot;&gt;
+&lt;!--
+ window.setTimeout(&quot;changement()&quot;,2500);
+ function changement()
+ {
+  document.all.mon_texte.filters.revealTrans.Apply();
+  document.all.mon_texte.innerText = &quot;n'est pas digne du dynamique&quot;;
+  document.all.mon_texte.filters.revealTrans.Play();
+ }
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple fait en sorte que le texte <i>Celui qui ne respecte pas HTML</i>  soit remplac&eacute; apr&egrave;s 2,5 secondes par le texte <i>n'est pas digne du dynamique</i> - et cela de telle fa&ccedil;on que le nouveau texte &quot;recouvre&quot; le premier texte affich&eacute; en venant de la droite.</p>
+
+<p>&Agrave; cet effet, le texte <i>Celui qui ne respecte pas HTML</i>  est d'abord not&eacute; dans un passage <code>&lt;div&gt;</code>. Car le filtre revealTrans est applicable en relation avec du texte sur les &eacute;l&eacute;ments HTML suivants:<br>
+<code>&lt;body&gt;</code>...<code>&lt;/body&gt;</code><br>
+<code>&lt;div&gt;</code>...<code>&lt;/div&gt;</code><br>
+<code>&lt;span&gt;</code>...<code>&lt;/span&gt;</code><br>
+<code>&lt;input&gt;</code><br>
+<code>&lt;button&gt;</code><br>
+<code>&lt;textarea&gt;</code>...<code>&lt;/textarea&gt;</code><br>
+<code>&lt;marquee&gt;</code>...<code>&lt;/marquee&gt;</code><br>
+ainsi que sur tous les &eacute;l&eacute;ments de tableau. Pour <code>&lt;div&gt;</code>...<code>&lt;/div&gt;</code> et pour <code>&lt;span&gt;</code>...<code>&lt;/span&gt;</code>, vous devez noter des mentions de feuilles de style concernant la largeur et la hauteur de l'&eacute;l&eacute;ment faute de quoi, cela ne fonctionne pas. Dans l'exemple ci-dessus, la largeur et la hauteur du passage <code>&lt;div&gt;</code> sont fix&eacute;es avec <code>width:</code> et <code>height:</code>.</p>
+
+<p>D'autre part est not&eacute;e une mention de feuille de style sp&eacute;ciale: le filtre <code>revealTrans(...)</code>. Ce filtre attend deux param&egrave;tres, &agrave; savoir la mention de <code>Duration=</code> et une mention de <code>Transition=</code>. Avec <code>Duration=</code>, vous pouvez mentionner combien de temps doit durer l'encha&icirc;nement du premier texte au second. Dans l'exemple est mentionn&eacute; 0.5 - ce qui veut dire une demi-seconde. Vous pouvez &eacute;galement mentionner des fractions de seconde, jusqu'au milli&egrave;me de seconde, par exemple 2.450 (le signe d&eacute;cimal est un point!).</p>
+
+<p>Pour <code>Transition=</code>, vous mentionnez la fa&ccedil;on dont doit agir le filtre.</p>
+
+<h3 class="xmp">Valeurs possibles pour le filtre revealTrans:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/fonduenchaine.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> ( 24 possibilit&eacute;s pour les texte et le graphique)</p>
+
+
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0">
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left">Notation</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Signification</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Notation</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Signification</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Notation</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Signification</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=0</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet de boite<br>ext&eacute;rieur vers int&eacute;rieur</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=8</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet de rayures<br>de gauche &agrave; droite</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=16</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet d'ouverture
+<br>vers le haut et le bas</td>
+</tr><tr>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=1</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet de boite<br>int&eacute;rieur vers ext&eacute;rieur </td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=9</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet de rayures
+<br>du haut vers le bas</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=17</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet d'enroulement
+ <br>haut/droite vers bas/gauche</td>
+</tr><tr>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=2</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet de cercle
+<br>ext&eacute;rieur vers int&eacute;rieur</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=10</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet de rectangles
+<br>de gauche &agrave; droite</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=18</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet d'enroulement
+<br>bas/droite vers haut/gauche</td>
+</tr><tr>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=3</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet de cercle
+<br>int&eacute;rieur vers ext&eacute;rieur</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=11</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet de rectangles
+<br>du haut vers le bas</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=19</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet d'enroulement
+<br>haut/gauche vers bas/droite</td>
+</tr><tr>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=4</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet d'enroulement
+<br>du bas vers le haut</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=12</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet d'&eacute;miettement <br> dans toutes les directions</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=20</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet d'enroulement
+<br>bas/gauche vers haut/droite</td>
+</tr><tr>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=5</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet d'enroulement
+<br>du haut vers le bas</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=13</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet d'enroulement des 2 c&ocirc;t&eacute;s
+<br>ext&eacute;rieur vers int&eacute;rieur</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=21</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet de stores <br>horizontal</td>
+</tr><tr>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=6</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet d'enroulement
+<br>de gauche &agrave; droite</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=14</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet d'enroulement des 2 c&ocirc;t&eacute;s
+<br>int&eacute;rieur vers ext&eacute;rieur</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=22</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet de stores
+<br>vertical</td>
+</tr><tr>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=7</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet d'enroulement
+<br>de droite &agrave; gauche</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=15</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">effet de fermeture
+<br>de haut en bas</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><code>Transition=23</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">choix al&eacute;atoire <br>d'un des 23 effets pr&eacute;c&eacute;dents</td>
+</tr>
+</table>
+</td></tr></table>
+<br>&nbsp;
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/msjs.gif" width="30" height="30" border="0" alt="MS JScript"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="fondu_enchaine">Fondus encha&icirc;n&eacute;s</a></h2>
+
+<p>Vous pouvez aussi utiliser les deux filtres  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#blend_trans"><b>blendTrans</b></a> et  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#reveal_trans"><b>revealTrans</b></a> pour faire appara&icirc;tre ou dispara&icirc;tre des textes et des graphiques &quot;comme s'ils sortaient du N&eacute;ant&quot;. C'est possible en combinaison avec la mention de feuilles de style <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../css/proprietes/positionnement.htm#visibility"><b>visibility (Affichage ou non affichage avec r&eacute;servation de place)</b></a>.</p>
+
+<h3 class="xmp">Exemple pour le texte:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/vaetvient.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;div id=&quot;texte_arrive&quot; style=&quot;width:400px; height:100px; font-size:24pt; font-weight:bold; color:#0000FF; visibility:hidden; filter:blendTrans(Duration=4)&quot;&gt;
+Ici le texte arrive
+&lt;/div&gt;
+&lt;script language=&quot;JScript&quot; type=&quot;text/jscript&quot;&gt;
+&lt;!--
+  document.all.texte_arrive.filters.blendTrans.Apply();
+  document.all.texte_arrive.style.visibility = &quot;visible&quot;;
+  document.all.texte_arrive.filters.blendTrans.Play();
+//--&gt;
+&lt;/script&gt;
+
+&lt;div id=&quot;texte_va&quot; style=&quot;width:400px; height:100px; font-size:24pt; font-weight:bold; color:#0000FF;
+visibility:visible; filter:blendTrans(Duration=4)&quot;&gt;
+Ici le texte part
+&lt;/div&gt;
+&lt;script language=&quot;JScript&quot; type=&quot;text/jscript&quot;&gt;
+&lt;!--
+  document.all.texte_va.filters.blendTrans.Apply();
+  document.all.texte_va.style.visibility = &quot;hidden&quot;;
+  document.all.texte_va.filters.blendTrans.Play();
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple ci-dessus ont &eacute;t&eacute; d&eacute;finis deux passages <code>&lt;div&gt;</code> avec du texte. Ces deux passages re&ccedil;oivent chacun un nom avec la mention <code>id</code>, de fa&ccedil;on &agrave; ce que l'on puisse les adresser avec un script. L'un des passages re&ccedil;oit le nom <code>texte_arrive</code>, l'autre le nom <code>texte_va</code>. Les deux passages re&ccedil;oivent aussi, &agrave; l'aide de la mention de feuilles de style <code>visibility</code>, une mention sp&eacute;cifiant s'ils doivent d'abord &ecirc;tre montr&eacute;s ou non. La mention <code>visibility:hidden</code> dans le premier des deux passages <code>&lt;div&gt;</code> fait en sorte que ce passage ne soit tout d'abord pas montr&eacute;. En revanche figure dans le deuxi&egrave;me passage la mention de feuilles de style <code>visibility:visible</code>. Ainsi, le texte correspondant sera montr&eacute; &agrave; l'affichage du fichier. Dans les deux passages <code>&lt;div&gt;</code> est en outre not&eacute; le filtre blendTrans.</p>
+
+<p>En dessous de chaque passage <code>&lt;div&gt;</code> est not&eacute; un script qui ex&eacute;cute le filtre blendTrans correspondant. Cela fonctionne exactement comme pour les  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#blend_trans"><b>fondus-encha&icirc;n&eacute;s avec le filtre blendTrans</b></a>. La diff&eacute;rence r&eacute;side en r&eacute;alit&eacute; dans le fait qu'entre l'appel des m&eacute;thodes <code>Apply()</code> et <code>Play()</code>, aucun autre texte n'est affect&eacute; au passage <code>&lt;div&gt;</code> concern&eacute;, mais au contraire une nouvelle valeur pour <code>visibility</code>. Le passage qui a d'abord re&ccedil;u <code>visibility:hidden</code> devient visible dans le script avec l'instruction <code>document.all.texte_arrive.style.visibility = &quot;visible&quot;</code>. &Eacute;tant donn&eacute; que le changement entre invisible et visible est incorpor&eacute; dans le filtre blendTrans, le texte n'est pas imm&eacute;diatement visible, mais ne le devient que par l'ex&eacute;cution du filtre blendTrans.<br>
+Il se passe la m&ecirc;me chose avec le deuxi&egrave;me texte, mais dans le sens inverse.</p>
+
+<h3 class="xmp">Exemple pour les graphiques:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/madrid2.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;p&gt;&lt;a id=&quot;allume&quot; style=&quot;display:inline&quot; href=&quot;javascript:apparition()&quot;&gt;faire appara�tre le graphique&lt;/a&gt;&lt;br&gt;
+&lt;a id=&quot;eteint&quot; style=&quot;display:none&quot; href=&quot;javascript:disparition()&quot;&gt;faire dispara�tre le graphique&lt;/a&gt;&lt;/p&gt;
+&lt;img id=&quot;image&quot; src=&quot;madrid1.jpg&quot; style=&quot;visibility:hidden; filter:revealTrans(Duration=4, Transition=1)&quot; width=&quot;433&quot; height=&quot;278&quot; alt=&quot;Madrid&quot;&gt;
+&lt;script language=&quot;JScript&quot; type=&quot;text/jscript&quot;&gt;
+&lt;!--
+  function apparition()
+  {
+   document.all.image.filters.revealTrans.Transition = 1;
+   document.all.image.filters.revealTrans.Apply();
+   document.all.image.style.visibility = &quot;visible&quot;;
+   document.all.image.filters.revealTrans.Play();
+   document.all.allume.style.display = &quot;none&quot;;
+   document.all.eteint.style.display = &quot;inline&quot;;
+  }
+  function disparition()
+  {
+   document.all.image.filters.revealTrans.Transition = 0;
+   document.all.image.filters.revealTrans.Apply();
+   document.all.image.style.visibility = &quot;hidden&quot;;
+   document.all.image.filters.revealTrans.Play();
+   document.all.allume.style.display = &quot;inline&quot;;
+   document.all.eteint.style.display = &quot;none&quot;;
+  }
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Cet exemple contient d'abord deux liens. Les deux liens appellent chacun une fonction JavaScript. L'un des liens appelle la fonction <code>apparition()</code> pour faire appara&icirc;tre le graphique et l'autre lien la fonction <code>disparition()</code> pour faire dispara&icirc;tre ce m&ecirc;me graphique. Les deux liens contiennent &eacute;galement des mentions de feuilles de style concernant l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../css/proprietes/positionnement.htm#display"><b> visibility (Affichage ou non affichage avec r&eacute;servation de place)</b></a>. Le premier lien est d'abord affich&eacute;, le deuxi&egrave;me non. Les mentions sont modifi&eacute;es de fa&ccedil;on dynamique dans les deux fonctions script <code>apparition()</code> et <code>disparition()</code>. Ainsi est rendu possible l'affichage du lien <code>faire appara&icirc;tre le graphique</code> quand le graphique n'est pas affich&eacute; et l'affichage du lien <code>faire dispara&icirc;tre le graphique</code>, quand le graphique est affich&eacute;.</p>
+
+<p>Sous les liens est not&eacute; le graphique qui doit appara&icirc;tre et dispara&icirc;tre. Par la mention de feuilles de style <code>visibility:hidden</code> l'affichage du graphique est emp&ecirc;ch&eacute; dans un premier temps. En outre le graphique re&ccedil;oit une mention concernant le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#reveal_trans"><b>filtre revealTrans()</b></a>. Si maintenant l'utilisateur clique sur le lien d'abord affich&eacute; <code>faire appara&icirc;tre le graphique</code>, la fonction script <code>apparition()</code> est appel&eacute;e. Cette fonction modifie, entre l'appel de <code>Apply()</code> et de <code>Play()</code> du filtre revealTrans(), l'affichage du graphique &agrave; faire appara&icirc;tre sur: <code>visible</code>. Le filtre est ex&eacute;cut&eacute;, et le graphique appara&icirc;t avec le fondu-encha&icirc;n&eacute; prescrit (<code>transition = 1</code>). De plus, la fonction <code>apparition()</code> &eacute;change encore les attributs d'affichage des deux liens de fa&ccedil;on &agrave; ce que le lien pour faire dispara&icirc;tre le graphique soit maintenant affich&eacute;.</p>
+
+<p>La fonction <code>disparition()</code> fait la m&ecirc;me chose mais dans le sens inverse. L&agrave;, la fa&ccedil;on d'agir du filtre revealTrans est invers&eacute;e &agrave; savoir par <code>transition = 0</code>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x">&nbsp;<a class="an" name="transition_pages">Fondus encha&icirc;n&eacute;s de pages Web</a></h2>
+
+<p>Enfin, la cerise sur le g&acirc;teau:  Microsoft a encore pens&eacute; &agrave; interpr&eacute;ter les deux filtres <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#blend_trans"><b>blendTrans</b></a> et
+<img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#reveal_trans"><b>revealTrans</b></a> en relation avec les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/entete/meta.htm"><b>Mentions Meta concernant le contenu</b></a>. De cette fa&ccedil;on, le fondu encha&icirc;n&eacute; entre pages Web est rendu possible.</p>
+
+<h3 class="xmp">Exemple- fichier <var>transition1.htm</var>:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/transition1.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;meta http-equiv=&quot;Page-Exit&quot; content=&quot;RevealTrans(Duration=3,Transition=12)&quot;&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;#000000&quot; text=&quot;#FFFFFF&quot; link=&quot;#FFFF66&quot; vlink=&quot;#FFFF66&quot; alink=&quot;#FFFFFF&quot;&gt;
+&lt;h1&gt;Voici la page 1&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;madrid1.jpg&quot; width=&quot;433&quot; height=&quot;278&quot; border=&quot;0&quot; alt=&quot;une image&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;transition2.htm&quot;&gt;et un lien � la page 2&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xmp">Exemple - fichier <var>transition2.htm</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;meta http-equiv=&quot;Page-Enter&quot; content=&quot;RevealTrans(Duration=3,Transition=12)&quot;&gt;
+&lt;meta http-equiv=&quot;Page-Exit&quot; content=&quot;RevealTrans(Duration=3,Transition=12)&quot;&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;#000000&quot; text=&quot;#FFFFFF&quot; link=&quot;#FFFF66&quot; vlink=&quot;#FFFF66&quot; alink=&quot;#FFFFFF&quot;&gt;
+&lt;h1&gt;Et voici la page 2&lt;/h1&gt;
+&lt;p&gt;Elle est un tout petit peu diff�rente mais pas de beaucoup.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;madrid2.jpg&quot; width=&quot;433&quot; height=&quot;278&quot; border=&quot;0&quot; alt=&quot;ein Bild&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;transition1.htm&quot;&gt;et ceci est un lien pour retourner � la page 1&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>&lt;meta http-equiv=&quot;Page-Exit&quot;...</code> vous pr&eacute;cisez un filtre qui est appliqu&eacute; lorsque la page est quitt&eacute;e, et avec <code>&lt;meta http-equiv=&quot;Page-Enter&quot;...</code> un filtre qui est appliqu&eacute; lorsque la page est charg&eacute;e. Pour <code>content=</code> notez <code>RevealTrans</code> ou bien <code>BlendTrans</code> suivi entre parenth&egrave;ses des mentions d&eacute;sir&eacute;es pour <code>Duration=</code> et  - pour le filtre <code>RevealTrans</code> - pour <code>Transition=</code>. Dans l'exemple ci-dessus, le filtre <code>RevealTrans</code> est utilis&eacute; pour tous les cas dans les deux fichiers avec <code>Transition=12</code>.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Dans l'Explorer Internet MS  5.0 l'exemple ci-dessus ne pouvait &ecirc;tre retrac&eacute;.</p>
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="../exemples/bibliotheque_dhtml.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../exemples/bibliotheque_dhtml.htm"><b>Biblioth&egrave;que DHTML g&eacute;n&eacute;rale</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="liaisondonnees.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="liaisondonnees.htm"><b>Liaison de donn&eacute;es (seulement Microsoft)</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>HTML dynamique</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Les diff&eacute;rents mod&egrave;les DHTML</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

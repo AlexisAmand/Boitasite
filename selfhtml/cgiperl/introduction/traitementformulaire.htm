@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / Introduction / Formulaires HTML et CGI</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="La relarion entre un formulaire HTML et un script CGI qui traite les donn&eacute;es du formulaire.">
+<meta name="keywords"       content="SELFHTML, CGI, HTML, formulaires, www-form-url-encoded, GET, POST">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/introduction/traitementformulaire.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // Introduction == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Introduction</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Formulaires HTML et CGI</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#get_post"><b>Transmettre des donn&eacute;es de formulaires avec GET ou POST</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#flux_donnees"><b>Flux de donn&eacute;es lors de la transmission de donn&eacute;es de formulaire</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="get_post">Transmettre des donn&eacute;es de formulaires avec GET ou POST</a></h2>
+
+<p>L' Hypertext Transfer Protocol (HTTP) est le protocole de transmission avec lequel le navigateur Web et le serveur Web &eacute;changent des donn&eacute;es. Pour cela existent des commandes HTTP. Deux commandes HTTP sont significatives dans le contexte de la transmission de donn&eacute;es de formulaire:</p>
+
+<ul>
+<li><code>GET</code><br>
+Cette commande est impos&eacute;e par la mention, dans un formulaire HTML, de <code>method=&quot;get&quot;</code> dans le rep&egrave;re d'ouverture <code>&lt;form&gt;</code>. Avec cette mention les donn&eacute;es du formulaire rempli sont d'abord transmises au logiciel du serveur et sauvegard&eacute;es par celui-ci dans une variable d'environnement d&eacute;termin&eacute;e nomm&eacute;e <code>QUERY_STRING</code>. Un script CGI qui est appel&eacute; par la mention <code>action=</code> dans le rep&egrave;re d'ouverture du formulaire doit lire le contenu de cette variable d'environnement pour acc&eacute;der aux donn&eacute;es du formulaire (voir aussi la partie sur les  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="variablesenvironnement.htm"><b>variables d'environnement CGI</b></a>). En Perl c'est par exemple possible avec une instruction comme <code>$form_donnees = $ENV{'QUERY_STRING'};</code>. Si un formulaire HTML utilise la m&eacute;thode GET, le flux de donn&eacute;es du formulaire est accroch&eacute;, s&eacute;par&eacute; par un point d'interrogation, directement derri&egrave;re l'adresse URI de l'appel de programme CGI. Dans le navigateur Web de l'utilisateur, cela est visible dans la barre d'adresse URI apr&egrave;s l'envoi du formulaire.</li>
+<li><code>POST</code><br>
+Cette commande est impos&eacute;e par la mention, dans un formulaire HTML, de <code>method=&quot;post&quot;</code> dans le rep&egrave;re d'ouverture <code>&lt;form&gt;</code>. La mention fait en sorte que les donn&eacute;es du formulaire rempli soient transmises directement &agrave; l'adresse mentionn&eacute;e avec <code>action=</code>. Un script CGI qui est appel&eacute; par la mention <code>action=</code> doit lire la saisie standard pour acc&eacute;der aux donn&eacute;es du formulaire. En Perl, c'est par exemple possible avec une instruction comme <code>read(STDIN, my $Donn&eacute;es, $ENV{CONTENT_LENGTH});</code>. Pensez en le faisant que le programme doit lire la variable d'environnement <code>CONTENT_LENGTH</code> pour rechercher combien de signes doivent &ecirc;tre lus de l'entr&eacute;e standard. C'est indispensable, &eacute;tant donn&eacute; que le flux de donn&eacute;es transmises ne comporte pas de signe de fin de donn&eacute;es!</li>
+</ul>
+
+<p>Si vous voulez mettre en oeuvre un script CGI existant, vous devez savoir d'apr&egrave;s laquelle des deux m&eacute;thodes le script concern&eacute; attend les donn&eacute;es. Normalement, ceci est document&eacute; par l'auteur du script CGI. Certains scripts sont assez intelligents pour v&eacute;rifier les deux possibilit&eacute;s: dans ce cas, peu importe la m&eacute;thode de transmission que vous avez choisie dans le formulaire HTML. Si vous &eacute;crivez vos propres scripts, vous devez fixer la m&eacute;thode de transmission ou bien &eacute;galement programmer de fa&ccedil;on suffisamment intelligente pour que la m&eacute;thode mentionn&eacute;e dans le formulaire HTML soit sans importance.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="flux_donnees">Flux de donn&eacute;es lors de la transmission de donn&eacute;es de formulaire</a></h2>
+
+<p>Un formulaire HTML typique est constitu&eacute; de champs nomm&eacute;s (par exemple pour le nom, l'adresse, et le texte de commentaire). Lors de la transmission d'un formulaire rempli &agrave; l'ordinateur serveur ou &agrave; un programme CGI, les donn&eacute;es doivent &ecirc;tre transmises de telle fa&ccedil;on que le script CGI puisse reconna&icirc;tre de quels champs de saisie le formulaire est constitu&eacute;, et quelles donn&eacute;es l'utilisateur a entr&eacute;es dans quel champ. C'est pourquoi il existe une m&eacute;thode de codage particuli&egrave;re qui s&eacute;pare les champs de formulaire de leurs donn&eacute;es. Cette m&eacute;thode de codage utilise les r&egrave;gles suivantes:</p>
+<ul>
+<li>Les &eacute;l&eacute;ments de formulaire distincts y compris leurs donn&eacute;es sont s&eacute;par&eacute;s les uns des autres par le & commercial (<code>&amp;</code>).</li>
+<li>Le nom et les donn&eacute;es d'un &eacute;l&eacute;ment de formulaire sont s&eacute;par&eacute;s les uns des autres par un signe =  (<code>=</code>).</li>
+<li>Les espaces dans les donn&eacute;es entr&eacute;es (par exemple pour plusieurs mots) sont remplac&eacute;s par un signe plus (<code>+</code>).</li>
+<li>Tous les signes dont les valeurs ASCII sont comprises entre 128 et 255 (hexad&eacute;cimal de 80 &agrave; FF) sont transform&eacute;s en suite de signes hexad&eacute;cimaux introduite par le signe de pourcentage (<code>%</code>) suivi de la valeur hexad&eacute;cimale du signe (par exemple le <code>&ccedil;</code> fran&ccedil;ais est remplac&eacute;  dans le jeu de caract&egrave;res ISO-8859-1 par <code>%87</code>) .</li>
+<li>Tous les signes qui d'apr&egrave;s ces r&egrave;gles apparaissent comme signes de contr&ocirc;le (donc &, +, = et %) sont &eacute;galement transform&eacute;s en hexad&eacute;cimal, exactement comme les caract&egrave;res ASCII de valeur &eacute;lev&eacute;e.</li>
+</ul>
+<p>L'exemple suivant montre dans un premier temps le texte source HTML d'un formulaire HTML et au dessous une image de l'aspect du formulaire dans le navigateur Web avec les saisies de l'utilisateur. Sous l'image, vous voyez &agrave; quoi ressemble le flux de donn&eacute;es d'un formulaire d'apr&egrave;s les r&egrave;gles de codage et apr&egrave;s que l'utilisateur ait envoy&eacute; le formulaire.</p>
+
+<h3 class="xmp">Exemple: formulaire HTML (HTML-texte source)</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;form action=&quot;/cgi-bin/comments.pl&quot; method=&quot;post&quot;&gt;
+&lt;p&gt;Name:&lt;br&gt;
+&lt;input name=&quot;nom_utilisateur&quot; size=&quot;40&quot;&gt;&lt;/p&gt;
+&lt;p&gt;E-Mail:&lt;br&gt;
+&lt;input name=&quot;courriel_utilisateur&quot; size=&quot;40&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Text:&lt;br&gt;
+&lt;textarea name=&quot;Texte&quot; rows=&quot;5&quot; cols=&quot;50&quot;&gt;&lt;/textarea&gt;&lt;/p&gt;
+&lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;envoyer les donn�es du formulaire&quot;&gt;&lt;/p&gt;
+&lt;/form&gt;
+</pre></td></tr></table>
+
+<h3 class="xmp">Exemple: image du formulaire HTML dans le navigateur Web avec les saisies de l'utilisateur</h3>
+
+<p><img src="formulaire.gif" width="435" height="283" border="0" alt="formulaire"></p>
+
+<h3 class="xmp">Exemple: flux de donn&eacute;es du formulaire sur la base de ces saisies</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+nomutilisateur=Stefan+M%FCnz&amp;courriel_utilisateur=selfhtml@teamone.de&amp;texte=ceci+est+un+petit+texte
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>C'est ainsi que le navigateur Web code les donn&eacute;es du formulaire lors de l'envoi du formulaire. Cette cha&icirc;ne de caract&egrave;res est transmise avec l'une des m&eacute;thodes permises POST ou GET au script CGI appel&eacute;. Le script CGI peut, en connaissance des r&egrave;gles de codage, d&eacute;cortiquer ce flux de donn&eacute;es pour le traiter par exemple champ par champ. Il y a une m&eacute;thode plus &eacute;l&eacute;gante qui consiste &agrave; confier cela &agrave; un module Perl qui se chargera de ce travail - le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/cgi.htm"><b>module CGI</b></a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="../langage/intro.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../langage/intro.htm"><b>G&eacute;n&eacute;ralit&eacute;s sur les scripts Perl</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="ssi.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="ssi.htm"><b>Server Side Includes en HTML</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Introduction</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

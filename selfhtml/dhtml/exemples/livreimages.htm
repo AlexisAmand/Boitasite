@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: HTML dynamique / Solutions pour la pratique / Livre d'images &agrave; feuilleter</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment r&eacute;aliser avec HTML dynamique un livre d'images simple qui donne l'impression qu'il est feuillet&eacute;.">
+<meta name="keywords"       content="SELFHTML, HTML dynamique, Dynamic HTML, DHTML, Document Object Model, DOM, mod&egrave;le DOM, livre d'images, effet de transition, encha&icirc;nement d'images">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/dhtml/exemples/livreimages.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // HTML dynamique == ../index.htm // Solutions pour la pratique == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>HTML dynamique</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Solutions pour la pratique</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Livre d'images &agrave; feuilleter</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#remarques"><b>Remarques sur cet exemple</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#texte_source"><b>Texte source avec explications</b></a><br>
+</p>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/livreimages.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="remarques">Remarques sur cet exemple</a></h2>
+
+<p>Il y a des pages sur lesquelles vos visiteurs veulent voir des images. Si par exemple, vous discourez sur une ville ou sur un pays ou sur une r&eacute;union entre amis, les visiteurs d&eacute;sireront en voir des images. L'exemple pr&eacute;sent&eacute; ici montre comment il est possible de pr&eacute;senter de telles images de fa&ccedil;on diff&eacute;rente. Sans faire d&eacute;filer beaucoup et sans devoir appeler d'autres pages, l'utilisateur peur feuilleter les images disponibles vers l'avant ou vers l'arri&egrave;re. Pour que la construction de l'image sorte de l'ordinaire, une esp&egrave;ce &quot;d'effet de rideau&quot; a &eacute;t&eacute; int&eacute;gr&eacute;. Les images ne sont pas simplement affich&eacute;es mais &quot;d&eacute;voil&eacute;es&quot;.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="texte_source">Texte source avec explications</a></h2>
+
+<p>L'exemple montre un fichier HTML complet avec le livre d'images.</p>
+
+<p>Le fichier <code>dhtml.js</code>, qui contient les fonctions de la biblioth&egrave;que DHTML  doit &ecirc;tre doit &ecirc;tre disponible et se trouver dans l'exemple, dans le m&ecirc;me r&eacute;pertoire que le fichier HTML.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/livreimages.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (<img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/dhtml.htm" target="_blank"><b>biblioth&egrave;que DHTML</b></a>)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;dhtml.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var image = new Array();
+image[0] = new Image(); image[0].src=&quot;livreimages01.gif&quot;;
+image[1] = new Image(); image[1].src=&quot;livreimages02.gif&quot;;
+image[2] = new Image(); image[2].src=&quot;livreimages03.gif&quot;;
+image[3] = new Image(); image[3].src=&quot;livreimages04.gif&quot;;
+image[4] = new Image(); image[4].src=&quot;livreimages05.gif&quot;;
+
+var affiche = 0;
+var largeur = 300;
+var largeur_actuelle = 0;
+var ampleur_pas = 6;
+var delai_pas = 1;
+
+function feuilleter(direction) {
+ affiche = affiche + direction;
+ if(affiche &gt; image.length - 1) affiche = 0;
+ else if(affiche &lt; 0) affiche = image.length - 1;
+ if(DOM || MS)
+   getElem(&quot;id&quot;,&quot;passage_image&quot;,null).style.clip=&quot;rect(0 0 225 0)&quot;;
+ if(DOM &amp;&amp; !MS &amp;&amp; !OP) {
+   var img = document.createElement(&quot;img&quot;);
+   var src = document.createAttribute(&quot;src&quot;);
+   src.nodeValue = image[affiche].src;
+   img.setAttributeNode(src);
+   getElem(&quot;id&quot;,&quot;passage_image&quot;,null).replaceChild(img, getElem(&quot;id&quot;,&quot;passage_image&quot;,null).firstChild);
+ }
+ else if(MS) {
+   document.all.passage_image.innerHTML = &quot;&lt;img src=\&quot;&quot; + image[affiche].src + &quot;\&quot;&gt;&quot;;
+ }
+ else if(NS) {
+   getElem(&quot;index&quot;,0,null).visibility = &quot;hide&quot;;
+   setCont(&quot;index&quot;,0,null,&quot;&lt;img src=\&quot;&quot; + image[affiche].src + &quot;\&quot;&gt;&quot;);
+   getElem(&quot;index&quot;,0,null).clip.right = 0;
+   getElem(&quot;index&quot;,0,null).visibility = &quot;show&quot;;
+ }
+ construire_image();
+}
+
+function construire_image() {
+ if(largeur_actuelle &lt;= largeur) {
+  if(DOM || MS &amp;&amp; !OP)
+    getElem(&quot;id&quot;,&quot;passage_image&quot;,null).style.clip=&quot;rect(0 &quot;+ largeur_actuelle +&quot; 225 0)&quot;;
+  else if(NS)
+    getElem(&quot;index&quot;,0,null).clip.right = largeur_actuelle;
+  largeur_actuelle = largeur_actuelle + ampleur_pas;
+  window.setTimeout(&quot;construire_image()&quot;, delai_pas);
+ }
+ else {
+  largeur_actuelle = 0;
+  if(DOM || MS)
+    getElem(&quot;id&quot;,&quot;passage_image&quot;,null).style.clip=&quot;rect(0 &quot;+ largeur +&quot; 225 0)&quot;;
+  else if(document.layers)
+    getElem(&quot;index&quot;,0,null).clip.right = largeur;
+ }
+}
+
+function initialiser_page() {
+ if(DOM && !MS && !OP) {
+   img = document.createElement(&quot;img&quot;);
+   var src = document.createAttribute(&quot;src&quot;);
+   src.nodeValue = image[0].src;
+   img.setAttributeNode(src);
+   getElem(&quot;id&quot;,&quot;passage_image&quot;,null).appendChild(img);
+ }
+ else if(document.all)
+   document.all.passage_image.innerHTML = &quot;&lt;img src=\&quot;&quot; + image[0].src + &quot;\&quot;&gt;&quot;;
+ else if(NS)
+   setCont(&quot;index&quot;,0,null,&quot;&lt;img src=\&quot;&quot; + image[0].src + &quot;\&quot;&gt;&quot;);
+}
+//--&gt;
+&lt;/script&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+&lt;!--
+#passage_image {
+ position:absolute; left:10px; top:140px; padding:0px; clip:rect(0 300 225 0); visibility:show; }
+#passage_navigation {
+position:absolute; left:320; top:140; width:100; font-size:18pt; }
+ --&gt;
+&lt;/style&gt;
+
+&lt;/head&gt;
+&lt;body bgcolor=&quot;#FFFFFF&quot; onLoad=&quot;initialiser_page()&quot;&gt;
+
+&lt;div id=&quot;passage_image&quot;&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;passage_navigation&quot;&gt;
+[&lt;a href=&quot;javascript:feuilleter(-1)&quot;&gt;&lt;b&gt;&lt;&lt;&lt;/b&gt;&lt;/a&gt;]
+[&lt;a href=&quot;javascript:feuilleter(1)&quot;&gt;&lt;b&gt;&gt;&gt;&lt;/b&gt;&lt;/a&gt;]
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans le corps du fichier HTML de l'exemple, deux passages  <code>div</code> sont d&eacute;finis. Le premier passage est <code>&lt;div&gt;</code> con&ccedil;u pour l'affichage du graphique actuel. Le deuxi&egrave;me passage contient les liens permettant &agrave; l'utilisateur de feuilleter parmi les graphiques vers l'avant ou vers l'arri&egrave;re. Les deux passages sont positionn&eacute;s de fa&ccedil;on absolue &agrave; l'aide de propri&eacute;t&eacute;s CSS correspondantes. Les d&eacute;finitions CSS correspondantes figurent dans un passage <code>style</code> de l'ent&ecirc;te de fichier et se r&eacute;f&egrave;rent aux noms Id des passages.</p>
+
+<p>Le fichier d'exemple contient en outre deux passages JavaScript dans l'ent&ecirc;te de fichier. Dans le premier passage JavaScript vide est incorpor&eacute;e la biblioth&egrave;que de fonctions. Dans le rep&egrave;re d'ouverture  <code>&lt;body&gt;</code> est appel&eacute;e comme d'habitude la fonction <code>DHTML_init()</code> de la biblioth&egrave;que DHTML incorpor&eacute;e pour initialiser celle-ci. En outre, la fonction <code>initialiser_page()</code>, not&eacute;e dans le passage JavaScript de l'ent&ecirc;te de fichier, est appel&eacute;e. Cette fonction fait en sorte que la premi&egrave;re image soit affich&eacute;e.</p>
+
+<p>Pour que l'exemple du livre d'images &agrave; feuilleter fonctionne proprement, il e passe toutefois d&eacute;j&agrave; quelque chose avant. D&egrave;s la lecture du fichier, donc hors de toute fonction, Le code JavaScript not&eacute; au d&eacute;but du deuxi&egrave;me passage JavaScript est ex&eacute;cut&eacute;. L&agrave; tous les graphiques qui doivent &ecirc;tre affich&eacute;s quand le livre est feuillet&eacute;, sont d&eacute;j&agrave; lus. Car ce n'est que si les graphiques se trouvent d&eacute;j&agrave; &agrave; cet instant dans la m&eacute;moire de travail, qu'il n'y aura pas de probl&egrave;me de synchronisation. &Agrave; cet effet est mis en &#339;uvre l'objet JavaScript <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../javascript/objets/images.htm"><b>images</b></a> . D'abord est cr&eacute;&eacute; un nouveau  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../javascript/objets/array.htm"><b>tableau</b></a> vide. Ensuite, le tableau est rempli d'objets graphiques. Le fichier graphique d&eacute;sir&eacute; est affect&eacute; par la propri&eacute;t&eacute; <code>src</code>,  &agrave; l'objet  <code>Image</code> respectif cr&eacute;&eacute; &agrave; cet effet.</p>
+
+<p>Enfin sont encore d&eacute;finies quelques variables globales qui seront n&eacute;cessaires plus tard.</p>
+
+<p>La fonction  <code>initialiser_page()</code> affiche ensuite, apr&egrave;s son appel, le premier graphique dans le passage d'affichage pr&eacute;vu. Ici encore bien du travail de diff&eacute;renciation est n&eacute;cessaire, pour servir les diff&eacute;rents navigateurs et leurs mod&egrave;les DHTML. Le mod&egrave;le DOM ne peut dans ce cas provisoirement pas encore &ecirc;tre appliqu&eacute; pour l'Explorer Internet, &eacute;tant donn&eacute; que celui-ci ne soutient pas encore tout au moins dans sa version 5.x, la cr&eacute;ation de n&#339;uds attributs d'apr&egrave;s la syntaxe du mod&egrave;le DOM. Avec la requ&ecirc;te <code>if(DOM&nbsp;&amp;&amp;&nbsp;!MS&nbsp;&amp;&amp;&nbsp;!OP)</code> L'Explorer Internet mais aussi Opera sont exclus du traitement d'apr&egrave;s le mod&egrave;le DOM. Seul Netscape 6.x est concern&eacute; par ce passage. L&agrave; est cr&eacute;&eacute; et arrang&eacute; le code HTML pour la nouvelle image avec les fonctions <code>createElement()</code> et <code>createAttribute()</code> de l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../javascript/objets/document.htm"><b>document</b></a> . L'Explorer Internet par contre aboutit dans l'embranchement qui commence par <code>else&nbsp;if(MS)</code>. L&agrave;, il est fait usage de la m&eacute;thode pratique <code>innerHTML</code> de l'objet <code>all</code>, pour arranger le code HTML souhait&eacute;. Enfin, il reste encore Netscape 4.x qui aboutit dans l'embranchement <code>else&nbsp;if(NS)</code> et qui re&ccedil;oit le graphique reconstitu&eacute; avec la fonction <code>setCont()</code> de la biblioth&egrave;que DHTML. Vous pouvez voir clairement &agrave; cet exemple, &agrave; quel point la distinction entre les navigateurs et les mod&egrave;les DHTML est souvent p&eacute;nible. Vous pouvez voir par ailleurs que le mod&egrave;le DOM avec tous ses avantages est quelquefois aussi d'un usage tr&egrave;s compliqu&eacute;. Une m&eacute;thode comme <code>innerHTML</code> de l'objet <code>all</code> n'existe pas dans le mod&egrave;le DOM parce qu'avec ce mod&egrave;le, les nouveaux n&#339;uds doivent &ecirc;tre cr&eacute;&eacute;s et form&eacute;s strictement d'apr&egrave;s les r&egrave;gles du langage de marquage. Actuellement Opera n'est pas encore en mesure de modifier des contenus de fa&ccedil;on dynamique et est ici compl&egrave;tement exclus.</p>
+
+<p>Feuilleter entre les diff&eacute;rents graphiques est provoqu&eacute; par les deux liens du deuxi&egrave;me passage <code>div</code>. Les deux liens appellent la m&ecirc;me fonction nomm&eacute;e <code>feuilleter()</code> en lui transmettant cependant des param&egrave;tres diff&eacute;rents. Le lien vers la page suivante transmet <code>1</code>, le lien vers la page pr&eacute;c&eacute;dente <code>-1</code>. Par ce biais, la fonction <code>feuilleter()</code> peut utiliser ce param&egrave;tre d'embl&eacute;e pour g&eacute;rer la lecture.</p>
+
+<p>La fonction <code>feuilleter()</code> demande d'abord si soit la premi&egrave;re image, soit la derni&egrave;re image de la s&eacute;rie est atteinte et fixe &agrave; nouveau dans l'affirmative la derni&egrave;re ou la premi&egrave;re image comme &eacute;tant celle &agrave; afficher. On parvient ainsi &agrave; un effet sans fin pour l'utilisateur qui feuillette. Enfin le contenu du passage d'affichage pour l'image est r&eacute;&eacute;crit pour la nouvelle image et cela avec la nouvelle image. Ici &agrave; nouveau, il faut faire cette distinction p&eacute;nible entre les propri&eacute;t&eacute;s des navigateurs comme dans la fonction <code>initialiser_page()</code>. &Agrave; la fin est ensuite appel&eacute;e la fonction <code>construire_image()</code>.</p>
+
+<p>La fonction <code>construire_image()</code> est responsable, lors de l'affichage du nouveau graphique, de l'effet de d&eacute;roulement dynamique. Pour ce faire la propri&eacute;t&eacute; CSS <code>clip</code> est utilis&eacute;e. Pour la fixer, la fonction de base <code>getElem()</code> de la biblioth&egrave;que HTML peut &ecirc;tre utilis&eacute;e pour l'acc&egrave;s &agrave; l'&eacute;l&eacute;ment. N&eacute;anmoins, l'appel pour Netscape 4.x est diff&eacute;rent de l'appel pour les autres navigateurs, raison pour laquelle, &agrave; nouveau; un aiguillage if-else est n&eacute;cessaire. Apr&egrave;s la modification du bord droit de l'image la fonction <code>construire_image()</code> s'appelle elle-m&ecirc;me et cela dans <code>window.setTimeout()</code>. Ici interviennent les variables  <code>ampleur_pas</code> et <code>delai_pas</code> qui sont not&eacute;es au d&eacute;but du passage script. Essayez donc d'autres valeurs pour les affectations de valeurs de d&eacute;part.<br>
+&Agrave; la fin, quand la condition If du haut dans la fonction <code>construire_image()</code> est remplie, &agrave; savoir que la largeur actuelle est plus grande que la largeur d'affichage du graphique, la fonction aboutit dans l'embranchement else. La, la valeur clip pour la droite est fix&eacute;e sur la valeur finale et la proc&eacute;dure pour feuilleter est termin&eacute;e.</p>
+
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="../../cgiperl/introduction/cgihtml.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../../cgiperl/introduction/cgihtml.htm"><b>CGI et HTML</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="dateheure.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="dateheure.htm"><b>Affichage de la date et de l'heure</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>HTML dynamique</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Solutions pour la pratique</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / Exemples d'application / Calculatrice</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment simuler une calculatrice &agrave; l'aide de JavaScript.">
+<meta name="keywords"       content="SELFHTML, JavaScript, calculatrice">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/exemples/calculette.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // Exemples d'application == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Calculatrice</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#remarques"><b>Remarques sur cet exemple</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#texte_source"><b>Texte source avec explications</b></a><br>
+</p>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/calculette.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="remarques">Remarques sur cet exemple</a></h2>
+
+<p>L'exemple construit &agrave; l'aide d'un formulaire HTML une calculatrice d'apparence assez &quot;r&eacute;elle&quot;. L'utilisateur peut se servir de cette calculatrice de fa&ccedil;on habituelle. En outre cette calculatrice propose aussi, &agrave; la diff&eacute;rence de calculatrices normales, la possibilit&eacute; de saisir des donn&eacute;es directement sur l'&eacute;cran d'affichage. Par ailleurs, elle calcule &eacute;galement des op&eacute;rations en s&eacute;rie telles que <kbd>1+2+3+4+5+6+7+8+9</kbd> et des expressions mises entre parenth&egrave;ses comme <kbd>3*(2+4)</kbd>.</p>
+
+<p>Au vu de cet exemple, vous pouvez &eacute;tudier comment, avec JavaScript, on peut utiliser des saisies de formulaire pour une interaction directe. L'exemple de calculatrice est une application JavaScript du type <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../petitsassistants/index.htm"><b>Petits assistants</b></a>. Ce genre de mises en &#339;uvre de JavaScript fait partie des possibilit&eacute;s d'applications des plus judicieuses.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0">&nbsp;<a class="an" name="texte_source">Texte source avec explications</a></h2>
+
+<p>L'exemple montre le fichier HTML complet avec la  calculatrice.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/calculette.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Calculatrice&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function verification(entree) {
+  var seulement_ceci =&quot;0123456789[]()-+*%/.&quot;;
+  for (var i = 0; i &lt; entree.length; i++)
+   if (seulement_ceci.indexOf(entree.charAt(i))&lt;0 ) return false;
+  return true;
+ }
+
+ function resultat() {
+   var x = 0;
+  if (verification(window.document.calculatrice.affiche.value))
+     x = eval(window.document.calculatrice.affiche.value);
+   window.document.calculatrice.affiche.value = x;
+ }
+
+ function ajouter(caracteres) {
+   window.document.calculatrice.affiche.value =
+   window.document.calculatrice.affiche.value + caracteres;
+ }
+
+ function fonction_speciale(fonction) {
+   if (verification(window.document.calculatrice.affiche.value)) {
+     if(fonction == &quot;sqrt&quot;) {
+       var x = 0;
+     x = eval(window.document.calculatrice.affiche.value);
+     window.document.calculatrice.affiche.value = Math.sqrt(x);
+   }
+   if(fonction == &quot;pow&quot;) {
+     var x = 0;
+     x = eval(window.document.calculatrice.affiche.value);
+     window.document.calculatrice.affiche.value = x * x;
+   }
+   if(fonction == &quot;log&quot;) {
+     var x = 0;
+     x = eval(window.document.calculatrice.affiche.value);
+     window.document.calculatrice.affiche.value = Math.log(x);
+   }
+  } else window.document.calculatrice.affiche.value = 0
+}
+//--&gt;
+&lt;/script&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+&lt;!--
+.button {  width:60px; text-align:center;
+           font-family:System,sans-serif;
+           font-size:100%; }
+.affiche { width:100%; text-align:right;
+           font-family:System,sans-serif;
+           font-size:100%; }
+--&gt;
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body bgcolor=&quot;#FFFFE0&quot; text=&quot;#000000&quot;&gt;
+
+&lt;form name=&quot;calculatrice&quot; action=&quot;&quot; onSubmit=&quot;resultat();return false;&quot;&gt;
+&lt;table border=&quot;5&quot; cellpadding=&quot;10&quot; cellspacing=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td bgcolor=&quot;#C0C0C0&quot;&gt;
+&lt;input type=&quot;text&quot; name=&quot;affiche&quot; align=&quot;right&quot; class=&quot;affiche&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td  bgcolor=&quot;#E0E0E0&quot;&gt;
+&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;2&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  7   &quot; onClick=&quot;ajouter('7')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  8   &quot; onClick=&quot;ajouter('8')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  9   &quot; onClick=&quot;ajouter('9')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  +   &quot; onClick=&quot;ajouter('+')&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  4   &quot; onClick=&quot;ajouter('4')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  5   &quot; onClick=&quot;ajouter('5')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  6   &quot; onClick=&quot;ajouter('6')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  -   &quot; onClick=&quot;ajouter('-')&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  1   &quot; onClick=&quot;ajouter('1')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  2   &quot; onClick=&quot;ajouter('2')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  3   &quot; onClick=&quot;ajouter('3')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  *   &quot; onClick=&quot;ajouter('*')&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  =   &quot; onClick=&quot;resultat()&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  0   &quot; onClick=&quot;ajouter('0')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  .   &quot; onClick=&quot;ajouter('.')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;  /   &quot; onClick=&quot;ajouter('/')&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot;sqrt &quot; onClick=&quot;fonction_speciale('sqrt')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot; pow &quot; onClick=&quot;fonction_speciale('pow')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;button&quot; width=&quot;60&quot; class=&quot;button&quot; value=&quot; log &quot; onClick=&quot;fonction_speciale('log')&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;input type=&quot;reset&quot;  width=&quot;60&quot; class=&quot;button&quot; value=&quot;  C  &quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<h4>fonction pour le calcul du contenu du champ de calcul:</h4>
+
+<p>Dans l'exemple sont not&eacute;es, dans l'ent&ecirc;te du fichier HTML, plusieurs <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/fonctions.htm"><b>fonctions</b></a>  qui rendent possible la fonctionnalit&eacute; de la calculatrice. . La fonction <code>resultat()</code> calcule le contenu actuel du champ de calcul. Dans la fonction est d&eacute;finie une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/variables.htm"><b>variable</b></a> <code>x</code>, dans laquelle le r&eacute;sultat du calcul est sauvegard&eacute;. Pour recevoir le r&eacute;sultat, l'op&eacute;ration de calcul qui se trouve dans le champ de formulaire (le champ de calcul de la calculatrice) est transmise &agrave; la puissante  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/independant.htm"><b>fonction JavaScript ind&eacute;pendante de l'objet</b></a> <code>eval()</code>. Cette fonction prend en charge automatiquement tout le calcul de l'op&eacute;ration. La condition pr&eacute;alable en est bien s&ucirc;r que l'op&eacute;ration ne contienne pas de signe non-valide, auquel cas JavaScript &eacute;mettrait un message d'erreur.<br>
+C'est pour cette raison, qu'avant chaque utilisation de <code>eval()</code>, la fonction <code>verification()</code> est appel&eacute;e et v&eacute;rifie la validit&eacute; de la saisie. Ce n'est que lorsque cette fonction renvoie <code>true</code>, que la m&eacute;thode <code>eval()</code> est appliqu&eacute;e. Autrement, la valeur <code>0</code> est affich&eacute;e dans le champ de r&eacute;sultat.<br>
+Pour que le r&eacute;sultat de l'op&eacute;ration, sauvegard&eacute; dans la variable <code>x</code>, soit affich&eacute; dans le champ de calcul de la calculatrice, la valeur de <code>x</code> est simplement affect&eacute;e au champ de formulaire correspondant.</p>
+
+<h4>Fonction pour v&eacute;rifier la validit&eacute; de la saisie</h4>
+
+<p>La fonction <code>verification(entree)</code> v&eacute;rifie si les valeurs de <code>entree</code> ne contient que les caract&egrave;res permis. ceux-ci sont rang&eacute;s dans la variable <code>seulement_ceci</code>. Avec une boucle <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for"><b>for</b></a> il est successivement verifi&eacute; pour chacun des caract&egrave;res de la cha&icirc;ne de caract&egrave;res transmise s'il se trouve dans la plage fix&eacute;e dans <code>seulement_ceci</code>. Avec la m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/string.htm#char_at"><b>charAt()</b></a> le signe de la position <code>i</code> de la variable <code>entree</code> est extrait pour &ecirc;tre transmis comme param&egrave;tre &agrave; <code>seulement_ceci.indexOf()</code>. La m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/string.htm#index_of"><b>indexOf()</b></a> v&eacute;rifie si le signe est bien contenu dans <code>seulement_ceci</code>. Si un caract&egrave;re invalide devait &ecirc;tre trouv&eacute;, alors la fonction serait interrompue et la valeur <code>false</code> renvoy&eacute;e. Autrement la fonction retourne  <code>true</code>.</p>
+
+<h4>fonction pour ajouter un signe dans le champ de calcul:</h4>
+
+<p>La fonction <code>ajouter()</code> de l'exemple est appel&eacute;e quand l'utilisateur clique sur l'un des boutons dans le formulaire constituant la calculatrice. Ce peut &ecirc;tre des chiffres (<kbd>0</kbd> &agrave; <kbd>9</kbd>), des op&eacute;rateurs arithm&eacute;tiques (<kbd>+</kbd>&nbsp;<kbd>-</kbd>&nbsp;<kbd>*</kbd>&nbsp;<kbd>/</kbd>) ou un point d&eacute;cimal. Pour ajouter le signe entr&eacute;, est affect&eacute;e &agrave; la valeur actuelle du champ de calcul la valeur qu'il avait jusqu'alors plus le nouveau signe. Le nouveau signe est transmis &agrave; la fonction comme param&egrave;tre.
+Ici est mis en &#339;uvre l' <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/operateurs.htm#concatener_chaines"><b>op&eacute;rateur pour relier des cha&icirc;nes de caract&egrave;res</b></a> (<code>+</code>). Le nouveau signe est transmis &agrave; la fonction comme param&egrave;tre.</p>
+
+<h4>fonction pour le calcul de fonctions sp&eacute;ciales:</h4>
+
+<p>La fonction <code>fonction_speciale()</code> de l'exemple est charg&eacute;e du calcul de trois fonctions math&eacute;matiques sp&eacute;ciales pour lesquelles existent sur la calculatrice des boutons correspondants: les fonctions &quot;sqrt&quot; (racine carr&eacute;e), &quot;pow&quot; (puissance deux) et &quot;log&quot; (logarithme commun en base 10). La fonction attend trois param&egrave;tres: l'index du formulaire dans lequel se trouve le champ de calcul, l'index du champ dans ce formulaire et une cha&icirc;ne de caract&egrave;res qui d&eacute;signe la fonction math&eacute;matique &agrave; effectuer. &Agrave; l'int&eacute;rieur de la fonction, le troisi&egrave;me param&egrave;tre est demand&eacute;. Sont permises comme valeurs transmises &quot;sqrt&quot;, &quot;pow&quot; et &quot;log&quot;. Au cas o&ugrave; l'une de ces valeurs a &eacute;t&eacute; transmise, la fonction calcule la valeur d&eacute;sir&eacute;e dans l'embranchement correspondant de la boucle if. Pour cela, l'op&eacute;ration ou le nombre qui se trouve dans le champ du formulaire transmis (le champ de calcul de la calculatrice), est transmis &agrave; la fonction JavaScript standard <code>eval()</code>. Cette fonction se charge automatiquement du calcul total de l'op&eacute;ration. Le r&eacute;sultat est sauvegard&eacute; dans <code>x</code>. Au cas o&ugrave; il ne s'agit que d'un simple nombre, celui-ci est sauvegard&eacute; dans <code>x</code>. Avec une m&eacute;thode JavaScript ad&eacute;quate, par exemple la m&eacute;thode <code>sqrt()</code> pour calculer la racine carr&eacute;e, le r&eacute;sultat de la fonction math&eacute;matique sp&eacute;ciale est calcul&eacute; puis imm&eacute;diatement affect&eacute; au champ de calcul/r&eacute;sultat du formulaire de la calculatrice.</p>
+
+<h4>inscrire le signe correspondant &agrave; un clic dans le champ de calcul:</h4>
+
+<p>Dans le formulaire de la calculatrice de l'exemple, des boutons pour les chiffres, pour les op&eacute;rateurs etc. sont d&eacute;finis. En cliquant sur un tel bouton, doit s'ensuivre naturellement une r&eacute;action appropri&eacute;e. Cela s'obtient &agrave; l'aide du <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/gestevenements.htm"><b>gestionnaire d'&eacute;v&eacute;nement</b></a> <code>onClick=</code>. Celui-ci devient actif quand le bouton correspondant est cliqu&eacute;, et il appelle alors une des fonctions d&eacute;finies dans l'ent&ecirc;te de fichier. Pour un chiffre par exemple, c'est la fonction <code>ajouter()</code> qui est appel&eacute;e. Pour cela le param&egrave;tre attendu est transmis &agrave; la fonction - &agrave; savoir le chiffre &agrave; ajouter. Le formulaire de la calculatrice re&ccedil;oit lors de sa d&eacute;finition un nom, dans l'exemple: &quot;Calculatrice&quot;. M&ecirc;me le champ de calcul/r&eacute;sultat, qui est adress&eacute; tr&egrave;s souvent dans le code JavaScript, re&ccedil;oit un nom - le nom &quot;affiche&quot;. L'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/forms.htm"><b>objet formulaire</b></a> et l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/elements.htm"><b>objet &eacute;l&eacute;ment de formulaire</b></a> du champ de calcul/r&eacute;sultat peut donc &ecirc;tre adress&eacute; avec <code>window.document.calculatrice.affiche</code>.</p>
+
+<h4>effacement du contenu du champ de calcul:</h4>
+
+<p>Le bouton qui porte l'inscription &quot;C&quot; sert dans l'exemple &agrave; effacer les entr&eacute;es pr&eacute;c&eacute;dentes. Pour cela, JavaScript n'est pas n&eacute;cessaire. Il suffit simplement de d&eacute;finir un bouton de type <code>reset</code>.</p>
+
+<h4>Emp&ecirc;cher l'envoi du formulaire</h4>
+
+<p>&Eacute;tant donn&eacute; que la calculatrice contient un champ de formulaire de saisie &agrave; une ligne, ce formulaire peut &ecirc;tre envoy&eacute; &agrave; tout moment par simple confirmation de la touche &quot;entr&eacute;e&quot;. Un envoi n'est pourtant pas souhait&eacute; dans le cadre de la calculatrice. C'est pourquoi le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/gestevenements.htm"><b>gestionnaire d'&eacute;v&eacute;nement</b></a> <code>onSubmit</code> est not&eacute; dans le rep&egrave;re d'ouverture <code>&lt;form&gt;</code>. Derri&egrave;re suit l'appel de la fonction <code>resultat()</code> et enfin <code>return false</code>. Cette fonction fait ensorte que, si l'utilisateur appuie sur la touche &quot;entr&eacute;e&quot;, le calcul du r&eacute;sultat a lieu et l'envoi du formulaire est emp&ecirc;ch&eacute; par la m&ecirc;me occasion.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Dans le standard HTML l'utilisation de l'attribut <code>width=</code> pour les champs <code>input</code> n'est pas permise.  Netscape 4.x n'interpr&egrave;te toutefois pas les propri&eacute;t&eacute;s CSS pour ces champs de formulaire. Pour ne pas nuire &agrave; la mise en page, les attributs <code>width</code> ont &eacute;t&eacute; employ&eacute;s malgr&eacute; l'entorse aux directives du standard HTML.</p>
+
+
+
+
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="mois_calendrier.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="mois_calendrier.htm"><b>Calendrier du mois </b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="affichage_page.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="affichage_page.htm"><b>Emp&ecirc;cher l'aper&ccedil;u de vos pages dans des frames </b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

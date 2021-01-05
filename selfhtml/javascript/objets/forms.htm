@@ -1,0 +1,471 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / R&eacute;f&eacute;rence objet / forms</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quels sont le r&ocirc;le, les propri&eacute;t&eacute;s et les m&eacute;thodes de l'objet forms en JavaScript.">
+<meta name="keywords"       content="SELFHTML, JavaScript, onjets, forms, action, encoding, length, method, name, target, handleEvent(), reset(), submit()">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/objets/forms.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // R&eacute;f&eacute;rence objet == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>forms</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+
+<p><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>forms: g&eacute;n&eacute;ralit&eacute;s sur l'utilisation</b></a></p>
+
+<h3>Propri&eacute;t&eacute;s:</h3>
+
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#action"><b>action</b></a> (adresse du destinataire lors d'un envoi)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#encoding"><b>encoding</b></a> (type de codification)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#length"><b>length</b></a> (nombre de formulaires dans un fichier)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#method"><b>method</b></a> (m&eacute;thode de transmission)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#name"><b>name</b></a> (nom du formulaire)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#target"><b>target</b></a> (fen&ecirc;tre cible pour r&eacute;ponses CGI)<br>
+</p>
+
+<h3>M&eacute;thodes:</h3>
+
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#handle_event"><b>handleEvent()</b></a> (traiter un &eacute;v&eacute;nement)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#reset"><b>reset()</b></a> (r&eacute;initialiser le formulaire)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#submit"><b>submit()</b></a> (envoyer le formulaire)<br>
+</p>
+
+
+<h3>Sous-objets:</h3>
+
+<p>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elements.htm"><b>elements</b></a><br>
+</p>
+
+
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">forms: g&eacute;n&eacute;ralit&eacute;s sur l'utilisation</a></h2>
+
+<p>Avec l'objet <code>forms</code>, qui se trouve sous l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="document.htm"><b>document</b></a> dans la hi&eacute;rarchie JavaScript, vous avez acc&egrave;s aux formulaires d&eacute;finis dans un fichier HTML.</p>
+
+<p>Les mani&egrave;res suivantes pour adresser un formulaire d&eacute;termin&eacute; avec JavaScript sont &agrave; votre disposition:</p>
+
+<h3 class="xmp">Sch&eacute;ma 1 / exemple 1:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+document.forms[#].propri�t�
+document.forms[#].m�thode()
+
+cible= document.forms[0].action;
+document.forms[0].reset();</pre></td></tr></table>
+
+<h3 class="xmp">Sch&eacute;ma 2 / exemple 2:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+document.forms[&quot;nom_formulaire&quot;].propri�t�
+document.forms[&quot;nom_formulaire&quot;].m�thode
+
+cible = document.forms[&quot;formulaire_test&quot;].action;
+document.forms[&quot;formulaire_test&quot;].reset();</pre></td></tr></table>
+
+<h3 class="xmp">Sch&eacute;ma 3 / exemple 3:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+document.;nom_formulaire.propri�t�
+document.;nom_formulaire.m�thode()
+
+cible = document.formulaire_test.action;
+document.formulaire_test.reset();</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Vous pouvez adresser des formulaires de trois fa&ccedil;ons:</p>
+<ul>
+<li>avec un num&eacute;ro d'index (comme dans le sch&eacute;ma 1 / exemple 1)<br>
+Pour l'utilisation de num&eacute;ros d'index, mentionnez <code>document.forms</code> suivi, entre crochets, du num&eacute;ro d'ordre du formulaire que vous voulez adresser dans le fichier. Pensez que le compteur commence &agrave; 0, c'est &agrave; dire qu'il vous faut adresser le premier formulaire avec <code>forms[0]</code>, le deuxi&egrave;me avec <code>forms[1]</code> etc... Pour compter, pr&eacute;vaut l'ordre dans lequel les commandes <code>&lt;form&gt;</code> sont not&eacute;es dans le fichier.</li>
+<li>avec le nom du formulaire comme nom d'index (comme dans le sch&eacute;ma 2 / exemple 2)<br>
+Pour cela, notez comme pour l'adressage avec num&eacute;ro d'index des crochets derri&egrave;re <code>document.forms</code>. &Agrave; l'int&eacute;rieur de ces crochets, notez entre guillemets le nom que vous avez mentionn&eacute; dans le rep&egrave;re d'ouverture <code>&lt;form&gt;</code> dans l'attribut <code>name=</code> lors de la d&eacute;finition du formulaire.</li>
+<li>directement avec le nom du formulaire (comme dans le sch&eacute;ma 3 / exemple 3)<br>
+Pour cela, mentionnez avec <code>document.nom_formulaire</code> le nom que vous avez mentionn&eacute; dans le rep&egrave;re d'ouverture <code>&lt;form&gt;</code> dans l'attribut <code>name=</code> lors de la d&eacute;finition du formulaire.</li>
+</ul>
+
+<p>Les propri&eacute;t&eacute;s et m&eacute;thodes de l'objet forms ne concernent que les parties constituantes du formulaire global comme par exemple la m&eacute;thode de codification. Pour acc&eacute;der &agrave; des champs de saisie distincts, des boutons etc. vous disposez de l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elements.htm"><b>elements</b></a> avec ses sous objets.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="action">action</a></h2>
+
+<p>Sauvegarde la valeur qui figure lors de la d&eacute;finition du formulaire dans l'attribut <code>action=</code>, donc une mention mailto ou un programme serveur qui traite les donn&eacute;es.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/forms_action.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function confirmation() {
+ var x = window.confirm(&quot;Ce formulaire est envoy� �  &quot; + document.formulaire_test.action);
+ return x;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;mailto:toi-meme@cheztoi.com&quot;
+onSubmit=&quot;return confirmation()&quot;&gt;
+&lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;saisie&quot;&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Envoyer&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire. Si l'utilisateur envoie le formulaire en cliquant sur le bouton d'envoi, la fonction <code>confirmation()</code> est appel&eacute;e, parce que le  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/gestevenements.htm"><b>gestionnaire d'&eacute;v&eacute;nement</b></a> <code>onSubmit=</code>  est not&eacute; dans le rep&egrave;re d'introduction <code>&lt;form&gt;</code>. Celui-ci recherche la valeur renvoy&eacute;e par la fonction <code>confirmation()</code>. Si la valeur est <code>true</code>, le formulaire est envoy&eacute;, si elle est <code>false</code> il ne l'est pas.</p>
+
+<p>Dans la fonction <code>confirmation()</code> l'utilisateur re&ccedil;oit, affich&eacute;e dans une boite de dialogue avec la m&eacute;thode  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#confirm"><b>confirm</b></a>, la valeur affect&eacute;e &agrave; la mention de formulaire <code>action</code>. Les fen&ecirc;tres Confirm ont toujours deux boutons, un pour confirmer et l'autre pour interrompre. Le bouton pour confirmer renvoie lorsqu'il est cliqu&eacute; la valeur <code>true</code>, le bouton interrompre renvoie la valeur <code>false</code>. La valeur renvoy&eacute;e est sauvegard&eacute;e dans l'exemple dans la variable <code>x</code>. Celle-ci &agrave; son tour est renvoy&eacute;e par la fonction <code>confirmation()</code> car le gestionnaire d'&eacute;v&eacute;nement qui a appel&eacute; la fonction attend ce genre de valeur.</p>
+
+<h3 class="info">Attention:</h3>
+
+<p>L'utilisation de <code>mailto:</code> comme cible d'un formulaire occasionne souvent des probl&egrave;mes. De plus amples d&eacute;tails dans la partie sur les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/traiter.htm#courriel"><b>formulaires en tant que courriel</b></a>.</p>
+
+<p>Vous pouvez &eacute;galement mentionner, comme adresse cible d'un formulaire, un fichier HTML et traiter les donn&eacute;es du formulaire avec  JavaScript. Tenez ici compte que JavaScript n'a alors acc&egrave;s aux donn&eacute;es que si la m&eacute;thode <code>get</code> a &eacute;t&eacute; employ&eacute;e.<br>
+Opera 5.12 affiche dans le protocole <code>file</code> le texte source du fichier cible.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="encoding">encoding</a></h2>
+
+<p>Sauvegarde la valeur qui figure lors de la d&eacute;finition du formulaire dans l'attribut <code>encoding=</code>, donc par exemple &quot;text/plain&quot;.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/forms_encoding.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function type_code() {
+ if(document.formulaire_test.action.indexOf(&quot;@&quot;) &gt; 0)
+  document.formulaire_test.encoding = &quot;text/plain&quot;;
+ else
+  document.formulaire_test.encoding = &quot;x-application/x-www-form-urlencoded&quot;;
+ return true;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;mailto:toi-meme@cheztoi.com&quot;
+onSubmit=&quot;return type_code()&quot;&gt;
+&lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;saisie&quot;&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Envoyer&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire. Si l'utilisateur envoie le formulaire en cliquant sur le bouton d'envoi la fonction <code>type_code()</code> est appel&eacute;e.</p>
+
+<p>Dans la fonction <code>type_code()</code> est recherch&eacute; si, dans la mention <code>action</code> du formulaire, le signe @ qui trahit une adresse &eacute;lectronique appara&icirc;t. Si oui, le type de codage est r&eacute;gl&eacute; sur <code>text/plain</code>, si non, pour le type de codage habituel pour programmes CGI <code>x-application/x-www-form-urlencoded</code>.
+
+La fonction <code>type_code()</code> renvoie <code>true</code> car le gestionnaire d'&eacute;v&eacute;nement <code>onSubmit</code> not&eacute; dans le rep&egrave;re d'introduction <code>&lt;form&gt;</code> qui a appel&eacute; la fonction attend cette valeur. Le formulaire n'est envoy&eacute; que si la valeur retourn&eacute;e est <code>true</code>.</p>
+
+<p>Pour rechercher un ou plusieurs signes dans une cha&icirc;ne de caract&egrave;res comme dans l'exemple avec la m&eacute;thode <code>indexOf()</code>, lisez la partie sur l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="string.htm"><b>string</b></a>.</p>
+
+<h3 class="info">Attention:</h3>
+
+<p>L'utilisation de <code>mailto:</code> comme cible d'un formulaire occasionne souvent des probl&egrave;mes. De plus amples d&eacute;tails dans la partie sur les  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/traiter.htm#courriel"><b>formulaires en tant que courriel.</b></a>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="Lesen"> <a class="an" name="length">length</a></h2>
+
+<p>Sauvegarde le nombre de formulaires d&eacute;finis dans un fichier.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/forms_length.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;mailto:toi-meme@cheztoi.com&quot;&gt;
+&lt;input type=&quot;hidden&quot; value=&quot;Daniel&quot;&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Daniel&quot;&gt;
+&lt;/form&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;mailto:toi-meme@cheztoi.com&quot;&gt;
+&lt;input type=&quot;hidden&quot; value=&quot;Antoine&quot;&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Antoine&quot;&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ document.write(document.forms.length + &quot; formulaires&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple, deux petits formulaires sont d&eacute;finis. Ensuite est &eacute;crit dans le fichier, pour la d&eacute;monstration, &agrave; l'aide de  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="document.htm"><b>document</b></a>.<a href="document.htm#write"><b>write()</b></a> combien de formulaires y sont d&eacute;finis.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="method">method</a></h2>
+
+<p>Sauvegarde la valeur qui figure lors de la d&eacute;finition du formulaire dans l'attribut <code>method=</code> - en principe, &quot;get&quot; ou &quot;post&quot;.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/forms_method.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function Methode() {
+ if(document.formulaire_test.action.indexOf(&quot;@&quot;) &gt; 0)
+  document.formulaire_test.method = &quot;post&quot;;
+ else
+  document.formulaire_test.method = &quot;get&quot;;
+ return true;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;mailto:toi-meme@cheztoi.com&quot;
+onSubmit=&quot;return Methode()&quot;&gt;
+&lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;saisie&quot;&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Envoyer&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire Si l'utilisateur envoie le formulaire en cliquant sur le bouton d'envoi la fonction <code>Methode()</code> est appel&eacute;e.</p>
+
+<p>Dans la fonction <code>Methode()</code> est recherch&eacute; si, dans la mention <code>action</code> du formulaire, le signe @ qui trahit une adresse &eacute;lectronique appara&icirc;t. Si oui, la m&eacute;thode d'envoi est r&eacute;gl&eacute;e sur <code>post</code>, si non, sur <code>get</code>.
+
+La fonction <code>Methode()</code> renvoie <code>true</code> car le gestionnaire d'&eacute;v&eacute;nement  <code>onSubmit</code> not&eacute; dans le rep&egrave;re d'introduction <code>&lt;form&gt;</code> qui a appel&eacute; la fonction attend ce genre de valeur. Le formulaire n'est envoy&eacute; que si la valeur retourn&eacute;e est <code>true</code>.</p>
+
+<p>Pour rechercher un ou plusieurs signes dans une cha&icirc;ne de caract&egrave;res comme dans l'exemple avec la m&eacute;thode <code>indexOf()</code>, lisez la partie sur l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="string.htm"><b>string</b></a>.</p>
+
+<h3 class="info">Attention:</h3>
+
+<p>L'utilisation de <code>mailto:</code> comme cible d'un formulaire occasionne souvent des probl&egrave;mes. De plus amples d&eacute;tails dans la partie sur les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/traiter.htm#courriel"><b>formulaires en tant que courriel</b></a>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="name">name</a></h2>
+
+<p>Sauvegarde le nom d'un formulaire.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/forms_name.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;mailto:toi-meme@cheztoi.com&quot;&gt;
+&lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;saisie&quot;&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Envoyer&quot;&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ document.formulaire_test.saisie.value = document.formulaire_test.name;
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire avec un champ de saisie. Sous le formulaire, se trouve un script qui &eacute;crit pour le contr&ocirc;le le nom du formulaire dans le champ de saisie. Dans l'exemple le nom est <code>formulaire_test</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="target">target</a></h2>
+
+<p>Sauvegarde quelle fen&ecirc;tre, dans le cas d'un jeu de cadres, doit devenir active apr&egrave;s l'envoi. Cela peut &ecirc;tre int&eacute;ressant pour des fen&ecirc;tres cadres ou pour une deuxi&egrave;me fen&ecirc;tre s&eacute;par&eacute;e. Au cas o&ugrave; un programme CGI renvoie du code HTML au navigateur, par exemple avec un &quot;merci pour l'envoi du formulaire&quot;, alors la sortie se fait dans la fen&ecirc;tre qui porte le nom mentionn&eacute;.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/bsp_frame_target_forms.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function cible() {
+ document.formulaire_test.target = &quot;bas&quot;;
+ return true;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;fichier.htm&quot;
+onSubmit=&quot;return cible()&quot;&gt;
+&lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;saisie&quot;&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Envoyer&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple suppose que le fichier avec le formulaire se trouve dans un jeu de cadres dans lequel il y a une autre fen&ecirc;tre cadre du nom de <code>bas</code>. Le fichier d'exemple contient un formulaire. Si l'utilisateur envoie le formulaire en cliquant sur le bouton d'envoi la fonction <code>cible()</code> est appel&eacute;e.</p>
+
+<p>Dans la fonction <code>cible()</code> il est sp&eacute;cifi&eacute; que la sortie HTML  se fasse dans la fen&ecirc;tre cadre <code>bas</code>.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"> <a class="an" name="handle_event">handleEvent()</a></h2>
+
+<p>Transmet un &eacute;v&eacute;nement &agrave; un &eacute;l&eacute;ment qui est en mesure de r&eacute;agir &agrave; l'&eacute;v&eacute;nement. Fonctionne exactement comme pour  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#handle_event"><b>handleEvent() pour l'objet window</b></a>   (s'y reporter pour des informations plus pr&eacute;cises).</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="reset">reset()</a></h2>
+
+<p>Efface toutes les saisies dans un formulaire et a le m&ecirc;me effet qu'un bouton ayant &eacute;t&eacute; d&eacute;fini en HTML avec <code>type=&quot;reset&quot;</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/forms_reset.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;&quot;&gt;
+&lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;champ1&quot;&gt;&lt;br&gt;
+&lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;champ2&quot;&gt;&lt;br&gt;
+&lt;/form&gt;
+&lt;a href=&quot;javascript:document.formulaire_test.reset()&quot;&gt;vider le formulaire&lt;/a&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire avec deux champs de saisie. Sous le formulaire se trouve un lien. En cliquant sur le lien, toutes les entr&eacute;es saisies dans le formulaire sont effac&eacute;es.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="submit">submit()</a></h2>
+
+<p>Envoie un formulaire et a le m&ecirc;me effet qu'un bouton ayant &eacute;t&eacute; d&eacute;fini en HTML avec <code>type=&quot;submit&quot;</code>. Cependant, cette m&eacute;thode JavaScript ne fonctionne depuis Netscape 3.0 qu'uniquement si le formulaire est trait&eacute; par un programme, c'est &agrave; dire si, dans le rep&egrave;re d'ouverture <code>&lt;form&gt;</code> pour la mention <code>action=</code>, un programme CGI, par exemple, est appel&eacute;. Si c'est une adresse de courrier &eacute;lectronique ou un groupe de nouvelles qui y est mentionn&eacute;, la m&eacute;thode ne fonctionne pas.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/forms_submit.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;/cgi-bin/estime.pl&quot; method=&quot;get&quot;&gt;
+&lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;champ1&quot;&gt;&lt;br&gt;
+&lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;champ2&quot;&gt;&lt;br&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ function on_y_va()
+ {
+  document.formulaire_test.submit();
+ }
+ window.setTimeout(&quot;on_y_va()&quot;,60000);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire avec des champs de saisie. En dessous se trouve un script JavaScript qui lance un compte &agrave; rebours avec la m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#set_timeout"><b>setTimeout()</b></a>. Apr&egrave;s 60000 milli&egrave;mes de secondes, donc apr&egrave;s une minute, la fonction <code>on_y_va()</code> est appel&eacute;e. Celle-ci envoie le formulaire avec <code>submit()</code>.<font size="+3"><font size="+3"><font size="+4"></font></font></font></p>
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="elements.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="elements.htm"><b>elements</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="applets.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="applets.htm"><b>applets</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2002 <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

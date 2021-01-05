@@ -1,0 +1,1465 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / Fonctions Perl / Fonctions pour l'entr&eacute;e/sortie et pour la lecture/&eacute;criture de donn&eacute;es</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"     content="Quelles fonctions en Perl permettent de lire des donn&eacute;es saisies ou des donn&eacute;es d'un fichier et de sortir ces donn&eacute;es &agrave; l'&eacute;cran ou de les &eacute;crire dans un fichier.">
+<meta name="keywords"        content="SELFHTML, Perl, fonctions, Fonctions Perl, fichiers, r&eacute;pertoires, fonctions de fichiers, fonctions de r&eacute;pertoires, fonctions pour l'entr&eacute;e et la sortie, canal d'entr&eacute;e, canal de sortie, descripteur de fichier, Dateihandle, pointeur de fichier, STDIN, STDOUT, STDERR, binmode, close, closedir, eof, fileno, flock, format, getc, open, opendir, print, printf, read, readdir, rewinddir, seek, seekdir, select, sysopen, sysread, sysseek, syswrite, tell, telldir, write">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/fonctions/entreesortie.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // Fonctions Perl == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Fonctions Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Fonctions pour l'entr&eacute;e/sortie et pour la lecture/&eacute;criture de donn&eacute;es</h2></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur ces fonctions</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#binmode"><b>binmode</b></a> - traiter un canal d'entr&eacute;e ou de sortie en binaire<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#close"><b>close</b></a> - fermer un canal d'entr&eacute;e ou de sortie<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#closedir"><b>closedir</b></a> - fermer un r&eacute;pertoire<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#eof"><b>eof</b></a> - surveille la fin d'un fichier<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#fileno"><b>fileno</b></a> - num&eacute;ro du  canal d'entr&eacute;e ou de sortie ouvert<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#flock"><b>flock</b></a> - prot&eacute;ger un fichier ouvert des acc&egrave;s<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#format"><b>format</b></a> - formater des donn&eacute;es avant la sortie<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#getc"><b>getc</b></a> - lire le signe suivant<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open</b></a> - ouvrir un canal d'entr&eacute;e ou de sortie<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#opendir"><b>opendir</b></a> - ouvrir un r&eacute;pertoire<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#print"><b>print</b></a> - sortir des donn&eacute;es<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#printf"><b>printf</b></a> - sortir des donn&eacute;es format&eacute;es<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#read"><b>read</b></a> - lire un certain nombre de caract&egrave;res<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#readdir"><b>readdir</b></a> - rechercher les &eacute;l&eacute;ments d'un r&eacute;pertoire<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#rewinddir"><b>rewinddir</b></a> - se positionner sur le premier &eacute;l&eacute;ment d'un r&eacute;pertoire<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#seek"><b>seek</b></a> - positionner le pointeur de fichier<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#seekdir"><b>seekdir</b></a> - positionner le pointeur de r&eacute;pertoire<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#select"><b>select</b></a> - choisir le canal d'entr&eacute;e ou de sortie<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sysopen"><b>sysopen</b></a> - ouvrir un fichier avec la commande li&eacute;e au syst&egrave;me<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sysread"><b>sysread</b></a> - lire un certain nombre de caract&egrave;res avec la commande li&eacute;e au syst&egrave;me<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sysread"><b>sysseek</b></a> - positionner le pointeur de fichier avec la commande li&eacute;e au syst&egrave;me<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#syswrite"><b>syswrite</b></a> - &eacute;crire un certain nombre de caract&egrave;res avec la commande li&eacute;e au syst&egrave;me<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#tell"><b>tell</b></a> - rechercher la position du pointeur de fichier<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#telldir"><b>telldir</b></a> - rechercher la position du pointeur de r&eacute;pertoire<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#write"><b>write</b></a> - &eacute;crire des donn&eacute;es format&eacute;es
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur ces fonctions</a></h2>
+
+<p>Pour Perl existent un <b>canal d'entr&eacute;e</b> par d&eacute;faut <code>STDIN</code> - <i>standard input</i> et un <b>canal de sortie</b> par d&eacute;faut <code>STDOUT</code> - <i>standard output</i>. Un script Perl peut lire des donn&eacute;es de <code>STDIN</code> et sortir des donn&eacute;es sur <code>STDOUT</code>. En principe <code>STDIN</code> est assimil&eacute; au clavier, c'est &agrave; dire que des entr&eacute;es au clavier peuvent &ecirc;tre lues de <code>STDIN</code>. <code>STDOUT</code> est par contre en principe assimil&eacute; &agrave; l'&eacute;cran, c'est &agrave; dire que des sortie sur <code>STDOUT</code> apparaissent &agrave; l'&eacute;cran. Lors de l'utilisation d'un serveur Web avec un port CGI, cependant <code>STDOUT</code> est &quot;d&eacute;tourn&eacute;&quot; dans un fichier sp&eacute;cial que le serveur Web fait suivre au navigateur Web, et <code>STDIN</code> pareillement dans un fichier dans lequel le serveur Web tient les donn&eacute;es (par exemple les donn&eacute;es d'un formulaire) &agrave; la disposition du script CGI appel&eacute;.<br>
+Outre <code>STDOUT</code> il existe encore un autre canal sp&eacute;cial de sortie qui n'est con&ccedil;u que pour les messages d'erreur, <code>STDERR</code>. Dan un environnement normal de syst&egrave;me d'exploitation <code>STDERR</code> est en principe exactement comme <code>STDOUT</code> la sortie &agrave; l'&eacute;cran. Pour le port CGI d'un serveur Web, la sortie d'erreur standard <code>STDERR</code> est dirig&eacute;e par contre le plus souvent dans un fichier Log du serveur qui rassemble ce genre de messages d'erreur.</p>
+
+<p>Les trois canaux repr&eacute;sentent pour Perl ce qu'on appelle les  <b>Handles</b>. &Agrave; c&ocirc;t&eacute; de ces canaux standard d'entr&eacute;e et de sortie, vous pouvez en tant que programmeur ouvrir vos propres canaux d'entr&eacute;e et de sortie. Ici, vous attribuez aussi vos propres noms pour les descripteurs. C' est indispensable par exemple  quand vous voulez lire les donn&eacute;es d'un fichier plut&ocirc;t que du clavier ou quand vous voulez &eacute;crire dans un fichier plut&ocirc;t qu'&agrave; l'&eacute;cran. Pour pouvoir lire ou &eacute;crire dans un fichier, vous cr&eacute;ez donc simplement un descripteur de fichier. Cela se passe &agrave; l'ouverture d'un fichier - pour cela sert avant tout la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open</b></a>. Apr&egrave;s que vous avez ouvert un fichier et que vous lui avez attribu&eacute; un descripteur de fichier, vous avez acc&egrave;s &agrave; ce fichier par ce descripteur de fichier.</p>
+
+<p>Perl propose diff&eacute;rentes fonctions qui permettent d'acc&eacute;der &agrave; des fichiers en lecture ou en &eacute;criture. Au descripteur de fichier s'ajoute par ailleurs un pointeur de fichier. Le pointeur de fichier sauvegarde &agrave; la lecture et &agrave; l'&eacute;criture la position de l'octet actuelle &agrave; l'int&eacute;rieur du fichier. Vous pouvez rechercher la position du pointeur de fichier et fixer le pointeur de fichier sur une autre position, par exemple pour les fichiers avec certains formats de fichiers. De cette fa&ccedil;on vous pouvez diriger exactement les processus de lecture et d'&eacute;criture.</p>
+
+<p>Il y a des fonctions distinctes pour les r&eacute;pertoires - classeurs d'un syst&egrave;me de fichiers. Vous pouvez de la m&ecirc;me mani&egrave;re ouvrir un r&eacute;pertoire. Vous pouvez alors lire les &eacute;l&eacute;ments du r&eacute;pertoire, par exemple pour rechercher si des fichiers d'un certain type se trouvent dans le r&eacute;pertoire. Vous reconnaissez les fonctions pour les r&eacute;pertoires &agrave; ce que leur nom contient <code>dir</code>. Ainsi par exemple <code>open</code> ou <code>seek</code> sont des fonctions de fichiers tandis que <code>opendir</code> et <code>seekdir</code> sont des fonctions de r&eacute;pertoires.</p>
+
+<p>Outre les fonctions normales de lecture et d'&eacute;criture de fichier, existent aussi des variantes li&eacute;es au syst&egrave;me des fonctions correspondantes. N'utilisez cependant ces fonctions que si vous avez une raison particuli&egrave;re pour le faire! Vous reconnaissez ce genre de fonctions &agrave; ce que leur nom contient <code>sys</code>. Alors par exemple que  <code>read</code> est une fonction normale de lecture,  <code>sysread</code> est la variante correspondante li&eacute;e au syst&egrave;me de cette fonction.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Les scripts Perl, que vous mettez en &#339;uvre comme scripts CGI, peuvent &agrave; l'aide de ces fonctions lire et &eacute;crire des fichiers sur l'ordinateur serveur. Vous n'avez pas acc&egrave;s avec ces fonctions au syst&egrave;me de fichiers d'un ordinateur client &eacute;loign&eacute; dont le navigateur Web qui y tourne a r&eacute;clam&eacute; des donn&eacute;es du serveur Web!</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="binmode">binmode - traiter un canal d'entr&eacute;e ou de sortie en binaire</a></h2>
+
+<p>Il est important pour lire ou &eacute;crire correctement des fichiers binaires (par exemple des fichiers graphiques) que le syst&egrave;me d'exploitation sous lequel tourne le script, fasse la distinction entre les fichiers texte et les fichiers binaires. Unix ne fait pas cette distinction, la fonction <code>binmode</code> est donc sans objet pour les scripts Perl sous Unix. MS-DOS et MS-Windows par contre font la distinction entre le mode texte et le mode binaire.<br>
+Pour les fichiers non binaires, donc pour des fichiers en texte clair, les deux caract&egrave;res de contr&ocirc;le qui se suivent CR (Carriage Return) et LF (Line Feed) sont r&eacute;sum&eacute;s automatiquement &agrave; la lecture d'un fichier en un  LF sous des syst&egrave;mes d'exploitation tels que DOS/Windows. &Agrave; l'&eacute;criture d'un fichier texte, chaque  LF est &agrave; nouveau transform&eacute; automatiquement en deux caract&egrave;res CR et LF .<br>
+&Agrave; l'appel de la fonction  <code>binmode</code> vous &quot;&eacute;teignez&quot; cet automatisme. Vous emp&ecirc;chez ainsi que l'automatisme acc&egrave;de &agrave; des endroits o&ugrave; il ne devrait pas acc&eacute;der, par exemple quand vous lisez des donn&eacute;es sauvegard&eacute;es en num&eacute;rique et qui contiennent par hasard deux octets de suite dont les valeurs correspondent aux valeurs des caract&egrave;res pour CR et LF.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le descripteur (handle) d'un canal d'entr&eacute;e ou de sortie.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $nombre_octets = -s &quot;/usr/web/src/ship.gif&quot;;
+my $memoire;
+open(GRAPHIQUE, &quot;&lt;/usr/web/src/ship.gif&quot;);
+binmode(GRAPHIQUE);
+my $octets_lus = read(GRAPHIQUE, $memoire, $nombre_octets);
+close(GRAPHIQUE);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;&lt;h1&gt;le contenu du fichier comme bouillie de caract�res:&lt;/h1&gt;\n&quot;;
+print &quot;&lt;p&gt;&lt;tt&gt;$memoire&lt;/tt&gt;&lt;/p&gt;&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple lit un fichier GIF binaire. Pour ce faire, le fichier est ouvert avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open</b></a>. Ensuite, la fonction <code>binmode</code> est appel&eacute;e avec le descripteur de fichier du fichier ouvert (<code>GRAPHIQUE</code>). Ensuite, le fichier est lu avec la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#read"><b>read</b></a>.<br>
+&Agrave; des fins de test,  du code HTML est envoy&eacute; au navigateur appelant et repr&eacute;sente le contenu du graphique comme une bouillie de caract&egrave;res. Le contenu lu se trouve apr&egrave;s lecture dans la scalaire <code>$memoire</code>.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>D'autres d&eacute;tails sur la lecture de fichiers binaires sont d&eacute;crits avec la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#read"><b>read</b></a>.</p>
+
+<p>L'expression utilis&eacute;e <code>-s</code> pour fixer la taille du fichier sauvegard&eacute;e dans <code>$nombre_octets</code>, fait partie d'une s&eacute;rie d'expressions similaires qui permettent la recherche de caract&eacute;ristiques d'un fichier. D'autres d&eacute;tails &agrave; ce sujet dans la partie sur <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="gestionfichiers.htm#test_fichier"><b>op&eacute;rateurs de test fichier pour fichiers et r&eacute;pertoires
+</b></a>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="close">close - fermer un canal d'entr&eacute;e ou de sortie</a></h2>
+
+<p>Ferme un fichier qui a &eacute;t&eacute; ouvert auparavant avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open</b></a>.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le descripteur d'un canal d'entr&eacute;e ou de sortie ouvert, qui doit &ecirc;tre ferm&eacute;.</p>
+
+<h3 class="xmp">Exemple avec explications:</h3>
+
+<p>Un exemple complet avec explications des deux fonctions interd&eacute;pendantes <code>open</code> et <code>close</code> est trait&eacute; avec la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open</b></a>!</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Quand vous ne fermez pas explicitement un fichier ouvert auparavant avec <code>close</code>, le fichier est automatiquement ferm&eacute; par Perl &agrave; la fin du script.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="closedir">closedir - - fermer un r&eacute;pertoire
+</a></h2>
+
+<p>ferme un descripteur de r&eacute;pertoire qui a &eacute;t&eacute; ouvert auparavant avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#opendir"><b>opendir</b></a>.</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le descripteur de r&eacute;pertoire.</p>
+
+<h3 class="xmp">Exemple avec explications:</h3>
+
+<p>Un exemple complet avec explications des deux fonctions interd&eacute;pendantes <code>opendir</code>, <code>readdir</code> et <code>closedir</code> est trait&eacute; avec la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#opendir"><b>opendir</b></a>!</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="eof">eof - surveille la fin d'un fichier
+</a></h2>
+
+<p>Demande &agrave; un fichier ouvert si le pointeur de fichier a atteint la fin du fichier.</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1. </b>le descripteur d'un canal d'entr&eacute;e ou de sortie.</p>
+
+<p>Renvoie <code>true</code> si la fin du fichier est atteinte, et <code>false</code>, si ce n'est pas le cas.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $max = 100000;
+my $i = 0;
+my $etat = 0;
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+open(FICHIER, &quot;&lt;/usr/chatlog/lastnight.txt&quot;);
+while(1) {
+ if(eof(FICHIER)) {
+   $etat = 1;
+   last;
+ }
+ if($i &gt; $max) {
+   $etat = 2;
+   last;
+ }
+ getc(FICHIER);
+ $i++;
+}
+close(FICHIER);
+if($etat == 1) {
+ print &quot;&lt;p&gt;Le fichier a moins de $max octets, et a donc �t� lu enti�rement&lt;/p&gt;\n&quot;;
+}
+if($etat == 2) {
+ print &quot;&lt;p&gt;Le fichier �tait trop grand, n'ont donc �t� lus que $max octets&lt;/p&gt;\n&quot;;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple g&eacute;n&egrave;re du code HTML pour le navigateur appelant. Ici un fichier texte <code>/usr/chatlog/lastnight.txt</code> est ouvert avec la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open</b></a>. Le fichier ouvert est lu dans une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../langage/boucles.htm#while"><b>boucle while</b></a> signe par signe avec la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#getc"><b>getc</b></a>. &Eacute;tant donn&eacute; que la condition de la boucle <code>(1)</code> est toujours vraie, des conditions d'interruptions sont formul&eacute;es &agrave; l'int&eacute;rieur de celle-ci. Quand la fin du ficher est atteinte - <code>if(eof(FICHIER))</code> - la scalaire <code>$etat</code> est fix&eacute;e &agrave;  1 et la boucle se termine par  <code>last</code>.<br>
+La boucle se termine &eacute;galement quand plus de signes qu'il n'est d&eacute;fini dans <code>$max</code> ont &eacute;t&eacute; lus. Dans ce cas <code>$etat</code> est fix&eacute; &agrave; 2.<br>
+En questionnant la valeur de <code>$etat</code> il est possible d'&eacute;tablir &agrave; la fin de la boucle ce qui a occasionn&eacute; l'interruption. En fonction de cela, une phrase correspondante est sortie.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p><code>if(eof(FICHIER))</code> (&quot;si la fin du fichier est atteinte&quot;) ou bien <code>while(! eof(FICHIER))</code> (&quot;aussi longtemps que la fin du fichier n'est pas atteinte&quot;) sont des formulations typiques lors de la mise en &#339;uvre de la fonction <code>eof</code>. De telles requ&ecirc;tes et conditions de boucle sont indiqu&eacute;es avant tout quand vous lisez des fichiers caract&egrave;re par caract&egrave;re (avec la fonction <code>getc</code>) ou bien par bloc (avec la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#read"><b>read</b></a>).</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="fileno">fileno - num&eacute;ro du canal d'entr&eacute;e ou de sortie ouvert</a></h2>
+
+<p>Chaque  canal d'entr&eacute;e ou de sortie ouvert a en interne un num&eacute;ro, m&ecirc;me en ce qui concerne les canaux de sortie que vous n'avez pas ouvert vous m&ecirc;me <code>STDIN</code>, <code>STDOUT</code> et <code>STDERR</code>. Avec cette fonction, il vous est possible de rechercher le num&eacute;ro interne d'un canal d'entr&eacute;e ou de sortie.</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1. </b>le descripteur d'un canal d'entr&eacute;e ou de sortie.</p>
+
+<p>Renvoie le num&eacute;ro du canal d'entr&eacute;e ou de sortie.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+open(FICHIER, &quot;&lt;/usr/texte/important.txt&quot;);
+my $fichier = fileno(FICHIER);
+close(FICHIER);
+my $entree = fileno(STDIN);
+my $sortie = fileno(STDOUT);
+my $erreur = fileno(STDERR);
+print &quot;Entr�e= $entree, Sortie = $sortie, Erreur = $erreur, Fichier = $fichier\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple g&eacute;n&egrave;re du code HTML pour le navigateur Web appelant. Ici un fichier texte <code>/usr/texte/important.txt</code> est ouvert avec la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open</b></a>. Avec <code>fileno(FICHIER)</code> le num&eacute;ro interne du descripteur de ce fichier est recherch&eacute; et sauvegard&eacute; dans une scalaire <code>$fichier</code>. De la m&ecirc;me fa&ccedil;on, les num&eacute;ros internes des trois canaux standard sont recherch&eacute;s et sauvegard&eacute;s dans des scalaires correspondantes. Enfin, le script sort les num&eacute;ros ainsi trouv&eacute;s.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="flock">flock - prot&eacute;ger un fichier ouvert des acc&egrave;s</a></h2>
+
+<p>R&egrave;gle comment d'autres processus peuvent acc&eacute;der &agrave; un fichier pendant que le script actuel a ouvert le fichier. Pour des scripts CGI, ce peut &ecirc;tre tr&egrave;s important. Car pendant qu'un script appel&eacute; par le navigateur d'un utilisateur m&egrave;ne &agrave; bien son travail, un autre navigateur d'un autre utilisateur peut tr&egrave;s bien appeler le m&ecirc;me script. Les deux processus travaillent alors dans la m&eacute;moire de travail de l'ordinateur serveur et cela ind&eacute;pendamment l'un de l'autre, mais ils ex&eacute;cutent le m&ecirc;me code et acc&egrave;dent aux m&ecirc;mes fichiers. Afin qu'un autre processus n'efface pas les donn&eacute;es que le processus actuel vient juste d'&eacute;crire, il est possible pour le processus de prot&eacute;ger le fichier contre d'autres acc&egrave;s.</p>
+
+<p><b>Important:</b> Pour les syst&egrave;mes d'exploitation qui n'ont en interne impl&eacute;ment&eacute; aucun  <code>flock</code>, l'application de cette fonction m&egrave;ne &agrave; une erreur, comme par exemple pour Windows 95/98!</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1. </b>le descripteur du fichier ouvert.<br>
+<b>2. </b>le num&eacute;ro de l'option de verrouillage ou une constante - sont permis les num&eacute;ros <code>1</code>, <code>2</code>, <code>8</code> et <code>4</code> ou bien les constantes <code>LOCK_SH</code>,  <code>LOCK_EX</code>,  <code>LOCK_UN</code> et  <code>LOCK_NB</code>:<br>
+Le num&eacute;ro <code>1</code> ou la constante <code>LOCK_SH</code> signifie <i>shared</i> (partager un fichier avec d'autres processus, par exemple quand un processus qui acc&egrave;de &agrave; un fichier en lecture ne doit pas g&ecirc;ner d'autres processus qui lisent le m&ecirc;me fichier en m&ecirc;me temps),<br>
+Le num&eacute;ro  <code>2</code> ou la constante <code>LOCK_EX</code> signifie <i>exclusive</i> (ne permettre &agrave; aucun autre processus le moindre acc&egrave;s au fichier),<br>
+Le num&eacute;ro <code>8</code> ou la constante <code>LOCK_UN</code> signifie <i>unlock</i> (lever &agrave; nouveau express&eacute;ment la protection d'acc&egrave;s).<br>
+Le num&eacute;ro <code>4</code> ou la constante <code>LOCK_NB</code> signifie <i>non-blocking</i> (uniquement en relation avec <code>1</code> ou bien <code>2</code> ou <code>LOCK_SH</code> ou <code>LOCK_EX</code> permet et met fin &agrave; une tentative d'acc&egrave;s  au fichier au lieu d'attendre qu'un acc&egrave;s soit &agrave; nouveau possible).<br>
+Vous ne pouvez employer les constantes que si vous incorporez le module  <code>Fcntl</code> (voir l'exemple ci-dessous).</p>
+
+<p>Renvoie <code>true</code> si le proc&eacute;d&eacute; a &eacute;t&eacute; couronn&eacute; de succ&egrave;s et  <code>false</code>, s'il ne l'a pas &eacute;t&eacute;.</p>
+
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+use Fcntl ':flock';
+$| = 1;
+
+open(FICHIER_DONNEES, &quot;&lt;/db/donnees.csv&quot;);
+flock(FICHIER_DONNEES, LOCK_EX);
+
+# Supposons qu'il se passe ici quelque chose qui prenne du temps,
+# et qu'en m�me temps un autre processus tente d'acc�der au fichier
+# puis  acc�de au verrouillage
+
+flock(FICHIER_DONNEES, LOCK_UN);
+close(FICHIER_DONNEES);
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Si vous d&eacute;sirez utiliser des constantes &agrave; la place de num&eacute;ros, vous devez  noter d'abord une constante pour incorporer le module de verrouillage, par exemple comme sous la forme ci-dessus: <code>use Fcntl ':flock';</code></p>
+
+<p>Apr&egrave;s que vous avez r&eacute;ussi &agrave; ouvrir un fichier et que vous avez un descripteur de fichier correspondant pour l'acc&egrave;s au fichier, vous pouvez fixer les options de verrouillage pour le fichier. C'est ce qui se passe dans l'exemple apr&egrave;s l'appel de la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open</b></a> &agrave; l'aide de l'instruction <code>flock(FICHIER_DONNEES, LOCK_EX);</code></p>
+
+<p>Ici le descripteur de fichier est <code>FICHIER_DONNEES</code>, et la mention de verrouillage d&eacute;sir&eacute;e est <code>LOCK_EX</code>. Dans l'exemple, le fichier est verrouill&eacute; exclusivement. Aussi longtemps que le verrouillage &agrave; l'int&eacute;rieur du script n'est pas lev&eacute; ou que le fichier n'est pas ferm&eacute;, aucun autre processus qui tient compte de  <code>flock</code>, ne peut &eacute;crire en m&ecirc;me temps dans le fichier.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Les deux commandes<br>
+<code>flock(FICHIER_DONNEES, LOCK_UN);<br>
+close(FICHIER_DONNEES);</code><br>
+ne servent dans le fichier ci-dessus qu'&agrave; une meilleure compr&eacute;hension. La lev&eacute;e explicite du verrouillage est &agrave; vrai dire superflue, si elle ne doit intervenir qu'avec la fermeture du fichier avec la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#close"><b>close</b></a>. Car <code>close</code> l&egrave;ve en m&ecirc;me temps toute mention de verrouillage de fichier.</p>
+
+<p>L'instruction <code>$| = 1;</code> de l'exemple ci-dessus sert &agrave;  d&eacute;connecter la sortie dans la m&eacute;moire tampon (comparez &agrave; ce sujet avec les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/predefini.htm"><b>Variables pr&eacute;d&eacute;finies </b></a> en Perl). Elle est &agrave; recommander lors du verrouillage de fichiers. Car il peut arriver autrement que par la sortie diff&eacute;r&eacute;e en m&eacute;moire tampon l'&eacute;criture de donn&eacute;es n'ait lieu que lorsque le verrouillage a d&eacute;j&agrave; &eacute;t&eacute; lev&eacute;. Ce qui rendrait vain l'objectif m&ecirc;me du verrouillage.</p>
+
+<p>Quand vous d&eacute;sirez travailler avec l'option de verrouillage <code>4</code> ou <code>LOCK_NB</code>, vous devez relier cette option avec une option de verrouillage par une liaison par bit. Exemples:<br>
+<code>flock(FICHIER_DONNEES, LOCK_EX | LOCK_NB);<br>
+flock(FICHIER_DONNEES, LOCK_SH | LOCK_NB);</code>
+</p>
+
+<p><b>Important:</b> <code>flock</code> n'impose aucun verrouillage, mais n'a qu'un caract&egrave;re de recommandation. La protection d'acc&egrave;s n'est efficace que lorsque tous les processus qui acc&egrave;dent au fichier tiennent compte de flock.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="format">format - formater des donn&eacute;es avant la sortie</a></h2>
+
+<p>C'est une fonction puissante pour formater de fa&ccedil;on &eacute;loquente des donn&eacute;es pour la sortie sur un p&eacute;riph&eacute;rique orient&eacute; sur le texte comme un &eacute;cran texte ou une imprimante par ligne. Cette fonction n'a quasiment pas d'usage avec les scripts CGI &eacute;tant donn&eacute; qu'une minorit&eacute; de navigateurs Web travaillent orient&eacute;s caract&egrave;res.</p>
+
+<h3 class="xmp">Exemple 1:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+
+my $nom = &quot;Hagenor&quot;;
+my $prenom = &quot;Henriette&quot;;
+my $ville = &quot;Honfleur&quot;;
+
+format STDOUT =
+@&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;  @&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;  de @&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+$prenom, $nom, $ville
+.
+write;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple  1 la sortie est la suivante:</p>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>Henriette           Hagenor          de Honfleur</pre></td></tr></table>
+
+<p>Le formatage de la sortie se fait par la construction <code>format</code>. La sortie proprement dite se fait par la commande finale <code>write</code>.</p>
+
+<p>Lors de la construction pour le formatage, mentionnez derri&egrave;re  <code>format</code> un nom pour le format, en principe le nom du descripteur de fichier d&eacute;sir&eacute;. En r&eacute;alit&eacute;, le nom n'est pas un descripteur de fichier, il n'en rev&ecirc;t que l'apparence. Le format par d&eacute;faut pour un descripteur de fichier a somme toute le m&ecirc;me nom que le descripteur de fichier. Dans l'exemple ci-dessus le nom de format mentionn&eacute; est <code>STDOUT</code>, parce que l'&eacute;criture doit se faire sur la sortie standard <code>STDOUT</code>. Derri&egrave;re le nom de format suit le signe &eacute;gal.<br>
+Les lignes qui suivent ensuite se composent toujours de paires de lignes. D'abord sont not&eacute;es une ou plusieurs lignes de formatage  <b>lignes de formatage(n)</b>, et ensuite, une  <b>ligne d'arguments</b>. Dans la ligne de formatage, vous d&eacute;finissez &agrave; l'aide de signes symboliques sp&eacute;ciaux le format de sortie pour certains champs et dans la ligne d'arguments, les variables qui doivent &ecirc;tre sortis dans les champs correspondants.<br>
+Avec un point (<b>.</b>) sur une ligne distincte la construction  Format est termin&eacute;e.</p>
+
+<p>Pour la ligne de formatage pr&eacute;valent les r&egrave;gles suivantes:</p>
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left">Instruction</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Signification</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>@&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">aligner le champ &agrave; gauche. Le nombre des signes <code>&lt;</code> d&eacute;termine la largeur du champ en caract&egrave;res. Des contenus plus longs voient leur partie droite tronqu&eacute;e &agrave; la sortie.
+</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>@&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">aligner le champ &agrave; droite. Le nombre des signes <code>&gt;</code> d&eacute;termine la largeur du champ en caract&egrave;res. Des contenus plus longs voient leur partie droite tronqu&eacute;e &agrave; la sortie.
+</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>@||||||</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">aligner le champ au centre. Le nombre des signes <code>|</code> d&eacute;termine la largeur du champ en caract&egrave;res. Des contenus plus longs voient leur partie droite tronqu&eacute;e &agrave; la sortie.
+</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>@#.##</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">formater un champ num&eacute;rique avec signe d&eacute;cimal. Comme signe d&eacute;cimal n'est permis que le point. Le nombre des signes <code>#</code> avant le point d&eacute;termine la largeur du champ avant la virgule, Les nombres plus petits sont ici align&eacute;s vers la droite sur le point d&eacute;cimal. Le nombre des signes <code>#</code> derri&egrave;re le point d&eacute;termine la largeur du champ avant la virgule. Pour les nombres comportant moins de chiffres apr&egrave;s la virgule que de signes mentionn&eacute;s, des z&eacute;ros sont ajout&eacute;s.
+</td>
+</tr>
+</table>
+</td></tr></table>
+
+
+<p>En plus de ces possibilit&eacute;s de formatage, il y a quelques  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/predefini.htm"><b>variables pr&eacute;d&eacute;finies en Perl</b></a>, que vous pouvez utiliser pour la sortie.</p>
+
+<h3 class="xmp">Exemple 2:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+
+format STDOUT =
+page @&lt;&lt;    @&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+$%, $~
+.
+write;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple 2 la sortie est la suivante:</p>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>page 0        STDOUT</pre></td></tr></table>
+
+<p>Le formatage de la sortie se fait par la construction <code>format</code>. &Agrave; la place de variables banales, des variables sp&eacute;ciales pr&eacute;d&eacute;finies sont sorties. Les variables sp&eacute;ciales suivantes sont possibles:</p>
+
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left">Instruction</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Signification</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$%</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">num&eacute;ro de la page actuelle</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$=</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Nombre de lignes par page</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$-</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Nombre de lignes restantes sur la page actuelle</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$~</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Nom du format actuel - par d&eacute;faut le nom du descripteur de fichier utilis&eacute;.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Nom du format de l'ent&ecirc;te actuel - par d&eacute;faut le nom du format actuel suivi de la suite de caract&egrave;res <code>_TOP</code>.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$:</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">(suite de) caract&egrave;re(s) de s&eacute;paration pour des &eacute;l&eacute;ments de plusieurs lignes.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^L</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">(suite de) caract&egrave;re(s) de s&eacute;paration pour les pages.</td>
+</tr>
+</table>
+</td></tr></table>
+
+<p>Pour des sorties plus longues, de fichiers par exemple, vous pouvez aussi utiliser des lignes d'ent&ecirc;te. L'exemple suivant montre comment vous pouvez sortir un fichier:</p>
+
+<h3 class="xmp">Exemple 3:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+my $Zeile;
+
+open(FICHIER,&quot;&lt;/usr/texte/donnees.txt&quot;);
+
+format STDOUT_TOP =
+****************************************************
+page @>>
+$%
+****************************************************
+.
+
+format STDOUT =
+@&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+$ligne;
+.
+
+while(&lt;FICHIER&gt;) {
+  chomp $_;
+  $ligne = $_;
+  write;
+}
+close(FICHIER);
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple 3 sont sortis les 15 premiers caract&egrave;res de chaque ligne d'un fichier texte imaginaire.</p>
+
+<p>Le formatage de la sortie dans l'exemple 3 a lieu avec deux constructions <code>format</code>. Les deux constructions re&ccedil;oivent les noms <code>STDOUT_TOP</code> et <code>STDOUT</code>. Par la cha&icirc;ne de caract&egrave;res <code>_TOP</code> &agrave; la fin d'un nom de format vous faites savoir &agrave; Perl qu'il s'agit d'une d&eacute;finition de ligne d'ent&ecirc;te. Dans l'exemple, la ligne d'ent&ecirc;te est format&eacute;e par deux lignes compos&eacute;es d'ast&eacute;risques, avec entre elles  le num&eacute;ro de la page actuelle.</p>
+
+<p>Dans la poursuite du d&eacute;roulement de l'exemple  3 vous voyez comment le fichier est lu ligne par ligne dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#while"><b>boucle while</b></a>, ligne copi&eacute;e  dans une variable nomm&eacute;e <code>$ligne</code>. Cette variable est sortie &agrave; chaque fois - ici aussi dans la boucle. Le formatage de la sortie est assur&eacute; par la construction  Format nomm&eacute;e <code>STDOUT</code>. L&agrave; la variable <code>$ligne</code> est sortie sous la forme souhait&eacute;e.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="getc">getc - lire le signe suivant</a></h2>
+
+<p>Lit un signe d'un fichier ouvert pr&eacute;c&eacute;demment et positionne le pointeur de fichier un caract&egrave;re plus loin.</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1. </b>le descripteur de fichier.</p>
+
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;&lt;pre&gt;\n&quot;;
+open(FICHIER, &quot;&lt;/usr/texte/important.txt&quot;);
+my $octets = 0;
+while(! eof(FICHIER)) {
+ my $signe = getc(FICHIER);
+ print &quot;$signe&quot;;
+ $octets++;
+}
+close(FICHIER);
+print &quot;&lt;/pre&gt;&lt;b&gt;$octets caract�res lus!&lt;/b&gt;\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple g&eacute;n&egrave;re du code HTML pour le navigateur appelant. Ici aussi un fichier texte <code>/usr/texte/important.txt</code> est ouvert avec la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open</b></a> . Le fichier ouvert est lu signe par signe dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#while"><b>boucle while</b></a> jusqu'&agrave; ce que la fin du fichier soit atteinte, ce qui est demand&eacute; avec la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#eof"><b>eof</b></a>. Les caract&egrave;res lus sont sortis. Par ailleurs, la scalaire <code>$octets</code> est incr&eacute;ment&eacute;e de 1 &agrave; chaque signe lu. De cette fa&ccedil;on, le nombre des caract&egrave;res lus est recherch&eacute; parall&egrave;lement. &Agrave; la fin, ce nombre est aussi sorti.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="open">open - ouvrir un canal d'entr&eacute;e ou de sortie</a></h2>
+
+<p>Ouvre un fichier pour la lecture et/ou pour l'&eacute;criture ou aussi pour l'ex&eacute;cution. Les fichiers binaires sont aussi ouverts avec cette fonction.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le nom du descripteur de fichier (pouvant &ecirc;tre choisi librement), et<br>
+<b>2.</b> le nom de chemin du fichier &agrave; ouvrir, soit comme mention de chemin absolue ou comme mention de chemin relative par rapport au r&eacute;pertoire actuel (si le r&eacute;pertoire actuel n'est pas connu, il est recommand&eacute; de changer pour un r&eacute;pertoire d&eacute;termin&eacute; &agrave; l'aide de la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="gestionfichiers.htm#chdir"><b>chdir</b></a>). Comme signe de s&eacute;paration entre les r&eacute;pertoires dans le chemin, vous pouvez utiliser la barre oblique normale, m&ecirc;me si le script doit tourner sur un ordinateur Windows/DOS. Perl transforme cette syntaxe en interne d'apr&egrave;s l'environnement de l'installation.<br>Vous ne pouvez cependant pas mentionner d'URI!</p>
+
+<p>Juste avant le nom (de chemin) du fichier &agrave; ouvrir, notez par ailleurs &agrave; l'aide des signes <code>&lt;</code>, <code>&gt;</code> et <code>|</code> comment le fichier doit &ecirc;tre ouvert. Si vous ne faites aucune de ces mentions, le fichier n'est ouvert qu'en lecture. Les mentions suivantes sont permises:<br>
+<code>&lt;fichier.dat</code> signifie: ouvrir le fichier <code>fichier.dat</code> en lecture seule. Le fichier doit exister, sinon il y a une erreur.<br>
+<code>&gt;fichier.dat</code> signifie: ouvrir le fichier <code>fichier.dat</code> pour l'&eacute;criture de donn&eacute;es. Si le fichier existe d&eacute;j&agrave;, son contenu est &eacute;cras&eacute;. Si le fichier n'existe pas encore, il est cr&eacute;&eacute; automatiquement.<br>
+<code>&gt;&gt;fichier.dat</code> signifie: ouvrir le fichier <code>fichier.dat</code> pour l'&eacute;criture de donn&eacute;es. Si le fichier existe d&eacute;j&agrave;, le nouveau contenu est ajout&eacute; &agrave; l'ancien contenu, ce qui veut dire que l'ancien contenu n'est pas effac&eacute;. Si le fichier n'existe pas encore, il est cr&eacute;&eacute; automatiquement.<br>
+<code>+&gt;fichier.dat</code> signifie: ouvrir le fichier <code>fichier.dat</code> pour la lecture et l'&eacute;criture de donn&eacute;es.<br>
+<code>|fichier</code> signifie: Le fichier <code>fichier</code> est un fichier programme ex&eacute;cutable ou une commande de console. Le programme ou la commande sont ex&eacute;cut&eacute;es. Du point de vue de Unix, un op&eacute;rateur de d&eacute;rivation de donn&eacute;es est ouvert <b>vers le</b> programme ou la commande.<br>
+<code>fichier|</code> signifie: Le fichier <code>fichier</code> est un fichier programme ex&eacute;cutable ou une commande de console. Le programme ou la commande sont ex&eacute;cut&eacute;es. Du point de vue de Unix, un op&eacute;rateur de d&eacute;rivation de donn&eacute;es est ouvert <b>&agrave; partir du</b> programme ou la commande.<br></p>
+
+<p>Quand le fichier peut &ecirc;tre ouvert, la fonction <code>open</code> renvoie la valeur <code>true</code> , sinon la valeur <code>undef</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+
+open(FICHIER, &quot;&lt;/tmp/server.cfg&quot;) || die &quot;Fichier non trouv�&quot;;
+my @lignes = &lt;FICHIER&gt;;
+close(FICHIER);
+
+my @nouvelles_lignes;
+foreach(@lignes) {
+  $_ =~ s/#.*//;
+  push(@nouvelles_lignes,$_) if $_ !~ /^\s*\n/;
+}
+open(FICHIER, &quot;&gt;/tmp/server.cfg&quot;) || die &quot;Fichier non trouv�&quot;;
+print FICHIER @nouvelles_lignes;
+close(FICHIER);
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre comment ouvrir un fichier, le lire, le traiter et le fermer, puis l'ouvrir &agrave; nouveau pour y &eacute;crire les donn&eacute;es venant d'&ecirc;tre trait&eacute;es. Il s'agit ici d'un fichier de configuration imaginaire dans lequel beaucoup de lignes contiennent des commentaires plac&eacute;s derri&egrave;re la commande de configuration proprement dite et qui commencent par <code>#</code>. Dans l'exemple, le fichier est trait&eacute; de telle fa&ccedil;on que ces lignes de commentaires sont effac&eacute;es.</p>
+
+<p>Tout d'abord la fonction <code>open</code> est appel&eacute;e. Ici le fichier d&eacute;sir&eacute; est ouvert en lecture. Le fichier est ensuite copi&eacute; dans la liste <code>@lignes</code> (dans  chaque &eacute;l&eacute;ment de <code>@lignes</code> figure &agrave; la fin une ligne du fichier). Apr&egrave;s la lecture et la copie, le fichier est referm&eacute; avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#close"><b>close</b></a>.<br>
+Ces trois commandes pour ouvrir, lire et copier et fermer sont typiques.</p>
+
+<p>Dans l'exemple ci-dessus, les lignes lues sont trait&eacute;es ensuite dans l'ordre dans une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#foreach"><b>boucle foreach</b></a>. Ici la partie commentaires de chaque ligne est effac&eacute;e. Cela s'obtient dans l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../langage/expresreg.htm"><b>expression r&eacute;guli&egrave;re</b></a> pour rechercher/remplacer (<code>s/#.*//g</code>). Ensuite, la ligne trait&eacute;e actuelle est ajout&eacute;e &agrave; la liste <code>@nouvelles_lignes</code> avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="hashlistes.htm#push"><b>push</b></a> - mais seulement si la ligne contient autre chose que des espaces suivis d'un caract&egrave;re de contr&ocirc;le de passage &agrave; la ligne. Pour cela aussi une expression r&eacute;guli&egrave;re appropri&eacute;e est a nouveau appliqu&eacute;e.</p>
+
+<p>Enfin, le fichier est &agrave; nouveau ouvert, cette fois n&eacute;anmoins en &eacute;criture ou plus pr&eacute;cis&eacute;ment: pour &eacute;craser le contenu ant&eacute;rieur. &Agrave; l'aide de la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#print"><b>print</b></a> la liste <code>@nouvelles_lignes</code> est &eacute;crite dans le fichier. &Agrave; la fin, le fichier est ferm&eacute;.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Si des erreurs surviennent &agrave; l'ouverture de fichiers importants, il est le plus souvent judicieux de mettre fin aussit&ocirc;t au script. C'est &agrave; cela que sert la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="controle.htm#die"><b>die</b></a>, qui est aussi utilis&eacute;e dans l'exemple ci-dessus.</p>
+
+<p>Dans la plupart des cas, il est judicieux de refermer un fichier ouvert d&egrave;s que vous n'avez plus &Agrave; y lire ou &agrave; y &eacute;crire. Cela permet de lib&eacute;rer des ressources du syst&egrave;me d'exploitation et permet aussi &agrave; d'autres programmes ou processus d'acc&eacute;der &agrave; nouveau  au fichier si vous aviez auparavant verrouill&eacute; ce fichier.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="opendir">opendir - ouvrir un r&eacute;pertoire</a></h2>
+
+<p>Ouvre un r&eacute;pertoire par exemple pour qu'il soit lu. Ici vous attribuez un descripteur de fichier par lequel vous pouvez acc&eacute;der au r&eacute;pertoire.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le nom du descripteur de r&eacute;pertoire (pouvant &ecirc;tre choisi librement), et<br>
+<b>2.</b> le nom de chemin du r&eacute;pertoire &agrave; ouvrir, soit comme mention de chemin absolue ou  comme mention de chemin relative par rapport au r&eacute;pertoire actuel (si le r&eacute;pertoire actuel n'est pas connu, il est recommand&eacute; de changer pour un r&eacute;pertoire d&eacute;termin&eacute; &agrave; l'aide de la fonction  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="gestionfichiers.htm#chdir"><b>chdir</b></a>.</p>
+
+<p>Renvoie <code>TRUE</code> quand le r&eacute;pertoire a pu &ecirc;tre ouvert. Quand une erreur est survenue, celle-ci est sauvegard&eacute;e dans la variable <code>$!</code>.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $repertoire = &quot;/donnees/web&quot;;
+opendir(DIR, $repertoire) || die &quot;$repertoire: $!&quot;;
+my @enregistrements = readdir(DIR);
+closedir(DIR);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+foreach(@enregistrements) {
+ print &quot;$_&lt;br&gt;\n&quot;;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, le chemin d'un r&eacute;pertoire (<code>&quot;/donnees/web&quot;</code>) est sauvegard&eacute; dans la scalaire <code>$repertoire</code>.  Observez que les r&eacute;pertoires du chemin sont s&eacute;par&eacute;s par des barres obliques simples et non pas par des barres obliques invers&eacute;es comme c'est habituel sous DOS/Windows. Utilisez la syntaxe avec les barres obliques m&ecirc;me si Perl tourne chez vous sous DOS/Windows. Quand vous d&eacute;sirez adresser un autre disque que le disque actuel dans un environnement  DOS/Windows, Faites pr&eacute;c&eacute;der simplement la mention de la lettre du disque suivie de deux points, donc par exemple <code>c:/temp</code>.</p>
+
+<p>Avec la fonction <code>opendir</code> le r&eacute;pertoire est ouvert. <code>DIR</code> est un nom attribu&eacute; personnellement au descripteur de r&eacute;pertoire. De plus, la fonction re&ccedil;oit comme param&egrave;tre la scalaire dans laquelle le r&eacute;pertoire d&eacute;sir&eacute; est sauvegard&eacute;. Au cas o&ugrave; le r&eacute;pertoire ne peut pas &ecirc;tre ouvert, le script se termine par l'appel de la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="controle.htm#die"><b>die</b></a>.</p>
+
+<p>L'exemple ci-dessus utilise le r&eacute;pertoire ouvert pour copier le contenu du r&eacute;pertoire dans une liste <code>@enregistrements</code> &agrave; l'aide de la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#readdir"><b>readdir</b></a>. Ensuite, le r&eacute;pertoire est ferm&eacute; par l'appel de la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#closedir"><b>closedir</b></a>. L'exemple envoie ensuite du code HTML au navigateur appelant. Ici la liste des enregistrements du r&eacute;pertoire est sortie.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Tous les enregistrements du r&eacute;pertoire sont sortis, &agrave; savoir les noms de fichiers mais aussi les noms de sous-r&eacute;pertoires, ainsi que les noms de r&eacute;pertoires &quot;symboliques&quot; que l'on trouve sur la plupart des syst&egrave;mes avec un point (<code>.</code>) (repr&eacute;sente le r&eacute;pertoire actuel) et deux points (<code>..</code>) (repr&eacute;sente le r&eacute;pertoire parent).</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="print">print - sortir des donn&eacute;es</a></h2>
+
+<p>&Eacute;crit les donn&eacute;es sur la sortie standard ou dans un canal de sortie ouvert, donc par exemple un fichier. Les donn&eacute;es peuvent &ecirc;tre une cha&icirc;ne de caract&egrave;res distincte ou une liste de cha&icirc;nes de caract&egrave;res. Dans ces cha&icirc;nes de caract&egrave;res peuvent aussi &ecirc;tre plac&eacute;es des variables, donc des scalaires distinctes, mais aussi des listes compl&egrave;tes ou des hashes. Perl reconna&icirc;t les variables et &eacute;crit leur valeur &agrave; l'endroit correspondant.<br>
+Cette fonction est tr&egrave;s souvent employ&eacute;e dans des scripts CGI pour envoyer du code HTML au navigateur.</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le <i>descripteur de fichier</i> = mention facultative sur le canal de sortie. Si vous omettez cette mention, l'&eacute;criture se fait sur la sortie standard <code>STDOUT</code>. Quand vous avez ouvert un fichier avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#open"><b>open</b></a> et que vous voulez &eacute;crire dans celui-ci, vous devez mentionner le descripteur de fichier attribu&eacute; avec <code>open</code>.<br>
+<b>2.</b> <i>donnees[,donnees]</i> = un ou plusieurs &eacute;l&eacute;ments (cha&icirc;nes de caract&egrave;res, nombres etc...) qui doivent &ecirc;tre &eacute;crits.</p>
+
+<p>Renvoie <code>true</code> si Perl a pu &eacute;crire les donn&eacute;es avec succ&egrave;s.</p>
+
+<h3 class="xmp">Exemple  1 d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;&lt;table border=\&quot;1\&quot;&gt;\n&quot;,&quot;&lt;tr&gt;&lt;td&gt;&lt;b&gt;variable d'environnement&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;valeur actuelle&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;;
+my $i = 0;
+my $enregistrement;
+foreach $enregistrement (%ENV) {
+  if($i == 0) {
+    print &quot;&lt;tr&gt;&lt;td&gt;$enregistrement&lt;/td&gt;\n&quot;;
+  }
+  else {
+    print &quot;&lt;td&gt;$enregistrement&lt;/td&gt;&lt;/tr&gt;\n&quot;;
+  }
+  if($i == 0) {
+    $i = 1;
+  }
+  else {
+    $i = 0;
+  }
+}
+print &quot;&lt;/table&gt;\n&quot;,&quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple sort toutes les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../introduction/variablesenvironnement.htm"><b>variables d'environnement CGI</b></a> du serveur Web et cela proprement format&eacute; dans un tableau HTML. Pour ce faire les &eacute;l&eacute;ments du hash pr&eacute;d&eacute;fini <code>%ENV</code> sont trait&eacute;s dans une
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#foreach"><b>boucle foreach</b></a> et sont &eacute;crits dans le tableau HTML. Les sorties HTML correspondantes sont &eacute;crites &agrave; l'aide de commandes print.</p>
+
+<p>Dans la derni&egrave;re des commandes <code>print</code> vous pouvez voir comment il est possible de noter plusieurs cha&icirc;nes de caract&egrave;res &agrave; la suite en les s&eacute;parant par des virgules.<br>
+Dans les commandes <code>print</code> &agrave; l'int&eacute;rieur de la boucle, vous pouvez voir comment une variable  (dans l'exemple la scalaire <code>$enregistrement</code>) est not&eacute;e au milieu d'une cha&icirc;ne de caract&egrave;res &agrave; sortir. &Agrave; l'endroit correspondant la valeur respectivement actuelle de <code>$enregistrement</code> est sortie.</p>
+
+<p>Quand vous devez noter de nombreuses commandes <code>print</code> &agrave; la suite, vous pouvez aussi adopter une solution plus lisible:</p>
+
+<h3 class="xmp">Exemple 2 d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &lt;&lt;&quot;FIN&quot;;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Titre&lt;/title&gt;
+&lt;/head&gt;
+&lt;body bgcolor=&quot;#FFFFCC&quot;&gt;
+&lt;h1&gt;HTML tout � fait normal&lt;/h1&gt;
+&lt;p&gt;Perl et HTML sont quelquefois comme Adam et �ve&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+FIN
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Vous pouvez sortir des sections de texte plus importantes, par exemple le code HTML complet en un seul bloc. Pour ce faire notez derri&egrave;re la commande <code>print</code> deux <code>&lt;&lt;</code> suivis imm&eacute;diatement (sans espace qui s&eacute;pare) du nom d'un d&eacute;limiteur de fin jusqu'auquel tout doit simplement &ecirc;tre sorti comme du texte. Derri&egrave;re le nom du d&eacute;limiteur de texte, dans la ligne de la commande <code>print</code> notez le point-virgule habituel. &Agrave; la fin du texte &agrave; sortir, notez sur une ligne distincte le nom du d&eacute;limiteur de fin, ici cependant sans point-virgule &agrave; la fin. Il s'est instaur&eacute; d'utiliser des majuscules pour ces noms d'&eacute;tiquettes, parce qu'ainsi, les &eacute;tiquettes sont mieux visibles dans le texte source.</p>
+
+
+<h3 class="inf">Attention:</h3>
+
+<p>Avec des scripts CGI le contenu des donn&eacute;es sorties peut aussi &ecirc;tre interpr&eacute;t&eacute; comme commande HTTP. L'instruction:<br>
+<code>print &quot;Content-type: text/html\n\n&quot;;</code><br>
+en est un exemple typique. Ici un simple ent&ecirc;te HTTP, indispensable pour la communication entre le serveur et le navigateur, est envoy&eacute;. Une autre variante int&eacute;ressante pour les scripts CGI est l'instruction suivante (exemple):<br>
+<code>print &quot;Location: http://www.selfhtml.com.fr/\n\n&quot;;</code><br>
+Ici aussi un ent&ecirc;te HTTP est sorti qui assure un suivi &agrave; l'URI mentionn&eacute;e. Un script CGI qui comprend une telle instruction <code>Location</code>, n'a pas besoin, sinon, d'envoyer d'autre code HTML au navigateur.</p>
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="printf">printf - sortir des donn&eacute;es format&eacute;es</a></h2>
+
+<p>&Eacute;crit des donn&eacute;es sur la sortie standard ou sur la canal de sortie ouvert, donc par exemple dans un fichier. Cette fonction sert &agrave; sortir des &eacute;l&eacute;ments de donn&eacute;es distincts format&eacute;s. Ainsi par exemple des nombres d&eacute;cimaux peuvent-ils &ecirc;tre sortis sous leur forme hexad&eacute;cimale sans beaucoup de transcription, ou la sortie de nombres &agrave; virgule flottante avec de nombreuses position apr&egrave;s la virgule peut &ecirc;tre tronqu&eacute;e &agrave; un certain nombre de positions apr&egrave;s la virgule.<br>
+La fonction printf en Perl correspond pour l'essentiel &agrave; la fonction printf en C.</p>
+
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le <i>descripteur de fichier </i> = mention facultative sur le canal de sortie. Si vous omettez cette mention, l'&eacute;criture se fait sur la sortie standard  STDOUT. Quand vous avez ouvert un fichier avec  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#open"><b>open</b></a> et que vous voulez &eacute;crire dans celui-ci, vous devez mentionner le descripteur de fichier attribu&eacute; avec <code>open</code>.<br>
+<b>2.</b> la <i>cha&icirc;ne de format</i> = une cha&icirc;ne de caract&egrave;res qui peut contenir des indicateurs de format pour certains &eacute;l&eacute;ments &agrave; sortir et cela conform&eacute;ment &agrave; la syntaxe sp&eacute;ciale de la fonction printf (syntaxe du signe %).<br>
+<b>3.</b> la <i>liste de sortie</i> = un ou plusieurs &eacute;l&eacute;ment qui se r&eacute;f&egrave;rent aux indicateurs de format sp&eacute;ciaux de la cha&icirc;ne de format.</p>
+
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $montant_brut = 27.95;
+my $montant_net = $montant_brut / 1.16;
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+printf &quot;Le montant net contenu dans le montant brut %s s'�l�ve sans �tre arrondi � %.2f&quot;, $montant_brut, $montant_net;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple sort &agrave; l'aide de la fonction <code>printf</code> les deux variables <code>$montant_brut</code> et <code>$montant_net</code>. La valeur de <code>$montant_net</code> est calcul&eacute;e et repr&eacute;sente un nombre fractionn&eacute; avec de nombreuses positions apr&egrave;s la virgule. Dans la sortie avec <code>printf</code> cependant ce nombre est limit&eacute; &agrave; deux positions apr&egrave;s la virgule.</p>
+
+<p>Pour cela, notez dans la cha&icirc;ne de caract&egrave;res &agrave; sortir un indicateur de format &agrave; l'endroit d&eacute;sir&eacute;. Ces indicateurs de format commencent par le signe pourcentage <code>%</code> suivi des mentions pour le formatage. Le tableau suivant dresse la liste des indicateurs de format possibles et de leurs possibilit&eacute;s de formatage.</p>
+
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left">Syntaxe</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Signification</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Exemple</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Sortie en r&eacute;sultant</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%c</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sort le caract&egrave;re ASCII d'une valeur de caract&egrave;re ASCII num&eacute;rique. Le nombre peut &ecirc;tre mentionn&eacute; sous sa forme d&eacute;cimale ou hexad&eacute;cimale.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>printf &quot;%c comme Patricia&quot;, 0x50;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">P comme Patricia</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%d</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sort la partie enti&egrave;re d'un nombre dans sa repr&eacute;sentation d&eacute;cimale. Derri&egrave;re le signe  <code>%</code> et avant le <code>d</code> la largeur d'affichage du nombre d&eacute;sir&eacute;e peut encore &ecirc;tre mentionn&eacute;e en option, par exemple <code>%5d</code>. En relation avec des sorties HTML, cela n'est cependant r&eacute;alisable que dans des rep&egrave;res comme <code>&lt;pre&gt;</code>...<code>&lt;/pre&gt;</code>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$PI = 3.141592653589793;<br>printf &quot;La partie enti&egrave;re de PI est %d&quot;, $PI;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">La partie enti&egrave;re de PI est 3</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%e</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sort un nombre sous sa forme exponentielle</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$PI = 3.141592653589793;<br>printf &quot;PI en exponentiel: %e&quot;, $PI;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">PI en exponentiel: 3.141593e+000</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%E</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">comme %e, mis &agrave; part que E est le signe exponentiel &agrave; la place de e.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$PI = 3.141592653589793;<br>printf &quot;PI en exponentiel: %E&quot;, $PI;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">PI en exponentiel: 3.141593E+000</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%f</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sort un nombre en repr&eacute;sentation d&eacute;cimale avec d&eacute;cimales. Le nombre apr&egrave;s le point est le nombre d&eacute;sir&eacute; de positions apr&egrave;s la virgule pour la sortie. L'arrondi ne se fait pas ici automatiquement!</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$Prix = 99;<br>printf &quot;Le prix s'&eacute;l&egrave;ve &agrave; %.2f&quot;, $Prix;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Le prix s'&eacute;l&egrave;ve &agrave; 99.00</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%g</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sort un nombre automatiquement sous sa forme exponentielle (comme pour %e) ou dans da repr&eacute;sentation d&eacute;cimale  (comme pour %f), en fonction de la constitution du nombre.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$nombre1 = 100, $nombre2 = 10000000000000000;<br>
+printf &quot;Les nombres: %g et %g&quot;, $nombre1, $nombre2;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Les nombres: 100 et 1e+016</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%G</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">comme %g, mis &agrave; part que E est le signe exponentiel &agrave; la place de e.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$nombre = 10000000000000000;<br>printf &quot;Le nombre est %G&quot;, $nombre;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Le nombre est 1E+016</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%o</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sort un nombre sous sa forme octale, sinon comme <code>%u</code>. Le syst&egrave;me octal ne conna&icirc;t que les chiffres de 0 &agrave; 7.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$nombre = 100;<br>
+printf &quot;Le nombre correspond en octal &agrave;  %o&quot;, $nombre;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Le nombre correspond en octal &agrave; 144</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%u</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sort un nombre en tant que unsigned integer, donc comme nombre entier positif. Quand le nombre est n&eacute;gatif, Perl sort la diff&eacute;rence entre le plus grand nombre int&eacute;gral possible (4294967296) et le nombre.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$nombre1 = 100, $nombre2 = -100;<br>
+printf &quot;Les nombres: %u et %u&quot;, $nombre1, $nombre2;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Les nombres: 100 et 4294967196</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%s</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sort une cha&icirc;ne de caract&egrave;res (String).</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>printf &quot;PATH est %s&quot;, $ENV{'PATH'};</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">PATH est D:\PERL\BIN;C:\WINDOWS (sortie en exemple)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%x</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">sort un nombre sous sa forme hexad&eacute;cimale, sinon comme <code>%u</code>. Le syst&egrave;me hexad&eacute;cimal conna&icirc;t les chiffres 0 &agrave; 9 et a &agrave; f.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$nombre = 200;<br>
+printf &quot;Le chiffre correspond en hexad&eacute;cimal &agrave; %x&quot;, $nombre;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Le chiffre correspond en hexad&eacute;cimal &agrave; c8</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%X</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">comme %x, mis &agrave; part que A &agrave; F comme chiffres remplacent a &agrave; f.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$nombre = 200;<br>
+printf &quot;Le chiffre correspond en hexad&eacute;cimal &agrave; %X&quot;, $nombre;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Le chiffre correspond en hexad&eacute;cimal &agrave; C8</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%%</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">notez pour sortir le signe d'indicateur de format lui m&ecirc;me, donc le signe pourcentage.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$niveau = 100;<br>printf &quot;Nous avons atteint %d%% &quot;, $niveau;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Nous avons atteint 100%</td>
+</tr>
+</table>
+</td></tr></table>
+
+<p>En plus de ces indicateurs de format, vous disposez &eacute;galement de ce qu'on appelle des drapeaux &agrave; l'aide desquels le sortie peut &ecirc;tre ajust&eacute;e encore plus finement. Les drapeaux doivent &ecirc;tre not&eacute;s imm&eacute;diatement derri&egrave;re le signe pourcentage de l'indicateur de format. Le tableau suivant dresse la liste des  drapeaux possibles:</p>
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left">Syntaxe</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Signification</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Exemple</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Sortie en r&eacute;sultant</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[blank]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">imposer un espace avant les nombres positifs. Judicieux quand ceux-ci figurent dans une colonne avec d'autres nombres qui peuvent &ecirc;tre aussi n&eacute;gatifs.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$nombre1 = 100, $nombre2 = -100;<br>
+printf &quot;% d%\n% d&quot;, $nombre1, $nombre2;
+</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">&nbsp;100<br>-100</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">aligner &agrave; gauche les nombres avec une largeur d'affichage impos&eacute;e (le r&eacute;glage par d&eacute;faut est l'alignement &agrave; droite).</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>
+printf &quot;%-10d acc&egrave;s&quot;, 1234;
+</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">1234&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acc&egrave;s</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>0</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Compl&eacute;ter un nombre avec des z&eacute;ros s'il est plus petit que la largeur d'affichage impos&eacute;e.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>
+printf &quot;%010d acc&egrave;s&quot;, 1234;
+</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">0000001234 acc&egrave;s</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>#</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">affecter un nombre octal ou hexad&eacute;cimal de l'indicateur correspondant &agrave; la notation habituelle.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>
+printf &quot;100 Hex = %#x, 100 Oct = %#o&quot;, 100, 100;
+</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">100 Hex = 0x64, 100 Oct = 0144</td>
+</tr>
+</table>
+</td></tr></table>
+
+<p>&nbsp;</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="read">read - lire un certain nombre de caract&egrave;res</a></h2>
+
+<p>lit dans un ficher et copie dans  une scalaire un nombre de caract&egrave;res &agrave; mentionner et ce &agrave; partir de la position actuelle du pointeur de fichier.</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1. </b>le descripteur de fichier.<br>
+<b>2. </b>une scalaire dans laquelle les signes lus sont sauvegard&eacute;s.<br>
+<b>3. </b>le nombre de signes &agrave; y copier.<br>
+<b>4. </b>(facultatif) d&eacute;calage (offset) - quand  les signes qui doivent &ecirc;tre copi&eacute;s dans la scalaire cha&icirc;ne de caract&egrave;res (2.) ne doivent pas commencer au premier caract&egrave;re mais &agrave; partir d'un caract&egrave;re n, qui est mentionn&eacute; comme  Offset (le comptage commence &agrave; 0).</p>
+
+<p>Renvoie le nombre de caract&egrave;res lus. Quand la fin du fichier a &eacute;t&eacute; atteinte <code>0</code> est renvoy&eacute;. Quand une erreur survient, <code>undef</code> est renvoy&eacute;.</p>
+
+
+<h3 class="xmp">Exemple - Partie 1 (fichier error.log):</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+[Sat Feb 03 17:24:44 2001] [error] [client 127.0.0.1] File does not exist: /usr/web/src/formate.css
+</pre></td></tr></table>
+<h3 class="xmp">Exemple - Partie 2 (comme script CGI complet en Perl):</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+my $sortie;
+open(FICHIER_ERREURS, &quot;&lt;/usr/logs/error.log&quot;) || die &quot;fichier Log non trouv�!&quot;;
+my $caracteres_lus = read(FICHIER_ERREURS, $sortie, 26);
+close(FICHIER_ERREURS);
+print &quot;caract�res lus: $caracteres_lus; Contenu lu: $sortie\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre dans la premi&egrave;re partie le contenu d'un fichier nomm&eacute; <var>error.log</var>. Le fichier contient une ligne dans laquelle une erreur est recens&eacute;e. Dans la deuxi&egrave;me partie de l'exemple, un script CGI lit ce fichier mais pas compl&egrave;tement, mais seulement 26 caract&egrave;res. &Eacute;tant donn&eacute; que le pointeur de fichier apr&egrave;s l'ouverture de fichier avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open</b></a> est plac&eacute; sur 0, la commande <code>read</code> not&eacute;e dans l'exemple lit les 26 premiers caract&egrave;res du fichier. Pour le contr&ocirc;le le script dans l'exemple sort le nombre de signes lus, qu'il recherche par la valeur retourn&eacute;e par <code>read</code> dans la scalaire <code>$caracteres_lus</code>. De plus, le script sort la cha&icirc;ne de caract&egrave;res lus. Dans l'exemple c'est exactement la partie qui marque la date dans le fichier <var>error.log</var>, &agrave; savoir <code>[Sat Feb 03 17:24:44 2001]</code>. Ce sont les 26 premiers caract&egrave;res.</p>
+
+<h3 class="xpl">Attention:</h3>
+
+<p>Pour placer le pointeur de fichier &agrave; un autre endroit avant la lecture avec <code>read</code>, vous pouvez utiliser la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#seek"><b>seek</b></a>.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="readdir">readdir - rechercher les &eacute;l&eacute;ments d'un r&eacute;pertoire</a></h2>
+
+<p>Lit les &eacute;l&eacute;ments d'un r&eacute;pertoire qui a &eacute;t&eacute; ouvert auparavant avec la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#opendir"><b>opendir</b></a>.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le descripteur de r&eacute;pertoire qui a &eacute;t&eacute; attribu&eacute; quand le r&eacute;pertoire a &eacute;t&eacute; ouvert avec <code>opendir</code>.</p>
+
+<p>Renvoie l'&eacute;l&eacute;ment suivant du r&eacute;pertoire quand la valeur renvoy&eacute;e est sauvegard&eacute;e dans une scalaire, par exemple:<br>
+<code>$enregistrement = readdir(DIR);</code><br>
+Renvoie tous les &eacute;l&eacute;ments du r&eacute;pertoire quand la valeur renvoy&eacute;e est sauvegard&eacute;e dans une liste, par exemple:<br>
+<code>@enregistrements = readdir(DIR);</code><br>
+Les &eacute;l&eacute;ments du r&eacute;pertoire sont des fichiers visibles, des r&eacute;pertoires ainsi que des caract&egrave;res  de remplacement pour le r&eacute;pertoire actuel (<code>.</code>) et pour le r&eacute;pertoire parent (<code>..</code>).</p>
+
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $repertoire = &quot;/usr/web/ars_vivendi&quot;;
+my $repertoire_URI = &quot;/ars_vivendi&quot;;
+opendir(DIR, $repertoire) || die &quot;$repertoire: $!&quot;;
+my @fichiers = readdir(DIR);
+closedir(DIR);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+foreach(@fichiers) {
+ if($_ =~ /.+\.htm*/) {
+   print &quot;&lt;a href=\&quot;$repertoire_URI/$_\&quot;&gt;$repertoire_URI/$_&lt;/a&gt;&lt;br&gt;\n&quot;;
+   }
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple le chemin d'un r&eacute;pertoire (<code>&quot;/usr/web/ars_vivendi&quot;</code>) est sauvegard&eacute; dans la scalaire  <code>$repertoire</code>.  Dans une deuxi&egrave;me scalaire <code>$repertoire_URI</code> un deuxi&egrave;me chemin (<code>&quot;/ars_vivendi&quot;</code>) est sauvegard&eacute;. La raison en est que dans l'exemple <code>&quot;/usr/web&quot;</code> est le r&eacute;pertoire racine (document root) du serveur Web install&eacute;. Alors <code>&quot;/ars_vivendi&quot;</code> est un r&eacute;pertoire enfant de la racine du document.</p>
+
+<p>Un r&eacute;pertoire est ouvert avec la fonction <code>opendir</code>. Le contenu du r&eacute;pertoire est copi&eacute; dans une liste <code>@fichiers</code> &agrave; l'aide de <code>readdir</code>. Finalement, le r&eacute;pertoire est ferm&eacute; par l'appel de la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#closedir"><b>closedir</b></a>.</p>
+
+<p>L'exemple envoie ensuite du code HTML &agrave; un navigateur appelant. Ici la liste des &eacute;l&eacute;ments du r&eacute;pertoire est analys&eacute;e. Les &eacute;l&eacute;ments dans lesquels on trouve le mod&egrave;le de recherche <code>.+\.htm*</code>, sont sortis ligne par ligne, et cela encadr&eacute;s par des marquages HTML, qui font que chaque &eacute;l&eacute;ment peut &ecirc;tre cliqu&eacute; en tant que lien. Pour l'adressage correct du nom de fichier HTML pouvant &ecirc;tre cliqu&eacute;, on utilise la scalaire <code>$repertoire_URI</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="rewinddir">rewinddir - se positionner sur le premier &eacute;l&eacute;ment d'un r&eacute;pertoire</a></h2>
+
+<p>Positionne &agrave; nouveau le pointeur de lecture sur le premier &eacute;l&eacute;ment dans un r&eacute;pertoire qui a &eacute;t&eacute; ouvert auparavant avec la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#opendir"><b>opendir</b></a>. Cela peut &ecirc;tre judicieux quand vous avez d&eacute;j&agrave; lu le r&eacute;pertoire avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#readdir"><b>readdir</b></a>, et que vous d&eacute;sirez employer le descripteur de r&eacute;pertoire pour une nouvelle lecture du contenu du r&eacute;pertoire.</p>
+
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le descripteur de r&eacute;pertoire qui a &eacute;t&eacute; attribu&eacute; quand le r&eacute;pertoire a &eacute;t&eacute; ouvert avec <code>opendir</code>.</p>
+
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $repertoire = &quot;/usr/work&quot;;
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+opendir(DIR, $repertoire) || die &quot;$repertoire: $!&quot;;
+my @enregistrements = readdir(DIR);
+my $enregistrement;
+foreach $enregistrement (@enregistrements) {
+ if($enregistrement =~ /.+\.bak/) {
+    unlink($repertoire.&quot;/&quot;.$enregistrement);
+   }
+}
+rewinddir(DIR);
+@enregistrements = &quot;&quot;;
+@enregistrements = readdir(DIR);
+foreach $enregistrement (@enregistrements) {
+ print &quot;$enregistrement&lt;br&gt;\n&quot;;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+closedir(DIR);
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple lit tout d'abord tous les &eacute;l&eacute;ments d'un r&eacute;pertoire <code>$repertoire</code> et les copie dans la liste <code>@enregistrements</code>. Cette liste est ensuite parcourue &agrave; la recherche de fichiers du type *.bak (extension de fichier typique pour les fichiers de sauvegarde). Dans l'exemple, les fichiers avec cette extension sont effac&eacute;s (avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="gestionfichiers.htm#unlink"><b>unlink</b></a>). Quand cette action est termin&eacute;e, le pointeur de r&eacute;pertoire est r&eacute;-initialis&eacute; avec <code>rewinddir(DIR)</code>, car le r&eacute;pertoire avec le m&ecirc;me descripteur de fichier  <code>DIR</code> toujours ouvert, doit maintenant encore &ecirc;tre lu. Lors de la deuxi&egrave;me lecture tous les &eacute;l&eacute;ments existants sont sortis. Les fichiers du type *.bak ne doivent &agrave; vrai dire plus y &ecirc;tre. Souvent cependant la nouvelle lecture a lieu avant que les fichiers ne soient effac&eacute;s par le syst&egrave;me d'exploitation, et c'est la raison pour laquelle les anciens &eacute;l&eacute;ments sont malgr&eacute; tout sortis.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="seek">seek - positionner le pointeur de fichier</a></h2>
+
+<p>Positionne le pointeur de fichier d'un descripteur de fichier qui a &eacute;t&eacute; cr&eacute;&eacute; auparavant avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open</b></a>, &agrave; un endroit quelconque dans le fichier.</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1. </b>. le descripteur du fichier ouvert.<br>
+<b>2. </b>position de l'octet dans le fichier, en fonction de la position de r&eacute;f&eacute;rence mentionn&eacute;e dans le troisi&egrave;me param&egrave;tre<br>
+<b>3. </b>position de r&eacute;f&eacute;rence pour la mention dans le deuxi&egrave;me param&egrave;tre. Celle-ci peut avoir les valeurs 0, 1 ou 2:<br>
+0 signifie <i>calcul&eacute;e de fa&ccedil;on absolue &agrave; partir du d&eacute;but du fichier (position 0</i>,<br>
+1 signifie <i>calcul&eacute;e de fa&ccedil;on relative &agrave; partir de la position actuelle du pointeur de fichier</i>,<br>
+2 signifie <i>calcul&eacute;e de fa&ccedil;on absolue &agrave; partir de la fin du fichier</i> (normalement la mention du deuxi&egrave;me param&egrave;tre doit &ecirc;tre dans ce cas un nombre n&eacute;gatif).
+</p>
+
+
+<h3 class="xmp">Exemple - Partie 1 (fichier <var>isbn.txt</var>):</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+ISBN 3-7723-7514-6
+</pre></td></tr></table>
+<h3 class="xmp">Exemple - Partie 2 (script CGI complet en Perl):</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $fichier = &quot;isbn.txt&quot;;
+my $numero_ISBN;
+open(FICHIER, &quot;&lt;$fichier&quot;);
+seek(FICHIER, 5, 0);
+read(FICHIER, $numero_ISBN, 13);
+close(FICHIER);
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;Num�ro ISBN: $numero_ISBN&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre dans la premi&egrave;re partie le contenu d'un fichier nomm&eacute; isbn.txt. Le fichier contient une ligne dans laquelle est not&eacute; un num&eacute;ro ISBN, et o&ugrave; le num&eacute;ro ISBN proprement-dit ne commence cependant qu'&agrave; la position 5. Dans la deuxi&egrave;me partie de l'exemple, un script CGI lit ce fichier mais pas compl&egrave;tement, &agrave; partir de la position 5 seulement et &agrave; partir de l&agrave; 13 signes.
+&Eacute;tant donn&eacute; qu'&agrave; l'ouverture du fichier avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open</b></a> le pointeur de fichier est positionn&eacute; sur 0, il est plac&eacute; sur la position 5 &agrave; partir du d&eacute;but avec <code>seek(FICHIER, 5, 0)</code>. Ensuite, les 13 caract&egrave;res du num&eacute;ro ISBN sont lus avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#read"><b>read</b></a>. Pour le contr&ocirc;le, le script dans l'exemple sort les donn&eacute;es lues.</p>
+
+<h3 class="xpl">Attention:</h3>
+
+<p>Vous ne pouvez utiliser la fonction <code>seek</code> qu'en relation avec <code>read</code> ou bien <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#write"><b>write</b></a>, et non pas en relation avec  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sysread"><b>sysread</b></a> ou <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#syswrite"><b>syswrite</b></a>. Utilisez dans ce cas la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sysseek"><b>sysseek</b></a>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="seekdir">seekdir - positionner le pointeur de r&eacute;pertoire</a></h2>
+
+<p>Positionne le pointeur de r&eacute;pertoire d'un descripteur de r&eacute;pertoire, qui a &eacute;t&eacute; cr&eacute;&eacute; auparavant avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#opendir"><b>opendir</b></a>, sur un &eacute;l&eacute;ment quelconque dans le r&eacute;pertoire. La condition pr&eacute;alable en est que la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#telldir"><b>telldir</b></a> soit appliqu&eacute;e pour rechercher les num&eacute;ros de position internes des &eacute;l&eacute;ments du r&eacute;pertoire.</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le descripteur de r&eacute;pertoire qui a &eacute;t&eacute; attribu&eacute; quand le r&eacute;pertoire a &eacute;t&eacute; ouvert avec <code>opendir</code>.<br>
+<b>2.</b> le num&eacute;ro de position interne d'un &eacute;l&eacute;ment du r&eacute;pertoire sur lequel le pointeur de r&eacute;pertoire doit &ecirc;tre plac&eacute;. Ces num&eacute;ros de position internes ne peuvent &ecirc;tre recherch&eacute;s qu'en appelant la fonction  <code>telldir</code>. Il s'agit d'adresses fournies par le syst&egrave;me de fichiers de l'ordinateur, et non pas d'une simple s&eacute;rie continue de num&eacute;ros!</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $repertoire = &quot;/usr/texte&quot;;
+opendir(DIR, $repertoire) || die &quot;$repertoire: $!&quot;;
+my @positions;
+my @enregistrements;
+for(my $i=0;$i&lt;10;$i++) {
+  $enregistrements[$i] = readdir(DIR);
+  $positions[$i] = telldir(DIR);
+}
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+for(my $i=0;$i&lt;10;$i++) {
+  print &quot;&lt;p&gt;enregistrements[$i] = $enregistrements[$i]&lt;br&gt;\n&quot;;
+  print &quot;positions[$i] = $positions[$i]&lt;/p&gt;\n&quot;;
+}
+seekdir(DIR, $positions[5]);
+my $enregistrement = readdir(DIR);
+print &quot;&lt;p&gt;positionn� sur positions[5] et �l�ment lu: $enregistrement&lt;/p&gt;\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+closedir(DIR);
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple ne fait rien de concret, il ne sert qu'&agrave; expliquer et comprendre le principe des num&eacute;ros internes. Dans l'exemple un r&eacute;pertoire est ouvert avec
+<img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#opendir"><b>opendir</b></a>. Les dix premiers &eacute;l&eacute;ments du r&eacute;pertoire sont ensuite lus dans une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for"><b>boucle for</b></a> avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#readdir"><b>readdir</b></a>. Ce faisant, les num&eacute;ros de positions des &eacute;l&eacute;ments lus sont &eacute;galement sauvegard&eacute;s &agrave; savoir dans la liste <code>@positions</code>. Le script CGI sort pour le contr&ocirc;le les dix &eacute;l&eacute;ments lus et leur num&eacute;ro de position trouv&eacute;. Pour tester la fonction <code>seekdir</code> le pointeur est positionn&eacute; sur l'un des num&eacute;ros trouv&eacute;s (<code>$positions[5]</code>). L'&eacute;l&eacute;ment du r&eacute;pertoire qui suit est lu encore une fois et sorti pour contr&ocirc;le.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Quand vous positionnez le pointeur sur un &eacute;l&eacute;ment de r&eacute;pertoire avec <code>seekdir</code> et que vous appliquez ensuite <code>readdir</code>, ce n'est pas l'&eacute;l&eacute;ment de r&eacute;pertoire sur lequel vous avez positionn&eacute; le pointeur qui est lu mais le suivant!</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="select">select - choisir le canal d'entr&eacute;e ou de sortie</a></h2>
+
+<p>Choisit le canal d'entr&eacute;e ou de sortie par d&eacute;faut pour les op&eacute;rations de lecture et d'&eacute;criture qui suivent.</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1. </b>le descripteur du canal d'entr&eacute;e ou de sortie d&eacute;sir&eacute;. Il peut s'agir du descripteur d'un fichier ouvert auparavant avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#open"><b>open</b></a>, ou de l'un des canaux standard.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/plain\n\n&quot;;
+
+open(FICHIER, &quot;&gt;&gt;/usr/webconfig/users.txt&quot;) || die &quot;$!&quot;;
+my $utilisateur = &quot;Serge&quot;;
+select(FICHIER);
+print &quot;\nutilisateur=$utilisateur&quot;;
+close(FICHIER);
+
+select(STDOUT);
+print &quot;$utilisateur est inscrit dans le fichier&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple un ent&ecirc;te HTTP pour du texte pur est tout d'abord envoy&eacute; au navigateur. La fonction <code>print</code> &eacute;crit dans un premier temps sur le canal de sortie standard. Apr&egrave;s quoi un fichier est ouvert en &eacute;criture pour ajouter des donn&eacute;es. Ici le descripteur avec le nom <code>FICHIER</code> est cr&eacute;&eacute;. Ensuite ce descripteur est choisi comme descripteur actif avec <code>select(FICHIER)</code>. L'instruction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#print"><b>print</b></a> qui suit se r&eacute;f&egrave;re ainsi automatiquement au descripteur choisi. Pour &eacute;crire dans le fichier:<br>
+<code>select(FICHIER);<br>
+print &quot;\nutilisateur=$utilisateur&quot;;</code><br>
+&eacute;quivaut donc &agrave;:
+<code>print FICHIER &quot;\nutilisateur=$utilisateur&quot;;</code>.</p>
+
+<p>Apr&egrave;s que la nouvelle ligne est &eacute;crite dans le fichier et que celui-ci est ferm&eacute;  - le canal de sortie standard <code>STDOUT</code> est  &agrave; son tour choisi comme nouveau canal actif avec <code>select</code> - . L'instruction <code>print</code> qui suit et qui envoie une confirmation au navigateur fonctionne uniquement parce que au pr&eacute;alable <code>STDOUT</code> a &eacute;t&eacute; choisi comme canal actif. autrement le canal actif serait ind&eacute;fini, &eacute;tant donn&eacute; que le canal <code>FICHIER</code> choisi auparavant comme actif  a &eacute;t&eacute; ferm&eacute; entre-temps.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="sysopen">sysopen - ouvrir un fichier avec la commande li&eacute;e au syst&egrave;me</a></h2>
+
+<p>Ouvre un fichier exactement comme <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#open"><b>open</b></a>. Cependant, tandis que <code>open</code> rappelle la fa&ccedil;on pratique de la d&eacute;viation (avec &gt;,&gt;&gt;,&lt;, ...) sur la ligne de commande, pour <code>sysopen</code> c'est directement la commande d'ouverture d'un fichier li&eacute;e au syst&egrave;me qui est utilis&eacute;e. L'avantage en est que vous pouvez mentionner plus pr&eacute;cis&eacute;ment comment vous d&eacute;sirez ouvrir le fichier. L'inconv&eacute;nient en est que des probl&egrave;mes se pr&eacute;sentent avec les syst&egrave;mes d'exploitation qui ne supportent pas toutes les propri&eacute;t&eacute;s. Il est alors possible que le script Perl ne puisse pas &ecirc;tre ex&eacute;cut&eacute; dans diff&eacute;rents environnements.</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1. </b>le nom du descripteur de fichier (pouvant &ecirc;tre choisi librement),<br>
+<b>2. </b>le nom de chemin du fichier &agrave; ouvrir, si c'est indispensable avec mention de chemin absolue ou  mention de chemin relative,<br>
+<b>3. </b>le mode dans lequel le fichier doit &ecirc;tre ouvert. Il est ici conseill&eacute; d'incorporer le  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/modulesstandard.htm"><b>module Standard</b></a> <code>fcntl</code>, dans lequel des constantes pour les valeurs autoris&eacute;es sont d&eacute;finies. Les constantes suivantes sont alors permises:<br>
+<code>O_RDONLY</code> signifie: ouvrir un fichier en lecture seule,<br>
+<code>O_WRONLY</code> signifie: ouvrir un fichier en &eacute;criture seule,<br>
+<code>O_RDWR</code> signifie: ouvrir un fichier en lecture et en &eacute;criture.<br>
+Ces constantes peuvent &ecirc;tre li&eacute;es par l'op&eacute;rateur de bits OU (barre verticale simple <code>|</code>) avec les constantes compl&eacute;mentaires suivantes:
+<code>O_APPEND</code> signifie: n'&eacute;crire qu'&agrave; la fin du fichier,<br>
+<code>O_CREAT</code> signifie: cr&eacute;er un nouveau fichier dans tous les cas,<br>
+<code>O_EXCL</code> signifie: ne cr&eacute;er le fichier que s'il n'existe pas jusqu'alors,<br>
+<code>O_SYNC</code> signifie: apr&egrave;s chaque op&eacute;ration d'&eacute;criture la fonction de synchronisation <code>fsync()</code> est appel&eacute;e,<br>
+<code>O_TRUNC</code> signifie: le fichier existant est ramen&eacute; a 0 octet sans &ecirc;tre effac&eacute;.<br>
+<b>4. </b>(facultatif) une mention pour les droits d'acc&egrave;s avec lesquels le fichier doit &ecirc;tre ouvert. La mention est ici sous Unix la d&eacute;signation habituelle des droits d'acc&egrave;s pour le propri&eacute;taire, le groupe et les autres sous la forme octale avec un 0 qui pr&eacute;c&egrave;de (par exemple <code>0440</code>) et &agrave; <b>ne pas</b> noter entre guillemets.<br>
+</p>
+
+<p>Quand le fichier peut &ecirc;tre ouvert, la fonction renvoie la valeur <code>true</code>, sinon la valeur <code>false</code>.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use Fcntl;
+my $fichier = &quot;/usr/traits_esprit/actuel.txt&quot;;
+sysopen(FICHIER, $fichier, O_WRONLY | O_APPEND, 0440) || die &quot;$fichier: $!&quot;;
+print FICHIER &quot;La curiosit&amp;eacute; vous perdra\n&quot;;
+close(FICHIER);
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, un fichier texte est ouvert avec <code>sysopen</code>. Il est fix&eacute; ici que le fichier est ouvert en &eacute;criture seule, et cela de telle fa&ccedil;on que les contenus &eacute;crits soient ajout&eacute;s au fichier existant (obtenu par la liaison  par l'op&eacute;rateur de bits de <code>O_APPEND</code>). Avec <code>print</code> une phrase est ajout&eacute;e au fichier. Ensuite, le fichier est ferm&eacute;. Pour le faire, vous pouvez utiliser la fonction habituelle  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#close"><b>close</b></a>.</p>
+
+<h3 class="xpl">Attention:</h3>
+
+<p>La commande <code>use Fcntl</code> du d&eacute;but est indispensable, pour acc&eacute;der aux constantes telle que <code>O_WRONLY</code> et <code>O_APPEND</code>.</p>
+
+<p>Pour des mentions telles que <code>O_APPEND</code> ou <code>O_CREAT</code> il peut &ecirc;tre judicieux de faire d&eacute;pendre la commande <code>sysopen</code> de l'existence du fichier, car &agrave; la diff&eacute;rence de <code>open</code>, <code>sysopen</code> ne cr&eacute;e pas automatiquement le fichier ou bien l'&eacute;crase tout simplement. La v&eacute;rification peut se faire par un <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="gestionfichiers.htm#test_fichier"><b>op&eacute;rateur de test fichier</b></a> ou mieux encore par la mention du mode correspondant &agrave; l'ouverture.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="sysread">sysread - lire un certain nombre de caract&egrave;res avec la commande li&eacute;e au syst&egrave;me</a></h2>
+
+<p>Lit un nombre de caract&egrave;res &agrave; mentionner dans un fichier &agrave; partir de la position actuelle du pointeur de fichier et les copie dans une scalaire. Le fichier doit, c'est judicieux dans la plupart des cas avoir &eacute;t&eacute; ouvert avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#sysopen"><b>sysopen</b></a>. Autrement, s'appliquent &agrave; <code>sysread</code> les m&ecirc;mes r&egrave;gles pour l'appel et la valeur renvoy&eacute;e que pour <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#read"><b>read</b></a>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="sysseek">sysseek - positionner le pointeur de fichier avec la commande li&eacute;e au syst&egrave;me</a></h2>
+
+<p>Positionne le pointeur de fichier d'un descripteur de fichier qui a &eacute;t&eacute; cr&eacute;&eacute; auparavant de pr&eacute;f&eacute;rence avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sysopen"><b>sysopen</b></a>, sur un endroit quelconque du fichier. Autrement, s'appliquent &agrave;  <code>sysseek</code> les m&ecirc;mes r&egrave;gles pour l'appel et la valeur renvoy&eacute;e que pour <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#seek"><b>seek</b></a>.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="syswrite">syswrite - &eacute;crire un certain nombre de caract&egrave;res avec la commande li&eacute;e au syst&egrave;me</a></h2>
+
+<p>&Eacute;crit dans un fichier un nombre de caract&egrave;res &agrave; mentionner tir&eacute;s d'une variable elle aussi &agrave; mentionner &agrave; partir de la position actuelle dans cette variable. Le fichier doit dans la plupart des cas avoir &eacute;t&eacute; ouvert de pr&eacute;f&eacute;rence avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#sysopen"><b>sysopen</b></a>.</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1. </b>le descripteur de fichier .<br>
+<b>2. </b>une scalaire qui contient les caract&egrave;res &agrave; &eacute;crire dans le fichier.<br>
+<b>3. </b>(facultatif) le nombre de caract&egrave;res &agrave; &eacute;crire dans le fichier.<br>
+<b>4. </b>(facultatif) d&eacute;calage (Offset) - Quand les caract&egrave;res &agrave; &eacute;crire de la scalaire cha&icirc;ne de caract&egrave;res (2.) ne commencent pas au premier caract&egrave;re mais &agrave; un caract&egrave;re n vous pouvez mentionner n comme d&eacute;calage (le comptage commence &agrave; 0).</p>
+
+<p>Quand la scalaire contient plus de donn&eacute;es qu'il faut en &eacute;crire, seul le nombre de caract&egrave;res indiqu&eacute; est cependant &eacute;crit. Quand la scalaire contient moins de donn&eacute;es qu'il faut en &eacute;crire, seul le nombre de caract&egrave;res que la scalaire contient encore &agrave; partir du d&eacute;calage (offset) est &eacute;crit. Quand vous ne mentionnez pas le nombre de caract&egrave;res &agrave; &eacute;crire, le contenu complet de la scalaire est &eacute;crit dans le fichier.</p>
+
+<p><code>syswrite</code> retourne le nombre de caract&egrave;res effectivement &eacute;crits. En cas d'erreur <code>undef</code> est renvoy&eacute;.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl
+
+use strict;
+use Fcntl;
+my $fichier = &quot;/usr/bin/mycodes/mysecret.sys&quot;;
+my $donnees = &quot;sdclknavaoertoerigjvimfvlkmdfghjdfbjdfihgjsobijsngohijsrotigueiufgulvbdkjbndfkhv&quot;;
+my $Bloc = 8;
+sysopen(FICHIER, $fichier, O_WRONLY | O_EXCL) || die &quot;$fichier: $!&quot;;
+for(my $i=0;$i&lt;10;$i++) {
+  my $Offset = $i * $Bloc;
+  syswrite(FICHIER,$donnees,$Bloc,$Offset);
+}
+close(FICHIER);
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple &eacute;crit dans un fichier et par blocs une cha&icirc;ne de caract&egrave;res qui est sauvegard&eacute;e dans <code>$donnees</code>. Pour ce faire, les appels de  <code>sysread</code> figurent dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for"><b>boucle for</b></a>. La boucle a 10 passages &eacute;tant donn&eacute; que la longueur de <code>$donnees</code> comprend 80 caract&egrave;res et que pour chaque op&eacute;ration d'&eacute;criture, 8 caract&egrave;res (d&eacute;finis dans la scalaire <code>$Bloc</code>) doivent &ecirc;tre &eacute;crits. Il est important ici de recalculer &agrave; chaque fois le d&eacute;calage, afin que ce soit toujours les 8 caract&egrave;res suivants qui sont &eacute;crits et non pas toujours les 8 premiers.</p>
+
+
+<h3 class="xpl">Attention:</h3>
+
+<p>L'exemple lui-m&ecirc;me n'est sous cette forme pas particuli&egrave;rement important pour la pratique car pour des petites quantit&eacute;s de donn&eacute;es, il est recommand&eacute; d'&eacute;crire en une seule fois tout le contenu de <code>$donnees</code> dans le fichier. Mais le principe peut &ecirc;tre appliqu&eacute; par exemple quand la quantit&eacute; de donn&eacute;es acquise de fa&ccedil;on dynamique &agrave; partir d'autres sources peut &ecirc;tre tr&egrave;s grande.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="tell">tell - rechercher la position du pointeur de fichier</a></h2>
+
+<p>Recherche la position de l'octet actuel du pointeur de fichier d'un descripteur de fichier, qui a &eacute;t&eacute; cr&eacute;&eacute; auparavant avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open</b></a>.</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1. </b>le descripteur de fichier.</p>
+
+<p>Renvoie la position de l'octet actuel. Quand une erreur est survenue <code>-1</code> est renvoy&eacute;.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $fichier = &quot;/usr/info/readme.txt&quot;;
+my @debuts_lignes = &quot;&quot;;
+open(FICHIER, &quot;&lt;$fichier&quot;) || die &quot;$fichier: $!&quot;;
+$debuts_lignes[0] = tell(FICHIER);
+my $i = 0;
+while(&lt;FICHIER&gt;) {
+   $i++;
+   $debuts_lignes[$i] = tell(FICHIER);
+}
+close(FICHIER);
+$i = 1;
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+foreach (@debuts_lignes) {
+   print &quot;La ligne $i commence dans le fichier avec un d�calage de $_&lt;br&gt;\n&quot;;
+   $i++;
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple ouvre un fichier texte avec <code>open</code> et le lit ligne par ligne dans une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#while"><b>boucle while</b></a>. Ici, d&egrave;s l'ouverture et &agrave; chaque tour de boucle, la position actuelle du pointeur de fichier est recherch&eacute;e avec <code>tell</code> et sauvegard&eacute;e &agrave; chaque fois dans l'&eacute;l&eacute;ment suivant de la liste <code>@debuts_lignes</code>. Ensuite, du code HTML est envoy&eacute; au navigateur. Ici les positions de d&eacute;calage sauvegard&eacute;es de chaque d&eacute;but de ligne sont sorties dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#foreach"><b>boucle foreach</b></a>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="telldir">telldir - rechercher la position du pointeur de r&eacute;pertoire</a></h2>
+
+<p>Recherche le num&eacute;ro de position interne de l'&eacute;l&eacute;ment du r&eacute;pertoire sur lequel est plac&eacute; le pointeur de r&eacute;pertoire d'un descripteur de r&eacute;pertoire, qui a &eacute;t&eacute; cr&eacute;&eacute; auparavant avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#opendir"><b>opendir</b></a>.</p>
+
+<p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le descripteur de r&eacute;pertoire qui a &eacute;t&eacute; attribu&eacute;  avec <code>opendir</code>.</p>
+
+<h3 class="xmp">Exemple avec explications:</h3>
+
+<p>Un exemple complet avec explications des fonctions interd&eacute;pendantes <code>telldir</code> et <code>seekdir</code> est trait&eacute; pour la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#seekdir"><b>seekdir</b></a>!</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="write">write - &eacute;crire des donn&eacute;es format&eacute;es</a></h2>
+
+<p>Cette fonction sert &agrave; &eacute;crire enregistrement par enregistrement dans un fichier ouvert pr&eacute;c&eacute;demment avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#open"><b>open</b></a>, des donn&eacute;es qui ont &eacute;t&eacute; format&eacute;es avec  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#format"><b>format</b></a> . Des exemples sont d&eacute;crits en relation avec la fonction <code>format</code>.</p>
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="gestionfichiers.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="gestionfichiers.htm"><b>Fonctions pour la gestion de fichiers et de r&eacute;pertoires</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="dateheure.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="dateheure.htm"><b>Fonctions pour les date et heure</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Fonctions Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

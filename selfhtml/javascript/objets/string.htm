@@ -1,0 +1,1028 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / R&eacute;f&eacute;rence objet / string</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quels sont le r&ocirc;le, les propri&eacute;t&eacute;s et les m&eacute;thodes de l'objet string en JavaScript.">
+<meta name="keywords"       content="SELFHTML, JavaScript, objets, cha&icirc;nes de caract&egrave;res, string, length, anchor(), big(), blink(), bold(), charAt(), charCodeAt(), concat(), fixed(), fontcolor(), fontsize(), fromCharCode(), indexOf(), italics(), lastIndexOf(), link(), match(), replace(), search(), slice(), small(), split(), strike(), sub(), substr(), substring(), sup(), toLowerCase(), toUpperCase()">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/objets/string.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // R&eacute;f&eacute;rence objet == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Navigationshilfen</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>string</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+
+<p><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur l'utilisation </b></a> </p>
+
+<h3>Propri&eacute;t&eacute;s:</h3>
+
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#length"><b>length</b></a> ((nombre de signes)<br>
+</p>
+
+<h3>M&eacute;thodes:</h3>
+
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#anchor"><b>anchor()</b></a> (cr&eacute;er une ancre de lien)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#big"><b>big()</b></a> (cr&eacute;er un grand texte)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#blink"><b>blink()</b></a> (cr&eacute;er un texte clignotant)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#bold"><b>bold()</b></a> (cr&eacute;er un texte en caract&egrave;res gras)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#char_at"><b>charAt()</b></a> (rechercher un signe &agrave; une position)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#char_code_at"><b>charCodeAt()</b></a> (valeur de code Latin-1 &agrave; une position)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#concat"><b>concat()</b></a> (concat&eacute;ner des cha&icirc;nes de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#fixed"><b>fixed()</b></a> (cr&eacute;er un texte style t&eacute;lex)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#fontcolor"><b>fontcolor()</b></a> (cr&eacute;er une couleur de police)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#fontsize"><b>fontsize()</b></a> (cr&eacute;er une taille de police)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#from_char_code"><b>fromCharCode()</b></a> (cr&eacute;er une cha&icirc;ne de caract&egrave;res en Latin 1)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#index_of"><b>indexOf()</b></a> (rechercher la position d'un caract&egrave;re)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#italics"><b>italics()</b></a> (cr&eacute;er un texte en italique)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#last_index_of"><b>lastIndexOf()</b></a> (rechercher la derni&egrave;re position d'un signe)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#link"><b>link()</b></a> (cr&eacute;er un lien)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#match"><b>match()</b></a> (appliquer une expression r&eacute;guli&egrave;re)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#replace"><b>replace()</b></a> (appliquer une expression r&eacute;guli&egrave;re et remplacer)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#search"><b>search()</b></a> (chercher avec une expression r&eacute;guli&egrave;re)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#slice"><b>slice()</b></a> (extraire une partie d'une cha&icirc;ne de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#small"><b>small()</b></a> (cr&eacute;er un petit texte)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#split"><b>split()</b></a> (scinder une cha&icirc;ne de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#strike"><b>strike()</b></a> (cr&eacute;er un texte barr&eacute;)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sub"><b>sub()</b></a> (cr&eacute;er un texte en indice)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#substr"><b>substr()</b></a> (rechercher une sous-cha&icirc;ne de caract&egrave;res &agrave; partir d'une position)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#substring"><b>substring()</b></a> (rechercher une sous-cha&icirc;ne de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sup"><b>sup()</b></a> (cr&eacute;er un texte en exposant)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#to_lower_case"><b>toLowerCase()</b></a> (tout &eacute;crire en minuscules)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#to_upper_case"><b>toUpperCase()</b></a> (tout &eacute;crire en majuscules)
+</p>
+
+
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">g&eacute;n&eacute;ralit&eacute;s sur l'utilisation</a></h2>
+
+<p>Vous pouvez appliquer les propri&eacute;t&eacute;s et m&eacute;thodes de l'objet <code>string</code> sur toutes les cha&icirc;nes de caract&egrave;res. Ainsi par exemple, vous pouvez transformer dans une cha&icirc;ne de caract&egrave;res toutes les minuscules en majuscules ou appliquer un formatage HTML &agrave; une cha&icirc;ne de caract&egrave;res.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_generalites.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var lieu = &quot;Dunkerque&quot;
+alert(lieu + &quot; comprend  &quot; + lieu.length + &quot; lettres&quot;)
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple est d&eacute;finie une variable <code>lieu</code> &agrave; laquelle est affect&eacute;e une valeur, &agrave; savoir la valeur <code>Dunkerque</code>. Apr&egrave;s quoi est sorti dans une boite de dialogue: <code>Dunkerque a 9 lettres</code>. Cela est obtenu par l'appel de la propri&eacute;t&eacute; d'objet <code>length</code>. Avant le point peut donc se trouver une variable ou m&ecirc;me une autre propri&eacute;t&eacute; d'objet quelconque de JavaScript dans laquelle est sauvegard&eacute;e une cha&icirc;ne de caract&egrave;res. Apr&egrave;s le point suit la propri&eacute;t&eacute; ou m&eacute;thode d&eacute;sir&eacute;e de l'objet string.</p>
+
+<p>Les cha&icirc;nes de caract&egrave;res en JavaScript sont consid&eacute;r&eacute;es comme des cha&icirc;nes de caract&egrave;res distincts. Chaque caract&egrave;re pris s&eacute;par&eacute;ment a sa position dans la cha&icirc;ne de caract&egrave;res:</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_generalites_chaine.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var nom = &quot;Jean&quot;;
+ alert(nom[0] + nom[1] + nom[2] + nom[3]);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple, qui sous cette forme ne fonctionne &agrave; vrai dire qu'avec Netscape et non pas avec l'Explorer Internet MS ni avec Opera 5.12, d&eacute;finit une variable nomm&eacute;e <code>nom</code>. Cette variable re&ccedil;oit la valeur <code>&quot;Jean&quot;</code>. Dans une boite de dialogue est sortie ensuite signe par signe la valeur de la variable <code>nom</code>. Le r&eacute;sultat est le m&ecirc;me que si <code>alert(nom)</code> avait &eacute;t&eacute; tout simplement not&eacute;. Mais avec cette forme de notation, vous pouvez reconna&icirc;tre comment fonctionnent les cha&icirc;nes de caract&egrave;res: <code>nom[0]</code> est le J, <code>nom[1]</code> le e, <code>nom[2]</code> le a et <code>nom[3]</code> le n. Pour compter, on commence donc toujours par 0.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="lecture"> <a class="an" name="length">length</a></h2>
+
+<p>Sauvegarde le nombre de signes d'une cha&icirc;ne de caract&egrave;res. La cha&icirc;ne de caract&egrave;res &quot;Bon app&eacute;tit&quot; par exemple en contient 11.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_length.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var entree = window.prompt(&quot;Entrez quelque chose&quot;,&quot;&quot;);
+ alert(&quot;Signes entr�s: &quot; + entree.length);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple ouvre une boite de dialogue dans laquelle l'utilisateur peut entrer quelque chose. La valeur entr&eacute;e est sauvegard&eacute;e dans la variable <code>entree</code>. Apr&egrave;s avoir ferm&eacute; cette boite de dialogue, appara&icirc;t une autre boite de dialogue qui donne avec <code>entree.length</code> le nombre de signes entr&eacute;s.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="anchor">anchor()</a></h2>
+
+<p>Formate une cha&icirc;ne de caract&egrave;res comme ancre de lien qui peut &ecirc;tre atteinte par un lien HTML. A donc le m&ecirc;me effet que la commande HTML <code>&lt;a name=&gt;</code>...<code>&lt;/a&gt;</code>. Le param&egrave;tre attendu par la m&eacute;thode est le nom d&eacute;sir&eacute; pour le lien.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_anchor.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var ancre = &quot;index_contenu&quot;;
+ document.write(ancre.anchor(&quot;a1&quot;));
+ for(var i=1;i&lt;100;++i)
+  document.write(&quot;&lt;br&gt;ligne &quot; + i);
+ document.write(&quot;&lt;br&gt;&lt;a href=\&quot;#ancre\&quot;&gt;lien test&lt\;/a&gt;&quot;);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple d&eacute;finit une variable <code>ancre</code> avec la valeur <code>index_contenu</code>. &Agrave; l'aide de <code>document.write()</code>, une ancre de lien en est &eacute;crite. La construction <code>ancre.anchor(&quot;a1&quot;)</code> a le m&ecirc;me effet que la commande HTML <code>&lt;a name=&quot;a1&quot;&gt;index_contenu&lt;/a&gt;</code>. Pour la d&eacute;monstration, 100 lignes suivies d'un lien sont ensuite &eacute;crites dans le fichier de l'exemple. En cliquant sur ce lien, un saut est effectu&eacute; jusqu'&agrave; l'ancre de lien cr&eacute;&eacute;e avec JavaScript.</p>
+
+<h3>Attention:</h3>
+
+<p>L'exemple ne fonctionne que de fa&ccedil;on limit&eacute;e. Opera 5.12 et Netscape 4.x sautent, apr&egrave;s que le lien ait &eacute;t&eacute; cliqu&eacute;, au d&eacute;but du document. Netscape 6 et l'Explorer Internet MS ignorent compl&egrave;tement l'ancre. Les r&eacute;sultats des tests sont cependant que tous les navigateurs cr&eacute;ent la cha&icirc;ne de caract&egrave;res et inscrivent l'&eacute;l&eacute;ment dans l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="anchors.htm"><b>anchors</b></a>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="big">big()</a></h2>
+
+<p>Formate une cha&icirc;ne de caract&egrave;res avec une police plus grande exactement comme le formatage HTML <code>&lt;big&gt;</code>...<code>&lt;/big&gt;</code>. Attend comme param&egrave;tre une cha&icirc;ne de caract&egrave;res.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_big.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var actualisation = document.lastModified;
+ document.write(actualisation.big());
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple, un JavaScript recherche &agrave; l'aide de <code>document.lastModified</code> &agrave; quelle date le fichier a &eacute;t&eacute; modifi&eacute; pour la derni&egrave;re fois. Dans la variable <code>actualisation</code> se trouve ensuite une cha&icirc;ne de caract&egrave;res correspondante. &Agrave; l'aide de <code>document.write()</code>, la valeur de <code>actualisation</code> est &eacute;crite dans le fichier. Le formatage utilis&eacute; correspond au formatage HTML <code>&lt;big&gt;</code>...<code>&lt;/big&gt;</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="blink">blink()</a></h2>
+
+<p>Formate une cha&icirc;ne de caract&egrave;res comme texte clignotant exactement comme le formatage HTML <code>&lt;blink&gt;</code>...<code>&lt;/blink&gt;</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_blink.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var sortie = &quot;La meilleure apparence est obtenue avec votre  &quot; + navigator.appName&quot;;
+ document.write(sortie.blink());
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple, une variable nomm&eacute;e <code>sortie</code> se voit affecter une valeur. &Agrave; l'aide de <code>document.write()</code>, la valeur de sortie est &eacute;crite dans le fichier. Le formatage correspond au formatage HTML <code>&lt;blink&gt;</code>...<code>&lt;/blink&gt;</code>.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Bien que ni Opera 5.12, Netscape 6 ou l'Explorer Internet MS ne soutiennent la notation HTML <code>&lt;blink&gt;</code>...<code>&lt;/blink&gt;</code>, ces navigateurs interpr&egrave;tent cependant la m&eacute;thode et cr&eacute;ent le code HTML correspondant.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="bold">bold()</a></h2>
+
+<p>Formate une cha&icirc;ne de caract&egrave;res en caract&egrave;res gras exactement comme le formatage HTML <code>&lt;b&gt;</code>...<code>&lt;/b&gt;</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_bold.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var cette_page = window.location.href;
+ document.write(&quot;Adresse: &quot; + cette_page.bold());
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, un JavaScript recherche l'URI du fichier actuel &agrave; l'aide de <code>window.location.href</code>. Dans la variable <code>cette_page</code> se trouve ensuite la cha&icirc;ne de caract&egrave;res correspondante. &Agrave; l'aide de <code>document.write()</code>, la valeur de <code>cette_page</code> est &eacute;crite dans le fichier. Le formatage correspond au formatage HTML <code>&lt;b&gt;</code>...<code>&lt;/b&gt;</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="char_at">charAt()</a></h2>
+
+<p>Retourne le signe qui occupe une position d&eacute;termin&eacute;e dans une cha&icirc;ne de caract&egrave;res. Attend comme param&egrave;tre la position souhait&eacute;e.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_char_at.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var version_complete = navigator.appVersion.charAt(0);
+ alert(version_complete);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple, un JavaScript recherche &agrave; l'aide de <code>navigator.appVersion</code> de quelle version de son navigateur se sert l'utilisateur. Sur <code>navigator.appVersion</code> est appliqu&eacute;e en plus la m&eacute;thode <code>chatAt()</code>. 0 est transmis comme param&egrave;tre, car c'est le premier signe de la valeur qui se trouve dans <code>navigator.appVersion</code> que l'on veut rechercher (celui-ci est toujours le num&eacute;ro de la version principale, donc chez Netscape 4.01 par exemple le 4). Le r&eacute;sultat de la construction est sauvegard&eacute; dans la variable <code>version_complete</code>. Apr&egrave;s quoi, la valeur de cette variable est sortie pour contr&ocirc;le dans une boite de dialogue.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="char_code_at">charCodeAt()</a></h2>
+
+<p>Retourne la valeur du jeu de caract&egrave;res Latin-1 d'un signe qui se trouve &agrave; une position d&eacute;termin&eacute;e dans une cha&icirc;ne de caract&egrave;res. Attend comme param&egrave;tre la position d&eacute;sir&eacute;e.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_char_code_at.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var nom = &quot;Jean&quot;;
+ alert(nom.charCodeAt(1));
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple, une variable <code>nom</code> se voit affecter la valeur Jean. Dans une boite de dialogue est ensuite sortie la valeur du jeu de caract&egrave;res (code ASCII) du deuxi&egrave;me signe de cette variable, donc le "e" dans <code>Jean</code>. Pour ce faire, 1 est transmis comme param&egrave;tre &agrave; <code>charCodeAt</code>, car en JavaScript, le premier signe d'une cha&icirc;ne de caract&egrave;res a toujours la position 0, le deuxi&egrave;me la position 1 etc...<br>
+Comme r&eacute;sultat 101 est affich&eacute;. C'est la valeur du jeu de caract&egrave;res du &quot;e&quot; minuscule.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="concat">concat()</a></h2>
+
+<p>Accroche une cha&icirc;ne de caract&egrave;res &agrave; une autre cha&icirc;ne de caract&egrave;res. Attend comme param&egrave;tre la cha&icirc;ne de caract&egrave;res devant &ecirc;tre accroch&eacute;e &agrave; la premi&egrave;re.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_concat.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var prenom = &quot;Jean &quot;;
+ var patronyme = &quot;Renoir&quot;;
+ var nom = prenom.concat(patronyme);
+ alert(nom);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple, deux variables <code>prenom</code> et <code>patronyme</code> se voient affecter des valeurs correspondantes. Ensuite, la m&eacute;thode <code>concat()</code> est appliqu&eacute;e &agrave; la variable <code>prenom</code>. La variable <code>patronyme</code> est transmise &agrave; la m&eacute;thode comme param&egrave;tre. De cette fa&ccedil;on, <code>patronyme</code> est accroch&eacute; &agrave; <code>prenom</code>. La m&eacute;thode <code>concat()</code> retourne la cha&icirc;ne compl&egrave;te. Dans l'exemple, la valeur retourn&eacute;e est sauvegard&eacute;e dans la variable <code>nom</code>. Pour le contr&ocirc;le, cette variable est enfin sortie dans une boite de dialogue.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="fixed">fixed()</a></h2>
+
+<p>Formate une cha&icirc;ne de caract&egrave;res comme du texte t&eacute;l&eacute;texte exactement comme le formatage HTML <code>&lt;tt&gt;</code>...<code>&lt;/tt&gt;</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_fixed.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var actualisation = document.lastModified;
+ document.write(&quot;actualis� pour la derni�re fois le: &quot; + actualisation.fixed());
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple, un JavaScript recherche &agrave; l'aide de <code>document.lastModified</code> &agrave; quelle date le fichier a &eacute;t&eacute; modifi&eacute; pour la derni&egrave;re fois. Dans la variable <code>actualisation</code> se trouve ensuite une cha&icirc;ne de caract&egrave;res correspondante. &Agrave; l'aide de <code>document.write()</code>, la valeur de <code>actualisation</code> est &eacute;crite dans le fichier. Le formatage utilis&eacute; correspond au formatage HTML <code>&lt;tt&gt;</code>...<code>&lt;/tt&gt;</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="fontcolor">fontcolor()</a></h2>
+
+<p>Formate une cha&icirc;ne de caract&egrave;res en &eacute;criture de couleur - exactement comme le formatage HTML <code>&lt;font color=&gt;</code>...<code>&lt;/font&gt;</code>. Attend comme param&egrave;tre la couleur d&eacute;sir&eacute;e.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_fontcolor.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var moment = new Date;
+ var Datum = moment.getDate()+&quot;.&quot;+(moment.getMonth()+1)+&quot;.&quot;+moment.getFullYear();
+ document.write(Datum.fontcolor(&quot;#FF0000&quot;));
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple recherche &agrave; l'aide de l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="date.htm"><b>Date</b></a>, la date actuelle et sauvegarde celle-ci dans la variable <code>Datum</code>. &Agrave; l'aide de <code>document.write()</code>, la valeur de <code>Datum</code> est &eacute;crite dans le fichier. Le formatage correspond au formatage HTML <code>&lt;font color=&quot;#FF0000&quot;&gt;</code>...<code>&lt;/font&gt;</code>. Comme valeurs de couleur, sont permises des valeurs hexad&eacute;cimales ou des noms de couleurs (se reporter &agrave; <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/generalites/couleurs.htm"><b>d&eacute;finir les couleurs en HTML</b></a>).</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="fontsize">fontsize()</a></h2>
+
+<p>Formate une cha&icirc;ne de caract&egrave;res en taille de police relative entre 1 et 7, 3 &eacute;tant la taille normale. L'effet est le m&ecirc;me que le formatage HTML <code>&lt;font size=&gt;</code>...<code>&lt;/font&gt;</code>. Attend comme param&egrave;tre la taille de police d&eacute;sir&eacute;e.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_fontsize.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var sortie = &quot;Ma page d'accueil&quot;;
+ document.write(sortie.fontsize(7));
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple, une valeur est affect&eacute;e &agrave; la variable nomm&eacute;e <code>sortie</code>. &Agrave; l'aide de <code>document.write()</code> la valeur de sortie est &eacute;crite dans le fichier. Le formatage correspond au formatage HTML <code>&lt;font size=&quot;7&quot;&gt;</code>...<code>&lt;/font&gt;</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="from_char_code">fromCharCode()</a></h2>
+
+<p>Interpr&egrave;te une s&eacute;rie de param&egrave;tres num&eacute;riques, lesquels ont &eacute;t&eacute; transmis, comme valeurs de jeu de caract&egrave;res Latin-1. En cr&eacute;e une cha&icirc;ne de caract&egrave;res correspondante.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_from_char_code.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var Test = String.fromCharCode(65,66,67);
+ alert(Test);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple est cr&eacute;&eacute;e avec <code>String.fromCharCode()</code> la cha&icirc;ne de caract&egrave;res &quot;ABC&quot; puis sauvegard&eacute;e dans la variable <code>Test</code>. La cha&icirc;ne de caract&egrave;res se r&eacute;alise &eacute;tant donn&eacute; que 65 est le code ASCII pour A, 66 celui pour B et 67 celui pour C. Dans l'exemple, le r&eacute;sultat est sorti dans une boite de dialogue pour le contr&ocirc;le.<br>
+L'important est de toujours faire pr&eacute;c&eacute;der la m&eacute;thode <code>fromCharCode()</code> du mot cl&eacute; invariable <code>String</code> (avec une majuscule).</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="index_of">indexOf()</a></h2>
+
+<p>Recherche dans une cha&icirc;ne de caract&egrave;res la premi&egrave;re occurrence d'un caract&egrave;re ou d'une cha&icirc;ne de caract&egrave;res et retourne quelle est la position du signe dans la cha&icirc;ne de caract&egrave;res. Le comptage commence &agrave; 0. Si la recherche est infructueuse, <code>-1</code> est retourn&eacute;.<br>
+Il est possible mais facultatif de transmettre comme deuxi&egrave;me param&egrave;tre la position &agrave; partir de laquelle, dans la cha&icirc;ne de caract&egrave;res, la recherche doit commencer.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_index_of.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var assertion = &quot;L'homme est un loup pour l'homme&quot;;
+ var recherche = assertion.indexOf(&quot;homme&quot;);
+ alert(&quot;trouv� � la Position: &quot; + recherche);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple, une valeur est affect&eacute;e &agrave; une variable <code>assertion</code>. Ensuite, la valeur de cette variable est parcourue avec <code>indexOf()</code> pour trouver la premi&egrave;re occurrence de <code>homme</code> dans la cha&icirc;ne de caract&egrave;res. Dans la variable <code>recherche</code> est sauvegard&eacute;e la valeur renvoy&eacute;e par <code>indexOf()</code>. Dans l'exemple, 2 est renvoy&eacute;, &eacute;tant donn&eacute; que, pour la premi&egrave;re occurrence, la cha&icirc;ne de caract&egrave;res <code>homme</code> commence &agrave; la 3&egrave;me place de la cha&icirc;ne de caract&egrave;res parcourue.</p>
+
+<p>Comparer aussi avec: <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#last_index_of"><b>lastIndexOf()</b></a>.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="italics">italics()</a></h2>
+
+<p>Formate une cha&icirc;ne de caract&egrave;res en italique exactement comme le formatage HTML <code>&lt;i&gt;</code>...<code>&lt;/i&gt;</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_italics.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var moment = new Date;
+ var heure = moment.getHours()+&quot;:&quot;+moment.getMinutes();
+ document.write(heure.italics());
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple recherche &agrave; l'aide de l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="date.htm"><b>Date</b></a> l'heure actuelle et la sauvegarde dans la variable <code>heure</code>. &Agrave; l'aide de <code>document.write()</code>, la valeur de heure est &eacute;crite dans le fichier. Le formatage correspond au formatage HTML<code>&lt;i&gt;</code>...<code>&lt;/i&gt;</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="last_index_of">lastIndexOf()</a></h2>
+
+<p>Recherche dans une cha&icirc;ne de caract&egrave;res la derni&egrave;re occurrence d'un caract&egrave;re ou d'une cha&icirc;ne de caract&egrave;res et retourne quelle est la position du signe dans la cha&icirc;ne de caract&egrave;res. Le comptage commence &agrave; 0. Si la recherche est infructueuse, <code>-1</code> est retourn&eacute;.<br>
+Il est possible mais facultatif de transmettre comme deuxi&egrave;me param&egrave;tre la position &agrave; partir de laquelle, dans la cha&icirc;ne de caract&egrave;res, la recherche doit commencer.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_last_index_of.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var assertion = &quot;L'homme est un loup pour l'homme&quot;;
+ var recherche = assertion.lastIndexOf(&quot;homme&quot;);
+ alert(&quot;Trouv� � la position: &quot; + recherche);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple, une valeur est affect&eacute;e &agrave; la variable <code>assertion</code>. Ensuite, la valeur de cette variable est parcourue par <code>lastIndexOf()</code> pour rechercher la derni&egrave;re occurrence de <code>homme</code> dans la cha&icirc;ne de caract&egrave;res. La valeur retourn&eacute;e par <code>lastIndexOf()</code> est sauvegard&eacute;e dans la variable <code>recherche</code>. Dans l'exemple, 27 est renvoy&eacute; &eacute;tant donn&eacute; que, pour la derni&egrave;re occurrence, la cha&icirc;ne de caract&egrave;res <code>homme</code> commence &agrave; la 28&egrave;me place de la cha&icirc;ne de caract&egrave;res parcourue.</p>
+
+<p>Comparer aussi avec: <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#index_of"><b>indexOf()</b></a>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="link">link()</a></h2>
+
+<p>Formate une cha&icirc;ne de caract&egrave;res comme lien. A le m&ecirc;me effet que le formatage HTML <code>&lt;a href=&gt;</code>...<code>&lt;/a&gt;</code>. Attend comme param&egrave;tre une adresse URI comme cible du lien.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_link.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var page_accueil = &quot;Ma page d'accueil&quot;;
+ document.write(page_accueil.link(&quot;accueil.htm&quot;))
+//--&gt;
+&lt;/script&gt;
+&lt;br&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var document.write(document.referrer.link(document.referrer));
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple affecte dans un premier script une valeur &agrave; la variable <code>page_accueil</code>. &Agrave; la suite de cela, un lien est &eacute;crit avec <code>document.write()</code>. Pour ce faire, la m&eacute;thode <code>link()</code> est appliqu&eacute;e &agrave; la variable <code>page_accueil</code>. La valeur de <code>page_accueil</code> est utilis&eacute;e comme texte du lien. Est transmise comme param&egrave;tre la cible du lien d&eacute;sir&eacute;e, dans l'exemple le fichier <code>accueil.htm</code> .</p>
+
+<p>Dans le deuxi&egrave;me script de l'exemple est cr&eacute;&eacute; de fa&ccedil;on dynamique un lien &agrave; l'adresse URI depuis laquelle l'utilisateur a appel&eacute; la page actuelle. Pour cela, la propri&eacute;t&eacute; <code>document.referrer</code> retourne l'adresse URI de la page d'origine. L'exemple est construit de telle mani&egrave;re que, par la suite, l'adresse URI est aussi bien la cible du lien de <code>document.referrer</code> que le texte du lien Script.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="match">match()</a></h2>
+
+<p>Parcourt une cha&icirc;ne de caract&egrave;res &agrave; l'aide d'une expression r&eacute;guli&egrave;re. Renvoie des cha&icirc;nes de caract&egrave;res auxquelles l'expression r&eacute;guli&egrave;re correspond. Attend l'expression r&eacute;guli&egrave;re comme param&egrave;tre.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_match.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var assertion = &quot;L'homo erectus n'est pas homose &quot;;
+ var resultat = assertion.match(/ homo.[+^\S] /);
+ alert(resultat);
+//--&gt;
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ assertion = &quot;L' homme est un loup pour les hommes &quot;;
+ resultat = assertion.match(/ \bhomme\b|\bhommes\b /g);
+ if(resultat)
+  for(i=0;i&lt;resultat.length;++i)
+   alert(resultat[i]);
+//--&gt;
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ assertion = &quot;Antoine a eu un avatar&quot;;
+ resultat = assertion.match(/a/gi);
+ if(resultat)
+  alert(resultat.length + &quot; trouv�s&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Le premier script dans l'exemple affecte une valeur &agrave; la variable <code>assertion</code>. Sur la valeur sauvegard&eacute;e de cette variable est appliqu&eacute;e une expression r&eacute;guli&egrave;re avec <code>match()</code>. Celle-ci trouve la cha&icirc;ne de caract&egrave;res &quot;homo&quot;, si elle est suivie de deux autres signes sans pourtant qu'il y ait d'espace. De cette fa&ccedil;on, seul le terme &quot;homose&quot; terminant la phrase est trouv&eacute;. Le r&eacute;sultat est sorti dans une fen&ecirc;tre.</p>
+
+<p>Le deuxi&egrave;me script de l'exemple applique &agrave; la valeur sauvegard&eacute;e dans la variable <code>assertion</code> avec <code>match()</code> une autre expression r&eacute;guli&egrave;re. Celle-ci trouve la cha&icirc;ne de caract&egrave;res &quot;homme&quot;, mais aussi la cha&icirc;ne de caract&egrave;res &quot;hommes&quot;. Un <code>g</code> suit par ailleurs l'expression, qui indique que la totalit&eacute; doit &ecirc;tre parcourue. Ainsi toutes les occurrences sont renvoy&eacute;es. &Eacute;tant donn&eacute; qu'il peut s'agir de plusieurs occurrences, la valeur renvoy&eacute;e n'est pas une valeur simple mais un tableau de valeurs. La variable <code>resultat</code>, dans laquelle la valeur renvoy&eacute;e est sauvegard&eacute;e dans l'exemple doit pour cette raison &ecirc;tre trait&eacute;e ensuite en tant que tableau. L'objet Array n'est cependant cr&eacute;&eacute; que s'il y a des occurrences. C'est pourquoi il est plus s&ucirc;r de faire d&eacute;pendre les instructions suivantes de la question si l'objet existe. Avec <code>if(resultat)</code>, une telle question est possible. Dans l'exemple, toutes les occurrences sont ensuite sorties dans une boucle for. Ce script n'est pas interpr&eacute;t&eacute; par Opera 5.12.</p>
+
+<p>Le troisi&egrave;me script dans l'exemple affecte une nouvelle valeur &agrave; la variable <code>assertion</code>; dans cette valeur, la lettre "a" appara&icirc;t souvent, tant&ocirc;t minuscule tant&ocirc;t majuscule. Une expression r&eacute;guli&egrave;re est appliqu&eacute;e avec <code>match()</code> sur la valeur sauvegard&eacute;e de cette variable. Cette expression recherche les occurrences de a, et cela &agrave; nouveau globalement comme dans le deuxi&egrave;me script. Toutes les occurrences sont alors renvoy&eacute;es comme tableau. Dans l'exemple, doivent cependant &ecirc;tre aussi bien trouv&eacute;s les a minuscules que les A majuscules. C'est la raison pour laquelle a &eacute;t&eacute; ajout&eacute; un <code>i</code> derri&egrave;re l'expression r&eacute;guli&egrave;re. L'effet en est que la casse n'est pas respect&eacute;e. Pour le contr&ocirc;le, les nombre d'occurrences dans l'exemple est sorti dans une boite de dialogue.</p>
+
+<p>Vous trouverez plus de d&eacute;tails sur les expressions r&eacute;guli&egrave;res &agrave; l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="regexp.htm"><b>RegExp</b></a>.</p>
+
+<p>Vous trouverez plus de d&eacute;tails sur les tableaux &agrave; l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="array.htm"><b>Array</b></a>.</p>
+
+<p>Pour rechercher non pas les cha&icirc;nes de caract&egrave;res trouv&eacute;es mais les positions d'expressions trouv&eacute;es, vous pouvez employer la m&eacute;thode  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#search"><b>search()</b></a>.</p>
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="replace">replace()</a></h2>
+
+<p>Parcourt une cha&icirc;ne de caract&egrave;res &agrave; l'aide d'une expression r&eacute;guli&egrave;re. Remplace les cha&icirc;nes de caract&egrave;res concordant avec l'expression r&eacute;guli&egrave;re. Attend les param&egrave;tres suivants:<br>
+<b>1.</b> <i>. expression r&eacute;guli&egrave;re </i> = une expression r&eacute;guli&egrave;re qui peut renvoyer une occurrence.<br>
+<b>2.</b> <i>. remplacer par </i> = une cha&icirc;ne de caract&egrave;res par laquelle les occurrences doivent &ecirc;tre remplac&eacute;es.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_replace.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var avant = &quot;Francine Dubois&quot;;
+ var maintenant = avant.replace(/Dubois/,&quot;Durand, n�e Dubois&quot;);
+ document.write(maintenant);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Le script de l'exemple affecte un nom &agrave; une variable nomm&eacute;e <code>avant</code>. Un processus de recherche/remplacement est appliqu&eacute; sur le nom sauvegard&eacute; avec <code>replace()</code>. Le premier param&egrave;tre transmis &agrave; <code>replace()</code> est l'expression r&eacute;guli&egrave;re. Celle-ci trouve la cha&icirc;ne de caract&egrave;res &quot;Dubois&quot;. Une occurrence a pour effet le remplacement de cette cha&icirc;ne de caract&egrave;res par &quot;Durand, n&eacute;e Dubois&quot;. Le r&eacute;sultat est &eacute;crit pour le contr&ocirc;le dans le fichier.</p>
+
+<p>Vous trouverez plus de d&eacute;tails et d'exemples pour cette m&eacute;thode  &agrave; l'objet   <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="regexp.htm"><b>RegExp</b></a></p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="search">search()</a></h2>
+
+<p>Parcourt une cha&icirc;ne de caract&egrave;res &agrave; l'aide d'une expression r&eacute;guli&egrave;re. Retourne -1 quand l'expression r&eacute;guli&egrave;re ne concorde pas. Si elle concorde, la position de la premi&egrave;re occurrence est renvoy&eacute;e.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_search.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var assertion = &quot;Antoine a eu un avatar&quot;;
+ var resultat = assertion.search(/Antoine.+/);
+ if(resultat != -1)
+  alert(&quot;trouv�!&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple affecte une valeur &agrave; la variable <code>assertion</code>. Une expression r&eacute;guli&egrave;re est ensuite appliqu&eacute;e avec <code>search()</code> sur la valeur sauvegard&eacute;e de cette variable. Celle-ci recherche une occurrence d' &quot;Antoine&quot;, suivie d'un contenu quelconque. La valeur renvoy&eacute;e par <code>search()</code> est sauvegard&eacute;e dans la variable <code>resultat</code>. Si celle-ci est &agrave; la fin diff&eacute;rente de -1, c'est qu'il y a une occurrence &agrave; l'expression r&eacute;guli&egrave;re. Dans l'exemple, une annonce correspondante est simplement sortie.</p>
+
+<p>Vous trouverez plus de d&eacute;tails sur les expressions r&eacute;guli&egrave;res &agrave; l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="regexp.htm"><b>RegExp</b></a>.</p>
+
+<p>Pour recevoir comme valeur retourn&eacute;e non pas les positions des expressions mais les expressions elles-m&ecirc;mes vous pouvez appliquer la m&eacute;thode  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#match"><b>match()</b></a>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="slice">slice()</a></h2>
+
+<p>Extrait une cha&icirc;ne de caract&egrave;res partielle d'une cha&icirc;ne de caract&egrave;res. Renvoie la cha&icirc;ne de caract&egrave;res extraite. Attend les param&egrave;tres suivants:<br>
+<b>1.</b> <i>d&eacute;but d'index </i> = position du premier caract&egrave;re &agrave; extraire dans la cha&icirc;ne de caract&egrave;res - le comptage commence &agrave; 0.<br>
+<b>2.</b> <i>. fin d'index </i> = position du premier caract&egrave;re ne devant plus &ecirc;tre extrait dans la cha&icirc;ne de caract&egrave;res - le comptage commence &agrave; 0.</p>
+
+<p>Vous pouvez aussi omettre le deuxi&egrave;me param&egrave;tre. L'extraction se fait alors jusqu'&agrave; la fin de la cha&icirc;ne de caract&egrave;res.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_slice.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var concept = &quot;Garnement&quot;;
+ var extrait = concept.slice(0,4);
+ alert(extrait);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple affecte une valeur &agrave; la variable <code>concept</code>. Les quatre premiers signes de cette valeur sont extraits avec <code>slice()</code>, donc les signes avec les positions 0, 1, 2 et 3. La valeur renvoy&eacute;e par la fonction, c'est &agrave; dire la cha&icirc;ne de caract&egrave;res extraite, est dans l'exemple sauvegard&eacute;e dans la variable <code>extrait</code>. Celle-ci est sortie dans une boite de dialogue pour le contr&ocirc;le.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="small">small()</a></h2>
+
+<p>Formate une cha&icirc;ne de caract&egrave;res comme du texte &eacute;crit en petit, exactement comme le formatage HTML <code>&lt;small&gt;</code>...<code>&lt;/small&gt;</code> .</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_small.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var actualisation = document.lastModified;
+ document.write(actualisation.small());
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple, un JavaScript recherche &agrave; l'aide de <code>document.lastModified</code> &agrave; quelle date le document a &eacute;t&eacute; modifi&eacute; la derni&egrave;re fois. La cha&icirc;ne de caract&egrave;res correspondante est alors sauvegard&eacute;e dans la variable <code>actualisation</code>. &Agrave; l'aide de <code>document.write()</code>, la valeur de <code>actualisation</code> est &eacute;crite dans le fichier. Le formatage correspond au formatage HTML <code>&lt;small&gt;</code>...<code>&lt;/small&gt;</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="split">split()</a></h2>
+
+<p>Scinde des cha&icirc;nes de caract&egrave;res en plusieurs cha&icirc;nes de caract&egrave;res partielles. Les cha&icirc;nes de caract&egrave;res cr&eacute;es sont sauvegard&eacute;es dans un tableau. Attend comme param&egrave;tre un signe d&eacute;limiteur ou une suite de signes d&eacute;limiteurs devant &ecirc;tre utilis&eacute;e comme s&eacute;paration distinctive entre les cha&icirc;nes de caract&egrave;res partielles. Le nombre de processus de scissions devant &ecirc;tre cr&eacute;&eacute;s au maximum peut aussi &ecirc;tre transmis - comme deuxi&egrave;me param&egrave;tre facultatif.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_split.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var phrase = &quot;Celui qui ne s'�loigne pas du droit chemin reste sur la voie&quot;;
+ var mots = phrase.split(&quot; &quot;);
+ document.write(&quot;Une phrase avec &quot; + mots.length + &quot; mots.&lt;br&gt;&quot;);
+ document.write(&quot;Le 5 �me mot est &quot; + mots[4]);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple affecte une valeur &agrave; la variable <code>phrase</code>. Les diff&eacute;rents mots de la valeur de cette variable sont extraits avec <code>split()</code>. Pour cela, un espace est transmis &agrave; la m&eacute;thode comme param&egrave;tre. &Agrave; chaque espace dans <code>phrase</code> est ainsi cr&eacute;&eacute;e une nouvelle cha&icirc;ne de caract&egrave;res partielle.<br>
+La valeur renvoy&eacute;e par la fonction, c'est &agrave; dire les cha&icirc;nes extraites, sont dans l'exemple sauvegard&eacute;e dans la variable <code>mots</code>. Ce n'est pas une variable habituelle mais un tableau. Aux fins du test, l'exemple &eacute;crit dans le fichier combien d'&eacute;l&eacute;ments contient le tableau (<code>mots.length</code>), et quel est le 5&egrave;me mot. Il s'agit du mot avec le num&eacute;ro d'index 4, &eacute;tant donn&eacute; que le comptage commence ici aussi &agrave; 0.</p>
+
+<p>Vous trouverez plus de d&eacute;tails sur les tableaux &agrave; l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="array.htm"><b>Array</b></a>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="strike">strike()</a></h2>
+
+<p>Formate une cha&icirc;ne de caract&egrave;res comme texte barr&eacute; exactement comme le formatage HTML <code>&lt;strike&gt;</code>...<code>&lt;/strike&gt;</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_strike.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ document.write(window.location.href.strike());
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple, un JavaScript &eacute;crit avec <code>document.write()</code> le nom de l'URI du fichier actuel. Le formatage y correspond au formatage HTML <code>&lt;strike&gt;</code>...<code>&lt;/strike&gt;</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="sub">sub()</a></h2>
+
+<p>Formate une cha&icirc;ne de caract&egrave;res comme texte en indice exactement comme le formatage HTML <code>&lt;sub&gt;</code>...<code>&lt;/sub&gt;</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_sub.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+  var bas0 = &quot;0&quot;;
+  document.write(&quot;ISDN et S&quot; + bas0.sub() + &quot;-Bus&quot;);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple est d&eacute;finie une variable <code>bas0</code> dans laquelle est sauvegard&eacute;e le caract&egrave;re 0. &Agrave; l'aide de <code>document.write()</code> est alors &eacute;crit un texte dans le fichier. Le formatage du 0 correspond au formatage HTML <code>&lt;sub&gt;</code>...<code>&lt;/sub&gt;</code>.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="substr">substr()</a></h2>
+
+<p>Extrait d'une cha&icirc;ne de caract&egrave;res une cha&icirc;ne partielle &agrave; partir d'une position d&eacute;termin&eacute;e et d'une longueur d&eacute;termin&eacute;e. Retourne la cha&icirc;ne extraite. Attend les param&egrave;tres suivants:<br>
+<b>1.</b> <i>d&eacute;but d'index</i> = Position du premier des signes &agrave; extraire dans la cha&icirc;ne de caract&egrave;res - le comptage commence &agrave; 0.<br>
+<b>2.</b> <i>nombre de signes </i> = nombre des signes devant &ecirc;tre extraits.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_substr.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var concept = &quot;anticonstitutionnel&quot;;
+ var partie = concept.substr(4,12);
+ alert(partie);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple affecte une valeur &agrave; la variable <code>concept</code>. Une partie de la valeur de cette variable est extraite avec <code>substr()</code> &agrave; savoir une cha&icirc;ne de caract&egrave;res d'une longueur de 12 lettres &agrave; partir de la 5&egrave;me lettre (index 4).<br>
+La valeur retourn&eacute;e par la fonction, c'est &agrave; dire la cha&icirc;ne de caract&egrave;res extraite, est sauvegard&eacute;e, dans l'exemple, dans la variable <code>partie</code>. Pour le contr&ocirc;le, cette variable est sortie dans une boite de dialogue. Elle contient la valeur <code>constitution</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="substring">substring()</a></h2>
+
+<p>Extrait d'une cha&icirc;ne de caract&egrave;res une cha&icirc;ne partielle &agrave; partir d'une position d&eacute;termin&eacute;e et jusqu'&agrave; une position d&eacute;termin&eacute;e. Retourne la cha&icirc;ne extraite. Attend les param&egrave;tres suivants:<br>
+<b>1.</b> <i>d&eacute;but d'index </i> = Position du premier des signes &agrave; extraire dans la cha&icirc;ne de caract&egrave;res - le comptage commence &agrave; 0.<br>
+<b>1.</b> <i>. fin d'index </i> = = Position du premier des signes ne devant plus &ecirc;tre extrait de la cha&icirc;ne de caract&egrave;res - le comptage commence &agrave; 0.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_substring.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var concept = &quot;anticonstitutionnel&quot;;
+ var partie = concept.substring(4,16);
+ alert(partie);
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple affecte une valeur &agrave; la variable <code>concept</code>. Une partie est extraite de la valeur de cette variable avec <code>substring()</code>, &agrave; savoir &agrave; partir de la 5&egrave;me lettre (Index 4), et jusqu'avant la 17&egrave;me lettre (Index 16).<br>
+La valeur renvoy&eacute;e par la fonction, c'est &agrave; dire la cha&icirc;ne extraite, est dans l'exemple sauvegard&eacute;e dans la variable <code>partie</code>. Pour le contr&ocirc;le cette valeur est sortie dans une boite de dialogue. Elle contient la valeur <code>constitution</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="sup">sup()</a></h2>
+
+<p>Formate une cha&icirc;ne de caract&egrave;res comme texte en exposant - exactement comme le formatage HTML <code>&lt;sup&gt;</code>...<code>&lt;/sup&gt;</code> .</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_sup.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+  var puissance2 = &quot;2&quot;;
+  document.write(&quot;10&quot; + puissance2.sup() + &quot; = &quot; + Math.pow(10,2));
+//--&gt;
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple, le signe 2 est sauvegard&eacute; dans la variable <code>puissance2</code>. &Agrave; l'aide de <code>document.write()</code> est ensuite &eacute;crit un texte dans le fichier. Le formatage du 2 correspond au formatage HTML <code>&lt;sup&gt;</code>...<code>&lt;/sup&gt;</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="to_lower_case">toLowerCase()</a></h2>
+
+<p>Transforme toutes les majuscules d'une cha&icirc;ne de caract&egrave;res en minuscules. Attend comme param&egrave;tre la cha&icirc;ne de caract&egrave;res devant &ecirc;tre transform&eacute;e. Retourne la nouvelle cha&icirc;ne de caract&egrave;res.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_to_lower_case.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function diminue() {
+ var nouveau = document.Test.entree.value.toLowerCase();
+ document.Test.entree.value = nouveau;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;Test&quot; action=&quot;&quot;&gt;
+&lt;input name=&quot;entree&quot;&gt;
+&lt;input type=&quot;button&quot; value=&quot;r�duit&quot; onClick=&quot;diminue()&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple est d&eacute;fini un formulaire avec un champ de saisie et un bouton. Quand l'utilisateur clique le bouton, la fonction <code>diminue()</code> est appel&eacute;e. Cette fonction applique la m&eacute;thode <code>toLowerCase()</code> sur le champ de saisie du formulaire. Le r&eacute;sultat est sauvegard&eacute; dans la variable <code>nouveau</code>. Apr&egrave;s quoi, la valeur de <code>nouveau</code> est affect&eacute;e au champ de saisie. De ce fait, toutes les majuscules &eacute;ventuellement entr&eacute;es dans le champ de saisie sont transform&eacute;es en minuscules.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="to_upper_case">toUpperCase()</a></h2>
+
+<p>Transforme toutes les minuscules d'une cha&icirc;ne de caract&egrave;res en majuscules. Attend comme param&egrave;tre la cha&icirc;ne de caract&egrave;res devant &ecirc;tre transform&eacute;e. Retourne la nouvelle cha&icirc;ne de caract&egrave;res.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/string_to_upper_case.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function augmente() {
+ nouveau = document.Test.entree.value.toUpperCase();
+ document.Test.entree.value = nouveau;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;Test&quot; action=&quot;&quot;&gt;
+&lt;input name=&quot;entree&quot;&gt;
+&lt;input type=&quot;button&quot; value=&quot;agrandir&quot; onClick=&quot;augmente()&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Dans l'exemple est d&eacute;fini un formulaire avec un champ de saisie et un bouton. Quand l'utilisateur clique le bouton, la fonction <code>augmente()</code> est appel&eacute;e. Cette fonction applique la m&eacute;thode <code>toUpperCase()</code> sur le champ de saisie du formulaire. Le r&eacute;sultat est sauvegard&eacute; dans la variable <code>nouveau</code>. Apr&egrave;s quoi, la valeur de <code>nouveau</code> est affect&eacute;e au champ de saisie. De ce fait, toutes les minuscules &eacute;ventuellement entr&eacute;es dans le champ de saisie sont transform&eacute;es en majuscules.</p>
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="independant.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="independant.htm"><b>Fonctions ind&eacute;pendantes de l'objet</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="screen.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="screen.htm"><b>Screen</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

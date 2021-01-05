@@ -1,0 +1,407 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / &Eacute;l&eacute;ments de langage Perl / Boucles</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment r&eacute;p&eacute;ter l'ex&eacute;cution d'instructions &agrave; l'aide de boucles en Perl.">
+<meta name="keywords"       content="SELFHTML, Perl, boucles, for, foreach, while, do until, do while, Traversion, r&eacute;cursivit&eacute;">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/langage/boucles.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // &Eacute;l&eacute;ments de langage Perl == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Boucles</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#for"><b>Boucles for</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#foreach"><b>Boucles foreach</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#while"><b>Boucles while</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#do"><b>Boucles do</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#hashes_boucles"><b>Boucles pour les hashes</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#recursivite"><b>R&eacute;cursivit&eacute;</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="for">Boucles for</a></h2>
+
+<p>Ces boucles sont avant tout appropri&eacute;es pour les cas dans lesquels on dispose d'une valeur de d&eacute;part, d'une valeur de fin et d'un pas d'incr&eacute;mentation, donc par exemple &quot;pour tous les cas entre 1 et 100&quot;.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+for(my $i = 1; $i &lt;= 100; $i++) {
+ print &quot;&lt;span style=\&quot;font-size:$i\pt\&quot;&gt;$i pt&lt;/span&gt;&lt;br&gt;\n&quot;;
+}
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script envoie du code HTML au navigateur et sort du texte en tout 100 fois. Pour ce faire sont not&eacute;es derri&egrave;re le mot cl&eacute; <code>for</code>, qui introduit une boucle for, entre parenth&egrave;ses, trois petites instructions. La premi&egrave;re instruction d&eacute;clare la variable-compteur <code>$i</code> et l'initialise avec la valeur 1. La deuxi&egrave;me instruction est une condition. Elle exprime: &quot;<code>$i</code> plus petit ou &eacute;gal &agrave; 100&quot;. La troisi&egrave;me instruction incr&eacute;mente de 1 la valeur actuelle de  <code>$i</code>. La boucle sera maintenant ex&eacute;cut&eacute;e aussi longtemps que la condition du milieu est remplie. &Eacute;tant donn&eacute; que dans l'exemple <code>$i</code> a d'abord pour valeur 1 et qu'ensuite &agrave; chaque ex&eacute;cution de la boucle gr&acirc;ce &agrave;  <code>$i++</code> il est incr&eacute;ment&eacute; de 1, la boucle va &ecirc;tre ex&eacute;cut&eacute;e 100 fois au total. &Agrave; la 101 &egrave;me fois. <code>$i</code> est plus grand que  100, la condition n'est plus remplie, et la boucle est termin&eacute;e.</p>
+
+<p>&Agrave; la suite de la construction <code>for</code> suit un  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="intro.htm#blocs_instructions"><b>bloc d'instructions</b></a>, marqu&eacute; comme d'habitude par des parenth&egrave;ses <b>accolades</b>  <code>{</code> et <code>}</code>. Entre elles peuvent &ecirc;tre plac&eacute;es autant d'instructions que vous le souhaitez. Ces instructions vont &ecirc;tre ex&eacute;cut&eacute;es aussi souvent que la boucle est ex&eacute;cut&eacute;e, dans l'exemple donc 100 fois. Dans l'exemple, du code HTML est cr&eacute;&eacute; avec <code>print</code>. Celui-ci contient dans un &eacute;l&eacute;ment <code>span</code> une d&eacute;finition de format CSS pour la taille de police (<code>font-size</code>). Pour l'affectation &agrave; cette propri&eacute;t&eacute; CSS, la scalaire <code>$i</code> est utilis&eacute;e. Ce qui aboutit dans l'exemple, &agrave; ce que le texte soit sorti 100 fois, et cela chaque fois avec une taille de police un peu plus grande. La premi&egrave;re ligne sortie est seulement d'1 pt, donc d'une taille de 1 point, ce que personne pour ainsi dire ne pourra lire. Chaque ligne sortie est un point plus grande et la derni&egrave;re est de 100 points ce qui suffit bien &agrave; remplir la fen&ecirc;tre.</p>
+
+<p>Pour formuler des conditions telles qu'elle figure dans la deuxi&egrave;me instruction dans la construction de la boucle <code>for</code>, vous avez besoin, soit de deux valeurs que vous voulez comparer, soit vous demandez directement si une expression figurant dans les parenth&egrave;ses est vraie ou fausse. Dans l'exemple, deux valeurs sont compar&eacute;es, &agrave; savoir la valeur de <code>$i</code> avec le nombre 100. Pour cela, vous avez besoin d'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="operateurs.htm#comparaison"><b>Op&eacute;rateurs de comparaison</b></a> comme dans l'exemple l'op&eacute;rateur plus petit que- <code>&lt;</code>.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="foreach">Boucles foreach</a></h2>
+
+<p>Cette forme de boucle est sp&eacute;cialement con&ccedil;ue pour parcourir  dans l'ordre l'un apr&egrave;s l'autre les &eacute;l&eacute;ments d'une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="listes.htm"><b>liste ou Array (variables) </b></a>.  Une liste est ici examin&eacute;e &eacute;l&eacute;ment par &eacute;l&eacute;ment. Vous pouvez en faire d&eacute;pendre l'ex&eacute;cution d'instructions.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+
+my @biens = (&quot;ma maison&quot;,&quot;ma voiture&quot;,&quot;mon bateau&quot;);
+foreach (@biens) {
+ print &quot;$_&lt;br&gt;\n&quot;;
+}
+
+my @faiblesses = (&quot;nicotine&quot;,&quot;alcool&quot;,&quot;le sexe faible&quot;);
+my $faiblesse;
+foreach $faiblesse (@faiblesses) {
+ print &quot;$faiblesse&lt;br&gt;\n&quot;;
+}
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre deux variantes diff&eacute;rant l&eacute;g&egrave;rement de la fa&ccedil;on d'utiliser la boucle <code>foreach</code>. Dans les deux cas un tableau est d&eacute;clar&eacute; et des valeurs de d&eacute;part lui sont affect&eacute;es, d'une part <code>@biens</code> et d'autre part <code>@faiblesses</code>. Derri&egrave;re le mot cl&eacute; <code>foreach</code> est simplement mentionn&eacute; entre guillemets le tableau. Dans le bloc d'instructions qui suit derri&egrave;re dans les parenth&egrave;ses accolades, peuvent figurer autant d'instructions que vous le d&eacute;sirez.</p>
+
+<p>Dans le premier des exemples ci-dessus, est utilis&eacute;e la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="predefini.htm"><b>variable pr&eacute;d&eacute;finie</b></a> <code>$_</code>. Elle sauvegarde toujours la valeur actuelle du bloc d'instructions d'une boucle  <code>foreach</code>, ce qui dans ce cas est l'&eacute;l&eacute;ment respectivement actuel du tableau <code>@biens</code>.</p>
+
+<p>Dans le deuxi&egrave;me exemple est utilis&eacute; &agrave; la place de <code>$_</code> une scalaire distincte nomm&eacute;e <code>$faiblesse</code>. Si une telle scalaire est not&eacute;e entre le mot cl&eacute; <code>foreach</code> et la parenth&egrave;se avec le tableau, la valeur actuelle du bloc d'instructions de la boucle  <code>foreach</code>, ce qui dans ce cas est l'&eacute;l&eacute;ment respectivement actuel du tableau <code>@faiblesses</code> est sauvegard&eacute; dans cette scalaire.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Les mots cl&eacute;s for et foreach poss&egrave;dent certes un arri&egrave;re plan s&eacute;mantique diff&eacute;rent mais peuvent &ecirc;tre &eacute;chang&eacute;s l'un contre l'autre sur un plan syntaxique. Perl reconna&icirc;t lui-m&ecirc;me le type de boucle que vous voulez utiliser. Ainsi, vous pouvez &eacute;galement par exemple &eacute;crire ce qui suit:<br>
+<code>for(1..1000) {<br>
+&nbsp;print &quot;mille fois touch&eacute;\n&quot;;<br>
+}</code>
+Le code sort simplement 1000 fois le texte, bien qu'il s'agisse en principe d'une boucle  foreach, qui travaille la liste des nombres de 1 &agrave; 1000.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="while">Boucles while</a></h2>
+
+<p>Ce genre de boucle est appropri&eacute; quand vous ne savez pas auparavant combien de fois la boucle doit &ecirc;tre ex&eacute;cut&eacute;e. Vous formulez simplement une condition et la boucle sera ex&eacute;cut&eacute;e aussi souvent que la condition est remplie. Vous devez veiller vous m&ecirc;me dans le bloc d'instructions qui d&eacute;pend de la boucle &agrave; ce que la condition soit fausse &agrave; un moment ou &agrave; un autre et que la boucle soit termin&eacute;e.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+my $heure_debut = time();
+my $heure_fin = $heure_debut + 1;
+my $heure_actuelle = 0;
+my $i = 0;
+
+while ($heure_actuelle &lt;= $heure_fin) {
+ $heure_actuelle = time();
+ print &quot;ex�cut� $i fois&lt;br&gt;&quot;;
+ $i++;
+}
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script recherche d'abord avec la fonction Perl <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/dateheure.htm#time"><b>time</b></a> l'heure et la date actuelle et sauvegarde le r&eacute;sultat dans la scalaire <code>$heure_debut</code>. Ici, c'est un nombre qui est sauvegard&eacute;, &agrave; savoir le nombre de secondes &eacute;coul&eacute;es entre le 1/1/1970 0.00 heures et la date et l'heure actuelle. Ensuite, une scalaire <code>$heure_fin</code> est d&eacute;clar&eacute;e et se voit affecter une valeur sup&eacute;rieure de <code>1</code> &agrave; celle de <code>$heure_debut</code>. Deux autres scalaires <code>$heure_actuelle</code> et <code>$i</code> sont d&eacute;clar&eacute;es et initialis&eacute;es avec <code>0</code>.</p>
+
+<p>La boucle est introduite par le mot-cl&eacute; <code>while</code>. Dans les parenth&egrave;ses, une condition est formul&eacute;e. Dans l'exemple, il s'agit de la condition &quot;<code>$heure_actuelle</code> plus petit ou &eacute;gal &agrave; <code>$heure_fin</code>&quot;. Derri&egrave;re la condition, dans des parenth&egrave;ses accolades, suit un bloc d'instructions avec autant d'instructions que vous le souhaitez. Ces instructions sont ex&eacute;cut&eacute;es aussi souvent que la boucle est parcourue et que la condition est encore remplie.</p>
+
+<p>La condition de la boucle est d'abord remplie dans l'exemple &eacute;tant donn&eacute; que <code>$heure_actuelle</code> a &eacute;t&eacute; initialis&eacute; avec <code>0</code> et est donc assur&eacute;ment plus petit que <code>$heure_fin</code>. Dans la boucle cependant, <code>$heure_actuelle</code> re&ccedil;oit une nouvelle valeur &agrave; l'appel de la fonction <code>time</code>, cette valeur est en toute logique au moins aussi haute que celle de <code>$heure_debut</code>. La boucle sera de ce fait ex&eacute;cut&eacute;e aussi souvent qu'il est n&eacute;cessaire pour que <code>$heure_actuelle</code>, par l'appel de <code>time</code>, se voie affecter une valeur plus &eacute;lev&eacute;e que <code>$heure_fin</code>. Alors la boucle est termin&eacute;e. Quand ce sera le cas, vous ne pouvez naturellement pas le pr&eacute;voir, c'est dans cette mesure que la boucle <code>while</code> est id&eacute;ale ici.</p>
+<p>En outre une variable-compteur  <code>$i</code> est encore incr&eacute;ment&eacute;e de 1 &agrave; chaque passage avec <code>$i++</code>. La valeur de <code>$i</code> est sortie &agrave; chaque fois. Dans la fen&ecirc;tre du navigateur appelant, il sera possible de voir &agrave; la fin, combien de fois la boucle a &eacute;t&eacute; parcourue.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="do">Boucles do</a></h2>
+
+
+<p>Avec les boucles <code>while</code> il peut arriver que les instructions qui en d&eacute;pendent ne soient jamais ex&eacute;cut&eacute;es, &agrave; savoir quand la condition de la boucle s'av&egrave;re fausse d&egrave;s le premier passage. Une boucle <code>do</code> veille &agrave; ce que les instructions soient absolument ex&eacute;cut&eacute;es une fois, &eacute;tant donn&eacute; que la condition de la boucle n'est v&eacute;rifi&eacute;e qu'&agrave; la fin de la boucle.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+my $condition = &quot;interruption&quot;;
+my $quelque_chose;
+do {
+ $quelque_chose = $condition;
+ print &quot;Ici figure $quelque_chose&quot;;
+} until ($quelque_chose eq $condition);
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple pr&eacute;sente la fa&ccedil;on typique de fonctionner d'une telle boucle. Dans un premier temps, une scalaire <code>$condition</code> se voit affecter une valeur initiale <code>interruption</code>. Une autre scalaire nomm&eacute;e <code>$quelque_chose</code> est d&eacute;clar&eacute;e sans recevoir de valeur. La boucle est introduite par <code>do</code>. Derri&egrave;re duit un bloc d'instructions dans des parenth&egrave;ses accolades, qui peut contenir autant d'instructions que vous le souhaitez. Dans l'exemple, la valeur de <code>$condition</code>, &agrave; savoir <code>interruption</code> est tout de suite d&egrave;s le d&eacute;but affect&eacute;e &agrave; la scalaire <code>$quelque_chose</code>. Ensuite ce contenu est sorti pour contr&ocirc;le. Apr&egrave;s la parenth&egrave;se accolade de fermeture qui met fin au bloc d'instructions, le mot <code>until</code> est not&eacute; suivi entre parenth&egrave;ses de la condition proprement dite. Dans l'exemple, il est v&eacute;rifi&eacute; si <code>$quelque_chose</code> et <code>$condition</code> sont &eacute;gaux, donc s'ils ont le m&ecirc;me contenu. &Eacute;tant donn&eacute; que ce contenu a bien &eacute;t&eacute; affect&eacute; dans la boucle, la condition de la boucle est donc remplie. Ce qui fait que la boucle est interrompue. Car <code>until</code> est &agrave; comprendre comme &quot;aussi longtemps que&quot;. &Agrave; l'inverse de la boucle <code>while</code> dont le bloc d'instructions est ex&eacute;cut&eacute; <b>aussi longtemps que</b> la condition est vraie, le bloc d'instructions est ici ex&eacute;cut&eacute; <b>jusqu'&agrave; ce que</b> la condition soit vraie.</p>
+
+<p>Dans l'exemple, la boucle est ex&eacute;cut&eacute;e une fois bien que la condition de la boucle soit d&eacute;j&agrave; vraie d&egrave;s le premier passage. La raison est justement que le code qui d&eacute;pend de la boucle est d'abord ex&eacute;cut&eacute; et qu'ensuite seulement la condition est v&eacute;rifi&eacute;e.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Il existe &eacute;galement en Perl des boucles <code>do</code> pour lesquelles la condition n'est pas pr&eacute;c&eacute;d&eacute;e de <code>until</code>, mais de <code>while</code>. Vous devez alors formuler la condition de la boucle n&eacute;gativement.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="hashes_boucles">Boucles pour les hashes</a></h2>
+
+<p>De la m&ecirc;me fa&ccedil;on que les tableaux peuvent parfaitement &ecirc;tre &quot;travers&eacute;s&quot;, donc parcourus &eacute;l&eacute;ment par &eacute;l&eacute;ment avec les <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#foreach"><b>boucles foreach</b></a>, cette possibilit&eacute; existe naturellement aussi pour les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="hashes.htm"><b>Hashes</b></a>. &Eacute;tant donn&eacute; qu'un &eacute;l&eacute;ment de hash est toujours compos&eacute; de deux valeurs dont la premi&egrave;re est la cl&eacute; et la deuxi&egrave;me la valeur proprement dite, un simple parcours comme avec <code>foreach</code> n'est pas possible. C'est pourquoi existe pour les hashes une syntaxe de boucle qui leur est propre.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+my %famille = (femme =&gt; &quot;Jeanne&quot;, fille =&gt; &quot;Fanny&quot;, fils =&gt; &quot;Florian&quot;);
+my $clef;
+my $valeur;
+
+while (($clef, $valeur) = each(%famille)) {
+  print &quot;$clef correspond &amp;agrave; $valeur&lt;br&gt;\n&quot;;
+}
+
+while ($clef = each(%famille)) {
+  print &quot;$clef correspond &amp;agrave; $famille{$clef}&lt;br&gt;\n&quot;;
+}
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;clare un hash nomm&eacute; <code>%famille</code> et lui affecte trois paires cl&eacute;-valeur. Ensuite deux scalaires <code>$clef</code> et <code>$valeur</code> sont d&eacute;clar&eacute;es, qui sont n&eacute;cessaires dans la boucle. La boucle est formul&eacute;e en tant que boucle <code>while</code>. &Agrave; l'int&eacute;rieur de la condition de la boucle, est appel&eacute;e cependant la fonction Perl <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/hashlistes.htm#each"><b>each</b></a>. Celle-ci donne au choix une liste avec deux &eacute;l&eacute;ments, &agrave; savoir la cl&eacute; suivante et la valeur qui y correspond, ou bien - dans un contexte scalaire - seulement la cl&eacute; suivante du hash transmis.</p>
+
+<p>Le script en exemple montre les deux variantes. Dans la premi&egrave;re variante, la liste est sauvegard&eacute;e avec les deux &eacute;l&eacute;ments dans l'expression <code>($clef, $valeur)</code>. <code>$clef</code> contient la cl&eacute; respectivement actuelle du hash, et <code>$valeur</code> la valeur de la donn&eacute;e correspondante. Dans l'exemple, la boucle est parcourue trois fois et sort ces enregistrements sous la forme <code>femme correspond &agrave; Jeanne</code>.</p>
+
+<p>Dans la deuxi&egrave;me variante la fonction <code>each</code> est appel&eacute;e dans un contexte scalaire, &eacute;tant donn&eacute; que la valeur retourn&eacute;e n'est sauvegard&eacute;e que dans <code>$clef</code>. L'instruction <code>print</code> formul&eacute;e dans la boucle sort cependant la m&ecirc;me chose que dans la premi&egrave;re variante. Cette fois cependant, aucune variable <code>$valeur</code> n'est disponible. Par une construction comme <code>$famille{$clef}</code> il peut cependant &ecirc;tre acc&eacute;d&eacute; &agrave; la valeur actuelle respective .</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="recursivite">R&eacute;cursivit&eacute;</a></h2>
+
+<p>La r&eacute;cursivit&eacute; est un moyen auquel recourir quand les boucles ne suffisent plus. Un cas typique d'utilisation pour la r&eacute;cursivit&eacute; est le parcours de structures arborescentes. En fran&ccedil;ais: quand par exemple vous voulez lire toute une arborescence de r&eacute;pertoires sans en conna&icirc;tre la structure des fichiers et des r&eacute;pertoires, alors c'est un cas typique pour une application r&eacute;cursive. Pour la r&eacute;cursivit&eacute;, un <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="sousroutines.htm"><b>sous-programme</b></a> est d&eacute;fini dans lequel figure une instruction qui appelle &agrave; nouveau le sous-programme. Il s'ensuit un effet d'imbrication. La r&eacute;cursivit&eacute; est de toutes fa&ccedil;ons pas tout &agrave; fait exempte de critique sur le plan informatique. C'est pourquoi elle doit &ecirc;tre programm&eacute;e proprement.</p>
+
+<p>L'exemple suivant montre comment vous pouvez lire une structure de r&eacute;pertoires &agrave; partir d'un r&eacute;pertoire donn&eacute; et pouvez sortir format&eacute; en HTML le r&eacute;sultat au navigateur appelant. L'exemple, au demeurant, n'est pas tout &agrave; fait banal.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $repertoire_depart = &quot;/usr/local/web&quot;;
+my @tous;
+my $total_octets = 0;
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;&lt;h1&gt;Atborescence&lt;/h1&gt;\n&quot;;
+print &quot;&lt;pre&gt;repertoire_depart: &lt;b&gt;$repertoire_depart&lt;/b&gt;&lt;/pre&gt;\n&quot;;
+print &quot;&lt;hr noshade size=\&quot;1\&quot;&gt;&lt;pre&gt;\n&quot;;
+
+rechercher($repertoire_depart);
+@tous = sort(@tous);
+foreach (@tous) {
+  print &quot;$_\n&quot;;
+}
+print &quot;&lt;/pre&gt;&lt;hr noshade size=\&quot;1\&quot;&gt;\n&quot;;
+print &quot;&lt;pre&gt;En tout: [$total_octets octets]&lt;/pre&gt;\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+
+
+sub rechercher {
+  my $repertoire = shift;
+  my $enregistrement;
+  my $nom_chemin;
+  my $enregistrement_HTML;
+  my $octets;
+  local *DH;
+
+  unless (opendir(DH, $repertoire)) {
+   return;
+  }
+  while (defined ($enregistrement = readdir(DH))) {
+   next if($enregistrement eq &quot;.&quot; or $enregistrement eq &quot;..&quot;);
+   $nom_chemin = $repertoire.&quot;/&quot;.$enregistrement;
+   if( -d $nom_chemin) {
+    $HTML_enregistrement = $repertoire.&quot;/&quot;.$enregistrement.&quot; [REPERTOIRE]&quot;;
+   }
+   else {
+    $octets = -s $nom_chemin;
+    $total_octets += $octets;
+    $HTML_enregistrement = $repertoire.&quot;/&quot;.$enregistrement.&quot; [$octets octets]&quot;;
+   }
+   push(@tous, $HTML_enregistrement);
+   rechercher($nom_chemin) if(-d $nom_chemin);
+  }
+ closedir(DH);
+}
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Tout d'abord trois variables importantes sont d&eacute;clar&eacute;es: <code>$repertoire_depart</code> sauvegarde le r&eacute;pertoire &agrave; partir duquel la recherche doit &ecirc;tre effectu&eacute;e, <code>@tous</code> est la liste dans laquelle, par la suite, les &eacute;l&eacute;ments lus seront sauvegard&eacute;s, et <code>$total_octets</code> recherche le nombre d'octets de tous les fichiers.</p>
+
+<p>Ensuite commence la sortie en HTML au navigateur. Au dessous, figure l'instruction <code>rechercher($repertoire_depart);</code>. C'est un appel du sous-programme  <code>rechercher</code>, qui est introduit un peu plus bas avec <code>sub rechercher</code>. Ce sous-programme est en m&ecirc;me temps celui s'appelle lui m&ecirc;me dans l'avant-derni&egrave;re instruction du bloc d'instructions qu'il comprend, en provoquant ainsi la r&eacute;cursivit&eacute;.</p>
+
+<p>Avec l'instruction <code>rechercher($repertoire_depart);</code> a lieu la lecture compl&egrave;te de la structure des fichiers et des r&eacute;pertoires. Ensuite la liste est tri&eacute;e alphab&eacute;tiquement avec la fonction <code>sort</code> pour &ecirc;tre sortie dans le navigateur enregistrement par enregistrement avec une boucle <code>foreach</code>.</p>
+
+<p>Le c&#339;ur du script est cependant le sous-programme  <code>rechercher</code>. Y sont d'abord d&eacute;clar&eacute;es une s&eacute;rie de variables de travail. &Eacute;tant donn&eacute; que le sous-programme se rappelle lui-m&ecirc;me, la question se pose s'il ne s'ensuit pas une  confusion avec les noms de variables. La r&eacute;ponse est non. Car chaque ex&eacute;cution du sous-programme cr&eacute;e une instance distincte du programme dans la  m&eacute;moire de travail, et &eacute;tant donn&eacute; que les variables sont d&eacute;clar&eacute;es localement avec <code>my</code>, leur validit&eacute; reste cantonn&eacute;e &agrave; une instance.<br>
+Une exception &eacute;vidente est form&eacute;e par l'instruction <code>local *DH</code>, qui d&eacute;clare localement le descripteur de r&eacute;pertoire <code>DH</code>. &Eacute;tant donn&eacute; que  <code>my</code> ne peut pas &ecirc;tre appliqu&eacute; aux descripteurs de fichiers et de r&eacute;pertoires (ou plut&ocirc;t aux Typeglobs), on a eu recours ici &agrave; cette solution, qui certes travaille quelque peu diff&eacute;remment en interne mais donne le r&eacute;sultat d&eacute;sir&eacute;. Une autre variante serait d'utiliser la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/modulesstandard.htm"><b>module standard</b></a> <code>Symbol</code> et de se cr&eacute;er dans chaque instance du sous-programme un nouveau descripteur de r&eacute;pertoire. Si le proc&eacute;d&eacute; para&icirc;t plus &quot;propre&quot;, ce n'est finalement pas le cas. Par ailleurs, la variante avec <code>local</code> est sensiblement plus rapide.<br>
+Les nombreuses instances du sous-programme pour beaucoup de r&eacute;pertoires impliquent aussi que toujours plus de m&eacute;moire de travail est n&eacute;cessaire. C'est un inconv&eacute;nient important de la r&eacute;cursivit&eacute;. Les constructions avec de nombreux appels de sous-programmes &agrave; eux-m&ecirc;mes en r&eacute;cursivit&eacute; doivent &ecirc;tre &eacute;vit&eacute;s pour cette raison dans les scripts CGI qui peuvent &ecirc;tre appel&eacute;s souvent et plusieurs fois en m&ecirc;me temps sur les serveurs Web publics.</p>
+
+<p>Le sous-programme <code>rechercher</code> attend un nom de chemin qui lui est transmis. Avec <code>$repertoire&nbsp;=&nbsp;shift;</code> le nom de chemin transmis est sauvegard&eacute; dans la scalaire <code>$repertoire</code> (voir aussi &agrave; ce sujet la fonction Perl <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/hashlistes.htm#shift"><b>shift</b></a>). Ensuite le r&eacute;pertoire transmis est ouvert gr&acirc;ce &agrave; la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#opendir"><b>opendir</b></a> . Ses enregistrements sont lus dans une boucle <code>while</code> avec la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#readdir"><b>readdir</b></a>. Les deux enregistrements avec les valeurs <code>.</code> et <code>..</code>, qui figurent dans chaque r&eacute;pertoire et qui symbolisent le r&eacute;pertoire actuel ou le r&eacute;pertoire parent sont saut&eacute;s avec la commande de saut <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="commandessaut.htm#next"><b>next</b></a>. Autrement, la r&eacute;cursivit&eacute; s'embrouillerait dans une boucle sans fin.</p>
+
+<p>Avec l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/gestionfichiers.htm#test_fichier"><b>op&eacute;rateurs de test fichier pour fichiers et r&eacute;pertoires</b></a> <code>-d</code> dans <code>if(&nbsp;-d&nbsp;$nom_chemin)</code> il est demand&eacute; si l'enregistrement du r&eacute;pertoire respectivement actuel est &agrave; nouveau un r&eacute;pertoire, donc un sous r&eacute;pertoire. En fonction de cela un &eacute;l&eacute;ment HTML pour la liste &agrave; sortir est pr&eacute;par&eacute;. Plus bas il est demand&eacute; encore une fois avec  <code>-d</code> si l'enregistrement est un sous-r&eacute;pertoire, et selon la r&eacute;ponse, le sous-programme  <code>rechercher</code> est &agrave; nouveau appel&eacute; avec le sous-r&eacute;pertoire.</p>
+
+<p>Apr&egrave;s que la structure des r&eacute;pertoires est trait&eacute;e et que toutes les instances du sous-programme  <code>rechercher</code> sont termin&eacute;es, Cela continue dans la partie sup&eacute;rieure du script avec <code>@tous = sort(@tous);</code>.</p>
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="commandessaut.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="commandessaut.htm"><b> Commandes de saut</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="conditions.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="conditions.htm"><b> Instructions conditionnelles</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

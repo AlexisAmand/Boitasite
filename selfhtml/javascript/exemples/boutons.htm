@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / Exemples d'application / Boutons graphiques dynamiques</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment faire en sorte, avec JavaScript, que des boutons graphiques de liens soient mis visuellement en valeur lors du passage avec la souris.">
+<meta name="keywords"       content="SELFHTML, JavaScript, survol d'images, graphiques dynamiques, image-Objekt, Mouseover-Effekt">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/exemples/boutons.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // Exemples d'application == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Boutons graphiques dynamiques</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#remarques"><b>Remarques sur cet exemple</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#texte_source"><b>Texte source avec explications</b></a><br>
+</p>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/boutons.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="remarques">Remarques sur cet exemple</a></h2>
+
+<p>On rencontre souvent sur les pages WWW des barres graphiques avec des boutons contenant des liens &agrave; des pages d&eacute;termin&eacute;es du projet. Si l'utilisateur passe avec la souris sur de tels graphiques, il reconna&icirc;t, au changement du curseur et &agrave; l'affichage de la destination du lien dans la ligne d'&eacute;tat du navigateur WWW, qu'il s'agit de liens. &Agrave; l'aide de JavaScript, vous pouvez rendre de tels liens graphiques encore mieux reconnaissables et en m&ecirc;me temps donner un peu plus de piquant au guidage de l'utilisateur (&quot;effet survol d'images - Mouseover -&quot;).</p>
+
+<p>Pour cela, il vous faut deux graphiques semblables de couleur diff&eacute;rente par bouton. Dans l'exemple d'affichage de cette partie vous avez les trois paires de boutons suivantes:</p>
+
+
+<table border="0" cellpadding="0" cellspacing="1"><tr>
+<td><img src="affichage/bouton1.gif" width="160" height="30" border="0" alt="accueil"></td>
+<td><img src="affichage/bouton1h.gif" width="160" height="30" border="0" alt="accueil"></td>
+</tr><tr>
+<td><img src="affichage/bouton2.gif" width="160" height="30" border="0" alt="petits assistants"></td>
+<td><img src="affichage/bouton2h.gif" width="160" height="30" border="0" alt="petits assistants"></td>
+</tr><tr>
+<td><img src="affichage/bouton3.gif" width="160" height="30" border="0" alt="mise en page"></td>
+<td><img src="affichage/bouton3h.gif" width="160" height="30" border="0" alt="mise en page"></td>
+</tr></table>
+
+<p>Avec l'aide de JavaScript, un graphique se laisse maintenant remplacer par l'autre, par exemple quand le graphique sert de lien et que l'utilisateur y fait passer la souris. Comment cela fonctionne dans le d&eacute;tail est expliqu&eacute; ci-apr&egrave;s.</p>
+
+<p>Cet exemple fonctionne avec Netscape &agrave; partir de la version 3.x et avec l'Explorer Internet MS &agrave; partir de la version 4.x. Pensez qu'avec Netscape, l'emploi de graphiques dynamiques dans des tableaux peut provoquer des probl&egrave;mes de d&eacute;calage dans le tableau..</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="texte_source">Texte source avec explications</a></h2>
+
+<p>L'exemple montre un fichier HTML complet avec une barre de boutons et le JavaScript pour commander les effets de survol d'image.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/boutons.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Boutons graphiques dynamiques &lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+Normal1 = new Image();
+Normal1.src = &quot;bouton1.gif&quot;;     /* premier graphique standard  */
+Highlight1 = new Image();
+Highlight1.src = &quot;bouton1h.gif&quot;; /* premier graphique �clair� */
+
+Normal2 = new Image();
+Normal2.src = &quot;bouton2.gif&quot;;     /* deuxi�me graphique standard  */
+Highlight2 = new Image();
+Highlight2.src = &quot;bouton2h.gif&quot;; /* deuxi�me graphique �clair�  */
+
+Normal3 = new Image();
+Normal3.src = &quot;bouton3.gif&quot;;     /* troisi�me graphique standard */
+Highlight3 = new Image();
+Highlight3.src = &quot;bouton3h.gif&quot;; /* troisi�me graphique �clair� */
+
+/* etc... pour tous les autres graphiques � utiliser  */
+
+function change_image(image_no,objet_image) {
+ window.document.images[image_no].src = objet_image.src;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+&lt;!--
+h1 { color:#6363A5; font-family:Arial,sans-serif; }
+p  { color:#000000; font-family:Arial,sans-serif; }
+--&gt;
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body bgcolor=&quot;#FFFFC0&quot; background=&quot;buttonsback.gif&quot; text=&quot;#000000&quot;&gt;
+
+&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;
+&lt;td valign=&quot;top&quot;&gt;
+
+&lt;a href=&quot;../../../index.htm&quot;
+   onMouseOver=&quot;change_image(0,Highlight1)&quot;
+   onMouseOut=&quot;change_image(0,Normal1)&quot;&gt;&lt;img src=&quot;bouton1.gif&quot;
+   width=&quot;130&quot; height=&quot;30&quot; border=&quot;0&quot; alt=&quot;accueil&quot;&gt;&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;../../../petitsassistants/index.htm&quot;
+   onMouseOver=&quot;change_image(1,Highlight2)&quot;
+   onMouseOut=&quot;change_image(1,Normal2)&quot;&gt;&lt;img src=&quot;bouton2.gif&quot;
+   width=&quot;130&quot; height=&quot;30&quot; border=&quot;0&quot; alt=&quot;petits assistants&quot;&gt;&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;../../../misesenpage/index.htm&quot;
+   onMouseOver=&quot;change_image(2,Highlight3)&quot;
+   onMouseOut=&quot;change_image(2,Normal3)&quot;&gt;&lt;img src=&quot;bouton3.gif&quot;
+   width=&quot;130&quot; height=&quot;30&quot; border=&quot;0&quot; alt=&quot;mise en page&quot;&gt;&lt;/a&gt;&lt;br&gt;
+
+&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/td&gt;
+&lt;td valign=&quot;top&quot;&gt;
+
+&lt;h1&gt;Boutons graphiques dynamiques&lt;/h1&gt;
+
+&lt;p&gt;&lt;b&gt;Passez avec la souris sur les boutons. Vous pouvez m&amp;ecirc;me y cliquer ;-)&lt;/b&gt;&lt;/p&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<h4>cr&eacute;er de nouveaux objets graphiques pour graphiques &eacute;clair&eacute;s:</h4>
+
+<p>Pour chaque graphique que vous voulez afficher de fa&ccedil;on dynamique, vous devez cr&eacute;er une instance de l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/images.htm"><b>objet images</b></a>. Ceci s'applique autant aux graphiques qui seront ensuite r&eacute;f&eacute;renc&eacute;s dans le fichier HTML qu'&agrave; ceux qui doivent &ecirc;tre affich&eacute;s dynamiquement au passage de la souris.</p>
+
+<p>Dans l'exemple, une instance objet est cr&eacute;e avec des instructions telles que <code>Normal1 = new Image();</code>. Apr&egrave;s avoir cr&eacute;&eacute; l'instance objet, toutes les caract&eacute;ristiques de l'objet peuvent &ecirc;tre appel&eacute;es sous le nom d'objet choisi, dans le premier cas <code>Normal1</code>. D'abord, l'objet ne contient pas de donn&eacute;es. Avec l'instruction <code>Normal1.src = &quot;bouton1.gif&quot;;</code>, un fichier graphique est attribu&eacute; au nouvel objet graphique.</p>
+
+<p>R&eacute;p&eacute;tez les deux instructions d&eacute;crites pour chaque fichier graphique devant &ecirc;tre modifi&eacute; de fa&ccedil;on dynamique - &agrave; savoir aussi bien pour les graphiques devant &ecirc;tre affich&eacute;s normalement que pour les fichiers qui doivent &ecirc;tre affich&eacute;s dynamiquement lors du passage de la souris. Attribuez &agrave; chaque fois un nouveau nom d'objet. Dans l'exemple ci-dessus, les commandes correspondantes sont comment&eacute;es afin que vous puissiez reconna&icirc;tre ce qui est d&eacute;fini &agrave; quel endroit.</p>
+
+<h4>Fonction &quot;change_image()&quot; pour le changement dynamique de graphiques:</h4>
+
+<p>Le code d&eacute;crit jusqu'&agrave; pr&eacute;sent est ex&eacute;cut&eacute; directement &agrave; la lecture du fichier HTML, &eacute;tant donn&eacute; qu'il n'est pas incorpor&eacute; dans une fonction. L'ex&eacute;cution de ce code n'a cependant aucune influence sur l'affichage et n'est pas remarqu&eacute; par l'utilisateur. Ce qui doit se passer &agrave; l'&eacute;cran &agrave; l'aide de JavaScript, &agrave; savoir le changement dynamique d'une image, s'obtient dans la  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/fonctions.htm"><b>fonction</b></a> <code>change_image()</code> d&eacute;finie.</p>
+
+<p>La fonction doit &ecirc;tre appel&eacute;e quand l'utilisateur passe la souris sur un lien graphique et aussi quand la souris quitte le domaine du lien. Pour cela, la fonction a besoin de deux param&egrave;tres: le num&eacute;ro du graphique qui doit &ecirc;tre &eacute;chang&eacute; dans le fichier (Param&egrave;tre <code>image_no</code>), et par quel objet graphique d&eacute;fini auparavant l'image doit &ecirc;tre remplac&eacute;e (Param&egrave;tre <code>objet_image</code>). Il suffit ensuite d'une seule instruction &agrave; la fonction. Cette instruction remplace l'image en place par la nouvelle. Pensez bien ici &agrave; cette relation importante: le remplacement dynamique d'un graphique n'est possible que si pour le nouveau graphique une instance de l'objet images a &eacute;t&eacute; cr&eacute;&eacute;e au pr&eacute;alable. Dans l'exemple, cela a &eacute;t&eacute; fait tout au d&eacute;but du script.</p>
+
+<h4>Liens graphiques avec gestionnaires d'&eacute;v&eacute;nement pour les mouvements de souris de l'utilisateur:</h4>
+
+<p>Afin que l'effet d&eacute;sir&eacute; se r&eacute;alise, vous devez d&eacute;finir des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/graphiques/liens.htm"><b>graphiques comme liens</b></a> dans le fichier HTML. Pour des boutons plac&eacute;s les uns &agrave; c&ocirc;t&eacute; des autres, il est recommand&eacute; d'utiliser, comme dans l'exemple, un  tableau sans quadrillage.</p>
+
+<p>Dans le rep&egrave;re d'ouverture du lien sont not&eacute;s les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/gestevenements.htm"><b>gestionnaires d'&eacute;v&eacute;nement</b></a> <code>onMouseOver=</code> et <code>onMouseOut=</code>. Avec <code>onMouseOver=</code> (quand l'utilisateur passe avec la souris sur une surface associ&eacute;e &agrave; un lien - ici donc un graphique), la fonction <code>change_image()</code>, d&eacute;finie dans le passage script, est appel&eacute;e. Il en va de m&ecirc;me avec <code>onMouseOut=</code> (quand l'utilisateur quitte avec la souris une surface associ&eacute;e &agrave; un lien).</p>
+
+<p>&Agrave; l'appel de <code>change_image()</code>, les deux param&egrave;tres n&eacute;cessaires sont transmis. Pour cela, num&eacute;rotez les fichiers graphiques r&eacute;f&eacute;renc&eacute;s dans le fichier HTML, mais commencez &agrave; num&eacute;roter &agrave; partir de 0: c'est &agrave; dire 0 pour le premier graphique dans le fichier, 1 pour le deuxi&egrave;me etc... Attribuez la valeur d'index du graphique incorpor&eacute; dans le lien. Dans l'exemple, il n'y a dans tout le fichier HTML pas d'autres graphiques que ceux qui doivent &ecirc;tre modifi&eacute;s dynamiquement. C'est pour cela que dans le premier cas, 0 a &eacute;t&eacute; transmis (premier graphique du fichier), et dans le deuxi&egrave;me cas, 1 (deuxi&egrave;me graphique du fichier).<br>
+Comme deuxi&egrave;me param&egrave;tre, attribuez le nom d'objet de l'objet images d&eacute;sir&eacute;. Il s'agit de l'un des noms que vous avez attribu&eacute;s au d&eacute;but du passage JavaScript. Dans l'exemple, c'est dans le premier cas <code>Highlight1</code> pour <code>onMouseover</code> qui a &eacute;t&eacute; attribu&eacute; et <code>Normal1</code> pour <code>onMouseout</code>.</p>
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="duree_sejour.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="duree_sejour.htm"><b>Afficher la dur&eacute;e de visite sur une page Web</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="entrees_formulaire.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="entrees_formulaire.htm"><b>V&eacute;rifier les saisies de formulaire</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

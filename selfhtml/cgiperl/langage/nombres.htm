@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / &Eacute;l&eacute;ments de langage Perl / Nombres</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quelles particularit&eacute;s sont &agrave; observer pour les nombres en Perl.">
+<meta name="keywords"       content="SELFHTML, Perl, nombres, notation hexad&eacute;cimale Notation, notation octale, grands nombres, module Math">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/langage/nombres.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // &Eacute;l&eacute;ments de langage Perl == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Nombres</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#proprietes"><b>Propri&eacute;t&eacute;s des nombres en Perl</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#modes_notation"><b>Formes de notation des nombres</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#operations_fonctions"><b>Op&eacute;rations et fonctions pour les nombres</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="proprietes">Propri&eacute;t&eacute;s des nombres en Perl</a></h2>
+
+<p>Perl travaille. lors de l'utilisation de processeurs 32 bits comme ils sont courants dans la plupart des ordinateurs aujourd'hui, en interne avec des nombres &agrave; virgule flottante de 32 bits d'apr&egrave;s le standard IEEE754. Cela signifie pour la pratique que Perl, pour les nombres tr&egrave;s &eacute;lev&eacute;s et tr&egrave;s petits devient de moins en moins clair pour la repr&eacute;sentation. Pour de tels nombres, Perl applique la forme de notation exponentielle pour la repr&eacute;sentation. Plus les nombres sont grands ou petits, plus la repr&eacute;sentation est inexacte. C'est ce que montre l'exemple suivant:</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/plain\n\n&quot;;
+
+my $x = 12345678901234567890;
+my $y = 0.000000000000000001;
+
+print &quot;x = $x\n&quot;;
+print &quot;y = $y\n&quot;;
+
+$x = $x + 1;
+$y = $y - 0.123456789123456789;
+
+print &quot;x = $x\n&quot;;
+print &quot;y = $y\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple affecte &agrave; deux scalaires <code>$x</code> et <code>$y</code> respectivement un nombre assez &eacute;lev&eacute; et un nombre assez petit. Ensuite les nombres sont sortis comme texte pur. Ensuite les deux scalaires sont pouss&eacute;es encore plus loin vers les extr&ecirc;mes. &Agrave; <code>$x</code> doit seulement &ecirc;tre ajout&eacute; un nombre &agrave; un chiffre et de <code>$y</code> doit &ecirc;tre soustrait un nombre avec d'assez nombreuses d&eacute;cimales. Apr&egrave;s ces op&eacute;rations, les deux scalaires sont sorties encore une fois. Perl donne la sortie suivante:<br>
+<code>x = 1.23456789012346e+019<br>
+y = 1e-018<br>
+x = 1.23456789012346e+019<br>
+y = -0.123456789123457</code></p>
+
+<p>Le nombre &eacute;lev&eacute; de  <code>$x</code> ne s'est pas modifi&eacute; entre la premi&egrave;re et la deuxi&egrave;me sortie malgr&eacute; l'addition de 1, et pour la valeur de <code>$y</code> il est &eacute;vident, que pour la deuxi&egrave;me sortie quelques positions derri&egrave;re la virgule ont &eacute;t&eacute; sacrifi&eacute;es.</p>
+
+<p>Il existe n&eacute;anmoins le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/modulesstandard.htm"><b>module standard</b></a> <code>Math</code>, qui donne &agrave; Perl la capacit&eacute; de repr&eacute;senter &agrave; souhait des nombres grands et petits  et d'effectuer des op&eacute;rations avec ces chiffres.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+use Math::BigInt;
+use Math::BigFloat;
+
+my $x = Math::BigInt-&gt;new('1234567890 1234567890');
+my $y = Math::BigFloat-&gt;new('0.000000000000000001');
+
+print &quot;Content-type: text/plain\n\n&quot;;
+
+print &quot;x = $x\n&quot;;
+print &quot;y = $y\n&quot;;
+
+$x = $x + 1;
+$y = $y - 0.123456789123456789;
+
+print &quot;x = $x\n&quot;;
+print &quot;y = $y\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple de script introduit les m&ecirc;mes chiffres et ex&eacute;cute les m&ecirc;mes op&eacute;rations qu'auparavant mais en incorporant cette fois deux sous-modules de <code>Math</code>:<br>
+Avec <code>use Math::BigInt;</code> est incorpor&eacute; un module pour la repr&eacute;sentation et le calcul avec des nombres entiers &eacute;lev&eacute;s.<br>
+Avec <code>use Math::BigFloat;</code> est incorpor&eacute; un module pour le repr&eacute;sentation et le calcul avec des grands nombres avec d&eacute;cimales.<br>
+Pour cr&eacute;er un nombre avec ces modules, vous proc&eacute;dez comme indiqu&eacute;: Pour les nombres entiers notez <code>Math::BigInt-&gt;new('[nombre]')</code>, et pour les nombres avec d&eacute;cimales <code>Math::BigFloat-&gt;new('[nombre]')</code>.
+Pour une meilleure lisibilit&eacute;, vous pouvez aussi ins&eacute;rer des espaces dans le nombre, comme dans le premier des exemples ci-dessus. Ensuite, vous pouvez travailler tout &agrave; fait normalement avec les scalaires auxquelles vous avez affect&eacute; ces nombres. Vous pouvez sortir ces valeurs et les modifier comme dans l'exemple. L'exemple cr&eacute;e maintenant la sortie suivante:<br>
+<code>x = +12345678901234567890<br>
+y = .000000000000000001<br>
+x = +12345678901234567891<br>
+y = -.123456789123456999</code></p>
+
+
+<p>N'utilisez toutefois ces modules que pour de tels grands nombres. Car pour des calculs plus complexes, les nombres ainsi cr&eacute;&eacute;s exigent beaucoup plus de ressources de calcul, &eacute;tant donn&eacute; qu'ils sont chang&eacute;s en interne en cha&icirc;nes de caract&egrave;res.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="modes_notation">Formes de notation des nombres</a></h2>
+
+<p>Vous pouvez en Perl noter les nombres ordinaires &eacute;galement de fa&ccedil;on habituelle. Il est seulement important de ne pas perdre de vue que le signe d&eacute;cimal pour les &quot;nombres d&eacute;cimaux&quot; est le point. Vous pouvez noter des nombres n&eacute;gatifs en les faisant pr&eacute;c&eacute;der du signe Moins. Pour les nombres positifs, vous pouvez &eacute;galement placer explicitement un signe Plus devant. Outre la notation courante dans le format d&eacute;cimal, vous pouvez &eacute;galement noter les nombres sous leur forme exponentielle, en octal ou en hexad&eacute;cimal. Le tableau suivant offre un r&eacute;capitulatif des possibilit&eacute;s de notations.</p>
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Exemple de notation</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Explication</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>243</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Notation normale d'un nombre entier en format d&eacute;cimal.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>-243</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Notation d'un nombre entier n&eacute;gatif en format d&eacute;cimal.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>+243</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Notation d'un nombre entier explicitement positif en format d&eacute;cimal.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>53.78</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Notation d'un &quot;nombre d&eacute;cimal&quot;. Le signe d&eacute;cimal est le point. Les signes Plus et Moins sont tout aussi possibles que pour les nombres entiers.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>1.0e+4</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Notation d'un nombre &eacute;lev&eacute; sous forme exponentielle. Le nombre dans l'exemple &eacute;quivaut &agrave; <code>10000</code>. Le  <code>4</code> &agrave; la fin donne donc le nombre de fois par lequel le nombre est multipli&eacute; par 10.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>1.0e-4</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Notation d'un petit nombre  sous forme exponentielle. Le nombre &eacute;quivaut &agrave; <code>0.0001</code>.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>0700</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Notation d'un nombre entier sous forme octale. Ici, le nombre est simplement pr&eacute;c&eacute;d&eacute; par un  <code>0</code> . Le nombre &eacute;quivaut &agrave; <code>448</code>.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>0xF6</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Notation d'un nombre entier sous forme hexad&eacute;cimale. Ici le nombre est simplement pr&eacute;c&eacute;d&eacute; par la suite de caract&egrave;res <code>0x</code>. Le nombre &eacute;quivaut &agrave; <code>246</code>.</td>
+</tr>
+</table>
+</td></tr></table>
+<br>&nbsp;
+
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="operations_fonctions">Op&eacute;rations et fonctions pour les nombres</a></h2>
+
+
+<p>Les nombres sont l&agrave; avant tout pour les calculs. Perl soutient les op&eacute;rations de base. Elles se font &agrave; l'aide des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="operateurs.htm#calculs"><b>op&eacute;rateurs de calcul</b></a>. Gr&acirc;ce &agrave; eux et une mise entre parenth&egrave;ses de son choix peuvent &ecirc;tre calcul&eacute;es par exemple des expressions comme <code>(5*(6+8.00003))-7</code> sans plus de d&eacute;tours.</p>
+
+<p>Par ailleurs  Perl dispose aussi d'une s&eacute;rie de fonctions math&eacute;matiques. Parmi elles se trouvent des fonctions g&eacute;n&eacute;rales comme <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/calculs.htm#sqrt"><b>sqrt</b></a> (calculer la racine carr&eacute;e), mais aussi des fonctions trigonom&eacute;triques comme <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/calculs.htm#sin"><b>sin</b></a> (sinus), <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/calculs.htm#sqrt"><b>cos</b></a> (cosinus) et <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/calculs.htm#atan2"><b>atan2</b></a> (Arc Tangente y/x), ainsi que des fonctions pour convertir comme <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/calculs.htm#hex"><b>hex</b></a> (convertir un nombre hexad&eacute;cimal en nombre d&eacute;cimal) ou bien <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/calculs.htm#oct"><b>oct</b></a> (convertir un nombre octal en nombre d&eacute;cimal).</p>
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="conditions.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="conditions.htm"><b>Instructions conditionnelles</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="chainescaracteres.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="chainescaracteres.htm"><b> Cha&icirc;nes de caract&egrave;res (Strings)</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

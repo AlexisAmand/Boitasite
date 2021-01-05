@@ -1,0 +1,615 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / Fonctions Perl / Fonctions pour les calculs</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quelles sont les fonctions en Perl qui ex&eacute;cutent des calculs commerciaux ou math&eacute;matiques.">
+<meta name="keywords"       content="SELFHTML, Perl, fonctions, Fonctions Perl, calculs, abs, atan2, cos, exp, hex, int, log, oct, rand, sin, sqrt, srand">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="selfhtml@teamone.de">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/fonctions/calculs.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // Fonctions Perl == index.htm">
+
+
+
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Fonctions Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Fonctions pour les calculs</h2></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur ces fonctions</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#abs"><b>abs</b></a> - rechercher la valeur absolue d'un nombre<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#atan2"><b>atan2</b></a> - rechercher l'arc tangente de y par x<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#cos"><b>cos</b></a> - rechercher le cosinus d'un nombre<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#exp"><b>exp</b></a> - rechercher la valeur exponentielle d'un nombre sur la base du nombre  &quot;e&quot;<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#hex"><b>hex</b></a> - rechercher la valeur d&eacute;cimale d'un nombre hexad&eacute;cimal<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#int"><b>int</b></a> - rechercher la partie enti&egrave;re d'un nombre<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#log"><b>log</b></a> - rechercher le logarithme naturel d'un nombre<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#oct"><b>oct</b></a> - rechercher la valeur d&eacute;cimale d'un nombre octal<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#rand"><b>rand</b></a> - rechercher une valeur al&eacute;atoire<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sin"><b>sin</b></a> - rechercher le sinus d'un nombre<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sqrt"><b>sqrt</b></a> - rechercher la racine carr&eacute;e d'un nombre<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#srand"><b>srand</b></a> - initialiser un calcul al&eacute;atoire<br>
+</p>
+
+
+
+
+
+
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur ces fonctions</a></h2>
+
+<p>Perl lui m&ecirc;me ne propose que peu de fonctions math&eacute;matiques &eacute;tant donn&eacute; qu'il est davantage con&ccedil;u comme langage pour le traitement des cha&icirc;nes de caract&egrave;res et des fichiers. Il existe pourtant des modules math&eacute;matiques puissants qui font aussi de Perl un langage math&eacute;matique puissant. Tenez compte aussi pour cette raison, outre les fonctions d&eacute;crites ici des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/modulesstandard.htm"><b>modules standard</b></a>, qui peuvent &ecirc;tre incorpor&eacute;s sans probl&egrave;me et qui proposent beaucoup d'autres fonctions int&eacute;ressantes pour les calculs math&eacute;matiques, scientifiques et commerciaux.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="abs">abs -  rechercher la valeur absolue d'un nombre</a></h2>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> un nombre quelconque permis.</p>
+
+<p>Renvoie la valeur positive d'un nombre, au cas o&ugrave; il est n&eacute;gatif.. Si le nombre est positif, il est renvoy&eacute; inchang&eacute;.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @nombres = (1463.45,2038.02,-12348.12,5671.12,-4939.48,-1124.09);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;&lt;table border=\&quot;1\&quot;&gt;\n&quot;;
+print &quot;&lt;tr&gt;&lt;th&gt;nombres noirs&lt;/th&gt;&lt;th style=\&quot;color:red\&quot;&gt;nombres rouges&lt;/th&gt;&lt;/tr&gt;\n&quot;;
+foreach my $nombre (@nombres) {
+  if($nombre &gt;= 0) {
+    print &quot;&lt;tr&gt;&lt;td&gt;$nombre&lt;/td&gt;&lt;td style=\&quot;color:red\&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;\n&quot;;
+  }
+  else {
+    my $nombre_absolu = abs($nombre);
+    print &quot;&lt;tr&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=\&quot;color:red\&quot;&gt;$nombre_absolu&lt;/td&gt;&lt;/tr&gt;\n&quot;;
+  }
+}
+print &quot;&lt;/table&gt;\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une liste <code>@nombres</code>. Quelques uns des nombres sont positifs d'autres sont n&eacute;gatifs. Ensuite, du code HTML est envoy&eacute; au navigateur. Ici un tableau avec deux colonnes est cr&eacute;&eacute;. &Agrave; gauche figurent les  nombres positifs (noirs), &agrave; droite les nombres n&eacute;gatifs (rouges). Les nombres rouges doivent cependant &ecirc;tre repr&eacute;sent&eacute;s sans signe moins mais &agrave; la place l'&ecirc;tre en rouge. C'est pourquoi la fonction <code>abs</code> est appliqu&eacute;e sur le nombre au cas o&ugrave; il est n&eacute;gatif. Le r&eacute;sultat est sauvegard&eacute; dans la scalaire <code>$nombre_absolu</code>, puis il est sorti.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="atan2">atan2 - rechercher l'arc tangente de y par x</a></h2>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> un nombre quelconque permis x,<br>
+<b>2.</b> un nombre quelconque permis y.</p>
+
+<p>Renvoie l'arc tangente de y par x.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+my $valeur = atan2(1.394,5.01);
+print &quot;L'arc tangente de 5.01 par 1.394 est $valeur\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple transmet &agrave; la fonction <code>atan2</code> les deux nombres &agrave; virgule flottante 1.394 et 5.01. La fonction renvoie l'arc tangente de 5.01/1.394. Pour le contr&ocirc;le, du code HTML est envoy&eacute; au navigateur et sort le r&eacute;sultat.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="cos">cos - rechercher le cosinus d'un nombre</a></h2>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> un nombre quelconque permis.</p>
+
+<p>Renvoie le cosinus du nombre.</p>
+
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+my $un = cos(0);
+print &quot;1 reste $un, comme pr�vu\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple cr&eacute;e le nombre 1 &agrave; partir de 0 (dont le r&eacute;sultat est 1). Pour le contr&ocirc;le, du code HTML est sorti au navigateur et sort le nombre dans un dicton laconique.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="exp">exp - rechercher la valeur exponentielle d'un nombre sur la base du nombre  &quot;e&quot;</a></h2>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> un nombre quelconque permis.</p>
+
+<p>Renvoie la valeur exponentielle du nombre.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+my $x = exp(1);
+print &quot;x = $x\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple envoie du code HTML au navigateur. Ici, la valeur exponentielle de 1 est recherch&eacute;e et sauvegard&eacute;e dans la scalaire <code>$x</code>. Le r&eacute;sultat est sorti.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="hex">hex - rechercher la valeur d&eacute;cimale d'un nombre hexad&eacute;cimal</a></h2>
+
+<p>Convertit une valeur hexad&eacute;cimale disponible sous forme de cha&icirc;ne de caract&egrave;res en valeur d&eacute;cimale correspondante.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> une cha&icirc;ne de caract&egrave;res qui repr&eacute;sente une valeur hexad&eacute;cimale valable, donc par exemple <code>&quot;0xB56A&quot;</code> ou bien <code>&quot;B56A&quot;</code>.</p>
+
+<p>Renvoie la valeur d&eacute;cimale correspondante comme valeur num&eacute;rique.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $couleur = $ENV{'QUERY_STRING'};
+my $valeur_rouge_Hex = substr($couleur,0,2);
+my $valeur_vert_Hex = substr($couleur,2,2);
+my $valeur_bleu_Hex = substr($couleur,4,2);
+my $valeur_rouge_Dec = hex($valeur_rouge_Hex);
+my $valeur_vert_Dec = hex($valeur_vert_Hex);
+my $valeur_bleu_Dec = hex($valeur_bleu_Hex);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;La couleur #$couleur se r�partit dans les composantes RGB suivantes:&lt;br&gt;\n&quot;;
+print &quot;Valeur rouge: $valeur_rouge_Dec&lt;br&gt;\n&quot;;
+print &quot;Valeur vert: $valeur_vert_Dec&lt;br&gt;\n&quot;;
+print &quot;Valeur bleu: $valeur_bleu_Dec&lt;br&gt;\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script CGI en exemple attend la transmission d'un param&egrave;tre not&eacute; derri&egrave;re un point d'interrogation lors de l'appel par une URI. Le param&egrave;tre transmis est compos&eacute; d'une mention de couleur typique en HTML except&eacute; le signe di&egrave;se d'introduction #.  Exemple:
+<code>http://localhost/cgi-bin/test.pl?FF9933</code>.</p>
+
+<p>Le script en exemple recherche le param&egrave;tre transmis dans la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../introduction/variablesenvironnement.htm"><b>variable d'environnement CGI</b></a> QUERY_STRING et sauvegarde la valeur dans la scalaire <code>$couleur</code>. &Agrave; l'aide de la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="chainescaracteres.htm#substr"><b>substr</b></a> Les composantes pour le rouge, le vert et le bleu sont extraites de la mention hexad&eacute;cimale. Si le nombre transmis est par exemple FF9933, la valeur <code>&quot;FF&quot;</code> est sauvegard&eacute;e dans <code>$valeur_rouge_Hex</code>, la valeur <code>&quot;99&quot;</code> dans <code>$valeur_vert_Hex</code> et la valeur  <code>&quot;33&quot;</code> dans <code>$valeur_bleu_Hex</code>.  &Agrave; partir de ces mentions hexad&eacute;cimales, on obtient en appliquant la fonction <code>hex</code> les valeurs d&eacute;cimales des composantes de la couleur correspondantes. L'exemple envoie du code HTML au navigateur et sort les composantes de la couleur ainsi trouv&eacute;es.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="int">int - rechercher la partie enti&egrave;re d'un nombre</a></h2>
+
+<p>La fonction sert d'une part &agrave; s&eacute;parer dans un nombre avec d&eacute;cimales la partie avant la virgule des d&eacute;cimales. D'autre part elle peut n&eacute;anmoins &ecirc;tre appliqu&eacute;e &agrave; des cha&icirc;nes de caract&egrave;res jusqu'&agrave; ce qu'elle rencontre un signe qui ne peut plus &ecirc;tre interpr&eacute;t&eacute; comme signe num&eacute;rique.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> un nombre ou une cha&icirc;ne de caract&egrave;res.</p>
+
+<p>Donne la partie pouvant &ecirc;tre interpr&eacute;t&eacute;e comme nombre entier des donn&eacute;es transmises.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $chaine_caracteres = &quot;161cm&quot;;
+my $nombre_entier = 23;
+my $nombre_virgule = 3.1415;
+my $nombre_negatif = -3.999;
+
+my $chaine_caracteres_int = int($chaine_caracteres);
+my $nombre_entier_int = int($nombre_entier);
+my $nombre_virgule_int = int($nombre_virgule);
+my $nombre_negatif_int = int($nombre_negatif);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;$chaine_caracteres apr�s l'application de int: $chaine_caracteres_int&lt;br&gt;\n&quot;;
+print &quot;$nombre_entier apr�s l'application de int: $nombre_entier_int&lt;br&gt;\n&quot;;
+print &quot;$nombre_virgule apr�s l'application de int: $nombre_virgule_int&lt;br&gt;\n&quot;;
+print &quot;$nombre_negatif apr�s l'application de int: $nombre_negatif_int\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit diff&eacute;rentes scalaires: une cha&icirc;ne de caract&egrave;res, un nombre entier normal, un nombre avec d&eacute;cimales et un nombre n&eacute;gatif lui aussi avec d&eacute;cimales. Apr&egrave;s cela, la fonction <code>int</code> est appliqu&eacute;e aux diff&eacute;rentes scalaires. Les valeurs renvoy&eacute;es sont sauvegard&eacute;es dans des nouvelles scalaires distinctes. Pour le contr&ocirc;le, le script en exemple envoie du code HTML au navigateur et sort les valeurs avant et apr&egrave;s l'application de la fonction <code>int</code>.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="log">log - rechercher le logarithme naturel d'un nombre</a></h2>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> un nombre quelconque permis.</p>
+
+<p>Renvoie le logarithme naturel d'un nombre.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $un = log(exp(1));
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;$un&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, une scalaire <code>$un</code> est d&eacute;finie. &Agrave; cette scalaire est affect&eacute; le r&eacute;sultat de la fonction <code>log</code>. Le nombre, qui est transmis &agrave; cette fonction est dans l'exemple la valeur renvoy&eacute;e par la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#exp"><b>exp</b></a>, appliqu&eacute;e sur le nombre 1. &Eacute;tant donn&eacute; que <code>exp</code> est la fonction inverse de <code>log</code>, le r&eacute;sultat de l'appel imbriqu&eacute; des deux fonctions donne le valeur 1. Pour le contr&ocirc;le, du code HTML est envoy&eacute; au navigateur et sort le r&eacute;sultat.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="oct">oct - rechercher la valeur d&eacute;cimale d'un nombre octal</a></h2>
+
+<p>Convertit une valeur octale disponible sous forme de cha&icirc;ne de caract&egrave;res en valeur d&eacute;cimale correspondante.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> une cha&icirc;ne de caract&egrave;res qui repr&eacute;sente une valeur octale valide donc par exemple <code>&quot;755&quot;</code> ou bien <code>&quot;0755&quot;</code>.</p>
+
+<p>Renvoie la valeur d&eacute;cimale correspondante comme valeur num&eacute;rique.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $droits_unix_oct = $ENV{'QUERY_STRING'};
+my $droits_decimal = oct($droits_unix_oct);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;La repr�sentation d�cimale des droits en Unix $droits_unix_oct donne $droits_decimal\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+
+<p>Un cas typique d'application pour les valeurs en octal est la mention d'attribution des droits pour l'utilisateur, le groupe d'utilisateurs et les autres (User, Group et Other) dans le syst&egrave;me de fichiers Unix. L'exemple de script CGI attend une telle mention de droits typique en octal et y recherche la valeur d&eacute;cimale correspondante. Pour cela, le script attend la transmission d'un param&egrave;tre  not&eacute; derri&egrave;re un point d'interrogation lors de l'appel par une URI. Le param&egrave;tre transmis est compos&eacute; d'une valeur en octal. Exemple:<br>
+<code>http://localhost/cgi-bin/test.pl?0755</code>.</p>
+
+<p>Le script en exemple recherche le param&egrave;tre transmis dans la  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../introduction/variablesenvironnement.htm"><b> variable d'environnement CGI</b></a> <code>QUERY_STRING</code> et sauvegarde la valeur dans la scalaire <code>$droits_unix_oct</code>. Cette scalaire est transmise &agrave; son tour &agrave; la fonction <code>oct</code>, qui la transforme en nombre d&eacute;cimal, qui est sauvegard&eacute; dans <code>$droits_decimal</code>. Pour le contr&ocirc;le, le script sort les deux valeurs.</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="rand">rand - rechercher une valeur al&eacute;atoire</a></h2>
+
+<p>Recherche un nombre al&eacute;atoire entre 0 et 1, si aucun param&egrave;tre n'est transmis, ou un nombre al&eacute;atoire entre 0 compris et le nombre <code>n</code> non compris, si <code>n</code> est transmis comme param&egrave;tre. Le r&eacute;sultat est un nombre &agrave; virgule flottante.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> (facultatif) un nombre. S'il est mentionn&eacute;, un nombre al&eacute;atoire entre 0 et ce nombre est recherch&eacute;, sinon entre 0 et 1.</p>
+
+<p>Renvoie le nombre al&eacute;atoire trouv&eacute;.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my @nombres;
+for(my $i = 0; $i &lt; 7; $i++) {
+  $nombres[$i] = int(rand(49) + 1);
+}
+my @chiffres_lotto = sort(tri_nombres @nombres);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;Le tuyau de Perl pour le lotto et:&lt;br&gt;\n&quot;;
+print &quot;$chiffres_lotto[0], $chiffres_lotto[1], $chiffres_lotto[2], $chiffres_lotto[3], $chiffres_lotto[4], $chiffres_lotto[5]&lt;br&gt;\n&quot;;
+print &quot;Le num�ro compl�mentaire est le: $chiffres_lotto[6]\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+
+sub tri_nombres {
+ if($a &lt; $b)
+  { return -1; }
+ elsif($a == $b)
+  { return 0; }
+ else
+  { return 1; }
+}
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script vous &eacute;vite d'imaginer les num&eacute;ros du lotto. Il recherche  7 nombres (6 plus le num&eacute;ro compl&eacute;mentaire) entre 1 et 49. Les nombres sont recherch&eacute;s dans une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for"><b>boucle for</b></a> . Afin que ce soit r&eacute;ellement des nombres entiers compris entre 0 et 49 qui soient trouv&eacute;s, le nombre 49 est transmis comme param&egrave;tre &agrave; l'appel de la fonction <code>rand</code>. Ainsi cependant, ne seront trouv&eacute;s que des nombres entre 0.0x et 48.9x. En y ajoutant 1, ce sont des nombres compris entre 1.0x et 49.9x. En appliquant encore &agrave; toute l'op&eacute;ration la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#int"><b>int</b></a> , on obtient des nombres entiers compris entre 1 et 49.<br>
+Pour sortir les nombres bien tri&eacute;s est encore appliqu&eacute;e la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="hashlistes.htm#sort"><b>sort</b></a>. Comme il s'agit d'un tri num&eacute;rique, le script utilise la fonction utilitaire pour le tri num&eacute;rique.<br>
+Le script envoie du code HTML au navigateur et sort les num&eacute;ros du loto trouv&eacute;s.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Avec cette fa&ccedil;on de g&eacute;n&eacute;rer des nombres al&eacute;atoires, il ne s'agit pas de &quot;v&eacute;ritables&quot; nombres al&eacute;atoires mais de pseudo chiffres al&eacute;atoires, qui sont cr&eacute;&eacute;s &agrave; l'aide d'un algorithme sur la base d'une valeur de d&eacute;part. Vous pouvez aussi pr&eacute;ciser vous-m&ecirc;me cette valeur de d&eacute;part. C'est &agrave; cela que sert la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#srand"><b>srand</b></a>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="sin">sin - rechercher le sinus d'un nombre</a></h2>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> un nombre quelconque permis.</p>
+
+<p>Renvoie le sinus du nombre.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $x = 2;
+my $Fx = sin($x) + sin(2*$x) - sin(3*$x) + sin(4*$x) - sin(5*$x) + 0.3*sin(25*$x);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;$Fx\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre une application r&eacute;p&eacute;t&eacute;e de la fonction <code>sin</code> dans une op&eacute;ration. Le script envoie du code HTML au navigateur et sort le r&eacute;sultat de l'op&eacute;ration.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="sqrt">sqrt - rechercher la racine carr&eacute;e d'un nombre</a></h2>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> un nombre quelconque plus grand que 0.</p>
+
+<p>Renvoie la racine carr&eacute;e du nombre.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+for(my $i = 1; $i &lt;= 1000; $i++) {
+  my $racine = sqrt($i);
+  if($racine == int($racine)) {
+    print &quot;La racine carr�e de $racine est $i&lt;br&gt;\n&quot;;
+  }
+}
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script en exemple envoie du code HTML au navigateur. Ici, la racine carr&eacute;e est recherch&eacute;e pour les nombres de 1 &agrave; 1000 dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for"><b>boucle for</b></a> avec <code>sqrt</code> et sauvegard&eacute;e dans une scalaire  <code>$racine</code>. Ensuite il est demand&eacute; si la valeur qui y est sauvegard&eacute;e est identique au nombre entier de cette valeur. &Agrave; cet effet la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#int"><b>int</b></a> est appliqu&eacute;e.<br>
+Si <code>$racine</code> et <code>int($racine)</code> sont identiques, il s'agit, dans la boucle actuelle de <code>$i</code> d'un nombre au carr&eacute;. Si c'est le cas dans l'exemple, une ligne correspondante est sortie. De cette mani&egrave;re, le script sort tous les nombres au carr&eacute; entre 1 et 1000.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="srand">srand - initialiser un calcul al&eacute;atoire</a></h2>
+
+<p>Quand vous cr&eacute;ez des nombres al&eacute;atoires avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#rand"><b>rand</b></a>, Perl a besoin en interne d'une valeur d'initialisation. Si vous ne mentionnez aucune valeur vous m&ecirc;me, Perl en recherche automatiquement une. Vous pouvez cependant aussi mentionner la valeur vous m&ecirc;me.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> un nombre entier quelconque permis ou un nombre, duquel la partie avant la virgule sera utilis&eacute;e.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+srand(42);
+my $hasard_1 = rand();
+my $hasard_2 = rand();
+
+srand(42);
+my $hasard_3 = rand();
+my $hasard_4 = rand();
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+print &quot;hasard 1: $hasard_1&lt;br&gt;\n&quot;;
+print &quot;hasard 2: $hasard_2&lt;br&gt;\n&quot;;
+print &quot;hasard 3: $hasard_3&lt;br&gt;\n&quot;;
+print &quot;hasard 4: $hasard_4\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple illustre la fa&ccedil;on d'agir de  <code>srand</code> et des appels qui suivent de <code>rand</code>. Elle est initialis&eacute;e deux fois avec la m&ecirc;me valeur, &agrave; savoir avec le nombre 42. Ensuite la fonction <code>rand</code> est appel&eacute;e respectivement deux fois et les valeurs al&eacute;atoires trouv&eacute;es sont sauvegard&eacute;es &agrave; chaque fois dans des scalaires distinctes. L'exemple envoie du code HTML au navigateur et sort les quatre scalaires. Les valeurs de <code>$hasard_1</code> et <code>$hasard_3</code> sont ici les m&ecirc;mes comme les valeurs de <code>$hasard_2</code> et <code>$hasard_4</code>. Et ce n'est pas un hasard mais la cons&eacute;quence du fait que chaque initialisation d&eacute;termin&eacute;e de <code>srand</code> g&eacute;n&egrave;re la m&ecirc;me s&eacute;rie de nombres al&eacute;atoires &agrave; chaque appel de <code>rand</code> qui suit.</p>
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&nbsp;&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="controle.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="controle.htm"><b> Fonctions pour le contr&ocirc;le du script en cours
+</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="hashlistes.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="hashlistes.htm"><b>Fonctions pour les listes et les hashes</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Fonctions Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

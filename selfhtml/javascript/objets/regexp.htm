@@ -1,0 +1,389 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / R&eacute;f&eacute;rence objet / RegExp</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quels sont le r&ocirc;le les propri&eacute;t&eacute;s et les m&eacute;thodes de l'objet RegExp en JavaScript.">
+<meta name="keywords"       content="SELFHTML, JavaScript, objets, expressions r&eacute;guli&egrave;res, chercher, remplacer, RegExp, $1, exec(), test()">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/objets/RegExp.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // R&eacute;f&eacute;rence objet == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>RegExp</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>g&eacute;n&eacute;ralit&eacute;s sur l'utilisation</b></a><br>
+</p>
+
+<h3>Propri&eacute;t&eacute;s:</h3>
+
+<p><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#dollar_1_9"><b>$[1..9]</b></a> (sous-expressions entre parenth&egrave;ses)<br>
+
+
+
+<h3>M&eacute;thodes:</h3>
+
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#exec"><b>exec()</b></a> (appliquer une expression r&eacute;guli&egrave;re)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#test"><b>test()</b></a> (appliquer une expression r&eacute;guli&egrave;re pour essayer)
+
+
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur l'utilisation</a></h2>
+
+<p>Les expressions r&eacute;guli&egrave;res servent &agrave; formuler des crit&egrave;res de recherche pour des recherches dans des cha&icirc;nes de caract&egrave;res et pour remplacer les occurrences par d'autres.</p>
+
+<p>Vous pouvez utiliser des expressions r&eacute;guli&egrave;res en JavaScript directement dans les m&eacute;thodes correspondantes de l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="string.htm"><b>string</b></a>, &agrave; savoir dans les m&eacute;thodes:<br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="string.htm#match"><b>match()</b></a><br> <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="string.htm#replace"><b>replace()</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="string.htm#search"><b>search()</b></a>.<br>
+L&agrave; est d&eacute;crit comment et o&ugrave; vous pouvez utiliser exactement des expressions r&eacute;guli&egrave;res pour parcourir des cha&icirc;nes de caract&egrave;res et en remplacer des parties.</p>
+
+<p>En revanche, vous n'avez besoin de l'objet <code>RegExp</code> de JavaScript que si vous voulez cr&eacute;er et modifier de fa&ccedil;on dynamique des expressions r&eacute;guli&egrave;res pendant l'ex&eacute;cution du script. Pour cela, il vous faut d&eacute;finir une instance de l'objet <code>RegExp</code>. Vous pouvez ensuite utiliser sur cette instance les propri&eacute;t&eacute;s et m&eacute;thodes de l'objet <code>RegExp</code> qui sont d&eacute;crites ici.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/regexp_generalites.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function sortie(valeur)
+{
+ var expression = /(\w.+)\s(\w.+)/;
+ expression.exec(valeur);
+ alert(RegExp.$2 + &quot;, &quot; + RegExp.$1);
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form action=&quot;&quot;&gt;
+&lt;input name=&quot;User&quot; value=&quot;Pr�nom Nom&quot;&gt;
+&lt;input type=&quot;button&quot; value=&quot;sortie&quot; onClick=&quot;sortie(this.form.User.value)&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre comment un nom sous la forme &quot;pr&eacute;nom nom&quot; se laisse transformer en &quot;nom, pr&eacute;nom&quot; en utilisant une expression r&eacute;guli&egrave;re.</p>
+
+<p>L'exemple contient un formulaire avec un champ de saisie et un bouton. Dans le champ de saisie, l'utilisateur doit entrer son nom sous la forme "pr&eacute;nom nom". Le champ est d&eacute;j&agrave; pr&eacute;d&eacute;fini &agrave; cet effet. En cliquant sur le bouton, la fonction <code>sortie()</code>, d&eacute;finie dans l'ent&ecirc;te de fichier, est appel&eacute;e. La fonction re&ccedil;oit comme param&egrave;tre le contenu du champ de saisie.</p>
+
+<p>Dans la fonction est d&eacute;finie une expression r&eacute;guli&egrave;re (expression de recherche), qui est sauvegard&eacute;e dans la variable <code>expression</code>. De telles expressions r&eacute;guli&egrave;res sont incluses dans des barres obliques simples <code>/.../</code>. L'expression r&eacute;guli&egrave;re de l'exemple ci-dessus est &agrave; lire ainsi: Recherche un nombre de lettres contigu�s sans chiffre ni signe de paragraphe et retiens le r&eacute;sultat = <code>(\w.+)</code>. Recherche ensuite un espace distinct =<code>\s</code>. Recherche ensuite encore une fois un nombre de lettres contigu�s et retiens le r&eacute;sultat = <code>(\w.+)</code>. De cette fa&ccedil;on, le sch&eacute;ma &quot;pr&eacute;nom nom&quot; a &eacute;t&eacute; trouv&eacute;. Les parenth&egrave;ses autour de <code>(\w.+)</code> ont pour cons&eacute;quence que les deux suites de lettres contigu�s soient distingu&eacute;es en interne comme parties distinctes. Plus tard, ces parties distinctes sont adressables s&eacute;par&eacute;ment.</p>
+
+<p>La commande suivante de l'exemple emploie une m&eacute;thode importante de l'objet <code>RegExp</code> sur l'expression r&eacute;guli&egrave;re d&eacute;finie auparavant, &agrave; savoir la m&eacute;thode <code>exec()</code>. Elle permet d' &quot;ex&eacute;cuter&quot; l'expression et de l'affecter &agrave; l'objet <code>RegExp</code>. Dans l'exemple, on acc&egrave;de avec <code>RegExp.$2</code> directement &agrave; la deuxi&egrave;me partie entre parenth&egrave;ses, distingu&eacute;e auparavant en interne, et avec <code>RegExp.$1</code> &agrave; la premi&egrave;re de ces expressions. De par leur alignement avec une virgule entre les deux est obtenu que la suite entr&eacute;e &quot;pr&eacute;nom nom&quot; s'affiche ensuite avec <code>alert()</code> selon l'autre sch&eacute;ma &quot;nom, pr&eacute;nom&quot; .</p>
+
+<h3 class="inf">Syntaxe d'expressions r&eacute;guli&egrave;res</h3>
+
+<p>Le tableau suivant montre de quelles composantes vous pouvez former une expression r&eacute;guli&egrave;re.</p>
+
+
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0">
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap><b>Composante</b></th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap><b>Exemple</b></th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap><b>Description</b></th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&#160;</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/par/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve &quot;par&quot;, &agrave; savoir dans &quot;par&quot;, &quot;d&eacute;part&quot;, &quot;parlement&quot; et &quot;r&eacute;partie&quot;.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>^</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/^par/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve &quot;par&quot; au d&eacute;but de la valeur &agrave; rechercher, &agrave; savoir dans &quot;par&quot; et &quot;parlement&quot;, &agrave; condition que l'un de ces mots apparaisse en premier dans la valeur.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/par$/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve &quot;par&quot; &agrave; la fin de la valeur &agrave; rechercher, &agrave; savoir dans &quot;par&quot; et &quot;&Eacute;par&quot;, &agrave; condition que l'un de ces mots apparaisse en dernier dans la valeur.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/par*/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve &quot;par&quot;, &quot;parr&quot; et &quot;parrrrrr&quot;, donc le dernier signe avant l'&eacute;toile est r&eacute;p&eacute;t&eacute; 0 ou un nombre de fois au choix.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>+</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/par+/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve &quot;parr&quot; et &quot;parrrrrr&quot;, donc le dernier signe avant l'&eacute;toile est r&eacute;p&eacute;t&eacute; au moins une ou un nombre de fois au choix.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>.</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/.par/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve &quot;&eacute;par&quot; et &quot;Spar&quot;, donc un signe au choix &agrave; un endroit d&eacute;termin&eacute;.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>.+</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/.+par/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve &quot;&eacute;par&quot; et &quot;h&eacute;par&quot;, donc une suite de signes au choix &agrave; un endroit d&eacute;termin&eacute;. R&eacute;sum&eacute; de <i>caract&egrave;re au choix</i> et <i>nombre au choix de caract&egrave;res au choix</i>.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\b</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/\bpar\b/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve &quot;par&quot; en tant que mot distinct. \b signifie une extr&eacute;mit&eacute; de mot.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\B</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/\Bpar\B/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve&quot;par&quot; uniquement &agrave; l'int&eacute;rieur de mots, par exemple dans &quot;d&eacute;partir&quot; ou &quot;impartir&quot;. \B signifie <i>pas d'extr&eacute;mit&eacute; de mot</i>.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\d</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/\d.+\B/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve un chiffre entier quelconque. \d signifie un chiffre (0 &agrave; 9)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\D</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/\D.+/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve&quot; ex.&quot; dans &quot;3 ex.&quot;, donc pas de chiffres.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\f</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/\f/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve un signe de saut de page.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\n</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/\n/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve un signe d'avance d'une ligne (LF)..</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\r</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/\r/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve un signe de retour chariot (CR).</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\t</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/\t/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve un signe de tabulation.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\v</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/\v/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve un signe de tabulation verticale.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\s</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/\s/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve toute sorte d'espace blanc donc \f\n\t\v et des espaces.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\S</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/\S.+/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve un caract&egrave;re quelconque distinct qui ne soit ni espace blanc donc pas \f\n\t\v ni un espace.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\w</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/\w.+/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve tous les signes alphanum&eacute;riques et le tiret de soulignement (condition typique par exemple pour des noms attribu&eacute;s soi-m&ecirc;me pour qu'ils soient conformes aux langages de programmation).</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\W</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/\W/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve un signe qui ne soit ni alphanum&eacute;rique ni tiret de soulignement (typique pour rechercher des signes non permis dans des noms attribu&eacute;s soi-m&ecirc;me pour qu'ils soient conformes aux langages de programmation)..</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\()</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/(par)/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve "par" et en prend note en interne. Jusqu'&agrave; 9 parenth&egrave;ses de ce genre (endroits marqu&eacute;s) sont permises dans une expression r&eacute;guli&egrave;re.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/.../g</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/par/g</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve &quot;par&quot; aussi souvent qu'il appara&icirc;t dans le passage &agrave; rechercher. Les occurrences sont sauvegard&eacute;es en interne dans un tableau.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/.../i</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/par/i</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve &quot;par&quot;, &quot;Par&quot; et &quot;PAR&quot;, donc sans respecter la casse.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/.../gi</code></td>
+<td class="code" bgcolor="#FFFFE0" nowrap><code>/par/gi</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve &quot;par&quot;, aussi souvent qu'il appara&icirc;t dans le passage &agrave; rechercher (<code>g</code>) et sans respecter la casse (<code>i</code>).</td>
+</tr>
+</table>
+</td></tr></table>
+
+
+<p>Vous pouvez trouvez d'autres informations &eacute;ventuellement plus compl&egrave;tes sur les expressions r&eacute;guli&egrave;res dans cette documentation &agrave; la page  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../cgiperl/langage/expresreg.htm"><b>expressions r&eacute;guli&egrave;res en Perl</b></a>.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="Lesen"> <a class="an" name="dollar_1_9">$[1..9]</a></h2>
+
+<p>Sauvegarde les parties constituantes marqu&eacute;es d'une expression r&eacute;guli&egrave;re, donc les parties entre parenth&egrave;ses.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/regexp_dollar_1_9.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var versioncomp = /(\d)/;
+ versioncomp.exec(navigator.userAgent);
+ document.write(&quot;Le num�ro de version complet de votre navigateur est: &quot; + RegExp.$1);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une expression r&eacute;guli&egrave;re nomm&eacute;e <code>versioncomp</code>, qui recherche la premi&egrave;re apparition d'un chiffre et se note l'occurrence par une parenth&egrave;se = <code>(\d)</code>. Cette expression r&eacute;guli&egrave;re est alors utilis&eacute;e sur la propri&eacute;t&eacute; d'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="navigator.htm"><b>navigator</b></a>.<a href="navigator.htm#user_agent"><b>userAgent</b></a>, qui sauvegarde les mentions sur le navigateur de l'utilisateur. Comme cette valeur suit un certain sch&eacute;ma, il est clair que le premier chiffre qu'elle contient repr&eacute;sente la version compl&egrave;te (&agrave; condition que le chiffre n'ait qu'une position). Dans l'exemple, le num&eacute;ro de version trouv&eacute; est &eacute;crit dans le fichier de fa&ccedil;on dynamique. Pour ce faire, il est acc&eacute;d&eacute; directement par l'objet <code>RegExp</code> &agrave; la propri&eacute;t&eacute; <code>$1</code>. C'est la premi&egrave;re expression partielle distingu&eacute;e entre parenth&egrave;ses de l'expression r&eacute;guli&egrave;re actuelle, dans l'exemple donc le num&eacute;ro de version.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="exec">exec()</a></h2>
+
+<p>Applique une expression r&eacute;guli&egrave;re &agrave; une cha&icirc;ne de caract&egrave;res.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/regexp_exec.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var phrase = &quot;Sur le mur&quot;;
+ var recherche = /(ur)/g;
+ var resultat = recherche.exec(phrase);
+ document.write(resultat.length + &quot; occurrences&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;montre la relation: une expression r&eacute;guli&egrave;re est d&eacute;finie - dans l'exemple: une expression r&eacute;guli&egrave;re nomm&eacute;e <code>recherche</code>. Avec une instruction comme <code>recherche.exec()</code>, vous pouvez ensuite commencer la recherche. Comme param&egrave;tre, c'est g&eacute;n&eacute;ralement l'expression dans laquelle il faut chercher qui est transmise &agrave; la m&eacute;thode. La m&eacute;thode retourne les occurrences trouv&eacute;es. La variable dans laquelle est sauvegard&eacute;e la valeur retourn&eacute;e (dans l'exemple la variable <code>resultat</code>) se transforme automatiquement en tableau si plus d'une occurrence est trouv&eacute;e. Dans l'exemple, deux occurrences ont &eacute;t&eacute; trouv&eacute;es. C'est pourquoi la propri&eacute;t&eacute; d'<code>array</code> <code>length</code> peut s'appliquer &agrave; la variable <code>resultat</code>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="test">test()</a></h2>
+
+<p>Teste &agrave; l'avance si une expression r&eacute;guli&egrave;re trouvera des occurrences ou non. Renvoie <code>true</code>, si quelque chose a &eacute;t&eacute; trouv&eacute; et <code>false</code> dans le cas contraire.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/regexp_test.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var phrase = &quot;Sur le mur&quot;;
+ var recherche = /(quelquechose)/g;
+ var resultat = recherche.test(phrase);
+ if(resultat == false)
+ document.write(&quot;rien n'a �t� trouv�&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une expression r&eacute;guli&egrave;re nomm&eacute;e <code>recherche</code> et l'applique avec la m&eacute;thode <code>test()</code> sur la variable <code>phrase</code>. La valeur retourn&eacute;e est sauvegard&eacute;e dans la variable <code>resultat</code>. Si aucune occurrence n'a &eacute;t&eacute; trouv&eacute;e, un avis correspondant est &eacute;crit. Dans l'exemple, c'est le cas.</p>
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="string.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="screen.htm"><b>Screen</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="number.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="number.htm"><b>Number</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

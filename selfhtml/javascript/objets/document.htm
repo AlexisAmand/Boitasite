@@ -1,0 +1,1136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript/DOM / R&eacute;f&eacute;rence objet / document</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quel est le r&ocirc;le de l'objet document en JavaScript, quelles sont ses propri&eacute;t&eacute;s et ses m&eacute;thodes.">
+<meta name="keywords"       content="SELFHTML, JavaScript, objets, document, alinkColor, bgColor, charset, cookie, defaultCharset, domain, fgColor, lawtModified, linkColor, referrer, title, URL, vlinkColor, captureEvents(), close(), getElementById(), getElementsByName(), getSelection(), handleEvent(), open(), releaseEvents(), routeEvent(), write(), writeln()">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil?ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/objets/document.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // R&eacute;f&eacute;rence objet == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>document</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+
+<p><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>document: g&eacute;n&eacute;ralit&eacute;s pour l'utilisation </b></a> </p>
+
+<h3>Propri&eacute;t&eacute;s:</h3>
+
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#alink_color"><b>alinkColor</b></a> (couleur des liens lorsqu'ils sont cliqu&eacute;s)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#bg_color"><b>bgColor</b></a> (couleur d'arri&egrave;re plan)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#charset"><b>charset</b></a> (jeu de caract&egrave;res utilis&eacute;s)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#cookie"><b>cookie</b></a> (cha&icirc;ne de caract&egrave;res pouvant &ecirc;tre sauvegard&eacute;e chez l'utilisateur)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#default_charset"><b>defaultCharset</b></a> (jeu de caract&egrave;res normal)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#fg_color"><b>fgColor</b></a> (couleur pour le texte)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#last_modified"><b>lastModified</b></a> (derni&egrave;re modification du document)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#link_color"><b>linkColor</b></a> (couleur pour les liens)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#referrer"><b>referrer</b></a> (pages d&eacute;j&agrave; visit&eacute;es)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#title"><b>title</b></a> (titre du fichier)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#url"><b>URL</b></a> (adresse URL du fichier)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#vlink_color"><b>vlinkColor</b></a> (couleur pour les liens &agrave; des cibles visit&eacute;es)<br>
+
+<h3>M&eacute;thodes:</h3>
+
+<p><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#capture_events"><b>captureEvents()</b></a> (surveiller les &eacute;v&eacute;nements)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#close"><b>close()</b></a> (fermer)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#create_attribute"><b>createAttribute()</b></a> (cr&eacute;er un n&#339;ud d'attributs)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#create_element"><b>createElement()</b></a> (cr&eacute;er un n&#339;ud d'&eacute;l&eacute;ments)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#create_text_node"><b>createTextNode()</b></a> (cr&eacute;er un n&#339;ud de texte)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#get_element_by_id"><b>getElementById()</b></a> (Acc&egrave;s &agrave; l'&eacute;l&eacute;ment HTML par l'attribut Id)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#get_elements_by_name"><b>getElementsByName()</b></a> (Acc&egrave;s &agrave; l'&eacute;l&eacute;ment HTML par l'attribut name)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#get_elements_by_tag_name"><b>getElementsByTagName()</b></a> (Acc&egrave;s &agrave; l'&eacute;l&eacute;ment HTML par liste d'&eacute;l&eacute;ments )<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#get_selection"><b>getSelection()</b></a> (texte s&eacute;lectionn&eacute;)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#handle_event"><b>handleEvent()</b></a> (traiter les &eacute;v&eacute;nements)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open()</b></a> (ouvrir le document)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#release_events"><b>releaseEvents()</b></a> (fermer des &eacute;v&eacute;nements)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#route_event"><b>routeEvent()</b></a> (parcourir la hi&eacute;rarchie des gestionnaires d'&eacute;v&eacute;nement)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#write"><b>write()</b></a> (&eacute;crire dans la fen&ecirc;tre du document)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#writeln"><b>writeln()</b></a> (&eacute;crire ligne par ligne)</p>
+
+
+
+<h3>Sous-objets:</h3>
+
+<p>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementshtml.htm"><b>&Eacute;l&eacute;ments HTML</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="node.htm"><b>node</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="all.htm"><b>all</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="anchors.htm"><b>anchors</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="applets.htm"><b>applets</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="forms.htm"><b>forms</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="images.htm"><b>images</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="layers.htm"><b>layers</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="links.htm"><b>links</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="plugins.htm"><b>plugins</b></a></p>
+
+
+
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">document: g&eacute;n&eacute;ralit&eacute;s pour l'utilisation</a></h2>
+
+<p>L'objet <code>document</code>  se r&eacute;f&egrave;re au contenu affich&eacute; dans la fen&ecirc;tre du navigateur. Dans la hi&eacute;rarchie objet de JavaScript il se trouve sous l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm"><b>window</b></a>.<br>
+Dans le mod&egrave;le DOM du consortium W3, l'objet <code>document</code> est l'objet de sortie pour l'arborescence. Les &eacute;l&eacute;ments d'un document HTML repr&eacute;sentent donc pour le mod&egrave;le DOM des sous-objets de l'objet document <code>document</code>. Les diff&eacute;rents &eacute;l&eacute;ments HTML peuvent avoir leurs propres propri&eacute;t&eacute;s et m&eacute;thodes. Celles-ci sont d&eacute;crites dans la partie traitant des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementshtml.htm"><b>objets &eacute;l&eacute;ments HTML</b></a>. Sont d&eacute;cisives pour l'acc&egrave;s &agrave; l'arborescence d'&eacute;l&eacute;ments HTML les m&eacute;thodes DOM de l'objet <code>document</code> <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#get_element_by_id"><b>getElementById</b></a> et <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#get_elements_by_name"><b>getElementsByName</b></a>.<br>
+En plus, l'objet <code>document</code> contient lui-m&ecirc;me une s&eacute;rie de propri&eacute;t&eacute;s et m&eacute;thodes importantes qui sauvegardent des propri&eacute;t&eacute;s globales au document et ex&eacute;cutent des fonctions. La plupart d'entre elles sont &eacute;galement soutenues par le mod&egrave;le DOM. L'adressage de ces propri&eacute;t&eacute;s et m&eacute;thodes fonctionnent comme suit:</p>
+
+<h3 class="xmp">Exemples:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+x = document.title;
+x = window.document.title;
+
+secondefenetre = window.open(&quot;fichier2.htm&quot;, &quot;fenetre&quot;);
+x = secondefenetre.document.title;
+
+y = parent.frames[2].document.bgColor;
+
+document.write(&quot;Hello monde&quot;);
+window.document.write(&quot;Hello monde&quot;);
+
+secondefenetre.document.close();
+parent.frames[2].document.close();</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Les propri&eacute;t&eacute;s de l'objet  document comme par exemple le titre du fichier HTML affich&eacute; (<code>&lt;title&gt;</code>...<code>&lt;/title&gt;</code>), peuvent &ecirc;tre adress&eacute;s avec <code>document</code>, pour le titre du document donc <code>document.title</code>. C'est de cette fa&ccedil;on que les m&eacute;thodes de l'objet document sont adress&eacute;es, par exemple la m&eacute;thode write avec <code>document.write()</code>. Vous pouvez noter &eacute;galement <code>window.document.title</code> ou bien <code>window.document.write()</code>. &Eacute;tant donn&eacute; qu'il s'agit ici du contenu de la fen&ecirc;tre actuelle, la mention de l'objet fen&ecirc;tre n'est pas absolument indispensable. Il en va autrement pour l'acc&egrave;s &agrave; d'autres fen&ecirc;tres ou fen&ecirc;tres cadres. Dans ces cas l&agrave;, vous devez adresser la fen&ecirc;tre correctement. Lisez pour ce qui concerne les fen&ecirc;tres suppl&eacute;mentaires la partie sur les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#generalites"><b>g&eacute;n&eacute;ralit&eacute;s sur l'utilisation de l'objet window</b></a> et pour les fen&ecirc;tres cadres la partie sur les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="frames.htm#generalites"><b>g&eacute;n&eacute;ralit&eacute;s sur l'utilisation de l'objet frames</b></a>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="alink_color">alinkColor</a></h2>
+
+<p>Sauvegarde la couleur pour les liens alors qu'ils sont cliqu&eacute;s, comme elle peut &ecirc;tre fix&eacute;e par l'attribut  <code>alink=</code> dans le rep&egrave;re <code>&lt;body&gt;</code> ou par l'utilisateur dans les r&eacute;glages de son navigateur (voir aussi  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/global/couleurs.htm"><b>Couleur pour l'arri&egrave;re plan, le texte et les liens</b></a>).</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_alink_color.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var i = 0;
+function autrecouleur() {
+ if(i == 0) document.alinkColor = &quot;#000000&quot;;
+ else if(i == 1) document.alinkColor = &quot;#FF0000&quot;;
+ else if(i == 2) document.alinkColor = &quot;#0000FF&quot;;
+ else if(i == 3) document.alinkColor = &quot;green&quot;;
+ i = i + 1; if(i &gt; 3) i = 0;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;a href=&quot;javascript:autrecouleur()&quot;&gt;Couleur du lien&lt;/a&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple appelle, lorsqu'on clique sur le lien, une fonction du nom de  <code>autrecouleur()</code>. Cette fonction modifie &agrave; chaque fois qu'elle est appel&eacute;e la valeur de <code>document.alinkColor</code>. Notez que pour cela, les couleurs sont not&eacute;es soit sous forme hexad&eacute;cimale,  soit sous forme de noms de couleur autoris&eacute;s (voir aussi   <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/generalites/couleurs.htm"><b>D&eacute;finir les couleurs en HTML</b></a>). La valeur doit dans tous les cas figurer entre guillemets.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Cette impl&eacute;mentation classique, valide dans JavaScript traditionnel de  <code>alinkColor</code> comme propri&eacute;t&eacute; directe de l'objet <code>document</code> est r&eacute;prouv&eacute;e par le mod&egrave;le DOM. D'apr&egrave;s le mod&egrave;le DOM l'objet &eacute;l&eacute;ment HTML  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementshtml.htm#body"><b>body</b></a> doit poss&eacute;der cette propri&eacute;t&eacute;.</p>
+
+<p>Opera 5.12 n'interpr&egrave;te pas la propri&eacute;t&eacute; <code>alinkColor</code>.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="bg_color">bgColor</a></h2>
+
+<p>Sauvegarde la couleur d'arri&egrave;re plan du fichier HTML, comme elle peut &ecirc;tre fix&eacute;e par l'attribut   <code>bgcolor=</code> dans le rep&egrave;re  <code>&lt;body&gt;</code> ou par l'utilisateur dans les r&eacute;glages de son navigateur. (voir aussi <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/global/couleurs.htm"><b>Couleur pour l'arri&egrave;re plan, le texte et les liens</b></a>).</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_bg_color.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var X = new Array(&quot;0&quot;,&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;6&quot;,&quot;7&quot;,&quot;8&quot;,&quot;9&quot;,&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;,&quot;F&quot;);
+var x1 = 0, x2 = 0;
+function setColor() {
+ document.bgColor =&quot;#&quot; + X[x1] + X[x2] + X[x1] + X[x2] + X[x1] + X[x2];
+ x2 = x2 + 1;
+ if(x2 % 16 == 0) { x2 = 0; x1 = x1 + 1; }
+}
+for(var i = 0; i &lt; 255; ++i) {
+ window.setTimeout(&quot;setColor()&quot;,20);
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple fait &agrave; la lecture du fichier un fondu encha&icirc;n&eacute; depuis le noir en passant par les nuances de gris jusqu'au blanc. Pour cela un  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="array.htm"><b>Array</b></a> <code>X</code> a &eacute;t&eacute; d&eacute;fini, dans lequel les chiffres hexad&eacute;cimaux de 0 &agrave; 9 et de A &agrave; F ont &eacute;t&eacute; sauvegard&eacute;s. Dans une boucle for il est compt&eacute; de 0 &agrave; 255. La raison en est que la valeur maximale d'une valeur de couleur RGB peut &ecirc;tre 255 (sous forme d&eacute;cimale). &Agrave; l'int&eacute;rieur de la boucle, la fonction <code>setColor()</code> est appel&eacute;e avec &agrave; chaque fois un d&eacute;lai de 20 milli&egrave;mes de seconde gr&acirc;ce &agrave; <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#set_timeout"><b>window.setTimeout()</b></a>. Dans cette fonction une nouvelle valeur est affect&eacute;e &agrave; la propri&eacute;t&eacute; <code>document.bgColor</code>. Ici est reconstitu&eacute;e &agrave; partir des chiffres d&eacute;finis auparavant de l'array <code>X</code> une mention de couleur valide.<br>
+Notez que pour cela, les couleurs sont not&eacute;es soit sous forme hexad&eacute;cimale,  soit sous forme de noms de couleur autoris&eacute;s (voir aussi  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/generalites/couleurs.htm"><b>D&eacute;finir les couleurs en HTML</b></a>).
+La valeur doit dans tous les cas figurer entre guillemets. Ce n'est pas le cas dans l'exemple ci-dessus &eacute;tant donn&eacute; qu'il s'agit l&agrave; d'une cha&icirc;ne de caract&egrave;res g&eacute;n&eacute;r&eacute;e dynamiquement. Autrement, les mentions seraient par exemple  <code>&quot;#0099CC&quot;</code> ou <code>&quot;blue&quot;</code>.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Cette impl&eacute;mentation classique, valide dans JavaScript traditionnel de  <code>bgColor</code> comme propri&eacute;t&eacute; directe de l'objet  <code>document</code> est r&eacute;prouv&eacute;e par le mod&egrave;le DOM. D'apr&egrave;s le mod&egrave;le DOM l'objet &eacute;l&eacute;ment HTML <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementshtml.htm#body"><b>body</b></a> doit poss&eacute;der cette propri&eacute;t&eacute;.</p>
+
+<p>Dans de nombreuses documentations, il est mentionn&eacute; que la mention hexad&eacute;cimale de couleur doit se faire sans le signe di&egrave;se (<code>#</code>). Le navigateur Netscape 6 n'interpr&egrave;te pourtant sous une mention doctype telle que par exemple <code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</code> la couleur que lorsque le signe di&egrave;se (<code>#</code>) a &eacute;t&eacute; not&eacute;.<br>
+&Eacute;tant donn&eacute; que l'utilisation du signe di&egrave;se ne cr&eacute;e pas non plus de probl&egrave;me avec les navigateurs plus anciens, il est recommand&eacute; de toujours le noter.</p>
+
+<p>Opera 5.12 n'interpr&egrave;te pas encore la propri&eacute;t&eacute; <code>document.bgColor</code>. Netscape 6.1 n'interpr&egrave;te pas l'exemple ci-dessus (contrairement &agrave; Netscape 4.x).</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/msjs.gif" width="30" height="30" border="0" alt="MS JScript"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="charset">charset</a></h2>
+
+<p>Sauvegarde le jeu de caract&egrave;res d&eacute;fini d'un document.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_charset.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;CHARSET=iso-8859-1&quot;&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function iso5() {
+ document.charset=&quot;iso-8859-5&quot;;
+ document.open();
+ document.write(&quot;texte avec &eacute; &egrave; &ugrave; &aelig; &agrave; &ccedil; &quot;);
+ document.close();
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;a href=&quot;javascript:iso5()&quot;&gt;iso-8859-5&lt;/a&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient dans l'ent&ecirc;te du fichier une mention pour la d&eacute;finition du jeu de caract&egrave;res. L&agrave; a &eacute;t&eacute; d&eacute;fini iso-8559-1 (le jeu de caract&egrave;res standard pour les langues occidentales y compris le fran&ccedil;ais). En outre le fichier contient un lien. En le cliquant, la fonction  <code>iso5()</code>. Cette fonction modifie le jeu de caract&egrave;res en iso-8559-5 (cyrillique). Ensuite des contenus sont &eacute;crits dans la fen&ecirc;tre du document de fa&ccedil;on dynamique. L'Explorer Internet MS &eacute;crit le texte mentionn&eacute; dans la fen&ecirc;tre du document tout en activant cependant une police Unicode sp&eacute;ciale pour la repr&eacute;sentation.<br>
+Veillez pour &eacute;crire le nouveau contenu &agrave; utiliser les m&eacute;thodes  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open()</b></a> et <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#close"><b>close()</b></a>.
+</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>L'Explorer Internet MS  n'accepte souvent la modification du jeu de caract&egrave;res qu'apr&egrave;s avoir recharg&eacute; la page et ex&eacute;cut&eacute; &agrave; nouveau la modification.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="cookie">cookie</a></h2>
+
+<p>Les cookies  (<i>cookies = biscuits - l'origine du nom est inconnue</i>) vous offrent la possibilit&eacute;, directement depuis un fichier HTML, de sauvegarder des donn&eacute;es sur l'ordinateur de l'utilisateur et de les lire lors d'un nouvel appel du m&ecirc;me fichier HTML. Ainsi une page WWW peut elle r&eacute;agir de fa&ccedil;on dynamique &agrave; des donn&eacute;es sauvegard&eacute;es. Seuls les cookies que l'on a pos&eacute;s soi-m&ecirc;me peuvent &ecirc;tre lus. Une transmission de virus par des cookies est exclue. Un cookie correspond &agrave; peu pr&egrave;s &agrave; une inscription dans un fichier INI sous MS-Windows. Une variable avec une nouvelle valeur est sauvegard&eacute;e, par exemple la date et l'heure de la derni&egrave;re visite d'une page WWW. Les cookies ne peuvent lire aucune donn&eacute;e de l'ordinateur de l'utilisateur. &Eacute;tant donn&eacute; la m&eacute;fiance qui r&egrave;gne chez les utilisateurs qui ne savent pas ce qu'est un cookie, vous ne devez les employer que si vous avez une bonne raison de le faire.</p>
+
+<p>Netscape g&egrave;re les Cookies dans un fichier du nom de <var>cookies.txt</var> sur l'ordinateur de l'utilisateur. L'Explorer Internet MS g&egrave;re les cookies dans un sous r&eacute;pertoire du r&eacute;pertoire Windows. .</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_cookie.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var sauvegarde = &quot;rien n\'est sauvegard�&quot;;
+ if(document.cookie)
+  sauvegarde = document.cookie;
+ else
+  document.cookie = &quot;Date et heure=&quot; + document.lastModified;
+ alert(document.lastModified + &quot; - &quot; + sauvegarde);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>La lecture d'un cookie fonctionne d'apr&egrave;s le sch&eacute;ma  <code>x = document.cookie</code>.<br>
+L'&eacute;criture d'un cookie fonctionne d'apr&egrave;s le sch&eacute;ma  <code>document.cookie = x</code>.</p>
+
+<p>L'exemple demande &agrave; la lecture du fichier si ce fichier a d&eacute;j&agrave; pos&eacute; un cookie. Une telle demande est possible avec  <code>if(document.cookie)</code>. Dans l'exemple, la variable  <code>sauvegarde</code> se voit affecter la valeur du cookie sauvegard&eacute;, au cas o&ugrave; un cookie est disponible. Dans l'alternative <code>else</code> de l'exemple est consid&eacute;r&eacute; le cas o&ugrave; aucun cookie n'a encore &eacute;t&eacute; pos&eacute;. Dans ce cas, la cha&icirc;ne de caract&egrave;res <code>Date et heure=</code> est &eacute;crite comme cookie, suivie de la valeur de  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#last_modified"><b>lastModified</b></a>&Agrave; la fin deux valeurs sont donn&eacute;es avec  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#alert"><b>alert()</b></a>: &agrave; savoir la valeur de  <code>document.lastModified</code> et la valeur de la variable  <code>sauvegarde</code>. Si un cookie est pos&eacute; (donc &agrave; partir du deuxi&egrave;me appel du fichier), le contenu du cookie est sorti, il se distingue de  <code>document.lastModified</code> si le fichier a &eacute;t&eacute; modifi&eacute; entre temps.</p>
+
+<p>En posant un cookie, vous pouvez en outre mentionner une date de p&eacute;remption. Quand l'&eacute;ch&eacute;ance est atteinte, le navigateur efface lui-m&ecirc;me le cookie. Pour cela, notez une instruction telle que:<br>
+<code>document.cookie = &quot;expires=&quot; + echeance</code>.<br>
+Afin que le navigateur interpr&egrave;te cette propri&eacute;t&eacute;, la date d'&eacute;ch&eacute;ance doit &ecirc;tre format&eacute;e avec la m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="date.htm#to_gmt_string"><b>toGMTString()</b></a> de l'objet Date.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_cookie_perime.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+   var echeance = new Date();
+   var danscinqjours = echeance.getTime() + (5 * 24 * 60 * 60 * 1000);
+   echeance.setTime(danscinqjours);
+   document.cookie = &quot;Name=SELFHTML; expires=&quot; + echeance.toGMTString();
+   alert(document.cookie) ;
+
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans la variable <code>echeance</code> est plac&eacute;e une nouvelle instance de l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="date.htm#generalites"><b>Date</b></a>. Celle-ci contient la date actuelle. La date de p&eacute;remption est 5 jours apr&egrave;s la pose du t&eacute;moin. Pour d&eacute;terminer la date de p&eacute;remption, la date actuelle est transform&eacute;e en milli&egrave;mes de secondes avec la m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="date.htm#get_time"><b>getTime()</b></a>. &Agrave; cette valeur est ajout&eacute; le nombre de milli&egrave;mes de seconde pour 5 jours. Pour rechercher la valeur en milli&egrave;mes de seconde, vous pouvez comme dans l'exemple, transmettre une cha&icirc;ne de produits: 1000 milli&egrave;mes de seconde font une seconde, multipli&eacute;s par 60 font une minute, multipli&eacute;s par 60 font une heure, multipli&eacute;s par 24 font un jour, multipli&eacute;s par 5 font cinq jours.<br>
+Pour obtenir une cha&icirc;ne de caract&egrave;res pour la date qui soit valide, une nouvelle valeur est affect&eacute;e &agrave; la date avec la m&eacute;thode
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="date.htm#wet_time"><b>setTime()</b></a>. La date de p&eacute;remption correcte est alors sauvegard&eacute;e dans la variable <code>echeance</code>.<br>
+La date format&eacute;e avec la m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="date.htm#to_gmt_string"><b>toGMTString()</b></a> est finalement transmise au t&eacute;moin.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Chaque fichier HTML a connaissance de tous les t&eacute;moins pos&eacute;s par des fichiers du m&ecirc;me r&eacute;pertoire ou d'un r&eacute;pertoire hi&eacute;rarchiquement sup&eacute;rieur. Supposons que dans un domaine <var>http://www.test.fr</var> avec le sous-r&eacute;pertoire  <var>/A</var> il y ait aussi bien dans ce sous-r&eacute;pertoire que dans le r&eacute;pertoire racine <var>/</var> un fichier nomm&eacute; <var>x.htm</var>. Chacun des deux fichiers contient un script JavaScript avec l'instruction:<br>
+<code>document.cookie = location.href;</code><br>
+Par ce biais l'URI du fichier est sauvegard&eacute;e dans un cookie. En outre, il y a dans les deux r&eacute;pertoires un fichier <var>y.htm</var>, qui contiennent chacun l'instruction JavaScript suivante:<br>
+<code>document.write(document.cookie);</code><br>
+Cela permet d'&eacute;crire de fa&ccedil;on dynamique un t&eacute;moin existant dans la fen&ecirc;tre du document. Pour la disposition suppos&eacute;e, les fichiers suivant livrent les sorties suivantes:<br>
+<var>http://www.test.fr/y.htm</var> livre:<br>
+<code>http://www.test.fr/x.htm</code> (peut donc lire le t&eacute;moin que <var>x.htm</var> du m&ecirc;me r&eacute;pertoire a pos&eacute;)<br>
+<var>http://www.test.fr/A/y.htm</var> livre:<br>
+<code>http://www.test.fr/A/x.htm; http://www.test.fr/x.htm</code> (peut donc lire le t&eacute;moin que <var>x.htm</var> du m&ecirc;me r&eacute;pertoire a pos&eacute;, ainsi que le t&eacute;moin que <var>x.htm</var> du r&eacute;pertoire hi&eacute;rarchiquement sup&eacute;rieur a pos&eacute;)</p>
+
+<p>Dans l'Explorer Internet MS &agrave; partir de la version 5 et dans Netscape 6 vous pouvez demander au moyen de la propri&eacute;t&eacute; <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="navigator.htm#cookie_enabled"><b>navigator.cookieEnabled</b></a> si l'utilisateur a activ&eacute; les t&eacute;moins.</p>
+<p>Opera 5.12 ne permet pas la pose de t&eacute;moins dans le <i>fichier</i> de protocole.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/msjs.gif" width="30" height="30" border="0" alt="MS JScript"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="default_charset">defaultCharset</a></h2>
+
+<p>Sauvegarde le jeu de caract&egrave;res que l'utilisateur a install&eacute; comme standard sur son navigateur. Si le fichier ne contient pas de mention Meta pour le jeu de caract&egrave;res utilis&eacute;, c'est le jeu de caract&egrave;res standard qui sera pris.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_default_charset.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+alert(&quot;Vous avez r�gl� le jeu de caract�res suivant comme standard: &quot; + document.defaultCharset);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple sort &agrave; la lecture gr&acirc;ce &agrave; <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#alert"><b>alert()</b></a> quel jeu de caract&egrave;res l'utilisateur a choisi comme jeu de caract&egrave;res standard.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="fg_color">fgColor</a></h2>
+
+<p>Sauvegarde la couleur pour le texte comme elle peut &ecirc;tre fix&eacute;e par l'attribut  <code>text=</code> dans le rep&egrave;re  <code>&lt;body&gt;</code> ou par l'utilisateur dans les r&eacute;glages de son navigateur (voir aussi <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/global/couleurs.htm"><b>Couleur pour l'arri&egrave;re plan, le texte et les liens</b></a>).</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/bsp_frame_fg_color.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+if(parent.frames[0].document.fgColor == &quot;#000000&quot;)
+ document.fgColor = &quot;#FF0000&quot;;
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+Un petit texte
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple suppose que le fichier actuel se trouve dans un jeu de cadres. En lisant le fichier il est v&eacute;rifi&eacute; si la couleur de texte d'une autre (de la premi&egrave;re) fen&ecirc;tre frame est le noir  (<code>if(parent.frames[0].document.fgColor == &quot;#000000&quot;)</code>). Si c'est le cas la couleur du texte du fichier actuel est r&eacute;gl&eacute;e sur le rouge (<code>document.fgColor = &quot;#FF0000&quot;;</code>). Pensez que les modifications de couleurs pour la couleur de texte, dans Netscape jusqu'&agrave; la version 4 comprise, n'ont un effet qu'<b>avant qu'</b> un texte HTML quelconque soit lu. Un attribut pos&eacute; le cas &eacute;ch&eacute;ant dans le rep&egrave;re <code>&lt;body&gt;</code> &eacute;crase l'affectation de couleur, au cas o&ugrave; celle-ci &eacute;tait fix&eacute;e auparavant avec JavaScript dans l'ent&ecirc;te de fichier. Notez que pour cela, les couleurs sont not&eacute;es soit sous forme hexad&eacute;cimale,  soit sous forme de noms de couleur autoris&eacute;s (voir aussi <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/generalites/couleurs.htm"><b>d&eacute;finir les couleurs en HTML</b></a>). La couleur doit dans tous les cas figurer entre guillemets.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Cette impl&eacute;mentation classique, valide dans JavaScript traditionnel de  <code>alinkColor</code> comme propri&eacute;t&eacute; directe de l'objet  <code>document</code> est r&eacute;prouv&eacute;e par le mod&egrave;le DOM. D'apr&egrave;s le mod&egrave;le DOM l'objet &eacute;l&eacute;ment HTML <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementshtml.htm#body"><b>body</b></a> doit poss&eacute;der cette propri&eacute;t&eacute;.</p>
+
+<p>Opera 5.12 n'interpr&egrave;te pas encore cette propri&eacute;t&eacute;.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="lecture"> <a class="an" name="last_modified">lastModified</a></h2>
+
+<p>Sauvegarde la date et l'heure de la derni&egrave;re modification du fichier dans le format international d'apr&egrave;s GMT (heure de Greenwich).</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_last_modified.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+document.write(&quot;derni�re mise � jour: &quot; + document.lastModified);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple &eacute;crit de fa&ccedil;on dynamique dans le fichier HTML gr&acirc;ce &agrave; la m&eacute;thode  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#write"><b>write()</b></a>  l'heure de la derni&egrave;re modification.
+.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Le formatage de la cha&icirc;ne de caract&egrave;res d&eacute;pend pour une large part du navigateur et du syst&egrave;me d'exploitation utilis&eacute;.<br>
+Tenez compte en particulier lors du traitement de cette propri&eacute;t&eacute; avec l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="date.htm#generalites"><b>Date</b></a>, que quelques versions de Netscape 4 transmettent un mill&eacute;sime &agrave; deux chiffres &agrave; l'objet Date. Cela a pour cons&eacute;quence, entre autres que le jour de semaine et l'ann&eacute;e retourn&eacute;s sont erron&eacute;s.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="link_color">linkColor</a></h2>
+
+<p>Sauvegarde le couleur pour les liens comme elle peut &ecirc;tre fix&eacute;e par l'attribut <code>link=</code> dans le rep&egrave;re  <code>&lt;body&gt;</code> ou par l'utilisateur dans les r&eacute;glages de son navigateur (voir aussi <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/global/couleurs.htm"><b>Couleur pour l'arri&egrave;re plan, le texte et les liens</b></a>).</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/bsp_frame_link_color.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ document.linkColor = parent.frames_0].document.linkColor;
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;a href=&quot;#&quot;&gt;Un lien&lt;/a&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple suppose que le fichier actuel se trouve dans un jeu de frames. &Agrave; la lecture du fichier, la couleur des liens du fichier actuel est r&eacute;gl&eacute;e sur la m&ecirc;me couleur que la couleur de lien du fichier qui se trouve dans une autre (la premi&egrave;re) fen&ecirc;tre frame.<br>
+Pensez que les modifications de couleurs pour la couleur des liens dans Netscape jusqu'&agrave; la version 4 comprise, n'ont un effet qu'<b>avant qu</b>'un texte HTML quelconque soit lu. Un attribut pos&eacute; le cas &eacute;ch&eacute;ant dans le rep&egrave;re  <code>&lt;body&gt;</code> &eacute;crase l'affectation de couleur, au cas o&ugrave; celle-ci &eacute;tait fix&eacute;e auparavant avec JavaScript dans l'ent&ecirc;te de fichier. Notez que pour cela, les couleurs sont not&eacute;es soit sous forme hexad&eacute;cimale, soit sous forme de noms de couleur autoris&eacute;s (voir aussi  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/generalites/couleurs.htm"><b>d&eacute;finir les couleurs en HTML). </b></a>). La couleur doit dans tous les cas figurer entre guillemets.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Cette impl&eacute;mentation classique, valide dans JavaScript traditionnel de  <code>alinkColor</code> comme propri&eacute;t&eacute; directe de l'objet  <code>document</code> est r&eacute;prouv&eacute;e par le mod&egrave;le DOM. D'apr&egrave;s le mod&egrave;le DOM l'objet &eacute;l&eacute;ment HTML  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementshtml.htm#body"><b>body</b></a> doit poss&eacute;der cette propri&eacute;t&eacute;.</p>
+
+<p>Opera 5.12 n'interpr&egrave;te pas encore cette propri&eacute;t&eacute;.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="lecture"> <a class="an" name="referrer">referrer</a></h2>
+
+<p>Sauvegarde l'adresse URI &agrave; partir de laquelle le fichier actuel a &eacute;t&eacute; appel&eacute;.  La condition pr&eacute;alable est qu'elle ait appel&eacute; le fichier actuel  par l'interm&eacute;diaire d'un lien. Si l'adresse du fichier a &eacute;t&eacute; choisie par exemple &agrave; partir d'un signet ou entr&eacute;e directement dans la ligne d'adresse du navigateur, rien n'est sauvegard&eacute; dans  <code>document.referrer</code>. Pour l'Explorer Internet MS et pour Netscape 6, n'est sauvegard&eacute;e une valeur dans <code>document.referrer</code> que lorsque l'appel du fichier actuel a eu lieu par protocole HTTP - &agrave; savoir donc avec un lien du type <code>http://...</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_referrer.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ document.write(&quot;&lt;h1&gt;Cher visiteur&lt;\/h1&gt;&quot;);
+ document.write(&quot;Tu es donc venu de &quot; + document.referrer + &quot; pour nous trouver ici&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple sort un texte HTML avec la m&eacute;thode <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#write"><b>write()</b></a>, qui donne l'adresse de laquelle l'utilisateur a appel&eacute; le fichier actuel.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Opera 5.12 n'interpr&egrave;te pas encore cette propri&eacute;t&eacute;. </p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="lecture"> <a class="an" name="title">title</a></h2>
+
+<p>Sauvegarde le titre d'un fichier HTML tel qu'il a &eacute;t&eacute; affect&eacute; avec les rep&egrave;res  <code>&lt;title&gt;</code>...<code>&lt;/title&gt;</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_title.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ document.write(document.title);
+//--&gt;
+&lt;/script&gt;
+&lt;/h1&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple &eacute;crit de fa&ccedil;on dynamique le titre d'un fichier HTML comme contenu avec la m&eacute;thode  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#write"><b>write()</b></a> dans un titre N�1  (<code>&lt;h1&gt;</code>...<code>&lt;/h1&gt;</code>).</p>
+
+<h3>Attention:</h3>
+
+<p>Dans l'Explorer Internet MS et dans le navigateur Netscape vous ne pouvez pas non plus modifier cette propri&eacute;t&eacute;.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="lecture"> <a class="an" name="url">URL</a></h2>
+
+<p>Sauvegarde l'adresse URI compl&egrave;te du document actuel.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_url.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ document.write(&quot;Ce fichier: &quot; + document.URL);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple &eacute;crit avec la m&eacute;thode  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#write"><b>write()</b></a> l' adresse URL compl&egrave;te du ficher actuel dans le texte. Cela peut &ecirc;tre appropri&eacute; par exemple quand le fichier fait partie d'un jeu de cadres. Les utilisateurs peuvent alors se r&eacute;f&eacute;rer &agrave; l'adresse URL exacte s'ils veulent communiquer quelque chose au sujet du contenu du cadre affich&eacute;.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="vlink_color">vlinkColor</a></h2>
+
+<p>Sauvegarde la couleur pour les liens &agrave; des pages d&eacute;j&agrave; visit&eacute;es comme elle peut &ecirc;tre fix&eacute;e par l'attribut <code>vlink=</code> dans le rep&egrave;re  <code>&lt;body&gt;</code> ou par l'utilisateur dans les r&eacute;glages de son navigateur (voir aussi  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/global/couleurs.htm"><b>Couleur pour l'arri&egrave;re plan, le texte et les liens</b></a>).</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/bsp_frame_vlink_color.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ document.vlinkColor = parent.frames[0].document.vlinkColor;
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;a href=&quot;../document.htm&quot;&gt;lien&lt;/a&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple suppose que le fichier actuel se trouve dans un jeu de cdres. &Agrave; la lecture du fichier la couleur pour les liens menant &agrave; des pages d&eacute;j&agrave; visit&eacute;es du fichier actuel est r&eacute;gl&eacute;e comme la couleur du fichier qui se trouve dans une autre (la premi&egrave;re) fen&ecirc;tre cadre.<br>
+Pensez que les modifications de couleurs pour la couleur des liens dans Netscape jusqu'&agrave; la version 4 comprise, n'ont un effet qu'<b>avant qu</b>'un texte HTML quelconque soit lu. Un attribut pos&eacute; le cas &eacute;ch&eacute;ant dans le rep&egrave;re  <code>&lt;body&gt;</code> &eacute;crase l'affectation de couleur, au cas o&ugrave; celle-ci &eacute;tait fix&eacute;e auparavant avec JavaScript dans l'ent&ecirc;te de fichier. Notez que pour cela, les couleurs sont not&eacute;es soit sous forme hexad&eacute;cimale, soit sous forme de noms de couleur autoris&eacute;s (voir aussi <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/generalites/couleurs.htm"><b>d&eacute;finir les couleurs en HTML). </b></a>). La couleur doit dans tous les cas figurer entre guillemets.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Cette impl&eacute;mentation classique, valide dans JavaScript traditionnel de <code>alinkColor</code> comme propri&eacute;t&eacute; directe de l'objet  <code>document</code> est r&eacute;prouv&eacute;e par le mod&egrave;le DOM. D'apr&egrave;s le mod&egrave;le DOM l'objet &eacute;l&eacute;ment HTML <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementshtml.htm#body"><b>body</b></a> doit poss&eacute;der cette propri&eacute;t&eacute;.</p>
+
+<p>Opera 5.12 n'interpr&egrave;te pas encore cette propri&eacute;t&eacute;. </p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"> <a class="an" name="capture_events">captureEvents()</a></h2>
+
+<p>Surveille les &eacute;v&eacute;nements de l'utilisateur dans le document actuel. Fonctionne exactement comme  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#capture_events"><b>captureEvents() pour l'objet window</b></a> (pour plus de d&eacute;tails, s'y r&eacute;f&eacute;rer). La seule diff&eacute;rence r&eacute;side dans le fait qu'avec   <code>document.caputeEvents()</code> vous ne pouvez surveiller que des &eacute;v&eacute;nements dans la fen&ecirc;tre du document, et non pas des &eacute;v&eacute;nements dans la totalit&eacute; de la fen&ecirc;tre (&agrave; laquelle appartiennent aussi par exemple la barre de titre, la barre des menus etc...</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="close">close()</a></h2>
+
+<p>Ferme un contenu de document qui a &eacute;t&eacute; ouvert avec la m&eacute;thode  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#open"><b>open()</b></a> et &eacute;crit avec  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#write"><b>write()</b></a> ou bien <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#writeln"><b>writeln()</b></a>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_close.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+document.open();
+document.write(document.URL);
+document.close();
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple ouvre le contenu du document pour &eacute;crire et &eacute;crit ensuite quelque chose (l'adresse URI actuelle) avec la m&eacute;thode  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#write"><b>write()</b></a>, et termine enfin le processus avec  <code>document.close()</code>.<br>
+Avec la fermeture du document, il est signal&eacute; au navigateur que la construction de la page est termin&eacute;e. C'est indispensable en particulier lors de l'&eacute;criture dynamique de <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../html/frames/index.htm"><b>cadres</b></a> et pour l'&eacute;criture de <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../html/calques/index.htm"><b>calques</b></a>.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6x.gif" width="30" height="30" border="0" alt="Netscape 6.x"> <a class="an" name="create_attribute">createAttribute()</a></h2>
+
+<p>Cr&eacute;e un nouvel attribut pour l'arborescence. Peut &ecirc;tre employ&eacute; sur des documents HTML, mais &eacute;galement sur des documents XML.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_create_attribute.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Une page tr�s dynamique&lt;/h1&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var alignement = document.createAttribute(&quot;align&quot;);
+     alignement.nodeValue = &quot;vight&quot;;
+ var Element = document.getElementsByTagName(&quot;h1&quot;)[0];
+     Element.setAttributeNode(alignement);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple contient un titre N�1 sans autre attribut. Dessous est not&eacute; un passage JavaScript. L&agrave; est cr&eacute;&eacute; un nouvel attribut nomm&eacute; <code>align</code> avec <code>document.createAttribute(&quot;align&quot;)</code>, qui peut &ecirc;tre appliqu&eacute; dans divers &eacute;l&eacute;ments HTML pour en aligner le contenu. L'attribut n'en a pas d'effet pour autant - il ne se trouve pas dans l'arborescence du document et n'a pas non plus de valeur. L'attribut est en somme cr&eacute;&eacute; en tant qu'objet.<br>
+La m&eacute;thode <code>createElement()</code> renvoie l'objet cr&eacute;&eacute;, donc en l'occurrence l'attribut <code>align</code>. La valeur renvoy&eacute;e est sauvegard&eacute;e dans la variable <code>alignement</code>. Par cette variable, l'attribut nouvellement cr&eacute;&eacute; peut &ecirc;tre adress&eacute;.<br>
+
+<p>Afin que l'attribut re&ccedil;oive un contenu, la valeur souhait&eacute;e <code>right</code> est attribu&eacute;e au n&#339;ud attribut par la propri&eacute;t&eacute; d'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="node.htm#node_value"><b>nodeValue</b></a>. Enfin, l'attribut et sa valeur doivent encore &ecirc;tre plac&eacute;s dans l'arborescence existante. Ceci s'obtient dans l'instruction <code>Element.setAttributeNode(alignement);</code> (voir aussi <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="node.htm#set_attribute_node"><b>setAttributeNode()</b></a>). Ici a &eacute;t&eacute; sauvegard&eacute; au pr&eacute;alable dans la variable <code>Element</code> l'&eacute;l&eacute;ment <code>h1</code>, auquel il a &eacute;t&eacute; acc&eacute;d&eacute; avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#get_elements_by_tag_name"><b>getElementsByTagName()</b></a>. C'est ainsi que le titre est align&eacute; &agrave; droite de fa&ccedil;on dynamique.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Avec l'Explorer Internet 5.5, cet exemple ne pouvait pas &ecirc;tre retrac&eacute;, m&ecirc;me si Microsoft soutient avoir impl&eacute;ment&eacute; cette m&eacute;thode dans l'Explorer Internet. Dans l'Explorer Internet MS 6.0beta l'exemple peut par contre &ecirc;tre retrac&eacute;.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6x.gif" width="30" height="30" border="0" alt="Netscape 6.x"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="create_element">createElement()</a></h2>
+
+<p>Cr&eacute;e un nouvel &eacute;l&eacute;ment pour l'arborescence. Peut &ecirc;tre employ&eacute; sur des documents HTML, mais &eacute;galement sur des documents XML.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_create_element.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;div id=&quot;passage&quot; style=&quot;border:1px black solid; padding:10px&quot;&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var montitre = document.createElement(&quot;h1&quot;);
+ var montexte = document.createTextNode(&quot;Une page tr�s dynamique&quot;);
+ montitre.appendChild(montexte);
+ var passagesortie = document.getElementById(&quot;passage&quot;);
+ passagesortie.appendChild(montitre);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple contient un passage <code>div</code>, qui dans un premier temps est vide. Dessous est not&eacute; un passage JavaScript. L&agrave; est cr&eacute;&eacute; avec <code>document.createElement(&quot;h1&quot;)</code> un nouvel &eacute;l&eacute;ment du type <code>h1</code>, &agrave; savoir un titre HTML N�1. Le titre n'en est cependant pas pour autant affich&eacute; - il n'est m&ecirc;me pas encore rattach&eacute; &agrave; l'arborescence du document. L'&eacute;l&eacute;ment est somme toute cr&eacute;&eacute; en tant qu'objet.<br>
+La m&eacute;thode <code>createElement()</code> renvoie l'objet cr&eacute;&eacute;, donc en l'occurrence l'&eacute;l&eacute;ment <code>h1</code>. La valeur renvoy&eacute;e est sauvegard&eacute;e dans la variable <code>montitre</code>. Par cette variable, l'&eacute;l&eacute;ment nouvellement cr&eacute;&eacute; peut &ecirc;tre adress&eacute;.
+.<br>
+
+<p>Afin que le titre re&ccedil;oive un contenu, un n&#339;ud de texte est cr&eacute;&eacute;, avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#create_text_node"><b>createTextNode()</b></a>. Avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="node.htm#append_child"><b>appendChild()</b></a> le n&#339;ud de texte est ensuite d&eacute;fini comme &eacute;l&eacute;ment enfant du titre N�1. Enfin le titre complet doit encore &ecirc;tre plac&eacute; dans l'arborescence existante. Cela se passe dans l'instruction <code>passagesortie.appendChild(montitre);</code>. Ici a &eacute;t&eacute; sauvegard&eacute; au pr&eacute;alable dans la variable <code>passagesortie</code> l'&eacute;l&eacute;ment vide <code>div</code>, auquel il a &eacute;t&eacute; acc&eacute;d&eacute; avec  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#get_element_by_id"><b>getElementById()</b></a>. C'est ainsi que le titre et son texte, donc en tant qu'&eacute;l&eacute;ment enfant sont ins&eacute;r&eacute;s  de fa&ccedil;on dynamique dans le passage <code>div</code>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6x.gif" width="30" height="30" border="0" alt="Netscape 6.x"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="create_text_node">createTextNode()</a></h2>
+
+<p>Cr&eacute;&eacute;e un nouveau n&#339;ud de texte pour l'arborescence. Peut &ecirc;tre employ&eacute; sur des documents HTML, mais &eacute;galement sur des documents XML.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_create_text_node.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;p id=&quot;paragraphe&quot;&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var horodateur = document.createTextNode(document.lastModified);
+ var texteprecedent = document.createTextNode(&quot;Date de la derni�re mise � jour: &quot;);
+ document.getElementById(&quot;paragraphe&quot;).appendChild(texteprecedent)?
+ document.getElementById(&quot;paragraphe&quot;).appendChild(horodateur);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple contient un paragraphe <code>p</code> qui dans un premier temps est vide. Dessous est not&eacute; un passage JavaScript. L&agrave; sont cr&eacute;&eacute;es avec <code>document.createTextNode()</code> deux nouvelles cha&icirc;nes de caract&egrave;res, la premi&egrave;re &eacute;tant la valeur sauvegard&eacute;e de <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#last_modified"><b>lastModified</b></a>, et l'autre un texte statique. Les textes n'en sont cependant pas pour autant affich&eacute;s - ils ne sont m&ecirc;me pas encore rattach&eacute;s &agrave; l'arborescence du document. Les n&#339;uds de texte sont somme toute cr&eacute;&eacute;s en tant qu'objet.<br>
+La m&eacute;thode  <code>createTextNode()</code> renvoie l'objet cr&eacute;&eacute;. La valeur renvoy&eacute;e est sauvegard&eacute;e pour les deux appels de l'exemple dans les variables <code>horodateur</code> et <code>texteprecedent</code>. Par ces variables, les n&#339;uds de texte nouvellement cr&eacute;&eacute;s peuvent &ecirc;tre adress&eacute;s.<br>
+
+<p>Avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="node.htm#append_child"><b>appendChild()</b></a> les n&#339;uds de texte sont ensuite d&eacute;finis comme &eacute;l&eacute;ments enfants du paragraphe de texte not&eacute; par JavaScript. &Agrave; cette fin , il est acc&eacute;d&eacute; avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#get_element_by_id"><b>getElementById()</b></a> &agrave; l'&eacute;l&eacute;ment <code>p</code>. Le paragraphe vide re&ccedil;oit ainsi son contenu de fa&ccedil;on dynamique.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6x.gif" width="30" height="30" border="0" alt="Netscape 6.x"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="get_element_by_id">getElementById()</a></h2>
+
+<p>Acc&egrave;de, conform&eacute;ment &agrave; la variante HTML du mod&egrave;le DOM, &agrave; un &eacute;l&eacute;ment HTML qui poss&egrave;de un attribut <code>id</code>. </p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_get_element_by_id.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+&lt;!--
+.normal { font-style:normal }
+--&gt;
+&lt;/style&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ function aligner(gomment) {
+ document.getElementById(&quot;indecis&quot;).align = comment;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1 id=&quot;indecis&quot;&gt;O� est donc ma place?&lt;/h1&gt;
+&lt;a href=&quot;javascript:aligner('left')&quot;&gt;� gauche?&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;javascript:aligner('center')&quot;&gt;au centre?&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;javascript:aligner('right')&quot;&gt;� droite?&lt;/a&gt;&lt;br&gt;
+&lt;/body&gt;&lt;/html&gt
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple contient un titre N�1 avec l'attribut <code>id=&quot;indecis&quot;</code>. Au dessous sont not&eacute;s trois liens. Chacun des liens fait appel &agrave; la fonction <code>aligner()</code>qui est not&eacute;e dans l'ent&ecirc;te de fichier et lui transmettent pour chacun d'eux une valeur diff&eacute;rente. Dans la fonction <code>aligner()</code> il est acc&eacute;d&eacute; gr&acirc;ce &agrave; <code>document.getElementById(&quot;indecis&quot;)</code> au titre N�1. La fonction attribue &agrave; la propri&eacute;t&eacute; <code>align</code> la valeur respectivement transmise. C'est ainsi que l'alignement du titre est modifi&eacute; de fa&ccedil;on dynamique.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>La m&eacute;thode <code>getElementById()</code> r&eacute;git en fin de compte l'acc&egrave;s aux &eacute;l&eacute;ments HTML. Pour savoir ce que vous pouvez faire avec quels &eacute;l&eacute;ments HTML, vous pouvez avoir une vue d'ensemble dans la partie sur les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementshtml.htm"><b>Objets &eacute;l&eacute;ments HTML </b></a>. Les autres possibilit&eacute;s d'influencer de fa&ccedil;on dynamique les &eacute;l&eacute;ments HTML sont offertes par l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="node.htm"><b>node</b></a>.</p>
+
+<p>Vous pouvez &eacute;galement transmettre des variables &agrave; cette m&eacute;thode. Pour ce faire, notez simplement les noms de variables sans guillemets &agrave; la place d'une valeur fixe par exemple <code>getElementById(nom de variable)</code>.
+La condition pr&eacute;alable en est cependant que la variable existe aussi.</p>
+
+<p>Opera 5.12 conna&icirc;t &eacute;galement la m&eacute;thode <code>getElementById()</code> pour adresser des &eacute;l&eacute;ments. L'exemple ci-dessus ne fonctionne cependant pas avec ce navigateur.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6x.gif" width="30" height="30" border="0" alt="Netwcape 6.x"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="get_elements_by_name">getElementsByName()</a></h2>
+
+<p>Acc&egrave;de, conform&eacute;ment &agrave; la variante HTML du mod&egrave;le DOM, &agrave; un &eacute;l&eacute;ment HTML qui poss&egrave;de un attribut <code>name</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_get_elements_by_name.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+&lt;!--
+.normal { font-style:normal }
+--&gt;
+&lt;/style&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ function cocher()
+ document.getElementsByName(&quot;ingredient&quot;)[0].checked = true;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire&quot; action=&quot;&quot;&gt;
+&lt;input type=&quot;checkbox&quot; name=&quot;ingredient&quot; value=&quot;Salami&quot;&gt; Salami &lt;br&gt;
+&lt;input type=&quot;checkbox&quot; name=&quot;ingredient&quot; value=&quot;champignons&quot;&gt; champignons &lt;br&gt;
+&lt;input type=&quot;checkbox&quot; name=&quot;ingredient&quot; value=&quot;olives&quot;&gt; olives &lt;br&gt;
+&lt;input type=&quot;button&quot; value=&quot;Test&quot; onClick=&quot;cocher()&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple est d&eacute;fini un groupe de cases &agrave; cocher qui portent toutes le m&ecirc;me nom &agrave; savoir <code>ingredient</code>. Au dessous est not&eacute; un bouton pouvant &ecirc;tre cliqu&eacute;, et qui, lorsqu'on le clique appelle la fonction  <code>cocher()</code> qui est not&eacute;e dans l'ent&ecirc;te du fichier. Cette fonction coche la premi&egrave;re des cases &agrave; cocher. Par <code>getElementsByName(&quot;ingredient&quot;)[0]</code> elle acc&egrave;de au premier &eacute;l&eacute;ment avec <code>name=quot;ingredient&quot;</code>. M&ecirc;me si un tel nom d'&eacute;l&eacute;ment n'est plac&eacute; qu'une fois dans le document, il faut toujours acc&eacute;der &agrave; l'&eacute;l&eacute;ment avec la syntaxe Array. Ainsi dans l'exemple l'&eacute;l&eacute;ment de formulaire pourrait &ecirc;tre adress&eacute; par exemple par <code>getElementsByName(&quot;formulaire&quot;)[0]</code>. La deuxi&egrave;me case &agrave; cocher avec le nom <code>&quot;ingredient&quot;</code> pourrait &ecirc;tre adress&eacute;e par <code>getElementsByName(&quot;ingredient&quot;)[1]</code> etc...</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>La m&eacute;thode <code>getElementsByName()</code>  r&eacute;git en fin de compte l'acc&egrave;s aux &eacute;l&eacute;ments HTML. savoir ce que vous pouvez faire avec quels &eacute;l&eacute;ments HTML, vous pouvez avoir une vue d'ensemble dans la partie sur les  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementshtml.htm"><b> Objets &eacute;l&eacute;ments HTML </b></a> . Les autres possibilit&eacute;s d'influencer de fa&ccedil;on dynamique les &eacute;l&eacute;ments HTML sont offertes par l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="node.htm"><b>node</b></a>.</p>
+
+<p>Vous pouvez &eacute;galement transmettre des variables &agrave; cette m&eacute;thode. Pour ce faire, notez simplement les noms de variables sans guillemets &agrave; la place d'une valeur fixe par exemple  <code>getElementsByName(nom de variable)</code>.
+La condition pr&eacute;alable en est cependant que la variable existe aussi.</p>
+
+<p>Opera 5.12 conna&icirc;t &eacute;galement cette m&eacute;thode pour adresser les &eacute;l&eacute;ments.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6x.gif" width="30" height="30" border="0" alt="Netscape 6.x"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="get_elements_by_tag_name">getElementsByTagName()</a></h2>
+
+<p>Acc&egrave;de, conform&eacute;ment &agrave; la variante <b>XML</b> du mod&egrave;le DOM &agrave; un &eacute;l&eacute;ment au choix dans l'arborescence d'&eacute;l&eacute;ments du document. Le nom d'&eacute;l&eacute;ment est ici d&eacute;terminant, en HTML par exemple des noms comme <code>h1</code>, <code>blockquote</code> ou bien <code>img</code>. Pour chaque type d'&eacute;l&eacute;ment   HTML est cr&eacute;&eacute; un tableau (Array) dans le document, par lequel les diff&eacute;rents &eacute;l&eacute;ments peuvent &ecirc;tre adress&eacute;s.</p>
+
+<p>Malheureusement, cette m&eacute;thode du mod&egrave;le DOM n'est pas pr&eacute;vu dans la variante HTML, pourtant elle fonctionne malgr&eacute; tout avec les interpr&eacute;teurs JavaScript des navigateurs plus r&eacute;cents. C'est pourquoi, elle est d&eacute;crite ici - &agrave; la diff&eacute;rence des autres propri&eacute;t&eacute;s et m&eacute;thodes de l'objet <code>document</code> - dans la variante XML du mod&egrave;le DOM.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_get_elements_by_tag_name.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+&lt;!--
+.normal { font-style:normal }
+--&gt;
+&lt;/style&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ function nouveautexte() {
+ document.getElementsByTagName(&quot;p&quot;)[0].firstChild.data = &quot;nouveau premier&quot;;
+ document.getElementsByTagName(&quot;p&quot;)[1].firstChild.data = &quot;nouveau deuxi�me&quot;;
+ document.getElementsByTagName(&quot;p&quot;)[2].firstChild.data = &quot;nouveau troisi�me&quot;;
+ document.getElementsByTagName(&quot;h1&quot;)[0].firstChild.data = &quot;Tout change&quot;;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Dynamique, tr�s dynamique&lt;/h1&gt;
+&lt;p&gt;Un premier paragraphe&lt;/p&gt;
+&lt;p&gt;Un deuxi�me paragraphe&lt;/p&gt;
+&lt;p&gt;Un troisi�me paragraphe&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;javascript:nouveautexte()&quot;&gt;Nouveaux textes&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple sont not&eacute;s un titre N�1 et trois paragraphes de texte. Aucun de ces &eacute;l&eacute;ments ne contient le moindre attribut, par lequel il pourrait &ecirc;tre adress&eacute; individuellement. Au dessous est not&eacute; un lien qui appelle, quand il est cliqu&eacute; la fonction <code>nouveautexte()</code> qui est not&eacute;e dans l'ent&ecirc;te de fichier. Cette fonction modifie de fa&ccedil;on dynamique les textes des trois paragraphes et du titre.<br>
+Par <code>document.getElementsByTagName(&quot;p&quot;)[0]</code> elle acc&egrave;de au premier paragraphe de texte du document, par <code>document.getElementsByTagName(&quot;p&quot;)[1]</code> au deuxi&egrave;me, par <code>document.getElementsByTagName(&quot;h1&quot;)[0]</code> au premier titre N�1 etc...</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>La m&eacute;thode <code>getElementsByTagName()</code> r&eacute;git en fin de compte l'acc&egrave;s aux &eacute;l&eacute;ments. Pour savoir ce que vous pouvez faire avec quels &eacute;l&eacute;ments HTML, vous pouvez avoir une vue d'ensemble dans la partie sur les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementshtml.htm"><b>Objets &eacute;l&eacute;ments HTML .</b></a>Les autres possibilit&eacute;s d'influencer de fa&ccedil;on dynamique les &eacute;l&eacute;ments HTML sont offgrtes par l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="node.htm"><b>node</b></a>. La propri&eacute;t&eacute; <code>firstChild.data</code>, utilis&eacute;e dans l'exemple ci-dessus pour modifier de fa&ccedil;on dynamique le texte contenu dans l'&eacute;l&eacute;ment, fait partie elle-aussi du complexe de l'objet <code>node</code>.</p>
+
+<p>Opera 5.12 conna&icirc;t &eacute;galement la m&eacute;thode  <code>getElementsByTagName()</code> pour adresser des &eacute;l&eacute;ments. L'exemple ci-dessus ne fonctionne cependant pas avec ce navigateur.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"> <a class="an" name="get_selection">getSelection()</a></h2>
+
+<p>Recherche du texte s&eacute;lectionn&eacute; par l'utilisateur dans le document. Dans  Netscape 4 cette m&eacute;thode &eacute;tait li&eacute;e &agrave; l'objet document. Depuis  Netscape 6 elle est affili&eacute;e &agrave; l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm"><b>window</b></a>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_get_selection.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+  function texteselectionne()
+  {
+   if (window.getSelection) alert(window.getSelection());
+   else if (document.getSelection) alert(document.getSelection());
+        else if (document.selection) alert(document.selection.createRange().text);
+  }
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+Beaucoup de texte � s�lectionner beaucoup de texte � s�lectionner
+&lt;form&gt;
+&lt;input type=&quot;button&quot; value=&quot;montrer&quot; onMouseDown=&quot;texteselectionne();&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple appelle, lorsque l'on clique sur le bouton d&eacute;fini, la fonction <code>texteselectionne()</code>. Dans cette fonction, il est v&eacute;rifi&eacute; si le navigateur conna&icirc;t la m&eacute;thode <code>window.getSelection()</code>. Si c'est le cas, alors elle est appel&eacute;e et le texte s&eacute;lectionn&eacute; est sorti. Si le navigateur ne conna&icirc;t pas cette m&eacute;thode, alors il est v&eacute;rifi&eacute; s'il conna&icirc;t le m&eacute;thode <code>document.getSelection()</code> et le cas &eacute;ch&eacute;ant, le texte s&eacute;lectionn&eacute; est sorti.<br>
+Le deuxi&egrave;me embranchement else-if- de l'exemple traite un cas particulier pour l'Explorer Internet MS. Celui-ci ne conna&icirc;t pas la m&eacute;thode  <code>getSelection()</code> mais toutefois un objet <code>selection</code>. Avec <code>document.selection.createRange().text</code> vous recevez ici le texte s&eacute;lectionn&eacute;. La condition pr&eacute;alable est que du texte ait &eacute;t&eacute; s&eacute;lectionn&eacute; auparavant. Sinon la fonction <code>texteselectionne()</code> donne comme r&eacute;sultat une cha&icirc;ne de caract&egrave;res vide (<code>&quot;&quot;</code>).</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"> <a class="an" name="handle_event">handleEvent()</a></h2>
+
+<p>Transmet un &eacute;v&eacute;nement &agrave; un &eacute;l&eacute;ment qui est capable de r&eacute;agir &agrave; l'&eacute;v&eacute;nement.  Cela fonctionne exactement comme  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#handle_event"><b>handleEvent() pour l'objet window</b></a> (pour plus de d&eacute;tails s'y r&eacute;f&eacute;rer). La seule diff&eacute;rence r&eacute;side dans le fait que  <code>document.handleEvent()</code> ne peut transmettre que des &eacute;v&eacute;nements qui sont surveill&eacute;s avec  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#capture_events"><b>document.captureEvents()</b></a>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="open">open()</a></h2>
+
+<p>Ouvre un document pour &eacute;crire. Pour cela, aucune fen&ecirc;tre n'est ouverte mais le contenu de la fen&ecirc;tre est lib&eacute;r&eacute; pour l'&eacute;criture. Au cas o&ugrave; le document avait un contenu auparavant, par exemple un fichier HTML charg&eacute; en premier lieu, vous devez d'abord appeler la m&eacute;thode  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#close"><b>close()</b></a>.<br>
+Peut &ecirc;tre appel&eacute; sans, avec un ou avec deux param&egrave;tres. Les param&egrave;tres suivants sont possibles:<br>
+<b>1.</b> <i>Type Mime</i> = Une d&eacute;signation du type Mime pour le genre de donn&eacute;es qui doivent &ecirc;tre &eacute;crites dans la fen&ecirc;tre du document. Ainsi vous pouvez avec la mention   <code>&quot;x-world/x-vrml&quot;</code> ouvrir la fen&ecirc;tre du document pour &eacute;crire du code VRML. Avec les commandes  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#write"><b>write()</b></a>- et <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#writeln"><b>writeln()</b></a> vous pouvez alors &eacute;crire du code VRML de fa&ccedil;on dynamique.<br>
+<b>2.</b> <i>replace</i> = avec <code>document.open(&quot;text/html&quot;,&quot;replace&quot;)</code> vous ouvrez le document pour &eacute;crire en HTML et faites en sorte que le nouveau contenu du document occupe la m&ecirc;me place dans l'historique des pages visit&eacute;es que le document dans lequel se trouve la commande open.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_open.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function change() {
+ document.open();
+ document.write(&quot;&lt;a href=\&quot;fichier.htm\&quot;&gt;Et maintenant, je suis ici&lt;/a&gt;&quot;);
+ document.close();
+}
+document.open();
+document.write(&quot;&lt;a href=\&quot;javascript:change()\&quot;&gt;Je suis encore ici&lt;/a&gt;&quot;);
+document.close();
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Le script en exemple ex&eacute;cute dans un premier temps la partie inf&eacute;rieure du code &eacute;tant donn&eacute; que la partie sup&eacute;rieure fait partie de la fonction  <code>change()</code> qui ne sera ex&eacute;cut&eacute;e que sur appel. Dans la partie inf&eacute;rieure un lien est &eacute;crit, dans la fen&ecirc;tre du document, de fa&ccedil;on dynamique avec JavaScript. Si l'utilisateur clique sur le lien la fonction  <code>change()</code> est appel&eacute;e. Cette fonction ouvre la fen&ecirc;tre du document pour &eacute;crire &agrave; nouveau et &eacute;crit de fa&ccedil;on dynamique un lien au fichier actuel (il est suppos&eacute; que le fichier-exemple s'appelle  <code>fichier.htm</code>). Si l'utilisateur clique sur le lien, le fichier est charg&eacute; et ainsi c'est le premier lien qui est &eacute;crit &agrave; nouveau.<br>
+Notez que l'exemple ne fonctionne comme c'est d&eacute;crit qu'&agrave; partir de Netscape 3.x. Certes, Netscape 2.x conna&icirc;t d&eacute;j&agrave; aussi <code>document.open()</code> mais ne vide pas la fen&ecirc;tre du document.</p>
+
+<h3>Attention:</h3>
+<p>Opera 5.12 conna&icirc;t d'apr&egrave;s sa documentation, la m&eacute;thode <code>open()</code> et l'applique correctement dans de nombreux cas. Cet exemple ne peut cependant pas &ecirc;tre ex&eacute;cut&eacute; jusqu'&agrave; son terme par le navigateur et ne peut &ecirc;tre ex&eacute;cut&eacute; correctement que si l'on emploie pas <code>document.open()</code>. Comme alternative, vous pouvez appeler la fonction avec <code>&lt;a href=&quot;#&quot; onclick=&quot;change();return false&quot;&gt;</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"> <a class="an" name="release_events">releaseEvents()</a></h2>
+
+<p>Termine la surveillance d'&eacute;v&eacute;nements utilisateur. Fonctionne exactement comme  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#release_events"><b>releaseEvents() pour l'objet  window</b></a> (pour plus de d&eacute;tails, s'y r&eacute;f&eacute;rer). La seule diff&eacute;rence r&eacute;side dans le fait que <code>document.releaseEvent()</code> ne peut terminer que des surveillances d'&eacute;v&eacute;nements qui sont commenc&eacute;es avec  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#capture_events"><b>document.captureEvents()</b></a>.</p>
+
+<h3 class="inf">Attention:  </h3>
+
+<p>Netscape 6 n'interpr&egrave;te pas cette m&eacute;thode (n'interpr&egrave;te plus).</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"> <a class="an" name="route_event">routeEvent()</a></h2>
+
+<p>Transmet un &eacute;v&eacute;nement utilisateur &agrave; l'objet document. &Agrave; partir de l&agrave;, l'&eacute;v&eacute;nement est transmis plus bas dans la hi&eacute;rarchie jusqu'&agrave; ce qu'il rencontre un Event-Handler qui traite l'&eacute;v&eacute;nement. Fonctionne exactement comme  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#route_event"><b>routeEvent() pour l'objet window</b></a> (pour plus de d&eacute;tails, s'y r&eacute;f&eacute;rer). La seule diff&eacute;rence r&eacute;side dans le fait que <code>document.routeEvent()</code> ne s'applique pas au niveau de la fen&ecirc;tre, mais au niveau du document.</p>
+
+<h3 class="inf">Attention:  </h3>
+
+<p>Netscape 6 n'interpr&egrave;te pas cette m&eacute;thode (n'interpr&egrave;te plus).</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="write">write()</a></h2>
+
+<p>Sort un texte dans le document. Attend une cha&icirc;ne de caract&egrave;res ou une expression JavaScript comme param&egrave;tre.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_write.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+tonnom = prompt(&quot;Entre ton nom:&quot;,&quot;Nom&quot;);
+document.write(&quot;&lt;b&gt;Bonjour &quot; + tonnom + &quot;&lt;\/b&gt;&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple montre &agrave; la lecture du fichier avec  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#prompt"><b>prompt()</b></a> une boite de dialogue dans laquelle l'utilisateur doit entrer son nom. La valeur entr&eacute;e est sauvegard&eacute;e dans la variable  <code>tonnom</code> Enfin est &eacute;crit avec  <code>document.write()</code> le mot &quot;Bonjour&quot;  suivi d'un espace. &Agrave; la suite de cette cha&icirc;ne de caract&egrave;res est accroch&eacute;e la variable  <code>tonnom</code>. Ainsi par exemple on a &agrave; la suite dans le texte &quot;Bonjour Carole&quot; si dans la boite de dialogue &quot;Carole&quot; a &eacute;t&eacute; entr&eacute; comme nom. Pour obtenir une sortie en caract&egrave;res gras, ce texte est plac&eacute; dans l'&eacute;l&eacute;ment HTML correspondant.</p>
+
+<p>Il est &eacute;galement permis d'employer plusieurs cha&icirc;nes de caract&egrave;res ou expressions, s&eacute;par&eacute;es par des virgules &agrave; l'int&eacute;rieur de <code>document.write()</code>, par exemple:<br>
+<code>document.write(&quot;Vous  &quot;, document.layers ? &quot;utilisez Netscape &agrave; partir de V4&quot; : &quot;n'utilisez pas Netscape &agrave; partir de V4&quot;);</code><br>
+Cet exemple contient d'abord une cha&icirc;ne de caract&egrave;res, puis s&eacute;par&eacute;e par une virgule une expression complexe qui recherche si l'utilisateur utilise un navigateur qui conna&icirc;t l'objet layers.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>La barre oblique  <code>/</code> dans les rep&egrave;res de fermeture doit &ecirc;tre masqu&eacute;e pour la sortie avec le signe <code>\</code>. Cela s'applique en particulier quand vous d&eacute;sirez &eacute;crire de fa&ccedil;on dynamique encore du code JavaScript sous la forme <code>document.write(&quot;&lt;script&gt;...&lt;/script&gt;&quot;)</code>. Quand il est &eacute;crit masqu&eacute; <code>&lt;script&gt;...&lt;\/script&gt;</code>, le passage script &eacute;crit de fa&ccedil;on dynamique est interpr&eacute;t&eacute; comme bloc autonome et le script actuel continue &agrave; &ecirc;tre ex&eacute;cut&eacute; sans en tenir compte.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/dom10.gif" width="30" height="30" border="0" alt="DOM 1.0"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="writeln">writeln()</a></h2>
+
+<p>Comme <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#write"><b>write()</b></a> -  ins&egrave;re cependant automatiquement un saut de ligne &agrave; la fin. C'est pourquoi cette m&eacute;thode est avant tout int&eacute;ressante pour &eacute;crire des contenus dans lesquels les passages &agrave; la ligne sont importants.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/document_writeln.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+document.write(&quot;&lt;pre&gt;pas de passage � la ligne &quot;);
+document.writeln(&quot;premi�re ligne&quot;);
+document.writeln(&quot;deuxi�me ligne &lt;\/pre&gt;&quot;);
+document.writeln(&quot;troisi�me ligne&quot;);
+document.writeln(&quot;quatri�me ligne&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans la premi&egrave;re ligne, un <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/texte/preformate.htm"><b>texte pr&eacute;format&eacute;</b></a>  est introduit avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#write"><b>document.write()</b></a>. Il sert dans l'exemple &agrave; mettre en &eacute;vidence les passages &agrave; la ligne. La m&eacute;thode <code>document.write()</code> ne cr&eacute;&eacute;e aucun passage &agrave; la ligne. Le contenu de la ligne suivante (&quot;premi&egrave;re ligne&quot;) est sorti pour cette raison sur la m&ecirc;me ligne. &Eacute;tant donn&eacute; cependant que cette cha&icirc;ne de caract&egrave;res est sortie avec <code>document.writeln()</code>, un passage &agrave; la ligne est g&eacute;n&eacute;r&eacute; &agrave; la fin du texte source. La ligne suivante (&quot;deuxi&egrave;me ligne&quot;) est sortie pour cette raison sur une nouvelle ligne. En m&ecirc;me temps se termine sur cette ligne, dans l'exemple la partie pr&eacute;-format&eacute;e. La troisi&egrave;me et quatri&egrave;me ligne sont &eacute;crites elles aussi avec <code>document.writeln()</code>. En interne, des passages &agrave; la ligne sont cr&eacute;&eacute;s dans le texte source. Pour la sortie dans le navigateur, ceux-ci ne sont pourtant visibles que comme des espaces, conform&eacute;ment &agrave; la r&egrave;gle HTML stipulant que les passages &agrave; la ligne sont transform&eacute;s en espaces.</p>
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="all.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="elementshtml.htm"><b>Objets &eacute;l&eacute;ments HTML</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="frames.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="frames.htm"><b>frames</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

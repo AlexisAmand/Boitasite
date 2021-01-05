@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript/DOM / &Eacute;l&eacute;ments du langage JavaScript / Instructions conditionnelles (if-else/switch)</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Welche Aufgaben bedingte Anweisungen haben und wie Sie solche Anweisungen in JavaScript notieren.">
+<meta name="keywords"       content="SELFHTML, JavaScript, if, else, switch, case, bedingte Anweisungen">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/langage/condition.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // &Eacute;l&eacute;ments du langage JavaScript == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments du langage JavaScript</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Instructions conditionnelles (if-else/switch)</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#if_else"><b>Conditions si, alors... avec &quot;if&quot;</b></a> <br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#soit_soit"><b> Simple demande soit, soit</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#switch"><b>Diff&eacute;renciation de cas avec  &quot;switch&quot;</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0">&nbsp;<a class="an" name="if_else">Conditions si, alors... avec &quot;if&quot;</a></h2>
+
+<p>Vous pouvez faire d&eacute;pendre l'ex&eacute;cution d'instructions de conditions.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/motdepasse.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (mot de passe = <i>danseuretoile</i>)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function secret() {
+ var motpasse = &quot;danseuretoile&quot;;
+ var saisie = window.prompt(&quot;Veuillez donner le mot de passe:&quot;,&quot;&quot;);
+ if(saisie != motpasse) {
+   alert(&quot;Mot de passe erron�!&quot;);
+   secret();
+ }
+ else
+   document.location.href=&quot;secret.htm&quot;;
+}
+// --&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body onload=&quot;secret()&quot;&gt;
+&lt;h1&gt;Vous n'acc�dez ici qu'avec un mot de passe ;-)&lt;/h1&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple repr&eacute;sente une demande de mot de passe simple. Le script est not&eacute; dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="fonctions.htm"><b>fonction</b></a> nomm&eacute;e <code>secret()</code>, qui est appel&eacute;e d&egrave;s que le fichier HTML est compl&egrave;tement charg&eacute;. &Agrave; cet effet, est not&eacute; dans le rep&egrave;re d'ouverture <code>&lt;body&gt;</code> le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="gestevenements.htm"><b>gestionnaire d'&eacute;v&eacute;nement</b></a> <code>onLoad</code>. Dans la fonction, une fen&ecirc;tre de dialogue (<code>window.prompt()</code>) r&eacute;clame de l'utilisateur qu'il entre un mot de passe. La valeur renvoy&eacute;e par <code>window.prompt()</code>, le mot de passe saisi, est sauvegard&eacute; dans la variable <code>saisie</code>.<br>
+Avec  <code>if(saisie != motpasse)</code> le script demande si la saisie est diff&eacute;rente de  la valeur affect&eacute;e <code>danseuretoile</code> auparavant &agrave; la variable <code>motpasse</code>. Si c'est le cas, &agrave; savoir si les deux valeurs sont diff&eacute;rentes, alors la saisie est erron&eacute;e. Dans ce cas, une annonce correspondante est sortie avec <code>alert()</code>. Ensuite la fonction <code>secret()</code> est appel&eacute;e &agrave; nouveau et l'utilisateur peut essayer encore d'entrer le mot de passe. Dans le cas contraire (<code>else</code>), quand <code>saisie</code> et <code>motpasse</code> ont la m&ecirc;me valeur, une autre page est appel&eacute;e avec <code>document.location.href</code>, en l'occurrence, la page &quot;prot&eacute;g&eacute;e&quot;.</p>
+
+<p>Avec <code>if</code> Vous introduisez une condition si, alors... (<i>if = si</i>). Derri&egrave;re, entre parenth&egrave;ses, vous formulez la condition. Pour formuler de telles conditions, vous avez besoin d'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="operateurs.htm#comparaison"><b>op&eacute;rateurs de comparaison</b></a> et &eacute;galement, dans la plupart des cas, de  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="variables.htm"><b>variables</b></a>. Pour les cas o&ugrave; la condition n'est pas remplie, vous pouvez d&eacute;finir une alternative &quot;sinon&quot;. Cela se fait avec  <code>else</code> (<i>else = sinon</i>).</p>
+
+<p>Une ramification Else n'est pas absolument indispensable. Si vous voulez noter plus d'une instruction sous et d&eacute;pendant de  <code>if</code> ou de <code>else</code>,  vous devez les mettre entre des parenth&egrave;ses   <b>accolade</b> (voir aussi la partie sur les  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="regles.htm#blocs_instructions"><b>blocs d'instructions</b></a>).</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0">&nbsp;<a class="an" name="soit_soit">Simple demande soit, soit</a></h2>
+
+<p>Pour les simple demandes soit, soit, il y a une syntaxe sp&eacute;ciale que vous pouvez employer en remplacement de l'instruction  if/else.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/sensdelavie.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function reponse() {
+ var resultat = (document.Formular.saisie.value == &quot;42&quot;) ? &quot;CORRECTE!&quot; : &quot;FAUSSE!&quot;;
+ document.formulaire.saisie.value =
+   &quot;La r�ponse est &quot; + resultat;
+}
+// --&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Le sens de la vie&lt;/h1&gt;
+&lt;form name=&quot;formulaire&quot;&gt;
+&lt;p&gt;Quel est le sens de la vie?&lt;/p&gt;
+&lt;input type=&quot;text&quot; name=&quot;saisie&quot; size=&quot;40&quot;&gt;
+&lt;input type=&quot;button&quot; value=&quot;OK&quot; onClick=&quot;reponse()&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple contient une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="fonctions.htm"><b>fonction</b></a> JavaScript nomm&eacute;e <code>reponse()</code>. Cette fonction est appel&eacute;e quand l'utilisateur clique sur le bouton marqu&eacute; <code>OK</code> dans le formulaire HTML not&eacute; plus bas, et cela avec le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="gestevenements.htm"><b>gestionnaire d'&eacute;v&eacute;nement</b></a> <code>onClick</code>. La fonction v&eacute;rifie si la valeur du champ de saisie du formulaire (<code>document.formulaire.saisie.value</code>) a la valeur <code>42</code>. Selon la r&eacute;ponse, c'est soit la valeur <code>CORRECTE!</code> ou bien la valeur <code>FAUSSE!</code> qui est affect&eacute;e &agrave; la variable <code>resultat</code>. Ensuite une phrase correspondante est compos&eacute;e dans le champ de texte du formulaire qui a servi &agrave; la saisie (voir aussi &agrave; ce sujet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="operateurs.htm#concatener_chaines"><b>Op&eacute;rateur pour relier des cha&icirc;nes de caract&egrave;res</b></a>).</p>
+
+<p>Une simple demande soit..., soit... est introduite par une condition.  La condition doit &ecirc;tre entre parenth&egrave;ses, dans l'exemple  <code>(document.formulaire.saisie.value == &quot;42&quot;)</code>.  Derri&egrave;re est not&eacute; un point d'interrogation. Derri&egrave;re celui-ci est mentionn&eacute;e une valeur qui est celle qui est valable quand la condition est remplie. Suivent deux points et une valeur pour le cas o&ugrave; la condition ne serait pas remplie. &Eacute;tant donn&eacute; qu'il s'agit de valeurs qui n'ont de sens pour la suite que si elles sont sauvegard&eacute;es dans une variable, il est plac&eacute;, en r&egrave;gle g&eacute;n&eacute;rale, au d&eacute;but d'une telle demande soit..., soit... une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="variables.htm"><b>variable</b></a>, dans l'exemple la variable  <code>resultat</code>. La variable se voit affecter par ce genre d'instruction le r&eacute;sultat de la demande soit..., soit...</p>
+
+<p>Pour formuler des conditions vous avez besoin d'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="operateurs.htm#comparaison"><b>op&eacute;rateurs de comparaison.</b></a>.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="switch">Diff&eacute;renciation de cas avec  &quot;switch&quot;</a></h2>
+
+<p>Avec <code>if</code> et <code>else</code> vous pouvez diff&eacute;rencier exactement deux cas. Si vous voulez op&eacute;rer une diff&eacute;renciation plus fine, donc diff&eacute;rencier entre plusieurs cas, vous pouvez certes noter plusieurs demandes if l'une derri&egrave;re l'autre, mais il existe une possibilit&eacute; plus &eacute;l&eacute;gante: la diff&eacute;renciation de cas avec &quot;switch&quot;. Cette syntaxe, issue du langage de programmation C, existe en JavaScript seulement depuis la version 1.2 du langage - Les navigateurs plus anciens rencontrent de telles instructions en sortant un message d'erreur.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/unaquatre.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var saisie = window.prompt(&quot;Entrez un nombre entre 1 et 4:&quot;,&quot;&quot;);
+switch(saisie) {
+ case &quot;1&quot;:
+ alert(&quot;Vous �tes tr�s modeste&quot;);
+ break;
+ case &quot;2&quot;:
+ alert(&quot;Vous �tes un bip�de sinc�re&quot;);
+ break;
+ case &quot;3&quot;:
+ alert(&quot;Vous avez gagn� un tricycle&quot;);
+ break;
+ case &quot;4&quot;:
+ alert(&quot;Marchez � quatre pattes et vous serez plus modeste&quot;);
+ break;
+ default:
+ alert(&quot;Vous restez malheureusement sot&quot;);
+ break;
+}
+// --&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>switch</code> vous introduisez une diff&eacute;renciation de cas (<i>switch = interrupteur</i>).  Suit entre parenth&egrave;ses une variable ou une expression pour la valeur actuelle de laquelle vous diff&eacute;renciez les cas. Dans l'exemple, c'est la variable nomm&eacute;e <code>saisie</code>. Cette variable se voit affecter une valeur avant la diff&eacute;renciation de cas, car une boite de dialogue (<code>window.prompt()</code>) avec un champ de saisie demande &agrave; l'utilisateur d'entrer un chiffre entre 1 et 4. La valeur entr&eacute;e est sauvegard&eacute;e dans  <code>saisie</code>.</p>
+
+<p>Les diff&eacute;rents cas que vous d&eacute;sirez distinguer sont not&eacute;s dans des parenth&egrave;ses accolade. Chaque cas distinct est introduit par  <code>case</code>  (<i>case = cas</i>). Suit la mention de la valeur que vous voulez v&eacute;rifier. L'instruction  <code>case &quot;1&quot;:</code> dans l'exemple ci-dessus signifie &agrave; peu pr&egrave;s: 'Si la variable <code>entree</code> a la valeur &quot;1&quot; '. Dans l'exemple une annonce individuelle est donn&eacute;e pour chaque cas.</p>
+
+<p>Le mot <code>break</code> &agrave; la fin est lui aussi important (<i>break = interrompre</i>). Si vous oubliez le mot, tous les cas suivants seront aussi ex&eacute;cut&eacute;s mais ce n'est pas en g&eacute;n&eacute;ral ce que vous voulez obtenir.</p>
+
+<p>Pour le cas o&ugrave; aucun des cas d&eacute;finis n'est exact, vous pouvez &agrave; la fin de la diff&eacute;renciation de cas, d&eacute;finir le cas <code>default:</code>: Les instructions not&eacute;es apr&egrave;s seront alors ex&eacute;cut&eacute;es si aucun des autres cas n'est exact.</p>
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="boucles.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="boucles.htm"><b>Boucles (while/for/do-while)</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="operateurs.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="operateurs.htm"><b>Op&eacute;rateurs</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments du langage JavaScript</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

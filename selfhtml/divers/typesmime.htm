@@ -1,0 +1,815 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: Divers compl&eacute;ments techniques / Types Mime</title>
+<link rel="stylesheet" type="text/css" href="../src/selfhtml.css">
+<meta name="description"    content="&Agrave; quoi sont employ&eacute;s les types Mime, comment sont ils construits et quels sont ils.">
+<meta name="keywords"       content="SELFHTML, types Mime, text/*, image/*, video/*, audio/*, application/*, multipart/*, message/*">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/divers/typesmime.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../index.htm // Divers compl&eacute;ments techniques == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../index.htm"><b>SELFHTML</b></a>/<a href="../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Divers compl&eacute;ments techniques</b></a> </td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Types Mime</h2></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur les types Mime</b></a><br>
+<img src="../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#recapitulatif"><b>R&eacute;capitulatif des types Mime</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur les types Mime</a></h2>
+
+<p><b>Mime</b> figure pour <b>M</b>ultipurpose <b>I</b>nternet <b>M</b>ail <b>E</b>xtensions. Le nom r&eacute;v&egrave;le que ce qui est sp&eacute;cifi&eacute; l&agrave; &eacute;tait con&ccedil;u &agrave; l'origine pour des courriels - et m&ecirc;me pour des courriels avec &quot;Attachments&quot; (terme anglais pour <i>pi&egrave;ce jointe</i>). Ces courriels composites  contiennent la globalit&eacute; des donn&eacute;es &agrave; transmettre dans un seul fichier. Il fallait trouver une convention &agrave; l'int&eacute;rieur du fichier pour en diff&eacute;rencier les diff&eacute;rentes parties (par exemple le texte du courriel et le fichier ZIP joint). Ici a &eacute;t&eacute; trouv&eacute; un sch&eacute;ma qui fait savoir au logiciel d'interpr&eacute;tation, le type de donn&eacute;es dont il s'agit dans la partie suivante du courriel.</p>
+
+<p>Le sch&eacute;ma ne s'av&eacute;ra pas seulement utile pour les courriels. Presque toujours quand des programmes &eacute;loign&eacute;s communiquent ensemble (par exemple un navigateur Web et un serveur Web) pour se transmettre des donn&eacute;es, il est aussi question du genre des donn&eacute;es &agrave; transmettre. Pour le faire s'est impos&eacute; dans tout Internet le sch&eacute;ma des types MIME. M&ecirc;me sur le Web, on rencontre &agrave; divers endroits des types Mime:</p>
+
+<ul>
+<li>Diff&eacute;rents &eacute;l&eacute;ments HTML ont des attributs qui attendent la mention d'un type Mime comme affectation de valeur, &agrave; savoir <img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../html/reference/attributs.htm#a"><b>a</b></a> (<code>type=</code>), <img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../html/reference/attributs.htm#form"><b>form</b></a> (<code>accept=</code> et <code>enctype=</code>), <img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../html/reference/attributs.htm#input"><b>input</b></a> (<code>accept=</code>), <img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../html/reference/attributs.htm#link"><b>link</b></a> (<code>type=</code>, <img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../html/reference/attributs.htm#object"><b>object</b></a> (<code>codetype=</code> et <code>type=</code>), <img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../html/reference/attributs.htm#param"><b>param</b></a> (<code>type=</code>), <img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../html/reference/attributs.htm#script"><b>script</b></a> (<code>type=</code>) et <img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../html/reference/attributs.htm#style"><b>style</b></a> (<code>type=</code>)</li>
+<li>Quand un script CGI envoie un <img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../cgiperl/langage/obligatcgi.htm#httpheader"><b>ent&ecirc;te HTTP</b></a> au navigateur appelant, il doit envoyer le type Mime des donn&eacute;es qui suivent.</li>
+<li>En JavaScript, il existe un objet distinct <img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../javascript/objets/mimetypes.htm"><b>MimeTypes</b></a>, qui permet de rechercher les types Mime disponibles du navigateur.</li>
+</ul>
+
+<p>Tout navigateur Web aussi bien que tout serveur Web ont la liste de tous les types Mime qui leur sont connus. Lors de la communication, ils doivent se mettre d'accord si le destinataire accepte le type Mime que l'exp&eacute;diteur veut envoyer. Les navigateurs modernes acceptent bien en r&egrave;gle g&eacute;n&eacute;rale tous les types Mime et proposent simplement &agrave; l'utilisateur au cas o&ugrave; ils ne connaissent pas le type Mime de sauvegarder les donn&eacute;es &agrave; recevoir comme fichier t&eacute;l&eacute;charg&eacute;. Le plupart du temps, les serveurs Web sont par contre plus sensibles. Ils ne traitent pas les types Mime qu'ils ne connaissent pas. Pr&eacute;cis&eacute;ment quand sur l'ordinateur serveur des formats de fichiers peu courants sont mis &agrave; disposition, il est important d'en noter le type Mime dans la configuration du serveur.</p>
+
+<p>Pour les formats de fichier standard vous devez absolument utiliser les mentions de type Mime pr&eacute;vues &agrave; cet effet. Le r&eacute;capitulatif plus bas sur cette page dresse la liste de nombreux types Mime connus. Quand malgr&eacute; vos recherches, par exemple dans le <img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.isi.edu/in-notes/iana/assignments/media-types/"><b>r&eacute;pertoire des types de m&eacute;dias</b></a> IANA vous ne trouvez pas le moindre renseignement qui vous dise s'il existe d&eacute;j&agrave; un type Mime &eacute;tabli pour un format de fichier donn&eacute;, vous pouvez en fixer un vous-m&ecirc;me. La m&ecirc;me chose s'applique pour des formats de fichier enti&egrave;rement personnels.</p>
+
+<p>Pour ce faire, vous devez conna&icirc;tre le sch&eacute;ma des types Mime. Un type Mime comprend deux parties: la mention d'un type de m&eacute;dia et la mention d'un sous-type. Les deux mentions sont s&eacute;par&eacute;es par une barre oblique. Exemples: <code>text/html</code>, <code>image/gif</code>.</p>
+
+<p>Il existe les types de m&eacute;dia suivants:<br>
+<code>text</code> = pour les fichiers texte<br>
+<code>image</code> = pour les fichiers graphiques<br>
+<code>video</code> = pour les fichiers vid&eacute;o<br>
+<code>audio</code> = pour les fichiers son<br>
+<code>application</code> = pour les fichiers qui sont li&eacute;s &agrave; un programme d&eacute;termin&eacute;<br>
+<code>multipart</code> = pour les donn&eacute;es en plusieurs parties<br>
+<code>message</code> = pour les nouvelles<br>
+<code>model</code> = pour les fichiers qui repr&eacute;sentent des structures en plusieurs dimensions</p>
+
+<p>Les sous-types pour des formats de fichier propres au serveur, c'est &agrave; dire des types de fichier qui peuvent &ecirc;tre ex&eacute;cut&eacute;s sur le serveur, sont introduit la plupart du temps avec <code>x-</code>.</p>
+
+<p>Le sch&eacute;ma du type Mime est fix&eacute; dans les <img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../introduction/aide/docs.htm#rfcs"><b>Requests for Comments (RFCs)</b></a> portant les num&eacute;ros 2045, 2046 et 2077.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="recapitulatif">R&eacute;capitulatif des types Mime</a></h2>
+
+<p>La liste est tri&eacute;e alphab&eacute;tiquement et n'a pas la pr&eacute;tention d'&ecirc;tre exhaustive.</p>
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left">type Mime</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">extension(s) de fichier</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">signification</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/acad</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.dwg</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers AutoCAD (d'apr&egrave;s NCSA)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/applefile</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers AppleFile</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/astound</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.asd *.asn</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Astound</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/dsptype</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.tsp</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers TSP</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/dxf</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.dxf</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers AutoCAD (d'apr&egrave;s CERN)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/futuresplash</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.spl</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Flash Futuresplash</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/gzip</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.gz</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers GNU Zip</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/listenup</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.ptlk</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Listenup</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/mac-binhex40</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.hqx</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers binaires Macintosh </td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/mbedlet</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.mbd</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Mbedlet</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/mif</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.mif</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers FrameMaker Interchange Format</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/msexcel</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.xls *.xla</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Microsoft Excel</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/mshelp</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.hlp *.chm</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers d'aide Microsoft Windows</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/mspowerpoint</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.ppt *.ppz *.pps *.pot</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Microsoft Powerpoint</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/msword</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.doc *.dot</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Microsoft Word</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/octet-stream</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.bin *.exe *.com *.dll *.class</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers ex&eacute;cutables</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/oda</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.oda</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Oda</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/pdf</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.pdf</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Adobe PDF</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/postscript</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.ai *.eps *.ps</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Adobe Postscript</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/rtc</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.rtc</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers RTC</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/rtf</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.rtf</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Microsoft RTF</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/studiom</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.smp</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Studiom</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/toolbook</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.tbk</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Toolbook</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/vocaltec-media-desc</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.vmd</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Vocaltec Mediadesc</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/vocaltec-media-file</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.vmf</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Vocaltec Media</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-bcpio</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.bcpio</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers BCPIO</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-compress</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.z</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers -</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-cpio</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.cpio</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers CPIO</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-csh</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.csh</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers C-Shellscript</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-director</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.dcr *.dir *.dxr</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers -</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-dvi</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.dvi</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers DVI</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-envoy</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.evy</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Envoy</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-gtar</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.gtar</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers archives GNU tar</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-hdf</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.hdf</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers HDF</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-httpd-php</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.php *.phtml</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers PHP</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-javascript</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.js</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers  JavaScript c&ocirc;t&eacute; serveur</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-latex</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.latex</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers source Latex</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-macbinary</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.bin</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers binaires Macintosh</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-mif</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.mif</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers FrameMaker Interchange Format</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-netcdf</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.nc *.cdf</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Unidata CDF</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-nschat</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.nsc</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers NS Chat</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-sh</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.sh</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Bourne Shellscript</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-shar</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.shar</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers atchives Shell</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-shockwave-flash</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.swf *.cab</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Flash Shockwave</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-sprite</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.spr *.sprite</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Sprite</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-stuffit</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.sit</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Stuffit</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-supercard</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.sca</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Supercard</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-sv4cpio</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.sv4cpio</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers CPIO</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-sv4crc</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.sv4crc</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers CPIO avec CRC</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-tar</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.tar</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers archives tar</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-tcl</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.tcl</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers script TCL</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-tex</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.tex</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers TEX</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-texinfo</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.texinfo *.texi</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers TEXinfo</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-troff</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.t *.tr *.roff</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers TROFF (Unix)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-troff-man</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.man *.troff</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers TROFF avec macros MAN (Unix)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-troff-me</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.me *.troff</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers TROFF avec macros ME (Unix)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-troff-ms</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.me *.troff</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers TROFF avec macros MS (Unix)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-ustar</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.ustar</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers archives tar (Posix)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-wais-source</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.src</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers source WAIS</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/x-www-form-urlencoded</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Donn&eacute;es de formulaire HTML &agrave; CGI</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/zip</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.zip</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers archives ZIP</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>audio/basic</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.au *.snd</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers son</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>audio/echospeech</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.es</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Echospeed</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>audio/tsplayer</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.tsi</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers TS-Player</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>audio/voxware</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.vox</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Vox</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>audio/x-aiff</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.aif *.aiff *.aifc</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers son AIFF</td>
+
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>audio/x-dspeeh</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.dus *.cht</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers parole</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>audio/x-midi</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.mid *.midi</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers MIDI</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>audio/x-mpeg</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.mp2</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers MPEG</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>audio/x-pn-realaudio</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.ram *.ra</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers RealAudio</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>audio/x-pn-realaudio-plugin</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.rpm</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers plugin RealAudio</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>audio/x-qt-stream</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.stream</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers -</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>audio/x-wav</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.wav</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Wav</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>drawing/x-dwf</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.dwf</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Drawing</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/cis-cod</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.cod</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers CIS-Cod</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/cmu-raster</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.ras</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers CMU-Raster</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/fif</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.fif</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers FIF</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/gif</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.gif</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers GIF</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/ief</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.ief</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers IEF</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/jpeg</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.jpeg *.jpg *.jpe</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers JPEG</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/tiff</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.tiff *.tif</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers TIFF</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/vasa</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.mcf</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Vasa</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/vnd.wap.wbmp</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.wbmp</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Bitmap (WAP)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/x-freehand</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.fh4 *.fh5 *.fhc</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Freehand</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/x-portable-anymap</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.pnm</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers PBM Anymap</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/x-portable-bitmap</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.pbm</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Bitmap PBM</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/x-portable-graymap</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.pgm</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers PBM Graymap</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/x-portable-pixmap</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.ppm</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers PBM Pixmap</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/x-rgb</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.rgb</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers RGB</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/x-windowdump</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.xwd</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">X-Windows Dump</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/x-xbitmap</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.xbm</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers XBM</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>image/x-xpixmap</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.xpm</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers XPM</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>message/external-body</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Nouvelle avec contenu externe</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>message/http</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Nouvelle &agrave; ent&ecirc;te HTTP</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>message/news</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Nouvelle de Newsgroup</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>message/partial</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Nouvelle avec contenu partiel</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>message/rfc822</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Nouvelle d'apr&egrave;s RFC 1822</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>model/vrml</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.wrl</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Visualisation de mondes virtuels</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>multipart/alternative</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Donn&eacute;es composites m&eacute;lang&eacute;es</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>multipart/byteranges</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Donn&eacute;es composites avec mentions d'octets</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>multipart/digest</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Donn&eacute;es composites / choix</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>multipart/encrypted</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Donn&eacute;es composites crypt&eacute;es</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>multipart/form-data</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Donn&eacute;es composites de formulaire HTML (par exemple fichier &agrave; transmettre)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>multipart/mixed</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Donn&eacute;es composites m&eacute;lang&eacute;es</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>multipart/parallel</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Donn&eacute;es composites parall&egrave;les</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>multipart/related</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Donn&eacute;es composites / li&eacute;es</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>multipart/report</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Donn&eacute;es composites / rapport</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>multipart/signed</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Donn&eacute;es composites / sign&eacute;es</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>multipart/voice-message</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Donn&eacute;es composites / message vocal</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/comma-separated-values</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.csv</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers  de donn&eacute;es s&eacute;par&eacute;es par des virgules</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/css</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.css</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers de feuilles de style CSS</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/html</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.htm *.html *.shtml</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers -</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/javascript</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.js</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers JavaScript</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/plain</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.txt</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers pur texte</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/richtext</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.rtx</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers texte enrichi (Richtext)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/rtf</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.rtf</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Microsoft RTF</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/tab-separated-values</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.tsv</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers de donn&eacute;es s&eacute;par&eacute;es par des tabulations</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/vnd.wap.wml</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.wml</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers WML (WAP)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/vnd.wap.wmlc</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.wmlc</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers WMLC (WAP)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/vnd.wap.wmlscript</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.wmls</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers script WML (WAP)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>application/vnd.wap.wmlscriptc</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.wmlsc</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers  script C WML (WAP)</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/xml-external-parsed-entity</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers XML &agrave; l'analyse syntaxique externe</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/x-setext</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.etx</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers SeText</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/x-sgml</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.sgm *.sgml</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers SGML</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>text/x-speech</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.talk *.spc</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Speech</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>video/mpeg</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.mpeg *.mpg *.mpe</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers MPEG</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>video/quicktime</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.qt *.mov</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Quicktime</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>video/vnd.vivo</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*viv *.vivo</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Vivo</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>video/x-msvideo</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.avi</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Microsoft AVI</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>video/x-sgi-movie</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.movie</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers Movie</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>workbook/formulaone</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.vts *.vtts</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers FormulaOne</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>x-world/x-3dmf</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.3dmf *.3dm *.qd3d *.qd3</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">3Fichiers DMF</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>x-world/x-vrml</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*.wrl</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Fichiers VRML</td>
+</tr>
+</table>
+</td></tr></table><p>&nbsp;</p>
+
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="abrevlangues.htm"><img src="../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="abrevlangues.htm"><b> Abr&eacute;viations de langue
+</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="httpstatuscodes.htm"><img src="../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="httpstatuscodes.htm"><b>Codes d'&eacute;tat HTTP
+</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../index.htm"><b>SELFHTML</b></a>/<a href="../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Divers compl&eacute;ments techniques</b></a> </td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

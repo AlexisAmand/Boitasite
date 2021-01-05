@@ -1,0 +1,724 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / R&eacute;f&eacute;rence objet / elements</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quels sont le r&ocirc;le, les propri&eacute;t&eacute;s et les m&eacute;thodes de l'objet window en JavaScript.">
+<meta name="keywords"       content="SELFHTML, JavaScript, objets, elements, checked, defaultChecked, defaultValue, form, name, type, value, blur(), click(), focus(), handleEvent(), select()">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/objets/elements.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // R&eacute;f&eacute;rence objet == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>elements</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+
+<p><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>elements: g&eacute;n&eacute;ralit&eacute;s sur l'utilisation</b></a></p>
+
+<h3>Propri&eacute;t&eacute;s:</h3>
+
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#checked"><b>checked</b></a> (coch&eacute;)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#default_checked"><b>defaultChecked</b></a> (coch&eacute; par d&eacute;faut)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#default_value"><b>defaultValue</b></a> (valeur entr&eacute;e par d&eacute;faut)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#form"><b>form</b></a> (nom du formulaire)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#name"><b>name</b></a> (nom de l'&eacute;l&eacute;ment)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#type"><b>type</b></a> (type de l'&eacute;l&eacute;ment)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#value"><b>value</b></a> (valeur/contenu de l'&eacute;l&eacute;ment)<br>
+</p>
+
+<h3>M&eacute;thodes:</h3>
+
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#blur"><b>blur()</b></a> (quitter l'&eacute;l&eacute;ment)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#click"><b>click()</b></a> (cliquer sur l'&eacute;l&eacute;ment)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#focus"><b>focus()</b></a> (positionner sur l'&eacute;l&eacute;ment)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#handle_event"><b>handleEvent()</b></a> ((traiter l'&eacute;v&eacute;nement)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#select"><b>select()</b></a> (s&eacute;lectionner du texte)<br>
+</p>
+
+
+<h3>Sous-objets:</h3>
+
+<p>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="options.htm"><b>options</b></a><br>
+</p>
+
+
+
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">elements:  g&eacute;n&eacute;ralit&eacute;s sur l'utilisation</a></h2>
+
+<p>Avec l'objet <code>elements</code>, qui se trouve sous l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="forms.htm"><b>forms</b></a> dans la hi&eacute;rarchie JavaScript, vous avez acc&egrave;s aux &eacute;l&eacute;ments d'un formulaire.</p>
+
+<p>Les mani&egrave;res suivantes sont &agrave; votre disposition pour adresser un &eacute;l&eacute;ment d&eacute;termin&eacute; d'un formulaire avec JavaScript:</p>
+
+<h3 class="xmp">Sch&eacute;ma 1 / exemple 1:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+document.forms[#].elements[#].propri�t�
+document.forms[#].elements[#].m�thode()
+
+document.forms[0].elements[0].value = &quot;ineptie&quot;;
+document.forms[0].elements[0].blur();</pre></td></tr></table>
+
+<h3 class="xmp">Sch&eacute;ma 2 / exemple 2:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+document.nom_formulaire.nom_element.propri�t�
+document.nom_formulaire.nom_element.m�thode()
+
+document.Testformular.Eingabe.value = &quot;ineptie&quot;;
+document.Testformular.Eingabe.blur();</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>vous pouvez adresser des &eacute;l&eacute;ments de formulaire de l'une des fa&ccedil;ons suivantes:</p>
+<ul>
+<li>avec un num&eacute;ro d'index (comme dans le sch&eacute;ma 1 /exemple 1)<br>
+Pour l'utilisation de num&eacute;ros d'index, mentionnez <code>document.forms</code> suivi, entre crochets, du num&eacute;ro d'ordre du formulaire que vous voulez adresser dans le fichier. Pensez que le compteur commence &agrave; 0, c'est &agrave; dire qu'il vous faut adresser le premier formulaire avec <code>forms[0]</code>, le deuxi&egrave;me avec <code>forms[1]</code> etc... Pour compter, pr&eacute;vaut l'ordre dans lequel les commandes <code>&lt;form&gt;</code> sont not&eacute;es dans le fichier. Puis suit la mention <code>elements</code>, &agrave; la suite de laquelle vous notez &agrave; nouveau un num&eacute;ro d'index entre crochets. L&agrave; aussi, le compteur commence &agrave; 0, c'est &agrave; dire que le premier &eacute;l&eacute;ment d'un formulaire a le num&eacute;ro d'index 0, le deuxi&egrave;me le num&eacute;ro d'index 1 etc...</li>
+<li>avec des noms (comme dans le sch&eacute;ma 2 /exemple 2)<br>
+Pour cela, mentionnez avec <code>document.nom_formulaire.nom_element</code> le nom du formulaire et de l'&eacute;l&eacute;ment que vous avez mentionn&eacute;s lors de la d&eacute;finition du formulaire et de l'&eacute;l&eacute;ment dans les rep&egrave;res HTML correspondants dans l'attribut <code>name=</code>.</li>
+</ul>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Derri&egrave;re ce qui est d&eacute;sign&eacute; ici comme objet &eacute;l&eacute;ment, se cachent en r&eacute;alit&eacute; plusieurs objets JavaScript assur&eacute;ment tr&egrave;s semblables. Ainsi, il y a des objets pour les champs de saisie, pour les listes de choix, diff&eacute;rentes sortes de boutons. Tous ces &eacute;l&eacute;ments sont cependant r&eacute;sum&eacute;s en "elements-Array" (tableaux d'&eacute;l&eacute;ments). Tous ces objets sont adress&eacute;s de la m&ecirc;me mani&egrave;re. Ils ne se distinguent en fin de compte que par leurs propri&eacute;t&eacute;s et m&eacute;thodes. Pour cette raison, il est toujours not&eacute;, pour les propri&eacute;t&eacute;s et m&eacute;thodes trait&eacute;es dans cette partie de la documentation, &agrave; quels objets elles s'appliquent. Les mentions suivantes y seront distingu&eacute;es (les liens m&egrave;nent aux descriptions correspondantes dans la documentation HTML):</p>
+
+<p>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsacliquer.htm#traditionnels"><b> boutons pouvant &ecirc;tre cliqu&eacute;s </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boites_verification"><b>cases &agrave; cocher</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/transfert_fichier.htm"><b>champs pour fichier &agrave; transmettre</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/elementscaches.htm"><b>&eacute;l&eacute;ments cach&eacute;s dans les formulaires</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champ_mot_passe"><b>Champs de saisie pour mot de passe</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boutons_radio"><b>cases d'option</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour interrompre</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour envoyer</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champs"><b>champs de saisie &agrave; une ligne</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#passages_pls_lignes"><b>champs de saisie &agrave; plusieurs lignes</b></a>
+</p>
+
+<p>Pour les propri&eacute;t&eacute;s et m&eacute;thodes de l'objet elements, il sera indiqu&eacute; &agrave; chaque fois sur lequel de ces types d'&eacute;l&eacute;ments la propri&eacute;t&eacute; ou la m&eacute;thode peut &ecirc;tre utilis&eacute;e.</p>
+
+<h3 class="inf">&Eacute;l&eacute;ments de groupe:</h3>
+
+<p>Les cases &agrave; cocher et les cases d'option forment en principe des groupes de plusieurs &eacute;l&eacute;ments apparent&eacute;s, qui ont la m&ecirc;me mention pour <code>name=</code> et qui ne se distinguent que par la mention <code>value=</code>. De tels groupes portant le m&ecirc;me nom forment &agrave; leur tour un tableau en JavaScript.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/elements_generalites.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire&quot; action=&quot;&quot; method=&quot;get&quot;&gt;
+&lt;input type=&quot;radio&quot; name=&quot;favoris&quot; value=&quot;Daniel&quot;&gt;
+&lt;input type=&quot;radio&quot; name=&quot;favoris&quot; value=&quot;Antoine&quot;&gt;
+&lt;input type=&quot;radio&quot; name=&quot;favoris&quot; value=&quot;Gis�le&quot;&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ document.formulaire.favoris[2].checked = true;
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple est d&eacute;fini un formulaire avec plusieurs cases d'option. Le groupe de cases d'option apparent&eacute;es a le m&ecirc;me nom. En JavaScript, il vous est possible d'adresser s&eacute;par&eacute;ment de telles cases, en adressant l'&eacute;l&eacute;ment (en tant que groupe).  Derri&egrave;re le nom d'&eacute;l&eacute;ment notez ensuite, entre crochets, le num&eacute;ro d'index de l'&eacute;l&eacute;ment d&eacute;sir&eacute;. Dans l'exemple c'est <code>favoris[2]</code> qui est adress&eacute;. C'est le troisi&egrave;me &eacute;l&eacute;ment du groupe.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#listen"><b>listes de choix</b></a> n'apparaissent pas ici. Pour acc&eacute;der &agrave; de telles listes avec JavaScript, vous disposez du sous-objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="options.htm"><b>options</b></a>.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="checked">checked</a></h2>
+
+<p>Sauvegarde si ou qu'une case &agrave; cocher ou une case d'option  est activ&eacute;e ou non. Les valeurs possibles sont <code>true</code> ou <code>1</code> ou <code>false</code> ou <code>0</code>.</p>
+
+<p>Peut &ecirc;tre utilis&eacute; sur:
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsacliquer.htm"><b>boutons pouvant &ecirc;tre cliqu&eacute;s </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boites_verification"><b>cases &agrave; cocher </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boutons_radio"><b>cases d'option</b></a>
+</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/elements_checked.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function Ensuite() {
+ if(document.formulaire_test.mode[0].checked == true)
+  window.location.href=&quot;fichierfrm.htm&quot;
+ else if(document.formulaire_test.mode[1].checked == true)
+  window.location.href=&quot;fichier.htm&quot;
+ else
+  alert(&quot;Veuillez faire un choix&quot;);
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;&quot;&gt;
+&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;avec&quot;&gt; avec cadres
+&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;sans&quot;&gt; sans cadres
+&lt;br&gt;&lt;input type=&quot;button&quot; value=&quot;Lancer&quot; onClick=&quot;Ensuite()&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+,<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire avec deux cases d'option. L'utilisateur peut ainsi choisir s'il veut voir les pages suivantes avec ou sans cadres. En cliquant sur le bouton <code>Lancer</code> la fonction <code>Ensuite()</code> est appel&eacute;e. Cette fonction v&eacute;rifie si l'une des deux cases d'option  est activ&eacute;e. Selon laquelle des deux est activ&eacute;e, un fichier diff&eacute;rent sera appel&eacute; (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="location.htm"><b>location</b></a>.<a href="location.htm#href"><b>href</b></a>). Si aucune des deux cases d'option n'est activ&eacute;e, un message d'erreur sera sorti.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Vous ne pouvez, avec  Opera 5.12 sous Windows, modifier la propri&eacute;t&eacute; <code>checked</code> pour les  cases d'option que lorsque la construction de la page  est termin&eacute;e.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="default_checked">defaultChecked</a></h2>
+
+<p>Sauvegarde si ou qu' une case &agrave; cocher ou une case d'option est activ&eacute;e par d&eacute;faut ou non. Les valeurs possibles sont <code>true</code> ou <code>1</code>, ou <code>false</code> ou <code>0</code>.</p>
+
+<p>Peut &ecirc;tre utilis&eacute; sur:
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boites_verification"><b>cases &agrave; cocher</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boutons_radio"><b>cases d'option</b></a>
+</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/elements_default_checked.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function Ensuite() {
+ if(document.formulaire_test.mode[0].checked == true)
+  window.location.href=&quot;fichierfrm.htm&quot;
+ else
+  window.location.href=&quot;fichier.htm&quot;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;&quot;&gt;
+&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;avec&quot;&gt; avec DHTML
+&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;sans&quot;&gt; sans DHTML
+&lt;br&gt;&lt;input type=&quot;button&quot; value=&quot;Lancer&quot; onClick=&quot;Ensuite()&quot;&gt;
+&lt;/form&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+&lt;!--
+dhtml = false;
+if(document.layers || document.all || document.getElementById) dhtml = true;
+if(dhtml == true &amp;&amp; document.formulaire_test.mode[0].defaultChecked == false)
+   document.formulaire_test.mode[0].checked = true;
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire avec deux cases d'option. L'utilisateur peut ainsi choisir s'il veut voir les pages suivantes du projet avec HTML dynamique ou sans HTML dynamique. En cliquant sur le bouton <code>Lancer</code>, la fonction <code>Ensuite()</code> est appel&eacute;e. Cette fonction v&eacute;rifie si l'une des deux cases d'option est activ&eacute;e. Selon laquelle des deux est activ&eacute;e, un fichier diff&eacute;rent sera appel&eacute; (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="location.htm"><b>location</b></a>.<a href="location.htm#href"><b>href</b></a>).<br>
+Cependant, un autre passage JavaScript est encore not&eacute; sous le formulaire. S'il est plac&eacute; dessous, c'est parce que le code qu'il contient doit &ecirc;tre ex&eacute;cut&eacute; tout de suite tout en posant comme condition pr&eacute;alable l'existence du formulaire. Il est demand&eacute; si l'un des objets typiques pour HTML dynamique <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="document.htm"><b>document</b></a>.<a href="layers.htm"><b>layers</b></a> ou bien <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="document.htm"><b>document</b></a>.<a href="all.htm"><b>all</b></a> ou bien la m&eacute;thode typique <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="document.htm#get_element_by_id"><b>document.getElementById</b></a> est disponible. Si oui, une variable <code>dhtml</code> se voit affecter la valeur <code>true</code>. De plus, il est demand&eacute; avec <code>defaultChecked</code> si la possibilit&eacute; de choisir d'utiliser DHTML est activ&eacute;e comme choix par d&eacute;faut dans le formulaire ou non. Si non, et si DHTML est disponible (donc si <code>dhtml</code> a &eacute;t&eacute; fix&eacute; sur <code>true</code>), la possibilit&eacute; de choix pour DHTML sera coch&eacute;e a posteriori.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Opera 5.12 sous Windows interpr&egrave;te certes, la propri&eacute;t&eacute; <code>defaultChecked</code>, n'ex&eacute;cute toutefois pas l'exemple ci-dessus, &eacute;tant donn&eacute; que la modification de l'&eacute;tat de la case &agrave; cocher intervient avant la fin du chargement de la page. Opera 5.02 ne conna&icirc;t pas encore la propri&eacute;t&eacute; <code>defaultChecked</code>.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="default_value">defaultValue</a></h2>
+
+<p>Sauvegarde le texte par d&eacute;faut d'un champ de saisie.</p>
+
+<p>Peut &ecirc;tre utilis&eacute; sur:
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champs"><b>champs de saisie &agrave; une ligne</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#passages_pls_lignes"><b>champs de saisie &agrave; plusieurs lignes </b></a>
+</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/elements_default_value.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;&quot;&gt;
+URI: &lt;input size=&quot;40&quot; name=&quot;uri&quot; value=&quot;http://www.xy.fr/&quot;&gt;
+&lt;input type=&quot;button&quot; value=&quot;Vas-y&quot;
+onClick=&quot;window.location.href=document.formulaire_test.uri.value&quot;&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+if(navigator.userAgent.indexOf(&quot;en&quot;) &gt; 0)
+{
+ document.formulaire_test.url.defaultValue = &quot;http://www.xy.com/&quot;;
+ document.formulaire_test.url.value = document.formulaire_test.url.defaultValue;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire avec un champ de saisie et un bouton. Le champ de saisie est occup&eacute; par d&eacute;faut avec <code>http://www.xy.fr/</code>. En cliquant sur le bouton, la valeur du champ de saisie est affect&eacute;e &agrave; <code>window.</code><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="location.htm"><b>location</b></a>.<a href="location.htm#href"><b>href</b></a>. C'est ainsi que l'adresse URI correspondante sera appel&eacute;e..<br>
+Cependant, avant m&ecirc;me que l'utilisateur puisse seulement &eacute;diter le champ, est ex&eacute;cut&eacute; d&eacute;s la lecture du fichier le passage JavaScript situ&eacute; sous le formulaire. S'il est plac&eacute; dessous, c'est parce que le code qu'il contient doit &ecirc;tre ex&eacute;cut&eacute; tout de suite tout en posant comme condition pr&eacute;alable l'existence du formulaire. Il y est demand&eacute; si dans l'identification du navigateur (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="navigator.htm"><b>navigator</b></a>.<a href="navigator.htm#user_agent"><b>userAgent</b></a>) appara&icirc;t la composante <code>en</code> (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="screen.htm#a14"><b>indexOf()</b></a>). Si oui, il s'agit d'un navigateur en langue anglaise. Dans ce cas l&agrave;, <code>defaultValue</code> du champ de saisie sera modifi&eacute; en <code>http://www.xy.com/</code>. La valeur modifi&eacute;e ne sera toutefois visible que lorsqu'elle sera affect&eacute;e &agrave; la propri&eacute;t&eacute; <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#value"><b>value</b></a>. Cela s'obtient avec la deuxi&egrave;me instruction. Le champ de saisie du formulaire est alors occup&eacute; <code>http://www.xy.fr/</code> ou <code>http://www.xy.com/</code> - en rapport avec la langue du navigateur.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Opera 5.02 ne conna&icirc;t pas encore la propri&eacute;t&eacute; <code>defaultValue</code>. Pourtant, ce navigateur interpr&egrave;te aussi l'exemple. Cela est d&ucirc; au fait qu'avec l'affectation <code>defaultValue=&quot;http://www.xy.com/&quot;</code> la valeur de la propri&eacute;t&eacute; est entr&eacute;e manuellement. D&egrave;s lors cependant que vous d&eacute;sirez faire d&eacute;pendre un JavaScript de la valeur originale, il vous faut consid&eacute;rer que cette propri&eacute;t&eacute; n'existe pas.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="Lesen"> <a class="an" name="form">form</a></h2>
+
+<p>Sauvegarde le formulaire &agrave; l'int&eacute;rieur duquel se trouve l'&eacute;l&eacute;ment. Derri&egrave;re la propri&eacute;t&eacute; <code>form</code>, vous pouvez encore noter toutes les propri&eacute;t&eacute;s et m&eacute;thodes de l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="forms.htm"><b>forms</b></a>.</p>
+
+<p>Peut &ecirc;tre utilis&eacute; sur:
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsacliquer.htm#traditionnels"><b>boutons pouvant &ecirc;tre cliqu&eacute;s </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boites_verification"><b>cases &agrave; cocher</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/transfert_fichier.htm"><b>champs pour fichier &agrave; transmettre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/elementscaches.htm"><b> &eacute;l&eacute;ments cach&eacute;s dans les formulaires </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champ_mot_passe"><b>Champs de saisie pour mot de passe </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boutons_radio"><b>cases d'option</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour interrompre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour envoyer </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champs"><b>champs de saisie &agrave; une ligne </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#passages_pls_lignes"><b>champs de saisie &agrave; plusieurs lignes </b></a>
+</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/elements_form.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;&quot;&gt;
+&lt;input type=&quot;button&quot; name=&quot;lebouton&quot; value=&quot;Test&quot;
+onClick=&quot;alert(document.formulaire_test.lebouton.form.name)&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple contient un formulaire avec un bouton qui lorsqu'on le clique sort le nom du formulaire.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="name">name</a></h2>
+
+<p>Sauvegarde le nom d'un &eacute;l&eacute;ment comme il a &eacute;t&eacute; affect&eacute; en HTML lors de le d&eacute;finition de l'&eacute;l&eacute;ment avec l'attribut <code>name=</code>.</p>
+
+<p>Peut &ecirc;tre utilis&eacute; sur:
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsacliquer.htm#traditionnels"><b>boutons pouvant &ecirc;tre cliqu&eacute;s </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boites_verification"><b>cases &agrave; cocher</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/transfert_fichier.htm"><b>champs pour fichier &agrave; transmettre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/elementscaches.htm"><b>  &eacute;l&eacute;ments cach&eacute;s dans les formulaires </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champ_mot_passe"><b>Champs de saisie pour mot de passe </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boutons_radio"><b>cases d'option</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour interrompre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour envoyer </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champs"><b>champs de saisie &agrave; une ligne </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#passages_pls_lignes"><b>champs de saisie &agrave; plusieurs lignes </b></a>
+</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/elements_name.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;&quot;&gt;
+&lt;input type=&quot;button&quot; name=&quot;lebouton&quot; value=&quot;Test&quot;
+onClick=&quot;alert(document.formulaire_test.lebouton.name)&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple contient un formulaire avec un bouton qui lorsqu'on le clique sort le nom du bouton.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="Lesen"> <a class="an" name="type">type</a></h2>
+
+<p>Sauvegarde le type d'&eacute;l&eacute;ment d'un &eacute;l&eacute;ment de formulaire.</p>
+
+<p>Peut &ecirc;tre utilis&eacute; sur:
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsacliquer.htm#traditionnels"><b>boutons pouvant &ecirc;tre cliqu&eacute;s </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boites_verification"><b>cases &agrave; cocher</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/transfert_fichier.htm"><b>champs pour fichier &agrave; transmettre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/elementscaches.htm"><b>  &eacute;l&eacute;ments cach&eacute;s dans les formulaires </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champ_mot_passe"><b>Champs de saisie pour mot de passe </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boutons_radio"><b>cases d'option</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour interrompre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour envoyer </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champs"><b>champs de saisie &agrave; une ligne </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#passages_pls_lignes"><b>champs de saisie &agrave; plusieurs lignes </b></a>
+</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/elements_type.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;&quot;&gt;
+&lt;input type=&quot;radio&quot; name=&quot;auto&quot; value=&quot;Renault&quot;&gt; Renault&lt;br&gt;
+&lt;input type=&quot;radio&quot; name=&quot;auto&quot; value=&quot;Mercedes&quot;&gt; Mercedes&lt;br&gt;
+Nom: &lt;input size=&quot;30&quot; name=&quot;Nom&quot;&gt;&lt;br&gt;
+&lt;input type=&quot;submit&quot; name=&quot;bouton_envoi&quot; value=&quot;Envoyer&quot;&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+for(var i=0;i&lt;document.formulaire_test.length;++i)
+ {
+  document.write(&quot;&lt;br&gt;Nom d'�l�ment: &quot; + document.forms[0].elements[i].name);
+  document.write(&quot;, type d'�l�ment: &quot; + document.forms[0].elements[i].type);
+ }
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire avec diff&eacute;rents &eacute;l&eacute;ments. Aux fins du test est not&eacute; sous le formulaire un passage JavaScript. S'il est plac&eacute; dessous, c'est parce que le code qu'il contient doit &ecirc;tre ex&eacute;cut&eacute; tout de suite tout en posant comme condition pr&eacute;alable l'existence du formulaire. Dans le Script, le nom de l'&eacute;l&eacute;ment et le type de l'&eacute;l&eacute;ment seront &eacute;crits dans le fichier pour tous les &eacute;l&eacute;ments avec  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="document.htm"><b>document</b></a>.<a href="document.htm#write"><b>write()</b></a>.
+</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jswrite.gif" width="60" height="30" border="0" alt="lecture/&eacute;criture"> <a class="an" name="value">value</a></h2>
+
+<p>Sauvegarde la valeur qui a &eacute;t&eacute; entr&eacute;e dans un &eacute;l&eacute;ment de formulaire ou affect&eacute;e &agrave; un &eacute;l&eacute;ment de formulaire.</p>
+
+<p>Peut &ecirc;tre utilis&eacute; sur:
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsacliquer.htm#traditionnels"><b>boutons pouvant &ecirc;tre cliqu&eacute;s </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boites_verification"><b>cases &agrave; cocher</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/transfert_fichier.htm"><b>champs pour fichier &agrave; transmettre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/elementscaches.htm"><b>  &eacute;l&eacute;ments cach&eacute;s dans les formulaires </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champ_mot_passe"><b>Champs de saisie pour mot de passe </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boutons_radio"><b>cases d'option</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour interrompre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour envoyer </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champs"><b>champs de saisie &agrave; une ligne </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#passages_pls_lignes"><b>champs de saisie &agrave; plusieurs lignes </b></a>
+</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/elements_value.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;&quot;&gt;
+Name: &lt;input size=&quot;30&quot; name=&quot;Name&quot;&gt;
+&lt;input type=&quot;submit&quot; name=&quot;bouton_envoi&quot; value=&quot;Envoyer&quot;&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;navigateur&quot; value=&quot;&quot;&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ document.formulaire_test.navigateur.value = navigator.userAgent;
+ document.write(document.formulaire_test.Browser.value);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire avec, entre autres, un champ cach&eacute; (<code>&lt;input type=&quot;hidden&quot;&gt;</code>). Sous le formulaire est not&eacute; un passage JavaScript. S'il est plac&eacute; dessous, c'est parce que le code qu'il contient doit &ecirc;tre ex&eacute;cut&eacute; tout de suite tout en posant comme condition pr&eacute;alable l'existence du formulaire. Dans le Script, le type de navigateur de l'utilisateur (<code>document.formulaire_test.navigateur.value</code>) est affect&eacute; &agrave; la valeur du champ cach&eacute; du formulaire (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="navigator.htm"><b>navigator</b></a>.<a href="navigator.htm#user_agent"><b>userAgent</b></a>). Ce contenu du formulaire cr&eacute;&eacute; de fa&ccedil;on dynamique sera transmis quand l'utilisateur enverra le formulaire. Dans l'exemple ci-dessus la valeur du champ cach&eacute; est &eacute;crite dans le document pour d&eacute;monstration avec la m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="document.htm#write"><b>document.write()</b></a>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="blur">blur()</a></h2>
+
+<p>Retire le curseur ou la zone de saisie active  de l'&eacute;l&eacute;ment concern&eacute;. N'attend pas de param&egrave;tres.</p>
+
+<p>Peut &ecirc;tre utilis&eacute; sur:
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsacliquer.htm#traditionnels"><b>boutons pouvant &ecirc;tre cliqu&eacute;s </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boites_verification"><b>cases &agrave; cocher</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/transfert_fichier.htm"><b>champs pour fichier &agrave; transmettre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/elementscaches.htm"><b>  &eacute;l&eacute;ments cach&eacute;s dans les formulaires </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champ_mot_passe"><b>Champs de saisie pour mot de passe </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boutons_radio"><b>cases d'option</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour interrompre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour envoyer </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champs"><b>champs de saisie &agrave; une ligne </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#passages_pls_lignes"><b>champs de saisie &agrave; plusieurs lignes </b></a>
+</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/elements_blur.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;&quot;&gt;
+&lt;input name=&quot;champ&quot; size=&quot;30&quot; onFocus=&quot;this.blur()&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple contient un formulaire avec un champ. Si l'utilisateur veut positionner le curseur dans un champ le curseur sera aussit&ocirc;t retir&eacute; du champ avec <code>this.blur()</code>. Par le mot-cl&eacute; <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/objets.htm#this"><b>this</b></a> il est fait r&eacute;f&eacute;rence &agrave; l'objet actuel, dans ce cas l'&eacute;l&eacute;ment <code>champ</code>, et la m&eacute;thode est appliqu&eacute;e &agrave; cet objet. Une telle mesure peut &ecirc;tre judicieuse si vous voulez utiliser un champ exclusivement comme champ de sortie dans lequel l'utilisateur doit ne rien pouvoir &eacute;diter.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Le curseur n'est pas toujours retir&eacute; du champ de saisie. La saisie d'un contenu est cependant emp&ecirc;ch&eacute;e.</p>
+
+<p>Opera 5.12 &quot;conna&icirc;t&quot; certes la m&eacute;thode <code>blur()</code>, cependant elle reste sans effet. Sous Opera 5.02 l'application de cette m&eacute;thode cr&eacute;e une erreur JavaScript.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="click">click()</a></h2>
+
+<p>Provoque un cliquement automatique sur le bouton concern&eacute;. N'attend aucun param&egrave;tre.</p>
+
+<p>Peut &ecirc;tre utilis&eacute; sur:
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsacliquer.htm#traditionnels"><b>boutons pouvant &ecirc;tre cliqu&eacute;s </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boites_verification"><b>cases &agrave; cocher</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/transfert_fichier.htm"><b>champs pour fichier &agrave; transmettre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour interrompre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour envoyer </b></a>
+</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/elements_click.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;&quot;&gt;
+En quelle ann�e est mort Goethe?&lt;br&gt;
+&lt;input size=&quot;6&quot; name=&quot;annee_mort&quot;&gt;
+&lt;input type=&quot;button&quot; name=&quot;lebouton&quot; value=&quot;Ensuite&quot; onClick=&quot;Check()&quot;&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function Check() {
+ if(document.formulaire_test.annee_mort.value != &quot;1832&quot;)
+  window.location.href = &quot;rien.htm&quot;;
+ else
+  window.location.href = &quot;succes.htm&quot;;
+}
+window.setTimeout(&quot;document.formulaire_test.lebouton.click()&quot;,10000);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire dans lequel l'utilisateur doit entrer l'ann&eacute;e de la mort de Goethe. Si l'utilisateur ne clique pas dans les 10 secondes sur le bouton <code>Ensuite</code>, cela se passe automatiquement. C'est &agrave; cela que sert la derni&egrave;re instruction dans le Script not&eacute; sous le formulaire. S'il est plac&eacute; dessous, c'est parce que le code qu'il contient doit &ecirc;tre ex&eacute;cut&eacute; tout de suite tout en posant comme condition pr&eacute;alable l'existence du formulaire. Avec <code>document.formulaire_test.lebouton.click()</code>, le cliquement du bouton sera effectu&eacute; sans intervention de l'utilisateur. L'appel de la m&eacute;thode est incorpor&eacute; dans  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm"><b>window</b></a>.<a href="window.htm#set_timeout"><b>setTimeout()</b></a> avec un retard de 10000 milli&egrave;mes de secondes, soit 10 secondes.<br>
+Lors du cliquement sur le bouton, peu importe s'il s'est fait automatiquement ou par l'utilisateur, la fonction <code>Check()</code> est appel&eacute;e. Cette fonction v&eacute;rifie si, dans le champ de saisie pour l'ann&eacute;e de la mort, se trouve la bonne valeur. Selon le cas, une autre page est appel&eacute;e (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="location.htm"><b>location</b></a>.<a href="location.htm#href"><b>href</b></a>).</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="focus">focus()</a></h2>
+
+<p>positionne le curseur ou la zone de saisie active sur l'&eacute;l&eacute;ment concern&eacute;. N'attend pas de param&egrave;tre.</p>
+
+<p>Peut &ecirc;tre utilis&eacute; sur:
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsacliquer.htm#traditionnels"><b>boutons pouvant &ecirc;tre cliqu&eacute;s </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boites_verification"><b>cases &agrave; cocher</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/transfert_fichier.htm"><b>champs pour fichier &agrave; transmettre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/elementscaches.htm"><b>  &eacute;l&eacute;ments cach&eacute;s dans les formulaires </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champ_mot_passe"><b>Champs de saisie pour mot de passe </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/choix.htm#boutons_radio"><b>cases d'option</b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour interrompre </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/boutonsformulaires.htm"><b>Boutons pour envoyer </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champs"><b>champs de saisie &agrave; une ligne </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#passages_pls_lignes"><b>champs de saisie &agrave; plusieurs lignes </b></a>
+</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/elements_focus.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function Check() {
+ if(document.formulaire_test.annee_mort.value != &quot;1832&quot;)
+ {
+  alert(&quot;Vous ne le savez pas tout simplement!&quot;);
+  document.formulaire_test.annee_mort.focus();
+ }
+ else
+ {
+  alert(&quot;Bravo!&quot;);
+  window.location.href = &quot;succes.htm&quot;;
+ }
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;&quot;&gt;
+En quelle ann�e est mort Goethe?&lt;br&gt;
+&lt;input size=&quot;6&quot; name=&quot;annee_mort&quot;&gt;
+&lt;input type=&quot;button&quot; value=&quot;Ensuite&quot; onClick=&quot;Check()&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire dans lequel l'utilisateur doit entrer l'ann&eacute;e de la mort de Goethe. Quand l'utilisateur clique sur le bouton <code>Ensuite</code>, la fonction <code>Check()</code> est appel&eacute;e. Cette fonction v&eacute;rifie si la valeur correcte pour la mort de Goethe a &eacute;t&eacute; entr&eacute;e dans le champ de saisie. En fonction de cela, soit un message acidul&eacute; sera sorti avec  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#alert"><b>alert()</b></a>, soit c'est &quot;Bravo&quot; qui sera sorti avec l'appel d'une autre page (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="location.htm"><b>location</b></a>.<a href="location.htm#href"><b>href</b></a>). Si l'utilisateur reste sur la page parce que la saisie manque ou qu'elle est fausse, le curseur est positionn&eacute; avec <code>document.formulaire_test.annee_mort.focus()</code> sur le champ de saisie pour l'ann&eacute;e de la mort.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"> <a class="an" name="handle_event">handleEvent()</a></h2>
+
+<p>Transmet un &eacute;v&eacute;nement &agrave; un &eacute;l&eacute;ment en mesure de r&eacute;agir &agrave; cet &eacute;v&eacute;nement. Fonctionne exactement comme  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="window.htm#handle_event"><b>handleEvent() pour l'objet window</b></a> pour l'objet window (pour plus d'informations, s'y reporter).</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="select">select()</a></h2>
+
+<p>S&eacute;lectionne tout le texte contenu dans le champ. N'attend pas de param&egrave;tres.</p>
+
+<p>Peut &ecirc;tre utilis&eacute; sur:
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champ_mot_passe"><b>Champs de saisie pour mot de passe </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#champs"><b>champs de saisie &agrave; une ligne </b></a>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/formulaires/entree.htm#passages_pls_lignes"><b>champs de saisie &agrave; plusieurs lignes </b></a>
+</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/elements_select.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;formulaire_test&quot; action=&quot;&quot;&gt;
+Copiez le texte suivant dans la ligne d'adresse URL de votre navigateur:&lt;br&gt;
+&lt;input type=&quot;text&quot; size=&quot;40&quot; name=&quot;Code&quot; value=&quot;javascript:top.close()&quot;&gt;
+&lt;/form&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ document.formulaire_test.Code.focus();
+ document.formulaire_test.Code.select();
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple contient un formulaire avec un seul champ. Le champ est occup&eacute; par d&eacute;faut par la valeur &quot;javascript:top.close()&quot; (Notez bien que ce n'est pas une instruction JavaScript mais seulement un contenu de champ). Sous le formulaire se trouve un passage JavaScript. S'il est plac&eacute; dessous, c'est parce que le code qu'il contient doit &ecirc;tre ex&eacute;cut&eacute; tout de suite tout en posant comme condition pr&eacute;alable l'existence du formulaire. L&agrave;, le curseur est positionn&eacute; dans un premier temps avec <code>document.formulaire_test.Code.focus()</code> sur le champ du formulaire. Car la s&eacute;lection de texte n'est possible que lorsque le champ est actif. Le texte par d&eacute;faut du champ de formulaire est ensuite s&eacute;lectionn&eacute; avec <code>document.formulaire_test.Code.select()</code>.</p>
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="options.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="options.htm"><b>options</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="forms.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="forms.htm"><b>forms</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

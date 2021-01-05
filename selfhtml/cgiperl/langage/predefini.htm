@@ -1,0 +1,568 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / &Eacute;l&eacute;ments de langage Perl / Variables pr&eacute;d&eacute;finies en Perl
+</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quelles sont les variables pr&eacute;d&eacute;finies en Perl et pour quoi sont elles con&ccedil;ues.">
+<meta name="keywords"       content="SELFHTML, Perl, variables, scalaires, listes, hashs, variables d'environnement, variables pr&eacute;d&eacute;finies">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/langage/predefini.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // &Eacute;l&eacute;ments de langage Perl == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Variables pr&eacute;d&eacute;finies en Perl</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur les variables pr&eacute;d&eacute;finies</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#scalaires"><b>Scalaires pr&eacute;d&eacute;finies</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#arrays_hashes"><b>Listes et hashes pr&eacute;d&eacute;finis</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur les variables pr&eacute;d&eacute;finies</a></h2>
+
+<p>Perl dispose d'une quantit&eacute; de variables sp&eacute;ciales pr&eacute;d&eacute;finies. Vous pouvez lire le contenu de ces variables pour rechercher des informations sur la configuration Perl actuelle ou pour rechercher la configuration syst&egrave;me de l'ordinateur sur lequel tournent le script et l'interpr&eacute;teur Perl. Quelques unes de ces variables sont des variables utilitaires qui facilitent la programmation. Il y a ainsi par exemple une variable qui tient &agrave; disposition dans une boucle la valeur respectivement actuelle ou une variable qui sauvegarde le param&egrave;tre transmis.</p>
+
+<p>Beaucoup de ces variables pr&eacute;d&eacute;finies ont optiquement un air rev&ecirc;che et c'est une des raisons pour lesquelles Perl passe quelquefois pour un langage incompr&eacute;hensible de pirate informatique. Car pour celui qui ne s'y conna&icirc;t pas en Perl, des noms de variables tels que <code>$_</code>, <code>$/</code>, <code>$&quot;</code> ou bien <code>$%</code> frisent le charabia. &Agrave; c&ocirc;t&eacute; de cette notation abr&eacute;g&eacute; classique, il y a pour cette raison &eacute;galement une variante en &quot;texte clair&quot; de ces variables. Pour cela, il faut cependant incorporer un module nomm&eacute; <code>English</code>, qui a pourtant l'inconv&eacute;nient de faire chuter la vitesse d'ex&eacute;cution du script et d'augmenter les besoins en ressources comme c'est le cas pour tous les autres modules. &Agrave; cela s'oppose l'avantage que votre programme est plus lisible.</p>
+
+<p>L'exemple suivant montre quelques unes des variables pr&eacute;d&eacute;finies en action:</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+use English;
+
+print &quot;Content-type: text/plain\n\n&quot;;
+print &quot;===Scalaires pr�d�finies====================================\n\n&quot;;
+print &quot;Num�ro de processus du processus en cours d'ex�cution: $$ ou $PID\n&quot;;
+print &quot;Fichier ex�cut� pour ce processus:  $0 ou $PROGRAM_NAME \n&quot;;
+print &quot;Interpr�teur ex�cut� lors de ce processus:  $^X ou $EXECUTABLE_NAME \n&quot;;
+print &quot;Num�ro de version de l'interpr�teur Perl:  $] oder $PERL_VERSION \n&quot;;
+print &quot;Heure de lancement du processus:  $^T ou $BASETIME \n&quot;;
+print &quot;Syst�me d'exploitation:  $^O oder $OSNAME \n&quot;;
+print &quot;\n\n===Listes pr�d�finies=====================================\n\n&quot;;
+print &quot;Arguments transmis:\n&quot;;
+my $i = 0;
+foreach (@ARGV) {
+  print ++$i,&quot;. Argument: $_\n&quot;;
+}
+$i = 0;
+print &quot;\nChemin de recherche pour modules Perl:\n&quot;;
+foreach (@INC) {
+  print ++$i,&quot;. Chemin: $_\n&quot;;
+}
+print &quot;\n\n===Hash pr�d�fini======================================\n\n&quot;;
+foreach (keys %ENV) {
+  printf &quot; %20s:  $ENV{$_} \n&quot;,$_;
+}
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple envoie du texte au navigateur appelant avec le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../divers/typesmime.htm"><b>type Mime</b></a> <code>text/plain</code>. Ce faisant, les valeurs de diff&eacute;rentes valeurs pr&eacute;d&eacute;finies sont sorties. Quelques unes sont sorties deux fois pour contr&ocirc;le, &agrave; savoir une fois dans la forme abr&eacute;g&eacute;e classique et une fois dans la forme  en texte clair, qui n'est toutefois possible que parce que, avec  <code>use English;</code> le  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/modulesstandard.htm"><b>module standard</b></a> correspondant est incorpor&eacute;. Ainsi par exemple <code>$$</code> et <code>$PID</code> ont la m&ecirc;me valeur.</p>
+
+<p>Les diff&eacute;rents &eacute;l&eacute;ments de tableaux et hashes pr&eacute;d&eacute;finis comme <code>@ARGV</code>, <code>@INC</code> et <code>%ENV</code> sont sortis apr&egrave;s avoir &eacute;t&eacute; format&eacute;s proprement dans le script chacun &agrave; l'aide d'une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="boucles.htm#foreach"><b>boucle foreach</b></a>. L&agrave; est &eacute;galement utilis&eacute;e la scalaire pr&eacute;d&eacute;finie <code>$_</code>, qui est bien la variable pr&eacute;d&eacute;finie utilis&eacute;e le plus souvent dans la pratique.</p>
+
+<p>Le tableau <code>@ARGV</code> est d'ailleurs vide, aussi longtemps que vous appelez le script comme script CGI sans param&egrave;tre. Pour tester, vous pouvez mentionner des param&egrave;tres dans la ligne d'adresse pour l'appel. Supposons que le script ait comme adresse <var>http://127.0.0.1/cgi-bin/test.pl</var>, alors essayez un appel tel que <var>http://127.0.0.1/cgi-bin/test.pl?Hello&amp;monde</var>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="scalaires">Scalaires pr&eacute;d&eacute;finies</a></h2>
+
+<p>Les tableaux d&eacute;crivent des scalaires pr&eacute;d&eacute;finies. Il n'y a des exemples que l&agrave; o&ugrave; ils ne n&eacute;cessitent pas un contexte plus important. Quelques unes des scalaires sont sp&eacute;cifiques au syst&egrave;me d'exploitation ou plut&ocirc;t ont un sens exclusivement dans des environnements Unix. </p>
+
+<p>Pour utiliser les formes longues des variables, vous devez incorporer le module standard correspondant <code>use English;</code> dans votre script.</p>
+
+<h3>Scalaires pr&eacute;d&eacute;finies pour le d&eacute;roulement du programme et les expressions r&eacute;guli&egrave;res</h3>
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Forme abr&eacute;g&eacute;e</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Forme longue</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Signification</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Petit exemple</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$_</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$ARG</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient dans des boucles (par exemple pour la recherche dans une liste avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="boucles.htm#foreach"><b>foreach</b></a> ) quand aucune autre variable n'a &eacute;t&eacute; mentionn&eacute;e la valeur actuelle respective ou l'argument actuel respectif. Est accept&eacute; par quelques <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../fonctions/index.htm"><b>fonctions Perl </b></a> comme argument, c'est &agrave; dire qu'aucune valeur explicite ne doit &ecirc;tre transmise aux fonctions quand  <code>$_</code> est consid&eacute;r&eacute; comme argument. Contient lors d'op&eacute;rations avec des  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="expresreg.htm"><b>expressions r&eacute;guli&egrave;res</b></a> la valeur respectivement actuelle.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>
+@nombres = (1..10);
+foreach(@nombres) {
+ print $_, &quot;\n&quot;;
+}</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$1</code>, <code>$2</code> etc...</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient, lors d'op&eacute;rations avec des expressions r&eacute;guli&egrave;res, la valeur d'une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="expresreg.htm#remarquee"><b>expression partielle rep&eacute;r&eacute;e</b></a> entre parenth&egrave;ses. Lecture seule, modification impossible.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>
+if(/from: (.*)/) {
+ $expediteur = $1;
+}</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$&amp;</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$MATCH</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient apr&egrave;s l'utilisation d'une  expression r&eacute;guli&egrave;re la valeur correspondant au mod&egrave;le de recherche. Lecture seule, modification impossible. L'emploi de cette variable ralentit tout le programme, c'est pourquoi son emploi n'est pas recommand&eacute; par les professionnels.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>
+$_ = &quot;homme et femme&quot;;
+/et/;
+print &quot;$&\n&quot;;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$`</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$PREMATCH</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient la partie de l'expression compl&egrave;te avant la derni&egrave;re valeur correspondant au mod&egrave;le de recherche. Lecture seule, modification impossible. Le signe <code>`</code> est l'accent grave. Sur beaucoup de claviers appuyez les touche majuscule et touche d'accent suivies d'un espace. L'emploi de cette variable ralentit tout le programme, c'est pourquoi son emploi n'est pas recommand&eacute; par les professionnels.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>
+$_ = &quot;homme et femme&quot;;
+/ et/;
+print &quot;$`\n&quot;;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$'</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$POSTMATCH</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient la partie de l'expression compl&egrave;te apr&egrave;s la derni&egrave;re valeur correspondant au mod&egrave;le de recherche. Lecture seule, modification impossible. Le signe <code>'</code> est l'apostrophe. L'emploi de cette variable ralentit tout le programme, c'est pourquoi son emploi n'est pas recommand&eacute; par les professionnels.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>
+$_ = &quot;homme et femme&quot;;
+/et /;
+print &quot;$'\n&quot;;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$+</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$LAST_PAREN_MATCH</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient apr&egrave;s l'application d'une expression r&eacute;guli&egrave;re avec parenth&egrave;ses le contenu de la derni&egrave;re parenth&egrave;se. Lecture seule, modification impossible.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>
+$_ = &quot;homme et femme&quot;;
+/([a-zA-Z]*) et ([a-zA-Z]*)/;
+print &quot;$+\n&quot;;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$.</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$NR<br>$INPUT_LINE_NR</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient le num&eacute;ro de ligne actuelle du dernier fichier consult&eacute;. Dans l'exemple ci-contre toutes les lignes d'un fichier texte sont lues et sorties. &Agrave; la fin, <code>$.</code> peut renseigner sur le nombre de lignes ayant &eacute;t&eacute; lues.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>open(FICHIER, &quot;&lt;readme.txt&quot;);
+while(&lt;FICHIER&gt;)
+ { print $_; }
+print $., &quot; lignes lues&quot;;
+close(FICHIER);</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$/</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$RS<br>INPUT_RECORD_SEPARATOR</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient le s&eacute;parateur de saisie fix&eacute;. peut &ecirc;tre modifi&eacute;  - m&ecirc;me plusieurs signes sont permis. L'exemple ci-contre fait en sorte que la saisie du p&eacute;riph&eacute;rique de saisie standard ne sera close que si l'utilisateur entre la cha&icirc;ne de caract&egrave;res <kbd>FIN</kbd> et presse la touche <kbd>Entr&eacute;e</kbd>.<br>
+La valeur par d&eacute;faut est le signe de passage &agrave; la ligne <code>\n</code>
+</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>$/ = &quot;FIN&quot;;<br>
+$ton_nom = &lt;STDIN&gt;;<br>
+print $ton_nom;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$\</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$ORS<br>OUTPUT_RECORD_SEPARATOR</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Permet l'affectation d'une cha&icirc;ne de caract&egrave;res qui est ins&eacute;r&eacute;e &agrave; chaque sortie avec  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#print"><b>print</b></a> .</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>$\ = &quot;;&quot;;
+print &quot;une valeur&quot;;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$,</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$OFS<br>OUTPUT_FIELD_SEPARATOR</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Permet l'affectation d'une cha&icirc;ne de caract&egrave;res qui est ajout&eacute;e automatiquement &agrave; chaque valeur distincte sortie avec  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#print"><b>print</b></a> sous forme de plusieurs valeurs distinctes s&eacute;par&eacute;es par des virgules.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>$, = &quot;,&quot;;
+print &quot;valeur&quot;,&quot;encore une&quot;;
+</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$&quot;</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$LIST_SEPARATOR</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Permet l'affectation d'une cha&icirc;ne de caract&egrave;res qui est ajout&eacute;e automatiquement &agrave; chaque valeur distincte sauf la derni&egrave;re, quand une liste ou un tableau dans une cha&icirc;ne de caract&egrave;res est sortie interpol&eacute;e avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#print"><b>print</b></a>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>$&quot; = &quot;-&quot;;
+@Liste = (1,2,3,4);
+print &quot;@Liste&quot;;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$|</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$OUTPUT_AUTOFLUSH</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Quand cette variable est fix&eacute;e sur une valeur diff&eacute;rente de  <code>0</code>, Les sorties avec <code>print</code> ne sont pas mises en m&eacute;moire tampon, mais ont lieu &agrave; l'instant o&ugrave; l'instruction <code>print</code> est interpr&eacute;t&eacute;e. Normalement, les sorties en Perl transitent en m&eacute;moire tampon pour &ecirc;tre ensuite sorties sous forme de blocs.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>$| = 1;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$%</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$FORMAT_PAGE_NUMBER</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Voir la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#format"><b>format</b></a>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>&nbsp;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$=</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$FORMAT_LINES_PER_PAGE</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Voir la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#format"><b>format</b></a>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>&nbsp;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$-</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$FORMAT_LINES_LEFT</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Voir la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#format"><b>format</b></a>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>&nbsp;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$~</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$FORMAT_NAME</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Voir la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#format"><b>format</b></a>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>&nbsp;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$FORMAT_TOP_NAME</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Voir la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#format"><b>format</b></a>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>&nbsp;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$:</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$FORMAT_LINE_<br>BREAK_CHARACTERS</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Voir la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#format"><b>format</b></a>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>&nbsp;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^L</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$FORMAT_FORMFEED</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Voir la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#format"><b>format</b></a>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>&nbsp;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^A</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$ACCUMULATOR</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Voir la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/entreesortie.htm#format"><b>format</b></a>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>&nbsp;</pre></td>
+</tr>
+</table>
+</td></tr></table>
+<br>&nbsp;
+
+
+<h3>Scalaires pr&eacute;d&eacute;finies pour des informations sur l'environnement</h3>
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Forme abr&eacute;g&eacute;e</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Forme longue</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Signification</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Petit exemple</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$?</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$CHILD_ERROR</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient l'&eacute;tat qui, en dernier par un appel <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/appelssysteme.htm#system"><b>syst&egrave;me</b></a>, a &eacute;t&eacute; g&eacute;n&eacute;r&eacute; par un processus enfant d'un filtre ferm&eacute; ou par des Backticks.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>system($command) == 0
+  or die &quot;Erreur syst�me: $?&quot;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$!</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$ERRNO<br>$OS_ERROR</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un message d'erreur actuel ou un code d'erreur dans le contexte du programme actuel dans la mesure ou une erreur est survenue. L'instruction ci-contre essaie d'ouvrir un fichier et donne en cas d'erreur le message d'erreur Perl pr&eacute;d&eacute;fini quand le fichier ne peut pas &ecirc;tre ouvert et termine le programme.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>open(FICHIER, &quot;&lt;pas_la.txt&quot;)
+  or die &quot;Erreur � l'ouverture: $!&quot;;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$@</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$EVAL_ERROR</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient une valeur diff&eacute;rente de <code>null</code>, dans la mesure o&ugrave; une erreur est survenue lors de l'application de <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/controle.htm#eval"><b>eval</b></a>.  Si aucune erreur n'est survenue, elle ne contient rien.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>eval { system(&quot;dir&quot;); };
+if($@) {
+ print &quot;dir est impossible\n&quot;;
+}
+</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$$</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$PID<br>$PROCESS_ID</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient l'ID de processus du processus actuel, dans lequel tourne le script, tel qu'il a &eacute;t&eacute; affect&eacute; par le syst&egrave;me d'exploitation.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $$;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$&lt;</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$UID<br>REAL_USER_ID</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient l'ID utilisateur r&eacute;el de l'utilisateur ayant lanc&eacute; l'ex&eacute;cution du processus actuel (dans la mesure o&ugrave; le syst&egrave;me d'exploitation o&ugrave; l'interpr&eacute;teur Perl a &eacute;t&eacute; traduit le soutient).</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $&lt;;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$&gt;</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$EID<br>EFFECTIVE_USER_ID</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient l'ID utilisateur effectif de l'utilisateur ayant lanc&eacute; l'ex&eacute;cution du processus actuel (dans la mesure o&ugrave; le syst&egrave;me d'exploitation o&ugrave; l'interpr&eacute;teur Perl a &eacute;t&eacute; traduit le soutient).</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $&gt;;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$(</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$GID<br>REAL_GROUP_ID</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient l'ID groupe r&eacute;el de l'utilisateur ayant lanc&eacute; l'ex&eacute;cution du processus actuel (dans la mesure o&ugrave; le syst&egrave;me d'exploitation o&ugrave; l'interpr&eacute;teur Perl a &eacute;t&eacute; traduit le soutient).</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $(;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$)</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$EGID<br>EFFECTIVE_GROUP_ID</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient l'ID groupe effectif de l'utilisateur ayant lanc&eacute; l'ex&eacute;cution du processus actuel (dans la mesure o&ugrave; le syst&egrave;me d'exploitation o&ugrave; l'interpr&eacute;teur Perl a &eacute;t&eacute; traduit le soutient).</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $);</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$0</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$PROGRAM_NAME</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient le nom du script qui tourne.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $0;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$]</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$PERL_VERSION</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient le num&eacute;ro de version exact de l'interpr&eacute;teur Perl qui ex&eacute;cute le script.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $];</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^D</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$DEBUGGING</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient la valeur actuelle des drapeaux de d&eacute;bogage (R&eacute;sultat de l'option d'appel Perl <kbd>-D</kbd>).</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $^D;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^F</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$SYSTEM_FD_MAX</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient la valeur du descripteur de fichiers ouvert le plus &eacute;lev&eacute; - normalement la valeur <code>2</code>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $^F;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^H</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient le nombre de v&eacute;rifications syntaxiques ex&eacute;cut&eacute;es par Perl avec la mention <code>use strict;</code> et autres mentions sur une v&eacute;rification syntaxique s&eacute;v&egrave;re.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $^H;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^I</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$INPLACE_EDIT</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">est <code>defined</code> ou <code>undef</code>, selon que le drapeau Inplace-Edit est fix&eacute; ou non.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $^I;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^M</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">peut enregistrer des donn&eacute;es au cas o&ugrave; Perl ne peut pas poursuivre l'ex&eacute;cution du script &agrave; cause d'une m&eacute;moire de travail insuffisante. L'instruction ci-contre r&eacute;serve 64 kilo-octets de m&eacute;moire de travail pour le cas o&ugrave; Perl, lors de l'ex&eacute;cution du script, ne peut plus r&eacute;server de nouvelle place m&eacute;moire pour les donn&eacute;es n&eacute;cessaires.<br>
+Cette propri&eacute;t&eacute; doit &ecirc;tre activ&eacute;e explicitement lors de la traduction de l'interpr&eacute;teur Perl pour pouvoir &ecirc;tre utilis&eacute;e.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>$^M = 'a' x (1&lt;&lt;16);</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^O</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$OSNAME</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Nom du syst&egrave;me d'exploitation.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $^O;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^P</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$PERLDB</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient l'&eacute;tat actuel de d&eacute;bogage.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $^P;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^S</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient l'&eacute;tat actuel de l'interpr&eacute;teur Perl. Quand un appel de <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/controle.htm#eval"><b>eval</b></a> n'est pas termin&eacute;, cette variable a pour valeur <var>undef</var>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>eval { system(&quot;rm_all_old&quot;); };
+print $^S;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^T</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$BASETIME</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient la date et l'heure auxquelles le script a &eacute;t&eacute; lanc&eacute;. La valeur s'exprime en secondes &eacute;coul&eacute;es entre le 1/1/1970, 0.00 heures et le moment o&ugrave; le script a &eacute;t&eacute; lanc&eacute;.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print &quot;Start: $^T, &quot;;
+sleep(3);
+my $maintenant = time;
+print &quot;et maintenant: $maintenant&quot;;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^W</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$WARNING</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Est vrai (1), quand l'option d'appel Perl <kbd>-w</kbd> est fix&eacute;e, et faux (0), quand elle ne l'est pas.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print &quot;Attention!&quot; if($^W);</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$^X</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$EXECUTABLE_NAME</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient le nom du fichier ex&eacute;cutable de l'interpr&eacute;teur Perl qui ex&eacute;cute le script.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print $^X;</pre></td>
+</tr>
+</table>
+</td></tr></table>
+<br>&nbsp;
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="arrays_hashes">Listes et hashes pr&eacute;d&eacute;finis</a></h2>
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Forme abr&eacute;g&eacute;e</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Forme longue</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Signification</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Petit exemple</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>@_</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient les param&egrave;tres transmis lors de l'appel d'un <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="sousroutines.htm"><b>sous-programme</b></a>. &Agrave; l'int&eacute;rieur du sous-programme, les param&egrave;tres transmis peuvent &ecirc;tre adress&eacute;s avec <code>$_[0]</code> (= premier param&egrave;tre), <code>$_[1]</code> (= deuxi&egrave;me param&egrave;tre) etc.... @_ est l'argument standard dans des sous-programmes pour l'appel de la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/hashlistes.htm#shift"><b>shift</b></a>. Vous pouvez donc affecter &agrave; la variable <code>$premier</code> le premier param&egrave;tre transmis par exemple avec  <code>my $premier = shift;</code> et le retirer en m&ecirc;me temps de la liste des param&egrave;tres.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>&amp;Dis(&quot;Hello monde&quot;);
+sub Dis {
+ print $_[0];
+}</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>@ARGV</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient les param&egrave;tres transmis lors de l'appel d'un script Perl. Si par exemple <kbd>perl test.pl mon_texte.txt</kbd> a &eacute;t&eacute; entr&eacute;,  <var>mon_texte.txt</var> est le premier param&egrave;tre pour le script Perl. Le script peut &eacute;valuer des param&egrave;tres en entr&eacute;e pour le d&eacute;roulement du programme. Dans l'exemple ci-contre, le premier param&egrave;tre transmis   <code>$ARGV[0]</code> est interpr&eacute;t&eacute; comme nom de fichier. Le script essaie d'ouvrir ce fichier.<br>
+<code>@ARGV</code> est dans le contexte global du fichier l'argument standard pour l'appel de la fonction <code>shift</code>.
+</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>if (open(FICHIER, &quot;&lt; $ARGV[0]&quot;)) {
+  print &quot;$ARGV[0] ouvert!&quot;;
+  close(FICHIER);
+}
+</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>@INC</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient les chemins dans lesquels Perl doit rechercher les modules incorpor&eacute;s.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>print @INC;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>@ISA</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient une liste de classes de base dont une classe doit h&eacute;riter des m&eacute;thodes pour le programmation orient&eacute;e objet.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>use vars qw(@ISA);
+@ISA = qw(Base);
+print @ISA;</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>@EXPORT</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">peut &ecirc;tre mis en &#339;uvre pour les modules. Peut enregistrer les noms du module qui sont export&eacute;s absolument dans l'espace de nommage du script qui incorpore ce module. Voir <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/intro.htm#use_etendu"><b>Utilisation &eacute;tendue de use</b></a>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>@EXPORT = qw(%CHAMPS_FORMULAIRE);</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>@EXPORT_OK</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">peut &ecirc;tre mis en &#339;uvre pour les modules. Peut enregistrer les noms du module que le script qui l'incorpore peut adopter dans son propre espace de nommage mais ne le doit pas. Voir <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/intro.htm#use_erweitert"><b>Utilisation &eacute;tendue de use</b></a>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>@EXPORT_OK = qw($horodateur @donnees_Log);
+</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%ENV</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient les variables d'environnement qui, &agrave; l'appel du script, ont &eacute;t&eacute; transmises par le syst&egrave;me appelant. Pour les scripts CGI les variables d'environnement sont fix&eacute;es par le serveur Web et sont disponibles comme <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../introduction/variablesenvironnement.htm"><b>variables d'environnement CGI</b></a>.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>$, = &quot;\n&quot;;
+print keys(%SIG);</pre></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>%SIG</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>&nbsp;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Contient les gestionnaires de signal disponibles qui permettent &agrave; un script Perl de r&eacute;agir &agrave; des signaux d&eacute;finis qu'il re&ccedil;oit d'autres processus qui tournent.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top"><pre>$, = &quot;\n&quot;;
+print keys(%SIG);
+</pre></td>
+</tr>
+</table>
+</td></tr></table>
+<br>&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="chainescaracteres.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="chainescaracteres.htm"><b>Cha&icirc;nes de caract&egrave;res (Strings)</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="references.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="references.htm"><b>R&eacute;f&eacute;rences ou pointeurs (Variables)</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+</body>
+</html>

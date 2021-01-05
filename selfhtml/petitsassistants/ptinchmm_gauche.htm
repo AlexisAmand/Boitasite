@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: Petits assistants / Traducteur points/pouces/millim&egrave;tres</title>
+<link rel="stylesheet" type="text/css" href="../src/selfhtml.css">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/petitsassistants/ptinchmm_gauche.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<script type="text/javascript">
+<!--
+function Trim(nombre,maxvirgule)
+{
+ var nombrenum = eval(nombre);
+ var avantvirgule = Math.floor(nombrenum);
+ var apresvirgule = nombrenum - avantvirgule;
+ var puissance = Math.pow(10,maxvirgule);
+ apresvirgule = Math.round(apresvirgule * puissance);
+ var resultat = avantvirgule + (apresvirgule / puissance);
+ return(resultat);
+}
+
+function chercheremplace(Texte,cherche,remplace)
+{
+ var nouveautexte = "";
+ var i = 0;
+ while(i < Texte.length)
+  {
+   if(Texte.substring(i,i + cherche.length) == cherche)
+    {
+     nouveautexte = nouveautexte + remplace;
+     i = i + cherche.length - 1;
+    }
+   else
+    nouveautexte = nouveautexte + Texte.substring(i,i + 1);
+   i++;
+  }
+ return nouveautexte;
+}
+
+function resultat()
+{
+/* 1 centim�tre = 10 mm */
+/* 1 point Didot = 0.375 mm */
+/* 1 point Pica = 0.351 mm */
+/* 1 pouce = 25.4 mm */
+
+var i=0, j=0, xmm=0, xcm = 0, xdpt=0, xppt=0, xinch=0;
+var tmm = "", tcm = "", tdpt = "", tppt = "", tinch = "";
+if(document.traducteur.mm.value != "") { i+=1; j = 1; }
+if(document.traducteur.cm.value != "") { i+=1; j = 2; }
+if(document.traducteur.dpt.value != "") { i+=1; j = 3; }
+if(document.traducteur.ppt.value != "") { i+=1; j = 4; }
+if(document.traducteur.inch.value != "") { i+=1; j = 5; }
+if(i == 0)
+ {
+  alert("Bitte geben Sie zuerst in einem der vier Eingabefelder einen Wert ein!");
+  return;
+ }
+if(i > 1)
+ {
+  alert("Bitte geben Sie nur in einem der vier Eingabefelder einen Wert ein!\n Loeschen Sie die Feldinhalte mit dem Button \"Loeschen\".");
+  return;
+ }
+if(j == 1)
+ {
+  tmm = chercheremplace(document.traducteur.mm.value,",",".");
+  xmm = eval(tmm);
+  xcm = xmm * (1 / 10);
+  xdpt = xmm * (1 / 0.375);
+  xppt = xmm * (1 / 0.351);
+  xinch = xmm * (1 / 25.4);
+ }
+if(j == 2)
+ {
+  tcm = chercheremplace(document.traducteur.cm.value,",",".");
+  xcm = eval(tcm);
+  xmm = xcm * 10;
+  xdpt = xcm * 10 * (1 / 0.375);
+  xppt = xcm * 10 * (1 / 0.351);
+  xinch = xcm * 10 * (1 / 25.4);
+ }
+if(j == 3)
+ {
+  tdpt = chercheremplace(document.traducteur.dpt.value,",",".");
+  xdpt = eval(tdpt);
+  xmm = xdpt * 0.375;
+  xcm = (xdpt * 0.375) / 10;
+  xppt = xmm * (1 / 0.351);
+  xinch = xmm * (1 / 25.4);
+ }
+if(j == 4)
+ {
+  tppt = chercheremplace(document.traducteur.ppt.value,",",".");
+  xppt = eval(tppt);
+  xmm = xppt * 0.351;
+  xcm = (xppt * 0.351) / 10;
+  xdpt = xmm * (1 / 0.375);
+  xinch = xmm * (1 / 25.4);
+ }
+if(j == 5)
+ {
+  tinch = chercheremplace(document.traducteur.inch.value,",",".");
+  xinch = eval(tinch);
+  xmm = xinch * 25.4;
+  xcm = xinch * 2.54;
+  xdpt = xmm * (1 / 0.375);
+  xppt = xmm * (1 / 0.351);
+ }
+document.traducteur.mm.value = Trim(xmm,2);
+document.traducteur.cm.value = Trim(xcm,2);
+document.traducteur.dpt.value = Trim(xdpt,2);
+document.traducteur.ppt.value = Trim(xppt,2);
+document.traducteur.inch.value = Trim(xinch,2);
+}
+//-->
+</script>
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+<form name="traducteur" style="margin-top:0px">
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../index.htm" target="_parent"><b>SELFHTML</b></a>/<a href="../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm" target="_parent"><b>Petits assistants</b></a></td>
+</tr></table>
+<table cellspacing="0" bgcolor="#EEEEEE" cellpadding="3" border="0" width="100%">
+<tr>
+<td valign="top" colspan="2">&nbsp;</td>
+</tr><tr>
+<td align="right">millim&egrave;tres:</td>
+<td width="100%"><input type="text" name="mm" size="15" maxlength="15"></td>
+</tr><tr>
+<td align="right">centim&egrave;tres:</td>
+<td><input type="text" name="cm" size="15" maxlength="15"></td>
+</tr><tr>
+<td align="right">point Didot:</td>
+<td><input type="text" name="dpt" size="15" maxlength="15"></td>
+</tr><tr>
+<td align="right">point Pica:</td>
+<td><input type="text" name="ppt" size="15" maxlength="15"></td>
+</tr><tr>
+<td align="right">pouces:</td>
+<td><input type="text" name="inch" size="15" maxlength="15"></td>
+</tr><tr>
+<td colspan="2"><img src="../src/formhr.gif" width="99%" height="1" border="0" alt=""></td>
+</tr><tr>
+<td valign="middle"><input type="button" value="r&eacute;sultat" onClick="resultat()" style="background-color:#FFEEDD; width:100px"></td>
+<td valign="middle" width="240">Cliquez pour convertir la valeur saisie dans les les autres unit&eacute;s de mesures.</td>
+</tr><tr>
+<td valign="middle"><input type="reset" value="Effacer" style="background-color:#FFEEDD; width:100px"></td>
+<td valign="middle" width="240">Cliquez pour vider les champs pour une nouvelle saisie.</td>
+</tr>
+</table>
+</form>
+</body>
+</html>

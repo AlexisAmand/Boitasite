@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Test</title>
+<script type="text/javascript">
+<!--
+var pr, pb, moi;
+var vitesse_pr = 10, vitesse_pb = 20;
+var grade_pr = 0, grade_pb = 0;
+var X_pr = 170, Y_pr = 170, X_pb = 170, Y_pb = 170;
+var rayon_pr = 150, rayon_pb = 150;
+
+function Init() {
+  pr = eval(document.getElementById("point_rouge"));
+  pb = eval(document.getElementById("point_bleu"));
+  moi = eval(document.getElementById("moi"));
+  pr.style.position = "absolute";
+  pr.style.top = 20;
+  pr.style.left = 320;
+  pb.style.position = "absolute";
+  pb.style.top = 320;
+  pb.style.left = 320;
+  moi.style.position = "absolute";
+  moi.style.top = 110;
+  moi.style.left = 90;
+  moi.style.fontFamily = "Courier New,Courier";
+  moi.style.fontSize = "72pt";
+  moi.style.fontWeight = "bold";
+  moi.style.color = "#009900";
+  cercle_pr();
+  cercle_pb();
+}
+
+function cercle_pr() {
+ grade_pr += vitesse_pr/1000;
+ if(grade_pr > 360) grade_pr = 0;
+ pr.style.top  = Math.round(Y_pr + (rayon_pr * Math.cos(grade_pr)));
+ pr.style.left = Math.round(X_pr + (rayon_pr * Math.sin(grade_pr)));
+ window.setTimeout("cercle_pr()",100/vitesse_pr);
+}
+
+function cercle_pb() {
+ grade_pb += vitesse_pb/1000;
+ if(grade_pb > 360) grade_pb = 0;
+ pb.style.top  = Math.round(Y_pb + (rayon_pb * Math.cos(grade_pb)));
+ pb.style.left = Math.round(X_pb + (rayon_pb * Math.sin(grade_pb)));
+ window.setTimeout("cercle_pb()",100/vitesse_pb);
+}
+//-->
+</script>
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head><body onLoad="Init()">
+
+<div id="point_rouge"><img src="tourneautour1.gif" width="20" height="20" border="0" alt="point rouge"></div>
+<div id="point_bleu"><img src="tourneautour2.gif" width="20" height="20" border="0" alt="point bleu"></div>
+<div id="moi">MOI</div>
+
+</body></html>
+

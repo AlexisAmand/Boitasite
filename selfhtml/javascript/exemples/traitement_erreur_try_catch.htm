@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / Exemples d'application / Traitement d'erreur avec la commande try..catch</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment intercepter les erreurs dans les JavaScripts.">
+<meta name="keywords"       content="SELFHTML, JavaScript, erreurs, Error, try, throw, catch">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/exemples/traitement_erreur_try_catch.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // Exemples d'application == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Traitement d'erreur avec la commande try..catch</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#remarques"><b>Remarques sur cet exemple</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#texte_source"><b>Texte source avec explications</b></a><br>
+</p>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/traitement_erreur_try_catch.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="remarques">Remarques sur cet exemple</a></h2>
+
+<p>&Agrave; l'aide du <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="traitement_erreur.htm"><b>Traitement d'erreur avec le gestionnaire d'&eacute;v&eacute;nement onError</b></a> vous pouvez intercepter des erreurs dans un JavaScript <b>apr&egrave;s que</b> celle-ci est survenue. Avec la m&eacute;thode pr&eacute;sent&eacute;e ici, vous pouvez cependant emp&ecirc;cher d'embl&eacute;e que des erreurs surviennent dans des situations critiques. Pour cela vous disposez, depuis la version 1.5 JavaScript, de l'instruction  <code>try</code>..<code>catch</code>. Elle vous permet de v&eacute;rifier des variables et des valeurs et de r&eacute;agir selon le r&eacute;sultat. Cette instruction est interpr&eacute;t&eacute;e par l'Explorer Internet MS &agrave; partir de la version 5.0, par Netscape &agrave; partir de la version 6.0 et par Opera &agrave; partir de la version 5.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js15.gif" width="30" height="30" border="0" alt="JavaScript 1.5"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="MS IE 5.0">&nbsp;<a class="an" name="texte_source">Texte source avec explications</a></h2>
+
+<p>L'exemple est construit de telle fa&ccedil;on qu'il acc&egrave;de &agrave; une variable qui dans un premier temps n'existe pas du tout. Cela conduirait &agrave; une erreur. Le script &quot;sait&quot; cependant qu'une telle erreur peut intervenir et v&eacute;rifie pour cette raison sans arr&ecirc;t avec l'instruction <code>try</code>..<code>catch</code> si la variable existe d&eacute;j&agrave;. Ce n'est que lorsque la variable existe que la surveillance s'ach&egrave;ve.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/traitement_erreur_try_catch.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+
+setTimeout(&quot;x=3&quot;,200);
+
+function affiche_resultat(compteur,resultat)
+ {
+   alert(&quot;Apr�s &quot;+(compteur)+ &quot; passages, x existait x.\nLe nombre x est &quot;+resultat+&quot;.&quot;);
+ }
+
+function teste_x(compteur)
+{
+ try {
+ if (x==2) throw &quot;correct&quot;;
+ else if (x==3) throw &quot;faux&quot;;
+ }
+ catch (e) {
+     if (e==&quot;correct&quot;) {affiche_resultat(compteur,e);return;}
+     else if (e==&quot;faux&quot;) {affiche_resultat(compteur,e);return;}
+     }
+ finally { compteur++; }
+
+setTimeout('teste_x('+(compteur)+')',30);
+
+}
+teste_x(0)
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'ent&ecirc;te du fichier est not&eacute; un passage Script. En sont ex&eacute;cut&eacute;es &agrave; la ecture du fichier la premi&egrave;re et la derni&egrave;re instruction. Les autres instructions se trouvent dans des fonctions.</p>
+
+<h4>La variable x</h4>
+
+<p>Pendant le chargement du fichier, une variable <code>x</code> se voit affecter la valeur <code>3</code> avec un d&eacute;calage dans le temps. C'est ce &agrave; quoi sert la m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/window.htm#set_timeout"><b>setTimeout()</b></a>. La variable n'est donc disponible qu'apr&egrave;s 200 milli&egrave;mes de seconde. Chaque tentative pour acc&eacute;der avant cela &agrave; cette variable conduirait &agrave; une erreur.</p>
+
+<p>L'instruction suivante qui dans l'exemple est ex&eacute;cut&eacute;e d'embl&eacute;e est la derni&egrave;re du passage script, &agrave; savoir <code>teste_x(0)</code>. Gr&acirc;ce &agrave; elle la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/fonctions.htm"><b>fonction</b></a> <code>teste_x()</code>, not&eacute;e au dessus, est appel&eacute;e.</p>
+
+<h4>La fonction teste_x()</h4>
+
+<p>Cette fonction tente d'acc&eacute;der &agrave; la variable <code>x</code>. &Eacute;tant donn&eacute; qu'&agrave; l'appel de la fonction, il n'est cependant pas encore s&ucirc;r que la variable <code>x</code> existe d&eacute;j&agrave;, l'instruction <code>try</code>..<code>catch</code> pour &eacute;viter les messages d'erreurs est not&eacute;e dans la fonction.<br>
+Lorsqu'elle est appel&eacute;e, la fonction <code>teste_x()</code> re&ccedil;oit un param&egrave;tre nomm&eacute; <code>compteur</code> qui lui est transmis. cela sert dans l'exemple aux fins de contr&ocirc;le.</p>
+
+<h4>Construction de l'instruction <code>try</code>..<code>catch</code></h4>
+
+<p>L'instruction <code>try</code>..<code>catch</code> a en g&eacute;n&eacute;ral la construction suivante: Apr&egrave;s le mot-cl&eacute; <code>try</code> (<i>try = essayer</i>) une parenth&egrave;se accolade d'ouverture, suivie de la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/condition.htm"><b>condition</b></a> &agrave; v&eacute;rifier est not&eacute;e. Selon les besoins, vous pouvez ensuite d&eacute;finir vos propres erreurs avec <code>throw</code> (<i>throw = jeter</i>). La d&eacute;finition <code>throw</code> est toutefois facultative. Enfin suit une parenth&egrave;se accolade de fermeture qui cl&ocirc;t le bloc <code>try</code>.<br>
+&Agrave; la suite enfin notez le mot-cl&eacute; <code>catch</code> (<i>catch = intercepter</i>). <code>catch</code> a le caract&egrave;re d'une fonction et attend un param&egrave;tre <code>e</code>. La variable <code>e</code> est indispensable, &eacute;tant donn&eacute; que c'est par elle en fin de compte que vous contr&ocirc;lez l'&eacute;tat actuel. Le nom de la variable peut &ecirc;tre choisi librement (le nom ne doit donc pas &ecirc;tre <code>e</code>). &Agrave; l'int&eacute;rieur du bloc de fonction de <code>catch()</code>, plac&eacute; comme d'habitude dans des parenth&egrave;ses accolades, vous pouvez &eacute;valuer au moyen de <code>throw</code> les erreurs d&eacute;finies et y r&eacute;agir.<br>
+Enfin, vous pouvez encore noter le mot-cl&eacute; <code>finally</code>. Dans le bloc d'instructions qui en d&eacute;pend, vous pouvez noter d'autres instructions. Ces instructions seront ex&eacute;cut&eacute;e dans tous les cas, ind&eacute;pendamment du traitement de l'erreur.</p>
+
+<h4>Application de l'instruction <code>try</code>..<code>catch</code> dans l'exemple</h4>
+
+<p>Dans la premi&egrave;re partie de l'instruction, il est v&eacute;rifi&eacute; si la variable <code>x</code> a pour valeur 2 ou bien 3. Selon le r&eacute;sultat, diff&eacute;rentes valeurs d'erreurs sont d&eacute;finies avec <code>throw</code>. Si <code>x</code> a pour valeur 2, alors l'&quot;erreur&quot; g&eacute;n&eacute;r&eacute;e aura pour valeur  <code>correct</code>. Si elle a pour valeur 3, alors l'erreur aura pour valeur <code>faux</code>. Les autres valeurs d'erreurs ne sont pas trait&eacute;es.</p>
+
+<p>Dans le premier passage la variable <code>x</code> dans l'exemple n'existe m&ecirc;me pas encore, &eacute;tant donn&eacute; qu'elle n'existe qu'apr&egrave;s 200 milli&egrave;mes de seconde. Elle ne peut donc avoir ni la valeur 2 ni la valeur 3. Dans la routine de traitement de l'erreur qui suit <code>catch(e)</code> il est v&eacute;rifi&eacute; si l'une des erreurs d&eacute;finies, &agrave; savoir <code>correct</code> ou bien <code>faux</code>, est survenue. Dans un premier temps ce n'est visiblement pas le cas. Les instructions qui d&eacute;pendent des &quot;valeurs d'erreur&quot; <code>correct</code> et <code>faux</code>, ne sont pas ex&eacute;cut&eacute;es pour cette raison. L'instruction <code>finally</code> est par contre ex&eacute;cut&eacute;e dans tous les cas. Elle fait en sorte, dans l'exemple, que le param&egrave;tre transmis <code>compteur</code> est incr&eacute;ment&eacute; de 1.
+
+<h4>Contr&ocirc;le g&eacute;n&eacute;ral</h4>
+
+<p>&Agrave; la fin la fonction  <code>teste_x()</code> s'appelle elle-m&ecirc;me avec <code>setTimeout()</code> avec 30 milli&egrave;mes de seconde de d&eacute;lai. Elle conserve ainsi le contr&ocirc;le sur le d&eacute;roulement jusqu'&agrave; ce qu'un &eacute;tat d&eacute;fini soit atteint. Le param&egrave;tre <code>compteur</code> est transmis pour cela &agrave; l'aide d'un <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/operateurs.htm#concatener_chaines"><b>op&eacute;rateur pour relier des cha&icirc;nes de caract&egrave;res</b></a>.</p>
+
+<p>Cela devient int&eacute;ressant quand le moment est atteint o&ugrave; la variable <code>x</code> existe. Dans ce cas, l'un des cas pr&eacute;d&eacute;finis intervient. &Eacute;tant donn&eacute; que <code>x</code> a pour valeur 3. c'est l'erreur <code>throw</code> avec la valeur <code>faux</code> qui est g&eacute;n&eacute;r&eacute;e (cela doit montrer simplement dans l'exemple que <code>throw</code> est con&ccedil;u pour la cr&eacute;ation de valeurs, tout &agrave; fait caract&eacute;ristiques d'&eacute;tats d'erreurs fr&eacute;quentes). Dans le bloc <code>catch(e)</code> qui suit, cela conduit &agrave; ce que la fonction <code>affiche_resultat()</code> est appel&eacute;e. Dans l'exemple, la m&ecirc;me valeur est appel&eacute;e pour les deux valeurs d&eacute;finies pour  <code>throw</code>. &Agrave; cet endroit, vous pouvez cependant noter des instructions compl&egrave;tement diff&eacute;rentes. Chacune de ces routines de traitement d'erreur interrompt en m&ecirc;me temps la fonction <code>teste_x()</code> avec <code>return</code>, &eacute;tant donn&eacute; que <code>x</code> existe alors et que l'&quot;&eacute;tat critique&quot; est termin&eacute;.</p>
+
+<h4>Sortie du r&eacute;sultat</h4>
+
+<p>La fonction <code>affiche_resultat()</code> re&ccedil;oit comme param&egrave;tres transmis les variables <code>compteur</code> et <code>resultat</code>. Dans la variable <code>compteur</code> est sauvegard&eacute; le nombre de passages jusqu'&agrave; l'existence de la variable <code>x</code> et dans la variable <code>resultat</code> est sauvegard&eacute; le r&eacute;sultat du traitement de l'erreur. Avec <code>alert()</code> il est sorti, dans l'exemple, pour le contr&ocirc;le, combien de passages &eacute;taient n&eacute;cessaires et quel r&eacute;sultat a &eacute;t&eacute; atteint.</p>
+
+<p>La sortie montre d'ailleurs tr&egrave;s clairement quelles diff&eacute;rences existent dans l'interpr&eacute;tation de <code>setTimeout()</code> par les navigateurs. Tandis que l'Explorer Internet MS avait besoin en moyenne lors des tests de cinq passages, Netscape 6.x en n&eacute;cessitait deux en moyenne et Opera quatre.</p>
+
+<h4>Cas d'application</h4>
+
+<p>Les v&eacute;rifications avec la commande <code>try</code>..<code>catch</code> sont par exemple appropri&eacute;es, quand vous ex&eacute;cutez, comme dans l'exemple, des actions diff&eacute;r&eacute;es dans le temps avec <code>setTimeout()</code> et que vous voulez ex&eacute;cuter des instructions qui en d&eacute;pendent. La commande est tout aussi appropri&eacute;e quand vous voulez acc&eacute;der par exemple &agrave; des variables ou des fonctions qui sont not&eacute;es dans une autre fen&ecirc;tre cadre, et que le script ne peut pas savoir si le fichier de l'autre fen&ecirc;tre cadre, dans lequel est not&eacute; le script correspondant, a d&eacute;j&agrave; &eacute;t&eacute; lu ou pour le moins, s'il en est la page actuellement affich&eacute;e.</p>
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="surveillance_taille_fenetre.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="surveillance_taille_fenetre.htm"><b>Surveiller les modifications de la taille de la fen&ecirc;tre</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="traitement_erreur.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="traitement_erreur.htm"><b>Traitement d'erreur avec le gestionnaire d'&eacute;v&eacute;nement onError</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

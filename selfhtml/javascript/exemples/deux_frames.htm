@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / Exemples d'application / Changer simultan&eacute;ment deux cadres</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment modifier, &agrave; l'aide de JavaScript, le contenu de deux cadres simultan&eacute;ment en un seul clic sur un lien.">
+<meta name="keywords"       content="SELFHTML, JavaScript, cadres, Frames, modifier simultan&eacute;ment deux cadres, location.href, history.back(), history.forward(), eval(), History">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/exemples/deux_frames.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // Exemples d'application == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Changer simultan&eacute;ment deux cadres</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#remarques"><b>Remarques sur cet exemple</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#texte_source"><b>Texte source avec explications</b></a><br>
+</p>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/deux_frames.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="remarques">Remarques sur cet exemple</a></h2>
+
+<p>Celui qui a d&eacute;j&agrave; con&ccedil;u un projet HTML avec plusieurs  <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../html/frames/index.htm"><b>cadres</b></a>, r&eacute;alise combien il peut &ecirc;tre souhaitable quelquefois lors de l'ex&eacute;cution d'un lien, de modifier non seulement le contenu d'une fen&ecirc;tre cadre, mais celui de deux ou de plusieurs cadres simultan&eacute;ment. Maintenant, on peut dans de tels cas mettre un lien &agrave; un fichier, qui d&eacute;finit lui un nouveau jeu de cadres correspondant. Mais si vous avez beaucoup de liens de ce genre, ce proc&eacute;d&eacute; deviendra vite lourd. Comme alternative &agrave; cette solution, vous pouvez vous faire assister d'un JavaScript.</p>
+
+<p>Un inconv&eacute;nient de la  &quot;modification simultan&eacute;e  de deux cadres&quot; avec JavaScript est cependant qu'avec ce proc&eacute;d&eacute;, la fonction History du navigateur ne travaille plus comme pr&eacute;vu. Car du point de vue du navigateur, deux liens ont &eacute;t&eacute; ex&eacute;cut&eacute;s, et un &eacute;l&eacute;ment de l'historique ne revient qu'&agrave; la page pr&eacute;c&eacute;dente. L'utilisateur doit donc cliquer deux fois sur le bouton page pr&eacute;c&eacute;dente du navigateur pour revenir l&agrave; o&ugrave; il &eacute;tait avant d'avoir cliqu&eacute; sur le lien. Une possibilit&eacute; d'&eacute;viter cette r&eacute;action non d&eacute;sir&eacute;e du navigateur est de proposer soi-m&ecirc;me des liens qui ex&eacute;cutent l'action &quot;page pr&eacute;c&eacute;dente&quot; et &quot;page suivante&quot; du navigateur, de telle fa&ccedil;on cependant que les deux cadres soient modifi&eacute;s simultan&eacute;ment comme souhait&eacute;. L'exemple de cette page montre aussi comment il est possible de r&eacute;aliser ce genre de choses.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0">&nbsp;<a class="an" name="texte_source">Texte source avec explications</a></h2>
+
+<p>L'exemple montre le fichier avec la d&eacute;finition du jeu de cadres et le fichier avec les liens. Les autres fichiers qui sont appel&eacute;s dans l'exemple d'affichage sont superflus pour la compr&eacute;hension.</p>
+
+
+<h3 class="xmp">Exemple - fichier <var>deux_frames.htm</var>:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/deux_frames.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Changer simultan&amp;eacute;ment deux cadres&lt;/title&gt;
+&lt;/head&gt;
+&lt;frameset cols=&quot;180,*&quot;&gt;
+ &lt;frame src=&quot;deux_frames_gauche.htm&quot; name=&quot;gauche&quot;&gt;
+ &lt;frameset rows=&quot;180,*&quot;&gt;
+   &lt;frame src=&quot;deux_frames_depart_haut.htm&quot; name=&quot;haut&quot;&gt;
+   &lt;frame src=&quot;deux_frames_depart_bas.htm&quot; name=&quot;bas&quot;&gt;
+ &lt;/frameset&gt;
+&lt;/frameset&gt;
+&lt;/html&gt;
+
+</pre></td></tr></table>
+
+<h3 class="xmp">Exemple - fichier <var>deux_frames_gauche.htm</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Deux cadres - liens&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function deux_cadres(URI1,F1,URI2,F2) {
+  Frame1=eval(&quot;parent.&quot;+F1);
+  Frame2=eval(&quot;parent.&quot;+F2);
+  Frame1.location.href = URI1;
+  Frame2.location.href = URI2;
+}
+function deux_cadres_avant(F1,F2) {
+  Frame1=eval(&quot;parent.&quot;+F1);
+  Frame2=eval(&quot;parent.&quot;+F2);
+  Frame1.history.back();
+  if (!window.opera) window.setTimeout(&quot;Frame2.history.back()&quot;,10);
+}
+function deux_cadres_apres(F1,F2) {
+  Frame1=eval(&quot;parent.&quot;+F1);
+  Frame2=eval(&quot;parent.&quot;+F2);
+  Frame1.history.forward();
+  if (!window.opera) window.setTimeout(&quot;Frame2.history.forward()&quot;,10);
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body bgcolor=&quot;#EEEEEE&quot; text=&quot;#000000&quot; link=&quot;#AA5522&quot; vlink=&quot;#772200&quot; alink=&quot;#000000&quot;&gt;
+
+&lt;div&gt;
+&lt;hr noshade size=&quot;1&quot;&gt;
+&lt;a href=&quot;javascript:deux_cadres_avant('haut','bas')&quot;&gt;&lt;b&gt;page pr&amp;eacute;c&amp;eactue;dente&lt;/b&gt;&lt;/a&gt;
+&lt;b&gt;|&lt;/b&gt;
+&lt;a href=&quot;javascript:deux_cadres_apres('haut','bas')&quot;&gt;&lt;b&gt;page suivante&lt;/b&gt;&lt;/a&gt;
+&lt;hr noshade size=&quot;1&quot;&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;Liens&lt;/h2&gt;
+&lt;p&gt;
+&lt;a href=&quot;javascript:deux_cadres('deux_frames_depart_haut.htm','haut','deux_frames_depart_bas.htm','bas')&quot;&gt;
+&lt;b&gt;Bienvenue&lt;/b&gt;
+&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;javascript:deux_cadres('deux_frames_suzan_haut.htm','haut','deux_frames_suzan_bas.htm','bas')&quot;&gt;
+&lt;b&gt;Susan Sarandon&lt;/b&gt;
+&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;javascript:deux_cadres('deux_frames_jack_haut.htm','haut','deux_frames_jack_bas.htm','bas')&quot;&gt;
+&lt;b&gt;Jack Nicholson&lt;/b&gt;
+&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>La premi&egrave;re partie de l'exemple montre le fichier <var>deux_frames.htm</var>, qui pr&eacute;pare le jeu de cadres pour une base de donn&eacute;es d'acteurs. Le jeu de cadres comprend trois parties: &agrave; gauche une  fen&ecirc;tre cadre nomm&eacute;e <code>gauche</code> pour les liens, et &agrave; droite deux cadres nomm&eacute;s respectivement <code>haut</code> et <code>bas</code> pour les informations.</p>
+
+<p>La deuxi&egrave;me partie de l'exemple montre le fichier   <var>deux_frames_gauche.htm</var>, qui est charg&eacute; au d&eacute;but dans la fen&ecirc;tre cadre de gauche, comme on peut le voir aussi dans le fichier <var>deux_frames.htm</var>. Ce fichier contient les liens. Tous les liens modifient simultan&eacute;ment le contenu de deux fen&ecirc;tres cadres, &agrave; savoir chacune des deux fen&ecirc;tres cadres de droite nomm&eacute;es  <code>haut</code> et <code>bas</code>. C'est pourquoi c'est aussi dans cette fen&ecirc;tre qu'est not&eacute; le code JavaScript pour la modification des deux autres fen&ecirc;tres cadres.</p>
+
+<p>Pour comprendre le mode de fonctionnement, il est indiqu&eacute; de consid&eacute;rer d'abord de plus pr&egrave;s les liens HTML dans le passage  <code>&lt;body&gt;</code> du fichier <var>deux_frames_gauche.htm</var>. Tous les liens contiennent avec l'attribut <code>href</code> du code JavaScript, introduit par le pseudo-gestionnaire d'&eacute;v&eacute;nement <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/gestevenements.htm#javascript"><b>javascript:</b></a>. Derri&egrave;re celui-ci est plac&eacute; l'appel d'une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/fonctions.htm"><b>fonction</b></a>. Pour le lien avec le texte de lien <code>page pr&eacute;c&eacute;dente</code> c'est la fonction <code>deux_cadres_avant()</code> qui est appel&eacute;e, Pour le lien avec le texte de lien  <code>page suivante</code> c'est la fonction <code>deux_cadres_apres</code>, et pour les autres liens, la fonction <code>deux_cadres()</code>. Dans tous les cas, les noms des deux cadres pr&eacute;sents sont transmis comme param&egrave;tres &agrave; la fonction respectivement appel&eacute;e, &agrave; savoir <code>'haut'</code> et <code>'bas'</code>.</p>
+
+<p>Dans l'ent&ecirc;te du fichier HTML, donc entre <code>&lt;head&gt;</code> et <code>&lt;/head&gt;</code>, est <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../intro.htm#passages_javascript"><b>d&eacute;fini un passage JavaScript en HTML</b></a> avec <code>&lt;script type=&quot;text/javascript&quot;&gt;</code> .... <code>&lt;/script&gt;</code>. &Agrave; l'int&eacute;rieur de ce passage, sont not&eacute;es les trois fonctions <code>deux_cadres()</code>, <code>deux_cadres_avant()</code> et <code>deux_cadres_apres()</code> , qui sont appel&eacute;es par les liens dans le fichier.</p>
+
+<p>La fonction <code>deux_cadres()</code> attend quatre param&egrave;tres:<br>
+1. l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/generalites/referencer.htm#uri"><b>URI</b></a> du contenu d&eacute;sir&eacute; de la premi&egrave;re fen&ecirc;tre cadre (<code>URI1</code>)<br>
+2. le nom de la premi&egrave;re fen&ecirc;tre cadre d&eacute;sir&eacute;e dans le jeu de cadres (<code>F1</code>)<br>
+3. l'URI du contenu d&eacute;sir&eacute; de la deuxi&egrave;me fen&ecirc;tre cadre (<code>URI2</code>)<br>
+4. le nom de la deuxi&egrave;me fen&ecirc;tre cadre d&eacute;sir&eacute;e dans le jeu de cadres (<code>F2</code>)<br>
+Ce faisant on on conserve &agrave; la fonction un caract&egrave;re g&eacute;n&eacute;ral, c'est &agrave; dire que vous pouvez utiliser cette fonction &eacute;galement dans des jeux de cadres tout &agrave; fait diff&eacute;rents pour le m&ecirc;me objectif.<br>
+&Agrave; l'int&eacute;rieur de la fonction, se trouvent d'abord deux appels de la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/independant.htm#eval"><b>eval</b></a>. Ceci est n&eacute;cessaire pour que l'interpr&eacute;teur JavaScript n'interpr&egrave;te pas les noms des fen&ecirc;tres cadres transmis comme de simples cha&icirc;nes de caract&egrave;res, mais au contraire pour qu'il tente de les identifier comme des objets existants. Les appels sont structur&eacute;s de telle fa&ccedil;on que dans les variables <code>Frame1</code> ou bien <code>Frame2</code> de l'exemple, sont sauvegard&eacute;s &agrave; la suite les <b>objets</b> <code>parent.haut</code> ou <code>parent.bas</code>. Ainsi &eacute;quip&eacute;es, les deux variables peuvent enfin, dans les appels <code>Frame1.location.href</code> et <code>Frame2.location.href</code>, &ecirc;tre utilis&eacute;es comme les objets correspondants, de fa&ccedil;on &agrave; ce que soit ex&eacute;cut&eacute;, dans notre exemple: <code>parent.haut.location.href</code> ou bien <code>parent.bas.location.href</code>. La propri&eacute;t&eacute; <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/location.htm#href"><b>location.href</b></a> obtient un lien JavaScript &agrave; une autre adresse. Dans la fonction, sont tout simplement affect&eacute;es aux deux appels de cette propri&eacute;t&eacute;, les deux adresses <code>URI1</code> ou <code>URI2</code> transmises &agrave; l'appel de la fonction.</p>
+
+<p>Les fonctions <code>deux_cadres_avant()</code> et <code>deux_cadres_apres()</code> sont construites de fa&ccedil;on similaire. Vous n'avez besoin en fin de compte que de deux param&egrave;tres, &agrave; savoir les noms des fen&ecirc;tre cadres concern&eacute;es (<code>F1</code> et <code>F2</code>). Avec les appels des m&eacute;thodes d'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/history.htm#back"><b>history.back()</b></a> ou bien <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/history.htm#forward"><b>history.forward()</b></a> vous obtenez la fonctionnalit&eacute; des boutons correspondants &quot;page pr&eacute;c&eacute;dente&quot; et &quot;page suivante&quot; du navigateur. les raisons qui ont men&eacute; &agrave; ce que le deuxi&egrave;me appel respectif des m&eacute;thodes objet soit fix&eacute; encore une fois dans <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/window.htm#settimeout"><b>setTimeout()</b></a> avec un l&eacute;ger d&eacute;calage de 1/100 de seconde, sont d'ordre pragmatique: faute de quoi certaines versions de l'Explorer Internet MS &quot;oublieraient&quot; d'ex&eacute;cuter le deuxi&egrave;me appel.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Opera 5.12 interpr&egrave;te la m&eacute;thode <code>history.back()</code> en se r&eacute;f&eacute;rant &agrave; la fen&ecirc;tre <code>_top</code>  et ignore la mention de la fen&ecirc;tre cible &agrave; l'appel de la m&eacute;thode. Cela vaut &eacute;galement si vous appelez vous m&ecirc;me la fonction dans un cadre. Le navigateur s'en tient &eacute;troitement &agrave; l'ordre dans lequel les inscriptions sont faites dans l'historique dans la fen&ecirc;tre principale. Si deux cadres ont &eacute;t&eacute; modifi&eacute;s simultan&eacute;ment au moyen de JavaScript, Opera consid&egrave;re cette modification comme une seule inscription dans l'historique et recule de deux pages dans l'historique. Pour cette raison, il faut &eacute;viter qu'Opera ex&eacute;cute une deuxi&egrave;me fois <code>history.back()</code>. Dans l'exemple ci-dessus, on l'obtient avec <code>if (!window.opera)</code>. Seul le navigateur Opera conna&icirc;t l'objet <code>window.opera</code>. Dans la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/condition.htm#if_else"><b>condition si, alors... avec &quot;if&quot;</b></a> il est demand&eacute; si le navigateur <b>ne</b> conna&icirc;t <b>pas</b> cet objet. La m&eacute;thode objet n'est appel&eacute;e une deuxi&egrave;me fois que dans ce cas.</p>
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="affichage_page.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="affichage_page.htm"><b>Emp&ecirc;cher l'aper&ccedil;u de vos pages dans des cadres</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="../objets/independant.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../objets/independant.htm"><b>Fonctions ind&eacute;pendantes de l'objet</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

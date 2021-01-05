@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / &Eacute;l&eacute;ments de langage Perl / Sous-programmes</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Que sont les sous-programmes en Perl, et comment sont ils d&eacute;finis.">
+<meta name="keywords"       content="SELFHTML, Perl, routines, sous-programmes, fonctions, valeur renvoy&eacute;e, valeur retourn&eacute;e, param&egrave;tres">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/langage/sousroutines.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // &Eacute;l&eacute;ments de langage Perl == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Sous-programmes</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#creation"><b>Cr&eacute;er des sous-programmes</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#parametres"><b>Appeler des sous-programmes avec des param&egrave;tres</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#valeurs_renvoyees"><b>Valeurs retourn&eacute;es pour les sous-programmes</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="creation">Cr&eacute;er des sous-programmes</a></h2>
+
+<p>Pour des scripts Perl plus complexes, il est recommand&eacute; de sauvegarder certaines parties du programme dans des sous-programmes ou fonctions - ce qu'on appelle routines que vous d&eacute;finissez. De cette fa&ccedil;on, vous pouvez mieux structurer le script. C'est judicieux avant tout pour des parties de programme qui doivent &ecirc;tre ex&eacute;cut&eacute;es plusieurs fois dans le cours du script. Avant donc que vous notiez une proc&eacute;dure assez importante plusieurs fois dans le script, vous devez mettre cette proc&eacute;dure dans un sous-programme et appeler ce sous-programme aux endroits d&eacute;sir&eacute;s.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+my $resultat = 1 + 2 * 3 + 4 * 5 + 6 * 7 + 8 * 9;
+sortie();
+$resultat = sqrt(sqrt(81));
+sortie();
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+
+
+sub sortie {
+ print &quot;Le r�sultat est: &lt;b&gt;$resultat&lt;/b&gt;&lt;br&gt;\n&quot;;
+}
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple un sous programme nomm&eacute; <code>sortie</code> est &eacute;tabli. Un sous-programme commence avec le mot-cl&eacute; <code>sub</code>. Derri&egrave;re suit un nom librement choisi qui doit satisfaire aux  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="intro.htm#attribution_nom"><b>r&egrave;gles pour l'attribution de noms</b></a> de Perl. Tout le contenu doit figurer dans des <b>parenth&egrave;ses accolades</b>. Vous pouvez y noter les instructions que vous d&eacute;sirez en nature et en nombre.</p>
+
+<p>Avec son nom suivi de parenth&egrave;ses, vous appelez le sous-programme. L'appel est une instruction distincte et doit donc comme toute autre instruction se terminer par un point virgule. Dans l'exemple ci-dessus, on trouve deux fois l'instruction <code>sortie();</code>. Par celle-ci, le sous-programme nomm&eacute; <code>sortie</code> est appel&eacute;.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Les instructions des sous-programmes ne sont ex&eacute;cut&eacute;es que lorsque ceux-ci sont appel&eacute;s.</p>
+
+<p>Peu importe &agrave; quel endroit du script figure un sous-programme. Il peut en principe figurer partout hors de tout autre sous programme. Il est toutefois judicieux de noter tous les sous-programmes optiquement &agrave; part du programme principal ex&eacute;cut&eacute; directement.</p>
+
+<p>Lors de l'appel, vous pouvez &eacute;galement noter &agrave; la place de <code>Routine();</code>,  <code>&amp;Routine;</code> ou bien <code>&amp;Routine();</code>. La premi&egrave;re fa&ccedil;on est cependant celle qui est recommand&eacute;e avant tout lors d'appels sans parenth&egrave;ses, des erreurs peuvent &ecirc;tre g&eacute;n&eacute;r&eacute;es.</p>
+
+<p>Quand vous travaillez - comme dans l'exemple ci-dessus - avec <code>use strict;</code>, vous devez d&eacute;clarer toutes les variables avant leur premi&egrave;re utilisation. Ce faisant, le domaine de validit&eacute; d'une variable est aussi limit&eacute;. Un sous-programme repr&eacute;sente un bloc et un domaine de validit&eacute; distinct. Quand donc vous d&eacute;clarez une variable par exemple avec <code>my $variable=1;</code> &agrave; l'int&eacute;rieur d'un sous-programme et que vous essayez de sortir son contenu dans le programme principal avec <code>print $variable</code>, cela m&egrave;ne &agrave; un message d'erreur &eacute;tant donn&eacute; que <code>$variable</code> n'est pas connu dans le programme principal. Il en va diff&eacute;remment pour l'inverse: Les variables qui sont d&eacute;clar&eacute;es dans le programme principal sont &eacute;galement disponibles dans les sous programmes. Dans l'exemple ci-dessus, cette possibilit&eacute; a &eacute;t&eacute; mise &agrave; profit. En g&eacute;n&eacute;ral, il est &eacute;galement pr&eacute;f&eacute;rable pour cette raison pour des scripts plus importants de mettre un maximum de code avec des d&eacute;clarations de variables dans les sous-programmes pour en avoir le moins possible dans le programme principal. Car les variables globales globale ont tendance &agrave; conduire plus facilement &agrave; des erreurs logiques dans le d&eacute;roulement du programme &eacute;tant donn&eacute; qu'elles sont moins faciles &agrave; contr&ocirc;ler que les variables limit&eacute;es aux sous-programmes.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="parametres">Appeler des sous-programmes avec des param&egrave;tres</a></h2>
+
+<p>&Agrave; son appel, vous pouvez transmettre des donn&eacute;es &agrave; un sous programme, donn&eacute;es que le sous-programme doit traiter.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+formatHTML(&quot;Hello utilisateur&quot;,&quot;h1&quot;);
+formatHTML(&quot;Ton navigateur se pr�tend �tre  $ENV{HTTP_USER_AGENT}&quot;,&quot;i&quot;);
+
+print &quot;&lt;/head&gt;&lt;/html&gt;\n&quot;;
+
+
+sub formatHTML {
+ my $contenu = shift;
+ my $Format = shift;
+ print &quot;&lt;$Format&gt;$contenu&lt;/$Format&gt;&quot;;
+}
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un sous-programme nomm&eacute; <code>formatHTML</code>. Dans la partie sup&eacute;rieure du script vous pouvez voir comment ce sous programme est appel&eacute;. Avec l'appel <code>formatHTML(&quot;Hello utilisateur&quot;,&quot;h1&quot;);</code> deux param&egrave;tres sont transmis au sous-programme. Car le sous-programme a pour t&acirc;che de sortir une construction HTML  comprenant un rep&egrave;re d'ouverture, un contenu et un rep&egrave;re de fermeture avec le texte transmis et le nom d'&eacute;l&eacute;ment HTML.</p>
+
+<p>Le sous-programme attend donc deux param&egrave;tres. Il est int&eacute;ressant de voir comment il r&eacute;clame les param&egrave;tres. Pour cela, il utilise simplement la fonction Perl <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/hashlistes.htm#shift"><b>shift</b></a> et affecte la valeur qu'elle renvoie &agrave; une scalaire. Pour comprendre cette instruction, il est important de savoir que des param&egrave;tres transmis &agrave; un sous-programme se trouvent dans la  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="predefini.htm"><b>variable pr&eacute;d&eacute;finie</b></a> <code>@_</code>. Cette variable contient la liste de tous les param&egrave;tres ayant &eacute;t&eacute; transmis au sous-programme. Le premier param&egrave;tre se trouve alors dans <code>$_[0]</code>, le deuxi&egrave;me dans <code>$_[1]</code> etc... Il est cependant plus &eacute;l&eacute;gant de chercher les param&egrave;tres avec la fonction <code>shift</code>. &Eacute;tant donn&eacute; qu'aucun param&egrave;tre n'est transmis &agrave; la fonction <code>shift</code> lorsqu'elle est appel&eacute;e, la fonction s'applique automatiquement &agrave; la variable pr&eacute;d&eacute;finie <code>@_</code>. La fonction retire le premier &eacute;l&eacute;ment de la liste et le retourne. En r&eacute;p&eacute;tant l'appel de la fonction <code>shift</code>, un sous-programme peut chercher au fur et &agrave; mesure les param&egrave;tres qui lui ont &eacute;t&eacute; transmis.</p>
+
+<p>Le sous-programme de l'exemple, se prend donc le premier param&egrave;tre et le sauvegarde dans  <code>$contenu</code> et le deuxi&egrave;me dans  <code>$Format</code>. Ensuite, il cr&eacute;e une sortie  <code>print</code> et y construit la construction HTML d&eacute;sir&eacute;e. &Agrave; chaque appel du programme principal, le sous-programme met donc en &#339;uvre une sortie dans le navigateur avec les param&egrave;tres transmis.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Vous ne devez fixer nulle part combien et quels param&egrave;tres un sous-programme peut se voir transmettre. Un sous-programme qui ne sait pas combien de param&egrave;tres lui sont transmis, peut par exemple traiter la liste des param&egrave;tres transmis avec une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="boucles.htm#foreach"><b>boucle foreach</b></a> sous la forme <code>foreach(@_)</code>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="valeurs_renvoyees">Valeurs retourn&eacute;es pour les sous-programmes</a></h2>
+
+
+<p>Les sous-programmes peuvent renvoyer des valeurs. Les sous-programmes qui se voient transmettre des param&egrave;tres, qui en font quelque chose et renvoient les donn&eacute;es apr&egrave;s traitement, correspondent plut&ocirc;t &agrave; ce qu'on entend par <b>fonction</b>. Les  <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../fonctions/index.htm"><b>fonctions Perl</b></a> faisant partie de Perl suivent ce sch&eacute;ma, ainsi que la plupart des sous-programmes, que vous pouvez appeler dans les <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../modules/index.htm"><b>modules</b></a> travaillent en tant que fonctions.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print entete_HTML();
+print code_HTML(&quot;h1&quot;,&quot;Bonjour!&quot;,&quot;font-size:24pt; color:red&quot;);
+print code_HTML(&quot;p&quot;,&quot;Comment &ccedil;a va?&quot;,&quot;&quot;);
+print pied_HTML();
+
+
+sub entete_HTML {
+ my $entete = &quot;Content-type: text/html\n\n&quot;.
+  '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;'.&quot;\n&quot;.
+  &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\n&quot;;
+ return($entete);
+}
+
+sub pied_HTML {
+my $pied = &quot;&lt;hr&gt;\n&lt;script type=\&quot;text/javascript\&quot;&gt;&lt;!--\n&quot;.
+            &quot;document.write(\&quot;adresse URL: \&quot;+document.URL);\n//--&gt;&lt;/script&gt;\n&quot;.
+            &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+ return($pied);
+}
+
+sub code_HTML {
+ my $repere = shift;
+ my $contenu = shift;
+ my $Style = shift;
+ unless(defined($Style) and length($Style)) {
+  return(&quot;&lt;$repere&gt;$contenu&lt;/$repere&gt;&quot;);
+ }
+ else {
+  return(&quot;&lt;$repere style=\&quot;$Style\&quot;&gt;$contenu&lt;/$repere&gt;&quot;);
+ }
+}
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple &eacute;tend la technique des sous-programmes pour la cr&eacute;ation de code HTML. Il y a en tout trois sous-programmes: <code>entete_HTML</code> et <code>pied_HTML</code> composent &agrave; l'aide de l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="operateurs.htm#concatener_chaines"><b>op&eacute;rateur pour concat&eacute;ner des cha&icirc;nes de caract&egrave;res</b></a> du code HTML dans une scalaire. &Agrave; la fin cette fonction est retourn&eacute;e avec la fonction <code>return</code>.</p>
+
+<p>Le sous-programme  <code>code_HTML</code> est un peu plus complexe. Il attend trois <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#parametres"><b>param&egrave;tres</b></a>, &agrave; savoir un pour l'&eacute;l&eacute;ment HTML &agrave; cr&eacute;er, un pour son contenu, et un pour des propri&eacute;t&eacute;s CSS &eacute;ventuelles pour le formatage de l'&eacute;l&eacute;ment. En fonction de ce que le troisi&egrave;me &eacute;l&eacute;ment a un contenu ou non, (l'embranchement correspondant est fix&eacute; avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="conditions.htm#if_else_elsif"><b>if/else</b></a> ), le code  HTML correspondant est compos&eacute; et la construction HTML est renvoy&eacute;e avec <code>return</code>.</p>
+
+<p>Dans le programme principal, figurent seulement quelques instructions  <code>print</code>. La fonction  <code>print</code> est tellement performante qu'elle permet &eacute;galement l'appel d'autres fonctions ou d'autres sous-programmes comme param&egrave;tres transmis pour ce qu'elle doit sortir. C'est exactement ce dont on se sert dans l'exemple. La sortie sera celle de la <b>valeur retourn&eacute;e</b> par les sous-programmes respectivement appel&eacute;s. De la m&ecirc;me fa&ccedil;on, vous pourriez naturellement affecter la valeur renvoy&eacute;e &agrave; une variable ou en faire autre chose.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Les sous-programmes peuvent renvoyer trois sortes de variables, &agrave; savoir outre les  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="scalaires.htm"><b>scalaires</b></a> &eacute;galement les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="listes.htm"><b>listes/Arrays</b></a>, les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="hashes.htm"><b>Hashes</b></a> et les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="references.htm"><b>r&eacute;f&eacute;rences</b></a>. L'instruction appelante doit veiller &agrave; ce que la valeur retourn&eacute;e soit sauvegard&eacute;e dans le bon format de variable. Quand dans un sous-programme nomm&eacute; <code>rechercher_composantes</code> est not&eacute; par exemple:<br>
+<code>return(@composantes_trouvees);</code><br>
+alors une instruction appelante  pourrait &ecirc;tre par exemple:<br>
+<code>my @composantes = rechercher_composantes();</code><br>
+Au cas o&ugrave; la variable lors de l'appel n'est pas du m&ecirc;me type que la valeur renvoy&eacute;e, l'&eacute;valuation  du contexte de Perl se d&eacute;clenche automatiquement. Si par exemple, vous appelez le m&ecirc;me sous-programme avec:<br>
+<code>my $resultat = rechercher_composantes();</code><br>
+Alors, cela &eacute;quivaudrait &agrave;: <code>$resultat = @composantes_trouvees</code>. Le r&eacute;sultat consiste dans ce cas &agrave; ce que dans  <code>$resultat</code> figure le nombre des &eacute;l&eacute;ments du tableau renvoy&eacute;s, parce que  Perl donne, pour une liste en contexte scalaire, le nombre des &eacute;l&eacute;ments du tableau.</p>
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="tokens.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="tokens.htm"><b>Tokens</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="expresreg.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="expresreg.htm"><b>Expressions r&eacute;guli&egrave;res</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

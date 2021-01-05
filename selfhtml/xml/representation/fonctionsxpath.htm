@@ -1,0 +1,1589 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: XML/DTD / Repr&eacute;sentation de donn&eacute;es XML / Fonctions XPath</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="De quelles fonctions, pouvant &ecirc;tre utilis&eacute;es dans des &eacute;l&eacute;ments XSLT, dispose XPath.">
+<meta name="keywords"       content="SELFHTML, XML, XPath, fonctions XPath">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/xml/representation/css.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // XML/DTD == ../index.htm // Repr&eacute;sentation de donn&eacute;es XML == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>XML/DTD</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Repr&eacute;sentation de donn&eacute;es XML</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Fonctions XPath</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#remarques"><b>Remarques sur les fonctions XPath</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#boolean"><b>boolean()</b></a> (&eacute;valuer l'argument comme vrai ou faux)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#ceiling"><b>ceiling()</b></a> (arrondir un nombre)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#concat"><b>concat()</b></a> (concat&eacute;ner des cha&icirc;nes de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#contains"><b>contains()</b></a> (v&eacute;rifier certaines sous-cha&icirc;nes de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#count"><b>count()</b></a> (rechercher le nombre de n&#339;uds dans un jeu de n&#339;uds)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#current"><b>current()</b></a> (rechercher le n&#339;ud actuel)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#document"><b>document()</b></a> (appeler un autre document XML)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#element_available"><b>element-available()</b></a> (v&eacute;rifier si un &eacute;l&eacute;ment XSLT est disponible)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#false"><b>false()</b></a> (cr&eacute;er une valeur bool&eacute;enne pour &quot;faux&quot;:)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#floor"><b>floor()</b></a> (arrondir un nombre par d&eacute;faut)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#format_number"><b>format-number()</b></a> (transformer un nombre en cha&icirc;ne de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#function_available"><b>function-available()</b></a> (v&eacute;rifier si une fonction XPath est disponible)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generate_id"><b>generate-id()</b></a> (g&eacute;n&eacute;rer un identificateur clair pour un &eacute;l&eacute;ment)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#id"><b>id()</b></a> (choisir un &eacute;l&eacute;ment avec un identificateur d&eacute;termin&eacute;)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#key"><b>key()</b></a> (choisir un &eacute;l&eacute;ment gr&acirc;ce &agrave; une valeur-cl&eacute;)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#lang"><b>lang()</b></a> (v&eacute;rifier un code de langue pr&eacute;cis pour un &eacute;l&eacute;ment)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#last"><b>last()</b></a> (rechercher le num&eacute;ro de position du dernier n&#339;ud d'une s&eacute;rie)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#local_name"><b>local-name()</b></a> (rechercher le nom local d'un jeu de n&#339;uds)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#name"><b>name()</b></a> (rechercher le nom d'un jeu de n&#339;uds)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#namespace_uri"><b>namespace-uri()</b></a> (rechercher l'espace de nommage d'un &eacute;l&eacute;ment)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#normalize_space"><b>normalize-space()</b></a> (retirer les espaces au d&eacute;but et &agrave; la fin d'une cha&icirc;ne de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#not"><b>not()</b></a> (nier un argument)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#number"><b>number()</b></a> (transformer un argument en nombre)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#position"><b>position()</b></a> (rechercher le num&eacute;ro de position du jeu de n&#339;uds actuel)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#round"><b>round()</b></a> (arrondi par exc&egrave;s ou par d&eacute;faut commercial)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#starts_with"><b>starts-with()</b></a> (v&eacute;rifier si une cha&icirc;ne de caract&egrave;res commence par une certaine sous-cha&icirc;ne)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#string"><b>string()</b></a> (transformer un argument en cha&icirc;ne de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#string_length"><b>string-length()</b></a> (rechercher le nombre de signes d'une cha&icirc;ne de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#substring"><b>substring()</b></a> (extraire une sous-cha&icirc;ne d'une cha&icirc;ne de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#substring_after"><b>substring-after()</b></a> (rechercher une sous-cha&icirc;ne &agrave; partir d'une certaine position dans une cha&icirc;ne de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#substring_before"><b>substring-before()</b></a> (rechercher une sous-cha&icirc;ne avant une certaine position dans une cha&icirc;ne de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sum"><b>sum()</b></a> (rechercher la somme de valeurs num&eacute;riques)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#system_property"><b>system-property()</b></a> (rechercher des propri&eacute;t&eacute;s syst&egrave;me)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#translate"><b>translate()</b></a> (rechercher et remplacer des signes dans une cha&icirc;ne de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#true"><b>true()</b></a> (cr&eacute;er une valeur bool&eacute;enne pour &quot;vrai&quot;)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#unparsed_entity_uri"><b>unparsed-entity-uri()</b></a> (rechercher les &eacute;l&eacute;ments de la DTD non v&eacute;rifi&eacute;s par l'analyseur syntaxique)<br>
+
+
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="remarques">Remarques sur les fonctions XPath</a></h2>
+
+<p>Les fonctions de XPath ont pour mission de contr&ocirc;ler plus exactement la transcription des donn&eacute;es de sortie XML dans l'arbre de transformation (par exemple en HTML) et de mettre &agrave; disposition pour le faire des propri&eacute;t&eacute;s suppl&eacute;mentaires. Elles sont con&ccedil;ues pour &ecirc;tre utilis&eacute;es dans des feuilles de style XSLT. Les diff&eacute;rentes fonctions de XPath ont un r&ocirc;le d&eacute;termin&eacute; (par exemple l'extraction d'une sous-cha&icirc;ne d'une cha&icirc;ne de caract&egrave;res) et retournent normalement une valeur (par exemple la sous-cha&icirc;ne extraite).</p>
+
+<p>Les fonctions comportent un nom de fonction suivi de parenth&egrave;ses dans lesquelles peuvent figurer des arguments. Les arguments sont n&eacute;cessaires pour qu'une fonction puisse remplir son r&ocirc;le. Ainsi par exemple il faut faire savoir &agrave; la fonction qui extrait une sous-cha&icirc;ne d'une cha&icirc;ne de caract&egrave;res quelle sous-cha&icirc;ne elle doit extraire de quelle cha&icirc;ne.<br>
+Pour la description des fonctions de cette partie, il sera d&eacute;crit pour chacune d'entre elles si elle attend des arguments, et si oui lesquels. Quand plusieurs arguments sont indispensables, les diff&eacute;rents arguments sont s&eacute;par&eacute;s par des virgules. Si une cha&icirc;ne de caract&egrave;res est not&eacute;e comme argument, elle doit figurer entre guillemets. &Eacute;tant donn&eacute; que les fonctions  XPath figurent la plupart du temps dans des affectations de valeur &agrave; des attributs d'&eacute;l&eacute;ments XSLT qui figurent d&eacute;j&agrave; elles-m&ecirc;mes entre guillemets, vous devez utiliser les autres guillemets. Si l'affectation de valeur &agrave; l'&eacute;l&eacute;ment XSLT se trouve par exemple dans des guillemets doubles, une cha&icirc;ne de caract&egrave;res qui y est transmise &agrave; une fonction XPath, doit &ecirc;tre plac&eacute;e dans des guillemets simples (apostrophes) donc par exemple comme ceci: <code>&lt;xsl:value-of select=&quot;document('datei2.xml')&quot;&gt;</code>. Les nombres et les noms d'&eacute;l&eacute;ments des donn&eacute;es XML peuvent par contre &ecirc;tre transmis sans guillemets.</p>
+
+<p>&Eacute;tant donn&eacute; que les fonctions retournent une valeur, elles sont employ&eacute;es dans XSLT normalement &agrave; des endroits o&ugrave; les attributs se voient affecter une valeur. Ainsi par exemple l'&eacute;l&eacute;ment XSLT <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>value-of</b></a> pourrait &ecirc;tre not&eacute; sous la forme suivante:<br>
+<code>&lt;xsl:value-of select=&quot;last()&quot; /&gt;</code><br>
+Ici est affect&eacute;e &agrave; l'attribut <code>select</code> une valeur qui n'est pas fixe toutefois mais recherch&eacute;e de fa&ccedil;on dynamique. Dans ce cas, elle est recherch&eacute;e par la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#last"><b>last()</b></a>.</p>
+
+<p>De fa&ccedil;on g&eacute;n&eacute;rale, il n'y a aucune garantie que tous les processeurs XSL, donc les logiciels d'interpr&eacute;tation XSL, connaissent toutes les fonctions XPath cit&eacute;es ici et qui font partie du standard XPath ou m&ecirc;me qu'ils traitent toutes leurs possibilit&eacute;s.</p>
+
+<p>Pour les descriptions des fonctions il sera souvent question de n&#339;uds et de types de n&#339;ud. Ces termes ont &eacute;t&eacute; pr&eacute;sent&eacute;s dans la partie sur les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../regles/arborescence.htm#noeuds_jeux_noeuds"><b>N&#339;uds et jeux de n&#339;uds dans l'arborescence</b></a>. Des informations plus approfondies &agrave; ce sujet figurent dans la partie figurent dans la partie sur la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="syntaxexpath.htm"><b>syntaxe XPath</b></a>.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="boolean">boolean() (&eacute;valuer l'argument comme vrai ou faux)</a></h2>
+
+<p>recherche si une expression est vraie ou fausse.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[expression]</code></td>
+<td valign="top">une expression quelconque pouvant &ecirc;tre r&eacute;alis&eacute;e avec XSL et qui peut &ecirc;tre &eacute;valu&eacute;e comme vraie ou fausse. Il peut s'agir par exemple d'une comparaison mais aussi d'un test v&eacute;rifiant l'existence d'un n&#339;ud.</td>
+</tr>
+</table>
+
+<p>Renvoie <code>true</code> (vrai) ou bien <code>false</code> (faux).</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;nom&quot;&gt;
+ &lt;xsl:choose&gt;
+  &lt;xsl:when test=&quot;boolean(prenom) != boolean(patronyme)&quot;&gt;
+   &lt;xsl:message&gt;Il faut mentionner soit le pr�nom et le nom,
+    ou ne pas mentionner de nom du tout!&lt;/xsl:message&gt;
+  &lt;/xsl:when&gt;
+  &lt;xsl:otherwise&gt;
+   &lt;xsl:apply-templates select=&quot;prenom&quot;&gt;
+   &lt;xsl:apply-templates select=&quot;patronyme&quot;&gt;
+  &lt;/xsl:otherwise&gt;
+ &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple est d&eacute;fini un mod&egrave;le pour un &eacute;l&eacute;ment XML nomm&eacute; <code>nom</code>. Il est suppos&eacute; que cet &eacute;l&eacute;ment contient deux &eacute;l&eacute;ments subordonn&eacute;s <code>prenom</code> et <code>patronyme</code>. Dans la feuille de style de l'exemple, il est demand&eacute; avec <code>&lt;xsl:when test=&quot;boolean(prenom) != boolean(patronyme)&quot;&gt;</code> si les deux &eacute;l&eacute;ments subordonn&eacute;s ont une valeur ou si aucun n'a de valeur. Si ce n'est pas le cas, un message correspondant est sorti. Sinon, l'embranchement <code>xsl:otherwise</code>, qui appelle les mod&egrave;les pour la transcription des &eacute;l&eacute;ments subordonn&eacute;s, est ex&eacute;cut&eacute;.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="ceiling">ceiling() (arrondir un nombre)</a></h2>
+
+<p>Arrondit par exc&egrave;s (au nombre entier sup&eacute;rieur) un nombre avec d&eacute;cimales. Le nombre <code>5.7234</code> est arrondi &agrave; <code>6</code>, mais <code>0.00001</code> est aussi arrondi &agrave; <code>1</code>. Il est important que les nombres avec d&eacute;cimales utilisent le point et non la virgule pour s&eacute;parer les d&eacute;cimales. Dans le cas contraire ils sont interpr&eacute;t&eacute;s comme nombre invalide (<code>NaN</code> - <i>not a number</i>).</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[nombre]</code></td>
+<td valign="top">Le nombre &agrave; arrondir par exc&egrave;s. Il peut s'agir du contenu d'un n&#339;ud ou de celui d'une variable. Pour le faire, la valeur est d'abord transform&eacute;e en nombre en interne, comme si la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#number"><b>number()</b></a> avait &eacute;t&eacute; employ&eacute;e.</td>
+</tr>
+</table>
+
+<p>retourne le nombre entier imm&eacute;diatement sup&eacute;rieur.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:value-of select=&quot;ceiling(montant)&quot;/&gt;&lt;xsl:text&gt;.-&lt;/xsl:text&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple il est suppos&eacute; d'un &eacute;l&eacute;ment XML nomm&eacute; <code>montant</code> qu'il contient une valeur &quot;crochue&quot; devant &ecirc;tre arrondie par exc&egrave;s au nombre entier d'euros sup&eacute;rieur. Pour ce faire, est appel&eacute;e, lors du choix du contenu de <code>montant</code> avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a> dans l'attribut <code>select</code>, la fonction <code>ceiling()</code>. Elle fait en sorte que le contenu de l'&eacute;l&eacute;ment est arrondi par exc&egrave;s avant d'&ecirc;tre pris dans l'arbre de transformation de la sortie de donn&eacute;es.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="concat">concat() (concat&eacute;ner des cha&icirc;nes de caract&egrave;res)</a></h2>
+
+<p>Accroche plusieurs cha&icirc;nes de caract&egrave;res l'une &agrave; l'autre.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[cha&icirc;ne de caract&egrave;res], [cha&icirc;ne de caract&egrave;res], ...</code></td>
+<td valign="top">Accroche toutes les cha&icirc;nes de caract&egrave;res l'une &agrave; l'autre dans l'ordre donn&eacute;. Il peut s'agir directement de texte, mais aussi du contenu d'un n&#339;ud ou de la valeur d'une variable. Les cha&icirc;nes de caract&egrave;res sont s&eacute;par&eacute;es par des virgules.</td>
+</tr>
+</table>
+
+<p>Retourne la cha&icirc;ne de caract&egrave;res r&eacute;sultante.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:value-of select=&quot;concat(prenom, ' a pour nom de famille ', patronyme)&quot;/&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, il est suppos&eacute; qu'il y a deux &eacute;l&eacute;ments XML disponibles <code>prenom</code> et <code>patronyme</code>. Lors de la transcription dans l'arbre de transformation, doit en r&eacute;sulter une phrase du type <code>Isabelle a pour nom de famille Sanchez</code>. Pour ce faire, la fonction <code>concat()</code> est utilis&eacute;e dans l'attribut <code>select</code> lors du choix du contenu avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a>. Elle re&ccedil;oit comme param&egrave;tres trois cha&icirc;nes de caract&egrave;res: le contenu de l'&eacute;l&eacute;ment <code>prenom</code>, la cha&icirc;ne de caract&egrave;res fixe <code>a pour nom de famille</code>, et le contenu de l'&eacute;l&eacute;ment <code>patronyme</code>. Veillez &agrave; ce que les noms de variable, les noms d'&eacute;l&eacute;ments (ou les chemins d'&eacute;l&eacute;ment d'apr&egrave;s la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="syntaxexpath.htm"><b>syntaxe XPath</b></a>) soient mentionn&eacute;s directement, les cha&icirc;nes de caract&egrave;res fixes par contre incluses entre guillemets. Pour ce faire, il doit s'agir d'autres guillemets que ceux dans lesquels est plac&eacute;e la fonction. Si la fonction, comme dans l'exemple de l'attribut <code>select</code>, est plac&eacute;e dans les guillemets doubles <code>&quot;...&quot;</code> de ce dernier, il faut utiliser des apostrophes comme dans l'exemple <code>'&nbsp;a pour nom de famille&nbsp;'</code>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="contains">contains() (v&eacute;rifier certaines sous-cha&icirc;nes de caract&egrave;res)</a></h2>
+
+<p>V&eacute;rifie si une cha&icirc;ne de caract&egrave;res se trouve dans une cha&icirc;ne de caract&egrave;res d&eacute;termin&eacute;e.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[cha&icirc;ne de caract&egrave;res]</code></td>
+<td valign="top">La cha&icirc;ne de caract&egrave;res dans laquelle la v&eacute;rification doit se faire.</td>
+</tr>
+<tr>
+<td valign="top"><code>[sous-cha&icirc;ne de caract&egrave;res]</code></td>
+<td valign="top">La sous-cha&icirc;ne de caract&egrave;res qui doit &ecirc;tre recherch&eacute;e dans la cha&icirc;ne de caract&egrave;res.</td>
+</tr>
+</table>
+
+<p>Retourne <code>true</code> quand la sous-cha&icirc;ne de caract&egrave;res est trouv&eacute;e et <code>false</code> si elle ne l'est pas.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:if test=&quot;contains(patronyme, 'A')&quot;&gt;
+  &lt;xsl:value-of select=&quot;patronyme&quot; /&gt;
+&lt;/xsl:if&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, il est v&eacute;rifi&eacute; avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#if"><b>xsl:if</b></a> si la valeur d'un &eacute;l&eacute;ment XML <code>patronyme</code> contient un A majuscule. Si oui, le contenu de l'&eacute;l&eacute;ment est sorti. Pour cela, il est recherch&eacute; avec <code>contains(patronyme,&nbsp;'A')</code> - plac&eacute; dans l'attribut <code>select</code> de l'instruction <code>xsl:if</code> - dans la cha&icirc;ne de caract&egrave;res sauvegard&eacute;e dans l'&eacute;l&eacute;ment <code>patronyme</code> si la sous-cha&icirc;ne de caract&egrave;res <code>A</code> se trouve. De cette fa&ccedil;on par exemple, seuls les patronymes commen&ccedil;ant par  A passeront dans l'arbre de transformation.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="count">count() (rechercher le nombre de n&#339;uds dans un jeu de n&#339;uds)</a></h2>
+
+<p>Recherche le nombre de n&#339;uds contenus sur le niveau inf&eacute;rieur &agrave; un jeu de n&#339;uds.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[jeu de n&#339;uds]</code></td>
+<td valign="top">Un jeu de n&#339;uds ou un chemin d'apr&egrave;s la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="syntaxexpath.htm"><b>syntaxe XPath</b></a>, pour lequel le nombre de n&#339;uds du niveau imm&eacute;diatement inf&eacute;rieur doit &ecirc;tre d&eacute;termin&eacute;.</td>
+</tr>
+</table>
+
+<p>Retourne le nombre des n&#339;uds subordonn&eacute;s.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:variable name=&quot;nombre&quot; select=&quot;count(//elementliste)&quot; /&gt;
+...
+&lt;xsl:template match=&quot;liste&quot;&gt;
+    &lt;xsl:for-each select=&quot;elementliste&quot;&gt;
+    &lt;p&gt;
+        &lt;xsl:value-of select=&quot;position()&quot; /&gt;
+         &lt;xsl:text&gt;e de &lt;/xsl:text&gt;
+         &lt;xsl:value-of select=&quot;$nombre&quot;/&gt;
+         &lt;xsl:text&gt;: &lt;/xsl:text&gt;
+         &lt;xsl:value-of select=&quot;.&quot; /&gt;
+    &lt;/p&gt;
+    &lt;/xsl:for-each&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple suppose qu'il y a un &eacute;l&eacute;ment XML nomm&eacute; <code>liste</code> constitu&eacute; de plusieurs sous-&eacute;l&eacute;ments  <code>elementliste</code>. Dans un premier temps, une variable nomm&eacute;e <code>nombre</code> est d&eacute;finie avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#variable"><b>xsl:variable</b></a>; le nombre des &eacute;l&eacute;ments de la liste y sera sauvegard&eacute;. Pour cela la fonction <code>count()</code> est utilis&eacute;e dans l'attribut <code>select</code>. L'&eacute;l&eacute;ment <code>elementliste</code> lui est transmis comme argument. Dans la boucle <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#for_each"><b>for-each</b></a> qui traite tous les &eacute;l&eacute;ments de la liste, le num&eacute;ro de position actuelle est sorti devant le texte de chacun des &eacute;l&eacute;ments de la liste avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#position"><b>position()</b></a> et derri&egrave;re, le nombre total sauvegard&eacute; dans la variable <code>nombre</code> donc &agrave; peu pr&egrave;s comme &ccedil;a:<br>
+<code>1e de  5: texte du premier &eacute;l&eacute;ment de la liste<br>
+2e de  5: texte du deuxi&egrave;me &eacute;l&eacute;ment de la liste</code></p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="current">current() (rechercher le n&#339;ud actuel)</a></h2>
+
+<p>&Eacute;tablit la relation au n&#339;ud respectivement actuel.</p>
+
+<p>N'attend pas d'argument.</p>
+
+<p>Retourne le jeu de n&#339;uds qui contient le n&#339;ud actuel.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:value-of select=&quot;current()&quot;/&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'instruction de l'exemple exprime la m&ecirc;me chose que l'instruction habituelle:<br>
+<code>&lt;xsl:value-of select=&quot;.&quot;/&gt;</code></p>
+
+<h3 class="inf">Attention:</h3>
+
+<p><code>current()</code> et <code>.</code> donnent le m&ecirc;me r&eacute;sultat quand <code>current()</code> figure dans une expression XPath inoccup&eacute;e, donc par exemple directement dans un attribut <code>select</code>. Si par contre vous utilisez <code>current()</code> dans un pr&eacute;dicat (figure toujours entre <code>[...]</code>), le r&eacute;sultat retourn&eacute; peut &ecirc;tre diff&eacute;rent du r&eacute;sultat retourn&eacute; par <code>select=&quot;.&quot;</code>. La raison en est que XPath fait la diff&eacute;rence en interne entre &quot;current node&quot; et &quot;context node&quot;. Un &quot;current node&quot;, donc un n&#339;ud actuel, n'est donn&eacute; que lorsqu'un jeu de n&#339;uds est trait&eacute; dans l'ordre. Dans ce cas, c'est le n&#339;ud respectif trait&eacute; qui est le &quot;current node&quot;. En dehors d'un tel traitement en s&eacute;rie, il n'y a cependant aucun &quot;current node&quot;. Un &quot;context node&quot;, comme on peut le rechercher par la syntaxe du point (<code>.</code>), est par contre donn&eacute; &agrave; chaque instant.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="document">document() (appeler un autre document XML)</a></h2>
+
+<p>permet de prendre des donn&eacute;es de sortie XML d'autres fichiers XML que celui dans lequel est incorpor&eacute;e la feuille de style, dans l'arbre de transformation.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[URI]</code></td>
+<td valign="top">Mention d'un fichier XML qui doit &ecirc;tre incorpor&eacute;. Il peut s'agir d'un adressage relatif ou d'une mention absolue, par exemple <code>http://...</code>. Si aucun autre fichier XML n'est mentionn&eacute; mais un &eacute;l&eacute;ment adress&eacute; avec la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="syntaxexpath.htm"><b>syntaxe XPath</b></a>, alors c'est l'&eacute;l&eacute;ment et le cas &eacute;ch&eacute;ant son arborescence subordonn&eacute;e qui seront incorpor&eacute;s &agrave; cet endroit. </td>
+</tr>
+<tr>
+<td valign="top"><code>[jeu de n&#339;uds]</code></td>
+<td valign="top">(<i>facultatif</i>) Mention de la base &agrave; l'int&eacute;rieur des donn&eacute;es incorpor&eacute;es &agrave; laquelle les adressages XPath peuvent se r&eacute;f&eacute;rer. On pense ici au premier n&#339;ud du jeu de n&#339;uds.</td>
+</tr>
+</table>
+
+<p>Retourne la structure d'&eacute;l&eacute;ments de l'autre fichier XML ou de l'&eacute;l&eacute;ment mentionn&eacute; &agrave; partir de l'&eacute;l&eacute;ment racine.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;exemple&quot;&gt;
+ &lt;pre&gt;
+  &lt;xsl:value-of select=&quot;document(./@source)&quot;/&gt;
+ &lt;/pre&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, il est suppos&eacute; qu'il y a un &eacute;l&eacute;ment XML nomm&eacute;  <code>exemple</code>, qu'un attribut contient une mention de source &agrave; un fichier XML, par exemple: <code>&lt;exemple&nbsp;source=&quot;../sources/exemple03.xml&quot;&nbsp;/&gt;</code>. Dans la feuille de style est d&eacute;fini pour la sortie HTML de cet &eacute;l&eacute;ment un passage avec du texte pr&eacute;-format&eacute; avec <code>&lt;pre&gt;...&lt;/pre&gt;</code>. Le contenu du fichier qui est mentionn&eacute; dans l'attribut <code>source=</code> y est sorti avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a>. Pour acc&eacute;der au fichier, la fonction  <code>document()</code> est utilis&eacute;e dans l'attribut <code>select</code>. La mention sur l'attribut <code>source=</code> lui est transmise comme argument.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="element_available">element-available() (v&eacute;rifier si un &eacute;l&eacute;ment XSLT est disponible)</a></h2>
+
+<p>Recherche si un &eacute;l&eacute;ment XSLT est disponible dans l'analyseur syntaxique XSLT utilis&eacute; ou non. Sert, pour cette raison comme mesure pour &eacute;viter les erreurs.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[nomelement]</code></td>
+<td valign="top">Nom d'un &eacute;l&eacute;ment XSLT dont la disponibilit&eacute; doit &ecirc;tre v&eacute;rifi&eacute;e.</td>
+</tr>
+</table>
+
+<p>Retourne <code>true</code> quand l'&eacute;l&eacute;ment est disponible et <code>false</code>, s'il ne l'est pas.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+ &lt;xsl:if test=&quot;element-available('xsl:number')&quot;&gt;
+   &lt;xsl:number level=&quot;single&quot; count=&quot;element&quot; format=&quot;1. &quot; /&gt;
+ &lt;/xsl:if&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple v&eacute;rifie &agrave; l'aide de l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#if"><b>xsl:if</b></a> si l'&eacute;l&eacute;ment XSLT <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#number"><b>xsl:number</b></a> est disponible. Si oui, il est appliqu&eacute; dans l'instruction <code>xsl:if</code>. Si non, une erreur a au moins &eacute;t&eacute; &eacute;vit&eacute;e.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Cette fonction est &eacute;galement utile quand il s'agit de trouver si le processeur XSLT conna&icirc;t des extensions sp&eacute;cifiques &agrave; un fabricant par exemple:<br>
+&lt;xsl:when test=&quot;element-available('saxon:entity-ref')&quot;&gt;...&lt;/xsl:when&gt;.<br>
+Dans cette exemple, il est demand&eacute; si le processeur conna&icirc;t l'&eacute;l&eacute;ment <code>entity-ref</code> interpr&eacute;t&eacute; par le processeur Saxon.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="false">false() (cr&eacute;er une valeur bool&eacute;enne pour &quot;faux&quot;:)</a></h2>
+
+<p>Nie une expression.</p>
+
+<p>N'attend pas d'argument</p>
+
+<p>Retourne simplement la valeur logique <code>false</code>.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:variable name=&quot;affichage_mot_passe&quot; select=&quot;false()&quot;/&gt;
+
+&lt;xsl:template name=&quot;mot_passe&quot;&gt;
+ &lt;xsl:choose&gt;
+  &lt;xsl:when test=&quot;$affichage_mot_passe&quot;&gt;
+    &lt;xsl:value-of select=&quot;.&quot; /&gt;
+  &lt;/xsl:when&gt;
+  &lt;xsl:otherwise&gt;
+   &lt;xsl:text&gt;[Mot de passe]&lt;/xsl:text&gt;
+  &lt;/xsl:otherwise&gt;
+ &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, une variable nomm&eacute;e <code>affichage_mot_passe</code> est d&eacute;finie avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#variable"><b>xsl:variable</b></a> dont la valeur est fix&eacute;e sur la valeur logique <code>false</code>. Ceci est assur&eacute; par la mise en &#339;uvre de la fonction <code>false()</code>, qui est tout simplement affect&eacute;e &agrave; l'attribut <code>select</code> fixant ainsi la valeur. De plus, l'exemple montre une d&eacute;finition de mod&egrave;le pour un &eacute;l&eacute;ment nomm&eacute; <code>mot_passe</code>. &Agrave; l'int&eacute;rieur de cette d&eacute;finition, il est demand&eacute; dans une construction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#choose"><b>xsl:choose</b></a> quel est l'&eacute;tat de la variable d'affichage du mot de passe. Si la variable <code>$affichage_mot_passe</code> est vraie, la valeur de l'&eacute;l&eacute;ment <code>mot_passe</code> est sortie avec <code>&lt;xsl:value-of select=&quot;.&quot;&nbsp;/&gt;</code> . Autrement seule la cha&icirc;ne de caract&egrave;res <code>[Mot de passe]</code> est sortie.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="floor">floor() (arrondir un nombre par d&eacute;faut)</a></h2>
+
+<p>Arrondit par d&eacute;faut (au nombre entier inf&eacute;rieur) un nombre avec d&eacute;cimales. Le nombre <code>5.7234</code> est arrondi &agrave; <code>5</code> et le nombre  <code>5.99997</code> est &eacute;galement arrondi &agrave; <code>5</code>. Il est important que les &quot;nombres avec virgule&quot; utilisent le point comme s&eacute;parateur de d&eacute;cimales. Autrement, ils sont interpr&eacute;t&eacute;s comme nombres invalides (<code>NaN</code> - <i>not a number</i>).</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[nombre]</code></td>
+<td valign="top">Le nombre &agrave; arrondir par d&eacute;faut. Il peut s'agir &eacute;galement du contenu d'un n&#339;ud ou de la valeur d'une variable. Ici, la valeur est d'abord transform&eacute;e en nombre en interne, et cela comme si la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#number"><b>number()</b></a> avait &eacute;t&eacute; appliqu&eacute;e.</td>
+</tr>
+</table>
+
+<p>Retourne le nombre entier obtenu.</p>
+
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;nombre&quot;&gt;
+ &lt;div style=&quot;background-color:yellow&quot;&gt;&lt;xsl:value-of select=&quot;floor(./@valeur)&quot; /&gt;&lt;/div&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple suppose un &eacute;l&eacute;ment XML nomm&eacute; <code>nombre</code> qui pourrait par exemple avoir les caract&eacute;ristiques suivantes: <code>&lt;nombre valeur=&quot;63,47&quot;&nbsp;/&gt;</code>. Dans la d&eacute;finition de mod&egrave;le pour la sortie HTML de cet &eacute;l&eacute;ment, il est acc&eacute;d&eacute; &agrave; l'attribut avec  <code>@valeur</code>. Ici cependant, l'acc&egrave;s &agrave; l'attribut est incorpor&eacute; dans la fonction <code>floor()</code> de telle fa&ccedil;on que, dans le cas d'un nombre avec la valeur <code>63,47</code>, seul <code>63</code> n'apparaisse dans la sortie HTML.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="format_number">format-number() (transformer un nombre en cha&icirc;ne de caract&egrave;res)</a></h2>
+
+<p>Transforme un nombre en cha&icirc;ne de caract&egrave;res et permet d'influencer le formatage du nombre transform&eacute;.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[nombre]</code></td>
+<td valign="top">La valeur &agrave; transformer. Il peut s'agir &eacute;galement du contenu d'un n&#339;ud ou de la valeur d'une variable. Ici, la valeur est d'abord transform&eacute;e en nombre en interne, et cela comme si la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#number"><b>number()</b></a> avait &eacute;t&eacute; appliqu&eacute;e.</td>
+</tr>
+<tr>
+<td valign="top"><code>[R&egrave;gles de formatage]</code></td>
+<td valign="top">Une syntaxe de repr&eacute;sentation pour le formatage du nombre transform&eacute;. La syntaxe des r&egrave;gles de formatage, se rapproche ici du sch&eacute;ma impl&eacute;ment&eacute; en  Java 1.1 pour la classe <code>decimal_format</code>. &Agrave; vrai dire, il n'existe aucune corr&eacute;lation contraignante entre la syntaxe XPath et l'impl&eacute;mentation  Java. Les signes suivants sont habituels:<br>
+<code>0</code> = un chiffre<br>
+<code>#</code> = un chiffre, le <code>0</code> n'est toutefois pas affich&eacute;<br>
+<code>.</code> = caract&egrave;re de remplacement pour le point de s&eacute;paration d&eacute;cimal<br>
+<code>,</code> = caract&egrave;re de remplacement pour un signe de s&eacute;paration de groupes par exemple les milliers<br>
+<code>;</code> = pour s&eacute;parer plusieurs formats<br>
+<code>-</code> = signe n&eacute;gatif devant comme r&eacute;glage par d&eacute;faut<br>
+<code>%</code> = multiplier la valeur par 100 et afficher comme pourcentage<br>
+<code>?</code> =  multiplier la valeur par 1000 et afficher comme valeur pour mille<br>
+<code>�</code> = symbole de devise, est remplac&eacute; par le symbole de devise par d&eacute;faut (pas encore en Java 1.1!).<br>
+<code>'</code> = pour masquer les signes ayant une signification pour le format comme <code>0</code>, <code>#</code>, <code>.</code> etc...
+</td>
+</tr>
+<tr>
+<td valign="top"><code>[nom]</code></td>
+<td valign="top"><i>(facultatif)</i> Nom d'un format qui est d&eacute;fini avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#decimal_format"><b>xsl:decimal-format</b></a>.</td>
+</tr>
+</table>
+
+<p>Retourne une cha&icirc;ne de caract&egrave;res avec le nombre format&eacute;.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;valeur&quot;&gt;
+ &lt;xsl:value-of select=&quot;format-number(.,'##0.0%')&quot;/&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple suppose un &eacute;l&eacute;ment XML nomm&eacute; <code>valeur</code> pour lequel un mod&egrave;le est d&eacute;fini pour sa sortie dans l'arbre de transformation HTML. L&agrave;, le contenu de l'&eacute;l&eacute;ment <code>valeur</code> est adress&eacute; par la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#current"><b>current()</b></a> comme premier argument transmis &agrave; la fonction <code>format-number()</code> . Pour le formatage, il a &eacute;t&eacute; fix&eacute; que le nombre pouvait &ecirc;tre &agrave; trois chiffres avec un chiffre apr&egrave;s la virgule et que ce nombre devait &ecirc;tre sorti comme valeur en pourcentage. Par l'affectation de cette construction &agrave; l'attribut <code>select</code> de <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a> on obtient que le contenu de <code>valeur</code> soit sorti conform&eacute;ment aux r&egrave;gles de formatage.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="function_available">function-available() (v&eacute;rifier si une fonction XPath est disponible)</a></h2>
+
+<p>Recherche si une fonction XPath est disponible dans l'analyseur syntaxique XSLT utilis&eacute; ou non. Sert, pour cette raison comme mesure pour &eacute;viter les erreurs.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[nom de fonction]</code></td>
+<td valign="top">Nom d'une fonction XPath dont la disponibilit&eacute; doit &ecirc;tre v&eacute;rifi&eacute;e.</td>
+</tr>
+</table>
+
+<p>Retourne  <code>true</code> quand la fonction est disponible et  <code>false</code>, quand elle ne l'est pas.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:choose&gt;
+  &lt;xsl:when test=&quot;function-available('normalize-space')&quot;&gt;
+    &lt;xsl:value-of select=&quot;normalize-space(.)&quot; /&gt;
+  &lt;/xsl:when&gt;
+  &lt;xsl:otherwise&gt;
+   &lt;xsl:value-of select=&quot;.&quot; /&gt;
+  &lt;/xsl:otherwise&gt;
+&lt;/xsl:choose&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple v&eacute;rifie &agrave; l'aide d'une construction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#choose"><b>xsl:choose</b></a> si la fonction XPath <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#normalize_space"><b>normalize-space()</b></a> est disponible. Si oui, elle est appliqu&eacute;e &agrave; l'int&eacute;rieur de l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a>, pour retirer tous les espaces superflus au d&eacute;but et &agrave; la fin, lors de la sortie de l'&eacute;l&eacute;ment actuel, mentionn&eacute; avec <code>.</code>. Autrement, si la fonction n'est pas disponible, le contenu de l'&eacute;l&eacute;ment actuel est sorti sans autre pr&eacute;paration pr&eacute;alable.</p>
+
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="generate_id">generate-id() (g&eacute;n&eacute;rer un identificateur clair pour un &eacute;l&eacute;ment)</a></h2>
+
+<p>G&eacute;n&egrave;re automatiquement un identificateur sans ambigu&iuml;t&eacute; dans l'arbre de transformation. L'identificateur est le m&ecirc;me &agrave; chaque processus de gen&egrave;se (n'est donc pas cr&eacute;&eacute; par un algorithme bas&eacute; sur l'heure et la date) mais dans tous les cas clair pour tout le document. L'identificateur g&eacute;n&eacute;r&eacute; r&eacute;pond en tout cas aux conventions pour les identificateurs en XML.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[jeu de n&#339;uds]</code></td>
+<td valign="top"><i>(facultatif)</i> Un jeu de n&#339;uds ou un chemin d'apr&egrave;s la  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="syntaxexpath.htm"><b>syntaxe XPath</b></a>, qui doit recevoir un identificateur.</td>
+</tr>
+</table>
+
+<p>Retourne une cha&icirc;ne de caract&egrave;res avec l'identificateur g&eacute;n&eacute;r&eacute;.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;paragraphe&quot;&gt;
+&lt;p&gt;&lt;a name=&quot;{generate-id(.)}&quot;&gt;
+ &lt;xsl:value-of select=&quot;.&quot;/&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un mod&egrave;le pour un &eacute;l&eacute;ment XML revenant souvent et nomm&eacute; <code>paragraphe</code>. Chacun de ces &eacute;l&eacute;ments re&ccedil;oit une ancre lors de la transcription  en une construction HTML; cette ancre est d&eacute;finie avec <code>&lt;a&nbsp;name=&gt;...&lt;/a&gt;</code>. La valeur qui est attribu&eacute;e &agrave; chaque fois avec l'attribut <code>name=</code> est cr&eacute;&eacute;e automatiquement et cela par l'application de la fonction <code>generate-id()</code>. Comme argument, l'&eacute;l&eacute;ment actuel (<code>.</code>) est transmis. Les parenth&egrave;ses accolades suppl&eacute;mentaires dans lesquelles figure la fonction pour l'attribution de valeur &agrave;  <code>name=</code> sont importantes. Elles sont n&eacute;cessaires parce que la fonction dans cet exemple ne figure pas comme affectation de valeur &agrave; l'attribut d'une instruction XSLT, mais &agrave; l'affectation &agrave; un attribut d'un &eacute;l&eacute;ment de l'arbre de transformation - dans l'exemple, &agrave; l'attribut <code>name</code> de l'&eacute;l&eacute;ment <code>a</code> du langage de r&eacute;sultat HTML.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p><code>generate-id()</code> peut &ecirc;tre &eacute;galement utilis&eacute; pour savoir si des n&#339;uds sont identiques. Exemple:<br>
+<code>&lt;xsl:if test=&quot;a = b&quot;&gt;</code> v&eacute;rifie seulement si a et b ont le m&ecirc;me contenu.<br>
+<code>&lt;xsl:if test=&quot;generate-id(a) = generate-id(b)&quot;&gt;</code> v&eacute;rifie par contre s'il est vrai que les deux n&#339;uds sont identiques.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="id">id() (choisir un &eacute;l&eacute;ment avec un identificateur d&eacute;termin&eacute;)</a></h2>
+
+<p>Choisit un &eacute;l&eacute;ment sur la base de son ID. Pour cela; L'&eacute;l&eacute;ment doit poss&eacute;der un  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../dtd/attributs.htm#valeur_identification"><b>attribut avec une valeur d'identification</b></a> qui doit &ecirc;tre d&eacute;fini comme tel dans la DTD correspondante. &Eacute;tant donn&eacute; que les affectations de valeur &agrave; ces attributs doit &ecirc;tre sans ambigu&iuml;t&eacute; pour tout le document, elles sont particuli&egrave;rement bien appropri&eacute;es choisir l'&eacute;l&eacute;ment.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[valeur ID]</code></td>
+<td valign="top">La valeur ID de l'&eacute;l&eacute;ment qui doit &ecirc;tre choisi.</td>
+</tr>
+</table>
+
+<p>Retourne l'&eacute;l&eacute;ment ou plusieurs &eacute;l&eacute;ments dont la valeur ID a &eacute;t&eacute; choisie.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;nom&quot;&gt;
+&lt;li&gt;&lt;xsl:value-of select=&quot;id('p01')&quot; /&gt;&lt;xsl:value-of select=&quot;.&quot; /&gt;&lt;/li&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un mod&egrave;le pour un &eacute;l&eacute;ment nomm&eacute; <code>nom</code>. L&agrave; est sortie une &eacute;tiquette fixe dans un point de liste &eacute;num&eacute;rative HTML (on pourrait imaginer par exemple une valeur comme <code>nom, prenom: </code>) suivie de la valeur actuelle de l'&eacute;l&eacute;ment  <code>nom</code> avec <code>&lt;xsl:value-of select=&quot;.&quot;&nbsp;/&gt;</code>. La valeur de l'&eacute;tiquette est &eacute;galement recherch&eacute;e avec une instruction <code>xsl:value-of</code>. Ici la fonction <code>id()</code>est not&eacute;e dans l'attribut <code>select</code>. elle acc&egrave;de &agrave; un &eacute;l&eacute;ment avec la valeur d'identification <code>p01</code>. Cet &eacute;l&eacute;ment pourrait par exemple &ecirc;tre not&eacute; dans les donn&eacute;es XML de la fa&ccedil;on suivante:<br> <code>&lt;prefix&nbsp;x=&quot;p01&quot;&gt;nom,&nbsp;prenom: &lt;/prefix&gt;</code><br>
+L&agrave;, l'attribut <code>x</code> serait d&eacute;fini dans la DTD correspondante en tant qu'attribut avec une valeur d'identification.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="key">key() (choisir un &eacute;l&eacute;ment gr&acirc;ce &agrave; une valeur-cl&eacute;)</a></h2>
+
+<p>Choisit un n&#339;ud qui poss&egrave;de une certaine valeur pour une cl&eacute; nomm&eacute;e. Pratique pour , par exemple, ne choisir parmi tous les &eacute;l&eacute;ments que ceux qui remplissent certains crit&egrave;res en raison de leur contenu ou de l'affectation de valeur &agrave; leurs attributs.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[nom]</code></td>
+<td valign="top">Nom d'une cl&eacute;. La cl&eacute; elle-m&ecirc;me doit auparavant avoir &eacute;t&eacute; d&eacute;finie &agrave; l'aide de l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#key"><b>xsl:key</b></a> et avoir re&ccedil;u, dans l'attribut <code>name</code> de l'instruction, le nom mentionn&eacute; ici.</td>
+</tr>
+<tr>
+<td valign="top"><code>[valeur]</code></td>
+<td valign="top">La valeur qui sert &agrave; limiter les &eacute;l&eacute;ments &agrave; choisir. Seuls les &eacute;l&eacute;ments qui correspondent &agrave; la cl&eacute; et qui ont cette valeur pour celle-ci seront choisis.</td>
+</tr>
+</table>
+
+<p>Retourne le premier &eacute;l&eacute;ment qui r&eacute;pond aux crit&egrave;res de choix.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:key name=&quot;k3&quot; match=&quot;enregistrement&quot; use=&quot;classecommerce&quot; /&gt;
+
+&lt;xsl:template match=&quot;/&quot;&gt;
+ &lt;html&gt;&lt;head&gt;&lt;body&gt;
+  &lt;xsl:for-each select=&quot;key('k3','III')&quot;&gt;
+    &lt;xsl:apply-templates /&gt;
+  &lt;/xsl:for-each&gt;
+ &lt;/body&gt;&lt;/html&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple une cl&eacute; nomm&eacute;e <code>k3</code> est d&eacute;finie &agrave; l'aide de l'instruction <code>xsl:key</code> pour un &eacute;l&eacute;ment nomm&eacute; <code>enregistrement</code>; elle se r&eacute;f&egrave;re au contenu d'un &eacute;l&eacute;ment nomm&eacute; <code>classecommerce</code> subordonn&eacute; &agrave; l'&eacute;l&eacute;ment <code>enregistrement</code>. Il est suppos&eacute; que les donn&eacute;es XML sous leur &eacute;l&eacute;ment-racine comprennent beaucoup d'&eacute;l&eacute;ments du type <code>enregistrement</code>. Par l'application de l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#for_each"><b>xsl:for-each</b></a> en relation avec la fonction <code>key()</code> dans l'attribut <code>select</code> ne sont choisis que les enregistrements dont l'&eacute;l&eacute;ment subordonn&eacute; <code>classecommerce</code> contient la valeur <code>III</code>. Dans ce cas, les d&eacute;finitions de mod&egrave;les subordonn&eacute;es sont appel&eacute;es avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#apply_templates"><b>xsl:apply-templates</b></a>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="lang">lang() (v&eacute;rifier un code de langue pr&eacute;cis pour un &eacute;l&eacute;ment)</a></h2>
+
+<p>V&eacute;rifie si un &eacute;l&eacute;ment utilise un code le langue d&eacute;termin&eacute;. La condition en est que l'attribut XML <code>xml:lang</code> soit not&eacute; dans l'&eacute;l&eacute;ment donc par exemple:<br>
+<code>&lt;description xml:lang=&quot;fr&quot;&gt;</code>La description de quelque chose<code>&lt;/description&gt;</code><br>
+Dans la DTD, la d&eacute;finition suivante serait indispensable:<br>
+<code>&lt;!ATTLIST description&nbsp;&nbsp;xml:lang  NMTOKEN  #IMPLIED&gt;</code><br>
+Les mentions pour l'attribut <code>xml:lang</code> peuvent &ecirc;tre des  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../divers/abrevlangues.htm"><b>Abr&eacute;viations de langue</b></a>.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[cha&icirc;ne de caract&egrave;res]</code></td>
+<td valign="top">pour le code de pays pour lequel il faut v&eacute;rifier (par exemple <code>fr</code>).</td>
+</tr>
+</table>
+
+<p>Retourne <code>true</code> si l'&eacute;l&eacute;ment mentionne ce code de pays dans son attribut <code>xml:lang</code>-, et <code>false</code>, quand aucun attribut <code>xml:lang</code> n'est d&eacute;fini ou  si sa valeur est diff&eacute;rente que celle transmise comme argument.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;description&quot;&gt;
+ &lt;xsl:choose&gt;
+  &lt;xsl:when test=&quot;lang('fr')&quot;&gt;
+   &lt;h4&gt;&lt;xsl:text&gt;Description:&lt;/xsl:text&gt;&lt;/h4&gt;
+  &lt;/xsl:when&gt;
+  &lt;xsl:otherwise&gt;
+   &lt;h4&gt;&lt;xsl:text&gt;Beschreibung:&lt;/xsl:text&gt;&lt;/h4&gt;
+  &lt;/xsl:otherwise&gt;
+  &lt;p&gt;&lt;xsl:value-of select=&quot;.&quot; /&gt;&lt;/p&gt;
+ &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple fait en sorte qu'un &eacute;l&eacute;ment nomm&eacute; <code>description</code> soit pr&eacute;c&eacute;d&eacute; dans l'arbre de transformation HTML par un titre <code>h4</code>. Il est v&eacute;rifi&eacute; ici avec l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#choose"><b>xsl:choose</b></a> dans l'embranchement <code>when</code> et &agrave; l'aide de la fonction <code>lang()</code> si l'&eacute;l&eacute;ment <code>description</code> contient  <code>xml:lang=&quot;fr&quot;</code> comme attribut. Si oui,  le mot fran&ccedil;ais <code>Description</code> est sorti comme texte du titre <code>h4</code>, dans le cas contraire, le mot allemand  <code>Beschreibung</code>. &Agrave; la fin, est encore sorti le contenu de l'&eacute;l&eacute;ment <code>description</code> avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="last">last() (rechercher le num&eacute;ro de position du dernier n&#339;ud d'une s&eacute;rie)</a></h2>
+
+<p>Recherche le num&eacute;ro de position du dernier de plusieurs n&#339;uds d'un jeu de n&#339;uds.</p>
+
+<p>N'attend pas d'argument.</p>
+
+<p>Retourne le num&eacute;ro de position du dernier n&#339;ud.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;nombre&quot;&gt;
+ &lt;xsl:value-of select=&quot;.&quot; /&gt;
+ &lt;xsl:if test=&quot;position() != last()&quot;&gt;
+  &lt;xsl:text&gt;, &lt;/xsl:text&gt;
+ &lt;/xsl:if&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un mod&egrave;le pour un &eacute;l&eacute;ment nomm&eacute; <code>nombre</code>. Dans l'exemple, il est suppos&eacute; que plusieurs de ces &eacute;l&eacute;ments sont not&eacute;s les uns apr&egrave;s les autres &agrave; l'int&eacute;rieur d'un &eacute;l&eacute;ment hi&eacute;rarchiquement sup&eacute;rieur commun, donc par exemple, les diff&eacute;rents chiffres dans une s&eacute;rie de chiffres du lotto. &Agrave; chaque application du mod&egrave;le, est d'abord sorti le chiffre actuel avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a>. Ensuite une virgule doit &ecirc;tre sortie derri&egrave;re tous les chiffres &agrave;  part le dernier, de fa&ccedil;on &agrave; cr&eacute;er une sortie du genre <code>3,15,28,29,33,43</code>. Pour cela, il est demand&eacute; avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#if"><b>xsl:if</b></a> si le num&eacute;ro de position de l'&eacute;l&eacute;ment actuel dans la s&eacute;rie (recherch&eacute; avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#position"><b>position()</b></a>) est diff&eacute;rent du (<code>!=</code>) num&eacute;ro de position du dernier &eacute;l&eacute;ment (recherch&eacute; avec la fonction <code>last()</code>). Si c'est le cas, une virgule est sortie.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="local_name">local-name() (rechercher le nom local d'un jeu de n&#339;uds)</a></h2>
+
+<p>Recherche &agrave; partir d'un nom de n&#339;ud et avec la mention de l'espace de nommage la partie du nom local- &agrave; partir d'un nom d'&eacute;l&eacute;ment comme <code>xhtml:blockquote</code> on obtiendrait donc <code>blockquote</code>.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[jeu de n&#339;uds]</code></td>
+<td valign="top"><i>(facultatif)</i> Un jeu de n&#339;uds ou un chemin d'apr&egrave;s la  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="syntaxexpath.htm"><b>syntaxe XPath</b></a>, dont le nom local doit &ecirc;tre recherch&eacute;. Si la mention de l'argument manque, la fonction s'applique &agrave; l'&eacute;l&eacute;ment actuel.</td>
+</tr>
+</table>
+
+<p>Retourne le nom local de l'&eacute;l&eacute;ment dans la mesure o&ugrave; le nom d'&eacute;l&eacute;ment existe aussi bien dans l'espace de nommage mentionn&eacute; que le nom local d'&eacute;l&eacute;ment. Dans le cas contraire, une cha&icirc;ne de caract&egrave;res vide est retourn&eacute;e.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;auteur:*&quot;&gt;
+ &lt;div&gt;
+  &lt;p&gt;Nom du n&#339;ud: &lt;b&gt;&lt;xsl:value-of select=&quot;name(.)&quot;/&gt;&lt;/b&gt;&lt;/p&gt;
+  &lt;p&gt;local-name:&lt;b&gt;&lt;xsl:value-of select=&quot;local-name(.)&quot;/&gt;&lt;/b&gt;&lt;/p&gt;
+  &lt;p&gt;Contenu:&lt;b&gt;&lt;xsl:apply-templates /&gt;&lt;/b&gt;&lt;/p&gt;
+ &lt;/div&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'extrait d'exemple montre une d&eacute;finition de mod&egrave;le pour des &eacute;l&eacute;ments cens&eacute;s venir de l'espace de nommage <code>auteur</code>. En XML ce serait par exemple des &eacute;l&eacute;ments qui seraient not&eacute;s sous la forme <code>&lt;auteur:prenom&gt;...&lt;/auteur:prenom&gt;</code>. Le mod&egrave;le recherche avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#name"><b>name(.)</b></a> le nom complet du n&#339;ud actuel, &agrave; savoir par exemple <code>auteur:prenom</code>, et avec <code>local-name(.)</code> la partie du nom local, donc par exemple <code>prenom</code>. Enfin les d&eacute;finitions de mod&egrave;les subordonn&eacute;es sont appliqu&eacute;es avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#apply_templates"><b>xsl:apply-templates</b></a>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="name">name() (rechercher le nom d'un jeu de n&#339;uds)</a></h2>
+
+<p>Recherche le nom complet d'un jeu de n&#339;uds, le cas &eacute;ch&eacute;ant avec mention de l'espace de nommage XML.</p>
+
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[jeu de n&#339;uds]</code></td>
+<td valign="top"><i>(facultatif)</i> Un jeu de n&#339;uds ou un chemin d'apr&egrave;s la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="syntaxexpath.htm"><b>syntaxe XPath</b></a>, dont le nom complet doit &ecirc;tre recherch&eacute;. Si la mention de l'argument manque, la fonction est appliqu&eacute;e sur l'&eacute;l&eacute;ment actuel.</td>
+</tr>
+</table>
+
+<p>Retourne le nom du n&#339;ud choisi.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template name=&quot;Descriptif&quot;&gt;
+ &lt;b&gt;&lt;xsl:value-of select=&quot;name()&quot; /&gt;&lt;xsl:text&gt;: &lt;/xsl:text&gt;&lt;/b&gt;&lt;xsl:value-of select=&quot;.&quot; /&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un mod&egrave;le pour un &eacute;l&eacute;ment XML nomm&eacute; <code>Descriptif</code>. Dans ce mod&egrave;le il est d&eacute;fini que le nom de l'&eacute;l&eacute;ment est d'abord sorti, donc <code>Descriptif</code>, puis deux points et ensuite le contenu de l'&eacute;l&eacute;ment. La sortie du nom d'&eacute;l&eacute;ment est obtenue par l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a> qui re&ccedil;oit comme affectation de valeur pour l'attribut <code>select</code>, la fonction  <code>name()</code>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="namespace_uri">namespace-uri() (rechercher l'espace de nommage d'un &eacute;l&eacute;ment)</a></h2>
+
+<p>Recherche l'URI pour l'espace de nommage employ&eacute; pour la DTD. Il s'agit en principe de mentions qui ont &eacute;t&eacute; faites dans l'attribut <code>xmlns:</code> de l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#stylesheet"><b>xsl:stylesheet</b></a>. La condition pr&eacute;alable en est, pour qu'une valeur soit retourn&eacute;e, qu'un &eacute;l&eacute;ment utilise une mention d'espace de nommage, donc par exemple <code>xsl:template</code> ou bien <code>xhtml:div</code>.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[jeu de n&#339;uds]</code></td>
+<td valign="top"><i>(facultatif)</i> Un jeu de n&#339;uds ou un chemin d'apr&egrave;s la  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="syntaxexpath.htm"><b>syntaxe XPath</b></a>, dont le nom local doit &ecirc;tre recherch&eacute;. Si la mention de l'argument manque, la fonction est appliqu&eacute;e sur l'&eacute;l&eacute;ment actuel.</td>
+</tr>
+</table>
+
+<p>Retourne l'URI qui a &eacute;t&eacute; renvoy&eacute;e pour l'espace de nommage correspondant &agrave; l'&eacute;l&eacute;ment.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;xsl:stylesheet version=&quot;1.0&quot; xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+
+&lt;xsl:template match=&quot;/&quot;&gt;
+ &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;
+  &lt;b&gt;&lt;xsl:text&gt;URI de cette feuille de style XSL: &lt;/xsl:text&gt;&lt;/b&gt;
+     &lt;xsl:value-of select=&quot;namespace-uri(document('')/*)&quot; /&gt;
+ &lt;/body&gt;&lt;/html&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre une feuille de style compl&egrave;te XSLT. Dans le rep&egrave;re d'ouverture <code>stylesheet</code> est not&eacute;e comme d'habitude avec <code>xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;</code> l'URI de la DTD pour l'espace de nommage XSL. Plus loin dans la feuille de style est d&eacute;fini un mod&egrave;le pour l'&eacute;l&eacute;ment-racine. Dans ce mod&egrave;le n'est cependant simplement sortie que l'URI de l'espace de nommage XSL pour cette feuille de style. Pour le faire, la fonction <code>namespace-uri()</code>  est pass&eacute;e comme valeur de l'attribut <code>select</code> pour l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a>. La sortie dans l'exemple serait:<br>
+<b>URI de cette feuille de style XSL:</b> http://www.w3.org/1999/XSL/Transform</p>
+
+<p>Dans l'exemple, <code>document('')/*</code> est pass&eacute; comme argument &agrave; la fonction <code>namespace-uri()</code>. Cela s'explique ainsi: l'&eacute;l&eacute;ment document doit &ecirc;tre recherch&eacute;, ce qui est le plus simple r&eacute;aliser par la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#document"><b>document('')</b></a> (avec la cha&icirc;ne vide comme param&egrave;tre). Avec l'ast&eacute;risque qui termine <code>/*</code>, l'URI de l'espace de nommage est recherch&eacute;e pour tous les &eacute;l&eacute;ments dans l'&eacute;l&eacute;ment document, &eacute;tant donn&eacute; que toute l'expression se trouve dans un appel de  <code>namespace-uri()</code>.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="normalize_space">normalize-space() (retirer les espaces au d&eacute;but et &agrave; la fin d'une cha&icirc;ne de caract&egrave;res)</a></h2>
+
+<p>R&eacute;sume plusieurs espaces au d&eacute;but ou &agrave; la fin d'une cha&icirc;ne de caract&egrave;res en un seul espace. Les espaces sont les signes avec les valeurs hexad&eacute;cimales <code>#x20</code> (espace simple), <code>#x9</code> (tabulation), <code>#xD</code> (retour de chariot) ou <code>#xA</code> (avance d'une ligne).</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[cha&icirc;ne de caract&egrave;res]</code></td>
+<td valign="top"><i>(facultatif)</i> La cha&icirc;ne de caract&egrave;res qui doit &ecirc;tre trait&eacute;e. Si l'argument manque, la fonction est appliqu&eacute;e au contenu de n&#339;ud du n&#339;ud actuel, pour un &eacute;l&eacute;ment <code>&lt;name&gt;...&lt;/name&gt;</code> par exemple &agrave; son contenu donc par ce qui est marqu&eacute; ici par trois points.</td>
+</tr>
+</table>
+
+<p>Retourne la cha&icirc;ne de caract&egrave;res trait&eacute;e.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;couleur_yeux&quot;&gt;
+  &lt;tr&gt;
+  &lt;td&gt;&lt;xsl:text&gt;couleur des yeux&lt;/xsl:text&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;xsl:value-of select=&quot;normalize-space()&quot; /&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un mod&egrave;le pour un &eacute;l&eacute;ment XML nomm&eacute; <code>couleur_yeux</code>. Une rang&eacute;e de tableau HTML y est construite. Dans la premi&egrave;re colonne  figure le texte fixe <code>couleur des yeux</code>, et dans la deuxi&egrave;me colonne, la valeur de l'&eacute;l&eacute;ment. Ici cependant, les espaces plac&eacute;s avant ou apr&egrave;s et pouvant provenir par exemple d'un manque d'attention lors de l'&eacute;dition ou du traitement par d'autres programmes, sont &ocirc;t&eacute;s. Pour obtenir ce r&eacute;sultat, il n'est pas simplement not&eacute; <code>&lt;xsl:value-of&nbsp;select=&quot;.&quot;&nbsp;/&gt;</code> mais <code>&lt;xsl:value-of&nbsp;select=&quot;normalize-space()&quot;&nbsp;/&gt;</code>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="not">not() (nier un argument)</a></h2>
+
+<p>nie l'argument transmis et retourne comme r&eacute;sultat son contraire.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[condition]</code></td>
+<td valign="top">Il peut s'agir d'une comparaison mais aussi d'une autre fonction retournant comme valeur soit <code>true</code> ou bien <code>false</code>.</td>
+</tr>
+</table>
+
+<p>Retourne <code>true</code> quand la condition transmise en argument donne  <code>false</code> comme r&eacute;sultat et <code>false</code>, si la condition donne <code>true</code> comme r&eacute;sultat.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;anniversaire&quot;&gt;
+ &lt;xsl:if test=&quot;not(. &amp;gt; '1980')&quot;&gt;
+  &lt;xsl:value-of select=&quot;.&quot; /&gt;
+ &lt;/xsl:if&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre une d&eacute;finition de mod&egrave;le d'un &eacute;l&eacute;ment XML nomm&eacute; <code>anniversaire</code>. L'ann&eacute;e de naissance ne doit &ecirc;tre sortie que lorsque la valeur actuelle n'est pas plus grande que 1980. Pour cela, une condition est formul&eacute;e &agrave; l'aide de l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#if"><b>xsl:if</b></a>. Dans l'attribut <code>test</code> qui contient la condition, est formul&eacute;e  avec <code>.&nbsp;&amp;gt;&nbsp;'1980'</code> la condition &quot;valeur actuelle plus grande que 1980&quot;. La fonction compl&egrave;te est pourtant transmise comme argument &agrave; la fonction <code>not()</code>, ce qui fait que la condition est invers&eacute;e et s'intitule: &quot;valeur actuelle pas plus grande que 1980&quot;. C'est d'ailleurs la m&ecirc;me chose que si la condition avait &eacute;t&eacute; ainsi not&eacute;e: <code>&lt;xsl:if&nbsp;test=&quot;.&nbsp;&amp;lt;='1980')&quot;&gt;</code></p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="number">number() (transformer un argument en nombre)</a></h2>
+
+<p>Essaie d'interpr&eacute;ter en tant que nombre une cha&icirc;ne de caract&egrave;res transmise et retourne le nombre recherch&eacute;. Si par exemple  <code>&quot;31&quot;</code> est transmis, <code>31</code> est retourn&eacute;. Si <code>&quot;xyz&quot;</code> est transmis,  <code>NaN</code> (not a number) est retourn&eacute;. Pour la transmission de <code>&quot;3xy&quot;</code>,  <code>3</code> est retourn&eacute;. Et pour la transmission de valeurs bool&eacute;ennes, donc de <code>true</code> ou bien de <code>false</code>, <code>0</code> est retourn&eacute; pour <code>false</code> et <code>1</code> est retourn&eacute; pour <code>true</code>. Les espaces plac&eacute;s en t&ecirc;te ou &agrave; la fin de la cha&icirc;ne de caract&egrave;res transmise sont ignor&eacute;s.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[cha&icirc;ne de caract&egrave;res ou bien valeur]</code></td>
+<td valign="top"><i>(facultatif)</i> Il peut s'agir par exemple du contenu d'un &eacute;l&eacute;ment ou de la valeur d'une variable ou de la valeur retourn&eacute;e par une autre fonction. Si l'argument manque, la fonction est appliqu&eacute;e au contenu du n&#339;ud actuel par exemple au contenu d'un &eacute;l&eacute;ment.</td>
+</tr>
+</table>
+
+<p>Retourne le nombre recherch&eacute;.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;prix&quot;&gt;
+ &lt;xsl:value-of select=&quot;number()&quot; /&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un mod&egrave;le pour un &eacute;l&eacute;ment XML nomm&eacute;  <code>prix</code>. Le mod&egrave;le  sort la valeur de l'&eacute;l&eacute;ment en essayant toutefois d'interpr&eacute;ter num&eacute;riquement sa valeur. Pour cela, la fonction  <code>number()</code> est appliqu&eacute;e dans l'attribut <code>select</code> de l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a>. &Eacute;tant donn&eacute; qu'aucun argument n'est transmis &agrave; <code>number()</code> la fonction se r&eacute;f&egrave;re &agrave; la valeur de l'&eacute;l&eacute;ment actuel <code>prix</code>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="position">position() (rechercher le num&eacute;ro de position du jeu de n&#339;uds actuel)</a></h2>
+
+<p>Recherche le classement d'un n&#339;ud actuel dans un jeu de n&#339;uds. Pour un &eacute;l&eacute;ment nomm&eacute; <code>liste</code> avec par exemple 7 &eacute;l&eacute;ments subordonn&eacute;s nomm&eacute;s <code>element_liste</code> le deuxi&egrave;me de ces &eacute;l&eacute;ments a, par rapport &agrave; <code>liste</code> le num&eacute;ro de position 2.</p>
+
+<p>N'attend pas d'argument.</p>
+
+<p>Retourne le num&eacute;ro de classement du n&#339;ud actuel. Pour le premier n&#339;ud 1, pour le deuxi&egrave;me 2 etc...</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:variable name=&quot;nombre&quot; select=&quot;count(//element_liste)&quot; /&gt;
+...
+&lt;xsl:template match=&quot;liste&quot;&gt;
+  &lt;xsl:for-each select=&quot;element_liste&quot;&gt;
+  &lt;p&gt;
+    &lt;xsl:value-of select=&quot;position()&quot; /&gt;
+    &lt;xsl:text&gt;e sur &lt;/xsl:text&gt;
+    &lt;xsl:value-of select=&quot;$nombre&quot;/&gt;
+    &lt;xsl:text&gt;: &lt;/xsl:text&gt;
+    &lt;xsl:value-of select=&quot;.&quot; /&gt;
+  &lt;/p&gt;
+  &lt;/xsl:for-each&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple suppose qu'il y a un &eacute;l&eacute;ment XML nomm&eacute; <code>liste</code> qui comporte plusieurs &eacute;l&eacute;ments subordonn&eacute;s <code>element_liste</code>. D'abord une variable nomm&eacute;e <code>nombre</code> est d&eacute;finie avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#variable"><b>xsl:variable</b></a> dans laquelle le nombre des &eacute;l&eacute;ments de la liste est sauvegard&eacute;. Pour le faire, la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#count"><b>count()</b></a> est appliqu&eacute;e dans l'attribut <code>select</code>. L'&eacute;l&eacute;ment <code>element_liste</code> lui est transmis comme argument. Dans la boucle <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#for_each"><b>for-each</b></a> qui traite tous les &eacute;l&eacute;ments de la liste, le num&eacute;ro actuel respectif de position est sorti avant le texte de l'&eacute;l&eacute;ment avec <code>position()</code>  suivi du nombre total qui est sauvegard&eacute; dans la variable <code>nombre</code>, donc &agrave; peu pr&egrave;s comme &ccedil;a:<br>
+<code>1e sur  5: texte du premier &eacute;l&eacute;ment de la liste<br>
+2e sur  5: texte du deuxi&egrave;me &eacute;l&eacute;ment de la liste</code></p>
+
+<h3 class="inf">Attention:</h3>
+
+<p><code>&lt;xsl:value-of select=&quot;element_liste[position()=1]&quot; /&gt;</code> peut &eacute;galement &ecirc;tre not&eacute; de la fa&ccedil;on suivante:<br>
+<code>&lt;xsl:value-of select=&quot;element_liste[1]&quot; /&gt;</code></p>
+
+<p><code>&lt;xsl:value-of select=&quot;element_liste[position()=last()]&quot; /&gt;</code> peut &eacute;galement &ecirc;tre not&eacute; de la fa&ccedil;on suivante:<br>
+<code>&lt;xsl:value-of select=&quot;element_liste[last()]&quot; /&gt;</code></p>
+
+<p><code>&lt;xsl:if test=&quot;position()=1&quot;&gt;</code> est quelque chose d'autre que <code>&lt;xsl:if test=&quot;1&quot;&gt;</code>! Dans le premier cas, il est v&eacute;rifi&eacute; si le n&#339;ud trait&eacute; actuellement est le premier, dans le second cas, il est v&eacute;rifi&eacute; si le contexte actuel est vrai sur un plan logique.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="round">round() (arrondi par exc&egrave;s ou par d&eacute;faut commercial)</a></h2>
+
+<p>Arrondit un nombre avec d&eacute;cimales au nombre entier le plus proche. Pour des fractions de valeur plus petites que <code>[valeur],5</code> l'arrondi se fait par d&eacute;faut, pour des fractions de valeur plus grandes ou &eacute;gales &agrave; <code>[valeur],5</code> l'arrondi se fait par exc&egrave;s. Le nombre <code>5,49</code> est donc arrondi par d&eacute;faut &agrave;  <code>5</code> et <code>5,5</code> est arrondi par exc&egrave;s &agrave; <code>6</code>.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[nombre]</code></td>
+<td valign="top">Le nombre &agrave; arrondir. Il peut aussi s'agir du contenu d'un n&#339;ud ou d'une variable. Ici la valeur est d'abord transform&eacute;e en interne en nombre et cela comme si la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#number"><b>number()</b></a> &eacute;tait appliqu&eacute;e.</td>
+</tr>
+</table>
+
+<p>Retourne un nombre entier auquel l'arrondi s'est fait par exc&egrave;s ou par d&eacute;faut.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:value-of select=&quot;round(montant)&quot;/&gt;&lt;xsl:text &gt;.-&lt;/xsl:text&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple il est suppos&eacute; d'un &eacute;l&eacute;ment XML nomm&eacute; <code>montant</code> qu'il contient une valeur &quot;crochue&quot; devant &ecirc;tre arrondie de fa&ccedil;on commerciale. Pour ce faire, lors du choix du contenu de <code>montant</code> avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a> la fonction <code>round()</code> est appel&eacute;e dans l'attribut <code>select</code>. Elle obtient que le contenu de l'&eacute;l&eacute;ment soit arrondi avant d'&ecirc;tre pris dans l'arbre de transformation de la sortie des donn&eacute;es.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="starts_with">starts-with() (v&eacute;rifier si une cha&icirc;ne de caract&egrave;res commence par une certaine sous-cha&icirc;ne)</a></h2>
+
+<p>Trouve si au d&eacute;but d'une cha&icirc;ne de caract&egrave;res se trouve une certaine sous-cha&icirc;ne de caract&egrave;res.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[cha&icirc;ne de caract&egrave;res]</code></td>
+<td valign="top">Cha&icirc;ne de caract&egrave;res dans laquelle il faut chercher. Il peut s'agir par exemple du contenu d'un &eacute;l&eacute;ment ou de la valeur d'une variable.</td>
+</tr>
+<tr>
+<td valign="top"><code>[sous-cha&icirc;ne de caract&egrave;res]</code></td>
+<td valign="top">La cha&icirc;ne de caract&egrave;res qui doit &ecirc;tre recherch&eacute;e au d&eacute;but de la cha&icirc;ne de caract&egrave;res o&ugrave; la recherche doit se faire. Il peut s'agir directement de texte, mais aussi du contenu d'un n&#339;ud ou de la valeur d'une variable.</td>
+</tr>
+</table>
+
+<p>Retourne <code>true</code> si la cha&icirc;ne de caract&egrave;res commence par la sous-cha&icirc;ne de caract&egrave;res, et <code>false</code>, si elle ne commence pas par cette sous-cha&icirc;ne.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;nom_employe&quot;&gt;
+&lt;p&gt;
+ &lt;xsl:if test=&quot;starts-with(.,'Madame')&quot;&gt;
+  &lt;b&gt;&lt;xsl:value-of select=&quot;.&quot; /&gt;&lt;/b&gt;
+ &lt;/xsl:if&gt;
+  &lt;xsl:if test=&quot;starts-with(.,'Monsieur')&quot;&gt;
+  &lt;i&gt;&lt;xsl:value-of select=&quot;.&quot; /&gt;&lt;/i&gt;
+ &lt;/xsl:if&gt;
+&lt;/p&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, un mod&egrave;le a &eacute;t&eacute; d&eacute;fini pour un &eacute;l&eacute;ment XML nomm&eacute;  <code>nom_employe</code>. Pour cela il est demand&eacute; avec  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#if"><b>xsl:if</b></a> si le contenu de l'&eacute;l&eacute;ment commence par <code>Madame</code> ou par <code>Monsieur</code>. Dans le cas o&ugrave; il commence par  &quot;Madame&quot; le nom est &eacute;crit en caract&egrave;res gras dans l'arbre de transformation HTML. Les &eacute;l&eacute;ments qui commencent par <code>Monsieur</code> sont par contre &eacute;crits en italique. La requ&ecirc;te <code>xsl:if</code> utilise &agrave; cet effet la fonction <code>starts-with()</code>. Le contenu du n&#339;ud actuel (<code>.</code>) est transmis comme param&egrave;tre &agrave; la fonction ainsi que la cha&icirc;ne de caract&egrave;res, crit&egrave;re de recherche <code>Madame</code> ou bien <code>Monsieur</code>.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="string">string() (transformer un argument en cha&icirc;ne de caract&egrave;res)</a></h2>
+
+<p>Interpr&egrave;te un argument transmis en tant que cha&icirc;ne de caract&egrave;res et renvoie la cha&icirc;ne de caract&egrave;res recherch&eacute;e. Si par exemple <code>31</code> est transmis, <code>&quot;31&quot;</code> est retourn&eacute;. Les chiffres n&eacute;gatifs re&ccedil;oivent un signe moins qui les pr&eacute;c&egrave;dent, les nombres avec d&eacute;cimales, un point d&eacute;cimal. Pour la transmission de valeurs bool&eacute;ennes, donc <code>true</code> ou bien <code>false</code>,  <code>&quot;true&quot;</code> ou <code>&quot;false&quot;</code> est retourn&eacute; comme cha&icirc;ne de caract&egrave;res.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[Argument]</code></td>
+<td valign="top"><i>(facultatif)</i> Il peut s'agir par exemple du contenu d'un &eacute;l&eacute;ment ou de la valeur d'une variable, ou de la valeur retourn&eacute;e par une autre fonction. Si la mention de l'argument manque, la fonction s'applique au contenu du n&#339;ud actuel par exemple au contenu d'un &eacute;l&eacute;ment.</td>
+</tr>
+</table>
+
+<p>Retourne la cha&icirc;ne de caract&egrave;res recherch&eacute;e.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;tension&quot;&gt;
+ &lt;xsl:value-of select=&quot;string()&quot; /&gt;&lt;b&gt;&lt;xsl:text&gt; volts&lt;/xsl:text&gt;&lt;/b&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un mod&egrave;le pour un &eacute;l&eacute;ment XML nomm&eacute; <code>tension</code>. Le mod&egrave;le sort la valeur de l'&eacute;l&eacute;ment, en ayant pourtant transform&eacute; la valeur num&eacute;rique du contenu en une cha&icirc;ne de caract&egrave;res . Pour le faire, la fonction <code>code>string()</code> est appliqu&eacute;e dans l'attribut <code>select</code> de l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a>. &Eacute;tant donn&eacute; qu'aucun argument n'est transmis &agrave; la fonction <code>string()</code>, elle se r&eacute;f&egrave;re &agrave; la valeur de l'&eacute;l&eacute;ment <code>tension</code> actuel.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="string_length">string-length() (rechercher le nombre de signes d'une cha&icirc;ne de caract&egrave;res)</a></h2>
+
+<p>Recherche la longueur d'une cha&icirc;ne de caract&egrave;res.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[cha&icirc;ne de caract&egrave;res]</code></td>
+<td valign="top"><i>(facultatif)</i> cha&icirc;ne de caract&egrave;res dont la longueur doit &ecirc;tre recherch&eacute;e. Il peut s'agir par exemple du contenu d'un &eacute;l&eacute;ment ou de la valeur d'une variable, ou de la valeur retourn&eacute;e par une autre fonction. Au cas o&ugrave; l'argument n'est pas une cha&icirc;ne de caract&egrave;res mais par exemple un nombre, il sera d'abord transform&eacute; en interne en une cha&icirc;ne de caract&egrave;res avec la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#string"><b>string()</b></a>. Si la mention de l'argument manque, la fonction s'applique au contenu du n&#339;ud actuel par exemple au contenu d'un &eacute;l&eacute;ment.</td>
+</tr>
+</table>
+
+<p>Retourne le nombre de caract&egrave;res en retour.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;communication&quot;&gt;
+  &lt;xsl:choose&gt;
+   &lt;xsl:when test=&quot;string-length() &amp;lt; 20&quot;&gt;
+    &lt;p&gt;&lt;b&gt;Erreur: Communiqu� trop bref!&lt;/b&gt;&lt;/p&gt;
+   &lt;/xsl:when&gt;
+   &lt;xsl:otherwise&gt;
+    &lt;p&gt;&lt;xsl:value-of select=&quot;.&quot; /&gt;&lt;/p&gt;
+   &lt;/xsl:otherwise&gt;
+  &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un mod&egrave;le pour un &eacute;l&eacute;ment XML nomm&eacute; <code>communication</code>. Le contenu de cet &eacute;l&eacute;ment ne doit &ecirc;tre pris dans l'arbre de transformation que s'il comporte au moins 20 caract&egrave;res. Pour ce faire, un embranchement logique est r&eacute;alis&eacute; avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#choose"><b>xsl:choose</b></a>. Il est demand&eacute; dans l'embranchement <code>xls:when</code> si le contenu de l'&eacute;l&eacute;ment est plus petit que 20 caract&egrave;res. Pour cela, la fonction <code>string-length()</code> est appliqu&eacute;e. &Eacute;tant donn&eacute; qu'aucun argument n'a &eacute;t&eacute; transmis, la fonction se r&eacute;f&egrave;re d'embl&eacute;e au contenu de l'&eacute;l&eacute;ment actuel. Si moins de 20 caract&egrave;res sont trouv&eacute;s un message d'erreur sera &eacute;crit dans la sortie. Dans le cas contraire (<code>xsl:otherwise</code>) le contenu de <code>communication</code> est &eacute;crit dans l'arbre de transformation.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="substring">substring() (extraire une sous-cha&icirc;ne d'une cha&icirc;ne de caract&egrave;res)</a></h2>
+
+<p>Extrait une sous-cha&icirc;ne d'un nombre de caract&egrave;res au choix d'une cha&icirc;ne de caract&egrave;res, &agrave; partir d'une certaine position.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[cha&icirc;ne de caract&egrave;res]</code></td>
+<td valign="top">cha&icirc;ne de caract&egrave;res dont une partie doit &ecirc;tre extraite. Il peut s'agir par exemple du contenu d'un &eacute;l&eacute;ment ou de la valeur d'une variable. Au cas o&ugrave; l'argument n'est pas une cha&icirc;ne de caract&egrave;res mais par exemple un nombre, il sera d'abord transform&eacute; en interne en une cha&icirc;ne de caract&egrave;res avec la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#string"><b>string()</b></a>.</td>
+</tr>
+<tr>
+<td valign="top"><code>[nombre]</code></td>
+<td valign="top">Position dans la cha&icirc;ne de caract&egrave;res, &agrave; partir de laquelle l'extraction doit se faire. Si par exemple, l'extraction doit commencer d&egrave;s le premier caract&egrave;re,  1 doit &ecirc;tre transmis, si elle doit commencer &agrave; partir du vingti&egrave;me caract&egrave;re, 20 doit &ecirc;tre transmis.</td>
+</tr>
+<tr>
+<td valign="top"><code>[nombre]</code></td>
+<td valign="top"><i>(facultatif)</i> Nombre des signes devant &ecirc;tre extraits. Si l'argument manque, l'extraction se fait jusqu'&agrave; la fin de la cha&icirc;ne de caract&egrave;res.</td>
+</tr>
+</table>
+
+<p>Retourne la sous-cha&icirc;ne de caract&egrave;res extraite.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;lieu&quot;&gt;
+&lt;tr&gt;
+ &lt;td&gt;&lt;xsl:value-of select=&quot;substring(.,1,5)&quot; /&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;xsl:value-of select=&quot;substring(.,7)&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un mod&egrave;le pour un &eacute;l&eacute;ment XML nomm&eacute; <code>lieu</code>, dont on suppose qu'il contient des donn&eacute;es sous la forme  <code>59100&nbsp;Roubaix</code>. Le code postal et la ville doivent &ecirc;tre s&eacute;par&eacute;s lors de la sortie dans l'arbre de transformation pour &ecirc;tre port&eacute;s dans deux cellules de tableau s&eacute;par&eacute;es. Pour cela la fonction <code>substring()</code> est affect&eacute;e pour chacune &agrave; l'attribut <code>select</code> de l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a>. Elle extrait pour le premier des deux appels pour le contenu de l'&eacute;l&eacute;ment actuel qui est recherch&eacute; avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#current"><b>.</b></a>, les cinq premiers signes &agrave; savoir le code postal, et pour le deuxi&egrave;me appel les signes &agrave; partir de la 7&egrave;me position jusqu'&agrave; la fin de la mention du lieu, &agrave; savoir le nom du lieu sans code postal.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="substring_after">substring-after() (rechercher une sous-cha&icirc;ne &agrave; partir d'une certaine position dans une cha&icirc;ne de caract&egrave;res)</a></h2>
+
+<p>V&eacute;rifie si une cha&icirc;ne de caract&egrave;res contient une certaine sous-cha&icirc;ne de caract&egrave;res. Si c'est le cas, la cha&icirc;ne de caract&egrave;res qui reste apr&egrave;s que la sous-cha&icirc;ne ait &eacute;t&eacute; trouv&eacute;e pour la premi&egrave;re fois est retourn&eacute;e. Ceci est par exemple pratique pour extraire des valeurs dans des donn&eacute;es existant sous la forme <code>nom_variable=valeur&nbsp;affectee</code> . C'est similaire &agrave; la fa&ccedil;on de travailler de la fonction <code>substring-before()</code>, qui peut extraire de ces m&ecirc;mes donn&eacute;es le nom de la variable.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[cha&icirc;ne de caract&egrave;res]</code></td>
+<td valign="top">Cha&icirc;ne de caract&egrave;res dont une partie doit &ecirc;tre extraite. Il peut s'agir par exemple du contenu d'un &eacute;l&eacute;ment ou de la valeur d'une variable. Au cas o&ugrave; l'argument n'et pas une cha&icirc;ne de caract&egrave;res mais par exemple un nombre, il sera d'abord transform&eacute; en interne en une cha&icirc;ne de caract&egrave;res avec la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#string"><b>string()</b></a>.</td>
+</tr>
+<tr>
+<td valign="top"><code>[sous-cha&icirc;ne de caract&egrave;res]</code></td>
+<td valign="top">cha&icirc;ne de caract&egrave;res qui doit se trouver dans la premi&egrave;re cha&icirc;ne de caract&egrave;res mentionn&eacute;e auparavant. Il peut s'agir aussi d'un seul signe.</td>
+</tr>
+</table>
+
+<p>Retourne la cha&icirc;ne de caract&egrave;res restante situ&eacute;e derri&egrave;re la sous-cha&icirc;ne de caract&egrave;res au cas o&ugrave; elle a &eacute;t&eacute; trouv&eacute;e. Dans le cas contraire, c'est une cha&icirc;ne de caract&egrave;res vide qui est retourn&eacute;e. La fonction contraire <code>substring-before()</code> retourne en cons&eacute;quence la partie de la cha&icirc;ne de caract&egrave;res situ&eacute;e avant la sous-cha&icirc;ne de caract&egrave;res.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;element_config&quot;&gt;
+ &lt;th&gt;&lt;xsl:value-of select=&quot;substring-before(current(),'=')&quot; /&gt;&lt;/th&gt;
+ &lt;td&gt;&lt;xsl:value-of select=&quot;substring-after(current(),'=')&quot; /&gt;&lt;/td&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple il est suppos&eacute; d'un &eacute;l&eacute;ment XML nomm&eacute;  <code>element_config</code> qu'il contient s&eacute;par&eacute;es par le signe &eacute;gal les d&eacute;signations et les valeurs, par exemple <code>largeur=475m</code>. Dans la d&eacute;finition de mod&egrave;le pour cet &eacute;l&eacute;ment, la partie avant le signe &eacute;gal doit &ecirc;tre prise dans une cellule d'ent&ecirc;te de tableau HTML et la partie derri&egrave;re le signe &eacute;gal dans une cellule de donn&eacute;es du tableau. Pour cela, la fonction <code>substring-before()</code> est affect&eacute;e dans la premi&egrave;re partie &agrave; l'attribut <code>select</code> de l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a>, dans la deuxi&egrave;me partie, la fonction <code>substring-after()</code> lui est affect&eacute;e. Dans les deux cas, le contenu de l'&eacute;l&eacute;ment actuel recherch&eacute; avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#current"><b>current()</b></a>. La cha&icirc;ne de caract&egrave;res qui est le signal pour extraire la sous-cha&icirc;ne de caract&egrave;res avant ou apr&egrave;s est le signe &eacute;gal.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="substring_before">substring-before() (rechercher une sous-cha&icirc;ne avant une certaine position dans une cha&icirc;ne de caract&egrave;res)</a></h2>
+
+<p>C'est la fonction contraire de <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#substring_after"><b>substring-after()</b></a>. S'y reporter pour l'exemple.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="sum">sum() (rechercher la somme de valeurs num&eacute;riques)</a></h2>
+
+<p>Recherche la somme totale des valeurs num&eacute;riques du n&#339;ud de sortie. Si des valeurs ne peuvent pas &ecirc;tre interpr&eacute;t&eacute;es comme chiffres, c'est <code>NaN</code> (<i>not a number</i>) qui est trouv&eacute;.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[jeu de n&#339;uds]</code></td>
+<td valign="top">Un jeu de n&#339;uds pour lequel la somme de ses valeurs interpr&eacute;t&eacute;e en nombres doit &ecirc;tre recherch&eacute;e. Pour le bien, le jeu de n&#339;uds contient plusieurs n&#339;uds avec des valeurs qui peuvent &ecirc;tre interpr&eacute;t&eacute;es comme des nombres et dont la somme est int&eacute;ressante pour une raison ou pour une autre.</td>
+</tr>
+</table>
+
+<p>Retourne la somme des valeurs recherch&eacute;es.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;rectangle&quot;&gt;
+&lt;p&gt;
+&lt;b&gt;&lt;xsl:value-of select=&quot;name()&quot; /&gt; pourtour:&lt;/b&gt;&lt;xsl:value-of select=&quot;sum(@*)&quot; /&gt;cm
+&lt;/p&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre un mod&egrave;le pour un &eacute;l&eacute;ment XML nomm&eacute;   <code>rectangle</code>, qui pourrait &ecirc;tre not&eacute; &agrave; peut pr&egrave;s ainsi:<br>
+<code>&lt;rectangle gauche=&quot;12&quot; droite=&quot;12&quot; haut=&quot;20&quot; bas=&quot;20&quot; /&gt;</code><br>
+Dans la transcription HTML, le p&eacute;rim&egrave;tre du rectangle est simplement sorti dans un paragraphe de texte. Pour cela, la somme des attributs de l'&eacute;l&eacute;ment <code>rectangle</code> est recherch&eacute;e avec <code>select=&quot;sum(@*)&quot;</code> . Pour l'exemple XML not&eacute; ci-avant on obtiendrait donc 64 &eacute;tant donn&eacute; que c'est la somme des valeurs d'attribut 12, 12, 20 et 20. L'argument <code>@*</code>, qui est transmis dans l'exemple &agrave; la fonction <code>sum()</code>, figure pour &quot;tous les attributs de l'&eacute;l&eacute;ment&quot;.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="system_property">system-property() (rechercher des propri&eacute;t&eacute;s syst&egrave;me)</a></h2>
+
+<p>Recherche des informations sur le processeur XSLT utilis&eacute;.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[cha&icirc;ne de caract&egrave;res]</code></td>
+<td valign="top">Une propri&eacute;t&eacute; du processeur XSLT. Les mentions suivantes doivent &ecirc;tre soutenues par tous les processeurs XSLT: <code>'xsl:version'</code> (version du standard XSLT qui est interpr&eacute;t&eacute; par le processeur), <code>'xsl:vendor'</code> (fabricant du logiciel du processeur) et <code>'xsl:vendor-url'</code>  (URI du fabricant du logiciel du processeur).</td>
+</tr>
+</table>
+
+<p>Retourne la valeur recherch&eacute;e.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;infossupplementaires&quot;&gt;
+ &lt;p&gt;&lt;b&gt;&lt;xsl:text&gt;Version XSL: &lt;/xsl:text&gt;&lt;/b&gt;
+   &lt;xsl:value-of select=&quot;system-property('xsl:version')&quot; /&gt;&lt;/p&gt;
+ &lt;p&gt;&lt;b&gt;&lt;xsl:text&gt;fabricant du processeur: &lt;/xsl:text&gt;&lt;/b&gt;
+   &lt;xsl:value-of select=&quot;system-property('xsl:vendor')&quot; /&gt;&lt;/p&gt;
+ &lt;p&gt;&lt;b&gt;&lt;xsl:text&gt;URI du fabricant du processeur: &lt;/xsl:text&gt;&lt;/b&gt;
+   &lt;xsl:value-of select=&quot;system-property('xsl:vendor-url')&quot; /&gt;&lt;/p&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre comment un &eacute;l&eacute;ment XML qui pourrait avoir &eacute;t&eacute; d&eacute;fini comme &eacute;l&eacute;ment vide dans les donn&eacute;es XML peut &ecirc;tre utilis&eacute; comme indicateur pour, dans une transformation XSLT, mettre certaines donn&eacute;es &agrave; l'endroit correspondant. Dans l'exemple. on suppose un &eacute;l&eacute;ment XML nomm&eacute; <code>infossupplementaires</code> qui a une telle fonction. Car dans la d&eacute;finition de mod&egrave;le pour cet &eacute;l&eacute;ment, ce n'est pas son contenu qui est sorti, mais certaines propri&eacute;t&eacute;s du processeur XSLT utilis&eacute; qui sont recherch&eacute;es avec la fonction <code>system-property()</code> pour &ecirc;tre prises dans l'arbre de transformation HTML. Pour cela sont transmis &agrave; chaque fois &agrave; l'attribut <code>select</code> de l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a> des appels de la fonction <code>system-property()</code>.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="translate">translate() (rechercher et remplacer des signes dans une cha&icirc;ne de caract&egrave;res)</a></h2>
+
+<p>Remplace des caract&egrave;res distincts d'une cha&icirc;ne de caract&egrave;res par d'autres caract&egrave;res.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[cha&icirc;ne de caract&egrave;res]</code></td>
+<td valign="top">Cha&icirc;ne de caract&egrave;res dans laquelle il faut rechercher et remplacer.  Il peut s'agir par exemple du contenu d'un &eacute;l&eacute;ment ou de la valeur d'une variable. Au cas o&ugrave; l'argument n'et pas une cha&icirc;ne de caract&egrave;res mais par exemple un nombre, il sera d'abord transform&eacute; en interne en une cha&icirc;ne de caract&egrave;res avec la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#string"><b>string()</b></a>.</td>
+</tr>
+<tr>
+<td valign="top"><code>[caract&egrave;res]</code></td>
+<td valign="top">Un ou plusieurs caract&egrave;res qui doivent &ecirc;tre remplac&eacute;s.</td>
+</tr>
+<tr>
+<td valign="top"><code>[caract&egrave;res]</code></td>
+<td valign="top">Un ou plusieurs caract&egrave;res par lesquels les caract&egrave;res mentionn&eacute;s auparavant doivent &ecirc;tre remplac&eacute;s. Des mentions possibles sont par exemple <code>','</code> ou bien <code>']['</code>. Cet argument doit &ecirc;tre transmis mais peut aussi avoir un contenu vide (<code>''</code>). Alors, les caract&egrave;res mentionn&eacute;s dans le deuxi&egrave;me argument sont remplac&eacute;s par rien, donc effac&eacute;s.</td>
+</tr>
+</table>
+
+<p>Retourne la cha&icirc;ne de caract&egrave;res trait&eacute;e.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;lieu&quot;&gt;
+ &lt;b&gt;
+ &lt;xsl:value-of select=&quot;translate(current(),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')&quot; /&gt;
+ &lt;/b&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un mod&egrave;le pour un &eacute;l&eacute;ment XML nomm&eacute;  <code>lieu</code>. Le contenu de l'&eacute;l&eacute;ment est sorti dans l'arbre de transformation, pourtant toutes les minuscules sont ici transform&eacute;es en majuscules. &Agrave; cet effet, la fonction <code>translate()</code> est affect&eacute;e &agrave; l'attribut <code>select</code> de l'instruction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#value_of"><b>xsl:value-of</b></a>. Celle-ci d&eacute;termine pour le contenu de l'&eacute;l&eacute;ment actuel, recherch&eacute; avec <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#current"><b>current()</b></a>  que les minuscules de a &agrave; z soient remplac&eacute;es par les majuscules correspondantes.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="true">true() (cr&eacute;er une valeur bool&eacute;enne pour &quot;vrai&quot;)</a></h2>
+
+<p>Affirme une expression.</p>
+
+<p>N'attend pas d'argument</p>
+
+<p>Retourne simplement la valeur logique <code>true</code>.</p>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:variable name=&quot;affichage_mot_passe&quot; select=&quot;true()&quot;/&gt;
+
+&lt;xsl:template name=&quot;mot_passe&quot;&gt;
+ &lt;xsl:choose&gt;
+  &lt;xsl:when test=&quot;$affichage_mot_passe&quot;&gt;
+    &lt;xsl:value-of select=&quot;.&quot; /&gt;
+  &lt;/xsl:when&gt;
+  &lt;xsl:otherwise&gt;
+   &lt;xsl:text&gt;[Mot de passe]&lt;/xsl:text&gt;
+  &lt;/xsl:otherwise&gt;
+ &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, une variable nomm&eacute;e <code>affichage_mot_passe</code> est d&eacute;finie avec <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#variable"><b>xsl:variable</b></a> et sa valeur est fix&eacute;e sur la valeur logique <code>true</code>. Ceci est assur&eacute; par la mise en &#339;uvre de la fonction <code>true()</code>, qui est simplement affect&eacute;e &agrave; l'attribut <code>select</code> fixant ainsi la valeur de la variable. De plus, l'exemple montre une d&eacute;finition de mod&egrave;le pour un &eacute;l&eacute;ment nomm&eacute; <code>mot_passe</code>. Dans cette d&eacute;finition de mod&egrave;le il est demand&eacute; dans une construction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elementsxslt.htm#choose"><b>xsl:choose</b></a>, comment faire pour l'affichage du mot de passe. Quand la variable <code>$affichage_mot_passe</code> est vraie, la valeur de l'&eacute;l&eacute;ment <code>mot_passe</code> est sortie avec <code>&lt;xsl:value-of select=&quot;.&quot;&nbsp;/&gt;</code>. Dans le cas contraire, seule la cha&icirc;ne de caract&egrave;res <code>[Mot de passe]</code> est sortie.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xpath10.gif" width="30" height="30" border="0" alt="XPath1.0">&nbsp;<a class="an" name="unparsed_entity_uri">unparsed-entity-uri() (rechercher les &eacute;l&eacute;ments de la DTD non v&eacute;rifi&eacute;s par l'analyseur syntaxique)</a></h2>
+
+<p>permet d'acc&eacute;der aux &eacute;l&eacute;ments de la DTD qui n'ont pas &eacute;t&eacute; analys&eacute;s par l'analyseur syntaxique. Cela concerne avant tout les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../dtd/entites.htm#externes"><b>entit&eacute;s pour ressources externes
+</b></a>.</p>
+
+<p>Attend les arguments suivants:</p>
+
+<table>
+<tr>
+<td valign="top"><code>[nom]</code></td>
+<td valign="top">Nom de l'&eacute;l&eacute;ment non-analys&eacute; de la DTD (Entit&eacute;s).</td>
+</tr>
+</table>
+
+<p>Retourne l'URI de l'entit&eacute; mentionn&eacute;e derri&egrave;re <code>SYSTEM</code> ou bien <code>PUBLIC</code>. L'adresse correspondante peut alors &ecirc;tre mise dans l'arbre de transformation &agrave; un endroit appropri&eacute;.</p>
+
+<h3 class="xmp">Exemple d'un extrait d'une DTD:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ENTITY logofirme SYSTEM &quot;images/logo.jpg&quot; NDATA JPEG&gt;
+</pre></td></tr></table>
+
+<h3 class="xmp">Exemple d'un extrait d'un fichier XML correspondant:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;image source=&quot;logofirme&quot; /&gt;
+</pre></td></tr></table>
+
+<h3 class="xmp">Exemple d'un extrait de feuille de style XSL correspondante:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;xsl:template match=&quot;image&quot;&gt;
+ &lt;img src=&quot;{unparsed-entity-uri(@source)}&quot; alt=&quot;logo de la firme&quot; /&gt;
+&lt;/xsl:template&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre une d&eacute;finition d'entit&eacute; externe dans une DTD. L&agrave; est d&eacute;finie une entit&eacute; nomm&eacute;e <code>logofirme</code> qui se voit affecter un graphique JPEG. La deuxi&egrave;me partie de l'exemple montre comment cette entit&eacute; est appliqu&eacute;e dans un fichier XML. Un &eacute;l&eacute;ment XML nomm&eacute; <code>image</code> a un attribut nomm&eacute; <code>source</code>, auquel l'entit&eacute; est affect&eacute;e. La troisi&egrave;me partie de l'exemple enfin, montre une d&eacute;finition correspondante dans la feuille de style XSL. Y est d&eacute;fini un mod&egrave;le pour l'&eacute;l&eacute;ment <code>image</code>, dans lequel la construction XML est transcrite en une construction HTML pour l'affichage d'un graphique. Ici la fonction <code>unparsed-entity-uri()</code> est affect&eacute;e &agrave; l'attribut <code>src</code> de l'&eacute;l&eacute;ment <code>img</code>. L'attribut <code>@source</code> de l'&eacute;l&eacute;ment <code>image</code> est transmis comme argument &agrave; la fonction. La fonction retourne l'URI correspondante telle qu'elle a &eacute;t&eacute; d&eacute;finie dans la DTD, &agrave; savoir <code>images/logo.jpg</code>.<br>
+Veillez aux parenth&egrave;ses accolades, indispensables quand une fonction XPath est utilis&eacute;e dans le code de l'arbre de transformation. Plus de d&eacute;tails &agrave; ce sujet dans la partie sur la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="syntaxexpath.htm"><b>syntaxe XPath</b></a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="../../javascript/intro.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../../javascript/intro.htm"><b>Introduction en JavaScript</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="syntaxexpath.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="syntaxexpath.htm"><b>Syntaxe XPath</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>XML/DTD</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Repr&eacute;sentation de donn&eacute;es XML</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

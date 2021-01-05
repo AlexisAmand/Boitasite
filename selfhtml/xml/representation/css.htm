@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: XML/DTD / Repr&eacute;sentation de donn&eacute;es XML / Repr&eacute;sentation XML avec des feuilles de style CSS</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment mettre en &#339;uvre les  CSS en relation avec XML dans les navigateurs avec les capacit&eacute;s correspondantes.">
+<meta name="keywords"       content="SELFHTML, XML, Stylesheets, CSS, Cascading Style Sheets, feuilles de style en cascade CSS">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/xml/representation/css.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // XML/DTD == ../index.htm // Repr&eacute;sentation de donn&eacute;es XML == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>XML/DTD</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Repr&eacute;sentation de donn&eacute;es XML</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Repr&eacute;sentation XML avec des feuilles de style CSS</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur la repr&eacute;sentation avec les CSS</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#exemple_horaires_train"><b>Exemple li&eacute; au contexte: un tableau d'horaires de trains</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#limites"><b>Limites et probl&egrave;mes pour la repr&eacute;sentation avec les CSS</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur la repr&eacute;sentation avec les CSS</a></h2>
+
+<p>Les <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../css/index.htm"><b>feuilles de style CSS</b></a> sont con&ccedil;ues &agrave; vrai dire un langage de compl&eacute;ment pour HTML. &Agrave; l'aide de feuilles de style, il est possible de formater &agrave; souhait des &eacute;l&eacute;ments HTML qu'un navigateur affiche avec ses formatages par d&eacute;faut. Cette possibilit&eacute; est toujours offerte, selon le navigateur aussi, pour formater des donn&eacute;es XML. Exactement comme vous pouvez formater des &eacute;l&eacute;ments HTML comme <code>blockquote</code>, <code>h1</code> ou <code>div</code> avec les CSS, vous pouvez le faire avec vos propres &eacute;l&eacute;ments XML, peu importe que ce soit <code>annuaire</code>, <code>description</code> ou le nom qu'il peuvent avoir.</p>
+
+<p>Pour que la combinaison de XML et de CSS fonctionne, trois conditions doivent &ecirc;tre remplies dans le navigateur:<br>
+1. Le navigateur doit pouvoir traiter XML.<br>
+2. Le navigateur doit conna&icirc;tre les CSS.<br>
+3. Le navigateur doit permettre la mise en &#339;uvre des CSS en relation avec XML.</p>
+
+<p>Ces conditions pr&eacute;alables sont remplies par l'Explorer  Internet MS &agrave; partir de la version 5.0 et par Netscape &agrave; partir de la version 6.0. Une DTD n'y est m&ecirc;me pas indispensable. Il suffit qu'un <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../regles/conception.htm#conformite"><b>fichier XML conforme</b></a> existe. Vous pouvez formater les &eacute;l&eacute;ments d'un tel fichier avec les CSS.</p>
+
+<p>XML en relation avec les CSS a l'avantage de suffire sans connaissance de XSL/XSLT dans les navigateurs o&ugrave; cela fonctionne. &Eacute;tant donn&eacute; que le traitement se fait compl&egrave;tement dans le navigateur, m&ecirc;me une connexion au serveur ou autre n'est pas indispensable. En ce qui concerne les inconv&eacute;nients voir les <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#limites"><b>limites et probl&egrave;mes pour la repr&eacute;sentation avec les CSS</b></a>.</p>
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0">&nbsp;<a class="an" name="exemple_horaires_train">Exemple li&eacute; au contexte: un tableau d'horaires de trains</a></h2>
+
+<p>Le tableau d'horaires des trains d'une gare, est un document structur&eacute; typique, pour lequel il n'existe pour ainsi dire pas d'&eacute;l&eacute;ments appropri&eacute;s en HTML. Ce n'est certes pas un probl&egrave;me de cr&eacute;er un beau <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../html/tableaux/index.htm"><b>tableau</b></a> en HTML pour y repr&eacute;senter le tableau d'horaires. Toutefois, d'un &quot;point de vue s&eacute;mantique&quot; les donn&eacute;es perdent de leur teneur. Car un tableau HTML est constitu&eacute; de cellules de tableau mais celles-ci ne d&eacute;voilent rien sur leur contenu respectif. &Agrave; l'aide d'une structure XML, les donn&eacute;es du tableau d'horaires peuvent &ecirc;tre d&eacute;crites de telle fa&ccedil;on que les diff&eacute;rentes donn&eacute;es figurent dans des &eacute;l&eacute;ments &quot;significatifs&quot;.</p>
+
+<p>L'exemple suivant montre une telle structure XML. Il comprend trois parties:<br>
+1. la <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../dtd/index.htm"><b>DTD</b></a> pour la validation des donn&eacute;es,<br>
+2. une application XML de cette DTD, &agrave; savoir un document exemple qui incorpore un fichier CSS s&eacute;par&eacute;, et<br>
+3. ce fichier CSS s&eacute;par&eacute; et ses d&eacute;finitions.</p>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/plan_route.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple le fichier format&eacute;)</p>
+
+<h3 class="xmp">Exemple de DTD <var>plan_route.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ELEMENT plan_route  (gare)&gt;
+&lt;!ELEMENT gare   (nom,(evenement)*)&gt;
+&lt;!ELEMENT nom      (#PCDATA)&gt;
+&lt;!ELEMENT evenement  (depart | arrivee)&gt;
+&lt;!ELEMENT depart   (heure,type_train,numero_train,route)&gt;
+&lt;!ELEMENT arrivee   (heure,type_train,numero_train,route)&gt;
+&lt;!ELEMENT heure      (#PCDATA)&gt;
+&lt;!ELEMENT type_train    (#PCDATA)&gt;
+&lt;!ELEMENT numero_train     (#PCDATA)&gt;
+&lt;!ELEMENT route     (#PCDATA | demarrage | destination)*&gt;
+&lt;!ELEMENT demarrage     (#PCDATA)&gt;
+&lt;!ELEMENT destination      (#PCDATA)&gt;
+</pre></td></tr></table>
+
+<h3 class="xmp">Exemple d'une application valide <var>plan_route.xml</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;!DOCTYPE plan_route SYSTEM &quot;plan_route.dtd&quot;&gt;
+&lt;?xml-stylesheet type=&quot;text/css&quot; href=&quot;plan_route.css&quot; ?&gt;
+&lt;plan_route&gt;
+&lt;gare&gt;
+ &lt;nom&gt;Marseille Saint Charles&lt;/nom&gt;
+  &lt;evenement&gt;
+   &lt;depart&gt;
+    &lt;heure&gt;16.17&lt;/heure&gt;
+    &lt;type_train class=ter&quot;ter&quot;&gt;TER&lt;/type_train&gt;
+    &lt;numero_train&gt;234&lt;/numero_train&gt;
+    &lt;route&gt;Arles 17.02, N�mes 17.28
+     &lt;destination&gt;Montpellier 17.55&lt;/destination&gt;
+    &lt;/route&gt;
+   &lt;/depart&gt;
+  &lt;/evenement&gt;
+  &lt;evenement&gt;
+   &lt;arrivee&gt;
+    &lt;heure&gt;16.44&lt;/heure&gt;
+    &lt;type_trainclass=ic&gt;IC&lt;/type_train&gt;
+    &lt;numero_train&gt;20392&lt;/numero_train&gt;
+    &lt;route&gt;&lt;demarrage&gt;Miramas � 17.24&lt;/demarrage&gt;
+     Arles 09.16, Arles 17.41, Tarascon 17.52, N�mes 18.08, Lunel 18.28, Montpellier 18.42
+    &lt;/route&gt;
+   &lt;/arrivee&gt;
+  &lt;/evenement&gt;
+  &lt;evenement&gt;
+   &lt;depart&gt;
+    &lt;heure&gt;17.03&lt;/heure&gt;
+    &lt;type_train classe=ic&gt;IC&lt;/type_train&gt;
+    &lt;numero_train&gt;58483&lt;/numero_train&gt;
+    &lt;route&gt;Arles 17.59, Avignon-Centre 18.20
+     &lt;destination&gt;Lyon-Part-Dieu � 20.43&lt;/destination&gt;
+    &lt;/route&gt;
+   &lt;/depart&gt;
+  &lt;/evenement&gt;
+  &lt;evenement&gt;
+   &lt;arrivee&gt;
+    &lt;heure&gt;18.38&lt;/heure&gt;
+    &lt;type_train class=&quot;tgv&quot;&gt;TGV&lt;/type_train&gt;
+    &lt;numero_train&gt;23&lt;/numero_train&gt;
+    &lt;route&gt;&lt;demarrage&gt;N�mes 19.40&lt;/demarrage&gt;
+     Montpellier 20.07
+    &lt;/route&gt;
+   &lt;/arrivee&gt;
+  &lt;/evenement&gt;
+ &lt;/gare&gt;
+&lt;/plan_route&gt;
+</pre></td></tr></table>
+
+<h3 class="xmp">Exemple du fichier CSS incorpor&eacute; <var>plan_route.css</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+gare
+ { position:absolute;
+   top:10px;
+   left:40px;
+   background-color:#C0C0C0;
+   padding:10px;
+ }
+nom
+ { position:relative;
+   display:block;
+   width:600px;
+   background-color:#808080;
+   color:#FFFFFF;
+   font-family:Tahoma,Arial,Helvetica,sans-serif;
+   font-size:36pt;
+   padding:5px;
+ }
+depart
+ { position:relative;
+   display:block;
+   width:600px;
+   background-color:#FFFF80;
+   color:#000000;
+   font-family:Tahoma,Arial,Helvetica,sans-serif;
+   font-size:12pt;
+   padding:2px;
+ }
+arrivee
+ { position:relative;
+   display:block;
+   width:600px;
+   background-color:#FFFFFF;
+   color:#000000;
+   font-family:Tahoma,Arial,Helvetica,sans-serif;
+   font-size:12pt;
+   padding:2px;
+ }
+heure
+ { position:relative;
+   width:70px;
+   vertical-align:top;
+ }
+type_train
+ { position:relative;
+   width:50px;
+   vertical-align:top;
+ }
+numero_train
+ { position:relative;
+   width:70px;
+   vertical-align:top;
+ }
+route
+ { position:relative;
+   width:350px;
+ }
+destination,demarrage,heure
+ { font-weight:bold;
+   color:0000E0;
+ }
+.ic, .ter, .tgv
+ { font-weight:bold;
+   color:E00000;
+ }
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple de DTD, qui est sauvegard&eacute;e s&eacute;par&eacute;ment dans un fichier nomm&eacute; <var>plan_route.dtd</var>, la structure d&eacute;sir&eacute;e d'&eacute;l&eacute;ments de donn&eacute;es est d&eacute;finie. Sous l'&eacute;l&eacute;ment document <code>plan_route</code> il y a un &eacute;l&eacute;ment qui englobe nomm&eacute; <code>gare</code>, qui comprend un nom pour la gare (&eacute;l&eacute;ment <code>nom</code>) et un nombre souhait&eacute; d'&eacute;v&eacute;nements (&eacute;l&eacute;ment <code>evenement</code>). Un &eacute;v&eacute;nement comprend soit un d&eacute;part, soit une arriv&eacute;e (&Eacute;l&eacute;ments <code>depart</code> et <code>arrivee</code>). Les deux sortes d'&eacute;v&eacute;nements ont la m&ecirc;me structure interne. Ils se composent d'un horaire (&Eacute;l&eacute;ment <code>heure</code>), d'une d&eacute;signation du type de train (&Eacute;l&eacute;ment <code>type_train</code>), D'un num&eacute;ro de train (&Eacute;l&eacute;ment <code>numero_train</code>) et d'une description de l'itin&eacute;raire (<code>route</code>). L'&eacute;l&eacute;ment <code>route</code> peut contenir encore des &eacute;l&eacute;ments int&eacute;rieurs, &agrave; savoir pour l'appellation de la gare d'origine pour les trains &agrave; l'arriv&eacute;e (&Eacute;l&eacute;ment <code>demarrage</code>, et pour la gare terminus pour les trains en partance (&Eacute;l&eacute;ment <code>destination</code>).<br>
+Vous trouverez des d&eacute;tails sur ces d&eacute;finitions dans la partie sur les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../dtd/elements.htm"><b>&eacute;l&eacute;ments et r&egrave;gles d'imbrication</b></a>.</p>
+
+<p>Dans le fichier d'application XML il est fait r&eacute;f&eacute;rence &agrave; la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../regles/declaration_type_document.htm#externe_dtd"><b>d&eacute;claration de type de document DTD</b></a> &eacute;tablie pr&eacute;alablement. Tout de suite apr&egrave;s la d&eacute;claration de type de fichier et avant m&ecirc;me les donn&eacute;es d'utilisation proprement dites du fichier, suit l'instruction &agrave; l'aide de laquelle le fichier CSS est incorpor&eacute;:<br>
+<code>&lt;?xml-stylesheet type=&quot;text/css&quot; href=&quot;plan_route.css&quot; ?&gt;</code></p>
+
+<p>Il s'agit ici d'une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../regles/declarationxml.htm#instructions_traitement"><b>instruction de traitement</b></a>. Par la notation <code>xml-stylesheet</code> le navigateur sait que les attributs qui suivent incorporent un fichier de feuilles de style s&eacute;par&eacute;es dans lequel des mentions de formatage pour les diff&eacute;rents &eacute;l&eacute;ments XML se trouvent. avec l'attribut <code>href</code> le fichier est r&eacute;f&eacute;renc&eacute;. L'attribut <code>type</code> est lui aussi important, en particulier quand toute l'application est appel&eacute;e par l'interm&eacute;diaire d'un serveur. Pour l'utilisation de CSS cet attribut re&ccedil;oit la valeur <code>text/css</code>.</p>
+
+<p>Le reste du fichier XML est compos&eacute; des donn&eacute;es d'utilisation proprement dites. L&agrave; sont utilis&eacute;s les &eacute;l&eacute;ments d&eacute;finis dans la DTD et les r&egrave;gles d'imbrication sont respect&eacute;es. L'exemple ci-dessus se limite pour simplifier &agrave; quatre &quot;&eacute;v&eacute;nements&quot; du tableau d'horaires de trains.</p>
+
+<p>Le fichier CSS s&eacute;par&eacute; qui dans l'exemple s'appelle <var>plan_route.css</var> d&eacute;finit pour les diff&eacute;rents &eacute;l&eacute;ments les <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../css/proprietes/index.htm"><b>propri&eacute;t&eacute;s CSS</b></a> souhait&eacute;es. On n'entrera pas ici dans le d&eacute;tail des diff&eacute;rentes propri&eacute;t&eacute;s. Mais il faut conna&icirc;tre ici un principe fondamental: un &eacute;l&eacute;ment XML n'a a priori aucune propri&eacute;t&eacute; pour le navigateur. Le navigateur ne sait m&ecirc;me pas si un &eacute;l&eacute;ment doit cr&eacute;er un bloc distinct &agrave; l'affichage ou s'il ne doit n'&ecirc;tre plac&eacute; que dans le cours du texte (incorpor&eacute;). Par d&eacute;faut, tout cela est affich&eacute; dans le cours du texte non comme un texte compl&egrave;tement non-structur&eacute;. C'est pourquoi il vous faut toujours mentionner la mention correspondante lors des d&eacute;finitions CSS d'&eacute;l&eacute;ments XML qui doivent cr&eacute;er un bloc distinct. Celle-ci s'appelle <code>display:block</code>.</p>
+
+<p>Dans l'exemple ci-dessus l'&eacute;l&eacute;ment <code>gare</code> qui englobe le tableau d'horaires de trains complet, est positionn&eacute; de fa&ccedil;on absolue (<code>position:absolute</code>). Les &eacute;l&eacute;ments int&eacute;rieurs sont positionn&eacute;s par rapport &agrave; leur point de d&eacute;part relatif (<code>position:relative</code>). Ces mentions en relation avec des mentions sur la largeur des &eacute;l&eacute;ments (<code>width:...</code>) font en sorte que la sortie apparaisse format&eacute;e proprement comme dans un tableau.</p>
+
+<p>La derni&egrave;re d&eacute;finition du fichier CSS repr&eacute;sente une particularit&eacute;. L&agrave; sont d&eacute;finies deux <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../css/formats/global.htm#classes"><b>classes</b></a>. Ces classes peuvent normalement &ecirc;tre adress&eacute;es dans des &eacute;l&eacute;ments HTML avec l'<img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../html/attributs/index.htm"><b>attribut universel</b></a> <code>class=&quot;nom_classe&quot;</code>. L'Explorer Internet  interpr&egrave;te ces attributs universels m&ecirc;me dans des &eacute;l&eacute;ments XML en relation avec les CSS. Dans les donn&eacute;es du fichier XML de l'exemple ci dessus, il est fait r&eacute;f&eacute;rence &agrave; ces classes &agrave; trois endroits par exemple dans l'instruction <code>&lt;type_train class=&quot;ic&quot;&gt;IC&lt;/type_train&gt;</code>.<br>
+L'Explorer Internet interpr&egrave;te m&ecirc;me l'attribut <code>style</code> dans les rep&egrave;res d'ouverture XML. Cela vous permet de formater individuellement des &eacute;l&eacute;ments XML distincts, par exemple: <code>&lt;anniversaire style=&quot;font-family:Modern; font-size:14pt; color:blue&quot;&gt;</code>.<br>
+Toutefois, plus les donn&eacute;es d'application XML &quot;se rel&acirc;cheront&quot; par l'emploi d'attributs issus de HTML comme <code>class=</code> ou <code>style=</code>, plus vous vous &eacute;loignerez du dogme pur de XML qui veut s&eacute;parer strictement les donn&eacute;es et le formatage l'un de l'autre et ne vise &agrave; formater que des parties constitutives bien d&eacute;finies  de la DTD.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><a class="an" name="limites">Limites et probl&egrave;mes pour la repr&eacute;sentation avec les CSS</a></h2>
+
+<p>Les CSS sont certainement pour les utilisateurs qui se risquent en XML avec des connaissances pr&eacute;alables en HTML plus faciles &agrave; comprendre et &agrave; utiliser dans un premier temps. Pourtant Les CSS en relation avec XML pr&eacute;sentent des inconv&eacute;nients que vous devez conna&icirc;tre:</p>
+
+<ul>
+<li>Les navigateurs plus anciens, m&ecirc;me quand ils supportent les CSS ne peuvent rien faire de la combinaison des CSS avec des donn&eacute;es XML et soit ils n'affichent rien, soit ils affichent du texte sans aucun formatage. L'affichage de donn&eacute;es en relation avec les CSS n'est pas, tout au moins sur le WWW, une solution &agrave; recommander parce qu'&agrave; la l'heure actuelle, encore trop d'utilisateurs seraient exclus.</li>
+<li>Avec les CSS dans la version 1.0 les &eacute;l&eacute;ments peuvent &ecirc;tre format&eacute;s mais pas les attributs. Quand par exemple vous avez dans une DTD XML un attribut nomm&eacute; <code>alignement</code> avec comme valeurs permises d&eacute;finies <code>gauche</code>, <code>droite</code> et <code>centre</code>, ce n'est qu'&agrave; partir des CSS 2.0 qu'il vous est possible d'&eacute;tablir la relation entre une telle mention d'attribut et un formatage de texte correspondant. Vous trouverez des d&eacute;tails &agrave; ce sujet dans la partie expliquant comment <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../css/formats/global.htm#lies_attributs"><b>d&eacute;finir des formats li&eacute;s &agrave; l'attribut</b></a>. Ne perdez cependant pas de vue que tous les navigateurs ne soutiennent pas ces formats CSS.</li>
+<li>Les CSS ne proposent qu'&agrave; partir de la version 2.0 la possibilit&eacute; d'appliquer &agrave; des &eacute;l&eacute;ments des sch&eacute;mas de num&eacute;rotation automatique, par exemple sur les titres de chapitre (chapitre 1, 1.1, 1.2, 1.2.1, 1.2, 1.3 etc...). Dans XSL/XSLT la possibilit&eacute; de num&eacute;rotation est pr&eacute;vue d'entr&eacute;e.</li>
+<li>Il n'existe pour ainsi dire pas de possibilit&eacute;s judicieuses de filtrer les donn&eacute;es &agrave; l'affichage. C'est justement avec des donn&eacute;es orient&eacute;es sur les champs et les enregistrements telles qu'elles sont souvent sauvegard&eacute;es en XML, qu'il n'est pas forc&eacute;ment toujours souhait&eacute; que, lors d'une sortie &agrave; l'&eacute;cran, tous les champs soient affich&eacute;s. Quand par exemple vous avez une base de donn&eacute;es de contacts en XML, vous d&eacute;sirez pour la sortie d'une liste des num&eacute;ros de t&eacute;l&eacute;phone ne sortir que les noms, firmes et t&eacute;l&eacute;phones mais pas d'adresses de num&eacute;ros de compte ou de dates de naissance. Cette possibilit&eacute; existe en XSL/XSLT.</li>
+<li>M&ecirc;me d'autres fonctions de XSL/XSLT, comme par exemple le tri automatique de donn&eacute;es avant leur sortie ne sont pour l'instant pas possibles avec les CSS.</li>
+</ul>
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="basesxsl.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="basesxsl.htm"><b>Bases de XSL/XSLT</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="../dtd/notations.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../dtd/notations.htm"><b>Notations pour donn&eacute;es r&eacute;f&eacute;renc&eacute;es</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>XML/DTD</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Repr&eacute;sentation de donn&eacute;es XML</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

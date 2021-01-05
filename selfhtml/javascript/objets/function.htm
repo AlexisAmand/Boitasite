@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / R&eacute;f&eacute;rence objet / Function</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quels sont le r&ocirc;le et les m&eacute;thodes de l'objet  Function en JavaScript.">
+<meta name="keywords"       content="SELFHTML, JavaScript, objets, Function, arguments, arity, caller">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/objets/function.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // R&eacute;f&eacute;rence objet == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Function</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+
+<p><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur l'utilisation </b></a> </p>
+
+<h3>Propri&eacute;t&eacute;s:</h3>
+
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#arguments"><b>arguments</b></a> (tableau de noms d'arguments)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#arity"><b>arity</b></a> (nombre d'arguments)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#caller"><b>caller</b></a> (nom de la fonction qui appelle)</p>
+
+
+
+
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">Function: g&eacute;n&eacute;ralit&eacute;s sur l'utilisation</a></h2>
+
+<p>Par l'objet <code>Function</code> vous avez acc&egrave;s aux propri&eacute;t&eacute;s d'une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/fonctions.htm"><b>fonction</b></a> JavaScript. Les fonctions JavaScript font ainsi elles m&ecirc;me l'objet d'instructions JavaScript. Travailler avec l'objet Function est judicieux, par exemple en relation avec un nombre de param&egrave;tres variable dans une fonction.</p>
+
+<p>Vous pouvez cr&eacute;er sp&eacute;cialement un nouvel objet <code>Function</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+couleur = new Function(&quot;nouvelle_couleur&quot;,&quot;document.bgColor=nouvelle_couleur;&quot;);</pre></td></tr></table>
+
+<h3 class="xmp">Correspondance de l'exemple en &eacute;criture normale:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+function couleur(nouvelle_couleur) {
+ document.bgColor=nouvelle_couleur;
+}
+</pre></td></tr></table>
+<h3 class="xmp">Exemple d'appel dans les deux cas:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;a href=&quot;javascript:couleur('#FFCC99')&quot;&gt;Nouvel arri�re plan&lt;/a&gt;
+</pre></td></tr></table>
+
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Consid&eacute;rez dans un premier temps la partie au milieu de l'exemple (&quot;correspondance de l'exemple en &eacute;criture normale&quot;). C'est la d&eacute;finition normale d'une fonction. Dans la partie au dessus, la m&ecirc;me fonction est d&eacute;finie sous la forme toutefois d'un objet fonction. L'objet fonction est cr&eacute;&eacute; avec <code>new Function(...)</code>. La valeur retourn&eacute;e est sauvegard&eacute;e dans une variable, dans l'exemple la variable <code>couleur</code>. Comme param&egrave;tres, la fonction <code>Function</code> attend un nombre de param&egrave;tres au choix (ceux que la fonction doit attendre), interpr&eacute;t&eacute;s en tant que tels jusqu'&agrave; l'avant dernier. Dans l'exemple il y a un tel param&egrave;tre, &agrave; savoir le param&egrave;tre <code>nouvelle_couleur</code>. Le dernier param&egrave;tre qui est transmis &agrave; la fonction <code>Function</code> est une cha&icirc;ne de caract&egrave;res qui repr&eacute;sente le contenu global de la fonction, donc les instructions JavaScript dans la fonction.</p>
+
+<p>Une variable dans laquelle est sauvegard&eacute;e une fonction, comme dans l'exemple la variable <code>couleur</code>, peut &ecirc;tre appel&eacute;e exactement comme une fonction. La troisi&egrave;me partie (&quot;exemple d'appel dans les deux cas&quot;) est effectivement valable pour les deux cas, car dans l'un des cas, c'est la variable <code>couleur</code> qui est appel&eacute;e dans laquelle toute une fonction est sauvegard&eacute;e, et dans l'autre cas c'est une fonction du nom de <code>couleur()</code> qui est appel&eacute;e.</p>
+
+<p>Vous n'&ecirc;tes cependant pas oblig&eacute;s de cr&eacute;er un nouvel objet fonction: vous pouvez &eacute;galement utiliser directement sur une fonction les propri&eacute;t&eacute;s de l'objet fonction.</p>
+
+<h3 class="xmp">Exemple pour employer directement les propri&eacute;t&eacute;s de fonction:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/function_generalites.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function listeHTML(Type) {
+ document.write(&quot;&lt;&quot; + Type + &quot;l&gt;&quot;);
+ for (var i=1; i&lt;listeHTML.arguments.length; i++)
+  document.write(&quot;&lt;li&gt;&quot; + listeHTML.arguments[i]+&quot;&lt;/li&gt;&quot;);
+ document.write(&quot;&lt;/&quot; + Type + &quot;l&gt;&quot;);
+}
+listeHTML(&quot;U&quot;,&quot;un&quot;,&quot;deux&quot;,&quot;trois&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<p>L'exemple &eacute;crit de fa&ccedil;on dynamique une liste HTML dans le fichier soit comme liste &eacute;num&eacute;rative, soit comme liste num&eacute;rot&eacute;e. Cela se fait dans une fonction du nom de <code>listeHTML()</code>. Sous la fonction se trouve l'appel de la fonction, dans lequel quatre param&egrave;tres sont transmis. Pourtant, la fonction <code>listeHTML()</code> n'attend qu'un param&egrave;tre, &agrave; savoir le param&egrave;tre <code>Type</code>. Pour cela, il faut transmettre un <code>U</code> ou un <code>O</code>. Suivant le cas, la fonction g&eacute;n&egrave;re une liste <code>&lt;ul&gt;</code> (&eacute;num&eacute;rative) ou une liste <code>&lt;ol&gt;</code> (num&eacute;rot&eacute;e).</p>
+
+<p>&Agrave; l'int&eacute;rieur de la fonction, le nombre effectif d'&eacute;l&eacute;ments transmis est cependant demand&eacute; avec <code>listeHTML.arguments.length</code>. La fonction suppose que tous les param&egrave;tres &agrave; partir du deuxi&egrave;me sont des &eacute;l&eacute;ments de la liste d&eacute;sir&eacute;e. La fonction &eacute;crit avec des commandes <code>document.write()</code> les points correspondants en utilisant dans l'ordre les param&egrave;tres transmis, &eacute;tant donn&eacute; que cette action se situe dans une boucle <code>for</code>.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="lecture"> <a class="an" name="arguments">arguments</a></h2>
+
+<p>Sauvegarde dans un tableau, donc dans une cha&icirc;ne d'&eacute;l&eacute;ments, les arguments qui ont &eacute;t&eacute; transmis &agrave; une fonction. Chaque &eacute;l&eacute;ment repr&eacute;sente un argument. La propri&eacute;t&eacute; n'est disponible que dans la fonction &agrave; laquelle elle se r&eacute;f&egrave;re.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/function_arguments.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function Test(nom,prenom) {
+ document.write(&quot;La fonction a re&ccedil;u  &quot; + Test.arguments.length + &quot; arguments&quot;);
+ for (var i=0; i&lt;Test.arguments.length; ++i)
+  document.write(&quot;&lt;BR&gt;&quot; + Test.arguments[i]);
+}
+Test(&quot;Fran&ccedil;ois&quot;, &quot;Serge&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une fonction <code>Test()</code>, qui se voit transmettre deux param&egrave;tres. La fonction &eacute;crit de fa&ccedil;on dynamique dans le fichier HTML, combien de param&egrave;tres elle attend puis, dans une boucle <code>for</code>, quelles valeurs ont &eacute;t&eacute; transmises.</p>
+
+<p>Avec <code>nomdelafonction.arguments.length</code> vous recherchez le nombre de param&egrave;tres effectivement transmis (et non pas le nombre de param&egrave;tres attendus).</p>
+
+<p>Avec <code>nomdelafonction.arguments[0]</code> vous adressez la valeur du premier param&egrave;tre transmis, avec <code>nomdelafonction.arguments[1]</code> celui du deuxi&egrave;me param&egrave;tre etc...</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="lecture"> <a class="an" name="arity">arity</a></h2>
+
+<p>Sauvegarde le nombre d'arguments attendus par une fonction. La propri&eacute;t&eacute; n'est disponible que dans la fonction &agrave; laquelle elle se r&eacute;f&egrave;re. Le passage JavaScript dans lequel l'instruction appara&icirc;t doit &ecirc;tre marqu&eacute; avec <code>JavaScript1.2</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/function_arity.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script language=&quot;JavaScript1.2&quot; type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function Test(nom,prenom) {
+ return(prenom + &quot; &quot; + nom);
+}
+alert(&quot;La fonction attend  &quot; + Test.arity + &quot; arguments&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit une fonction <code>Test()</code>, qui attend deux param&egrave;tres. La fonction n'est pas du tout appel&eacute;e dans l'exemple, &agrave; la place une boite de dialogue sort combien d'arguments la fonction <code>Test()</code> attend. Pour ce faire, la propri&eacute;t&eacute; <code>arity</code> est appliqu&eacute;e &agrave; la fonction d&eacute;sir&eacute;e.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="lecture"> <a class="an" name="caller">caller</a></h2>
+
+<p>Sauvegarde la fonction compl&egrave;te &agrave; partir de laquelle la fonction actuelle a &eacute;t&eacute; appel&eacute;e. A la valeur <code>null</code>, au cas o&ugrave; l'appel a eu lieu directement d'un gestionnaire d'&eacute;v&eacute;nement ou &agrave; la lecture du fichier hors de toute autre fonction. La propri&eacute;t&eacute; n'est disponible que dans la fonction &agrave; laquelle elle se r&eacute;f&egrave;re. </p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/function_caller.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function Test() {
+ alert(Test.caller);
+}
+function appel() {
+ Test();
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;a href=&quot;javascript:appel()&quot;&gt;Qui appelle Test()?&lt;/a&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit dans l'ent&ecirc;te de fichier deux fonctions: une fonction <code>Test()</code> et une fonction <code>appel()</code>. La fonction <code>Test()</code> ne fait rien d'autre que sortir &agrave; partir de quelle fonction elle a &eacute;t&eacute; appel&eacute;e, la fonction <code>appel()</code> ne fait rien d'autre qu'appeler la fonction <code>Test()</code>. Dans le fichier, un lien est not&eacute; plus loin qui, lorsqu'on le clique, appelle la fonction <code>appel()</code> qui &agrave; son tour appelle la fonction <code>Test()</code>. La fonction <code>Test()</code> sort alors le code complet de la fonction <code>appel()</code>. .</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Opera 5.12 n'interpr&egrave;te pas cette propri&eacute;t&eacute;.</p>
+
+
+
+ <table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="math.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="math.htm"><b>Math</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="date.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="date.htm"><b>Date</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+</body>
+</html>

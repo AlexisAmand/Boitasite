@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / Fonctions Perl / Funktionen f&uuml;r Module und Packages</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quelles sont les fonctions en Perl pour incorporer des modules.">
+<meta name="keywords"       content="SELFHTML, Perl, fonctions, Fonctions Perl, modules, progiciel, Packages, package, require, use, @INC, %INC">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/fonctions/modules.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // Fonctions Perl == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Fonctions Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2> Fonctions pour les modules et progiciels (packages)</h2></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur ces fonctions</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#package"><b>package</b></a> - Activer l'espace de nommage d'un progiciel (package)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#require"><b>require</b></a> - ex&eacute;cuter un autre fichier Perl<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#use"><b>use</b></a> - incorporer un module<br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur ces fonctions</a></h2>
+
+<p>Pour mieux comprendre ces fonction, vous devez lire le chapitre sur les  <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../modules/index.htm"><b>modules Perl</b></a>.</p>
+
+<h3><a name="inc"><code>@INC</code></a> - la liste des noms de chemin pour les modules</h3>
+
+<p>Quand vous incorporez un fichier module (fichiers  <code>*.pm</code>) avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#require"><b>require</b></a> ou <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#use"><b>use</b></a>, Perl recherche le fichier correspondant soit dans le r&eacute;pertoire actuel, soit dans un r&eacute;pertoire qui est sauvegard&eacute; dans la liste des noms de chemin de modules. C'est &agrave; cela que sert la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/predefini.htm"><b>variable pr&eacute;d&eacute;finie en Perl</b></a> <code>@INC</code>. Dans la partie sur les  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/intro.htm#lieux_sauvegarde_inc"><b> emplacements de sauvegarde des modules et de la liste @INC</b></a> vous trouverez un script de travail &agrave; l'aide duquel vous pouvez sortir le contenu de <code>@INC</code>, pour trouver les chemins en vigueur sur votre ordinateur.</p>
+
+<p>Outre la liste <code>@INC</code> il existe par ailleurs &eacute;galement un hash nomm&eacute; <code>%INC</code>. Dans ce hash sont sauvegard&eacute;s tous les modules d&eacute;j&agrave; charg&eacute;s. Perl emp&ecirc;che de cette fa&ccedil;on que des modules soient charg&eacute;s plusieurs fois et conduisent ainsi &agrave; des anomalies dans le d&eacute;roulement du programme. Vous n'avez donc pas besoin de vous inqui&eacute;ter de ce genre de probl&egrave;mes en Perl, probl&egrave;mes qui doivent &ecirc;tre r&eacute;solus en C par des instructions au pr&eacute;-processeur telles que <code>#ifndef</code> et <code>#define</code>.</p>
+
+<h3>Espaces de nommage</h3>
+
+<p>Un espace de nommage s'appelle en Perl un <b>Package</b>. Faute de mentionner quoi que ce soit, chaque fichier Perl se trouve dans le package nomm&eacute; <code>main</code>. Les variables qui, dans un fichier Perl, sont d&eacute;finies sans autres restrictions que <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="controle.htm#local"><b>local</b></a> ou <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="controle.htm#my"><b>my</b></a>, les noms de sous-programmes etc... s'appliquent globalement dans ce fichier. &Agrave; l'aide de la fonction <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#package"><b>package</b></a> vous pouvez sous-diviser un fichier Perl en plusieurs packages.</p>
+
+<h3>Qu'est-ce qui est pr&eacute;f&eacute;rable - <code>require</code> ou <code>use</code>?</h3>
+
+<p>Les deux fonctions <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#require"><b>require</b></a> et <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#use"><b>use</b></a> ont des t&acirc;ches similaires, leur fa&ccedil;on d'agir est cependant diff&eacute;rente. <code>require</code> est charg&eacute; pour le d&eacute;roulement d'un script (et cela &agrave; l'endroit o&ugrave; figure l'instruction <code>require</code>), tandis que <code>use</code> est d&eacute;j&agrave; incorpor&eacute; avant au moment de la compilation du script. Pour <code>require</code> vous passez donc simplement pendant l'ex&eacute;cution du script dans un autre script que vous faites compiler et ex&eacute;cuter puis vous revenez ensuite. Pour <code>use</code> par contre, vous obtenez apr&egrave;s la compilation que Perl ex&eacute;cute avant chaque ex&eacute;cution du script, quasiment un grand script dont le code se compose de plusieurs fichiers modules. Cela a des cons&eacute;quences. Ainsi des erreurs de syntaxe qui sont contenues dans un module incorpor&eacute; avec <code>use</code>, sont rep&eacute;r&eacute;es d'embl&eacute;e et le script n'est pas du tout ex&eacute;cut&eacute;. Pour <code>require</code> par contre, il peut arriver que le script principal soit sans faute mais que le script incorpor&eacute; contienne des erreurs de syntaxe. Celles-ci ne sont toutefois rep&eacute;r&eacute;es que lorsque le script principal est d&eacute;j&agrave; en cours d'ex&eacute;cution. Ce qui peut provoquer des &eacute;tats ind&eacute;finis. Il faut privil&eacute;gier aujourd'hui dans la plupart des cas l'utilisation de <code>use</code>. Il y a il est vrai aussi des exceptions.</p>
+
+<p>Finalement les faits sont l&agrave;: les deux fonctions existent aujourd'hui, et leur histoire diff&egrave;re. <code>require</code> est plus ancien (&eacute;tait d&eacute;j&agrave; interpr&eacute;t&eacute; par Perl 4), tandis que <code>use</code> est propos&eacute; depuis la version 5. Dans la version 5, le concept des modules de Perl a &eacute;t&eacute; sensiblement &eacute;largi et n'a adopt&eacute; que l&agrave;, la forme &eacute;tendue qu'on lui conna&icirc;t aujourd'hui.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="package">package - Activer l'espace de nommage d'un progiciel (package)</a></h2>
+
+<p>Avec cette fonction, vous d&eacute;terminez un  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#package"><b>espace de nommage</b></a> comme espace de nommage actif en vigueur. L'espace de nommage reste actif aussi longtemps qu'un autre espace de nommage ne devient pas actif avec un nouvel appel de <code>package</code>, ou jusqu'&agrave; ce que la limite naturelle d'un espace de nommage, donc le bloc actuel (par exemple un sous-programme) ou la fin du fichier est atteinte. De cette mani&egrave;re,  pouvez travailler de fa&ccedil;on modulaire &agrave; l'int&eacute;rieur d'un fichier script.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le nom d'un espace de nommage ou un nombre &agrave; interpr&eacute;ter comme num&eacute;ro de version.</p>
+
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+package allemand;
+use vars qw($capitale $surface);
+$capitale = &quot;Berlin&quot;;
+$surface = &quot;356.910 qm&quot;;
+
+package francais;
+use vars qw($capitale $surface);
+$capitale = &quot;Paris&quot;;
+$surface = &quot;551.500 qm&quot;;
+
+package allemand;
+print &quot;&lt;p&gt;La  capitale est $capitale et la surface du pays s'�l�ve �  $surface &lt;/p&gt;&quot;;
+
+package francais;
+print &quot;&lt;p&gt;La  capitale est $capitale et la surface du pays s'�l�ve � $surface &lt;/p&gt;&quot;;
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple appelle quatre fois en tout <code>package</code>. La premi&egrave;re fois,  un nouvel espace de nommage nomm&eacute; <code>allemand</code> est cr&eacute;&eacute;, et la deuxi&egrave;me fois, un nouvel espace de nommage nomm&eacute; <code>francais</code>. La troisi&egrave;me fois, c'est &agrave; nouveau l'espace de nommage <code>allemand</code> qui est appel&eacute;, et &agrave; partir de cette commande, le script ne conna&icirc;t plus que les variables, sous-programmes etc... qui ont &eacute;t&eacute; d&eacute;finis dans le m&ecirc;me espace de nommage. Il en va de m&ecirc;me pour la quatri&egrave;me fois, quand l'espace de nommage <code>francais</code> est &agrave; nouveau appel&eacute;.</p>
+
+<p>Lors de l'utilisation de <code>use strict</code> comme dans l'exemple, les variables qui sont d&eacute;clar&eacute;es dans les deux premiers blocs package, doivent &ecirc;tre d&eacute;clar&eacute;e explicitement globales pour &ecirc;tre disponibles lors des appels ult&eacute;rieurs du package. Pour permettre la d&eacute;claration de variables globales, le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/modulesstandard.htm"><b>module standard </b></a> <code>vars</code> est disponible. Dans l'exemple, vous voyez comment ce module est mis en &#339;uvre. Incorpor&eacute; &agrave; l'int&eacute;rieur d'un package avec <code>use</code>, figurent dans la parenth&egrave;se derri&egrave;re <code>qw</code> tous les noms de variables du package actuel, qui doivent &ecirc;tre d&eacute;clar&eacute;es comme globales, donc sans &ecirc;tre pr&eacute;c&eacute;d&eacute;es de <code>my</code>. Perl ne proteste donc pas devant ces d&eacute;clarations malgr&eacute; <code>use strict</code>.</p>
+
+<h3 class="inf">Attention</h3>
+
+<p>Aussi longtemps qu'un espace de nommage sp&eacute;cial n'est pas activ&eacute; avec <code>package</code>, s'applique l'<b>espace de nommage par d&eacute;faut</b> de Perl qui porte le nom <code>main</code>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="require">require - ex&eacute;cuter un autre fichier Perl</a></h2>
+
+<p>Avec cette fonction, vous ex&eacute;cutez un autre fichier Perl quelconque. L'autre script est ex&eacute;cut&eacute; &agrave; l'endroit o&ugrave; figure l'appel de <code>require</code>.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le nom du fichier &agrave; incorporer, le cas &eacute;ch&eacute;ant avec nom de chemin (cas normal), ou un nombre interpr&eacute;t&eacute; comme num&eacute;ro de version.</p>
+
+<h3 class="xmp">Exemple - partie 1 (Script CGI complet en Perl):</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+require &quot;hello_monde.pl&quot;;
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xmp">Exemple - partie 2 (fichier module <var>hello_monde.pl</var>):</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+print &quot;Hello monde!&quot;;
+1;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple montre comment vous pouvez incorporer un script CGI &quot;ordinaire&quot; qui &eacute;crit sa sortie sur la sortie standard, dans un script CGI de fa&ccedil;on &agrave; ce que sa sortie soit envoy&eacute;e au navigateur WWW. Dans le script CGI, un autre fichier Perl est incorpor&eacute; avec <code>require &quot;hello_monde.pl&quot;</code>. Ce fichier &eacute;crit simplement <code>Hello monde</code> sur la sortie standard. &Eacute;tant donn&eacute; cependant qu'il est incorpor&eacute; dans un script qui envoie auparavant l'ent&ecirc;te HTTP habituel, la sortie arrive au navigateur en tant que contenu HTML.</p>
+
+
+<h3 class="inf">Attention</h3>
+
+<p>Vous pouvez incorporer un fichier module avec l'extension <code>.pm</code> avec <code>require</code> de la m&ecirc;me fa&ccedil;on que vous le faites avec <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#use"><b>use</b></a>. Dans ce cas, il vous faut mentionner <code>require&nbsp;nom_module</code>. Perl recherche alors un fichier nomm&eacute; <code>nom_module.pm</code>. M&ecirc;me la syntaxe avec <code>::</code> est possible tout &agrave; fait comme avec <code>use</code> (comparez &agrave; ce sujet la partie sur la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/intro.htm#syntaxe_adressage"><b>syntaxe d'adressage pour l'incorporation de modules</b></a>).</p>
+
+<p>Les fichiers Perl incorpor&eacute;s doivent &agrave; la fin contenir quelque chose comme <code>1;</code>. On s'assure ainsi que le module ou la fonction de module a &eacute;t&eacute; ex&eacute;cut&eacute;e correctement.</p>
+
+<p>Quand un fichier incorpor&eacute; contient des sous programmes, vous pouvez appeler ceux-ci comme s'ils &eacute;taient not&eacute;s dans le script Perl actuel.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="use">use - - incorporer un module</a></h2>
+
+<p>Avec cette fonction, vous chargez un module Perl ou certaines fonctions d'un tel module dans votre script et vous pouvez utiliser le code Perl correspondant  dans votre script.</p>
+
+<p><p>Attend comme param&egrave;tre:<br>
+<b>1.</b> le nom du module (cas normal), ou un nombre qui est interpr&eacute;t&eacute; comme num&eacute;ro de version.<br>
+<b>2.</b> &agrave; <b>n.</b> (facultatif) autres mentions restrictives (voir plus bas).</p>
+
+<h3 class="xmp">Exemple - partie 1 (Script CGI complet en Perl):</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+use Syntax;
+my $sortie = html_syntax(&quot;&lt;h1&gt;Voici � quoi &amp;ccedil;a ressemble&lt;/h1&gt;&quot;,&quot;red&quot;);
+print &quot;&lt;h1&gt;Voici � quoi &amp;ccedil;a ressemble&lt;/h1&gt;\n&quot;;
+print &quot;$sortie\n&quot;;
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xmp">Exemple - partie 2  (fichier module <var>Syntax.pm</var>):</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+package Syntax;
+use strict;
+use vars qw($VERSION @ISA @EXPORT);
+require Exporter;
+@ISA = qw(Exporter);
+@EXPORT = qw(html_syntax);
+$VERSION = 1.0;
+
+sub html_syntax {
+  my $htmlstr = shift;
+  my $color = shift;
+  $htmlstr =~ s/\&amp;/&amp;amp;/g;
+  $htmlstr =~ s/\&quot;/&amp;quot;/g;
+  $htmlstr =~ s/\&lt;/&amp;lt;/g;
+  $htmlstr =~ s/\&gt;/&amp;gt;/g;
+  $htmlstr =~ s/(&amp;lt;)/&lt;span style=\&quot;color:$color\&quot;&gt;$1/g;
+  $htmlstr =~ s/(&amp;gt;)/$1&lt;\/span&gt;/g;
+  return($htmlstr);
+}
+1;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple complet montre un script CGI dans lequel un module d&eacute;fini soi-m&ecirc;me est employ&eacute;, ainsi que le code du fichier module correspondant. Dans le script CGI, le fichier module qui dans l'exemple s'appelle <code>Syntax.pm</code> et qui se trouve dans le m&ecirc;me r&eacute;pertoire que le script CGI ou dans le r&eacute;pertoire principal de <code>@INC</code>, est incorpor&eacute; avec <code>use Syntax;</code> (comparez &agrave; ce sujet la partie sur la  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/intro.htm#syntaxe_adressage"><b>syntaxe d'adressage pour l'incorporation de modules).</b></a>).</p>
+
+<p>Le programme principal appelle ensuite un sous-programme nomm&eacute; <code>html_syntax()</code> et lui transmet deux param&egrave;tres, &agrave; savoir une cha&icirc;ne de caract&egrave;res avec du code HTML et le nom d'une couleur (<code>red</code>). Le sous-programme <code>html_syntax()</code> a pour t&acirc;che de masquer le code HTML transmis conform&eacute;ment &agrave; HTML et de marquer les rep&egrave;res HTML dans la couleur mentionn&eacute;e (donc pratiquement de repr&eacute;senter le code HTML transmis avec une mise en valeur de couleur de la syntaxe HTML). Le sous-programme g&eacute;n&egrave;re ici du nouveau code HTML et renvoie celui-ci &agrave; la fin. Dans le programme principal, le code renvoy&eacute; est captur&eacute; dans la variable <code>$sortie</code>. Celle-ci &agrave; la fin est sortie dans le navigateur.</p>
+
+<p>Le sous-programme <code>html_syntax()</code> est d&eacute;fini dans le module <code>Syntax</code> avec <code>sub&nbsp;html_syntax</code>. Le fichier module contient au d&eacute;but quelques autres instructions qui ne seront pas approfondies ici. Lisez &agrave; ce sujet la partie sur l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/intro.htm#use_etendu"><b>utilisation &eacute;tendue de use (@EXPORT, @EXPORT_OK et qw)</b></a>.</p>
+
+<p><a name="parametres_use">Le tableau suivant expose quelles variantes existent pour incorporer avec <code>use</code> un incorporer un module ou certaines parties de celui-ci:</a></p>
+
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0">
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left">Exemple:</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Explication:</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>use exemple;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">incorpore un module nomm&eacute; <code>exemple.pm</code> en impliquant que ce fichier soit sauvegard&eacute; soit dans le r&eacute;pertoire de travail actuel, soit dans l'un des r&eacute;pertoires qui sont sauvegard&eacute;s dans <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#inc"><b>@INC</b></a>. Mentionnez donc le nom de fichier sans son extension. L'extension d'un fichier module doit &ecirc;tre <code>.pm</code>.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>use exemple::special;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">incorpore un module nomm&eacute; <code>special.pm</code>. Ici Perl r&eacute;sout la syntaxe <code>::</code> comme nom de chemin - c'est &agrave; dire qu'un fichier avec le nom de chemin <code>exemple/special.pm</code> est attendu. Ce qui est un nom de chemin relatif par rapport &agrave; l'un des chemins de r&eacute;pertoires sauvegard&eacute;s dans <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#inc"><b>@INC</b></a>.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>use CGI::Carp qw(fatalsToBrowser);</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">incorpore le module <code>Carp.pm</code> situ&eacute; dans le r&eacute;pertoire <code>CGI</code>. Le symbole  <code>fatalsToBrowser</code> est transmis &agrave; la liste d'importation. Normalement il est alors import&eacute; dans l'espace de nommage actuel, ce qui &agrave; vrai dire - c'est typique pour Perl - n'est justement pas le cas dans cet exemple populaire. La transmission de <code>fatalsToBrowser</code> d&eacute;clenche ici un traitement particulier.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>use 5.003;</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Le script ne se poursuit que si un interpr&eacute;teur Perl est install&eacute; dont le num&eacute;ro de version est &eacute;gal ou sup&eacute;rieur &agrave; 5.003.</td>
+</tr>
+</table>
+</td></tr></table>
+
+
+<h3 class="inf">Attention</h3>
+
+<p>L'instruction:<br>
+<code>use nom_module;</code><br>
+signifie la m&ecirc;me chose que:<br>
+<code>BEGIN { require nom_module; import nom_module [liste_importation]; }</code><br>
+La fonction  <code>use</code> accomplit donc la somme de ce que fait la fonction <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#require"><b>require</b></a> en relation avec la m&eacute;thode <code>import</code>.</p>
+
+<p>Quand vous transmettez exactement un argument &agrave; <code>use</code> et que cet argument est un nombre, donc par exemple. <code>5</code> ou bien <code>5.003</code>, alors Perl v&eacute;rifie cette mention par rapport au num&eacute;ro de version de l'interpr&eacute;teur Perl. Si le num&eacute;ro de version de l'interpr&eacute;teur Perl est plus petit que le nombre mentionn&eacute;, le script en cours est aussit&ocirc;t arr&ecirc;t&eacute; avec un message d'erreur. Ce qui peut &ecirc;tre judicieux pour emp&ecirc;cher qu'un script ne se poursuive alors qu'il contient du code n&eacute;cessitant une version Perl plus &eacute;lev&eacute;e.</p>
+
+<p>Les modules incorpor&eacute;s doivent &agrave; la fin contenir quelque chose comme <code>1;</code>. On s'assure ainsi que le module  a &eacute;t&eacute; incorpor&eacute; correctement.</p>
+
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="../modules/intro.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../modules/intro.htm"><b>Introduction pour travailler avec des modules</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="configuration.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="configuration.htm"><b>Fonctions pour les informations tir&eacute;es des fichiers de configuration</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Fonctions Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

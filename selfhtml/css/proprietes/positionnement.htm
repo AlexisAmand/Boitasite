@@ -1,0 +1,943 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: Feuilles de style CSS / Propri&eacute;t&eacute;s CSS / Positionnement et affichage d'&eacute;l&eacute;ments</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quelles sont les possibilit&eacute;s en HTML pour positionner librement des &eacute;l&eacute;ments, contr&ocirc;ler le flux de texte et l'affichage d'&eacute;l&eacute;ments.">
+<meta name="keywords"       content="SELFHTML, CSS, feuilles de style CSS, Cascading Stylesheets, HTML, propri&eacute;t&eacute;s CSS, positionnement, positionnement absolu, positionnement relatif, largeur, hauteur, affichage d'&eacute;l&eacute;ments, position, top, left, bottom, right, width, min-width, max-width, height, min-height, max-height, overflow, direction, float, clear, z-index, display, visibility, clip">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/css/proprietes/positionnement.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // Feuilles de style CSS == ../index.htm // Propri&eacute;t&eacute;s CSS == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>Feuilles de style CSS</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Propri&eacute;t&eacute;s CSS</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Positionnement et affichage d'&eacute;l&eacute;ments</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur le positionnement et l'affichage d'&eacute;l&eacute;ments</b></a> <br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#position"><b>position</b></a> (Mode de positionnement)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#postop"><b>top</b></a> (Position &agrave; partir du haut)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#left"><b>left</b></a> (Position &agrave; partir de la gauche)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#bottom"><b>bottom</b></a> (Position &agrave; partir du bas)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#right"><b>right</b></a> (Position &agrave; partir de la droite)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#width"><b>width</b></a> (Largeur)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#min_width"><b>min-width</b></a> (Largeur minimale)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#max_width"><b>max-width</b></a> (Largeur maximale)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#height"><b>height</b></a> (Hauteur)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#min_height"><b>min-height</b></a> (Hauteur minimale)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#max_height"><b>max-height</b></a> (Hauteur maximale)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#overflow"><b>overflow</b></a> (Passage d'&eacute;l&eacute;ment au contenu trop important)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#direction"><b>direction</b></a> (Direction)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#float"><b>float</b></a> (Cours du texte)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#clear"><b>clear</b></a> (Suite pour le cours du texte)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#z_index"><b>z-index</b></a> (Position de la couche en cas de superposition)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#display"><b>display</b></a> (Mode d'affichage ou plut&ocirc;t non affichage sans prendre de place)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#visibility"><b>visibility</b></a> (Affichage ou non affichage avec r&eacute;servation de place)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#clip"><b>clip</b></a> (Limiter le domaine d'affichage)
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur le positionnement et l'affichage d'&eacute;l&eacute;ments</a></h2>
+
+<p>&Agrave; partir de la version CSS 2.0 il existe diff&eacute;rentes mentions de feuilles de style pour positionner exactement des &eacute;l&eacute;ments d'une page WWW dans la fen&ecirc;tre d'affichage du navigateur WWW et pour contr&ocirc;ler exactement la position des &eacute;l&eacute;ments les uns par rapport aux autres. En font partie les mentions pour positionner les &eacute;l&eacute;ments de fa&ccedil;on relative ou absolue, les mentions pour
+&eacute;largir des &eacute;l&eacute;ments, les mentions pour le flux des &eacute;l&eacute;ments et enfin les mentions pour superposer et afficher les &eacute;l&eacute;ments.</p>
+
+<p>Le positionnement absolu et relatif de documents vous donne la possibilit&eacute; de mieux g&eacute;rer en fonction de l'&eacute;cran l'apparence de vos pages WWW. Ainsi vous pouvez fixer pour des passages distincts, o&ugrave; ces passages doivent commencer exactement. Des passages peuvent se superposer etc. Pour l'essentiel, ces
+mentions de feuilles de style couvrent les possibilit&eacute;s des anciens <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../html/calques/index.htm"><b>calques</b></a> de Netscape. &Agrave; l'inverse des calques ils sont pourtant une proposition officielle du consortium W3. Netscape et l' Explorer Internet Microsoft interpr&egrave;tent ces mentions depuis leur version 4x - toutefois avec quelques r&eacute;serves ou
+particularit&eacute;s.</p>
+
+<p>Le positionnement d'&eacute;l&eacute;ments est une condition pr&eacute;alable importante pour beaucoup de cas d'application de <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../dhtml/index.htm"><b>HTML dynamique</b></a>. Gr&acirc;ce au soutien d'un script correspondant, vous pouvez bouger, allumer ou &eacute;teindre des &eacute;l&eacute;ments positionn&eacute;s, les superposer diff&eacute;remment etc...</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="position">position (Mode de positionnement)</a></h2>
+
+<p>Vous pouvez sp&eacute;cifier pour un passage, s'il doit &ecirc;tre positionn&eacute; de fa&ccedil;on relative ou absolue.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/position.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;position&lt;/title&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+&lt;!--
+body { }
+#boite1 { position:absolute; top:10px; left:10px; width:150px; height:150px; z-index:1; }
+#boite2 { position:absolute; top:40px; left:40px; width:100px; height:100px; z-index:2; }
+#boite3 { position:absolute; top:80px; left:50px; width:150px; height:150px; z-index:3; }
+#boite4 { position:absolute; top:40px; left:20px; width:70px; height:70px; z-index:1;  }
+#boite5 { position:absolute; top:60px; left:10px; width:80px; height:80px; z-index:2; }
+#boite6 { position:absolute; top:20px; left:50px; width:90px; height:90px; z-index:-1; }
+--&gt;
+&lt;/style&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;div id=&quot;boite1&quot; style=&quot;background:red; border:solid 2px blue;&quot;&gt;boite 1&lt;/div&gt;
+&lt;div id=&quot;boite2&quot; style=&quot;background:blue; border:solid 2px white;&quot;&gt;boite 2&lt;/div&gt;
+&lt;div id=&quot;boite3&quot; style=&quot;background:yellow; border:solid 2px red;&quot;&gt;boite 3
+        &lt;div id=&quot;boite4&quot; style=&quot;background:gold; border:solid 2px green;&quot;&gt;boite 4&lt;/div&gt;
+        &lt;div id=&quot;boite5&quot; style=&quot;background:lime; border:solid 2px navy;&quot;&gt;boite 5&lt;/div&gt;
+        &lt;div id=&quot;boite6&quot; style=&quot;background:red; border:solid 2px blue;&quot;&gt;boite 6&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>position:</code> vous pouvez d&eacute;terminer le mode de positionnement. Les mentions suivantes sont permises:</p>
+
+<p>
+<code>absolute</code> = Positionnement absolu, mesur&eacute; &agrave; partir du bord de l'&eacute;l&eacute;ment parent; peut d&eacute;filer.<br>
+<code>fixed</code> = Positionnement absolu, mesur&eacute; &agrave; partir du bord de l'&eacute;l&eacute;ment parent; reste fixe lors du d&eacute;filement. .<br>
+<code>relative</code> = Positionnement relatif mesur&eacute; &agrave; partir de la position de d&eacute;part de l'&eacute;l&eacute;ment proprement dit.<br>
+<code>static</code> = Pas de positionnement sp&eacute;cial, flux normal de l'&eacute;l&eacute;ment (r&eacute;glage par d&eacute;faut).<br>
+</p>
+
+<p>En particulier la conduite des mentions <code>absolute</code> et <code>relative</code> d&eacute;concerte un peu au d&eacute;but. Car <code>absolute</code> se comporte apr&egrave;s tout de fa&ccedil;on relative, comme le montrent les &eacute;l&eacute;ments <code>div</code> int&eacute;rieurs de l'exemple ci-dessus: relativement en effet par rapport au bord de l'&eacute;l&eacute;ment parent. Quand autrement, il n'y a pas d'&eacute;l&eacute;ment parent, c'est l'&eacute;l&eacute;ment <code>body</code> qui est l'&eacute;l&eacute;ment parent. La mention <code>relative</code> se r&eacute;f&egrave;re par contre &agrave; la position normale de l'&eacute;l&eacute;ment lui m&ecirc;me.</p>
+
+<p>La mention <code>position:</code> n'&eacute;tablit pas encore fermement o&ugrave; exactement un &eacute;l&eacute;ment doit commencer. La mention n'a de sens que si vous mentionnez en m&ecirc;me temps la position de d&eacute;part d&eacute;sir&eacute;e. C'est ce que vous pouvez faire par exemple avec des mentions sur la <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#postop"><b>position &agrave; partir du haut</b></a> ou bien sur la <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#left"><b>Position &agrave; partir de la gauche</b></a>.<br>
+Si vous mentionnez par exemple <code>position:absolute; top:30px</code>, alors vous fixez pour l'&eacute;l&eacute;ment concern&eacute; qu'il doit commencer 30 pixels sous le bord inf&eacute;rieur de l'&eacute;l&eacute;ment parent.<br>
+Si vous mentionnez par exemple <code>position:relative; top:5px</code> alors vous fixez que le bord sup&eacute;rieur de l'&eacute;l&eacute;ment se trouve 5 pixels plus bas qu'il ne serait normalement.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>La mention <code>fixed</code> n'est encore interpr&eacute;t&eacute;e ni par Netscape ni par l'Explorer Internet MS .</p>
+
+<p>Ni Netscape ni l'Explorer Internet MS n'interpr&egrave;tent les mentions de positionnement absolu dans tous les &eacute;l&eacute;ments HTML. Pour avoir une compatibilit&eacute; maximale vers l'aval, il est provisoirement pr&eacute;f&eacute;rable de n'employer ces mentions que sur le rep&egrave;re HTML <code>div</code>. Incluez simplement les autres &eacute;l&eacute;ments comme les paragraphes de texte, les graphiques, les tableaux, les formulaires etc. dans des &eacute;l&eacute;ments <code>div</code> correspondants.</p>
+
+<p>Netscape et l' Explorer Internet MS r&eacute;agissent diff&eacute;remment pour le positionnement absolu en ce qui concerne la largeur automatique d'&eacute;l&eacute;ments. Vous pouvez rencontrer ce cas si vous notez une mention pour <code>left:</code> et que vous ne notez pas quelle largeur doit avoir le passage ainsi d&eacute;fini. Netscape &eacute;tire l'&eacute;l&eacute;ment au maximum jusqu'au bord droit de la fen&ecirc;tre ou de la page, tandis que l' Explorer Internet MS l'&eacute;tire au del&agrave; du bord droit (l'utilisateur est oblig&eacute; de faire d&eacute;filer horizontalement). Pour un positionnement relatif  les deux navigateurs r&eacute;agissent comme l' Explorer Internet MS pour le positionnement absolu. Pour &eacute;viter cet effet, vous pouvez par exemple faire des  mentions sur la <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#width"><b>width (Largeur)</b></a> du passage positionn&eacute;.</p>
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="postop">top (Position &agrave; partir du haut)</a></h2>
+
+<p>Cette mention est appropri&eacute;e en relation avec une mention sur le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#position"><b>mode de positionnement</b></a>. Vous pouvez sp&eacute;cifier o&ugrave; doit commencer &agrave; partir du haut un &eacute;l&eacute;ment positionn&eacute; de fa&ccedil;on relative ou absolue.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/top.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;top&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;div style=&quot;position:absolute; top:4.8cm&quot;&gt;
+&lt;img src=&quot;chien.gif&quot; width=&quot;208&quot; height=&quot;181&quot; alt=&quot;Chien&quot; border=&quot;0&quot;&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;position:absolute; top:3.6cm; width:208px; background-color:#FFFFE0;
+border:1px solid #804000; padding:10px&quot;&gt;Ceci est un texte positionn&amp;eacute; de fa&amp;ccedil;on absolue sur un graphique positionn&amp;eacute; de fa&amp;ccedil;on absolue.&lt;/div&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>top:</code> vous pouvez sp&eacute;cifier la position &agrave; partir du haut. Une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/affectationvaleur.htm#numeriques"><b>mention num&eacute;rique</b></a> est permise ou la valeur <code>auto</code> pour un positionnement automatique.</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="left">left (Position &agrave; partir de la gauche)</a></h2>
+
+<p>Cette mention est appropri&eacute;e en relation avec une mention sur le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#position"><b>Mode de positionnement</b></a>. Vous pouvez sp&eacute;cifier o&ugrave; doit commencer &agrave; partir de la gauche un &eacute;l&eacute;ment positionn&eacute; de fa&ccedil;on relative ou absolue.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/left.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;left&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;div style=&quot;position:absolute; top:100px; left:100px;&quot;&gt;
+&lt;img src=&quot;chien.gif&quot; width=&quot;208&quot; height=&quot;181&quot; alt=&quot;Chien&quot; border=&quot;0&quot;&gt;&lt;/div&gt;
+
+&lt;div style=&quot;position:absolute; top:140px; left:350px; width:200px;
+background-color:#FFFFE0; border:1px solid #804000; padding:10px&quot;&gt;
+Ceci est un texte positionn&amp;eacute; de fa&amp;ccedil;on absolue &amp;agrave; c&amp;ocirc;t&amp;eacute; d'un graphique positionn&amp;eacute; de fa&amp;ccedil;on absolue.&lt;/div&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>left:</code> vous pouvez sp&eacute;cifier la position &agrave; partir de la gauche. Une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/affectationvaleur.htm#numeriques"><b>mention num&eacute;rique</b></a> est permise ou la valeur <code>auto</code> pour un positionnement automatique.</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x">&nbsp;<a class="an" name="bottom">bottom (Position &agrave; partir du bas)</a></h2>
+
+<p>Cette mention est appropri&eacute;e en relation avec une mention sur le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#position"><b>mode de positionnement</b></a>. Vous pouvez sp&eacute;cifier o&ugrave; doit commencer &agrave; partir du bas un &eacute;l&eacute;ment positionn&eacute; de fa&ccedil;on relative ou
+absolue.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/bottom.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;bottom&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;div style=&quot;position:absolute; bottom:0px; left:100px;&quot;&gt;Ceci est un chien align&amp;eacute; en bas:&lt;br&gt;
+&lt;img src=&quot;chien.gif&quot; width=&quot;208&quot; height=&quot;181&quot; alt=&quot;chien&quot; border=&quot;0&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>bottom:</code> vous pouvez sp&eacute;cifier la position &agrave; partir du bas. Une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/affectationvaleur.htm#numeriques"><b>mention num&eacute;rique</b></a> est permise ou la valeur <code>auto</code> pour un positionnement automatique.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Les navigateurs de la 4&egrave;me g&eacute;n&eacute;ration n'interpr&egrave;tent pas encore cette propri&eacute;t&eacute;.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x">&nbsp;<a class="an" name="right">right (Position &agrave; partir de la droite)</a></h2>
+
+<p>Cette mention est appropri&eacute;e en relation avec une mention sur le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#position"><b>mode de positionnement</b></a>. Vous pouvez sp&eacute;cifier o&ugrave; doit commencer &agrave; partir de la droite un &eacute;l&eacute;ment positionn&eacute; de fa&ccedil;on relative ou
+absolue.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/right.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;right&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;div style=&quot;position:absolute; top:100px; right:0px;&quot;&gt;Chien align&amp;eacute; &amp;agrave; droite:&lt;br&gt;
+&lt;img src=&quot;chien.gif&quot; width=&quot;208&quot; height=&quot;181&quot; alt=&quot;chien&quot; border=&quot;0&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>right:</code> vous pouvez sp&eacute;cifier la position &agrave; partir de la droite. Une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/affectationvaleur.htm#numeriques"><b>mention num&eacute;rique</b></a> est permise ou la valeur <code>auto</code> pour un positionnement automatique.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Les navigateurs de la 4&egrave;me g&eacute;n&eacute;ration n'interpr&egrave;tent pas encore cette propri&eacute;t&eacute;.</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="width">width (Largeur)</a></h2>
+
+<p>Vous pouvez sp&eacute;cifier quelle largeur un &eacute;l&eacute;ment ou un passage doit avoir. Pour sp&eacute;cifier ce qu'il doit advenir du contenu quand il prend plus de place que la largeur mentionn&eacute;e ici, vous pouvez en plus utiliser la propri&eacute;t&eacute; <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#overflow"><b>overflow (passage d'&eacute;l&eacute;ment au contenu trop important)</b></a>.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/width.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;width&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h1 style=&quot;width:200px; overflow:hidden; border:1px solid red; padding:10px; font-size:36pt&quot;&gt;
+Un titre qui est, c'est possible, plus large qu'il n'est permis&lt;/h1&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>width:</code> vous pouvez sp&eacute;cifier la largeur d'un passage. Une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/affectationvaleur.htm#numeriques"><b>mention num&eacute;rique</b></a> est permise ou la valeur <code>auto</code> pour la largeur automatique.</p>
+
+<h3 class="xpl">Remarques:</h3>
+
+<p>Dans l'exemple ci-dessus, si le texte est coup&eacute; dans la largeur o&ugrave; c'est n&eacute;cessaire, ce n'est pas d&ucirc; &agrave; la propri&eacute;t&eacute; <code>width</code>, mais &agrave; la mention <code>overflow:hidden</code>. <br>Les navigateurs de la 4&egrave;me g&eacute;n&eacute;ration n'interpr&egrave;tent pas encore cette propri&eacute;t&eacute;.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0">&nbsp;<a class="an" name="min_width">min-width (Largeur minimale)</a></h2>
+
+<p>Vous pouvez sp&eacute;cifier quelle largeur un &eacute;l&eacute;ment ou un passage doit avoir dans tous les cas, m&ecirc;me si son contenu demanderait moins de place.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/min_width.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;min-width&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;div style=&quot;position:absolute; top:100px; left:100px; min-width:400px; border:solid 1px blue; padding:10px&quot;&gt;
+Sois bref!&lt;/div&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>min-width:</code> vous pouvez sp&eacute;cifier la largeur minimale d'un passage. Une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/affectationvaleur.htm#numeriques"><b>mention num&eacute;rique</b></a> est permise.</p>
+
+<h3 class="xpl">Attention:</h3>
+
+<p>L'Explorer Internet 5.x n'interpr&egrave;te pas encore cette mention.</p>
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0">&nbsp;<a class="an" name="max_width">max-width (Largeur maximale)</a></h2>
+
+<p>Vous pouvez sp&eacute;cifier la largeur qu'un &eacute;l&eacute;ment ou un passage ne doit pas d&eacute;passer. Pour sp&eacute;cifier ce qu'il doit advenir du contenu si sa largeur d&eacute;passe la largeur mentionn&eacute;e ici, vous pouvez utiliser en plus la propri&eacute;t&eacute; <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#overflow"><b>overflow (passage d'&eacute;l&eacute;ment au contenu trop important)</b></a>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/max_width.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;max-width&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h1 style=&quot;max-width:250px; overflow:hidden; border:solid 1px green; font-size:36pt; padding:10px&quot;&gt;
+Une titre pour le mot 'probablement' mais probablement trop large pour 250px.ist&lt;/h1&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>max-width:</code> vous pouvez imposer une largeur maximale pour le passage. Une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/affectationvaleur.htm#numeriques"><b>mention num&eacute;rique</b></a> est permise.</p>
+
+<h3 class="xpl">Attention:</h3>
+
+<p>L'Explorer Internet 5.x n'interpr&egrave;te pas encore cette mention.</p>
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="height">height (Hauteur)</a></h2>
+
+<p>Vous pouvez sp&eacute;cifier quelle hauteur doit avoir un &eacute;l&eacute;ment ou un passage. Pour sp&eacute;cifier ce qu'il doit advenir du contenu si sa hauteur d&eacute;passe la hauteur mentionn&eacute;e ici, vous pouvez utiliser en plus la propri&eacute;t&eacute; <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#overflow"><b>overflow (Passage d'&eacute;l&eacute;ment au contenu trop important)</b></a>.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/height.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;height&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h1 style=&quot;height:100px; width:300px; overflow:hidden; border:1px solid red; padding:10px; font-size:36pt&quot;&gt;
+Un titre qui est, c'est possible, plus haut qu'il n'est permis&lt;/h1&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>height:</code> vous pouvez sp&eacute;cifier la hauteur d'un passage. Une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/affectationvaleur.htm#numeriques"><b>mention num&eacute;rique</b></a> est permise ou la valeur <code>auto</code> pour la hauteur automatique.</p>
+
+<h3 class="xpl">Remarques:</h3>
+
+<p>Dans l'exemple ci-dessus, si le texte est coup&eacute; dans la hauteur o&ugrave; c'est n&eacute;cessaire, ce n'est pas d&ucirc; &agrave; la propri&eacute;t&eacute; <code>height</code> mais &agrave; la mention <code>overflow:hidden</code>.<br> Les navigateurs de la 4&egrave;me g&eacute;n&eacute;ration n'interpr&egrave;tent pas encore cette propri&eacute;t&eacute;.</p>
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0">&nbsp;<a class="an" name="min_height">min-height (Hauteur minimale)</a></h2>
+
+<p>Vous pouvez sp&eacute;cifier quelle hauteur un &eacute;l&eacute;ment ou un passage doit avoir dans tous les cas.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/min_height.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;min-height&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;div style=&quot;position:absolute; top:100px; left:100px; min-height:200px; border:solid 1px blue; padding:10px&quot;&gt;
+Sois bref!&lt;/div&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>min-height:</code> vous pouvez sp&eacute;cifier la hauteur minimale d'un passage. Une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/affectationvaleur.htm#numeriques"><b>mention num&eacute;rique</b></a> est permise.</p>
+
+<h3 class="xpl">Attention:</h3>
+
+<p>L'Explorer Internet 5.x n'interpr&egrave;te pas encore cette mention.</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0">&nbsp;<a class="an" name="max_height">max-height (Hauteur maximale)</a></h2>
+
+<p>Vous pouvez sp&eacute;cifier pour un &eacute;l&eacute;ment ou un passage que sa hauteur ne doit pas d&eacute;passer une certaine valeur. Pour sp&eacute;cifier ce qu'il doit advenir du contenu si sa hauteur d&eacute;passe la hauteur mentionn&eacute;e ici, vous pouvez utiliser en plus la propri&eacute;t&eacute;  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#overflow"><b>overflow (Passage d'&eacute;l&eacute;ment au contenu trop important)</b></a>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/max_height.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;max-height&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h1 style=&quot;max-width:300px; max-height:300px; overflow:hidden; border:solid 1px green; font-size:36pt; padding:10px&quot;&gt;
+Un titre qui est, c'est possible, trop large pour une boite de  300 sur 300 Pixels&lt;/h1&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>max-height:</code> vous pouvez sp&eacute;cifier la hauteur maximale d'un passage. Une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/affectationvaleur.htm#numeriques"><b>mention num&eacute;rique</b></a> est permise.</p>
+
+<h3 class="xpl">Attention:</h3>
+
+<p>L'Explorer Internet5.x n'interpr&egrave;te pas encore cette mention.</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5x.0">&nbsp;<a class="an" name="overflow">overflow (Passage d'&eacute;l&eacute;ment au contenu trop important)</a></h2>
+
+<p>Cette mention peut &ecirc;tre significative si vous d&eacute;finissez pour un &eacute;l&eacute;ment ou un passage une largeur ou une hauteur maximale d&eacute;sir&eacute;e. Supposons que vous d&eacute;finissiez un passage avec  <code>&lt;div&gt;</code>...<code>&lt;/div&gt;</code>, pour lequel vous imposez &agrave; l'aide de la mention de feuille de style <code>width</code> une largeur minimale de 200 pixels . Si vous notez dans ce passage une
+r&eacute;f&eacute;rence de graphique (<code>&lt;img&gt;</code>), pour lequel l'image a une largeur de plus de 200 Pixels vous pouvez avec la mention d&eacute;crite ici, pr&eacute;ciser comment le navigateur doit r&eacute;gler le conflit.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/overflow.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;overflow&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;div style=&quot;position:absolute; top:100px; left:100px; width:200px;
+height:150px; overflow:hidden; border:thin solid #804000&quot;&gt;
+chien coup�:&lt;br&gt;
+&lt;img src=&quot;chien.gif&quot; width=&quot;208&quot; height=&quot;181&quot; alt=&quot;chien&quot; border=&quot;0&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>overflow:</code> vous pouvez d&eacute;finir comment des &eacute;l&eacute;ments int&eacute;rieurs, au contenu trop important, doivent &ecirc;tre trait&eacute;s. Les donn&eacute;es suivantes sont possibles:</p>
+
+<p>
+<code>visible</code> = L'&eacute;l&eacute;ment sera agrandi de mani&egrave;re &agrave; ce que
+son contenu soit compl&egrave;tement visible dans tous les cas.<br>
+<code>hidden</code> = L'&eacute;l&eacute;ment sera coup&eacute; s'il d&eacute;passe les limites.<br>
+<code>scroll</code> = L'&eacute;l&eacute;ment sera coup&eacute; s'il d&eacute;passe les limites. Le navigateur WWW doit pourtant proposer des barres de d&eacute;filement, un peu comme dans une fen&ecirc;tre cadre incorpor&eacute;e.<br>
+<code>auto</code> = Le navigateur Web doit d&eacute;cider en cas de conflit, comment l'&eacute;l&eacute;ment sera affich&eacute;. Proposer des barres de d&eacute;filement est &eacute;galement permis.<br>
+</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Netscape 4.x ne conna&icirc;t pas cette propri&eacute;t&eacute;. L' Explorer Internet ne soutient pas la mention <code>overflow:visible</code>.</p>
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x">&nbsp;<a class="an" name="direction">direction (Direction)</a></h2>
+
+<p>Avec cette mention, vous pouvez imposer le sens de lecture pour les &eacute;l&eacute;ments et en fonction de cela dans quelle direction par exemple les mentions de largeur sont calcul&eacute;es ou par exemple de quel c&ocirc;t&eacute; les contenus trop larges seront coup&eacute;s avec la propri&eacute;t&eacute; <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#overflow"><b>overflow (Passage d'&eacute;l&eacute;ment au contenu trop important)
+</b></a>. Le sens de lecture est avant tout con&ccedil;u pour la repr&eacute;sentation de cultures d'&eacute;criture diff&eacute;rentes comme la culture arabe o&ugrave; il est &eacute;crit de droite &agrave; gauche.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/direction.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;direction&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot; style=&quot;direction:rtl&quot;&gt;
+
+&lt;h1&gt;Salut mon gars!&lt;/h1&gt;
+&lt;p&gt;Ici  il est possible que tout puisse para&amp;icirc;tre bien diff&amp;eacute;rent de la normale ...&lt;/p&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>direction:</code> vous pouvez fixer le sens d'&eacute;criture. Les mentions suivantes sont possibles:</p>
+
+<p>
+<code>ltr</code> = de gauche &agrave; droite.<br>
+<code>rtl</code> = de droite &agrave; gauche.<br>
+</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Les navigateurs de la 4&egrave;me g&eacute;n&eacute;ration n'interpr&egrave;tent pas encore cette propri&eacute;t&eacute;.</p>
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="float">float (Cours du texte)</a></h2>
+
+<p>Vous pouvez sp&eacute;cifier pour un passage ou un &eacute;l&eacute;ment que les &eacute;l&eacute;ments qui le suivent l'entourent.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/float.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;float&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h1 style=&quot;width:400px; float:left; color:red&quot;&gt;Titre diff&amp;eacute;rent cette fois&lt;/h1&gt;
+&lt;p style=&quot;font-size:120%&quot;&gt;Un titre ne doit pas toujours cr&amp;eacute;er un bloc monotone qui s'&amp;eacute;tire sur toute la largeur de la fen&amp;ecirc;tre d'affichage. Il peut aussi aussi de temps en temps &amp;ecirc;tre plac&amp;eacute; sur le c&amp;ocirc;t&amp;eacute; du texte, avec le texte qui entoure le titre. C'est une fa&amp;ccedil;on diff&amp;eacute;rente de mettre en forme des textes plus longs.&lt;/p&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>float:</code> vous pouvez sp&eacute;cifier que les &eacute;l&eacute;ments suivants passent sur les c&ocirc;t&eacute;s de l'&eacute;l&eacute;ment/du passage actuel. Les donn&eacute;es
+suivantes sont possibles:</p>
+
+<p>
+<code>left</code> = L'&eacute;l&eacute;ment se trouve &agrave; gauche et sera entour&eacute; par la droite des &eacute;l&eacute;ments qui le suivent.<br>
+<code>right</code> = L'&eacute;l&eacute;ment se trouve &agrave; droite et sera entour&eacute; par la gauche des &eacute;l&eacute;ments qui le suivent.<br>
+<code>none</code> = L'&eacute;l&eacute;ment ne sera pas entour&eacute; (r&eacute;glage normal).
+</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Quand vous d&eacute;finissez pour un &eacute;l&eacute;ment une mention sur <code>float (Cours du texte)</code> vous devez d&eacute;finir aussi une mention sur <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#width"><b>width (Largeur)</b></a>.</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="clear">clear (Suite pour le cours du texte)</a></h2>
+
+<p>Si vous d&eacute;finissez le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#float"><b>float (Cours du texte)</b></a>, vous d&eacute;sirez peut-&ecirc;tre avoir deux ou trois lignes de  commentaires &agrave; c&ocirc;t&eacute; de l'&eacute;l&eacute;ment entour&eacute; et poursuivre le texte sous
+l'&eacute;l&eacute;ment entour&eacute;. C'est le but de la mention d&eacute;crite ici.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/clear.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;clear&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;div style=&quot;float:left; margin-right:20px; margin-bottom:20px;
+border:solid 1px red; text-align:center&quot;&gt;
+Chapitre&lt;br&gt;
+&lt;span style=&quot;font-family:Algerian,serif; font-size:72pt; color:red&quot;&gt;
+&amp;nbsp;1&amp;nbsp;&lt;/span&gt;&lt;/div&gt;
+&lt;p style=&quot;font-size:120%&quot;&gt;Dans ce chapitre, Quelques notions sont expos&amp;eacute;es&lt;/p&gt;
+&lt;p style=&quot;clear:left&quot;&gt;Ensuite, nous entrerons dans le vif du sujet: ...&lt;/p&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>clear:</code> vous pouvez interrompre le cours du texte pour en
+forcer la poursuite sous l'&eacute;l&eacute;ment/le passage entour&eacute;. Les donn&eacute;es suivantes sont possibles:</p>
+
+<p>
+<code>left</code> = impose pour <code>float:left</code> la poursuite dessous.<br>
+<code>right</code> = impose pour <code>float:right</code> la poursuite dessous.<br>
+<code>both</code> = impose dans chaque cas la poursuite dessous.<br>
+<code>none</code> = n'impose pas de poursuite dessous. (r&eacute;glage normal).
+</p>
+
+<p>Dans l'exemple ci-dessus les propri&eacute;t&eacute;s <code>float</code> et <code>clear</code> sont utilis&eacute;es pour noter un grand num&eacute;ro de chapitre plac&eacute; sur le c&ocirc;t&eacute; et &agrave; c&ocirc;t&eacute; du num&eacute;ro de chapitre, un petit texte qui explique de quoi il retourne et sous ces deux &eacute;l&eacute;ments le texte normal du chapitre.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="z_index">z-index (Position de la couche en cas de superposition)</a></h2>
+
+<p>Cette mention est appropri&eacute;e en relation avec plusieurs mentions sur le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#position"><b>Mode de positionnement</b></a>. Quand vous positionnez de fa&ccedil;on absolue plusieurs &eacute;l&eacute;ments dont les domaines d'affichage se superposent, les &eacute;l&eacute;ments sont en principe affich&eacute;s l'un sur l'autre dans l'ordre dans lequel ils ont &eacute;t&eacute; d&eacute;finis. Vous pouvez modifier cet ordre en affectant aux diff&eacute;rents &eacute;l&eacute;ments des num&eacute;ros. Les &eacute;l&eacute;ments dont le num&eacute;ro est le plus &eacute;lev&eacute; couvrent les &eacute;l&eacute;ments avec le num&eacute;ro le moins &eacute;lev&eacute;.</p>
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/z_index.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;z-index&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;div style=&quot;position:absolute; top:100px; left:100px; z-index:1; border:thin solid #804000;&quot;&gt;
+&lt;b&gt;1.&lt;/b&gt;&lt;img src=&quot;chien.gif&quot; width=&quot;208&quot; height=&quot;181&quot; border=&quot;0&quot; alt=&quot;chien&quot;&gt;&lt;/div&gt;
+&lt;div style=&quot;position:absolute; top:130px; left:150px; z-index:4; border:thin solid #804000;&quot;&gt;
+&lt;b&gt;2.&lt;/b&gt;&lt;img src=&quot;chien.gif&quot; width=&quot;208&quot; height=&quot;181&quot; border=&quot;0&quot; alt=&quot;chien&quot;&gt;&lt;/div&gt;
+&lt;div style=&quot;position:absolute; top:160px; left:200px; z-index:2; border:thin solid #804000;&quot;&gt;
+&lt;b&gt;3.&lt;/b&gt;&lt;img src=&quot;chien.gif&quot; width=&quot;208&quot; height=&quot;181&quot; border=&quot;0&quot; alt=&quot;chien&quot;&gt;&lt;/div&gt;
+&lt;div style=&quot;position:absolute; top:190px; left:250px; z-index:3; border:thin solid #804000;&quot;&gt;
+&lt;b&gt;4.&lt;/b&gt;&lt;img src=&quot;chien.gif&quot; width=&quot;208&quot; height=&quot;181&quot; border=&quot;0&quot; alt=&quot;chien&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>z-index:</code> vous pouvez sp&eacute;cifier l'ordre dans lequel des &eacute;l&eacute;ments se superposent. Notez un nombre pour chaque &eacute;l&eacute;ment pour lequel vous voulez fixer clairement la position de la couche. Plus le chiffre est &eacute;lev&eacute; plus l'&eacute;l&eacute;ment sera plac&eacute; vers l'avant, plus il est bas plus
+l'&eacute;l&eacute;ment sera plac&eacute; derri&egrave;re en arri&egrave;re plan.</p>
+
+<p>Dans l'exemple ci-dessus, le m&ecirc;me passage a &eacute;t&eacute; cr&eacute;&eacute; quatre fois - avec pour contenu une image GIF transparente. Les passages se chevauchent en raison des mentions sur leur positionnement et des dimensions ext&eacute;rieures de l'image. Normalement, le dernier passage not&eacute; recouvre tous les autres &eacute;tant donn&eacute; qu'il est not&eacute; en dernier. Dans l'exemple pourtant, c'est le deuxi&egrave;me passage qui recouvre tous les autres, car il re&ccedil;oit le num&eacute;ro <code>z-index</code> le plus &eacute;lev&eacute;.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="display">display (Mode d'affichage ou plut&ocirc;t non affichage sans prendre de place)</a></h2>
+
+<p>Vous pouvez sp&eacute;cifier si un &eacute;l&eacute;ment doit d'abord &ecirc;tre affich&eacute; ou non. &quot;sans prendre de place&quot; signifie qu'en cas de non-affichage de l'&eacute;l&eacute;ment aucun espace ne sera r&eacute;serv&eacute; &agrave; cet &eacute;l&eacute;ment. Dans ce cas rien n'indique lors de l'affichage que l'&eacute;l&eacute;ment existe seulement. &Agrave; l'aide de <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../dhtml/index.htm"><b>HTML dynamique</b></a> vous pouvez ainsi afficher un &eacute;l&eacute;ment ult&eacute;rieurement ou le cacher &agrave; nouveau.</p>
+
+<p>De plus, vous pouvez sp&eacute;cifier avec la mention d&eacute;crite ici comment un &eacute;l&eacute;ment doit &ecirc;tre affich&eacute;. Vous pouvez d&eacute;terminer qu'il forme un bloc distinct (formant un paragraphe) ou qu'il soit affich&eacute; au milieu du texte. Ainsi vous pouvez red&eacute;finir des &eacute;l&eacute;ments cr&eacute;ant leur propre paragraphe, comme les titres, en &eacute;l&eacute;ments ne cr&eacute;ant pas leur propre paragraphe.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/display.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;display&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h1 style=&quot;display:inline&quot;&gt;Je suis un &amp;eacute;l&amp;eacute;ment incorpor&amp;eacute;&lt;/h1&gt;
+&amp;nbsp;&lt;p style=&quot;display:inline&quot;&gt;Ce texte le prouve!&lt;/p&gt;
+&lt;h1 id=&quot;cache&quot; style=&quot;display:none&quot;&gt;Je suis un &amp;eacute;l&amp;eacute;ment de bloc mais ne suis pas affich&amp;eacute;&lt;/h1&gt;
+&lt;p&gt;Et ce texte fait comme si de rien n'&amp;eacute;tait!&lt;/p&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>display:</code> vous pouvez emp&ecirc;cher l'affichage d'&eacute;l&eacute;ments ou fixer le mode d'affichage. Les mentions suivantes sont possibles:</p>
+
+<p>
+<code>block</code> = impose un bloc - l'&eacute;l&eacute;ment cr&eacute;e un nouvelle ligne.<br>
+<code>inline</code> = impose l'affichage en texte  - l'&eacute;l&eacute;ment est affich&eacute; dans le cours du texte.<br>
+<code>list-item</code> = comme <code>block</code>, mais pr&eacute;c&eacute;d&eacute; d'une puce comme dans
+une liste &eacute;num&eacute;rative.<br>
+<code>marker</code> = d&eacute;clare du <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="pseudoformats.htm#before_after"><b> texte g&eacute;n&eacute;r&eacute; automatiquement</b></a> pour l'&eacute;l&eacute;ment.<br>
+<code>run-in</code> et <code>compact</code> = font en sorte que l'&eacute;l&eacute;ment est repr&eacute;sent&eacute;, suivant le contexte comme &eacute;l&eacute;ment de bloc ou comme &eacute;l&eacute;ment incorpor&eacute;.<br>
+<code>none</code> = L'&eacute;l&eacute;ment n'est pas affich&eacute; et aucune place ne lui sera r&eacute;serv&eacute;e.<br>
+</p>
+
+<p>D'autres mentions pour <code>display</code> sont disponibles, sp&eacute;cialement pour la cr&eacute;ation de tableaux avec d'autres &eacute;l&eacute;ments que des &eacute;l&eacute;ments de tableau. Les mentions correspondantes peuvent &ecirc;tre toutefois &eacute;galement employ&eacute;es sur les &eacute;l&eacute;ments de tableau correspondants. Ils sont pourtant davantage con&ccedil;us pour la repr&eacute;sentation en tableau de donn&eacute;es XML. Car XML ne conna&icirc;t pas de proc&eacute;d&eacute; pour marquer les donn&eacute;es sous forme de tableau. C'est ce que doit prendre en charge le langage de style &agrave; l'aide duquel les donn&eacute;es XML sont affich&eacute;es. Dans les CSS on a choisi la propri&eacute;t&eacute; <code>display</code> dans ce but. Les mentions suivantes sont possibles dans ce contexte:</p>
+
+<p>
+<code>table</code> = L'&eacute;l&eacute;ment contient des &eacute;l&eacute;ments-enfant rang&eacute;s sous forme de tableau et cr&eacute;e une nouvelle ligne. A le m&ecirc;me effet que l'&eacute;l&eacute;ment <code>table</code> en HTML.<br>
+<code>inline-table</code> = L'&eacute;l&eacute;ment contient des &eacute;l&eacute;ments-enfant rang&eacute;s sous forme de tableau et est affich&eacute; dans le cours du texte. A le m&ecirc;me effet que l'&eacute;l&eacute;ment <code>table</code> en HTML, mais incorpor&eacute;.<br>
+<code>table-row</code> = L'&eacute;l&eacute;ment contient des &eacute;l&eacute;ments-enfant rang&eacute;s l'un &agrave; c&ocirc;t&eacute; de l'autre. A le m&ecirc;me effet que l'&eacute;l&eacute;ment <code>tr</code> en HTML.<br>
+<code>table-row-group</code> = L'&eacute;l&eacute;ment contient un groupe d'&eacute;l&eacute;ments avec des &eacute;l&eacute;ments-enfant rang&eacute;s l'un &agrave; c&ocirc;t&eacute; de l'autre. A le m&ecirc;me effet que l'&eacute;l&eacute;ment <code>tbody</code> en HTML.<br>
+<code>table-header-group</code> = L'&eacute;l&eacute;ment contient un groupe d'&eacute;l&eacute;ments avec des &eacute;l&eacute;ments-enfant rang&eacute;s l'un &agrave; c&ocirc;t&eacute; de l'autre. A le m&ecirc;me effet que l'&eacute;l&eacute;ment <code>thead</code> en HTML.<br>
+<code>table-footer-group</code> = L'&eacute;l&eacute;ment contient un groupe d'&eacute;l&eacute;ments avec des &eacute;l&eacute;ments-enfant rang&eacute;s l'un &agrave; c&ocirc;t&eacute; de l'autre. A le m&ecirc;me effet que l'&eacute;l&eacute;ment <code>tfoot</code> en HTML.<br>
+<code>table-column</code> = L'&eacute;l&eacute;ment repr&eacute;sente un groupe d'&eacute;l&eacute;ments qui forment une colonne. A le m&ecirc;me effet que l'&eacute;l&eacute;ment <code>col</code> en HTML.<br>
+<code>table-column-group</code> = L'&eacute;l&eacute;ment repr&eacute;sente un groupe d'&eacute;l&eacute;ments avec la propri&eacute;t&eacute; <code>table-cell</code>. L'&eacute;l&eacute;ment repr&eacute;sente une cellule de tableau. A le m&ecirc;me effet que l'&eacute;l&eacute;ment <code>td</code> en HTML (&eacute;galement pour les &eacute;l&eacute;ments <code>th</code>).<br>
+<code>table-caption</code>. L'&eacute;l&eacute;ment repr&eacute;sente un titre de tableau. A le m&ecirc;me effet que l'&eacute;l&eacute;ment <code>caption</code> en HTML (&eacute;galement pour les &eacute;l&eacute;ments <code>th</code>).<br>
+</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/display2.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;display&lt;/title&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+div.table { display:table; border-collapse:collapse; }
+div.tr { display:table-row; }
+div.td { display:table-cell; border:thin solid red; padding:5px; }
+&lt;/style&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;div class=&quot;table&quot;&gt;
+ &lt;div class=&quot;tr&quot;&gt;
+  &lt;div class=&quot;td&quot;&gt;je&lt;/div&gt;
+  &lt;div class=&quot;td&quot;&gt;suis&lt;/div&gt;
+  &lt;div class=&quot;td&quot;&gt;un&lt;/div&gt;
+  &lt;div class=&quot;td&quot;&gt;tableau&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit des classes pour des &eacute;l&eacute;ments <code>div</code>. Les noms de classes sont identiques &agrave; des noms d'&eacute;l&eacute;ments de tableau connus en HTML. Ce n'est pas obligatoire et ne figure ici que pour la d&eacute;monstration. Les classes respectives re&ccedil;oivent &agrave; l'aide de propri&eacute;t&eacute;s <code>display</code>, qui d&eacute;termineront la conduite des &eacute;l&eacute;ments HTML correspondants pour tableau auxquels elles sont affect&eacute;es. Dans le corps du fichier de l'exemple est ensuite construit un v&eacute;ritable tableau &agrave; l'aide d'&eacute;lements <code>div</code> avec des attributs <code>class</code>.</p>
+
+
+
+
+<h3 class="inf">Attention:</h3>
+
+<p>Netscape 4.0 et l'Explorer Internet MS  4.0 interpr&egrave;tent la mention <code>display:none</code> correctement. Les autres mentions pourtant ne sont interpr&eacute;t&eacute;es qu'incompl&egrave;tement ou pas du tout par les deux navigateurs dans leur version 4.x. Les mentions sur les propri&eacute;t&eacute;s de tableau sont interpr&eacute;t&eacute;es par Netscape 6.0 mais toujours pas par l'Explorer Internet 5.x.</p>
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="visibility">visibility (Affichage ou non affichage avec r&eacute;servation de place)</a></h2>
+
+<p>Vous pouvez sp&eacute;cifier si un &eacute;l&eacute;ment doit d'abord &ecirc;tre affich&eacute; ou non. &quot;Avec
+r&eacute;servation de place&quot; signifie qu'en cas de non-affichage de l'&eacute;l&eacute;ment un espace sera malgr&eacute; tout r&eacute;serv&eacute; &agrave; cet &eacute;l&eacute;ment. &Agrave; l'aide de <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../dhtml/index.htm"><b>HTML dynamique</b></a> vous pouvez ainsi afficher un &eacute;l&eacute;ment ult&eacute;rieurement ou le cacher &agrave; nouveau.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/visibility.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;visibility&lt;/title&gt;
+&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function show() {
+ if(document.getElementById)
+   document.getElementById(&quot;Titre&quot;).style.visibility = &quot;visible&quot;;
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h1 id=&quot;Titre&quot; style=&quot;visibility:hidden&quot;&gt;Le titre du texte&lt;/h1&gt;
+&lt;p&gt;Ici le texte. Mais, est-ce qu'il ne manque rien?&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;javascript:show()&quot;&gt;Afficher!&lt;/a&gt;&lt;/p&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>visibility:</code> vous pouvez sp&eacute;cifier si un &eacute;l&eacute;ment est affich&eacute; au d&eacute;but ou non. Les mentions
+suivantes sont possibles:</p>
+
+<p>
+<code>hidden</code> = Le contenu de l'&eacute;l&eacute;ment est d'abord cach&eacute; (non affich&eacute;).<br>
+<code>visible</code> = Le contenu de l'&eacute;l&eacute;ment est d'abord affich&eacute; (r&eacute;glage normal).<br>
+</p>
+
+<p>Dans l'exemple ci-dessus, le titre est d'abord cach&eacute; (non affich&eacute;). En cliquant sur le lien il y est pourtant rem&eacute;di&eacute; de fa&ccedil;on dynamique. On n'entrera pas ici dans le d&eacute;tail des commandes JavaScript n&eacute;cessaires pour le faire.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bas"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0">&nbsp;<a class="an" name="clip">clip (Limiter le domaine d'affichage)</a></h2>
+
+<p>Vous pouvez d&eacute;terminer que seul un extrait d'un &eacute;l&eacute;ment positionn&eacute; de fa&ccedil;on absolue soit affich&eacute; visiblement, ind&eacute;pendamment des mentions ayant pu &ecirc;tre faites sur la taille de l'&eacute;l&eacute;ment, ou sur la taille automatique de l'&eacute;l&eacute;ment. Si l'&eacute;l&eacute;ment est plus grand que le domaine d'affichage ainsi
+d&eacute;fini il sera coup&eacute; en cons&eacute;quence sur les c&ocirc;t&eacute;s. Pour l'instant, seul un rectangle peut &ecirc;tre d&eacute;fini pour l'extrait. &Agrave; l'avenir il sera aussi possible de d&eacute;finir des polygones des cercles ou des ellipses.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/clip.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;clip&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+
+&lt;div style=&quot;position:absolute; top:100px; left:100px; clip:rect(0px 130px 130px 0px);&quot;&gt;
+Vous avez du chien:&lt;br&gt;
+&lt;img src=&quot;chien.gif&quot; width=&quot;208&quot; height=&quot;181&quot; border=&quot;0&quot; alt=&quot;chien&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>clip:</code> vous pouvez d&eacute;finir un extrait pour l'affichage visible. Suit l'identificateur <code>rect</code> (pour rectangle, = rectangle), et ensuite entre parenth&egrave;ses quatre valeurs num&eacute;riques ou le mot cl&eacute; <code>auto</code> pour d&eacute;terminer l'extrait.<br>
+La premi&egrave;re des quatre valeurs d&eacute;signe la valeur pour &quot;le haut&quot;, mesur&eacute;e &agrave; partir de la limite sup&eacute;rieure de l'&eacute;l&eacute;ment<br>
+La deuxi&egrave;me des quatre valeurs d&eacute;signe la valeur pour &quot;la droite&quot;, mesur&eacute;e &agrave; partir de la limite gauche de l'&eacute;l&eacute;ment<br>
+La troisi&egrave;me des quatre valeurs d&eacute;signe la valeur pour &quot;le bas&quot;, mesur&eacute;e &agrave; partir de la limite sup&eacute;rieure de l'&eacute;l&eacute;ment<br>
+La quatri&egrave;me des quatre valeurs d&eacute;signe la valeur pour &quot;la gauche&quot;, mesur&eacute;e &agrave; partir de la limite gauche de l'&eacute;l&eacute;ment</p>
+
+<p>Pour qu'un extrait soit visible, la valeur pour &quot;le bas&quot; doit &ecirc;tre plus grande que la valeur pour &quot;le haut&quot; et la valeur pour &quot;la droite&quot; plus grande que celle pour &quot;la gauche&quot;. Le mot cl&eacute; <code>auto</code> signifie: pas de mention pour la valeur concern&eacute;e, l'&eacute;l&eacute;ment doit pour le c&ocirc;t&eacute; concern&eacute; &ecirc;tre affich&eacute; jusqu'&agrave; la limite de
+l'&eacute;l&eacute;ment.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Tant pour Netscape que pour l'Explorer Internet, la propri&eacute;t&eacute; <code>clip</code> n'est compr&eacute;hensible que lorsqu'elle est appliqu&eacute;e &agrave; des &eacute;l&eacute;ments positionn&eacute;s de fa&ccedil;on absolue.</p>
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="printlayouts.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="printlayouts.htm"><b>Mises en page pour modes d'impression</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="pseudoformats.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="pseudoformats.htm"><b>Pseudo-formats</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bas"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>Feuilles de style CSS</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Propri&eacute;t&eacute;s CSS</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

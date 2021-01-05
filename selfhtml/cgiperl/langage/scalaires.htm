@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / &Eacute;l&eacute;ments de langage Perl / Scalaires (Variables)</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Que sont les scalaires en Perl, comment elles sont d&eacute;clar&eacute;es et comment s'en servir.">
+<meta name="keywords"       content="SELFHTML, Perl, scalaires">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/langage/scalaires.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // &Eacute;l&eacute;ments de langage Perl == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Scalaires (Variables)</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#definir"><b>d&eacute;clarer des scalaires et affecter des valeurs</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#changement_type"><b>Transformation du type de scalaires</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#fonctions_operations"><b>Fonctions et op&eacute;rations pour la manipulation de scalaires</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="definir">d&eacute;clarer des scalaires et affecter des valeurs</a></h2>
+
+<p>En Perl une variable scalaire simple qui peut sauvegarder un nombre ou une cha&icirc;ne de caract&egrave;res s'appelle scalaire.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $nom = &quot;Mathusalem&quot;;
+my $age = 625;
+my $nom_2 = &quot;Pascale Paradis&quot;;
+my $jeune_age = sqrt($age);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Testausgabe&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+print &quot;$nom est un vieil homme tr�s vieux. Il a $age ans&lt;br&gt;\n&quot;;
+print &quot;$nom_2 est par contre une jeune pousse. Elle a $jeune_age ans.&lt;br&gt;\n&quot;;
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple sont <b>d&eacute;clar&eacute;es</b> quatre  scalaires (d'abord nomm&eacute;es dans le script et introduites): <code>$nom</code>, <code>$age</code>, <code>$nom_2</code> et <code>$jeune_age</code>. Les quatre instructions sont d&eacute;finies ici avec <code>my</code>. La d&eacute;claration est indispensable parce que plus haut dans le script est not&eacute;e l'instruction <code>use strict;</code>. Si elle manquait, alors il serait permis d'utiliser les variables &eacute;galement sans d&eacute;claration. Il est cependant pr&eacute;f&eacute;rable, en particulier pour des scripts plus grands, de s'habituer tout de suite &agrave; un style propre et de d&eacute;clarer toutes les variables. Cette mani&egrave;re d'agir peut souvent faciliter de fa&ccedil;on significative la recherche d'erreurs dans le script.</p>
+
+<p>Une scalaire commence toujours par le signe Dollar <code>$</code>. Le signe dollar doit toujours &ecirc;tre mentionn&eacute; quand la variable est utilis&eacute;e. Derri&egrave;re le signe dollar suit un nom choisi librement mais qui doit toute fois satisfaire aux  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="intro.htm#attribution_nom"><b>R&egrave;gles pour l'attribution de noms</b></a>.</p>
+
+<p>Les scalaires sauvegardent des valeurs. Les valeurs leur sont affect&eacute;es. Les d&eacute;claration des quatre scalaires dans l'exemple de script sont des affectations typiques. L'affectation est faite par le signe &eacute;gal <code>=</code>. &Agrave; sa gauche figure le nom de la variable, &agrave; sa droite la valeur qui est affect&eacute;e. Il peut s'agir d'une valeur not&eacute;e directement, donc par exemple <code>&quot;Mathusalem&quot;</code> ou <code>625</code>. Il peut s'agir aussi d'une expression qui calcule d'abord la valeur. Pour la d&eacute;claration de <code>$jeune_age</code> dans l'exemple, une fonction Perl est appel&eacute;e qui calcule la racine carr&eacute;e d'un nombre et retourne la valeur obtenue (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/calculs.htm#sqrt"><b>sqrt</b></a>). Cette valeur retourn&eacute;e est affect&eacute;e &agrave; la scalaire <code>$jeune_age</code>.</p>
+
+<p>Pour la d&eacute;claration d'une scalaire vous pouvez - comme dans les exemples ci-dessus - affecter une valeur d'initialisation (valeur de d&eacute;part). Il est &eacute;galement possible de d&eacute;clarer une scalaire sans lui affecter de valeur. Alors omettez simplement l'affectation de valeur et notez une instruction qui comprend simplement le nom de la scalaire et le point virgule qui cl&ocirc;ture celle-ci (par exemple <code>my&nbsp;$nom;</code>). Quand une scalaire est d&eacute;clar&eacute;e de cette fa&ccedil;on, elle a la valeur  &quot;ind&eacute;fini&quot; (<i>undef</i>). Quand vous utilisez l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="intro.htm#aufruf"><b>option w</b></a> l'interpr&eacute;teur Perl sort un avertissement quand vous voulez continuer &agrave; travailler avec une telle valeur ind&eacute;finie.</p>
+
+<p>Vous pouvez attribuer &agrave; des scalaires des valeurs num&eacute;riques, des cha&icirc;nes de caract&egrave;res (Strings) et des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="references.htm"><b>R&eacute;f&eacute;rences ou pointeurs </b></a>. C'est vous qui d&eacute;cidez si une scalaire est un nombre ou une cha&icirc;ne de caract&egrave;res, en affectant une valeur &agrave; la scalaire ou en l'utilisant dans une instruction. Une cha&icirc;ne de caract&egrave;res doit ici figurer entre guillemets. Cela peut &ecirc;tre aussi bien des guillemets que des apostrophes (pour la diff&eacute;rence, se reporter aux <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="chainescaracteres.htm#regles"><b>R&egrave;gles pour la notation de cha&icirc;nes de caract&egrave;res</b></a>). Dans l'exemple ci-dessus, les scalaires <code>$nom</code> et <code>$nom_2</code> sauvegardent des cha&icirc;nes de caract&egrave;res tandis que les scalaires <code>$age</code> et <code>$jeune_age</code> sauvegardent des nombres.</p>
+
+<p>Le script d'exemple ci-dessus envoie en tant que script CGI l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="obligatcgi.htm"><b>ent&ecirc;te HTTP et le code HTML</b></a> au navigateur. Pour ce faire, il utilise les scalaires dans les instructions <code>print</code> aux endroits n&eacute;cessaires. Dans le code HTML qui arrive au navigateur, appara&icirc;t &agrave; l'endroit correspondant la valeur actuelle de la scalaire.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="changement_type">Transformation du type de scalaires</a></h2>
+
+<p>Les scalaires peuvent tout aussi bien sauvegarder des nombres que des cha&icirc;nes de caract&egrave;res. M&ecirc;me une seule et m&ecirc;me scalaire peut, dans le d&eacute;roulement du script sauvegarder tant&ocirc;t un nombre, tant&ocirc;t une cha&icirc;ne de caract&egrave;res. Le changement de type qui dans des langages de programmation classiques est soit pas du tout possible soit doit &ecirc;tre effectu&eacute; avec une instruction distincte, se fait automatiquement en Perl.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+my $valeur = 123456;
+my $valeur_partielle = substr($valeur,1,3);
+$valeur = $valeur_partielle;
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+print &quot;&lt;var&gt;valeur_partielle&lt;/var&gt; est: &lt;b&gt;$valeur_partielle&lt;/b&gt;&lt;br&gt;\n&quot;;
+print &quot;et &lt;var&gt;valeur&lt;/var&gt; est: &lt;b&gt;$valeur&lt;/b&gt;&lt;br&gt;\n&quot;;
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple une scalaire <code>$valeur</code> est d&eacute;clar&eacute;e et se voit affecter un nombre. Ensuite une autre scalaire <code>$valeur_partielle</code> est d&eacute;clar&eacute;e. &Agrave; cette scalaire est affect&eacute;e la valeur retourn&eacute;e par une fonction Perl, &agrave; savoir la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/chainescaracteres.htm#substr"><b>substr</b></a>. Celle-ci est une fonction de cha&icirc;nes de caract&egrave;res typiques. Elle extrait une partie d'une cha&icirc;ne de caract&egrave;res. Maintenant les nombres sont sauvegard&eacute;s diff&eacute;remment que les cha&icirc;nes de caract&egrave;res dans l'ordinateur. C'est la raison pour laquelle dans la plupart des autres langages de programmation, ce serait une faute grave de tenter de transmettre un nombre &agrave; une telle fonction de cha&icirc;ne de caract&egrave;res. Cela ne pose toutefois aucun probl&egrave;me en Perl. Dans l'exemple est transmise &agrave; la fonction simplement <code>$valeur</code>, donc la scalaire dans laquelle est sauvegard&eacute; &agrave; ce moment un nombre. Perl consid&egrave;re le nombre automatiquement comme cha&icirc;ne de caract&egrave;res - ce qui veut dire suite de chiffres, signe d&eacute;cimal etc... - quand il constate l'intention d'y voir appliquer une fonction de cha&icirc;ne de caract&egrave;res.</p>
+
+<p>Dans l'exemple, la fonction <code>substr</code> extra&icirc;t les signes  2 &agrave; 4 de la cha&icirc;ne de caract&egrave;res (la position de d&eacute;part et la longueur sont transmises, mais en Perl le comptage pour ce genre de choses se fait toujours &agrave; partir de 0 et non pas de 1, raison pour laquelle  <code>1</code> et <code>3</code> sont transmis). Si on interpr&egrave;te le nombre <code>123456</code> comme cha&icirc;ne de caract&egrave;res, c'est donc tout simplement <code>234</code> qui est extrait. Cette valeur est &eacute;galement retourn&eacute;e par la fonction <code>substr</code> dans l'appel ci-dessus - mais en tant que cha&icirc;ne de caract&egrave;res. Car <code>substr</code> retourne toujours et en tous cas une cha&icirc;ne de caract&egrave;res. Dans l'instruction de l'exemple qui suit <code>$valeur = $valeur_partielle</code> est mise &agrave; l'&eacute;preuve une nouvelle fois cette capacit&eacute; de Perl &agrave; changer automatiquement le type. Car avec cette instruction, <code>$valeur</code>, dans laquelle &eacute;tait sauvegard&eacute; jusqu'ici un nombre, re&ccedil;oit subitement une cha&icirc;ne de caract&egrave;res, &agrave; savoir la valeur de <code>$valeur_partielle</code>, qui provient de la valeur retourn&eacute;e par  <code>substr</code> et qui est une cha&icirc;ne de caract&egrave;res. Si vous connaissez d'autres langages de programmation, vous mesurerez ici quelles libert&eacute;s vous avez en Perl pour la manipulation de variables.</p>
+
+<p>L'exemple ci-dessus envoie le code HTML au navigateur appelant et sort les valeurs actuelles des scalaires.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>L'interpr&eacute;teur Perl fait tout son possible pour traiter les valeurs de vos variables. Cela veut dire que, si vous ex&eacute;cutez par exemple des op&eacute;rations num&eacute;riques avec une cha&icirc;ne de caract&egrave;res (par exemple <code>3 + &quot;texte&quot;</code>), cette cha&icirc;ne de caract&egrave;res est convertie en une valeur num&eacute;rique, &agrave; savoir 0. C'est exactement ainsi que vous pouvez relier ensemble une cha&icirc;ne de caract&egrave;res et une r&eacute;f&eacute;rence. L'instruction <code>print &quot;Text&quot;.$ref;</code> (dans laquelle <code>$ref</code> contient une r&eacute;f&eacute;rence) pourrait donc par exemple cr&eacute;er la sortie <code>TextSCALAR(0x1765158)</code>.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="fonctions_operations">Fonctions et op&eacute;rations pour la manipulation de scalaires</a></h2>
+
+
+<p>Les scalaires sont des variables. On les utilise pour avoir un endroit o&ugrave; sauvegarder les valeurs qui peuvent &ecirc;tre modifi&eacute;es au cours du script. Les scalaires modifient les valeurs qu'elles sauvegardent en recevant une nouvelle affectation de valeur. Ces valeurs affect&eacute;es sont toutefois souvent des valeurs qui ne sont pas directes, mais des valeurs retourn&eacute;es par des fonctions, qui calculent ou effectuent quelque chose. Dans les exemples plus haut, deux de ces fonctions on d&eacute;j&agrave; &eacute;t&eacute; employ&eacute;es: la fonction <code>sqrt</code> pour calculer une racine carr&eacute;e, et la fonction <code>substr</code> pour rechercher une partie d'une cha&icirc;ne de caract&egrave;res. Perl offre beaucoup de ces fonctions. Des fonctions typiques avec lesquelles vous pouvez influencer la valeur de scalaires, sont par exemple les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/chainescaracteres.htm"><b>fonctions pour cha&icirc;nes de caract&egrave;res</b></a> ou les  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/calculs.htm"><b>Fonctions pour les calculs</b></a>. En plus de cela, les scalaires sont &eacute;galement souvent n&eacute;cessaires et modifi&eacute;es en relation avec les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="boucles.htm"><b>boucles</b></a>. Vous pouvez par exemple &eacute;galement relier des cha&icirc;nes de caract&egrave;res, et vous pouvez calculer avec des nombres. &Agrave; cette fin, vous avez besoin d'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="operateurs.htm"><b>op&eacute;rateurs</b></a>.</p>
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="listes.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="listes.htm"><b>Listes ou Arrays (Variables)</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="obligatcgi.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="obligatcgi.htm"><b>Instructions CGI n&eacute;cessaires en Perl</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

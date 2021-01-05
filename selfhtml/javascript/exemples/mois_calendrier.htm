@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / Exemples d'application / Calendrier du mois </title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment simuler un calendrier du mois avec JavaScript avec mise en valeur de la date du jour.">
+<meta name="keywords"       content="SELFHTML, JavaScript, calendrier du mois, calendrier, Date-Objekt">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/exemples/mois_calendrier.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // Exemples d'application == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Calendrier du mois </h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#remarques"><b>Remarques sur cet exemple</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#texte_source"><b>Texte source avec explications</b></a><br>
+</p>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/mois_calendrier.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="remarques">Remarques sur cet exemple</a></h2>
+
+<p>L'exemple &eacute;crit dans un fichier HTML &agrave; l'endroit d&eacute;sir&eacute;, un calendrier du mois actuel pouvant &ecirc;tre librement format&eacute;. Le jour actuel y est mis en valeur. Un petit bijou pour les pages Web.</p>
+
+<p>Au vu de l'exemple, vous pouvez &eacute;tudier l'utilisation pratique de l'objet JavaScript <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/date.htm"><b>Date</b></a>, mais aussi comment cr&eacute;er du code HTML complexe par des sorties  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/document.htm#write"><b>document.write</b></a> contr&ocirc;l&eacute;es.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0">&nbsp;<a class="an" name="texte_source">Texte source avec explications</a></h2>
+
+<p>L'exemple montre un fichier HTML complet dans lequel le JavaScript pour le calendrier mensuel est incorpor&eacute;.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/mois_calendrier.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Calendrier du mois&lt;/title&gt;
+&lt;/head&gt;
+&lt;body bgcolor=&quot;#FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h1 style=&quot;font-family:Verdana,Arial; font-weight:normal&quot;&gt;Calendrier du mois&lt;/h1&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var d = new Date();
+var dm = d.getMonth() + 1;
+var dan = d.getYear();
+if(dan &lt; 999) dan+=1900;
+calendrier(dm,dan);
+
+function calendrier(mois,an) {
+nom_mois = new Array
+(&quot;Janvier&quot;,&quot;F&amp;eacute;vrier&quot;,&quot;Mars&quot;,&quot;Avril&quot;,&quot;Mai&quot;,&quot;Juin&quot;,&quot;Juillet&quot;,
+&quot;Ao&amp;ucirc;t&quot;,&quot;Septembre&quot;,&quot;Octobre&quot;,&quot;Novembre&quot;,&quot;D&amp;eacute;cembre&quot;);
+jour = new Array (&quot;Lu&quot;,&quot;Ma&quot;,&quot;Me&quot;,&quot;Je&quot;,&quot;Ve&quot;,&quot;Sa&quot;,&quot;Di&quot;);
+
+var police_entete = &quot;Verdana,Arial&quot;; /* police ent�te de calendrier  */
+var taille_pol_entete = 3;           /* taille de police 1-7 ent�te de calendrier  */
+var couleur_pol_entete = &quot;#FFFF00&quot;;     /* couleur de police ent�te de calendrier  */
+var arrplan_entete = &quot;#000066&quot;;        /* couleur d'arri�re plan ent�te de calendrier  */
+var police_jours = &quot;Verdana,Arial&quot;; /* police affichage des jours  */
+var taille_pol_jours = 3;           /* taille de police 1-7 affichage des jours  */
+var coul_pol_jours = &quot;#000000&quot;;     /* couleur de police affichage des jours  */
+var arrplan_jours = &quot;#D0F0F0&quot;;        /* couleur d'arri�re plan affichage des jours  */
+var couleur_dim = &quot;#E00000&quot;;        /* couleur de police pour dimanches  */
+var couleur_cejour = &quot;#FFFF00&quot;;        /* couleur d'arri�re plan pour aujourd'hui  */
+
+var maintenant = new Date();
+var ce_mois = maintenant.getMonth() + 1;
+var cette_annee = maintenant.getYear();
+if(cette_annee &lt; 999) cette_annee+=1900;
+var ce_jour = maintenant.getDate();
+var temps = new Date(an,mois-1,1);
+var Start = temps.getDay();
+if(Start &gt; 0) Start--;
+else Start = 6;
+var Stop = 31;
+if(mois==4 ||mois==6 || mois==9 || mois==11 ) --Stop;
+if(mois==2) {
+ Stop = Stop - 3;
+ if(an%4==0) Stop++;
+ if(an%100==0) Stop--;
+ if(an%400==0) Stop++;
+}
+document.write('&lt;table border=&quot;3&quot; cellpadding=&quot;1&quot; cellspacing=&quot;1&quot;&gt;');
+var entete_mois = nom_mois[mois-1] + &quot; &quot; + an;
+inscrit_entete(entete_mois,arrplan_entete,couleur_pol_entete,taille_pol_entete,police_entete);
+var nombre_jours = 1;
+for(var i=0;i&lt;=5;i++) {
+  document.write(&quot;&lt;tr&gt;&quot;);
+  for(var j=0;j&lt;=5;j++) {
+    if((i==0)&&(j &lt; Start))
+     inscrit_cellule(&quot;&amp;#160;&quot;,arrplan_jours,coul_pol_jours,taille_pol_jours,police_jours);
+    else {
+      if(nombre_jours &gt; Stop)
+        inscrit_cellule(&quot;&amp;#160;&quot;,arrplan_jours,coul_pol_jours,taille_pol_jours,police_jours);
+      else {
+        if((an==cette_annee)&&(mois==ce_mois)&&(nombre_jours==ce_jour))
+         inscrit_cellule(nombre_jours,couleur_cejour,coul_pol_jours,taille_pol_jours,police_jours);
+        else
+         inscrit_cellule(nombre_jours,arrplan_jours,coul_pol_jours,taille_pol_jours,police_jours);
+        nombre_jours++;
+        }
+      }
+    }
+    if(nombre_jours &gt; Stop)
+      inscrit_cellule(&quot;&amp;#160;&quot;,arrplan_jours,couleur_dim,taille_pol_jours,police_jours);
+    else {
+      if((an==cette_annee)&&(mois==ce_mois)&&(nombre_jours==ce_jour))
+        inscrit_cellule(nombre_jours,couleur_cejour,couleur_dim,taille_pol_jours,police_jours);
+      else
+        inscrit_cellule(nombre_jours,arrplan_jours,couleur_dim,taille_pol_jours,police_jours);
+      nombre_jours++;
+    }
+    document.write(&quot;&lt;\/tr&gt;&quot;);
+  }
+document.write(&quot;&lt;\/table&gt;&quot;);
+}
+
+function inscrit_entete(titre_mois,couleurAP,couleurpolice,taillepolice,police) {
+document.write(&quot;&lt;tr&gt;&quot;);
+document.write('&lt;td align=&quot;center&quot; colspan=&quot;7&quot; valign=&quot;middle&quot; bgcolor=&quot;'+couleurAP+'&quot;&gt;');
+document.write('&lt;font size=&quot;'+taillepolice+'&quot; color=&quot;'+couleurpolice+'&quot; face=&quot;'+police+'&quot;&gt;&lt;b&gt;');
+document.write(titre_mois);
+document.write(&quot;&lt;\/b&gt;&lt;\/font&gt;&lt;\/td&gt;&lt;\/tr&gt;&quot;);
+document.write(&quot;&lt;tr&gt;&quot;);
+for(var i=0;i&lt;=6;i++)
+  inscrit_cellule(jour[i],couleurAP,couleurpolice,taillepolice,police);
+document.write(&quot;&lt;\/tr&gt;&quot;);
+}
+
+function inscrit_cellule(contenu,couleurAP,couleurpolice,taillepolice,police) {
+document.write('&lt;td align=&quot;center&quot; valign=&quot;middle&quot; bgcolor=&quot;'+couleurAP+'&quot;&gt;');
+document.write('&lt;font size=&quot;'+taillepolice+'&quot; color=&quot;'+couleurpolice+'&quot; face=&quot;'+police+'&quot;&gt;&lt;b&gt;');
+document.write(contenu);
+document.write(&quot;&lt;\/b&gt;&lt;\/font&gt;&lt;\/td&gt;&quot;);
+}
+//--&gt;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<h4>rechercher la date actuelle:</h4>
+
+<p>Dans le passage script est cr&eacute;&eacute; dans un premier temps un nouvel objet date avec <code>d = new Date()</code> avec la date et l'heure actuelles. Dans les variables <code>dm</code> et <code>dan</code> sont ensuite recherch&eacute;es dans le nouvel objet date <code>d</code> le mois et l'ann&eacute;e. La fonction <code>calendrier()</code> est ensuite appel&eacute;e avec ces deux variables.<br>
+L'instruction <code>if(dan &lt; 999) dan+=1900;</code> est n&eacute;cessaire ici pour aider certains navigateurs plus anciens, qui ne r&eacute;agissent pas &agrave; l'appel de la m&eacute;thode <code>getYear</code> de fa&ccedil;on compatible &agrave; l'an 2000, &agrave; trouver l'ann&eacute;e d&eacute;sir&eacute;e.</p>
+
+<h4>fonction &quot;calendrier()&quot;:</h4>
+
+<p>La fonction <code>calendrier()</code> est r&eacute;alis&eacute;e comme sous-programme s&eacute;par&eacute; qui attend simplement un mois et une ann&eacute;e qui, dans le calendrier, seront affich&eacute;s comme mois et ann&eacute;e actuels. De cette fa&ccedil;on, on peut se servir de la fonction &agrave; d'autres fins que pour la seule sortie du mois de calendrier actuel.</p>
+
+<p>Au d&eacute;but de la fonction <code>calendrier()</code> sont d'abord d&eacute;finies diff&eacute;rentes variables, dont les noms de mois et les noms de jours de la semaine d&eacute;sir&eacute;s. Chacun des deux groupes forme un objet Array. Si vous d&eacute;sirez d'autres noms, par exemple des noms plus sp&eacute;cifiques &agrave; un dialecte ou &agrave; un r&eacute;gion, il vous suffit de changer les noms correspondants.<br>
+Les mentions de couleurs, de sortes de polices et de tailles de polices pour l'arri&egrave;re plan du calendrier et l'affichage des jours font &eacute;galement partie des variables qui sont d&eacute;finies au d&eacute;but de <code>calendrier()</code>. Dans l'exemple, ces d&eacute;finitions de variables ont &eacute;t&eacute; comment&eacute;es pour une meilleure compr&eacute;hension. Modifiez ces valeurs si vous d&eacute;sirez utiliser le calendrier adapt&eacute; &agrave; vos go&ucirc;ts et couleurs!.</p>
+
+<h4>rechercher si le jour actuel se situe dans le mois &agrave; afficher:</h4>
+
+<p>&Eacute;tant donn&eacute; que la fonction  <code>calendrier()</code> re&ccedil;oit comme param&egrave;tres quel mois de quelle ann&eacute;e elle doit sortir, il peut s'agir tout &agrave; fait d'un autre mois que le mois actuel (ce n'est que dans l'exemple ci-dessus que la fonction est appel&eacute;e avec le mois et l'ann&eacute;e actuelle). C'est pourquoi la fonction ici recherche encore une fois s&eacute;par&eacute;ment les donn&eacute;es du jour actuel (<code>ce_jour</code>), du mois actuel (<code>ce_mois</code>) et de l'ann&eacute;e actuelle (<code>cette_annee</code>). Les donn&eacute;es correspondantes seront n&eacute;cessaires plus tard pour faire ressortir le jour actuel d'une autre couleur - dans la mesure o&ugrave; il tombe dans le mois &agrave; sortir. Ici aussi, l'adaptation pour l'an 2000 a &eacute;t&eacute; r&eacute;alis&eacute;e.</p>
+
+<h4>pr&eacute;parer l'affichage dans le tableau:</h4>
+
+<p>Le mois de calendrier doit &ecirc;tre &eacute;crit dans un tableau HTML &agrave; l'aide d'instructions <code>document.write()</code>. Dans un premier temps, il faut cependant rechercher combien de jours a le mois &agrave; sortir et &agrave; quel jour de la semaine il commence. De cela d&eacute;pend la fa&ccedil;on dont les jours seront &eacute;crits dans le tableau.<br>
+Dans la variable <code>Start</code> est sauvegard&eacute; le jour de semaine sur lequel tombe le premier jour du mois. Pour cela, est cr&eacute;&eacute; dans une variable <code>temps</code> un objet Date, qui se r&eacute;f&egrave;re avec <code>Date(an,mois-1,1)</code> au premier jour du mois &agrave; sortir. Avec <code>temps.getDay()</code>, le jour de la semaine correspondant &agrave; ce jour est recherch&eacute; (0 pour lundi jusqu'&agrave; 6 pour dimanche).<br>
+Dans la variable <code>Stop</code>, le nombre de jours du mois est recherch&eacute;. S'il s'agit de l'un des mois 4, 6, 9 ou 11, le mois a 30 jours. S'il s'agit du mois 2, il est n&eacute;cessaire de jongler un peu avec le calendrier. Car ce mois peut avoir soit 28, soit 29 jours, selon qu'il s'agira d'une ann&eacute;e bissextile ou non. Les ann&eacute;es bissextiles sont toutes celles qui sont divisibles par 4, sauf celles sont divisibles par 100 (1700, 1800, 1900 ne sont pas bissextiles) &agrave; l'exception de celles qui sont divisibles par 400, qui, elles, sont bissextiles &agrave; nouveau (1600, 2000 sont bissextiles).</p>
+
+<h4>cr&eacute;er le tableau:</h4>
+
+<p>Apr&egrave;s avoir fait tous ces pr&eacute;paratifs, le tableau avec le mois de calendrier peut &ecirc;tre &eacute;crit. Cela s'obtient &agrave; l'aide de commandes <code>document.write()</code> qui &eacute;crivent de fa&ccedil;on dynamique les commandes HTML correspondantes dans le fichier. La fonction <code>calendrier()</code> elle-m&ecirc;me n'&eacute;crit cependant que le d&eacute;but et la fin du tableau. Autrement, elle ne fait que prendre le contr&ocirc;le de ce qui doit &ecirc;tre &eacute;crit et dans quel ordre. Pour &eacute;crire l'ent&ecirc;te du tableau avec les mentions du mois et de l'ann&eacute;e ainsi que les noms de jours de semaine, elle appelle la sous-fonction <code>inscrit_entete()</code>. Pour &eacute;crire les diff&eacute;rentes cellules du tableau, c'est la sous-fonction <code>inscrit_cellule()</code> qui est appel&eacute;e. Pour fournir celles-ci en donn&eacute;es correctes, la fonction <code>calendrier()</code> doit prendre en consid&eacute;ration les mentions du premier jour de semaine du mois recherch&eacute;es auparavant, et transmettre correctement les param&egrave;tres correspondants. Au cas o&ugrave; une cellule devait rester vide, l'espace forc&eacute; <code>&amp;#160;</code> est transmis, car c'est ainsi seulement qu'une cellule de tableau est repr&eacute;sent&eacute;e par la suite de fa&ccedil;on visible, m&ecirc;me si elle n'a pas de contenu. Si une cellule doit afficher le chiffre du jour, une variable appropri&eacute;e est transmise.<br>
+Les fonctions <code>inscrit_entete()</code> et <code>inscrit_cellule()</code> &eacute;crivent les diff&eacute;rentes cellules de donn&eacute;es en mettant en oeuvre les variables pour la structure du calendrier.</p>
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="visites_pages.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="visites_pages.htm"><b>Compter les visites de pages personnelles avec des cookies</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="calculette.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="calculette.htm"><b>Calculatrice</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Exemples d'application</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

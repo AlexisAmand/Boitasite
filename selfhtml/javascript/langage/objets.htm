@@ -1,0 +1,420 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript/DOM / &Eacute;l&eacute;ments du langage JavaScript / Objets, propri&eacute;t&eacute;s et m&eacute;thodes</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quelle est la mission des objets en JavaScript, qu'ont-ils &agrave; voir avec les propri&eacute;t&eacute;s et comment d&eacute;finir ses propres objets.">
+<meta name="keywords"       content="SELFHTML, JavaScript, objets, propri&eacute;t&eacute;s, m&eacute;thodes, fonctions d'objet, with, this">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/langage/regles.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // &Eacute;l&eacute;ments du langage JavaScript == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments du langage JavaScript</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Objets, propri&eacute;t&eacute;s et m&eacute;thodes</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#pre_definis"><b>Objets JavaScript pr&eacute;d&eacute;finis </b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#appliquer"><b>Utiliser des objets JavaScript pr&eacute;d&eacute;finis</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#propres"><b>D&eacute;finir ses propres objets</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#proprietes"><b>Propri&eacute;t&eacute;s d'objets</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#methodes"><b>M&eacute;thodes d'objet</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#demande_existence"><b>Demandes sur l'existence d'un objet</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#with"><b>Ex&eacute;cuter plusieurs instructions avec un objet (with)</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#this"><b>Se r&eacute;f&eacute;rer &agrave; l'objet actuel (this) </b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="pre_definis">Objets JavaScript pr&eacute;d&eacute;finis</a></h2>
+
+<p>Les objets sont des &eacute;l&eacute;ments fixement d&eacute;limit&eacute;s avec des propri&eacute;t&eacute;s et souvent aussi avec des fonctions li&eacute;es &agrave; l'objet (m&eacute;thodes).</p>
+
+<p>Que JavaScript repr&eacute;sente une extension de HTML tient avant tout aux objets pr&eacute;d&eacute;finis qui sont &agrave; votre disposition en JavaScript. Gr&acirc;ce &agrave; ces objets pr&eacute;d&eacute;finis vous pouvez questionner ou modifier par exemple les &eacute;l&eacute;ments distincts d'un formulaire HTML.</p>
+
+<p>Un objet peut &ecirc;tre une fraction de l'objet hi&eacute;rarchiquement sup&eacute;rieur. C'est pour cette raison que les objets JavaScript sont hi&eacute;rarchis&eacute;s. L'objet le plus &eacute;lev&eacute; dans la hi&eacute;rarchie en JavaScript est l'objet-fen&ecirc;tre (<code>window</code>).Les fen&ecirc;tres ont des propri&eacute;t&eacute;s comme un titre, une taille etc... Le contenu d'une fen&ecirc;tre est le deuxi&egrave;me objet le plus &eacute;lev&eacute;, &agrave; savoir le document affich&eacute; dans la fen&ecirc;tre (en JavaScript l'objet <code>document</code>).  En r&egrave;gle g&eacute;n&eacute;rale, il s'agit d'un fichier HTML. Un tel fichier peut contenir certains &eacute;l&eacute;ments d&eacute;finis par des rep&egrave;res HTML, comme par exemple des formulaires, des liens, des r&eacute;f&eacute;rences de graphiques etc... Pour de tels &eacute;l&eacute;ment subalternes il y a &agrave; nouveau des objets sp&eacute;cifiques &agrave; JavaScript, par exemple l'objet <code>forms</code> pour des formulaires. Un formulaire, de son c&ocirc;t&eacute;, est constitu&eacute; de diff&eacute;rents &eacute;l&eacute;ments, par exemple des champs de saisie, des listes de choix ou des boutons pour envoyer ou interrompre. En JavaScript, il y a pour cela un objet <code>elements</code>, avec lequel vous pouvez adresser des champs distincts et d'autres &eacute;l&eacute;ments dans le formulaire.</p>
+
+<p>&Agrave; c&ocirc;t&eacute; des objets de JavaScript rang&eacute;s hi&eacute;rarchiquement, il y en a qui ne passent pas directement dans la hi&eacute;rarchie. Ce sont par exemple les objets pour le calcul de la date et de l'heure, pour des t&acirc;ches math&eacute;matiques et pour le traitement de cha&icirc;nes de caract&egrave;res.</p>
+
+<p>Vous trouverez une vue d'ensemble des objets JavaScript pr&eacute;d&eacute;finis dans la  <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../objets/index.htm"><b>r&eacute;f&eacute;rence objet JavaScript.</b></a>. L&agrave; sont pr&eacute;sent&eacute;es pour chaque objet les <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#proprietes"><b>propri&eacute;t&eacute;s </b></a> et <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#methodes"><b>m&eacute;thodes d'objet</b></a>.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0">&nbsp;<a class="an" name="appliquer">Utiliser des objets JavaScript pr&eacute;d&eacute;finis</a></h2>
+
+<p>&Agrave; tout moment, vous pouvez utiliser des objets JavaScript.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/date_heure.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+    var maintenant = new Date();
+    var jour = maintenant.getDate();
+    var mois = maintenant.getMonth() + 1;
+    var annee = maintenant.getYear();
+    var heures = maintenant.getHours();
+    var minutes = maintenant.getMinutes();
+    var format  = ((minutes &lt; 10) ? &quot;:0&quot; : &quot;:&quot;);
+    if (annee&lt;2000) annee=annee+1900;
+    document.write(&quot;&lt;h2&gt;Bonjour!&lt;\/h2&gt;&lt;b&gt;Nous sommes le &quot;
+    + jour + &quot;.&quot; + mois + &quot;.&quot; + annee + &quot;. Il est maintenant &quot;
+    + heures + format + minutes + &quot; heures&lt;\/b&gt;&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, dans un  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../intro.htm#javascriptbereiche"><b>passage JavaScript</b></a> la date et l'heure actuelle sont communiqu&eacute;es &agrave; l'aide de l'objet JavaScript pr&eacute;d&eacute;fini  <code>Date</code> et sorties poprement format&eacute;es en  HTML.</p>
+
+<p>&Agrave; cette fin une nouvelle  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="variables.htm"><b>variable</b></a> doit d'abord &ecirc;tre cr&eacute;&eacute;e. Dans l'exemple c'est la variable <code>maintenant</code>. Cette variable doit pouvoir acc&eacute;der aux donn&eacute;es de l'objet <code>Date</code>. Cela est obtenu gr&acirc;ce au signe &eacute;gal derri&egrave;re le nom de la variable. Derri&egrave;re suit le  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="reserve.htm"><b>mot r&eacute;serv&eacute;  JavaScript</b></a> <code>new</code>, et derri&egrave;re encore, s&eacute;par&eacute; par un espace, l'appel de  <code>Date()</code>  pour cr&eacute;er une nouvelle instance de l'objet  <code>Date</code>.</p>
+
+<p>Pour adresser les diff&eacute;rentes donn&eacute;es de l'instance objet de  <code>Date</code>, donc le jour, le mois, l'ann&eacute;e etc... sont &agrave; disposition des  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#methodes"><b>m&eacute;thodes d'objet</b></a>. Ces m&eacute;thodes, par exemple  <code>getDate()</code> ou bien <code>getHours()</code>, ont comme valeur renvoy&eacute;e une partie de la date ou de l'heure . Ainsi <code>getDate()</code> par exemple renvoie le jour actuel du mois et <code>getHours()</code> le nombre actuel d'heures dans le jour. Dans l'exemple on a d&eacute;fini une variable pour chacune des parties constituantes de la date n&eacute;cessaires. Dans la variable  <code>jour</code> on a par exemple, en appelant <code>maintenant.getDate()</code>,  sauvegard&eacute; le jour actuel du mois.</p>
+
+<p>L'instruction de l'exemple qui commence avec  <code>format ...</code> ne peut pas &ecirc;tre expliqu&eacute;e plus en d&eacute;tail ici. L'instruction est une pr&eacute;paration pour que l'heure soit format&eacute;e proprement.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Les diff&eacute;rentes m&eacute;thodes de l'objet <code>Date</code>, utilis&eacute; dans l'exemple comme par exemple  <code>getDate()</code>, seront d&eacute;crites avec la r&eacute;f&eacute;rence de l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/date.htm"><b>Date</b></a>.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0">&nbsp;<a class="an" name="propres">D&eacute;finir ses propres objets</a></h2>
+
+<p>Vous pouvez d&eacute;finir vos propres objets si vous voulez programmer en JavaScript de fa&ccedil;on strictement orient&eacute;e objet.</p>
+
+<p>Pour cr&eacute;er son propre objet, deux &eacute;tapes sont n&eacute;cessaires. Il vous faut d'abord &quot;d&eacute;clarer&quot; l'objet lui-m&ecirc;me et ses propri&eacute;t&eacute;s. Dans un deuxi&egrave;me temps, vous pouvez d&eacute;finir &agrave; la suite une instance de cet objet. Avec cette instance d'objet vous pouvez alors ex&eacute;cuter des proc&eacute;dures de programmes.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/objet_couleur_arriereplan.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+  function couleur(R, G, B) {
+    this.R = R;
+    this.G = G;
+    this.B = B;
+    this.hex=&quot;#&quot;;
+  }
+
+  function changer_arriere_plan() {
+    var arriere_plan = new couleur(&quot;E0&quot;,&quot;FF&quot;,&quot;E0&quot;);
+    document.bgColor = arriere_plan.hex + arriere_plan.R + arriere_plan.G + arriere_plan.B;
+  }
+  //--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;#FFFFFF&quot;&gt;
+&lt;h1&gt;Son propre objet couleur avec JavaScript&lt;/h1&gt;
+&lt;a href=&quot;javascript:changer_arriere_plan()&quot;&gt;&lt;b&gt;changer la couleur d'arri�re-plan&lt;/b&gt;&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Pour cr&eacute;er un nouvel objet et ses propri&eacute;t&eacute;s, vous devez d&eacute;finir dans un <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../intro.htm#javascriptbereiche"><b>passage JavaScript</b></a> ou &agrave; l'int&eacute;rieur d'un <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../intro.htm#javascriptdateien"><b>fichier JavaScript s&eacute;par&eacute;</b></a> une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="fonctions.htm"><b>fonction</b></a> qui vous est propre comme dans l'exemple la fonction  <code>couleur(...)</code>.  Le nom que vous donnez &agrave; la fonction (dans l'exemple le nom <code>couleur</code>) est en m&ecirc;me temps le nom de l'objet que vous cr&eacute;ez avec cette fonction. Comme param&egrave;tres attendus par la fonction, notez les propri&eacute;t&eacute;s que doit avoir votre objet. Les noms de param&egrave;tres sont en m&ecirc;me temps les noms de propri&eacute;t&eacute;s de l'objet. Dans l'exemple, ce sont les propri&eacute;t&eacute;s  <code>R</code>, <code>G</code> et <code>B</code>,car il doit &ecirc;tre cr&eacute;e un objet qui puisse sauvegarder les valeurs rouge, verte et bleue. <code>R</code>, <code>G</code> et <code>B</code> sont d'ailleurs des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="regles.htm#noms"><b>noms attribu&eacute;s</b></a>. Dans la fonction, notez toutes les instructions comme dans l'exemple: pour chaque propri&eacute;t&eacute; fix&eacute;e dans les param&egrave;tres de la fonction, notez une instruction en commen&ccedil;ant par le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="reserve.htm"><b>mot r&eacute;sev&eacute; JavaScript </b></a> <code>this</code>, suivi d'un point et du nom du param&egrave;tre. Notez &agrave; la suite un signe &eacute;gal, suivi lui-m&ecirc;me du nom du param&egrave;tre. &Agrave; la fin de chaque instruction doit figurer un point virgule.<br>
+Vous pouvez bien entendu &eacute;galement d&eacute;finir pour chaque objet des propri&eacute;t&eacute;s fixes (qui ne sont pas influenc&eacute;es par des param&egrave;tres). Dans l'exemple, la propri&eacute;t&eacute; <code>hex</code> est une propri&eacute;t&eacute; fixe qui existe pour chaque instance de l'objet. Notez pour cela, derri&egrave;re le nom de propri&eacute;t&eacute;, la valeur respective de la propri&eacute;t&eacute;.</p>
+
+<p>Apr&egrave;s avoir cr&eacute;&eacute; l'objet, vous pouvez d&eacute;finir &agrave; d'autres endroits dans votre script JavaScript des instances de cet objet. Cela s'obtient &agrave; l'aide d'une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="variables.htm"><b>variable</b></a> et du mot r&eacute;serv&eacute; JavaScript <code>new</code>. Dans l'exemple une deuxi&egrave;me fonction  <code>changer_arriere_plan()</code> est d&eacute;finie.  Dans celle-ci, on a d'abord cr&eacute;&eacute; une variable  <code>arriere_plan</code>.  Cette variable doit recevoir les donn&eacute;es contenues dans l'objet cr&eacute;&eacute;  <code>couleur</code>. Cela se fait &agrave; l'aide d'un signe &eacute;gal derri&egrave;re le nom de la variable. Derri&egrave;re suit le mot r&eacute;serv&eacute; JavaScript  <code>new</code> et ensuite, s&eacute;par&eacute; par un espace, le nom de la fonction avec laquelle l'objet du m&ecirc;me nom a &eacute;t&eacute; cr&eacute;&eacute; dans l'exemple <code>couleur</code>. Comme param&egrave;tre sont transmises &agrave; cette fonction des  valeurs quelconques utilisables dans l'exemple <code>&quot;33&quot;</code>, <code>&quot;99&quot;</code> et <code>&quot;C0&quot;</code> (valeurs de couleurs hexad&eacute;cimales typiques, comme elles servent en HTML).</p>
+
+<p>Enfin la variable <code>arriere_plan</code> est li&eacute;e &agrave; l'objet-couleur et on peut gr&acirc;ce &agrave; elle fixer ou demander les propri&eacute;t&eacute;s de l'objet. Dans l'exemple, figure l'instruction:<br>
+<code>document.bgColor = arriere_plan.hex + arriere_plan.R + arriere_plan.G + arriere_plan.B;</code><br>
+Gr&acirc;ce &agrave; elle, la couleur d'arri&egrave;re plan de la page actuellement affich&eacute;e est modifi&eacute;e. Normalement on pourrait affecter &agrave; <code>document.bgColor</code> quelque chose comme <code>&quot;#C0C0EE&quot;</code>. M&ecirc;me dans l'exemple, c'est une valeur de couleur de ce genre qui a &eacute;t&eacute; affect&eacute;e, compos&eacute;e toutefois par les diff&eacute;rentes propri&eacute;t&eacute;s de l'objet couleur qui est sauvegard&eacute; dans l'instance <code>arriere_plan</code>. La fonction <code>changer_arriere_plan()</code> est appel&eacute;e quand l'utilisateur clique sur le lien contenu dans le fichier HTML.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0">&nbsp;<a class="an" name="proprietes">Propri&eacute;t&eacute;s d'objets</a></h2>
+
+<p>Les objets peuvent avoir des propri&eacute;t&eacute;s. Un objet &quot;humain&quot; d&eacute;fini par vous m&ecirc;me pourrait par exemple avoir les propri&eacute;t&eacute;s nom, &acirc;ge, sexe et langue maternelle. De la m&ecirc;me fa&ccedil;on, les objets pr&eacute;d&eacute;finis en JavaScript ont eux aussi des propri&eacute;t&eacute;s. Ainsi l'objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/math.htm"><b>Math</b></a>a-t-il par exemple une propri&eacute;t&eacute;  &quot;PI&quot; (<code>Math.PI</code>).  Il est ainsi possible de calculer avec la constante math&eacute;matique PI sans conna&icirc;tre sa valeur exacte.</p>
+
+<p>Vous pouvez lire &agrave; tout moment les propri&eacute;t&eacute;s d'objet dans votre code JavaScript et vous pouvez dans de nombreux cas en modifier les valeurs. Ainsi vous pouvez par exemple affecter au document affich&eacute; dans la fen&ecirc;tre de votre navigateur une nouvelle   <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/generalites/referencer.htm#uri"><b>URI</b></a> valable. De cette fa&ccedil;on, vous obtenez que le navigateur WWW fasse un saut &agrave; l'adresse URI affect&eacute;e, exactement comme si l'utilisateur avait cliqu&eacute; sur un lien correspondant.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/page_identification.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;La page qui vous identifie exactement&lt;/h1&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var nom_navigateur = navigator.appName;
+var version_navigateur = navigator.appVersion;
+document.write(&quot;&lt;p&gt;Ah bon, vous utilisez donc le &lt;b&gt;&quot; + nom_navigateur +
+&quot;&lt;\/b&gt;, � savoir dans la version &lt;b&gt;&quot; + version_navigateur + &quot;&lt;\/b&gt;&lt;\/p&gt;&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple ont &eacute;t&eacute; sauvegard&eacute;es &agrave; l'int&eacute;rieur d'un  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../intro.htm#javascriptbereiche"><b>passage JavaScript</b></a> deux propri&eacute;t&eacute;s de l'objet JavaScript pr&eacute;d&eacute;fini  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/navigator.htm"><b>navigator</b></a> dans deux variables correspondantes nomm&eacute;es <code>nom_navigateur</code> et <code>version_navigateur</code>. L'objet <code>navigator</code> met &agrave; votre disposition diff&eacute;rentes informations sur le navigateur utilis&eacute; par l'utilisateur. Dans l'exemple ci-dessus, les propri&eacute;t&eacute;s du nom du navigateur (sauvegard&eacute;e dans la propri&eacute;t&eacute; d'objet <code>navigator.appName</code>)  et de la version du navigateur (sauvegard&eacute;e dans la propri&eacute;t&eacute; d'objet  <code>navigator.appVersion</code>) sont recherch&eacute;es. Ensuite les donn&eacute;es recherch&eacute;es sont &eacute;crites de fa&ccedil;on dynamique dans la fen&ecirc;tre du navigateur avec <code>document.write()</code>.</p>
+
+<p>Vous adressez les propri&eacute;t&eacute;s d'objet en notant d'abord le nom de l'objet suivi d'un point et du nom de la propri&eacute;t&eacute;. Aucun espace n'est permis!</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0">&nbsp;<a class="an" name="methodes">M&eacute;thodes d'objet</a></h2>
+
+<p>Les objets peuvent avoir des m&eacute;thodes. Ce sont des fonctions qui ex&eacute;cutent des actions, mais qui, &agrave; l'inverse des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="fonctions.htm"><b>fonctions</b></a> isol&eacute;es, sont li&eacute;es &agrave; un objet d&eacute;termin&eacute;. Beaucoup d'objets pr&eacute;d&eacute;finis en JavaScript ont des m&eacute;thodes. Ainsi par exemple il existe un objet JavaScript pr&eacute;d&eacute;fini <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/history.htm"><b>history</b></a>, dans lequel sont sauvegard&eacute;es les adresses URL d'une fen&ecirc;tre de navigateur d&eacute;j&agrave; visit&eacute;es. Pour cet objet, il y a une m&eacute;thode <code>history.back()</code>, avec laquelle vous pouvez imposer en JavaScript un retour &agrave; une adresse URL d&eacute;j&agrave; visit&eacute;e.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/vasy.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Retourne d'o� tu viens&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;a href=&quot;javascript:history.back();&quot;&gt;&lt;b&gt;Retourne d'o� tu viens&lt;/b&gt;&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple contient un lien avec une syntaxe sp&eacute;ciale. Cette syntaxe vous permet, en cliquant sur le lien, d'appeler le code JavaScript. Dans l'exemple il s'agit d'un appel de la m&eacute;thode  <code>back()</code> de l'objet <code>history</code>.</p>
+
+<p>Vous adressez des m&eacute;thodes d'objet en notant d'abord le nom de l'objet suivi d'un point et du nom de la m&eacute;thode; suivent enfin une parenth&egrave;se qui s'ouvre et une autre qui se ferme. Aucun espace n'est permis! Quelques m&eacute;thodes peuvent aussi attendre des param&egrave;tres lorsqu'elles sont appel&eacute;es. Vous devez alors transmettre ces param&egrave;tres en les pla&ccedil;ant entre les parenth&egrave;ses.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Vous aurez plus de d&eacute;tails sur la syntaxe d'appel pour les liens dans la partie sur les  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="gestevenements.htm"><b>gestionnaires d'&eacute;v&eacute;nements</b></a>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="demande_existence"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0">Demandes sur l'existence d'un objet</a></h2>
+
+<p>Il existe entre temps un nombre assez important d'objets JavaScript, et il est souvent difficile de savoir quel navigateur interpr&egrave;te quel objet dans quelle version. Les objets qui ne peuvent pas &ecirc;tre interpr&eacute;t&eacute;s conduisent &agrave; des messages d'erreur dans le navigateur. Ainsi il peut arriver qu'un Script qui fonctionne parfaitement avec Netscape 4.7 ou l'Explorer Internet 5.0 conduise &agrave; des messages d'erreur avec Netscape 4.0 ou l'Explorer Internet 5.0 parce qu'un objet n'y est pas connu. C'est pourquoi il existe une possibilit&eacute; de faire pr&eacute;c&eacute;der l'appel de propri&eacute;t&eacute;s et de m&eacute;thodes d'un objet par une demande pour savoir si l'objet est connu du navigateur.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/demande_objet.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Demande d'objet&lt;/h1&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+if(! document.images)
+ document.write(&quot;&lt;p&gt;Dommage, votre navigateur ne conna�t pas l'objet image - Vous manquez quelque chose!&lt;br&gt;&quot;);
+else
+ document.write(&quot;&lt;p&gt;Hourra, votre navigateur conna�t l'objet image!&lt;br&gt;&quot;);
+if(document.all)
+ document.write(&quot;Ah, votre navigateur est de Microsoft ;-)&lt;\/p&gt;&quot;);
+else
+ document.write(&quot;Ah, et votre navigateur n'est m�me pas de Microsoft ;-)&lt;\/p&gt;&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec une  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="condition.htm"><b>instruction conditionnelle</b></a> <code>if(...)</code> vous pouvez v&eacute;rifier si un objet ou une propri&eacute;t&eacute;/m&eacute;thode de l'objet est disponible. Comme expression de la condition, notez simplement &agrave; l'int&eacute;rieur des parenth&egrave;ses derri&egrave;re  <code>if</code> l'objet ou alors l'objet que vous voulez demander. Si l'objet est disponible, la valeur  <code>true</code> (<i>vrai</i>) est renvoy&eacute;e en interne. Dans la branche de la demande  if-else, qui traite ce cas, vous pouvez alors vous en donner &agrave; c&#339;ur joie et utiliser par exemple des commandes qui emploient cet objet. Dans l'autre branche de la demande  if-else vous pouvez alors par exemple sortir une annonce qui pr&eacute;cise que cet objet JavaScript utilise malheureusement des commandes que le navigateur de l'utilisateur n'interpr&egrave;te pas.</p>
+
+<p>Dans l'exemple ci-dessus, des phrases diff&eacute;rentes sont &eacute;crites avec <code>document.write</code> dans la fen&ecirc;tre du navigateur. Pour cela, il est d'abord demand&eacute; si le sous-objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/images.htm"><b>document.images</b></a> <b>n</b>'est <b>pas</b>  disponible (La question n&eacute;gative s'exprime par le point d'exclamation devant l'objet).  Si donc l'objet n'est pas disponible, sortira dans l'exemple l' annonce que c'est tr&egrave;s dommage etc... Dans l'autre cas, donc si l'objet est disponible, sortira une r&eacute;action plus joyeuse.</p>
+
+<p>Dans la deuxi&egrave;me partie de l'exemple il est demand&eacute; si le sous-objet <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/all.htm"><b>document.all</b></a> qui n'est interpr&eacute;t&eacute; que par l'Explorer Internet MS, est disponible. L&agrave; aussi sont pr&eacute;vues dans l'exemple deux annonces diff&eacute;rentes - selon la disponibilit&eacute;. &Agrave; cet exemple on remarque que la demande sur la disponibilit&eacute; d'objets peut aussi servir &agrave; la reconnaissance approximative du navigateur - &agrave; la condition de s'y conna&icirc;tre dans les objets JavaScripts pr&eacute;d&eacute;finis et de savoir quels objets ne sont interpr&eacute;t&eacute;s que par certains navigateurs.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0">&nbsp;<a class="an" name="with">Ex&eacute;cuter plusieurs instructions avec un objet (with)</a></h2>
+
+<p>De temps en temps, il arrive que vous notiez plusieurs instructions &agrave; la suite qui travaillent toutes avec le m&ecirc;me objet. Dans ce cas, si vous le voulez, vous pouvez utiliser une forme d'&eacute;criture sp&eacute;ciale abr&eacute;g&eacute;e.</p>
+
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/title.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+with(document) {
+ open();
+ write(&quot;Cette page a pour titre &quot; + title);
+ close();
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>with(nomobjet)</code> vous introduisez cette forme d'&eacute;criture  (<i>with = avec</i>). &Eacute;tant donn&eacute; qu'en principe plusieurs instructions suivent qui utilisent cet objet, vous devez enfermer toutes ces instructions dans des parenth&egrave;ses accolades.</p>
+
+<p>Dans l'exemple ci-dessus, on travaille avec l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/document.htm"><b>document</b></a>. Dans les parenth&egrave;ses accolades sont employ&eacute;es les m&eacute;thodes <code>open()</code>, <code>write()</code> et <code>close()</code> ainsi que la propri&eacute;t&eacute;  <code>title</code>. Elles appartiennent toutes &agrave; l'objet <code>document</code>. Normalement vous auriez du &eacute;crire : <code>document.open()</code> ou bien <code>document.title</code>. Gr&acirc;ce &agrave; la syntaxe sp&eacute;ciale  <code>with(document)</code>cela n'est pas n&eacute;cessaire.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Il est naturellement &eacute;galement possible d'adresser de cette fa&ccedil;on des objets hi&eacute;rarchiquement inf&eacute;rieurs, par exemple:<br>
+<code>with(document.mon_formulaire.champ_1)</code><br>
+<code>&#160;value = Serge</code></p>
+
+<p>Veillez aussi &agrave; ce que la propri&eacute;t&eacute; appel&eacute;e existe effectivement. Si elle devait manquer, vous auriez un message d'erreur JavaScript.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0">&nbsp;<a class="an" name="this">Se r&eacute;f&eacute;rer &agrave; l'objet actuel (this)</a></h2>
+
+<p>Dans certains cas l'objet auquel une commande se r&eacute;f&egrave;re est &eacute;vident. Dans ces cas l&agrave;, vous pouvez utiliser une forme d'&eacute;criture abr&eacute;g&eacute;e.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/alertthis.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;form name=&quot;saisie&quot;&gt;
+&lt;input type=&quot;text&quot; name=&quot;champ&quot;&gt;
+&lt;input type=&quot;button&quot; value=&quot;OK&quot; onClick=&quot;alert(this.form.champ.value)&quot;&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec le mot cl&eacute;  <code>this</code> vous pouvez vous r&eacute;f&eacute;rer &agrave; un objet actuel. Dans l'exemple a &eacute;t&eacute; d&eacute;fini un formulaire avec un champ de saisie et un bouton. Quand l'utilisateur clique sur le bouton, le  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="gestevenements.htm"><b>gestionnaire d'&eacute;v&eacute;nement</b></a> <code>onClick=</code>  d&eacute;fini dans le rep&egrave;re HTML pour le bouton, entre en action. Dans l'exemple, la valeur entr&eacute;e par l'utilisateur dans le champ de saisie est sortie dans une fen&ecirc;tre de dialogue. Normalement, la commande aurait &eacute;t&eacute; not&eacute;e comme ceci:<br>
+<code>alert(document.saisie.champ.value)</code><br>
+&Eacute;tant donn&eacute; que la commande se trouve dans le formulaire auquel elle se r&eacute;f&egrave;re, vous pouvez aussi &eacute;crire:<br>
+<code>alert(this.form.champ.value)</code><br>
+Le mot  <code>form</code> est dans ce cas issu de l'objet  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../objets/forms.htm"><b>forms</b></a>.</p>
+
+
+
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="fonctions.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="fonctions.htm"><b>Fonctions</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="variables.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="variables.htm"><b>Variables et valeurs</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments du langage JavaScript</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

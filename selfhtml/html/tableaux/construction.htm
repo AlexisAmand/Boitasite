@@ -1,0 +1,376 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: HTML/XHTML / Tableaux / Composition d'un tableau</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment d&eacute;finir des tableaux avec ou sans quadrillage en HTML.">
+<meta name="keywords"       content="SELFHTML, HTML, XHTML, Tableaux, bordure de tableau, ent&ecirc;te de tableau, pied de tableau, corps de tableau, rang&eacute;es de tableaux, cellules de donn&eacute;es, cellules d'ent&ecirc;te, colonnes pr&eacute;d&eacute;finies, d&eacute;finition de colonnes, &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;, &lt;colgroup&gt;, &lt;col&gt; &lt;thead&gt;, &lt;tbody&gt;, &lt;tfoot&gt;, border=, width=, span=">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/html/tableaux/construction.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // HTML/XHTML == ../index.htm // Tableaux == index.htm">
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>HTML/XHML</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Tableaux</b></a></td>
+</tr></table>
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Composition d'un tableau</h2></td>
+</tr>
+
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#definir"><b>D&eacute;finir des tableaux</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#predefinir"><b>Pr&eacute;d&eacute;finir des  colonnes</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#tete_corps_pied"><b>D&eacute;finir l'ent&ecirc;te, le corps et le pied d'un tableau</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#autres_infos"><b>Autres informations</b></a><br>
+</p>
+</td>
+</tr>
+
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&nbsp;</td></tr>
+</table>
+
+
+
+
+<h2 class="Sh2"><img src="../../src/html32.gif" width="30" height="30" border="0" alt="HTML 3.2"><img src="../../src/xhtml10.gif" width="30" height="30" border="0" alt="XHTML 1.0"><img src="../../src/msie2.gif" width="30" height="30" border="0" alt="MSIE 2.0"><img src="../../src/netsc11.gif" width="30" height="30" border="0" alt="Netscape 1.1">&nbsp;<a class="an" name="definir">D&eacute;finir des tableaux</a></h2>
+
+<p>Vous pouvez d&eacute;finir des tableaux en HTML pour y pr&eacute;senter des donn&eacute;es ou bien pour rendre plus attractive la pr&eacute;sentation du texte et des graphiques &agrave; l'&eacute;cran. Bien que les tableaux aient &eacute;t&eacute; cr&eacute;&eacute;s avant tout pour la repr&eacute;sentation de donn&eacute;es, ils ne peuvent plus dans la pratique de la cr&eacute;ation Web d'aujourd'hui  &ecirc;tre dissoci&eacute;s de leur r&ocirc;le comme moyen &eacute;l&eacute;mentaire pour structurer la mise en page. De plus amples renseignements &agrave; ce sujet dans la partie sur les<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="misesenpage.htm"><b>tableaux comme moyen de pr&eacute;sentation de pages Web</b></a>. Les puristes qui veulent lib&eacute;rer HTML dans la mesure du possible de tout travail de structuration, rechignent sur le sujet - mais les limites entre la structure et la mise en forme ne sont pas toujours aussi claires. La r&eacute;partition propre de l'information sur une page Web est apr&egrave;s tout un aspect de la structure bien qu'elle soit aussi en m&ecirc;me temps un aspect de la mise en forme. D'un point de vue purement optique, on peut distinguer fondamentalement les tableaux qui ont un quadrillage (pour des donn&eacute;es) des tableaux sans quadrillage visible (qu'on appelle aussi &quot;tableaux sans quadrillage&quot; pour du texte sur plusieurs colonnes ou pour une r&eacute;partition de contenus sur une page Web.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/table_tr_th_td.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Strict//EN&quot;
+       &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Composition d'un tableau&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Tableau avec quadrillage&lt;/h1&gt;
+
+&lt;table border=&quot;1&quot;&gt;
+&lt;tr&gt;
+&lt;th&gt;France&lt;/th&gt;
+&lt;th&gt;Belgique&lt;/th&gt;
+&lt;th&gt;Suisse&lt;/th&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td&gt;quatre-vingts&lt;/td&gt;
+&lt;td&gt;octante&lt;/td&gt;
+&lt;td&gt;huitante&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td&gt;serpilli&egrave;re&lt;/td&gt;
+&lt;td&gt;wassingue&lt;/td&gt;
+&lt;td&gt;panosse&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h1&gt;Tableau sans quadrillage (tableaux aveugles)&lt;/h1&gt;
+
+&lt;table border=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;h2&gt;ARQ&lt;/h2&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;Automatic Repeat Request. d&amp;eacute;signation
+g&amp;eacute;n&amp;eacute;rale pour les protocoles d'erreurs
+reconnaissant les erreurs de transmission et r&amp;eacute;p&amp;eacute;
+ tant automatiquement les blocs d&amp;eacute;fectueux&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td&gt;&lt;h2&gt;HDLC&lt;/h2&gt;&lt;/td&gt;
+&lt;td&gt;&lt;p&gt;High Level Data Link Control. Un protocole standard employ&amp;eacute; par la commission des standards internationaux pour l'utilisation de logiciels dans les installations synchrones.&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le graphique suivant montre l'action des &eacute;l&eacute;ments HTML qui cr&eacute;ent un tableau:</p>
+
+<p><img src="construction.gif" width="314" height="178" border="0" alt="Composition d'un tableau"></p>
+
+<p><code>&lt;table&gt;</code> introduit un tableau (<i>table = tableau</i>). Si le
+tableau doit &ecirc;tre quadrill&eacute, vous devez ajouter la mention <code>border=</code> dans le rep&egrave;re d'ouverture <code>&lt;table&gt;</code> et lui affecter une valeur sup&eacute;rieure &agrave; <code>0</code> . La valeur mentionn&eacute;e est alors l'&eacute;paisseur du quadrillage en pixels. Pour cr&eacute;er un tableau aveugle sans bordure ni quadrillage visible omettez la mention <code>border=</code> ou - ce qui est plus propre - notez <code>border=&quot;0&quot;</code>.</p>
+
+<p><code>&lt;tr&gt;</code> introduit une nouvelle ligne dans le tableau (<i>tr = table row = rang&eacute;e de tableau</i>). &Agrave; la suite sont d&eacute;finies les cellules (colonnes) de la rang&eacute;e correspondante. &Agrave; la fin d'une rang&eacute;e de tableau est inscrit le rep&egrave;re de fermeture <code>&lt;/tr&gt;</code>.</p>
+
+<p>Un tableau peut contenir des cellules d'ent&ecirc;te et des cellules de donn&eacute;es normales. Le texte dans les cellules d'ent&ecirc;te est mis en valeur (la plupart du temps en gras et centr&eacute). <code>&lt;th&gt;</code> d&eacute;finit une cellule d'ent&ecirc;te, <code>&lt;td&gt;</code> une cellule normale de donn&eacute;es (<i>th = table header = ent&ecirc;te de tableau, td = table data = donn&eacute;es de tableau</i>). Le contenu d'une cellule est not&eacute &agrave; chaque fois derri&egrave;re le rep&egrave;re. Bien que les rep&egrave;res de fermeture respectifs <code>&lt;/th&gt;</code> ou bien <code>&lt;/td&gt;</code> soient officiellement facultatifs, il est vivement recommand&eacute de  toujours les noter.</p>
+
+<p>Dans une cellule de tableau peuvent &ecirc;tre plac&eacute;s des &eacute;l&eacute;ments au choix, c'est &agrave; dire outre du
+texte normal vous pouvez y d&eacute;finir &eacute;galement des &eacute;l&eacute;ments de votre choix, par exemple &eacute;galement des &eacute;l&eacute;ments de bloc et des &eacute;l&eacute;ments incorpor&eacute;s. Vous pouvez m&ecirc;me y d&eacute;finir un autre tableau.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Le nombre des cellules pour chaque rang&eacute;e doit &ecirc;tre identique de fa&ccedil;on &agrave; ce que le tableau ait pour chaque rang&eacute;e le m&ecirc;me nombre de colonnes. Dans la premi&egrave;re rang&eacute;e que vous d&eacute;finissez le nombre de cellules que vous d&eacute;finissez, &eacute;tablira pour cette raison le nombre de colonnes qu'aura votre tableau.</p>
+
+<p>Des cellules de tableau peuvent aussi &ecirc;tre vides . Si dans une ligne vous ne
+voulez pas entrer de donn&eacute;es pour une colonne notez simplement  <code>&lt;td&gt;</code><code>&lt;/td&gt;</code>. Pensez cependant que dans ce cas beaucoup de navigateurs repr&eacute;senteront la  cellule comme &quot;n'&eacute;tant pas l&agrave&quot;. Pour cette raison essayez donc aussi la suite de commande <code>&lt;td&gt;&amp;#160;&lt;/td&gt;</code> pour des cellules vides de tableau.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&nbsp;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/html40.gif" width="30" height="30" border="0" alt="HTML 4.0"><img src="../../src/xhtml10.gif" width="30" height="30" border="0" alt="XHTML 1.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MSIE 4.0"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0">&nbsp;<a class="an" name="predefinir">Pr&eacute;d&eacute;finir des colonnes</a></h2>
+
+<p>La repr&eacute;sentation d'un tableau d&eacute;coule automatiquement de la
+d&eacute;finition des rang&eacute;es et des colonnes. Pourtant ce n'est pas tr&egrave;s simple pour un navigateur Web de trouver la repr&eacute;sentation suffisamment t&ocirc;t. Il doit lire d'abord le tableau entier avant qu'il puisse en afficher une partie. Cela
+peut conduire pour des grands tableaux &agrave; de vilains &eacute;crans vides pendant la construction de la page.</p>
+
+<p>HTML 4.0 propose une nouvelle syntaxe pour faire savoir au navigateur d&eacute;s le d&eacute;but d'un tableau combien le tableau a de colonnes et quelle est leur largeur. Pour cette raison le navigateur peut construire plus vite le tableau c'est &agrave; dire que le navigateur peut d&eacute;j&agrave; afficher des parties du tableau avant qu'il l'ait lu en totalit&eacute;. Toutefois, les navigateurs plus anciens n'interpr&egrave;tent cependant pas encore ces donn&eacute;es.</p>
+
+<h3 class="xmp">Exemple 1:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/colgroup_col.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;table border=&quot;1&quot;&gt;
+     &lt;colgroup&gt;
+        &lt;col width=&quot;80&quot;&gt;
+        &lt;col width=&quot;100&quot;&gt;
+        &lt;col width=&quot;320&quot;&gt;
+     &lt;/colgroup&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1�re rang�e, 1�re colonne&lt;/td&gt;
+      &lt;td&gt;1�re rang�e, 2�me colonne&lt;/td&gt;
+      &lt;td&gt;1�re rang�e, 3�me colonne&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;!-- etc. autres rang�es du tableau --&gt;
+&lt;/table&gt;
+</pre></td></tr></table>
+<h3 class="xmp">Exemple 2:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;table border=&quot;1&quot;&gt;
+     &lt;colgroup width=&quot;200&quot; span=&quot;3&quot;&gt;
+     &lt;/colgroup&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1�re rang�e, 1�re colonne&lt;/td&gt;
+      &lt;td&gt;1�re rang�e, 2�me colonne&lt;/td&gt;
+      &lt;td&gt;1�re rang�e, 3�me colonne&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;!-- etc. autres rang�es du tableau --&gt;
+&lt;/table&gt;
+</pre></td></tr></table>
+<h3 class="xmp">Exemple 3:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;table border=&quot;1&quot; width=&quot;100%&quot;&gt;
+     &lt;colgroup&gt;
+        &lt;col width=&quot;4*&quot;&gt;
+        &lt;col width=&quot;2*&quot;&gt;
+        &lt;col width=&quot;1*&quot;&gt;
+     &lt;/colgroup&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1�re rang�e, 1�re colonne&lt;/td&gt;
+      &lt;td&gt;1�re rang�e, 2�me colonne&lt;/td&gt;
+      &lt;td&gt;1�re rang�e, 3�me colonne&lt;/td&gt;
+    &lt;/tr&gt;
+        &lt;!-- etc. autres rang�es du tableau --&gt;
+&lt;/table&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>&lt;colgroup&gt;</code> qui suit le rep&egrave;re d'ouverture <code>&lt;table&gt;</code> vous introduisez une pr&eacute;-d&eacute;finition des colonnes du tableau (<i>colgroup = column group = groupe de colonnes</i>). Pour ce faire vous avez deux possibilit&eacute;s: ou bien vous d&eacute;sirez des colonnes de tableau qui ne soient pas de la m&ecirc;me largeur. Alors vous proc&eacute;dez comme dans l'exemple 1 ci-dessus. Ou bien vous avez un tableau dans lequel toutes les colonnes doivent avoir la m&ecirc;me largeur uniforme. Alors vous proc&eacute;dez comme dans l'exemple 2 ci-dessus.</p>
+
+<p>Dans l'exemple 1 le rep&egrave;re <code>&lt;colgroup&gt;</code> ne comprend pas de
+mentions compl&eacute;mentaires. C'est pourquoi vous notez sous ce rep&egrave;re <code>&lt;colgroup&gt;</code> pour chaque colonne s&eacute;par&eacute;e du tableau une commande  <code>&lt;col&gt;</code>. Le premier rep&egrave;re <code>&lt;col&gt;</code> d&eacute;finit la premi&egrave;re colonne, le deuxi&egrave;me la deuxi&egrave;me colonne etc. Sans pr&eacute;cision compl&eacute;mentaire la largeur des colonnes est &eacute;tablie automatiquement sur la base du contenu du tableau. Avec <code>width=</code> [Pixel/Pourcentage] vous pouvez cependant d&eacute;terminer une largeur de colonne pour chacune d'entre elles (<i>width = largeur</i>). Avec <code>width=&quot;100&quot;</code> vous fixez par exemple une largeur de colonne de 100 pixels et avec <code>width=33%</code> une largeur d'un tiers du tableau total.</p>
+
+<p>Dans l'exemple 2 aucune commande du type <code>&lt;col&gt;</code> n'a &eacute;t&eacute not&eacute;e. &Agrave; la place vous notez dans le rep&egrave;re d'ouverture <code>&lt;colgroup&gt;</code> l'attribut <code>span=</code> ((<i>span = tendre</i>). Donnez apr&egrave;s le signe &eacute;gal le nombre de colonnes que vous d&eacute;sirez. Avec l'attribut <code>width=</code> vous pouvez dans ce cas d&eacute;finir une largeur de colonne uniforme pour toutes les
+colonnes.</p>
+
+<p>Avec la commande <code>width=</code> vous avez outre la possibilit&eacute de donner des valeurs en pixels ou en pourcentage encore une troisi&egrave;me possibilit&eacute; vous pouvez donner le rapport de largeur relatif des colonnes entre elles ind&eacute;pendamment de la largeur du tableau dans la fen&ecirc;tre d'affichage. L'exemple 3 pr&eacute;sente une telle possibilit&eacute;. Pour des donn&eacute;es de largeur de ce genre affectez un nombre suivi d'une &eacute;toile &agrave; <code>width=</code> L'&eacute;toile est un signal pour le navigateur qu'il ne doit pas interpr&eacute;ter les chiffres devant l'&eacute;toile en tant que pixels. Les chiffres sont importants. Dans l'exemple 3 ci-dessus trois colonnes sont d&eacute;finies pour lesquelles les nombres relatifs 4, 2 et 1 donnent un total de 7. Ainsi vous d&eacute;finissez un tableau dont la premi&egrave;re colonne
+repr&eacute;sente les 4/7 de la largeur du tableau la deuxi&egrave;me 2/7 et la troisi&egrave;me colonne 1/7 .<br>
+Ce rapport relatif des colonnes entre elle n'est vraiment valable que si vous
+donnez d'abord en plus une largeur pour le tableau complet. Dans l'exemple 3 ci-dessus cela se fait par la mention <code>width=&quot;100%&quot;</code> dans le rep&egrave;re d'ouverture <code>&lt;table&gt;</code>.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Les rep&egrave;res <code>&lt;col&gt;</code> peuvent &ecirc;tre dispens&eacute;s du rep&egrave;re de fermeture. Le rep&egrave;re de fermeture <code>&lt;/colgroup&gt;</code> est par contre facultatif. Notez, si vous voulez travailler conform&eacute;ment &agrave; <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../xhtml/index.htm"><b>XHTML et HTML</b></a>, le rep&egrave;re <code>&lt;col&gt;</code>de la fa&ccedil;on suivante par exemple: <code> &lt;col width=&quot;4*&quot;&nbsp;/&gt;</code>.</p>
+
+<p>Le rep&egrave;re <code>&lt;col&gt;</code> peut aussi accepter l'attribut <code>span=</code>. Ceci n'a cependant pas pour effet de grouper plusieurs colonnes en une seule mais d'indiquer que les attributs de cette colonne s'appliquent aussi aux prochaines x colonnes. Si par exemple vous indiquez <code>&lt;col span=&quot;3&quot; width=&quot;100&quot;&gt;</code> cette colonne et les deux suivantes auront une largeur de 100 pixels.</p>
+
+<p>Le rep&egrave;re <code>&lt;colgroup&gt;</code> peut avoir lui aussi les attributs <code>span=</code> et <code>width=</code> si des rep&egrave;res <code>&lt;col&gt;</code> sont d&eacute;finis juste apr&egrave;s. Le nombre des rep&egrave;res d&eacute;finis <code>&lt;col&gt;</code> &eacute;crase pourtant la mention qui avait &eacute;t&eacute; faite avec <code>&lt;colgroup span=&gt;</code> , et l'attribut <code>width=</code> &agrave; l'int&eacute;rieur d'un rep&egrave;re <code>&lt;col&gt;</code> a priorit&eacute; sur la mention <code>width=</code> dans le rep&egrave;re <code>&lt;colgroup&gt;</code>.</p>
+
+<p> Il est aussi permis de noter plusieurs rep&egrave;res <code>&lt;colgroup&gt;</code>. Ainsi vous pouvez par exemple gr&acirc;ce &agrave; deux commandes comme  <code>&lt;colgroup width=&quot;100&quot; span=&quot;3&quot;&gt;</code> et <code>&lt;colgroup width=&quot;50&quot; span=&quot;5&quot;&gt;</code> not&eacute;es &agrave; la suite l'une de
+l'autre, d&eacute;finir un total de 8 colonnes pour le tableau dont les trois
+premi&egrave;res colonnes auront une largeur de 100 pixels et les cinq suivantes une
+largeur de 50 pixels.</p>
+
+<p>Pour la largeur des colonnes d'un tableau s'appliquent les m&ecirc;mes remarques que pour  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="constitution.htm#largeur_hauteur"><b>fixer les largeur et hauteur de colonnes</b></a> de fa&ccedil;on habituelle.</p>
+
+
+
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&nbsp;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/html40.gif" width="30" height="30" border="0" alt="HTML 4.0"><img src="../../src/xhtml10.gif" width="30" height="30" border="0" alt="XHTML 1.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MSIE 4.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0">&nbsp;<a class="an" name="tete_corps_pied">D&eacute;finir l'ent&ecirc;te, le corps et le pied d'un tableau</a></h2>
+
+<p>Vous pouvez diviser un tableau en trois parties logiques: un ent&ecirc;te, une
+ou plusieurs parties pour les donn&eacute;es et la partie du pied. Ceci est int&eacute;ressant par exemple en relation avec la possibilit&eacute de fixer des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="constitution.htm#regles_quadrillage"><b>r&egrave;gles pour le quadrillage</b></a>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/thead_tfoot_tbody.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Strict//EN&quot;
+       &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;D�finir l'ent�te, le corps et le pied d'un tableau&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Personnes concern�es&lt;/h1&gt;
+
+&lt;table border=&quot;1&quot; rules=&quot;groups&quot;&gt;
+    &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Association 1&lt;/th&gt;
+      &lt;th&gt;Association 2&lt;/th&gt;
+      &lt;th&gt;Association 3&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;i&gt;concern&eacute;s:<br>environ 55 Millions<br>d'individus&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;i&gt;concern&eacute;s:<br>environ 4 Millions<br>d'individus&lt;/i&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;i&gt;concern&eacute;s:<br>environ 1,5 Millions<br>d'individus&lt;/i&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tfoot&gt;
+    &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;France&lt;/td&gt;
+      &lt;td&gt;Belgique&lt;/td&gt;
+      &lt;td&gt;Suisse&lt;/td&gt;
+    &lt;/tr&gt;&lt;tr&gt;
+      &lt;td&gt;quatre-vingts&lt;/td&gt;
+      &lt;td&gt;octante&lt;/td&gt;
+      &lt;td&gt;huitante&lt;/td&gt;
+    &lt;/tr&gt;&lt;tr&gt;
+      &lt;td&gt;serpilli&egrave;re&lt;/td&gt;
+      &lt;td&gt;wassingue&lt;/td&gt;
+      &lt;td&gt;panosse&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Vous introduisez l'ent&ecirc;te du tableau avec <code>&lt;thead&gt;</code> (<i>thead = table head = ent&ecirc;te de tableau</i>). &Agrave; la suite vous pouvez noter une ou plusieurs lignes. Avec <code>&lt;/thead&gt;</code> vous cl&ocirc;turez l'ent&ecirc;te du tableau (le rep&egrave;re de fermeture pour tous les &eacute;l&eacute;ments de l'ent&ecirc;te, du pied ou du corps du tableau dont facultatifs mais vivement recommand&eacute;s).</p>
+
+<p>Avant de noter un ou plusieurs &eacute;l&eacute;ments du corps de tableau, vous devez noter derri&egrave;re l'ent&ecirc;te de tableau, le pied du tableau. Vous introduisez celui-ci avec <code>&lt;tfoot&gt;</code> (<i>tfoot = table foot = pied de tableau</i>). &Agrave; la suite vous pouvez noter une ou plusieurs lignes faisant partie du pied du tableau. Avec <code>&lt;/tfoot&gt;</code> vous cl&ocirc;turez le pied du tableau.</p>
+
+<p>Vous introduisez le corps du tableau avec <code>&lt;tbody&gt;</code>.    (<i>tbody = table body = corps de tableau</i>). &Agrave; la suite vous notez l'espace des donn&eacute;es proprement dites du tableau avec une ou plusieurs lignes de tableau. Avec <code>&lt;/tbody&gt;</code> vous cl&ocirc;turez le corps du
+tableau.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Si vous travaillez avec les &eacute;l&eacute;ments <code>thead</code>, <code>tfoot</code> et <code>tbody</code>, vous devez toujours utiliser les trois &eacute;l&eacute;ments et cela toujours dans l'ordre <code>thead</code>-&gt;<code>tfoot</code>-&gt;<code>tbody</code>. Les &eacute;l&eacute;ments <code>thead</code> et <code>tfoot</code> ne peuvent &ecirc;tre plac&eacute;s qu'une fois dans un tableau, L'&eacute;l&eacute;ment <code>tbody</code> une fois ou plus &agrave; votre gr&eacute;.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&nbsp;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="autres_infos">Autres informations</a></h2>
+
+<p>Tous les &eacute;l&eacute;ments pr&eacute;sent&eacute;s ici peuvent contenir des <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../attributs/index.htm"><b>attributs universels</b></a> .</p>
+
+<p>Dans le <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../reference/index.htm"><b>sommaire de r&eacute;f&eacute;rence HTML</b></a> vous trouverez des donn&eacute;es pr&eacute;cisant o&ugrave; les &eacute;l&eacute;ments HTML pr&eacute;sent&eacute;s ici  peuvent &ecirc;tre mis, quels autres &eacute;l&eacute;ments ils peuvent contenir, quels attributs ils peuvent avoir et ce &agrave; quoi il faut veiller pour ces diff&eacute;rents attributs:<br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/elements.htm#table"><b>r&eacute;f&eacute;rence pour les &eacute;l&eacute;ments</b></a> et <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/attributs.htm#table"><b>r&eacute;f&eacute;rence pour les attributs</b></a> pour les tableaux (<code>&lt;table&gt;...&lt;/table&gt;</code>)<br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/elements.htm#tr"><b>r&eacute;f&eacute;rence pour les &eacute;l&eacute;ments</b></a> et <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/attributs.htm#tr"><b>r&eacute;f&eacute;rence pour les attributs</b></a> pour les lignes de tableau (<code>&lt;tr&gt;...&lt;/tr&gt;</code>)<br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/elements.htm#th"><b>r&eacute;f&eacute;rence pour les &eacute;l&eacute;ments</b></a> et <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/attributs.htm#th"><b>r&eacute;f&eacute;rence pour les attributs</b></a> pour les cellules d'ent&ecirc;te (<code>&lt;th&gt;...&lt;/th&gt;</code>)<br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/elements.htm#td"><b>r&eacute;f&eacute;rence pour les &eacute;l&eacute;ments</b></a> et <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/attributs.htm#td"><b>r&eacute;f&eacute;rence pour les attributs</b></a> pour les cellules de donn&eacute;es (<code>&lt;td&gt;...&lt;/td&gt;</code>)<br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/elements.htm#colgroup"><b>r&eacute;f&eacute;rence pour les &eacute;l&eacute;ments</b></a> et <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/attributs.htm#colgroup"><b>r&eacute;f&eacute;rence pour les attributs</b></a> pour les groupes de colonnes (<code>&lt;colgroup&gt;...&lt;/colgroup&gt;</code>)<br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/elements.htm#col"><b>r&eacute;f&eacute;rence pour les &eacute;l&eacute;ments</b></a> et <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/attributs.htm#col"><b>r&eacute;f&eacute;rence pour les attributs</b></a> pour les colonnes (<code>&lt;col&gt;</code>)<br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/elements.htm#thead"><b>r&eacute;f&eacute;rence pour les &eacute;l&eacute;ments</b></a> et <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/attributs.htm#thead"><b>r&eacute;f&eacute;rence pour les attributs</b></a> pour l'ent&ecirc;te de tableau (<code>&lt;thead&gt;...&lt;/thead&gt;</code>)<br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/elements.htm#tfoot"><b>r&eacute;f&eacute;rence pour les &eacute;l&eacute;ments</b></a> et <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/attributs.htm#tfoot"><b>r&eacute;f&eacute;rence pour les attributs</b></a> pour le pied du tableau (<code>&lt;tfoot&gt;...&lt;/tfoot&gt;</code>)<br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/elements.htm#tbody"><b>r&eacute;f&eacute;rence pour les &eacute;l&eacute;ments</b></a> et <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../reference/attributs.htm#tbody"><b>r&eacute;f&eacute;rence pour les attributs</b></a> pour le corps du tableau (<code>&lt;tbody&gt;...&lt;/tbody&gt;</code>)</p>
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="constitution.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="constitution.htm"><b>Mise en forme d'un tableau</b></a>
+</td></tr>
+
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="../texte/proprietaire.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../texte/proprietaire.htm"><b>&Eacute;l&eacute;ments plus anciens sp&eacute;cifiques au navigateur</b></a>
+</td>
+
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&nbsp;</td></tr>
+</table>
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>HTML/XHML</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Tableaux</b></a></td>
+</tr></table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a> <br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+</body>
+</html>

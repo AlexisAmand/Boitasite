@@ -1,0 +1,452 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: XML/DTD / D&eacute;finitions de type de document (DTD) / Entit&eacute;s pour blocs de texte et transcriptions</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment d&eacute;clarer des entit&eacute;s (blocs de texte) dans une DTD XML et dans quel but.">
+<meta name="keywords"       content="SELFHTML, XML, DTD, DTDs, Document Type Definition, d&eacute;finition de type de document, entit&eacute;s, entit&eacute;, Entities, d&eacute;claration d'entit&eacute;">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/xml/dtd/entites.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // XML/DTD == ../index.htm // D&eacute;finitions de type de document (DTD) == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>XML/DTD</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>D&eacute;finitions de type de document (DTD)</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Entit&eacute;s pour blocs de texte et transcriptions</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur les entit&eacute;s</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#schema"><b>Sch&eacute;ma pour d&eacute;finir les entit&eacute;s</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#blocs_texte"><b>Entit&eacute;s pour blocs de texte</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#nommage_caracteres"><b>Entit&eacute;s pour le nommage de caract&egrave;res</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#imbrication"><b>Entit&eacute;s imbriqu&eacute;es</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#externes"><b>Entit&eacute;s pour ressources externes</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#parametre_entites"><b>Param&egrave;tre entit&eacute; pour DTD plus complexes</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#dtd_modulaires"><b>DTD modulaires &agrave; l'aide d'entit&eacute;s</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur les entit&eacute;s</a></h2>
+
+<p>Les entit&eacute;s (Entities Singulier: Entity) sont des abr&eacute;viations d&eacute;finies. Peut-&ecirc;tre connaissez vous la possibilit&eacute; des programmes de traitement de texte de d&eacute;finir des blocs de texte qui peuvent ensuite &ecirc;tre ins&eacute;r&eacute;s tr&egrave;s rapidement dans le texte actuel par menu ou par un raccourci clavier. Cette fonctionnalit&eacute; repr&eacute;sente une des t&acirc;ches des entit&eacute;s.</p>
+
+<p>Les entit&eacute;s en XML peuvent cependant avoir plusieurs fonctions. Les blocs de texte que vous pouvez ainsi d&eacute;finir dont disponibles d'une part dans des fichiers d'application. Il y a les entit&eacute;s qui n'ont une fonction d'abr&eacute;viation que dans les d&eacute;finitions de DTD ou les entit&eacute;s qui cr&eacute;ent une relation avec des sources de donn&eacute;es externes, et les entit&eacute;s qui r&eacute;alisent des transcriptions pour des signes sp&eacute;ciaux.</p>
+
+<p>Les entit&eacute;s sont &eacute;galement fr&eacute;quentes dans des langage de marquage connus comme HTML. Quand par exemple vous voulez noter des suites de caract&egrave;res comme <code>&amp;eacute;</code>, alors vous utilisez des entit&eacute;s qui ont &eacute;t&eacute; d&eacute;finies pour HTML. Pour comprendre les entit&eacute;s en XML, il faut vous lib&eacute;rer toutefois des limites de la fonctionnalit&eacute; des entit&eacute;s en HTML.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><a class="an" name="schema">Sch&eacute;ma pour d&eacute;finir les entit&eacute;s</a></h2>
+
+<p>Les entit&eacute;s sont not&eacute;es dans une DTD d'apr&egrave;s le sch&eacute;ma suivant:</p>
+
+<h3 class="xmp">Sch&eacute;ma:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ENTITY [%] Nom [SYSTEM|PUBLIC] &quot;valeur&quot; [mentions suppl�mentaires] &gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>La d&eacute;finition d'une entit&eacute; commence par la parenth&egrave;se pointue d'ouverture   <code>&lt;</code>,suivie imm&eacute;diatement d'un point d'exclamation  <code>!</code>  Derri&egrave;re en majuscules suit le mot cl&eacute;  <code>ENTITY</code>. &Agrave; la suite suit pour un<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#parametre_entites"><b>param&egrave;tre entit&eacute; pour bloc de texte dans la DTD</b></a> un signe pourcentage <code>%</code>, pas pour les autres d&eacute;finitions d'entit&eacute;s. Dans tous les cas pourtant suit un nom pour l'entit&eacute;. Vous pouvez choisir librement le nom. Il doit cependant satisfaire aux <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="regles_traitement.htm#noms"><b>r&egrave;gles pour les noms </b></a> en XML. Derri&egrave;re le nom peut &ecirc;tre plac&eacute; un des mots cl&eacute;s <code>SYSTEM</code> ou <code>PUBLIC</code>, et cela dans le cas des <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#externes"><b>Entit&eacute;s pour ressources externes</b></a>. Pour toutes les autres d&eacute;finitions d'entit&eacute;s, ne mentionnez aucun de ces mots-cl&eacute;s. Enfin, plac&eacute;e entre guillemets, la valeur que vous voulez affecter au nom d'entit&eacute;. La valeur affect&eacute;e peut avoir une nature tr&egrave;s vari&eacute;e selon le type de l'entit&eacute;. Derri&egrave;re le nom, peuvent encore suivre dans des cas sp&eacute;ciaux des mentions particuli&egrave;res. Un exemple &agrave; ce sujet est donn&eacute; dans la partie sur les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="attributs.htm#valeur_entite"><b>attributs avec une valeur d'entit&eacute; (par exemple pour des r&eacute;f&eacute;rences de fichier externe)</b></a>.<br>
+Chaque d&eacute;finition d'entit&eacute; se termine avec une parenth&egrave;se pointue de fermeture  <code>&gt;</code>. Les diff&eacute;rentes parties de la d&eacute;finition de l'entit&eacute; sont s&eacute;par&eacute;es par un ou plusieurs espaces.</p>
+
+<p>Vous pouvez placer une telle d&eacute;finition d'entit&eacute; &agrave; n'importe quel endroit dans la DTD - avant ou apr&egrave;s d'autres d&eacute;finitions comme <code>&lt;!ELEMENT...&gt;</code> (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elements.htm"><b>&Eacute;l&eacute;ments</b></a>), <code>&lt;!ATTLIST...&gt;</code> (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="attributs.htm"><b>Attributs</b></a>) ou bien <code>&lt;!NOTATION...&gt;</code> (<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="notations.htm"><b>Notations</b></a>). Dans chaque cas cependant, une entit&eacute; doit cependant avoir &eacute;t&eacute; d&eacute;finie avant sa premi&egrave;re utilisation. C'est &agrave; observer par exemple pour les param&egrave;tres entit&eacute;s pour blocs de texte de DTD o&ugrave; les d&eacute;finitions d'entit&eacute;s doivent &ecirc;tre not&eacute;es avant les d&eacute;finitions de types d'&eacute;l&eacute;ment dans lesquels elles sont employ&eacute;es. Dans la pratique, on d&eacute;finit les entit&eacute;s la plupart du temps tout au d&eacute;but de la DTD, avant toutes les d&eacute;finitions d'&eacute;l&eacute;ments et d'attributs.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="blocs_texte">Entit&eacute;s pour blocs de texte</a></h2>
+
+<p>Pour des expressions plus longues qui reviennent sans arr&ecirc;t dans les donn&eacute;es d'application d'une structure XML gomme par exemple des noms propres ou des formules, vous pouvez d&eacute;finir des abr&eacute;viations dans la DTD.</p>
+
+<h3 class="xmp">Exemple de DTD <var>blocs_de_texte.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ELEMENT blocs_de_texte (#PCDATA)&gt;
+&lt;!ENTITY jpa &quot;Je vous prie d'agr&amp;#233;er mes cordiales salutations&quot; &gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Ici s'applique le <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#schema"><b>sch&eacute;ma pour d&eacute;finir les entit&eacute;s</b></a>. Avec les entit&eacute;s pour blocs de texte, vous n'avez besoin que d'attribuer un nom pour l'entit&eacute; et de lui attribuer la valeur d&eacute;sir&eacute;e. Dans l'exemple une entit&eacute; nomm&eacute;e <code>jpa</code> a &eacute;t&eacute; d&eacute;finie et la valeur <code>Je vous prie d'agr&amp;#233;er mes cordiales salutations</code> lui a &eacute;t&eacute; affect&eacute;e.</p>
+
+
+<h3 class="xmp">Exemple d'une application valide:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/blocs_de_texte.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple la structure de donn&eacute;es)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE blocs_de_texte SYSTEM &quot;blocs_de_texte.dtd&quot;&gt;
+&lt;blocs_de_texte&gt;
+En l'attente, &amp;jpa;
+&lt;/blocs_de_texte&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Pour utiliser une entit&eacute; d&eacute;finie dans la DTD dans les donn&eacute;es d'application, notez le ET commercial (<code>&amp;</code>), et directement &agrave; la suite le nom de l'entit&eacute; suivi d'un point virgule de cl&ocirc;ture (<code>;</code>). L'analyseur syntaxique XML ins&egrave;re alors &agrave; l'endroit correspondant le long texte affect&eacute; &agrave; l'abr&eacute;viation. L'exemple <code>&amp;jpa;</code> provoque donc la sortie de <code>Je vous prie d'aggr&amp;#233;er mes cordiales salutations</code>.</p>
+
+<p>Vous pouvez noter cette entit&eacute; dans les donn&eacute;es d'applications partout o&ugrave; des cha&icirc;nes de caract&egrave;res sont possibles, &agrave; savoir dans un contenu de caract&egrave;res, entre le rep&egrave;re d'ouverture et le rep&egrave;re de fermeture ou m&ecirc;me dans des affectations de valeurs &agrave; des attributs, pour lesquels des cha&icirc;nes de caract&egrave;res sont autoris&eacute;es.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Remplacez dans la cha&icirc;ne de caract&egrave;res que vous affectez au nom d'une entit&eacute; les signes dont la valeur de caract&egrave;re est plus grande que 127 par leur transcription num&eacute;rique comme dans l'exemple ci-dessus <code>&amp;#233;</code> pour <code>&eacute;</code>. Les valeurs de caract&egrave;res d&eacute;sir&eacute;es peuvent &ecirc;tre trouv&eacute;es par exemple dans la  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../internationalisation/jeux_caracteres.htm#iso8859_liste"><b>liste des jeux de caract&egrave;res ISO-8859</b></a>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="nommage_caracteres">Entit&eacute;s pour le nommage de caract&egrave;res</a></h2>
+
+<p>Vous connaissez sans doute de HTML les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/reference/signes.htm#nommes_iso8859_1"><b>signes nomm&eacute;s pour le jeu de caract&egrave;res ISO 8859-1</b></a> comme <code>&amp;ccedil;</code> ou <code>&amp;copy;</code>. Vous pouvez d&eacute;finir vous m&ecirc;me dans une DTD XML de telles d&eacute;signations faciles &agrave; retenir. Ceci est indiqu&eacute; avant tout pour des signes qui ne se trouvent pas sur le clavier, ou quand vous ne connaissez pas les environnements de d&eacute;veloppement et les jeux de caract&egrave;res internes utilis&eacute;s par les utilisateurs qui travaillent avec vos DTD XML.</p>
+
+<h3 class="xmp">Exemple de DTD <var>emoticones.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ENTITY emoticone_triste &quot;&amp;#x2369;&quot; &gt;
+&lt;!ENTITY emoticone_heureux &quot;&amp;#x236A;&quot; &gt;
+&lt;!ELEMENT emoticone (#PCDATA)&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>En tant que graphiques les signes d&eacute;sir&eacute;s de l'exemple ont &agrave; peu pr&egrave;s cet aspect:<br>
+<code>emoticone_triste</code>: <img src="../../src/triste.gif" width="16" height="16" border="0" align="middle" alt="triste mine"> et <code>emoticone_heureux</code>: <img src="../../src/joyeux.gif" width="16" height="16" border="0" align="middle" alt="mine r&eacute;jouie"></p>
+
+<p>Ici s'applique le  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#schema"><b>sch&eacute;ma pour d&eacute;finir les entit&eacute;s</b></a>. Pour les entit&eacute;s pour le nommage de signes,  vous n'avez besoin que d'attribuer un nom pour l'entit&eacute; et de lui attribuer comme valeur la notation num&eacute;rique du signe sous forme d&eacute;cimale ou hexad&eacute;cimale. Dans l'exemple, deux signes sont nomm&eacute;s. Leurs noms sont <code>emoticone_triste</code> et <code>emoticone_heureux</code>. Dans le syst&egrave;me Unicode les deux signes d&eacute;sir&eacute;s qui doivent &ecirc;tre affect&eacute;s &agrave; ces noms ont les valeurs hexad&eacute;cimales  <code>2369</code> et <code>236A</code>. La fa&ccedil;on de noter est ici la m&ecirc;me qu'en HTML 4.0 donc par exemple <code>&amp;#x236A;</code> (hexad&eacute;cimal) ou <code>&amp;#9066;</code> (d&eacute;cimal). La notation commence par le ET commercial <code>&amp;</code>, suivi d'un signe di&egrave;se <code>#</code>. Quand vous notez la valeur de caract&egrave;re en hexad&eacute;cimal, le signe <code>x</code> doit suivre suivi lui m&ecirc;me par la valeur hexad&eacute;cimale. Si vous voulez noter la valeur du caract&egrave;re en d&eacute;cimal le chiffre suit imm&eacute;diatement  (sans &ecirc;tre pr&eacute;c&eacute;d&eacute; de <code>x</code>). Derri&egrave;re la valeur du caract&egrave;re suit un point virgule <code>;</code>.</p>
+
+<h3 class="xmp">Exemple d'une application valide:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/emoticones.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple la structure de donn&eacute;es)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE emoticones SYSTEM &quot;emoticones.dtd&quot;&gt;
+&lt;emoticones&gt;
+Es tu &amp;emoticone_heureux; ou bien &amp;emoticone_triste;?
+&lt;/emoticones&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Pour utiliser les signes nomm&eacute;s dans les donn&eacute;es d'application, notez le ET commercial (<code>&amp;</code>), et directement &agrave; la suite le nom de l'entit&eacute; suivi d'un point virgule de cl&ocirc;ture (<code>;</code>).  L'analyseur syntaxique XML ins&egrave;re alors &agrave; l'endroit correspondant le signe en question. Dans l'exemple, vous obtenez donc la m&ecirc;me chose en notant <code>&amp;emoticone_heureux;</code> que si vous notiez <code>&amp;#x236A;</code> - mais le nom est plus facile &agrave; retenir.</p>
+
+<p>Vous pouvez noter cette entit&eacute; dans les donn&eacute;es d'applications partout o&ugrave; des cha&icirc;nes de caract&egrave;res sont possibles, &agrave; savoir dans un contenu de caract&egrave;res, entre le rep&egrave;re d'ouverture et le rep&egrave;re de fermeture ou m&ecirc;me dans des affectations de valeurs &agrave; des attributs, pour lesquels des cha&icirc;nes de caract&egrave;res sont autoris&eacute;es.</p>
+
+
+<h3 class="inf">Attention:</h3>
+
+<p>Quand le signe d&eacute;sir&eacute; n'est pas sorti, cela est d&ucirc; au soutien Unicode insuffisant ou &agrave; ce que pour la sortie de donn&eacute;es, aucune police d'&eacute;criture n'est disponible qui puisse repr&eacute;senter des signes Unicode &agrave; valeur &eacute;lev&eacute;e comme ceux de l'exemple ci-dessus.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="imbrication">Entit&eacute;s imbriqu&eacute;es</a></h2>
+
+<p>Pour l'affectation de valeur dans une d&eacute;finition d'entit&eacute;, il est tout &agrave; fait possible d'utiliser d'autres entit&eacute;s pour cr&eacute;er de cette fa&ccedil;on des blocs de texte complexes.</p>
+
+<h3 class="xmp">Exemple de DTD <var>texte_courriel.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ENTITY rs &quot;Rodrigue et Chim�ne SARL&quot; &gt;
+&lt;!ENTITY c &quot;info@cid.fr&quot; &gt;
+&lt;!ENTITY rsc &quot;&amp;rs;, &amp;c;&quot; &gt;
+&lt;!ELEMENT texte_courriel (#PCDATA)&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans cet exemple, les entit&eacute;s <code>rs</code> et <code>c</code> d&eacute;finies auparavant sont utilis&eacute;es pour l'affectation de valeur &agrave; l'entit&eacute; <code>rsc</code>.</p>
+
+<h3 class="xmp">Exemple d'une application valide:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/texte_courriel.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple la structure de donn&eacute;es)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE texte_courriel SYSTEM &quot;texte_courriel.dtd&quot;&gt;
+&lt;texte_courriel&gt;
+La firme &amp;rs; est heureuse de vous pr�senter ses produits les plus r�cents. Veuillez envoyer votre commande � &amp;rsc;.
+&lt;/texte_courriel&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Si dans les donn&eacute;es d'application <code>&amp;rsc;</code> est not&eacute;, ce sera remplac&eacute; par <code>Rodrigue et Chim&egrave;ne SARL, info@cid.fr</code>. Dans le jargon sp&eacute;cialis&eacute; XML, on dit aussi que les diff&eacute;rents blocs de texte <code>&amp;f;</code> et <code>&amp;m;</code> sont &quot;avanc&eacute;s&quot;.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0">&nbsp;<a class="an" name="externes">Entit&eacute;s pour ressources externes</a></h2>
+
+<p>Pour les entit&eacute;s pour ressources externes appel&eacute;es aussi <b>entit&eacute;s externes</b> (par opposition &agrave; tous les autres types d'entit&eacute;s qui sont d&eacute;sign&eacute;es comme <b>entit&eacute;s internes</b> ), XML offre la possibilit&eacute; de faire savoir &agrave; un analyseur syntaxique que des donn&eacute;es d'un autre fichier doivent &ecirc;tre incorpor&eacute;es.</p>
+
+<h3 class="xmp">Exemple de DTD <var>nouvelles.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ELEMENT nouvelles (donnees_nouvelles)*&gt;
+&lt;!ENTITY source_donnees SYSTEM &quot;nouvelles.txt&quot; &gt;
+&lt;!ELEMENT donnees_nouvelles EMPTY&gt;
+&lt;!ATTLIST donnees_nouvelles
+   source            ENTITY              #REQUIRED
+&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Ici s'applique le  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#schema"><b> sch&eacute;ma pour d&eacute;finir les entit&eacute;s</b></a>. Avec des entit&eacute;s pour ressources externes, vous devez noter en plus du nom de l'entit&eacute;, un des deux mots-cl&eacute;s <code>SYSTEM</code> ou bien <code>PUBLIC</code> (&agrave; &eacute;crire l'un et l'autre en majuscules). Quand vous d&eacute;signez la source de donn&eacute;es externe directement avec le nom de fichier, alors utilisez <code>SYSTEM</code>. Pour l'affectation de valeur, notez alors le nom de fichier de la source externe, le cas &eacute;ch&eacute;ant avec une mention de chemin relative ou absolue. Cela peut &ecirc;tre aussi une URI, par exemple <code>http://www.xy.fr/nouvelles/nouvelles.txt</code>. Si &agrave; la place, vous notez une <b>d&eacute;signation de source publique</b> (<i>public identifier</i>), alors mentionnez <code>PUBLIC</code> et notez pour l'affectation de valeur la d&eacute;signation de la source publique de la source des donn&eacute;es.</p>
+
+<p>Vous ne pouvez utiliser une entit&eacute; pour ressource externe dans une application XML qu'en en affectant le nom de l'entit&eacute; &agrave; un attribut. C'est une particularit&eacute; de ce genre d'entit&eacute;s. C'est pourquoi vous devez d&eacute;finir dans la DTD, outre l'entit&eacute;, &eacute;galement un <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp; <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="attributs.htm#valeur_entite"><b>attribut avec une valeur d'entit&eacute; </b></a> pour un <a href="elements.htm"><b>type d'&eacute;l&eacute;ment</b></a> quelconque souhait&eacute;. Dans l'exemple ci-dessus un type d'&eacute;l&eacute;ment <code>donnees_nouvelles</code> avec un attribut <code>source</code> est d&eacute;fini. Cet attribut est fix&eacute; gr&acirc;ce &agrave; la mention <code>ENTITY</code> comme &eacute;tant un attribut avec une valeur d'entit&eacute;.</p>
+
+<h3 class="xmp">Exemple d'une application valide:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/nouvelles.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche la structure de donn&eacute;es)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE nouvelles SYSTEM &quot;nouvelles.dtd&quot;&gt;
+&lt;nouvelles&gt;
+&lt;donnees_nouvelles source=&quot;source_donnees&quot; /&gt;
+&lt;/nouvelles&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le nom d'entit&eacute; <code>&quot;source_donnees&quot;</code> a &eacute;t&eacute; affect&eacute; &agrave; l'&eacute;l&eacute;ment <code>donnees_nouvelles</code> par l'attribut <code>source</code>. Ce nom est alors remplac&eacute; par la liaison <code>&quot;nouvelles.txt&quot;</code> qui lui est li&eacute;e. L'analyseur syntaxique  est &quot;inform&eacute;&quot; en m&ecirc;me temps qu'il ne s'agit pas d'un remplacement de texte mais de la mention d'une r&eacute;f&eacute;rence externe.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Pour que la r&eacute;f&eacute;rence externe puisse &ecirc;tre ins&eacute;r&eacute;e &agrave; l'endroit correspondant, l'analyseur syntaxique doit naturellement pouvoir traiter cette information et conna&icirc;tre le chemin pour afficher les donn&eacute;es correspondantes. Des mentions suppl&eacute;mentaires sont indispensables pour la d&eacute;finition en particulier pour des donn&eacute;es binaires, par exemple pour des graphiques. Vous en trouverez un exemple dans la partie sur les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="attributs.htm#mit_entitywert"><b>Attributs avec une valeur d'entit&eacute;</b></a>.</p>
+
+<p>XML est silencieux, en ce qui concerne les mentions de chemin locales (<code>SYSTEM</code>), sur la syntaxe exacte. Si l'ordinateur tourne sous Windows, il peut tout &agrave; fait &ecirc;tre n&eacute;cessaire d'utiliser pour le chemin des barres obliques invers&eacute;es <code>\</code> au lieu de la barre oblique typique chez Unix <code>/</code>. De la m&ecirc;me fa&ccedil;on il d&eacute;pend de l'analyseur syntaxique en service s'il pourra trouver l'URI mentionn&eacute;e ou non.</p>
+
+<p>Un exemple d'utilisation d'une d&eacute;signation publique (<i>public identifier</i>) pourrait donner:<br> <code>&lt;!ENTITY&nbsp;%&nbsp;HTML_Chars&nbsp;PUBLIC&nbsp;&quot;-//W3C//ENTITIES&nbsp;Latin1//EN//HTML&quot;&nbsp;&gt;</code><br><code>%HTML_Chars;</code><br>Avec une telle d&eacute;signation, vous incorporez les signes nomm&eacute;s de HTML dans votre DTD. De plus amples d&eacute;tails pour l'incorporation de ressources externes dans une DTD peuvent &ecirc;tre trouv&eacute;s dans la partie sur les  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#dtd_modulaires"><b>DTD modulaires &agrave; l'aide d'entit&eacute;s</b></a>.</p>
+
+<p>Certains analyseurs syntaxiques protestent avec des exemples comme celui ci-dessus, bien qu'ils soient conformes &agrave; XML.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="parametre_entites">Param&egrave;tre entit&eacute; pour DTD plus complexes</a></h2>
+
+<p>Les param&egrave;tres entit&eacute;s permettent de d&eacute;finir des &quot;Macros&quot; pour une utilisation dans la DTD. Leur mise en &#339;uvre est particuli&egrave;rement indiqu&eacute;e quand certaines mentions plus complexes sur le contenu de types d'&eacute;l&eacute;ment reviennent pour plusieurs types d'&eacute;l&eacute;ments. Ainsi par exemple on peut r&eacute;capituler des formatages dans un texte comme en caract&egrave;res gras, en italique, en couleur, souligner etc... en une macro &quot;formatage_de_texte&quot;. Si maintenant on d&eacute;finit des &eacute;l&eacute;ments de texte significatifs comme des titres, des &eacute;l&eacute;ments de listes ou des cellules de tableaux, ce serait un travail de copie inutiles d'attribuer &agrave; chacun de ces &eacute;l&eacute;ments de texte &egrave; chaque fois toutes les possibilit&eacute;s de formatage. Il est plus simple de n'affecter que la macro  &quot;formatage_de_texte&quot;. Ainsi les param&egrave;tres entit&eacute;s am&eacute;liorent-ils la lisibilit&eacute; et les possibilit&eacute;s de modification dans des DTD complexes.</p>
+
+
+<h3 class="xmp">Exemple de DTD <var>stock.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ENTITY % article &quot;numero_article, nom_article, quantite_article&quot;&gt;
+&lt;!ENTITY % additif &quot;description | classe_produit&quot;&gt;
+&lt;!ELEMENT stock (entree | sortie)*&gt;
+&lt;!ELEMENT entree (numero_entree, (%article;), (%additif;))&gt;
+&lt;!ELEMENT sortie (numero_sortie, (%article;), (%additif;))&gt;
+&lt;!ELEMENT numero_entree (#PCDATA)&gt;
+&lt;!ELEMENT numero_sortie (#PCDATA)&gt;
+&lt;!ELEMENT numero_article  (#PCDATA)&gt;
+&lt;!ELEMENT nom_article    (#PCDATA)&gt;
+&lt;!ELEMENT quantite_article   (#PCDATA)&gt;
+&lt;!ELEMENT description   (#PCDATA)&gt;
+&lt;!ELEMENT classe_produit    (#PCDATA)&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple repr&eacute;sente l'extrait de la DTD d'un fichier dans lequel sont consign&eacute;s les mouvements de stock. Dans le stock, il y a des entr&eacute;es et des sorties de mat&eacute;riel. Dans chaque enregistrement il doit y avoir une entr&eacute;e ou une sortie d'un certain produit. Un article en relation avec une sortie ou une entr&eacute;e de mat&eacute;riel est toujours compos&eacute; des m&ecirc;mes donn&eacute;es: d'un num&eacute;ro d'article, nom d'article, quantit&eacute; d'article et d'un additif de description, qui est soit une description d'article g&eacute;n&eacute;rale ou la classification dans une  classe de produit. Ces donn&eacute;es interactives peuvent &ecirc;tre r&eacute;sum&eacute;es en param&egrave;tres entit&eacute;s dans les d&eacute;finitions de types d'&eacute;l&eacute;ment.</p>
+
+<p>Dans l'exemple, deux param&egrave;tres entit&eacute;s sont d&eacute;finis: <code>article</code> et <code>additif</code>. Ici s'applique le  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#schema"><b>sch&eacute;ma pour d&eacute;finir les entit&eacute;s.</b></a>. Avant le nom d'un param&egrave;tre entit&eacute; notez le signe pourcentage <code>%</code>. Pour l'affectation de valeur, notez une mention sur le contenu d'un type d'&eacute;l&eacute;ment. Il ne s'agit pas vraiment de la mention sur le contenu d'un type d'&eacute;l&eacute;ment mais simplement d'un bloc de texte, d'une macro que vous pourrez utiliser dans la d&eacute;finition du type d'&eacute;l&eacute;ment &agrave; venir. Dans les deux param&egrave;tres entit&eacute;s de l'exemple ci-dessus sont d&eacute;finies des mentions pour les contenus d'&eacute;l&eacute;ment.</p>
+
+<p>Dans l'exemple, les param&egrave;tres entit&eacute;s sont utilis&eacute;s lors de la d&eacute;finition des types d'&eacute;l&eacute;ment <code>entree</code> et <code>sortie</code>. Les deux types d'&eacute;l&eacute;ment ont un  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elements.htm#contenu_element"><b>contenu d'&eacute;l&eacute;ments</b></a>. Ils comportent un num&eacute;ro de s&eacute;rie pour l'entr&eacute;e ou la sortie, le num&eacute;ro d'article et le nom d'article, r&eacute;sum&eacute;s par l'emploi du param&egrave;tre entit&eacute;  <code>article</code>, et au choix d'une description d'article ou d'une classe de produits r&eacute;sum&eacute;s par l'emploi du param&egrave;tre entit&eacute; <code>additif</code>.</p>
+
+<p>Lors de l'utilisation d'un param&egrave;tre entit&eacute; dans une d&eacute;finition de type d'&eacute;l&eacute;ment, vous devez respecter la notation telle qu'elle est not&eacute;e dans l'exemple. Les param&egrave;tres entit&eacute;s doivent &ecirc;tre mis entre parenth&egrave;ses. Tout de suite avant le nom du param&egrave;tre entit&eacute; (sans espace les s&eacute;parant) le signe pourcentage <code>%</code> doit figurer. Derri&egrave;re le nom, il faut noter un point virgule <code>;</code>.</p>
+
+
+
+<h3 class="xmp">Exemple d'une application valide:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/stock.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple la structure de donn&eacute;es)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE stock SYSTEM &quot;stock.dtd&quot;&gt;
+&lt;stock&gt;
+
+&lt;entree&gt;
+  &lt;numero_entree&gt;452&lt;/numero_entree&gt;
+  &lt;numero_article&gt;45-234&lt;/numero_arcicle&gt;
+  &lt;nom_article&gt;fauteuil de bureau &quot;ministre&quot;&lt;/nom_article&gt;
+  &lt;quantite_article&gt;10&lt;/quantite_article&gt;
+  &lt;classe_produit&gt;C-III&lt;/classe_produit&gt;
+&lt;/entree&gt;
+&lt;sortie&gt;
+  &lt;numero_sortie&gt;318&lt;/numero_sortie&gt;
+  &lt;numero_arcicle&gt;37-917&lt;/numero_arcicle&gt;
+  &lt;nom_article&gt;armoire � glaces  &quot;Narcisse&quot;&lt;/nom_article&gt;
+  &lt;quantite_article&gt;3&lt;/quantite_article&gt;
+  &lt;description&gt;F-IV&lt;/description&gt;
+&lt;/sortie&gt;
+
+&lt;/stock&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d'application n'apporte rien de plus si ce n'est la d&eacute;finition des types d'&eacute;l&eacute;ments <code>entree</code> et <code>sortie</code> qui repose en partie sur l'emploi de param&egrave;tres entit&eacute;s. Les param&egrave;tres entit&eacute;s ne sont donc significatifs que dans les d&eacute;finitions de la DTD, ils n'ont pas d'influence sur l'application. L'exemple d'application des d&eacute;finitions de la DTD montre deux enregistrements, un pour une entr&eacute;e de mat&eacute;riel, l'autre pour une sortie de mat&eacute;riel. Les &eacute;l&eacute;ments int&eacute;rieurs y sont not&eacute;s comme les r&egrave;gles d&eacute;finies le permettent.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><img src="../../src/xml10.gif" width="30" height="30" border="0" alt="XML1.0"><img src="../../src/msie5.gif" width="30" height="30" border="0" alt="msie5.0">&nbsp;<a class="an" name="dtd_modulaires">DTD modulaires &agrave; l'aide d'entit&eacute;s</a></h2>
+
+<p>Pour l'&eacute;laboration de structures de donn&eacute;es plus complexes, il est souvent avis&eacute; de r&eacute;partir les d&eacute;finitions sur plusieurs DTD: &Agrave; l'aide d'entit&eacute;s, il vous est possible d'importer des DTD dans d'autres DTD en tant que modules. Ainsi par exemple dans un syst&egrave;me de donn&eacute;es de gestion, la possibilit&eacute; est offerte d'&eacute;tablir une DTD s&eacute;par&eacute;e avec les structures de donn&eacute;es d'un produit, DTD qui peut ensuite &ecirc;tre import&eacute;e dans diff&eacute;rentes autres structures de donn&eacute;es par exemple celle pour u8ne commande du produit ou bien celle pour la gestion des stocks.</p>
+
+<h3 class="xmp">Exemple de DTD <var>produit.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ELEMENT produit (numero_produit,description,fabricant)&gt;
+&lt;!ELEMENT numero_produit (#PCDATA)&gt;
+&lt;!ELEMENT description (#PCDATA)&gt;
+&lt;!ELEMENT fabricant (#PCDATA)&gt;
+</pre></td></tr></table>
+
+<h3 class="xmp">Exemple de DTD <var>commandes.dtd</var>:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!ENTITY % donnees_produit SYSTEM &quot;produit.dtd&quot; &gt;
+%donnees_produit;
+&lt;!ELEMENT commandes (commande)*&gt;
+&lt;!ELEMENT commande (produit,client,nombre,prix)*&gt;
+&lt;!ELEMENT client (#PCDATA)&gt;
+&lt;!ELEMENT nombre (#PCDATA)&gt;
+&lt;!ELEMENT prix (#PCDATA)&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans la DTD nomm&eacute;e <i>produit.dtd</i> un type d'&eacute;l&eacute;ment <code>produit</code> <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elements.htm#mit_elementinhalt"><b>avec un contenu d'&eacute;l&eacute;ments</b></a> est d&eacute;fini. Le contenu d'&eacute;l&eacute;ments comprend les types d'&eacute;l&eacute;ment  <code>numero_produit</code>, <code>description</code> et <code>fabricant</code>, qui peuvent avoir chacun un contenu de caract&egrave;res.</p>
+
+<p>Dans la deuxi&egrave;me DTD nomm&eacute;e <i>commande.dtd</i> la DTD pour les donn&eacute;es de produits est alors incorpor&eacute;e. Pour ce faire est d'abord d&eacute;finie une <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#externes"><b>entit&eacute; pour ressources externes</b></a> avec la nom <code>donnees_produit</code>. Elle m&egrave;ne &agrave; l'autre DTD <i>produit.dtd</i>. Il est important ici de noter le signe pourcentage devant le nom d'entit&eacute; comme il convient pour des <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#parametre_entites"><b>param&egrave;tres entit&eacute;s pour blocs de texte de DTD</b></a>. Car vous mentionnez avec le signe pourcentage que vous voulez utiliser l'entit&eacute; dans la DTD actuelle et que son contenu doit &ecirc;tre interpr&eacute;t&eacute; comme partie int&eacute;grante de la DTD.</p>
+
+<p>L'entit&eacute; ainsi d&eacute;finie sera ensuite not&eacute;e seule dans chaque autre d&eacute;finition de la DTD (<code>%donnees_produit;</code>). Par ce biais, les d&eacute;finitions de  <i>produit.dtd</i> seront incorpor&eacute;es &agrave; cette endroit et pourront &ecirc;tre employ&eacute;es dans les d&eacute;finitions suivantes. Dans l'exemple ci-dessus, vous pouvez le remarquer &agrave; la d&eacute;finition du type d'&eacute;l&eacute;ment <code>commande</code>. Ce type d'&eacute;l&eacute;ment contient comme contenu d'&eacute;l&eacute;ments quatre types d'&eacute;l&eacute;ments. Parmi eux, trois seulement sont d&eacute;finis dans la DTD actuelle, &agrave; savoir <code>client</code>, <code>nombre</code> et <code>prix</code>. L'autre type d'&eacute;l&eacute;ment <code>produit</code> est celui qui est d&eacute;fini dans <i>produit.dtd</i>.</p>
+
+<h3 class="xmp">Exemple d'une application valide:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/commandes.xml" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (un navigateur XML affiche par exemple la structure de donn&eacute;es)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;
+&lt;!DOCTYPE commandes SYSTEM &quot;commandes.dtd&quot;&gt;
+&lt;commandes&gt;
+  &lt;commande&gt;
+    &lt;produit&gt;
+       &lt;numero_produit&gt;39304&lt;/numero_produit&gt;
+       &lt;description&gt;perceuse XPL75&lt;/description&gt;
+       &lt;fabricant&gt;Bohringer &amp;amp; fils&lt;/fabricant&gt;
+    &lt;/produit&gt;
+    &lt;client&gt;Uniprix, Filiale de Venelles&lt;/client&gt;
+    &lt;nombre&gt;100&lt;/nombre&gt;
+    &lt;prix&gt;45900,00&lt;/prix&gt;
+  &lt;/commande&gt;
+  &lt;commande&gt;
+    &lt;produit&gt;
+       &lt;numero_produit&gt;92842&lt;/numero_produit&gt;
+       &lt;description&gt;Bonnet de bain Monaco&lt;/description&gt;
+       &lt;fabricant&gt;Etienne Monet&lt;/fabricant&gt;
+    &lt;/produit&gt;
+    &lt;client&gt;La mode � l'eau, Dunkerque&lt;/client&gt;
+    &lt;nombre&gt;10&lt;/nombre&gt;
+    &lt;prix&gt;234,00&lt;/prix&gt;
+  &lt;/commande&gt;
+&lt;/commandes&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans le fichier d'application est mentionn&eacute; en fin de compte le fichier <var>commandes.dtd</var>. Pourtant, m&ecirc;me le fichier <var>produit.dtd</var> est lui aussi d&eacute;terminant &eacute;tant donn&eacute; qu'il a &eacute;t&eacute; incorpor&eacute; dans le fichier  <var>commandes.dtd</var>. Car &agrave; l'endroit dans <var>commandes.dtd</var>, o&ugrave; le contenu d'&eacute;l&eacute;ments <code>produit</code> a &eacute;t&eacute; affect&eacute; au type d'&eacute;l&eacute;ment <code>commande</code> , c'est toute la d&eacute;finition du type d'&eacute;l&eacute;ment <code>produit</code> de <var>produit.dtd</var> dont il s'agit.</p>
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="notations.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="notations.htm"><b>Notations pour donn&eacute;es r&eacute;f&eacute;renc&eacute;es</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="attributs.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="attributs.htm"><b>Attributs et affectation de valeurs</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>XML/DTD</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>D&eacute;finitions de type de document (DTD)</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

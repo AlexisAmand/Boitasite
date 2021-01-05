@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / Introduction / CGI und HTML</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Qu'ont &agrave; voir HTML et CGI l'un avec l'autre et comment CGI compl&egrave;te HTML.">
+<meta name="keywords"       content="SELFHTML, CGI, HTML, interface CGI">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/introduction/cgihtml.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // Introduction == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Introduction</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>CGI et HTML</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#interface_cgi"><b>L'interface CGI</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#appels_cgi"><b> Appels CGI par HTML et sorties HTML par CGI</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#echanges_alternes_html_cgi"><b>Exemple pour l'&eacute;change altern&eacute; entre HTML et CGI</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="interface_cgi">L'interface CGI</a></h2>
+
+<p>CGI (Common Gateway Interface) est une interface du serveur Web. Elle permet de communiquer les requ&ecirc;tes d'un navigateur Web &agrave; des programmes (sur le serveur Web) et &agrave; les faire ex&eacute;cuter par ceux-ci. De tels programmes (ou scripts) peuvent par exemple traiter des entr&eacute;es dans des formulaires faisant partie de fichiers HTML, de sauvegarder les donn&eacute;es sur l'ordinateur serveur et de lire les donn&eacute;es qui y sont sauvegard&eacute;es. De cette mani&egrave;re les pages WWW deviennent des terminaux pour des &quot;applications&quot; par exemple pour des commandes de marchandises &eacute;lectroniques ou pour questionner les bases de donn&eacute;es.</p>
+
+<p>L' &quot;interface CGI&quot; est disponible quand un serveur WWW, qui soutient CGI, est install&eacute;. Vous pouvez  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="ordiserveurweb.htm"><b>installer un serveur Web localement</b></a> vous m&ecirc;me sur votre ordinateur pour y avoir une interface CGI. Quand vous recevez de l'espace disque pour vos propres pages chez un fournisseur d'acc&egrave;s sur un serveur Web public, vous pouvez utiliser l'interface CGI de ce serveur WWW afin d'employer vos propres scripts CGI sur le Web. Votre fournisseur d'acc&egrave;s doit toutefois vous permettre l'acc&egrave;s &agrave; l'interface CGI. En cas de doute, demandez &agrave; votre fournisseur d'acc&egrave;s!</p>
+
+<p>Pour pouvoir utiliser l'interface CGI, vous avez besoin d'acc&eacute;der &agrave; un certain r&eacute;pertoire sur l'ordinateur serveur, r&eacute;pertoire pouvant contenir des programmes CGI. La plupart du temps ce r&eacute;pertoire re&ccedil;oit pour nom <var>cgi-bin</var>. Les programmes CGI ou les scripts CGI ne sont ex&eacute;cut&eacute;s que s'ils se trouvent dans ce r&eacute;pertoire. Lors de l'<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="ordiserveurweb.htm"><b>installation de votre propre serveur Web</b></a>, vous pouvez d&eacute;terminer quel va t &ecirc;tre le r&eacute;pertoire CGI et comment il s'appelle. Chez un fournisseur d'acc&egrave;s qui vous a install&eacute; un espace Web avec l'interface CGI, le r&eacute;pertoire CGI est d&eacute;j&agrave; pr&eacute;par&eacute;. Il ne vous restera qu'&agrave; copier vos scripts CGI dans ce r&eacute;pertoire (voir aussi <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="cgipublic.htm"><b>installer des scripts CGI sur un serveur Web public</b></a>).</p>
+
+<p>L'interface CGI n'appelle pas seulement le programme &agrave; ex&eacute;cuter ni ne se contente de faire suivre sa r&eacute;ponse, mais il tient &agrave; disposition une s&eacute;rie de donn&eacute;es que le serveur Web sauvegarde, et qu'un script CGI peut lire (et pour une part doit lire), pour pouvoir traiter les donn&eacute;es. Le serveur Web sauvegarde ces donn&eacute;es dans ce qu'on appelle des <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="variablesenvironnement.htm"><b>Variables d'environnement CGI</b></a>.</p>
+
+<p>La d&eacute;finition actuelle d'interface CGI est la version 1.1. D'autres interfaces nouvelles pour des programmes ex&eacute;cutables en WWW introduites par des constructeurs commerciaux comme Netscape ou Microsoft font &agrave; l'interface CGI classique de plus en plus concurrence. L'interface API, par exemple, vient de Netscape, l'interface ISAPI de Microsoft. Les deux interfaces sont optimis&eacute;es pour les logiciels de serveur des diff&eacute;rents fabricants. De plus a &eacute;t&eacute; atteinte une performance pour le traitement des donn&eacute;es sur le Web bien sup&eacute;rieure &agrave; celle de l'interface CGI. Un avantage d&eacute;terminant de l'interface CGI reste cependant le fait qu'il s'agit, comme pour HTML, d'un standard commercialement ind&eacute;pendant, gratuit, au dessus des produits.</p>
+
+<p>Perl est encore et toujours le langage de programmation le plus employ&eacute; pour les scripts CGI. La raison en est que Perl poss&egrave;de des fonctions tr&egrave;s puissantes, par exemple pour les cha&icirc;nes de caract&egrave;res ou pour lire et &eacute;crire des donn&eacute;es. L'interpr&eacute;teur Perl n&eacute;cessaire pour ex&eacute;cuter un script Perl est disponible comme gratuiciels pour presque tous les syst&egrave;mes d'exploitation et il est install&eacute; sur presque tous les ordinateurs serveurs sur le WWW (voir aussi <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="ordiperl.htm"><b>installer Perl</b></a>).</p>
+
+<p>Si vous avez d&eacute;j&agrave; beaucoup d'exp&eacute;rience dans un autre langage de programmation par exemple en C, en Pascal ou en Visual Basic vous pouvez &eacute;galement utiliser ces langages pour vos programmes CGI. Le probl&egrave;me avec ces langages est que le code que vous composez avec eux n'est ex&eacute;cutable que lorsqu'il a &eacute;t&eacute; compil&eacute; et que les raccourcis ont &eacute;t&eacute; &eacute;tablis pour le syst&egrave;me d'exploitation sous lequel il doit &ecirc;tre ex&eacute;cut&eacute;. Si vous &eacute;crivez par exemple un programme en C et que vous vouliez mettre en service ce programme comme programme CGI sur le WWW sur un ordinateur serveur avec un syst&egrave;me d'exploitation Unix, le programme doit &ecirc;tre compil&eacute; sous Unix. Un Compiler C que vous avez peut-&ecirc;tre sur votre ordinateur qui tourne sous DOS/Windows ne vous sert dans ce cas &agrave; rien.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Dans cette partie il est n&eacute;cessaire que vous connaissiez HTML et que soient clairs pour vous les processus fondamentaux de la communication qui soutient CGI entre l'ordinateur serveur et le navigateur WWW. Lisez &agrave; ce sujet avant tout la partie <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../introduction/technologies/cgiperl.htm"><b>CGI (Common Gateway Interface)</b></a> dans l'introduction de ce document.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="appels_cgi">Appels CGI par HTML et sorties HTML par CGI</a></h2>
+
+<p>HTML et CGI &quot;communiquent&quot; dans les deux directions: d'un c&ocirc;t&eacute; il est possible d'appeler des scripts CGI &agrave; partir d'un fichier HTML qui est affich&eacute; &agrave; l'&eacute;cran; d'autre part un script CGI peut transmettre du code HTML au navigateur WWW que celui-ci sortira ensuite &agrave; l'&eacute;cran.</p>
+
+<p>Un script CGI peut traiter des donn&eacute;es transmises par le fichier HTML qui l'a appel&eacute;. Un script CGI peut par exemple rechercher dans une base de donn&eacute;es le concept dont l'utilisateur a demand&eacute; la recherche &agrave; l'aide d'un formulaire. Un script CGI peut renvoyer les r&eacute;sultats d'un traitement de donn&eacute;es au navigateur Web sous forme de code HTML. Ainsi un script qui recherche des mots cl&eacute;s dans une base de donn&eacute;es peut par exemple renvoyer au navigateur Web les r&eacute;sultats d'un processus de recherche sous forme de fichier HTML g&eacute;n&eacute;r&eacute; de fa&ccedil;on dynamique.</p>
+
+<p>Les scripts CGI peuvent aussi sauvegarder des donn&eacute;es sur le serveur pour les lire ult&eacute;rieurement. C'est sur ce principe que se basent par exemple les livres de visites ou les forums de nouvelles (tableaux d'affichage). Un utilisateur peut &eacute;crire un commentaire dans le formulaire d'un fichier HTML. Lors de l'envoi du formulaire, un script CGI est appel&eacute; qui sauvegarde le commentaire dans un fichier. Un deuxi&egrave;me script CGI ou un autre appel du script CGI peut ensuite transmettre tous les commentaires sauvegard&eacute;s &agrave; un navigateur Web.</p>
+
+<p>Un script CGI peut &ecirc;tre appel&eacute; d'un fichier HTML de diff&eacute;rentes fa&ccedil;ons:</p>
+<ul>
+<li>par un  <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../html/formulaires/index.htm"><b>formulaire</b></a>. De cette fa&ccedil;on l'appel du script CGI se trouve dans le rep&egrave;re d'ouverture <code>&lt;form&gt;</code> (exemple: <code>&lt;form action=&quot;/cgi-bin/guestbook.pl&quot; method=&quot;get&quot;&gt;</code>). L'appel a lieu apr&egrave;s l'envoi du formulaire. Les donn&eacute;es entr&eacute;es ou choisies par l'utilisateur sont &agrave; la disposition du script pour &ecirc;tre trait&eacute;es. C'est de cette fa&ccedil;on que fonctionnent par exemple les moteurs de recherche, les livres de visites ou les paniers d'achat &eacute;lectroniques.</li>
+<li>par des  <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../html/liens/index.htm"><b>liens</b></a>. Il suffit de d'indiquer, comme adresse URI de la cible du lien, le script CGI ex&eacute;cutable (exemple:  <code>&lt;a href=&quot;/cgi-bin/statistiques.pl&quot;&gt;appeler statistiques du jour&lt;/a&gt;</code>). C'est judicieux pour des scripts CGI qui ne n&eacute;cessitent aucune entr&eacute;e de la part de l'utilisateur, mais qui produisent des donn&eacute;es fermement &eacute;tablies - par exemple, pour un script CGI qui pr&eacute;sente des statistiques d'acc&egrave;s aux pages Web.</li>
+<li>par une  <img src="../../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../../html/graphiques/index.htm"><b>r&eacute;f&eacute;rence de graphique</b></a>. Il suffit, l&agrave; aussi, de donner comme adresse URI le script CGI ex&eacute;cutable dans la mention <code>src</code> du rep&egrave;re <code>&lt;img&gt;</code>  (exemple: <code>&lt;img src=&quot;/cgi-bin/counter.pl&quot;&gt;</code>). Dans ce cas, le script CGI doit cependant renvoyer un fichier graphique dans le format GIF ou JPEG au navigateur WWW. La plupart des compteurs d'acc&egrave;s sont bas&eacute;s sur ce principe.</li>
+<li>par une instruction  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="ssi.htm"><b>Server Side Include</b></a> dans un fichier HTML, par exemple par l'instruction <code>&lt;!-- #exec cgi=&quot;/cgi-bin/counter.pl&quot; --&gt;</code>. C'est tr&egrave;s pratique pour incorporer &agrave; l'aide d'un script CGI une information dynamique sous forme de texte dans un fichier HTML. Cette forme est int&eacute;ressante par exemple pour des compteurs d'acc&egrave;s bas&eacute;s sur le texte.</li>
+<li>par un  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../../html/entete/meta.htm#weiterleitung"><b>chargement automatique</b></a> du script CGI/programme CGI. Pour cela, vous indiquez dans la commande <code>&lt;meta&gt;</code> - &agrave; la place d'un autre fichier HTML - l'adresse URI du script CGI ex&eacute;cutable (exemple: <code>&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; URL=/cgi-bin/welcome.pl&quot;&gt;</code>).
+</ul>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="echanges_alternes_html_cgi">Exemple pour l'&eacute;change altern&eacute; entre HTML et CGI</a></h2>
+
+<p>L'exemple est un processus CGI simple qui explique l'&eacute;change altern&eacute; entre HTML et CGI: L'utilisateur peut entrer son nom et un commentaire dans un formulaire d'un fichier HTML. Quand il envoie le formulaire, un programme CGI <var>comments.pl</var> est appel&eacute;. Ce script est &eacute;crit en Perl. Il lit les donn&eacute;es du formulaire qui lui sont envoy&eacute;es, en s&eacute;pare les &eacute;l&eacute;ments, et cr&eacute;e un fichier HTML complet dans lequel il &eacute;crit les donn&eacute;es lues. Le navigateur WWW affiche ce code HTML g&eacute;n&eacute;r&eacute; par <var>comments.pl</var> &agrave; l'&eacute;cran. &Eacute;tudiez calmement l'exemple - et ne baissez pas les bras tout de suite &agrave; la vue du code du langage Perl (c'est &agrave; vrai dire plus simple que dans l'exemple et celui-ci ne sert qu'&agrave; montrer comment le script CGI acc&egrave;de aux donn&eacute;es du formulaire)!</p>
+
+<h3 class="xmp">Exemple: fichier HTML avec appel CGI</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/commentaire.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a> (pour envoyer le formulaire, une connexion &agrave; Internet est indispensable)</p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Page de commentaire&lt;/title&gt;
+&lt;/head&gt;
+&lt;body bgcolor=&quot;#E0E0E0&quot;&gt;
+&lt;h1&gt;Votre commentaire&lt;/h1&gt;
+&lt;form action=&quot;/cgi-bin/comments.pl&quot; method=&quot;post&quot;&gt;
+&lt;p&gt;Nom:&lt;br&gt;&lt;input size=&quot;40&quot; maxlength=&quot;40&quot; name=&quot;utilisateur&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Text:&lt;br&gt;&lt;textarea rows=&quot;5&quot; cols=&quot;50&quot; name=&quot;commentaire&quot;&gt;&lt;/textarea&gt;&lt;/p&gt;
+&lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;envoyer&quot;&gt;&lt;/p&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xmp">Exemple: script CGI <var>comments.pl</var>  avec sortie HTML</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+read(STDIN, my $donnees, $ENV{'CONTENT_LENGTH'});
+my @champs_formulaire = split(/&/, $donnees);
+my ($champ, $nom, $valeur);
+my %formulaire;
+foreach $champ (@champs_formulaire) {
+  (my $nom, my $valeur) = split(/=/, $champ);
+  $valeur =~ tr/+/ /;
+  $valeur =~ s/%([a-fA-F0-9][a-fA-F0-9])/pack(&quot;C&quot;, hex($1))/eg;
+  $valeur =~ s/&lt;/&amp;lt;/g;
+  $valeur =~ s/&gt;/&amp;gt;/g;
+  $formulaire{$nom} = $valeur;
+ }
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;CGI-Feedback&lt;/title&gt;&lt;/head&gt;\n&quot;;
+print &quot;&lt;body&gt;&lt;h1&gt;avis CGI du programme &lt;i&gt;comments.pl&lt;/i&gt;&lt;/h1&gt;\n&quot;;
+print &quot;&lt;p&gt;&lt;b&gt;nom:&lt;/b&gt; $formulaire{utilisateur}&lt;/p&gt;\n&quot;;
+print &quot;&lt;p&gt;&lt;b&gt;commentaire:&lt;/b&gt; $formulaire{commentaire}&lt;/p&gt;\n&quot;;
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans le fichier HTML est d&eacute;fini un formulaire avec deux champs de saisie. Le premier champ (<code>&lt;input size=&quot;40&quot; maxlength=&quot;40&quot; name=&quot;utilisateur&quot;&gt;</code>) est un champ d'une ligne dans lequel l'utilisateur doit entrer son nom. Le deuxi&egrave;me champ (<code>&lt;textarea rows=&quot;5&quot; cols=&quot;50&quot; name=&quot;commentaire&quot;&gt;&lt;/textarea&gt;</code>) est un champ de plusieurs lignes dans lequel l'utilisateur peut entrer un texte de son choix. En cliquant sur le bouton envoyer (<code>&lt;input type=&quot;submit&quot; value=&quot;envoyer&quot;&gt;</code>) le formulaire est envoy&eacute;. Ce qui doit advenir des donn&eacute;es du formulaire est sp&eacute;cifi&eacute; dans le rep&egrave;re d'ouverture: avec la mention <code>action=&quot;/cgi-bin/comments.pl&quot;</code> est appel&eacute; un script CGI qui va traiter les donn&eacute;es du formulaire envoy&eacute;es. Les donn&eacute;es sont transmises au script CGI avec <code>method=&quot;post&quot;</code>. Cela signifie que le script re&ccedil;oit les donn&eacute;es comme param&egrave;tres de l'entr&eacute;e standard. C'est exactement comme si vous appeliez un programme sur votre ordinateur avec un param&egrave;tre - par exemple, le nom du fichier &agrave; ouvrir.</p>
+
+<p>Dans le script Perl <var>comments.pl</var>,, qui se trouve dans le r&eacute;pertoire CGI, les donn&eacute;es saisies sont lues avec l'instruction <code>read(STDIN, my $donnees, $ENV{'CONTENT_LENGTH'});</code>});.<br>
+Avec l'instruction <code>@champs_formulaire = split(/&amp;/, $donnees);</code> les donn&eacute;es lues dans chaque champ de formulaire sont s&eacute;par&eacute;es en &eacute;l&eacute;ments distincts. C'est dans la boucle d&eacute;finie &agrave; la suite, <code>foreach</code>, que le script traite les donn&eacute;es. Les commandes qui semblent assez crypt&eacute;es servent &agrave; transformer en texte lisible les donn&eacute;es transmises. Car les donn&eacute;es que le script a re&ccedil;ues sont cod&eacute;es d'apr&egrave;s une convention d&eacute;termin&eacute;e - le type Mime <code>application/x-www-form-urlencoded</code>. Dans ce type de code, les espaces, les signes de changement de paragraphe ainsi que les caract&egrave;res sp&eacute;ciaux sont repr&eacute;sent&eacute;s sous forme hexad&eacute;cimale (voir aussi  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="traitementformulaire.htm#datenstrom"><b>flux de donn&eacute;es dans la transmission de donn&eacute;es de formulaires</b></a>).</p>
+<p>Apr&egrave;s le d&eacute;codage, le script commence la cr&eacute;ation du fichier HTML  qu'il retourne au navigateur. C'est &agrave; cela que servent les instructions <code>print</code>,  qui construisent un fichier HTML avec les commandes habituelles. Dans l'exemple, le script Perl sort les contenus des deux champs de formulaire apr&egrave;s formatage, dans le navigateur.</p>
+
+<p>Pour l'utilisateur, le fichier HTML contenant le formulaire dispara&icirc;t maintenant de l'&eacute;cran, et, &agrave; la place, le navigateur Web construit une nouvelle page qui contient le code HTML cr&eacute;&eacute; par <code>commentaires.pl</code>.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>L'exemple ci-dessus est con&ccedil;u pour expliquer l'&eacute;change altern&eacute; entre HTML et CGI. Si jusqu'a pr&eacute;sent vous n'avez encore jamais fait de Perl et que le script Perl vous semble compl&egrave;tement incompr&eacute;hensible, c'est tout &agrave; fait normal. Perl est un langage de programmation puissant mais assez particulier. Au le cours de ce chapitre, vous en apprendrez plus sur les diff&eacute;rentes commandes. Il existe aussi des techniques telles que le <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../modules/cgi.htm"><b>module CGI</b></a>, qui facilite la programmation CGI avec Perl.</p>
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="ordiserveurweb.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="ordiserveurweb.htm"><b> Installer un serveur Web localement sur un ordinateur personnel</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="../../dhtml/exemples/livreimages.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="../../dhtml/exemples/livreimages.htm"><b>Livre d'images &agrave; feuilleter</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Introduction</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

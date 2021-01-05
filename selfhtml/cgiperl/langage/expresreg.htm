@@ -1,0 +1,952 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: CGI/Perl / &Eacute;l&eacute;ments de langage Perl / Expressions r&eacute;guli&egrave;res</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Que sont les expressions r&eacute;guli&egrave;res, quel r&ocirc;le jouent-elles en Perl, comment d&eacute;finir des expressions r&eacute;guli&egrave;res et les appliquer dans des scripts Perl.">
+<meta name="keywords"       content="SELFHTML, Perl, expressions r&eacute;guli&egrave;res, regular expressions, Transliteration, translitt&eacute;ration, chercher et remplacer">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/cgiperl/langage/expresreg.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // CGI/Perl == ../index.htm // &Eacute;l&eacute;ments de langage Perl == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Expressions r&eacute;guli&egrave;res</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur les expressions r&eacute;guli&egrave;res</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#appliquer"><b>Appliquer des expressions r&eacute;guli&egrave;res</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#caracteres"><b>Expressions r&eacute;guli&egrave;res pour signes distincts</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#chaines_caracteres"><b>Expressions r&eacute;guli&egrave;res pour cha&icirc;nes de caract&egrave;res </b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#masquer"><b>Masquer des signes dans des expressions r&eacute;guli&egrave;res</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#abondant_modere"><b>Mod&egrave;les de recherche: abondance et mod&eacute;ration</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#alternatives"><b>Expressions r&eacute;guli&egrave;res avec alternatives</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#remarquee"><b>Rep&eacute;rer des expressions partielles avec des parenth&egrave;ses</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#preeminence"><b>Ordre de priorit&eacute; dans les expressions r&eacute;guli&egrave;res</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#drapeaux"><b>Drapeaux derri&egrave;re les expressions r&eacute;guli&egrave;res</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#chercher_remplacer"><b>Chercher et remplacer avec des expressions r&eacute;guli&egrave;res</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#translitteration"><b>Translitt&eacute;ration</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur les expressions r&eacute;guli&egrave;res</a></h2>
+
+
+<p>Les expressions r&eacute;guli&egrave;res sont  des mod&egrave;les de recherche pr&eacute;cis&eacute;ment d&eacute;finis. &Agrave; l'aide de ces mod&egrave;les de recherche, vous pouvez par exemple parcourir  le contenu de variables et en extraire ou en remplacer des contenus d&eacute;termin&eacute;s. Ainsi vous pouvez &agrave; l'aide d'expressions r&eacute;guli&egrave;res &agrave; la lecture de fichiers (par exemple d'un fichier avec les inscriptions d'un livre des visites) au vu des instructions d'apr&egrave;s lesquelles le fichier est construit, lire les diff&eacute;rentes inscriptions dans l'ordre et les envoyer sous forme de code HTML au navigateur appelant. . Et  les expressions r&eacute;guli&egrave;res sont aussi un moyen puissant pour rechercher des expressions de recherche complexes dans des bases de donn&eacute;es importantes.</p>
+
+<p>Les expressions r&eacute;guli&egrave;res sont sans doute tr&egrave;s inhabituelles pour les d&eacute;butants qui ne viennent pas du monde Unix, et c'est la raison principale pour laquelle on trouve dans certains scripts Perl des cha&icirc;nes de caract&egrave;res assez &eacute;tranges qu'on pourrait croire crypt&eacute;es. En revanche, celui qui a l'habitude de la commande Unix <code>grep</code>, comprendra imm&eacute;diatement avec les expressions r&eacute;guli&egrave;res en Perl.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="appliquer">Appliquer des expressions r&eacute;guli&egrave;res</a></h2>
+
+<p>Les deux petits exemples d'introduction doivent montrer dans quelles situations typiques les expressions r&eacute;guli&egrave;res sont mises en &#339;uvre.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+my @localites = (&quot;Madrid&quot;,&quot;Londres&quot;,&quot;Milan&quot;,&quot;Paris&quot;,&quot;Rome&quot;,&quot;Marseille&quot;);
+
+foreach(@localites) {
+ if( $_ =~ /^M/ ) {
+  print &quot;$_ commence par M &lt;br&gt;\n&quot;;
+ }
+}
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;clare un <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="listes.htm"><b>Array</b></a> nomm&eacute; <code>@localites</code> avec six noms de villes. Ensuite il parcourt les &eacute;l&eacute;ments du tableau dans l'ordre avec une boucle <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="boucles.htm#foreach"><b>foreach</b></a>. Dans le bloc de la boucle, il est v&eacute;rifi&eacute; si le nom de la ville dans le parcours actuel de la boucle commence par M. Pour cela, la <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="predefini.htm"><b>variable pr&eacute;d&eacute;finie</b></a> <code>$_</code>, dans laquelle est contenue dans une boucle <code>foreach</code> la valeur actuelle, est li&eacute;e &agrave; une expression r&eacute;guli&egrave;re avec l'op&eacute;rateur <code>=~</code> . L'op&eacute;rateur <code>=~</code> est sp&eacute;cialement con&ccedil;u pour les expressions r&eacute;guli&egrave;res. L'expression r&eacute;guli&egrave;re elle-m&ecirc;me figure par d&eacute;faut entre des barres obliques. Entre ces barres obliques est d&eacute;fini un mod&egrave;le de recherche. Le mod&egrave;le de recherche de l'exemple <code>^M</code> signifie  ni plus ni moins que &quot;commence par M &quot;.<br>
+Toute l'instruction <code>if( $_ =~ /^M/ )</code> est donc &agrave; lire comme: Si la condition est remplie qu la valeur du contenu actuel de la boucle commence par  M  ...<br>
+&Agrave; vrai dire vous pouvez &eacute;galement omettre la cha&icirc;ne de caract&egrave;res <code>$_ =~</code>, &eacute;tant donn&eacute; que l'expression r&eacute;guli&egrave;re est alors automatiquement reli&eacute;e &agrave; la variable pr&eacute;d&eacute;finie <code>$_</code>. Pour une meilleure compr&eacute;hension, la notation d&eacute;taill&eacute;e a &eacute;t&eacute; choisie ici.</p>
+
+<p>L'exemple sort dans ce cas le contenu de la boucle. &Agrave; la fin seront donc sorties les trois villes du tableau <code>@localites</code> qui commencent par M.</p>
+
+<p>L'exemple suivant est un peu plus exigeant:</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+my $ligne = &quot;{link:http://www.selfhtml.com.fr/{pages Selfhtml}}&quot;;
+$ligne =~ /\{link:(.*)\{(.*)\}\}/;
+my $lien = $1;
+my $Linktext = $2;
+print &quot;&lt;a href=\&quot;$lien\&quot;&gt;$texte_lien&lt;/a&gt;&quot;;
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans ce script, il y a une scalaire nomm&eacute;e <code>$ligne</code>, qui sauvegarde comme valeur une cha&icirc;ne de caract&egrave;res qui a visiblement une certaine structure. Elle est plac&eacute;e entre parenth&egrave;ses accolades. D'abord est not&eacute; <code>link:</code> suivi d'une URI, puis &agrave; nouveau entre parenth&egrave;ses accolades, un texte. Cette structure avec les parenth&egrave;ses accolades est invent&eacute;e librement. Cependant presque toute l'informatique consiste &agrave; sauvegarder des donn&eacute;es d'apr&egrave;s des structures et conventions quelconques que l'ordinateur peut reconna&icirc;tre. Les expressions r&eacute;guli&egrave;res sont appropri&eacute;es pour filtrer quelque chose de bien d&eacute;termin&eacute; de ces structures. Dans l'exemple, le script filtre &agrave; l'aide d'une expression r&eacute;guli&egrave;re, dans la cha&icirc;ne de caract&egrave;res l'URI et le texte dans les deuxi&egrave;mes parenth&egrave;ses accolades int&eacute;rieures et fabrique avec ces deux valeurs partielles un lien HTML qui est sorti &agrave; la fin dans le navigateur avec  <code>print</code>.</p>
+
+<p>Avec l'instruction <code>$ligne =~ /\{link:(.*)\{(.*)\}\}/;</code> l'expression r&eacute;guli&egrave;re plac&eacute;e entre les deux barres obliques, est appliqu&eacute;e sur la valeur de la scalaire <code>$ligne</code> . <a href="mailto:undefiniert"></a>Pour clarifier un peu cette accumulation de signes &eacute;pouvantable, abordons d&eacute;j&agrave; les barres obliques inverses <code>\</code> qui y sont mentionn&eacute;es. Celles-ci servent &agrave; masquer le signe qui suit chacune d'entre elles et veulent dire simplement: le signe qui suit doit &ecirc;tre trait&eacute; comme signe tel qu'il figure. Donc <code>\{</code> signifie simplement par exemple: le signe qui suit <code>{</code> ne doit pas &ecirc;tre interpr&eacute;t&eacute; autrement que ce qu'il est.<br>
+Ce que l'expression r&eacute;guli&egrave;re doit n&eacute;gliger doit donc commencer ensuite avec la cha&icirc;ne de caract&egrave;res <code>{link:</code>. Ensuite tout peut arriver. C'est ce qui est exprim&eacute; par <code>.*</code> T&ocirc;t ou tard doit ensuite se trouver une parenth&egrave;se accolade d'ouverture <code>{</code> dans la valeur recherch&eacute;e. Derri&egrave;re &agrave; nouveau, tout peut arriver, donc <code>.*</code>, et &agrave; la fin doivent &ecirc;tre plac&eacute;es &agrave; nouveau deux parenth&egrave;ses accolades de fermeture. Ainsi est donc d&eacute;finie un &quot;mod&egrave;le&quot; &agrave; l'aide de l'expression r&eacute;guli&egrave;re, qui convient &agrave; la valeur dans laquelle on recherche tout en laissant la possibilit&eacute; de modifier certaines choses.<br>
+Ici &eacute;galement a &eacute;t&eacute; choisie une simplification pour une meilleure compr&eacute;hension. L'expression partielle <code>.*</code> fonctionne certes dans cet exemple, peut toutefois dans des cas moins propices reconna&icirc;tre trop de choses en raison de son <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#abondant_modere"><b>abondance</b></a>.</p>
+
+<p>Les deux passages variables donc ceux qui sont marqu&eacute;s par <code>.*</code> sont inclus dans l'exemple entre parenth&egrave;ses. Les parenth&egrave;ses indiquent le souhait que Perl se note ce qui y figure. Ainsi dans l'exemple, deux passages variables sont ils not&eacute;s de cette fa&ccedil;on:<br>
+<code>{link:</code><b>http://www.selfhtml.com.fr/</b><code>{</code><b>pages Selfhtml</b><code>}}</code><br>
+Les passages repr&eacute;sent&eacute;s en caract&egrave;res gras sont maintenant sauvegard&eacute;s dans les deux paires de parenth&egrave;ses.</p>
+
+<p>Pour parvenir &agrave; ces valeurs sauvegard&eacute;es, Perl dispose de variables pr&eacute;d&eacute;finies nomm&eacute;es <code>$1</code>, <code>$2</code>, <code>$3</code> etc... Dans <code>$1</code> est sauvegard&eacute; le contenu de la premi&egrave;re parenth&egrave;se de l'expression r&eacute;guli&egrave;re, dans <code>$2</code> le contenu de la deuxi&egrave;me parenth&egrave;se. Le script en exemple d&eacute;clare deux scalaires nomm&eacute;es  <code>$lien</code> et <code>$texte_lien</code>, auxquelles il affecte les deux valeurs sauvegard&eacute;es dans les parenth&egrave;ses.</p>
+
+<p>Le reste coule de source: dans une instruction <code>print</code>, qui sort le code pour une lien HTML, les deux scalaires <code>$lien</code> et <code>$texte_lien</code> sont ins&eacute;r&eacute;es aux endroits o&ugrave; leurs valeurs doivent se trouver.</p>
+
+
+<h3 class="inf">Attention:</h3>
+
+<p>Un domaine d'application important pour les expressions r&eacute;guli&egrave;res est aussi les actions pour <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#chercher_remplacer"><b>Chercher et remplacer avec des expressions r&eacute;guli&egrave;res</b></a>. Les expressions r&eacute;guli&egrave;res peuvent en outre &ecirc;tre plac&eacute;es dans quelques fonctions Perl comme param&egrave;tre transmis, par exemple dans la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/chainescaracteres.htm#split"><b>split</b></a>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="caracteres">Expressions r&eacute;guli&egrave;res pour signes distincts</a></h2>
+
+<p>Dans une cha&icirc;ne de caract&egrave;res, vous pouvez</p>
+<ul>
+<li>rechercher un caract&egrave;re d&eacute;termin&eacute;</li>
+<li>rechercher plusieurs caract&egrave;res d&eacute;termin&eacute;s</li>
+<li>rechercher un caract&egrave;re d'un passage d&eacute;termin&eacute;</li>
+</ul>
+
+<p>Ces expressions ne sont pas tant appropri&eacute;es pour des mod&egrave;les de recherche que pour s'assurer si dans une valeur certains signes sont plac&eacute;s, par exemple des signes non autoris&eacute;s.</p>
+
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0">
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Nr.</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>expression r&eacute;guli&egrave;re (exemple)</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>convient sur une cha&icirc;ne de caract&egrave;res qui remplit comme condition (au moins)</th>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>1.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/a/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un 'a' </td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>2.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/[ab]/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un  'a' ou un 'b' </td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>3.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/[A-Z]/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient une majuscule (sans accent ni c&eacute;dille)</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>4.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/[0-9]/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un chiffre</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>5.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\d/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un chiffre - exactement comme (4.)</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>6.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\D/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un signe qui n'est pas un chiffre</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>7.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/[-\d]/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un chiffre ou le signe moins</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>8.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/[\[\]]/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un crochet</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>9.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/[a-zA-Z0-9_]/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un signe du type lettre (sans accent ni c&eacute;dille), de type chiffre ou un tiret de soulignement</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>10.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\w/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un signe des types lettre, chiffre ou tiret de soulignement - (presque) exactement comme (9.); que les signes avec accent peuvent &ecirc;tre reconnus, d&eacute;pend de la configuration du syst&egrave;me</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>11.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\W/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un signe qui n'est ni une lettre, ni un chiffre, ni un tiret de soulignement; que les signes avec accent peuvent &ecirc;tre exclus, d&eacute;pend de la configuration du syst&egrave;me</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>12.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\r/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un caract&egrave;re de contr&ocirc;le pour le retour du chariot</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>13.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\n/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un caract&egrave;re de contr&ocirc;le pour l'avance d'une ligne</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>14.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\t/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un caract&egrave;re de contr&ocirc;le pour le tabulateur</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>15.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\f/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un caract&egrave;re de contr&ocirc;le pour le saut de page</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>16.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\s/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un espace ou un caract&egrave;re de contr&ocirc;le des positions (12.-15.)</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>17.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\S/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un signe qui n'est ni un espace, ni un caract&egrave;re de contr&ocirc;le des positions (12.-15.)</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>18.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/[^&eacute;&egrave;&agrave;&ugrave;&ccedil;�&ecirc;&Eacute;&Egrave;&Agrave;&Ugrave;&ocirc;&Ocirc;&acirc;&Acirc;&icirc;&Icirc;]/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un signe qui n'est pas un caract&egrave;re fran&ccedil;ais avec accent ou c&eacute;dille (dans la codification de caract&egrave;res correspondante) </td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>19.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/[^a-zA-Z]/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">contient un signe qui n'est pas une lettre  (sans accent)</td>
+</tr>
+</table>
+</td></tr></table>
+
+<p>Quand vous voulez chercher un signe d&eacute;termin&eacute; avec une expression r&eacute;guli&egrave;re, vous devez mettre l'expression recherch&eacute;e entre des d&eacute;limiteurs (ici les barres obliques)  comme dans les exemples (<b>1.</b>) et (<b>12.-15.</b>). Quand le signe recherch&eacute; est un signe r&eacute;serv&eacute; &agrave; l'int&eacute;rieur d'expressions r&eacute;guli&egrave;res, comme par exemple un <code>+</code>,, vous devez le masquer avec une barre oblique invers&eacute;e (<code>\+</code>).Les signes r&eacute;serv&eacute;s sont en tous cas <code>+?.*^$()[]{}|\</code>.<br>
+Quand  vous ne voulez en r&eacute;alit&eacute; que v&eacute;rifier l'existence d'un signe ou d'une cha&icirc;ne de caract&egrave;res fixe, il vaut mieux choisir la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/chainescaracteres.htm#index"><b>index</b></a> .</p>
+
+<p>Pour les expressions r&eacute;guli&egrave;res, sont plus int&eacute;ressants les cas dans lesquels vous voulez v&eacute;rifier si un signe est plac&eacute; et doit convenir &agrave; diff&eacute;rentes possibilit&eacute;s ou  doit explicitement ne pas convenir, comme dans les exemples (<b>2.-11.</b>) et (<b>16.-19.</b>). Pour cela existent dans les expressions r&eacute;guli&egrave;res ce qu'on appelle les classes de caract&egrave;res. Une classe de caract&egrave;res est not&eacute;e par principe entre crochets <code>[...]</code>, comme dans les exemples (<b>2.-4.</b>), (<b>7.-9.</b>) et (<b>18.-19.</b>). Une classe de caract&egrave;res convient toujours exactement &agrave; un signe. &Agrave; l'int&eacute;rieur de cette classe, vous pouvez maintenant &eacute;num&eacute;rer les diff&eacute;rents caract&egrave;res de cette classe en les notant &agrave; la suite l'un de l'autre. Les signes r&eacute;serv&eacute;s doivent ici aussi &ecirc;tre masqu&eacute;s explicitement avec une barre oblique invers&eacute;e, comme dans l'exemple (<b>8.</b>). Quand vous avez une plage de signes plus importante qui doit convenir, vous pouvez mentionner celle-ci en notant le premier signe de la plage suivi du signe moins comme trait d'union <code>-</code> et ensuite le dernier signe de la plage comme dans les exemples (<b>3.</b>), (<b>4.</b>), (<b>9.</b>) et (<b>19.</b>). Si vous pensez au trait d'union en tant que caract&egrave;re proprement-dit, notez le au d&eacute;but de la classe de caract&egrave;res comme dans l'exemple (<b>7.</b>).</p>
+
+<p>Pour certaines classes de caract&egrave;res revenant souvent, existent des abr&eacute;viations. Ainsi <code>[0-9]</code> correspond &agrave; <code>\d</code> et &agrave; <code>[&nbsp;\r\n\t\f]</code> correspond <code>\s</code>. &Agrave; <code>[a-zA-Z0-9_]</code> correspond en g&eacute;n&eacute;ral l'abr&eacute;viation <code>\w</code>. Vous pouvez &eacute;galement utiliser ces abr&eacute;viations &agrave; l'int&eacute;rieur de classes de caract&egrave;res comme dans l'exemple (<b>7.</b>).</p>
+
+<p>Vous pouvez nier des classes de caract&egrave;res pour &eacute;tablir qu'elles <b>ne</b> doivent <b>pas</b> convenir &agrave; un signe d&eacute;termin&eacute;, comme dans les exemples (<b>18.</b>) et (<b>19.</b>). Pour ce faire, notez directement apr&egrave;s le crochet d'ouverture <code>[</code> l'accent circonflexe <code>^</code>. Veillez qu'il faut alors  que dans la cha&icirc;ne de caract&egrave;res o&ugrave; s'effectue la recherche, au moins un caract&egrave;re pour lequel l'expression r&eacute;guli&egrave;re ne convient pas bien qu'aucune lettre ne figure dans la cha&icirc;ne de caract&egrave;res. Si par exemple vous appliquez l'exemple (<b>19.</b>) &agrave; une cha&icirc;ne de caract&egrave;res vide, vous obtiendrez pour r&eacute;sultat que l'expression r&eacute;guli&egrave;re <b>ne</b> convient <b>pas</b>. Pour nier les abr&eacute;viations de classes de caract&egrave;res comme par exemple <code>\s</code> ou bien <code>\d</code>, modifiez simplement le &quot;nom&quot; de l'abr&eacute;viation en majuscule, &agrave; savoir <code>\S</code> ou <code>\D</code>.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="chaines_caracteres">Expressions r&eacute;guli&egrave;res pour cha&icirc;nes de caract&egrave;res</a></h2>
+
+
+<p>Vous pouvez</p>
+<ul>
+<li>rechercher une cha&icirc;ne de caract&egrave;res d&eacute;termin&eacute;e </li>
+<li>rechercher une cha&icirc;ne de caract&egrave;res avec des op&eacute;rateurs de remplacement (jokers)</li>
+<li>rechercher une cha&icirc;ne de caract&egrave;res au d&eacute;but ou &agrave; la fin d'un mot </li>
+<li>rechercher une cha&icirc;ne de caract&egrave;res au d&eacute;but ou &agrave; la fin d'une ligne </li>
+</ul>
+
+<p>Ce genre d'expressions r&eacute;guli&egrave;res est con&ccedil;u pour rechercher par exemple dans une valeur l'occurrence d'un certain mot, d'une cha&icirc;ne de caract&egrave;res partielle au choix ou d'un mod&egrave;le.</p>
+
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0">
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>N�</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>expression r&eacute;guli&egrave;re (exemple)</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>effet</th>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>1.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/aus/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'aus' - m&ecirc;me dans 'chauss&eacute;e' ou   'Gauss'</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>2.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/aus?/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'aus' etc... - mais aussi 'au' et 'aut'</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>3.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/a./</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'as' et 'an' (un quelconque autre signe derri&egrave;re 'a', except&eacute; <code>\n</code>)</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>4.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/a+/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'a' und 'aa' und 'aaaaa' (une ou un nombre quelconque de lettres  'a')</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>5.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/a*/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'a' und 'aa' und 'aaaaa' et 'b' (pas de ou un nombre quelconque de lettres  'a')</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>6.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/Ge.s/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'Gers' et 'Gens' mais pas 'Genes'</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>7.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/Ge.+s/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'Gers' et 'Gens' et 'Genes' (un signe quelconque ou un nombre quelconque de signes quelconques, except&eacute; <code>\n</code>)</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>8.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/Ge.s/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'Gers' et 'Gens' mais pas 'Gene'</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>9.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/Ge.?s/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'Gers' et 'Gens' et 'Gene'</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>10.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/x{10,20}/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve entre 10 et 20 'x' &agrave; la suite</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>11.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/x{10,}/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 10  'x' et plus &agrave; la suite</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>12.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/x.{2}y/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'xxxy' ou 'xaby' etc... (deux signes quelconques entre 'x' et 'y', except&eacute; <code>\n</code>)</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>13.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/Jean\b/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'Jean' mais pas 'Jeannot' (limite du mot)</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>14.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\bvers/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'verser' ou 'versatile' mais pas 'envers' (limite du mot)</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>15.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\bvers\b/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'vers' mais pas 'envers' ni 'verser' (limite du mot)</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>16.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\bvers\B/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'verser' mais ni 'vers' et ni 'envers' (limite du mot et limite du mot &quot;n&eacute;gative&quot;)</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>17.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/^Jean/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'Jean' seulement au d&eacute;but du passage &agrave; parcourir</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>18.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/Jean$/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve 'Jean' seulement &agrave; la fin du passage &agrave; parcourir</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>19.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/^\s*$/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">trouve les lignes ne comprenant que des espaces ou autres signes d'espacement ou qui sont vides</td>
+</tr>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>20.</th>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/$Nom/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">interpr&egrave;te le contenu de la scalaire <code>$Nom</code> comme expression r&eacute;guli&egrave;re</td>
+</tr>
+</table>
+</td></tr></table>
+
+<p>Quand vous voulez rechercher une certaine cha&icirc;ne de caract&egrave;res dans une expression r&eacute;guli&egrave;re, notez simplement la cha&icirc;ne de caract&egrave;res entre les deux barres obliques de l'expression r&eacute;guli&egrave;re comme dans l'exemple  (<b>1.</b>). N&eacute;anmoins s'applique ici aussi la m&ecirc;me chose que pour les <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#caracteres"><b>Expressions r&eacute;guli&egrave;res pour signes distincts</b></a>: Quand vous voulez rechercher une cha&icirc;ne de caract&egrave;res fixe, il vaut mieux choisir la fonction   <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/chainescaracteres.htm#index"><b>index</b></a>.</p>
+
+<p>Les expressions r&eacute;guli&egrave;res sont pour ainsi dire un langage distinct qui est repr&eacute;sent&eacute; par des mots reli&eacute;s par des r&egrave;gles grammaticales. La liaison se fait par des op&eacute;rateurs. La raison pour laquelle les expressions r&eacute;guli&egrave;res paraissent si compliqu&eacute;es est la forte compression de la notation.</p>
+
+<p>Un mot dans le langage des expressions r&eacute;guli&egrave;res est nomm&eacute;  <b>Atome</b>. Les atomes repr&eacute;sentent toujours exactement <b>un</b> signe cherch&eacute;, par exemple <code>a</code>, <code>[abc]</code>, <code>.</code> ou <code>\[</code>. La classe de caract&egrave;res  <code>[abc]</code> repr&eacute;sente un signe, qui peut &ecirc;tre 'a', 'b' ou 'c'. Le point  <code>.</code> est une abr&eacute;viation pour une classe de caract&egrave;res tout &agrave; fait sp&eacute;ciale qui contient tous les signes &agrave; l'exception du passage &agrave; la ligne. Il correspond donc dans la ligne d'invite DOS &agrave; <code>?</code>. La construction <code>\[</code> repr&eacute;sente un crochet qu'il faut cependant  <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#masquer"><b>masquer</b></a> par la barre oblique invers&eacute;e, quand elle ne doit pas &ecirc;tre interpr&eacute;t&eacute;e comme caract&egrave;re de contr&ocirc;le.<br>
+Pour former un mod&egrave;le de recherche coh&eacute;rent avec des atomes, notez simplement les atomes &agrave; la suite sans espace.</p>
+
+<p>Vous pouvez marquer les r&eacute;p&eacute;titions de caract&egrave;res avec des op&eacute;rateurs de r&eacute;p&eacute;tition.<br>
+Le point d'interrogation <code>?</code> signifie dans une expression r&eacute;guli&egrave;re: le signe avant le point d'interrogation ou non. voyez &agrave; ce sujet l'exemple  (<b>2.</b>).<br>
+Le signe plus <code>+</code> signifie: une ou plusieurs r&eacute;p&eacute;titions du signe plac&eacute; avant le signe plus. voyez &agrave; ce sujet l'exemple (<b>4.</b>).<br>
+Le signe &eacute;toile <code>*</code> signifie: pas de, une ou plusieurs r&eacute;p&eacute;titions du signe plac&eacute; avant l'&eacute;toile. voyez &agrave; ce sujet l'exemple  (<b>5.</b>).<br>
+Si vous notez un point (qui remplace un signe quelconque) avant le signe plus <code>+</code> ou <code>*</code>, vous obtenez un joker qui correspond &agrave; l'ast&eacute;risque <code>*</code> dans l'univers DOS/Windows, par exemple pour les noms de fichiers. voyez &agrave; ce sujet les exemples  (<b>6.</b>) &agrave; (<b>9.</b>).<br>
+Les parenth&egrave;ses accolades avec un ou deux nombres n qui y sont plac&eacute;s <code>{n}</code> signifient n r&eacute;p&eacute;titions du signe plac&eacute; avant les parenth&egrave;ses accolades &agrave; l'endroit concern&eacute; - voyez &agrave; ce sujet les exemples (<b>10.</b>) &agrave; (<b>12.</b>). Ici, vous pouvez &eacute;galement noter le point devant les parenth&egrave;ses accolades. Dans ce cas, la mention dans les parenth&egrave;ses accolades signifie: autant de signes quelconques que mentionn&eacute; - voyez &agrave; ce sujet l'exemple (<b>12.</b>)</p>
+
+<p>Vous pouvez rechercher des cha&icirc;nes de caract&egrave;res qui ne seront trouv&eacute;es que si elles se trouvent au d&eacute;but ou &agrave; la fin d'un mot. M&ecirc;me l'inverse est possible: Vous pouvez rechercher des cha&icirc;nes de caract&egrave;res qui ne seront trouv&eacute;es que si elles ne se trouvent pas au d&eacute;but ou pas &agrave; la fin d'un mot.<br>
+Avec <code>\b</code> avant une cha&icirc;ne de caract&egrave;res, la cha&icirc;ne de caract&egrave;res ne sera trouv&eacute;e que si elle se trouve au d&eacute;but d'un mot.<br>
+Avec <code>\b</code> apr&egrave;s une cha&icirc;ne de caract&egrave;res, la cha&icirc;ne de caract&egrave;res ne sera trouv&eacute;e que si elle se trouve &agrave; la fin d'un mot.<br>
+Avec <code>\B</code> avant une cha&icirc;ne de caract&egrave;res, la cha&icirc;ne de caract&egrave;res ne sera trouv&eacute;e que si elle ne se trouve pas au d&eacute;but d'un mot.<br>
+Avec <code>\B</code> apr&egrave;s une cha&icirc;ne de caract&egrave;res, la cha&icirc;ne de caract&egrave;res ne sera trouv&eacute;e que si elle ne se trouve pas &agrave; la fin d'un mot.<br>
+Concernant ces possibilit&eacute;s voyez les exemples  (<b>13.</b>) &agrave; (<b>16.</b>).<br>
+Pour &ecirc;tre pr&eacute;cis, <code>\b</code> d&eacute;finit la limite entre <code>\w</code> et <code>\W</code> (ou le d&eacute;but de la cha&icirc;ne de caract&egrave;res, ou la fin).</p>
+
+<p>Vous pouvez rechercher des cha&icirc;nes de caract&egrave;res qui ne seront trouv&eacute;es que si elles se trouvent au d&eacute;but ou &agrave; la fin d'une ligne dans le passage &agrave; parcourir. Ce qui est avant tout int&eacute;ressant en relation avec des lignes dans des fichiers texte.<br>
+Avec l'accent circonflexe <code>^</code> au d&eacute;but de l'expression recherch&eacute;e, la cha&icirc;ne de caract&egrave;res ne sera trouv&eacute;e que si elle est au d&eacute;but d'une ligne.<br>
+Avec le signe Dollar <code>$</code> &agrave; la fin de l'expression recherch&eacute;e, la cha&icirc;ne de caract&egrave;res ne sera trouv&eacute;e que si elle est &agrave; la fin du passage.<br>
+Concernant les possibilit&eacute;s voyez les exemples (<b>17.</b>) bis (<b>19.</b>).</p>
+
+<p>Vous pouvez &eacute;galement employer des  variables &agrave; l'int&eacute;rieur d'expressions r&eacute;guli&egrave;res. Par ce moyen, vous pouvez utiliser des donn&eacute;es dynamiques comme crit&egrave;res de recherche. En relation avec CGI vous pourriez par exemple prendre comme crit&egrave;re de recherche l'entr&eacute;e de l'utilisateur dans un champ de formulaire. Voyez &agrave; ce sujet l'exemple  (<b>20.</b>).</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="masquer">Masquer des signes dans des expressions r&eacute;guli&egrave;res</a></h2>
+
+
+<p>&Eacute;tant donn&eacute; qu'il existe pour les expressions r&eacute;guli&egrave;res quelques signes ayant une signification particuli&egrave;re, vous devez masquer ces signes quand vous l'employez non pas dans ce sens particulier mais dans sa signification litt&eacute;rale normale, donc une barre verticale en tant que barre verticale ou un point en tant que point. Le signe servant &agrave; masquer est dans tous les cas la barre oblique invers&eacute;e.</p>
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Signe</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Masquer</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Raison</th>
+<th bgcolor="#EEEEEE" class="doc" align="left" nowrap>Exemple</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\/</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Quand l'expression r&eacute;guli&egrave;re est plac&eacute;e entre des barres obliques, celles qui s'y trouvent doivent &ecirc;tre masqu&eacute;es-.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\/usr\/bin\/perl/</code></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>.</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\.</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Sinon le point figure dans les expressions r&eacute;guli&egrave;res pour un autre signe quelconque.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/Point final\./</code></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>+</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\+</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Sinon le signe plus figure pour aucune, une ou plusieurs occurrences du signe qui le pr&eacute;c&egrave;de.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\d\+\d/</code></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>*</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\*</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Sinon l'&eacute;toile figure pour une ou plusieurs occurrences du signe qui la pr&eacute;c&egrave;de.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\*char/</code></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>?</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\?</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Sinon le point d'interrogation figure pour aucune ou une seule occurrence du signe qui le pr&eacute;c&egrave;de.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/Comment&ccedil;a va\?/</code></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>^</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\^</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Sinon l'accent circonflexe peut nier une classe de caract&egrave;res ou mentionner pour des cha&icirc;nes de caract&egrave;res que le mod&egrave;le qui suit doit &ecirc;tre plac&eacute; au d&eacute;but du passage &agrave; parcourir.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/un accent circonflexe \^ /</code></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>$</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\$</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Le signe dollar doit introduire une scalaire  ou mentionner pour des cha&icirc;nes de caract&egrave;res que le mod&egrave;le qui suit doit &ecirc;tre plac&eacute; &agrave; la fin du passage &agrave; parcourir.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/Prix (Dollar US): \d*\$/</code></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>|</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\|</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Sinon la barre verticale peut s&eacute;parer des expressions en alternative.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/find (.*) \| sort/</code></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>( )</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\( \)</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Sinon les parenth&egrave;ses normales peuvent grouper des expressions partielles qu'elles entourent pour les signaler.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\(remarque: (.*)\)/</code></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>[]</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\[ \]</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Sinon les crochets d&eacute;limitent une classe de caract&egrave;res.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/\$(.*)\[\d+\]/</code></td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>{ }</code></td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>\{ /}</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Sinon les parenth&egrave;ses accolades expriment une mention de r&eacute;p&eacute;tition pour le signe qui pr&eacute;c&egrave;de.</td>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>/ENV\{.*\}/</code></td>
+</tr>
+</table>
+</td></tr></table>
+<br>&nbsp;
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="abondant_modere">Mod&egrave;les de recherche: abondance et mod&eacute;ration</a></h2>
+
+<p>Normalement toutes les expressions r&eacute;guli&egrave;res qui contiennent des expressions avec des caract&egrave;res de remplacement comme <code>.*</code>, sont tr&egrave;s &quot;abondantes&quot;. Elles r&eacute;coltent autant de signes qu'il est possible. Il existe cependant un moyen de forcer de telles expressions &agrave; plus de mod&eacute;ration.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+my $ligne_HTML = &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;&amp;Titre&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;;
+
+$ligne_HTML =~ /(^&lt;.+&gt;)/;
+my $abondant = $1;
+$ligne_HTML =~ /(^&lt;.+?&gt;)/;
+my $modere = $1;
+
+$abondant =~ s/&lt;/&amp;lt;/g;    # seulement pour sortie HTML
+$abondant =~ s/&gt;/&amp;gt;/g;    # seulement pour sortie HTML
+$modere =~ s/&lt;/&amp;lt;/g; # seulement pour sortie HTML
+$modere =~ s/&gt;/&amp;gt;/g; # seulement pour sortie HTML
+
+print &quot;&lt;p&gt;&lt;b&gt;version abondante:&lt;/b&gt; &lt;tt&gt;$abondant&lt;/tt&gt;&lt;/p&gt;&quot;;
+print &quot;&lt;p&gt;&lt;b&gt;version mod�r�e:&lt;/b&gt; &lt;tt&gt;$modere&lt;/tt&gt;&lt;/p&gt;&quot;;
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le scripte en exemple prouve l'abondance de l'expression r&eacute;guli&egrave;re et montre aussi comment celle-ci peut &ecirc;tre emp&ecirc;ch&eacute;e. Une scalaire nomm&eacute;e <code>$ligne_HTML</code> est d&eacute;clar&eacute;e et re&ccedil;oit comme valeur initiale le code d'un ent&ecirc;te complet de fichier HTML. Ensuite cette scalaire est &eacute;valu&eacute;e avec une expression r&eacute;guli&egrave;re, qui y recherche un mod&egrave;le <code>/(^&lt;.+&gt;)/</code>. Tout le mod&egrave;le de recherche est plac&eacute; entre parenth&egrave;ses parce qu'ensuite doit &ecirc;tre sorti ce qui a &eacute;t&eacute; trouv&eacute;. Le r&eacute;sultat de la recherche est sauvegard&eacute; dans la scalaire <code>$abondant</code>. Ensuite la proc&eacute;dure est r&eacute;p&eacute;t&eacute;e. Cette fois, l'expression r&eacute;guli&egrave;re ne diff&egrave;re que l&eacute;g&egrave;rement: elle contient encore derri&egrave;re le signe plus un point d'interrogation.</p>
+
+<p>Les deux r&eacute;sultats de la recherche sont ensuite encore pr&eacute;par&eacute;s pour la sortie HTML en rempla&ccedil;ant les parenth&egrave;ses pointues conform&eacute;ment &agrave; HTML (voyez aussi &agrave; ce sujet <img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#chercher_remplacer"><b>Chercher et remplacer avec des expressions r&eacute;guli&egrave;res</b></a>).</p>
+
+<p>La sortie de <code>$abondant</code> donne:<br>
+<code>&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;&Uuml;berschrift&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;</code><br>
+La sortie de <code>$modere</code> donne par contre:<br>
+<code>&lt;html&gt;</code></p>
+
+<p>L'expression avec caract&egrave;res de remplacement <code>.+</code>, qui doit &quot;tout&quot; &quot;r&eacute;colter&quot; jusqu'au signe <code>&gt;</code>, ne s'arr&ecirc;te pas &agrave; vrai dire au <code>&gt;</code> suivant, mais seulement au tout dernier. En ajoutant le point d'interrogation, donc par l'extension &agrave; <code>.+?</code>, le mod&egrave;le se limite &agrave; trouver le signe <code>&gt;</code> suivant.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="alternatives">Expressions r&eacute;guli&egrave;res avec alternatives</a></h2>
+
+<p>Vous pouvez noter plusieurs crit&egrave;res de recherche. Toutes les cha&icirc;nes de caract&egrave;res, dans lesquelles se trouve au moins un des crit&egrave;res de recherche, seront alors trouv&eacute;es.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+my $texte = &quot;caf� sans lait&quot;;
+print &quot;peu importe que ce soit avec ou sans&lt;br&gt;\n&quot; if ($texte =~ /avec|sans/);
+$texte = &quot;caf� avec lait&quot;;
+print &quot;mais je l'ai dit: peu importe que ce soit avec ou sans&lt;br&gt;\n&quot; if ($texte =~ /avec|sans/);
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le script en exemple d&eacute;clare une scalaire <code>$texte</code> avec la valeur initiale <code>caf&eacute; sans lait</code>. En fonction du succ&egrave;s de l'expression r&eacute;guli&egrave;re <code>/avec|sans/</code>, qui est appliqu&eacute;e sur cette scalaire, est sorti dans le navigateur appelant: <code>peu importe que ce soit avec ou sans</code>. La barre verticale <code>|</code> divise l'expression r&eacute;guli&egrave;re en deux alternatives pour lesquelles suffit que l'une d'entre elles soit trouv&eacute;e. &Eacute;tant donn&eacute; que c'est le cas, la phrase est sortie dans le navigateur. Pour le contr&ocirc;le, le texte est ensuite modifi&eacute; en  <code>caf&eacute; avec lait</code>. La m&ecirc;me expression r&eacute;guli&egrave;re appliqu&eacute;e ensuite est &agrave; nouveau fructueuse, et la sortie <code>mais je l'ai dit: peu importe que ce soit avec ou sans</code> a lieu.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="remarquee">Rep&eacute;rer des expressions partielles avec des parenth&egrave;ses</a></h2>
+
+<p>&Agrave; l'aide de la mise entre parenth&egrave;ses des diff&eacute;rentes parties d'une expression r&eacute;guli&egrave;re vous pouvez sauvegarder des mod&egrave;les partiels et les r&eacute;utiliser &agrave; un autre endroit.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/html\n\n&quot;;
+print '&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;', &quot;\n&quot;;
+print &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Sortie du test&lt;/title&gt;\n&quot;;
+print &quot;&lt;/head&gt;&lt;body&gt;\n&quot;;
+
+my $CTIME = localtime(time);
+$CTIME =~ /^([A-Za-z]*?)\s*([A-Za-z]*?)\s*(\d*?)\s*(\d*?):(\d*?):(\d*)\s*(\d*)$/;
+my $jour = $1;
+my $mois = $2;
+my $jour_mois = $3;
+my $heures = $4;
+my $minutes = $5;
+my $secondes = $6;
+my $an = $7;
+my %jours   = (Mon =&gt; &quot;Lundi&quot;, Tue =&gt; &quot;Mardi&quot;, Wed =&gt; &quot;Mercredi&quot;,
+              Thu =&gt; &quot;Jeudi&quot;, Fri =&gt; &quot;Vendredi&quot;, Sat =&gt; &quot;Samedi&quot;, Sun =&gt; &quot;Dimanche&quot;);
+my %mois = (Jan =&gt; &quot;01&quot;, Feb =&gt; &quot;02&quot;, Mar =&gt; &quot;03&quot;, Apr =&gt; &quot;04&quot;, May =&gt; &quot;05&quot;, Jun =&gt; &quot;06&quot;,
+              Jul =&gt; &quot;07&quot;, Aug =&gt; &quot;08&quot;, Sep =&gt; &quot;09&quot;, Oct =&gt; &quot;10&quot;, Nov =&gt; &quot;11&quot;, Dec =&gt; &quot;12&quot;);
+
+print &quot;&lt;b&gt;Aujourd'hui nous sommes $jours{$jour}, le $jour_mois/$mois{$mois}/$an, il est $heures:$minutes heures&lt;/b&gt;\n&quot;;
+
+print &quot;&lt;/body&gt;&lt;/html&gt;\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple appelle la fonction Perl <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/dateheure.htm#localtime"><b>localtime</b></a> avec la valeur retourn&eacute;e par la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/dateheure.htm#time"><b>time</b></a> et sauvegarde la valeur renvoy&eacute;e par <code>localtime</code> dans la scalaire <code>$CTIME</code>. Y est ensuite sauvegard&eacute;e une cha&icirc;ne de caract&egrave;res, construite comme suit:<br>
+<code>Sun Jun 17 21:37:40 2001</code></p>
+
+<p>Dans l'instruction suivante <code>$CTIME</code> est &eacute;valu&eacute; avec une longue expression r&eacute;guli&egrave;re de recherche. L'expression r&eacute;guli&egrave;re tente de recenser l'ensemble du mod&egrave;le typique de la cha&icirc;ne de caract&egrave;res de la date et de l'heure. Les donn&eacute;es utiles, &agrave; savoir le jour de la semaine, le nom du mois, le jour du mois, les heures, les minutes, les secondes et l'ann&eacute;e sont mises entre parenth&egrave;ses dans l'expression r&eacute;guli&egrave;re. Perl rep&egrave;re chaque contenu de ces parenth&egrave;ses et le tient &agrave; disposition dans les <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="predefini.htm"><b>variables pr&eacute;d&eacute;finies en Perl</b></a> <code>$1</code>, <code>$2</code>, <code>$3</code> etc... Les scalaires d&eacute;clar&eacute;es ensuite se prennent les valeurs entre parenth&egrave;ses quand les variables pr&eacute;d&eacute;finies correspondantes leur sont affect&eacute;es.</p>
+
+<p>Les deux hashes <code>%jours</code> et <code>%mois</code> sont utilis&eacute;s dans le but d'avoir un format de la date et de l'heure en fran&ccedil;ais. Le script sort &agrave; la fin quelque chose qui ressemble &agrave;:<br>
+<b>Aujourd'hui nous sommes Dimanche, le 17/06/2001, il est 21:37 heures</b>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="preeminence">Ordre de priorit&eacute; dans les expressions r&eacute;guli&egrave;res</a></h2>
+
+<p>Les signes sp&eacute;ciaux  dans les expressions r&eacute;guli&egrave;res sont &eacute;valu&eacute;es dans un certain ordre de priorit&eacute; par l'interpr&eacute;teur Perl.</p>
+<ol>
+<li>ordre de priorit&eacute;: <code>()</code> (parenth&egrave;ses)
+<li>ordre de priorit&eacute;: <code>+ * ? {#,#}</code> (op&eacute;rateurs de r&eacute;p&eacute;tition)
+<li>ordre de priorit&eacute;: <code>abc ^ $ \b \B</code> (caract&egrave;res/cha&icirc;nes de caract&egrave;res, d&eacute;but et fin de ligne, d&eacute;but et fin de mot)
+<li>ordre de priorit&eacute;: <code>|</code> (alternatives)
+</ol>
+<p>Par cette pr&eacute;&eacute;minence, toute expression r&eacute;guli&egrave;re peut &ecirc;tre &eacute;valu&eacute;e de fa&ccedil;on univoque. Quand vous d&eacute;sirez toutefois faire une autre &eacute;valuation que celle fix&eacute;e par l'ordre de priorit&eacute; dans une expression vous pouvez poser des parenth&egrave;ses dans l'expression pour imposer une &eacute;valuation diff&eacute;rente.</p>
+
+<h3 class="xmp">Exemples:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+/a|bc|d/       # trouve 'a' ou bien 'bc' ou 'd'
+/(a|b)(c|d)/   # trouve 'ac' ou bien 'ad' ou 'bc' ou 'bd'
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>D'apr&egrave;s l'ordre de priorit&eacute;, les signes ou les cha&icirc;nes de caract&egrave;res ont priorit&eacute; sur les signes de s&eacute;paration pour alternatives. &Agrave; l'aide de parenth&egrave;ses, vous pouvez imposer une autre &eacute;valuation (voir exemple).<br>
+Quand vous d&eacute;sirez utiliser les parenth&egrave;ses pour modifier l'&eacute;valuation, sans vouloir cependant <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#remarquee"><b>rep&eacute;rer des expressions partielles </b></a> correspondantes, vous pouvez &eacute;galement utiliser les parenth&egrave;ses qui groupent seulement. Pour ce faire est not&eacute;e directement la parenth&egrave;ses d'ouverture la suite de caract&egrave;res <code>?:</code>, ce qui donnerait dans l'exemple <code>(?:a|b)(?:c|d)</code>.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="drapeaux">Drapeaux derri&egrave;re les expressions r&eacute;guli&egrave;res</a></h2>
+
+<p>Derri&egrave;re le caract&egrave;re d&eacute;limitant la fin d'une expression r&eacute;guli&egrave;re (en principe: la barre oblique) vous pouvez  encore noter une ou plusieurs lettres - ce qu'on appelle drapeaux (flags). Par ce biais vous pouvez avoir une influence suppl&eacute;mentaire sur la conduite de la recherche. Avec une notation telle que <code>/vers/g</code> vous recherchez par exemple globalement une occurrence de <code>vers</code>, et avec <code>/vers/gim</code> vous recherchez la cha&icirc;ne de caract&egrave;res <code>vers</code> globalement, qu'elle soit en minuscules ou en majuscules, et la cha&icirc;ne de caract&egrave;res peut &eacute;galement comprendre plusieurs lignes. Vous pouvez donc combiner les drapeaux &agrave; votre gr&eacute;. Le tableau suivant dresse la liste des drapeaux possibles.</p>
+
+<table cellpadding="0" cellspacing="0" border="0"
+bgcolor="#C0C0C0"><tr><td>
+<table cellpadding="3" cellspacing="1" border="0"
+>
+<tr>
+<th bgcolor="#EEEEEE" class="doc" align="left">Drapeau</th>
+<th bgcolor="#EEEEEE" class="doc" align="left">Signification</th>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>c</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">Au cas o&ugrave; une erreur survient <b>ne pas</b> r&eacute;initialiser la position de la recherche.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>g</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">rechercher globalement, c'est &agrave; dire trouver toutes les occurrences.</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>i</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">ignorer la casse</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>m</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">les cha&icirc;nes de caract&egrave;res peuvent comprendre plusieurs lignes</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>o</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">n'appliquer le mod&egrave;le de recherche qu'une seule fois</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>s</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">consid&eacute;rer la cha&icirc;ne de caract&egrave;res comme une ligne distincte</td>
+</tr>
+<tr>
+<td class="code" bgcolor="#FFFFE0" valign="top" nowrap><code>x</code></td>
+<td class="tabxpl" bgcolor="#E4EEFF" valign="top">utiliser la syntaxe &eacute;tendue</td>
+</tr>
+</table>
+</td></tr></table>
+<p>&nbsp;</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="chercher_remplacer">Chercher et remplacer avec des expressions r&eacute;guli&egrave;res</a></h2>
+
+<p>Les expressions r&eacute;guli&egrave;res sont le moyen avec lequel en Perl, quelque chose est recherch&eacute; et remplac&eacute; dans les cha&icirc;nes de caract&egrave;res.</p>
+
+<h3 class="xmp">Exemple 1 d'un script CGI complet en Perl:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/plain\n\n&quot;;
+
+my $texte = &quot;Julien parcourt le Morvan dans un taxi hors d'usage 1234567890&quot;;
+$texte =~ s/[a-z]| //gi;
+
+print &quot;$texte\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Le sch&eacute;ma pour tous les processus de recherche-remplacement en Perl est:<br>
+<code>$chaine_de_caracteres =~ s/modele_recherche/chaine_caracteres_remplacement/[drapeaux]</code></p>
+
+<p><code>$chaine_de_caracteres</code> est une scalaire dans laquelle est sauvegard&eacute;e une cha&icirc;ne de caract&egrave;res, comme par exemple <code>$texte</code> dans l'exemple 1 ci-dessus. Cette scalaire est associ&eacute;e au remplacement par l'op&eacute;rateur <code>=~</code>, c'est &agrave; dire que le processus de recherche-remplacement s'applique au contenu de la scalaire. Notez derri&egrave;re le remplacement. Il est introduit par un  <code>s</code> minuscule. Apr&egrave;s le <code>s</code> notez le premier signe d&eacute;limiteur (par d&eacute;faut une barre oblique), et ensuite le mod&egrave;le de recherche qui se termine avec le  deuxi&egrave;me signe d&eacute;limiteur. Suivent ensuite le signe ou la cha&icirc;ne de caract&egrave;res par lesquelles les occurrences doivent &ecirc;tre remplac&eacute;es, et qui se terminent par le troisi&egrave;me signe d&eacute;limiteur. Si cela s'av&egrave;re n&eacute;cessaire, notez encore derri&egrave;re le troisi&egrave;me signe d&eacute;limiteur des drapeaux pour le processus de recherche-remplacement. Dans l'exemple, les drapeaux suivants ont &eacute;t&eacute; employ&eacute;s:<br>
+<code>g</code> cherche/remplace <b>toutes</b> les occurrences (sinon seule la premi&egrave;re occurrence est remplac&eacute;e)<br>
+<code>i</code> cherche/remplace les lettres peu importe si elles sont en minuscules ou en majuscules (sinon la casse est diff&eacute;renci&eacute;e).</p>
+
+<p>Dans l'exemple ci-dessus toutes les lettres (majuscules et minuscules) sont &ocirc;t&eacute;es de la scalaire <code>$texte</code> ainsi que tous les espaces. Il ne reste donc plus ensuite que les chiffres &agrave; la fin. Le r&eacute;sultat est sorti pour contr&ocirc;le.</p>
+
+
+<h3 class="xmp">Exemple 2 d'un script CGI complet en Perl:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/plain\n\n&quot;;
+
+my $texte = &quot;�tre ou ne pas �tre l� est la question, prof�rait un c�l�bre britannique qui a con&ccedil;u de nombreuses pi�ces pour le th��tre&quot;;
+$texte =~ s/�/&amp;Ecirc;/g;
+$texte =~ s/�/&amp;ecirc;/g;
+$texte =~ s/�/&amp;agrave;/g;
+$texte =~ s/�/&amp;eacute;/g;
+$texte =~ s/�/&amp;egrave;/g;
+$texte =~ s/�/&amp;ugrave;/g;
+$texte =~ s/�/&amp;acirc;/g;
+$texte =~ s/&ccedil;/&amp;ccedil;/g;
+
+
+print &quot;$texte\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans cet exemple tous les caract&egrave;res avec accent fran&ccedil;ais et c c&eacute;dille dans <code>$texte</code> sont remplac&eacute;s par leur transcription conforme &agrave; HTML. Le r&eacute;sultat est sorti pour contr&ocirc;le.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="translitteration">Translitt&eacute;ration</a></h2>
+
+<p>Pour des travaux moins &quot;importants&quot; que la recherche-remplacement ou le comptage de diff&eacute;rents caract&egrave;res, il existe une possibilit&eacute; de travailler en Perl sans expression r&eacute;guli&egrave;re. Pour cela existe une syntaxe sp&eacute;ciale, l'op&eacute;rateur de translitt&eacute;ration <code>tr</code>.</p>
+
+<h3 class="xmp">Exemple d'un script CGI complet en Perl:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+#!/usr/bin/perl -w
+
+use strict;
+use CGI::Carp qw(fatalsToBrowser);
+
+print &quot;Content-type: text/plain\n\n&quot;;
+
+my $principe = &quot;abc&quot;;
+$principe =~ tr/ac/xy/;
+print &quot;Principe = $principe\n&quot;;
+
+my $chinois = &quot;Roulette chinoise  rigolotte&quot;;
+$chinois =~ tr/Rr/Ll/;
+print &quot;chinois = $chinois\n&quot;;
+
+my $hurlement = &quot;COMMENT CELA MARCHE EN PERL?&quot;;
+$hurlement =~ tr/A-Z/a-z/;
+print &quot;hurlement = $hurlement\n&quot;;
+
+my $nom_variable = &quot;S�g�m�l�x�m�l�&quot;;
+$nom_variable =~ tr/A-Za-z_0-9/_/c;
+print &quot;Nom de variable = $nom_variable\n&quot;;
+
+my $pas_net = &quot;une   phrase avec   des  espaces     superflus&quot;;
+$pas_net =~ tr/ //s;
+print &quot;pas net = $pas_net\n&quot;;
+
+my $phrase_z = &quot;Vous auriez vu Zorro z�brer de sa lame l'azur d'un zigzag en z�zayant&quot;;
+my $compteur_z = ($phrase_z =~ tr/Ww//);
+print &quot;Il y a dans phrase_z $compteur_z occurrences de Z/z!\n&quot;;
+
+my $mot_huit_bits = &quot;�g�rie&quot;;
+$mot_huit_bits =~ tr/\200-\377/\000-\177/;
+print &quot;mot huit bits = $mot_huit_bits\n&quot;;
+
+my $phrase_cryptee = &quot;tous sont des gobes-mouches!&quot;;
+$phrase_cryptee =~ tr/a-zA-Z/n-za-mN-ZA-M/;
+print &quot;phrase crypt�e = $phrase_cryptee\n&quot;;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Une translitt&eacute;ration consiste &agrave; remplacer des signes distincts par d'autres signes. Le sch&eacute;ma pour une translitt&eacute;ration en Perl est:<br>
+<code>$chaine_caracteres =~ tr/modele_recherche/modele_remplacement/[options]</code><br>
+Ici, ni le mod&egrave;le de recherche ni le mod&egrave;le de remplacement ne sont des cha&icirc;nes de caract&egrave;res mais seulement des signes distincts ou des plages de signes. Les mod&egrave;les sont pour ainsi dire deux listes de signes. Quand dans <code>$chaine_caract&egrave;res</code> un signe qui figure dans la liste de recherche est trouv&eacute;, il est remplac&eacute; par le signe de la liste de remplacement qui figure &agrave; la m&ecirc;me position.</p>
+
+<p>Tous les exemples du script ci-dessus sont construits de la m&ecirc;me fa&ccedil;on. Une scalaire avec une valeur &quot;int&eacute;ressante&quot; est d&eacute;clar&eacute;e. Puis une translitt&eacute;ration est appliqu&eacute;e &agrave; cette valeur et finalement, le r&eacute;sultat est sorti.</p>
+
+<p>Dans le cas de <code>$principe</code> le principe de la translitt&eacute;ration est illustr&eacute;: dans l'exemple, <code>a</code> est remplac&eacute; par <code>x</code> et <code>c</code> par <code>y</code>. La sortie donne pour cette raison:<br>
+<code>Principe = xby</code></p>
+
+<p>Dans le cas de <code>$chinois</code> les lettres <code>R</code> et <code>r</code> sont remplac&eacute;es par <code>L</code> et <code>l</code>. La sortie donne pour cette raison:<br>
+<code>chinois = Loulette chinoise  ligolotte</code></p>
+
+<p>Dans le cas de <code>$hurlement</code> toutes les majuscules sont remplac&eacute;es par les minuscules correspondantes (correspond &agrave; peu pr&egrave;s &agrave; la fonction <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../fonctions/chainescaracteres.htm#lc"><b>lc</b></a>). La sortie donne pour cette raison:<br>
+<code>hurlement = comment cela marche en perl?</code></p>
+
+<p>Dans le cas de <code>$nom_variable</code> tous les signes qui ne sont pas ni une lettre de A &agrave; Z ou de a &agrave; z ni un chiffre ni un tiret de soulignement, sont remplac&eacute;s par le tiret de soulignement <code>_</code>. La sortie donne pour cette raison:<br>
+<code>Nom de variable = S_g_m_l_x_m_l_</code></p>
+
+<p>Dans le cas de <code>$pas_net</code> tous les espaces doubles ou multiples sont &ocirc;t&eacute;s. La sortie donne pour cette raison:<br>
+<code>pas net = une phrase avec des espaces superflus</code></p>
+
+<p>Dans le cas de <code>$phrase_z</code> la valeur retourn&eacute;e par une translitt&eacute;ration est mise &agrave; profit. Il ne se passe rien avec la scalaire <code>$phrase_z</code>, mais la valeur retourn&eacute;e trouve combien de lettres <code>Z</code> ou  <code>z</code> sont plac&eacute;es dans la phrase. La sortie donne pour cette raison:<br>
+<code>Il y a dans phrase_z 8 occurrences de Z/z!</code></p>
+
+<p>Dans le cas de <code>$mot_huit_bits</code> tous les signes avec des valeurs de signes comprises entre 128 et 255 sont convertis en signes avec les valeurs correspondantes comprises entre 0 et 127. La sortie donne pour cette raison:<br>
+<code>mot_huit_bits = }g}rie</code></p>
+
+<p>Dans le cas de <code>$phrase_cryptee</code> tous les signes de la premi&egrave;re partie de l'alphabet sont transform&eacute;s en signes de la deuxi&egrave;me partie et inversement (ils sont pour ainsi dire invers&eacute; de 13 valeurs de signes). La sortie donne:<br>
+<code>phrase crypt&eacute;e = gbhf fbag qrf tborf:zbhpurf!</code><br>
+(le principe de cryptage est appliqu&eacute; quelquefois dans les groupes de nouvelles pour dire des choses qui ne doivent pas &ecirc;tre comprises par tous)</p>
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="sousroutines.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="sousroutines.htm"><b>Sous-programmes</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="operateurs.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="operateurs.htm"><b>Op&eacute;rateurs</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>CGI/Perl</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>&Eacute;l&eacute;ments de langage Perl</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

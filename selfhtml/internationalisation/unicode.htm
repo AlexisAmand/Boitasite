@@ -1,0 +1,430 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: Param&egrave;tres internationaux / Le syst&egrave;me unicode</title>
+<link rel="stylesheet" type="text/css" href="../src/selfhtml.css">
+<meta name="description"    content="Comment est construit le syst&egrave;me Unicode qui sert &agrave; repr&eacute;senter des signes internationaux, formel et symboliques.">
+<meta name="keywords"       content="SELFHTML, Param&egrave;tres internationaux, caract&egrave;res, Unicode, ISO/IEC 10646, Basic Multilingual Plane (BMP), signe euro">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/internationalisation/unicode.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../index.htm // Param&egrave;tres internationaux == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../index.htm"><b>SELFHTML</b></a>/<a href="../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Param&egrave;tres internationaux</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Le syst&egrave;me unicode</h2></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur unicode</b></a> <br>
+<img src="../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#construction"><b>Construction du syst&egrave;me Unicode</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur unicode</a></h2>
+
+<p>Unicode est un syst&egrave;me dans lequel les signes ou &eacute;l&eacute;ments de toutes les cultures d'&eacute;criture connues sont fix&eacute;s. Par ce syst&egrave;me, il devient possible de dire &agrave; un ordinateur quel signe on veut voir repr&eacute;sent&eacute;. La condition pr&eacute;alable est naturellement que l'ordinateur ou le programme ex&eacute;cut&eacute; connaisse le syst&egrave;me unicode.</p>
+
+<p>Unicode s'efforce d'englober compl&egrave;tement tous les signes connus des cultures d'&eacute;criture pr&eacute;sentes et pass&eacute;es. Les caract&egrave;res sont catalogu&eacute;s par classe et re&ccedil;oivent une valeur de caract&egrave;res. Tous les caract&egrave;res et sortes de caract&egrave;res imaginables sont concern&eacute;s. Pour les caract&egrave;res de contr&ocirc;le tels que les traits d'union, les espaces impos&eacute;s ou les tabulations existent des unicodes. Les caract&egrave;res de formules math&eacute;matiques sont repr&eacute;sent&eacute;s tout autant que les signes repr&eacute;sentant des syllabes ou des mots des cultures de l'&eacute;criture de l'Extr&ecirc;me Orient. M&ecirc;me les diff&eacute;rentes parties de caract&egrave;res comme par exemple les accents ou tr&eacute;mas sur les caract&egrave;res fran&ccedil;ais ont leur propre unicode. Les caract&egrave;res peuvent &ecirc;tre aussi combin&eacute;s de fa&ccedil;on dynamique - ainsi il existe bien aussi naturellement un &quot;&eacute;&quot; fran&ccedil;ais, mais la m&ecirc;me lettre peut &ecirc;tre cr&eacute;&eacute;e &agrave; partir de &quot;e&quot; et de l'accent sur le caract&egrave;re.</p>
+
+<p>Outre le simple adressage d'un signe ou d'un &eacute;l&eacute;ment, un jeu de propri&eacute;t&eacute;s est aussi d&eacute;fini dans le syst&egrave;me unicode pour chaque signe. Le sens de l'&eacute;criture (pour l'arabe par exemple le sens d'&eacute;criture est de droite &agrave; gauche) fait partie de la propri&eacute;t&eacute; du signe. D'innombrables r&eacute;sultats des recherches sur la science des langues au niveau mondial sont rassembl&eacute;es dans le syst&egrave;me unicode.</p>
+
+<p>Le consortium Unicode, fond&eacute; en 1991 et constitu&eacute; de linguistes et autres sp&eacute;cialistes, recherche les caract&egrave;res &agrave; adopter, Les valeurs de caract&egrave;res accord&eacute;es ont une force obligatoire. Depuis la version 2.0, le syst&egrave;me Unicode est aussi synchronis&eacute; avec la norme internationale ISO/IEC 10646. C'est important dans la mesure o&ugrave; <img src="../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../html/index.htm"><b>HTML</b></a> depuis la version 4.0 ainsi que <img src="../src/chap.gif" width="15" height="13" border="0" alt="Chapitre: vue d'ensemble">&nbsp;<a href="../xml/index.htm"><b>XML</b></a> depuis la version 1.0 misent sur la norme ISO/IEC 10646. Quand vous voulez dons savoir comment on doit noter un certain signe en HTML ou en XML, vous devez rechercher dans les tableaux de caract&egrave;res Unicode quelle valeur a le signe d&eacute;sir&eacute;. Ensuite, vous pouvez noter le signe d&eacute;sir&eacute; dans le texte source du fichier HTML ou XML, par une notation num&eacute;rique telle que par exemple <code>&amp;#9871;</code> (forme d&eacute;cimale) ou bien <code>&amp;#x268F;</code> (forme hexad&eacute;cimale avec <code>x</code>).</p>
+
+<p>Les valeurs de caract&egrave;res des signes englob&eacute;s par Unicode &eacute;taient encore jusqu'&agrave; une date r&eacute;cente exprim&eacute;s exclusivement par un nombre long de deux octets. De cette fa&ccedil;on, il est possible de caser jusqu'&agrave; 65536 caract&egrave;res diff&eacute;rents dans le syst&egrave;me (2 octets = 16 bits = 2<sup>16</sup> combinaisons). Dans la version compl&egrave;te Unicode 3.0 de septembre 1999 49.194 caract&egrave;res du monde entier &eacute;taient d&eacute;j&agrave; list&eacute;s - la limite de 65536 &eacute;tait donc d&eacute;j&agrave; bien proche. Dans la version 3.1 de mars 2001 ont ensuite &eacute;t&eacute; adopt&eacute;s 44,946 nouveaux caract&egrave;res, par exemple des signes d'&eacute;critures historiques. Et c'est ainsi que la version  3.1 conna&icirc;t d&eacute;j&agrave; 94.140 caract&egrave;res, ce pour quoi la limite de deux octets devait &ecirc;tre franchie. Le sch&eacute;ma &agrave; deux octets d&eacute;sign&eacute; dans le syst&egrave;me Unicode comme  <var>Basic Multilingual Plane (BMP)</var> , est remplac&eacute; pour cette raison par un sch&eacute;ma &agrave; quatre octets, qui permet d'adresser le nombre confortable de 4.294.967.296 caract&egrave;res (2<sup>32</sup> combinaisons de bits).</p>
+
+<p>Vous trouverez des informations sur le consortium unicode sur le WWW &agrave; la    <img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/"><b>page d'accueil du consortium unicode</b></a>.</p>
+
+<p>Le grand probl&egrave;me d'unicode n'est &agrave; vrai dire que la fa&ccedil;on dont doivent &ecirc;tre repr&eacute;sent&eacute;s tous ces nombreux signes &agrave; l'ordinateur. Car unicode ne d&eacute;finit que des codes et des propri&eacute;t&eacute;s de signes, mais il contient aussi peu que les jeux de caract&egrave;res banals d'informations sur la fa&ccedil;on exacte dont le signe doit &ecirc;tre repr&eacute;sent&eacute;. Pour cela des ports telles que les  polices de caract&egrave;res sont indispensables &agrave; l'ordinateur . Nos polices de caract&egrave;res d'ordinateur classiques sont pourtant pour ainsi dire inappropri&eacute;es, &eacute;tant donn&eacute; qu'elles s'orientent dans une large mesure sur certains jeux de caract&egrave;res. . Des nouvelles polices orient&eacute;es sur Unicode se r&eacute;pandent peu &agrave; peu. En relation avec les syst&egrave;mes d'exploitation et les applications modernes, ces polices soutiennent au moins l'adressage d'une largeur de deux octets, donc la partie BMP du syst&egrave;me Unicode.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><a class="an" name="construction">Construction du syst&egrave;me Unicode</a></h2>
+
+<p>Pour les nouvelles versions Unicode le livre <var>The Unicode Standard</var>, publi&eacute; par le consortium Unicode, est r&eacute;&eacute;dit&eacute;. Ce livre peut &ecirc;tre obtenu dans une librairie internationale. Tous les signes, valeurs de caract&egrave;res classes de caract&egrave;res etc... y sont exactement cod&eacute;s et repr&eacute;sent&eacute;s. Ce livre est l'ouvrage de r&eacute;f&eacute;rence officiel. On trouve toujours sur les pages Web du consortium Unicode des fichiers PDF &agrave; feuilleter rapidement qui contiennent les diff&eacute;rents tableaux de valeurs de caract&egrave;res. Les liens du tableau ci-dessous m&egrave;nent directement aux fichiers PDF correspondants. Pour pouvoir consulter ces tableaux, vous avez besoin de Acrobat Reader de Adobe (le navigateur Web ne suffit pas).</p>
+
+<p>Le syst&egrave;me unicode est divis&eacute; en passages num&eacute;riques. Les nombres eux m&ecirc;mes sont not&eacute;s sous la forme U+XXXX. Le U veut dire unicode, et les quatre X pour un nombre hexad&eacute;cimal chacun. Les valeurs de caract&egrave;res dans ces tableaux sont donc repr&eacute;sent&eacute;es sous leur forme hexad&eacute;cimale. Au cas o&ugrave; vous voulez utiliser une repr&eacute;sentation d&eacute;cimale pour un ou plusieurs caract&egrave;res d'une plage Unicode en HTML ou XML, vous pouvez utiliser le <img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../petitsassistants/dezhex.htm"><b>traducteur d&eacute;cimal/hexad&eacute;cimal</b></a>.</p>
+
+<p>Les diff&eacute;rents signes du syst&egrave;me unicode ne sont pas rang&eacute;s arbitrairement. Tout le syst&egrave;me est partag&eacute; en passages de signes. Les passages de signes refl&egrave;tent chacun une certaine culture d'&eacute;criture ou un jeu de caract&egrave;res sp&eacute;ciaux.</p>
+
+<p>Ci-apr&egrave;s sont list&eacute;s les diff&eacute;rents passages de signes unicode. Pour chaque passage de signes vous trouverez un lien sur le WWW. Le lien m&egrave;ne &agrave; un fichier PDF sur la page d'accueil du consortium unicode. L&agrave; vous trouverez des remarques et un tableau graphique du passage de signes correspondant avec une repr&eacute;sentation des diff&eacute;rents signes du passage avec les unicodes correspondants (hexad&eacute;cimal).</p>
+
+<h3>Partie BMP du syst&egrave;me Unicode (avec des caract&egrave;res d'une largeur de deux octets):</h3>
+
+<p><b>signes standard latin (jeu de caract&egrave;res ASCII)</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0000 to U+007F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0000.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Latin-1</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0080 to U+00FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0080.pdf"><b> tableau exact des codes avec repr&eacute;sentation graphique des signes
+</b></a></p>
+
+<p><b>Latin Extended-A</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0100 to U+017F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0100.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Latin Extended-B</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0180 to U+024F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0180.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>IPA Extensions</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0250 to U+02AF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0250.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Spacing Modifier Letters</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+02B0 to U+02FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U02B0.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Combining Diacritical Marks</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0300 to U+036F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0300.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Grec</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0370 to U+03FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0370.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Cyrillique</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0400 to U+04FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0400.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Arm&eacute;nien</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0530 to U+058F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0530.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>H&eacute;breu</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0590 to U+05FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0590.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Arabe</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0600 to U+06FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0600.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Devanagari</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0900 to U+097F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0900.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Bengali</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0980 to U+09FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0980.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Gurmukhi</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0A00 to U+0A7F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0A00.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Gujarati</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0A80 to U+0AFF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0A80.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Oriya</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0B00 to U+0B7F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0B00.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Tamil</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0B80 to U+0BFF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0B80.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Telugu</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0C00 to U+0C7F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0C00.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Kannada</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0C80 to U+0CFF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0C80.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Malayalam</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0D00 to U+0D7F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0D00.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Thai</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0E00 to U+0E7F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0E00.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Lao</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0E80 to U+0EFF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0E80.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Tibetan</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+0F00 to U+0FBF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U0F00.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Georgian</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+10A0 to U+10FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U10A0.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Hangul Jamo</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+1100 to U+11FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U1100.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Latin Extended Additional</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+1E00 to U+1EFF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U1E00.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Greek Extended</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+1F00 to U+1FFF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U1F00.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>General Punctuation</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2000 to U+206F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2000.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Superscripts and Subscripts</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2070 to U+209F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2070.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Currency Symbols</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+20A0 to U+20CF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U20A0.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a><br>
+Il y a ici &eacute;galement le  symbole su <b>signe euro</b> - il a la valeur <code>U+20AC</code>.<br>
+En HTML not&eacute; sous forme d&eacute;cimale: <code>&amp;#8364;</code> ou plus simplement: <code>&amp;euro;</code>.</p>
+
+<p><b>Combining Diacritical Marks for Symbols</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+20D0 to U+20FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U20D0.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Letterlike Symbols</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2100 to U+214F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2100.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Number Forms</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2150 to U+218F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2150.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Arrows</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2190 to U+21FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2190.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Mathematical Operators</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2200 to U+22FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2200.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Miscellaneous Technical</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2300 to U+23FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2300.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Control Pictures</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2400 to U+243F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2400.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Optical Character Recognition</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2440 to U+245F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2440.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Enclosed Alphanumerics</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2460 to U+24FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2460.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Box Drawing</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2500 to U+257F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2500.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Block Elements</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2580 to U+259F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2580.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Geometric Shapes</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+25A0 to U+25FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U25A0.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Miscellaneous Symbols</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2600 to U+26FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2600.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Dingbats</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+2700 to U+27BF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U2700.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>CJK Symbols and Punctuation</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+3000 to U+303F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U3000.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Hiragana</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+3040 to U+309F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U3040.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Katakana</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+30A0 to U+30FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U30A0.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Bopomofo</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+3100 to U+312F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U3100.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Hangul Compatibility Jamo</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+3130 to U+318F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U3130.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Kanbun</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+3190 to U+319F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U3190.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Enclosed CJK Letters and Months</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+3200 to U+32FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U3200.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>CJK Compatibility</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+3300 to U+33FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U3300.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>CJK Unified Ideographs</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+4E00 to U+9FA5<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U4E00.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Hangul Syllables</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+AC00 to U+D7A3<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/UAC00.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>High Surrogates</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+D800 to U+DB7F</p>
+
+<p><b>Private Use High Surrogates</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+DB80 to U+DBFF</p>
+
+<p><b>Low Surrogates</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+DC00 to U+DFFF</p>
+
+<p><b>Private Use Area</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+E000 to U+F8FF</p>
+
+<p><b>CJK Compatibility Ideographs</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+F900 to U+FAFF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/UF900.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Alphabetic Presentation Forms</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+FB00 to U+FB4F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/UFB00.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Arabic Presentation Forms-A</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+FB50 to U+FDFF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/UFB50.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Combining Half Marks</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+FE20 to U+FE2F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/UFE20.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>CJK Compatibility Forms</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+FE30 to U+FE4F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/UFE30.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Small Form Variants</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+FE50 to U+FE6F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/UFE50.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Arabic Presentation Forms-B</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+FE70 to U+FEFF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/UFE70.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Halfwidth and Fullwidth Forms</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+FF00 to U+FFEF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/UFF00.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Specials</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+FFF0 to U+FFFF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/UFFF0.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+
+
+<h3>Passage &eacute;tendu du syst&egrave;me unicode  (avec des caract&egrave;res d'une largeur de quatre octets):</h3>
+
+<p><b>Old Italic</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+10300 to U+1032F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U10300.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Gothic</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+10330 to U+1034F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U10330.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Deseret</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+10400 to U+1044F<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U10400.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Byzantine Musical Symbols</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+1D000 to U+1D0FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U1D000.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>Mathematical Alphanumeric Symbols</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+1D400 to U+1D7FF<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U1D400.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+<p><b>CJK Unified Ideographs Extension B</b><br>
+passage de signes (en mention hexad&eacute;cimale): U+20000 to U+2A6D6<br>
+<img src="../src/en.gif" width="16" height="10" border="0" alt="Page en langue anglaise">&nbsp;<a target="_top" href="http://www.unicode.org/charts/PDF/U20000.pdf"><b>tableau exact des codes avec repr&eacute;sentation graphique des signes</b></a></p>
+
+
+
+
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="polices_telechargeables.htm"><img src="../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="polices_telechargeables.htm"><b>Polices &agrave; t&eacute;l&eacute;charger</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="jeux_caracteres.htm"><img src="../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="jeux_caracteres.htm"><b> Jeux de caract&egrave;res (famille iso-8859 et autres)</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../index.htm"><b>SELFHTML</b></a>/<a href="../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Param&egrave;tres internationaux</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: JavaScript / R&eacute;f&eacute;rence objet / Array</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quels sont le r&ocirc;le, les propri�t&eacute;s et les m&eacute;thodes de l'objet das Array en JavaScript.">
+<meta name="keywords"       content="SELFHTML, JavaScript, objets, Array, index, input, length, concat(), join(), pop(), push(), reverse(), shift(), slice(), splice(), sort(), toSource(), toString(), unshift()">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/javascript/objets/array.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // JavaScript/DOM == ../index.htm // R&eacute;f&eacute;rence objet == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Array</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+
+<p><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur l'utilisation </b></a> </p>
+
+<h3>Propri&eacute;t&eacute;s:</h3>
+
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#tableaux_associatifs"><b>tableaux associatifs</b></a> (tableaux avec des cha&icirc;nes de caract&egrave;res comme cl&eacute;)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#length"><b>length</b></a> (nombre d'&eacute;l&eacute;ments)<br>
+</p>
+
+
+
+<h3>M&eacute;thodes:</h3>
+
+<p><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#concat"><b>concat()</b></a> (concat&eacute;ner des tableaux)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#join"><b>join()</b></a> (transformer un tableau en cha&icirc;ne de caract&egrave;res)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#pop"><b>pop()</b></a> (effacer le dernier &eacute;l&eacute;ment d'un tableau)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#push"><b>push()</b></a> (ajouter de nouveaux &eacute;l&eacute;ments &agrave; un tableau)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#reverse"><b>reverse()</b></a> (inverser l'ordre des &eacute;l&eacute;ments)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#shift"><b>shift()</b></a> (retirer le premier &eacute;l&eacute;ment d'un tableau)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#slice"><b>slice()</b></a> (extraire une partie d'un tableau)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#splice"><b>splice()</b></a> (effacer et ajouter des &eacute;l&eacute;ments)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#sort"><b>sort()</b></a> (trier un tableau)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#unshift"><b>unshift()</b></a> ((ins&eacute;rer des &eacute;l&eacute;ments au d&eacute;but d'un tableau)<br>
+</p>
+
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">Array: g&eacute;n&eacute;ralit&eacute;s sur l'utilisation</a></h2>
+
+<p>L'objet <code>Array</code> est con&ccedil;u comme &quot;conteneur&quot; pour des cha&icirc;nes de variables de m&ecirc;me nature. Dans le langage de programmation on parle &eacute;galement d'un &quot;tableau&quot;. Si par exemple vous voulez sauvegarder les 16 couleurs de base, vous n'avez pas besoin de 16 variables mais d'un objet Array dans lequel vous pouvez sauvegarder 16 valeurs de m&ecirc;me nature (dans l'exemple: valeurs de couleur)</p>
+
+<h3 class="xmp">Sch&eacute;ma 1 / exemple 1:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+nom_objet = new Array();
+mes_femmes = new Array();</pre></td></tr></table>
+<h3 class="xmp">Sch&eacute;ma 2 / exemple 2:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+nom_objet = new Array(nombre);
+mes_femmes = new Array(100);</pre></td></tr></table>
+<h3 class="xmp">Sch&eacute;ma 3 / exemple 3:</h3>
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+nom_objet = new Array(Element0, Element1, ..., element_n);
+mes_femmes = new Array(&quot;Annie&quot;,&quot;Estelle&quot;,&quot;Francine&quot;,&quot;Carole&quot;);</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>Vous sauvegardez une instance objet de <code>Array</code> dans un nom que vous attribuez vous m&ecirc;me. Derri&egrave;re le nom est plac&eacute; un signe &eacute;gal &agrave; la suite duquel est plac&eacute; le mot r&eacute;serv&eacute; <code>new</code> et l'appel de la fonction objet <code>Array()</code>.</p>
+
+<p>Utilisez le sch&eacute;ma 1 si vous ne savez pas encore au moment de la d&eacute;finition combien d'&eacute;l&eacute;ments doivent &ecirc;tre stock&eacute;s dans le tableau de variables.<br>
+Utilisez le sch&eacute;ma 2 si vous savez d&eacute;j&agrave; au moment de la d&eacute;finition combien d'&eacute;l&eacute;ments doivent &ecirc;tre stock&eacute;s dans le tableau de variables. Vous pouvez transmettre le nombre d'&eacute;l&eacute;ments &agrave; la fonction objet comme param&egrave;tre..<br>
+Utilisez le sch&eacute;ma 3, pour remplir tout de suite le tableau de variables avec des valeurs de d&eacute;part. Pour les variantes 1 et 2 les diff&eacute;rentes variables du tableau restent vides jusqu'&agrave; ce que dans le cours du programme une valeur leur soit attribu&eacute;e.</p>
+
+<p>Apr&egrave;s avoir cr&eacute;&eacute; une instance de l'objet Array, vous pouvez l'utiliser dans votre code JavaScript.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_generalites.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+nombres = new Array(34,86,167,413);
+var x = nombres[1];
+alert(x);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Apr&egrave;s avoir sauvegard&eacute; une instance de l'objet Array dans un nom (dans l'exemple le nom <code>nombres</code>), vous pouvez comme il est montr&eacute; dans la deuxi&egrave;me ligne, adresser les diff&eacute;rentes valeurs dans le tableau de variables. Dans l'exemple est d&eacute;finie une variable usuelle <code>x</code>. Est affect&eacute;e &agrave; cette variable la valeur de la deuxi&egrave;me variable du tableau, donc 86. Pensez &agrave; ce que le compteur commence &agrave; 0, c'est &agrave; dire que vous adressez la premi&egrave;re valeur du tableau dans l'exemple avec <code>nombres[0]</code> la deuxi&egrave;me avec <code>nombres[1]</code> etc...</p>
+
+
+<h3 class="inf">Attention:</h3>
+
+<p>Vous pouvez &eacute;galement cr&eacute;er des tableaux &agrave; plusieurs dimensions.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_pluridimensionnel.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var a = new Array(4)
+for (var i=0; i &lt; a.length; ++i)
+ a[i] = new Array(10);
+a[3][1] = &quot;Hello&quot;;
+alert(a[3][1]);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple d&eacute;finit dans un premier temps un tableau <code>a</code> &agrave; 4 &eacute;l&eacute;ments. Ensuite, dans une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for"><b>boucle for</b></a>, est d&eacute;fini pour chacun de ces &eacute;l&eacute;ments un nouveau tableau, o&ugrave; pour chaque tableau 10 &eacute;l&eacute;ments vides sont cr&eacute;&eacute;s. Enfin vous pouvez, par une mention telle que <code>a[3][1]</code>, adresser le deuxi&egrave;me &eacute;l&eacute;ment (1) dans le quatri&egrave;me tableau (3). Dans l'exemple, cet &eacute;l&eacute;ment se voit affecter la valeur <code>Hello</code>. Pour le contr&ocirc;le, la valeur est sortie dans une boite de dialogue.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"> <a class="an" name="tableaux_associatifs">tableaux associatifs</a></h2>
+
+<p>Les tableaux associatifs sont des tableaux dans lesquels l'acc&egrave;s aux diff&eacute;rents &eacute;l&eacute;ments se fait &agrave; l'aide d'une cha&icirc;ne de caract&egrave;res. La cha&icirc;ne de caract&egrave;res est consid&eacute;r&eacute;e comme <b>cl&eacute;</b> pour l'acc&egrave;s. Tous les objets JavaScript, qui poss&egrave;dent une propri&eacute;t&eacute;  <code>name</code> ou <code>id</code>, comme par exemple les objets <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="forms.htm"><b>forms</b></a> ou bien <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elements.htm"><b>elements</b></a>, repr&eacute;sentent pour JavaScript des tableaux associatifs.</p>
+
+<p>Les tableaux associatifs sont particuli&egrave;rement indiqu&eacute;s en relation avec des tableaux &agrave; plusieurs dimensions. Ils permettent, ind&eacute;pendamment de la position, de rechercher la valeur d'un &eacute;l&eacute;ment. L'inconv&eacute;nient en est que les m&eacute;thodes de l'objet  Array ne lui sont pas applicables. De m&ecirc;me les tableaux associatifs ne connaissent-ils pas la propri&eacute;t&eacute; <code>length</code>. Les &eacute;l&eacute;ments d'un tableau associatif ne peuvent toujours &ecirc;tre adress&eacute;s qu'avec leur nom ou par une boucle <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for_in"><b>for-in</b></a>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_arrays_associatifs.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var employe=new Array();
+
+ employe[0] = new Array();
+ employe[0][&quot;nom&quot;] = &quot;Descartes&quot;;
+ employe[0][&quot;prenom&quot;] = &quot;Jean&quot;;
+ employe[0][&quot;residence&quot;]= &quot;Cahors&quot;;
+
+ employe[1]=new Array()
+ employe[1][&quot;nom&quot;] = &quot;Amora&quot;;
+ employe[1][&quot;prenom&quot;] = &quot;Celeste&quot;;
+ employe[1][&quot;residence&quot;]= &quot;Dijon&quot;;
+
+ for (var i=0;i&lt;employe.length;i++)
+ {
+  document.write(&quot;&lt;dl&gt;&lt;dt&gt;employe &quot;+(i+1)+&quot;&lt;\/dt&gt;&quot;);
+   for (var propriete in employe[i])
+      document.write(&quot;&lt;dd&gt;&quot;+ propriete + &quot;: &quot;+employe[i][propriete]+&quot;&lt;\/dd&gt;&quot;);
+  document.write(&quot;&lt;\/dl&gt;&quot;);
+ }
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple d&eacute;finit un tableau <code>employe</code>. Ce tableau comprend deux &eacute;l&eacute;ments. Chacun de ces &eacute;l&eacute;ments repr&eacute;sente lui-m&ecirc;me un tableau. Il s'agit cependant ici de tableaux associatifs, car comme cl&eacute; sont employ&eacute;s les termes <code>nom</code>, <code>prenom</code> et <code>residence</code>. &Agrave; chacun de ces &eacute;l&eacute;ments est attribu&eacute;e une valeur correspondante.</p>
+
+<p>La boucle <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for"><b>for</b></a> qui suit sert &agrave; sortir les &eacute;l&eacute;ments du tableau <code>employe</code> et leurs propri&eacute;t&eacute;s respectives. Apr&egrave;s le d&eacute;but de la boucle <code>for</code> le commencement d'une liste de d&eacute;finition est d'abord &eacute;crit dans le document avec la m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="document.htm#write"><b>write</b></a> en mentionnant le num&eacute;ro d'ordre de l'employ&eacute;. Ce qui correspond &agrave; la position dans le tableau augment&eacute;e de un, &eacute;tant donn&eacute; que pour les &eacute;l&eacute;ments de tableau, le comptage commence &agrave; 0. Enfin est appel&eacute;e une autre boucle int&eacute;rieure. &Eacute;tant donn&eacute; qu'il est acc&eacute;d&eacute; ici &agrave; un tableau associatif, une boucle <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../langage/boucles.htm#for_in"><b>for in</b></a> est employ&eacute;e. Cette boucle parcourt chaque index du tableau associatif adress&eacute; et &eacute;crit sa propri&eacute;t&eacute; et la valeur correspondante dans le document. Quand la boucle <code>for-in</code> est termin&eacute;e, la liste de d&eacute;finitions est &eacute;galement ferm&eacute;e pour parcourir le prochain &eacute;l&eacute;ment du tableau <code>employe</code>.</p>
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js10.gif" width="30" height="30" border="0" alt="JavaScript 1.0"><img src="../../src/netsc2.gif" width="30" height="30" border="0" alt="Netscape 2.0"><img src="../../src/msie3.gif" width="30" height="30" border="0" alt="MS IE 3.0"><img src="../../src/jsread.gif" width="60" height="30" border="0" alt="Lesen"> <a class="an" name="length">length</a></h2>
+
+<p>Sauvegarde le nombre d'&eacute;l&eacute;ments d'un tableau. Pensez que tous les objets JavaScript ayant une propri&eacute;t&eacute; length comme par exemple les objets  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="forms.htm"><b>forms</b></a> ou  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="elements.htm"><b>elements</b></a>, repr&eacute;sentent des tableaux pour JavaScript.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_length.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var nombres = new Array(1,2,4,8,16,32,64,128,256);
+ alert(nombres.length + &quot; nombres sont d�finis&quot;);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple d&eacute;finit un tableau comportant 9 nombres. Ensuite est sorti pour le contr&ocirc;le, le nombre d'&eacute;l&eacute;ments contenus dans le tableau.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="concat">concat()</a></h2>
+
+<p>Concat&egrave;ne un tableau &agrave; un autre. Attend comme param&egrave;tre le nom de le tableau &agrave; concat&eacute;ner. Renvoie le tableau r&eacute;sultant de la concat&eacute;nation. Vous pouvez aussi transmettre plusieurs tableaux comme param&egrave;tre &agrave; la m&eacute;thode.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_concat.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var nombres = new Array(1,2,3);
+ var autres_nombres = new Array(10,20,30);
+ total_nombres = nombres.concat(autres_nombres);
+ alert(total_nombres.length);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple d&eacute;finit dans un premier temps deux tableaux <code>nombres</code> et <code>autres_nombres</code>, contenant chacun trois nombres, puis une variable <code>total_nombres</code> dans laquelle est sauvegard&eacute;e enfin la valeur renvoy&eacute;e par <code>concat()</code>: celle-ci est employ&eacute;e sur le premier tableau d&eacute;fini <code>nombres</code> en concat&eacute;nant le deuxi&egrave;me tableau <code>autres_nombres</code>. Pour le contr&ocirc;le, le nombre total des &eacute;l&eacute;ments de <code>total_nombres</code> est sorti. Ce tableau contient maintenant les valeurs 1,2,3,10,20,30 - et a de ce fait 6 &eacute;l&eacute;ments.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>La m&eacute;thode <code>concat()</code> g&eacute;n&egrave;re diverses r&eacute;f&eacute;rences sur les tableaux qui lui sont transmis. Si dans les tableaux &agrave; concat&eacute;ner, un objet est sauvegard&eacute;, alors une esp&egrave;ce de pointeur sera sauvegard&eacute; dans le tableau venant d'&ecirc;tre cr&eacute;&eacute;. Ce qui signifie que si cet objet est modifi&eacute;, le tableau cr&eacute;&eacute; par la m&eacute;thode <code>concat()</code> est &eacute;galement modifi&eacute;. Si pourtant des nombres et des cha&icirc;nes de caract&egrave;res sont contenus dans les tableaux concat&eacute;n&eacute;s, une copie de ces valeurs est cr&eacute;&eacute;e. Des modifications ult&eacute;rieures n'auront alors aucune influence sur le tableau cr&eacute;&eacute; par la m&eacute;thode <code>concat()</code>.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_concat_reference.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var nombres=new Array(1,2);
+var plus_de_nombres = new Array(nombres,3,4);
+var autres_nombres = new Array(5,6,7);
+
+total_nombres = plus_de_nombres.concat(autres_nombres);
+alert(total_nombres);
+
+nombres[0]=70;
+alert(&quot;nombres: &quot; +nombres);
+
+autres_nombres[0]=70;
+alert(&quot;autres_nombres: &quot; +autres_nombres);
+
+alert(&quot;total_nombres: &quot; +total_nombres);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Dans l'exemple, trois tableaux ont &eacute;t&eacute; d&eacute;finis. Le premier &eacute;l&eacute;ment du tableau <code>plus_de_nombres</code> est ici le tableau <code>nombres</code>. Ce faisant, un objet du type  Array est sauvegard&eacute; dans le tableau <code>plus_de_nombres</code>. Avec la m&eacute;thode <code>concat()</code> est concat&eacute;n&eacute; au tableau <code>plus_de_nombres</code> le tableau <code>autres_nombres</code>. Dans la variable <code>total_nombres</code> est alors sauvegard&eacute; un tableau avec les &eacute;l&eacute;ments 1,2,3,4,5,6,7.<br>
+Dans la partie script qui suit, les premiers &eacute;l&eacute;ments des tableaux <code>nombres</code> et <code>autres_nombres</code> re&ccedil;oivent chacun la valeur 70. Les deux tableaux sont d'ailleurs effectivement modifi&eacute;s, comme le montre la sortie pour contr&ocirc;le dans une boite de dialogue. Dans le tableau  <code>total_nombres</code> cr&eacute;&eacute; par la m&eacute;thode <code>concat()</code> sont maintenant sauvegard&eacute;es les valeurs  70,2,3,4,5,6,7 . La derni&egrave;re fen&ecirc;tre de dialogue le montre. La modification du tableau  <code>nombres</code> a donc &eacute;t&eacute; prise en compte, la modification du tableau <code>autres_nombres</code> par contre ne l'a pas &eacute;t&eacute;. La raison en est que le tableau <code>nombres</code> &eacute;tait contenu en tant qu'objet dans le tableau <code>plus_de_nombres</code> et que pour cette raison, chaque modification est prise en compte. Les valeurs du tableau <code>autres_nombres</code> &eacute;taient par contre du type <code>nombre</code>, et une copie en a &eacute;t&eacute; faite. Ses modifications ult&eacute;rieures restent donc sans effet.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="join">join()</a></h2>
+
+<p>Transforme un tableau en cha&icirc;ne de caract&egrave;res. Attend comme param&egrave;tre un ou plusieurs signes de s&eacute;paration par lequel/lesquels les &eacute;l&eacute;ments du tableau doivent &ecirc;tre s&eacute;par&eacute;s dans la cha&icirc;ne de caract&egrave;res.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_join.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var nombres = new Array(1,2,4,8,16,32,64,128,256);
+ var chaine_nombres = nombres.join(&quot; &quot;);
+ alert(chaine_nombres);
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple d&eacute;finit un tableau avec 9 nombres. Ensuite, la m&eacute;thode <code>join</code> est appliqu&eacute;e &agrave; la variable <code>nombres</code>, dans laquelle le tableau est sauvegard&eacute;. Ce faisant, un espace a &eacute;t&eacute; transmis comme param&egrave;tre dans l'exemple. La valeur renvoy&eacute;e par la proc&eacute;dure est stock&eacute;e dans la variable <code>chaine_nombres</code>. Le r&eacute;sultat en est que tous les nombres d&eacute;finis se trouvent dans <code>chaine_nombres</code> et sont alors s&eacute;par&eacute;s les uns des autres par des espaces. Pour le contr&ocirc;le, le r&eacute;sultat et sorti dans une boite de dialogue.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="pop">pop()</a></h2>
+
+<p>Retire le dernier &eacute;l&eacute;ment d'un tableau et modifie ainsi le nombre d'&eacute;l&eacute;ments dans le tableau. La valeur retourn&eacute;e par la m&eacute;thode est le contenu de l'&eacute;l&eacute;ment effac&eacute;.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_pop.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var nombres = new Array(1,2,3,4,5);
+ alert(nombres.length + &quot; nombres dans le tableau&quot;);
+ function retirer()
+ {
+  nombres.pop();
+  alert(nombres.length + &quot; nombres dans le tableau&quot;);
+ }
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;a href=&quot;javascript:retirer()&quot;&gt;retirer un nombre&lt;/a&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit &agrave; la lecture du fichier un tableau <code>nombres</code> avec 5 &eacute;l&eacute;ments. Pour le contr&ocirc;le, le nombre d'&eacute;l&eacute;ments est sorti dans une boite de dialogue. Dans le corps de fichier de l'exemple est d&eacute;fini un lien qui lorsqu'on le clique appelle la fonction <code>retirer()</code>, qui &agrave; chaque fois retire avec la m&eacute;thode <code>pop()</code> le dernier &eacute;l&eacute;ment du tableau <code>nombres</code>. Pour le contr&ocirc;le, la nouvelle longueur du tableau est sortie.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Pour les navigateurs qui ne connaissent pas la m&eacute;thode <code>pop()</code>, vous pouvez retirer le dernier &eacute;l&eacute;ment en affectant au tableau une nouvelle taille, par exemple avec <code>nombres.length=nombres.length-1</code>.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="push">push()</a></h2>
+
+<p>Ajoute un ou plusieurs &eacute;l&eacute;ments &agrave; la fin d'un tableau. Attend comme param&egrave;tre un ou plusieurs &eacute;l&eacute;ments &agrave; ajouter. Renvoie dans la version JavaScript 1.2 le dernier &eacute;l&eacute;ment (le plus r&eacute;cent), dans les derni&egrave;res versions de JavaScript par contre. c'est la taille du tableau qui est renvoy&eacute;e.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_push.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var lieux = new Array(&quot;Angoul�me&quot;);
+ document.write(lieux.join(&quot;,&quot;) + '&lt;p&gt;');
+ var element_plus_recent = lieux.push(&quot;Paris&quot;);
+ document.write(lieux.join(&quot;,&quot;) + '&lt;br&gt;');
+ document.write('Lieu le plus r�cent: ' + element_plus_recent + '&lt;p&gt;');
+ var element_plus_recent = lieux.push(&quot;Marseille&quot;,&quot;Lyon&quot;,&quot;Lille&quot;,&quot;Bordeaux&quot;);
+ document.write(lieux.join(&quot;,&quot;) + '&lt;br&gt;');
+ document.write('�l�ment le plus r�cent: ' + element_plus_recent);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple cr&eacute;e, dans un JavaScript not&eacute; dans le corps de fichier, un tableau <code>lieux</code>, dans lequel on ne sauvegarde d'abord qu'une valeur - &agrave; savoir: <code>Angoul&ecirc;me</code>. Pour le contr&ocirc;le, le contenu est &eacute;crit dans le fichier avec la m&eacute;thode <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="document.htm#write"><b>write()</b></a>. Ensuite, on ajoute un &eacute;l&eacute;ment au tableau avec la m&eacute;thode <code>push()</code> - &agrave; savoir <code>Paris</code>. La valeur retourn&eacute;e par l'op&eacute;ration est sauvegard&eacute;e dans la variable <code>element_plus_recent</code>. Pour le contr&ocirc;le, le tableau ainsi &eacute;tendu et la valeur renvoy&eacute;e sont &eacute;crits dans le fichier. Le tableau est maintenant constitu&eacute; des &eacute;l&eacute;ments <code>Angoul&ecirc;me</code> et <code>Paris</code>. L'&eacute;l&eacute;ment le plus r&eacute;cent est <code>Paris</code>. Ensuite sont ajout&eacute;s selon le m&ecirc;me sch&eacute;ma quatre nouveaux &eacute;l&eacute;ments dans le tableau. Suite &agrave; quoi, le tableau comprend ensuite, outre les deux villes d&eacute;j&agrave; vues, les quatre nouvelles. Dans la variable <code>element_plus_recent</code> n'est cependant sauvegard&eacute; que le dernier, le plus r&eacute;cent des &eacute;l&eacute;ments. Dans l'exemple c'est <code>Bordeaux</code>. Pour le contr&ocirc;le ces processus sont aussi &eacute;crits dans le fichier.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Pour les navigateurs qui ne connaissent pas la m&eacute;thode <code>push()</code>, vous pouvez ajouter un nouvel &eacute;l&eacute;ment en &eacute;largissant le tableau , par exemple avec <code>nombres[nombres.length]=&quot;valeur&quot;</code></p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="reverse">reverse()</a></h2>
+
+<p>Inverse l'ordre des &eacute;l&eacute;ments &agrave; l'int&eacute;rieur d'un tableau. Le premier &eacute;l&eacute;ment est ensuite le dernier, le dernier devient le premier.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_reverse.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var nom = new Array(&quot;S&quot;,&quot;E&quot;,&quot;R&quot;,&quot;G&quot;,&quot;E&quot;);
+nom.reverse();
+document.write(nom.join(&quot;&quot;));
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple d&eacute;finit un tableau <code>nom</code> dont les &eacute;l&eacute;ments sont constitu&eacute;s des diff&eacute;rentes lettres du nom Serge. Ensuite, la m&eacute;thode <code>reverse()</code> est appliqu&eacute;e sur ce tableau. &Agrave; l'aide de la m&eacute;thode  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#join"><b>join()</b></a> le tableau est enfin &eacute;crit dans le fichier avec le nouvel ordre de ses &eacute;l&eacute;ments. Il y est &eacute;crit de telle sorte qu'aucun signe ne figure entre ses &eacute;l&eacute;ments (ce qui s'obtient par une cha&icirc;ne de caract&egrave;res vide <code>&quot;&quot;</code> pour <code>join()</code>. Le r&eacute;sultat en est que le nom Serge est &eacute;crit &agrave; l'envers dans le fichier.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="shift">shift()</a></h2>
+
+<p>Retire le premier &eacute;l&eacute;ment d'un tableau. Les &eacute;l&eacute;ments qui suivent sont d&eacute;plac&eacute;s vers l'avant en cons&eacute;quence. Celui qui &eacute;tait deuxi&egrave;me &eacute;l&eacute;ment jusqu'alors devient premier etc. Retourne l'&eacute;l&eacute;ment retir&eacute;.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_shift.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var nombres = new Array(1,2,3,4,5);
+ alert(&quot;Premier nombre dans : &quot; + nombres[0]);
+ function retirer()
+ {
+  var element_efface = nombres.shift();
+  alert(&quot;Premier nombre dans le tableau: &quot; + nombres[0]);
+ }
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;a href=&quot;javascript:retirer()&quot;&gt;retirer un nombre&lt;/a&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit &agrave; la lecture du fichier un tableau <code>nombres</code> avec 5 &eacute;l&eacute;ments. Pour le contr&ocirc;le, la valeur du premier &eacute;l&eacute;ment est sortie dans une boite de dialogue, dans l'exemple <code>1</code>. Dans le corps du fichier, l'exemple contient un lien qui, lorsqu'on le clique, appelle la fonction <code>retirer()</code>, qui retire le premier &eacute;l&eacute;ment du tableau <code>nombres</code> avec la m&eacute;thode <code>shift()</code>. Pour le contr&ocirc;le, le nouveau premier &eacute;l&eacute;ment est sorti.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="slice">slice()</a></h2>
+
+<p>Extrait une partie d'un tableau. Attend comme param&egrave;tre le num&eacute;ro d'index du premier et du dernier &eacute;l&eacute;ment &agrave; extraire. Le num&eacute;ro d'index pour le dernier &eacute;l&eacute;ment peut &eacute;galement &ecirc;tre une valeur n&eacute;gative. Ce qui signifie &agrave; peu pr&egrave;s &quot;l'&eacute;l&eacute;ment n� tant en partant de la fin&quot;, o&ugrave; l&agrave; aussi on commence &agrave; compter &agrave; partir de 0. Une valeur de -1 signifie donc l'avant dernier &eacute;l&eacute;ment.<br>
+La m&eacute;thode renvoie les &eacute;l&eacute;ments extraits sous forme de nouveau tableau.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_slice.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var nombres = new Array(1,2,3,4,5);
+ for(var i = 0; i &lt; nombres.length; ++i)
+ {
+  var nouveaux_nombres = nombres.slice(i,nombres.length);
+  alert(nouveaux_nombres.join(&quot;,&quot;));
+ }
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>L'exemple d&eacute;finit un tableau <code>nombres</code> avec 5 &eacute;l&eacute;ments. Ensuite, une boucle <code>for</code> est not&eacute;e. La boucle compte de 0 &agrave; 4. Dans la boucle, &agrave; chaque tour, le r&eacute;sultat de <code>nombres.slice(i,nombres.length)</code> est sauvegard&eacute; dans un nouveau tableau nomm&eacute; <code>nouveaux_nombres</code>. Le compteur de boucles <code>i</code> y est le num&eacute;ro d'index du premier &eacute;l&eacute;ment &agrave; extraire. Le dernier &eacute;l&eacute;ment &agrave; extraire est mentionn&eacute; dans l'exemple par  <code>nombres.length</code> (ce qui n'est &agrave; vrai dire pas tout &agrave; fait correct &eacute;tant donn&eacute; que le nombre d'&eacute;l&eacute;ments est plus &eacute;lev&eacute; de 1 que l'index du dernier &eacute;l&eacute;ment - Netscape interpr&egrave;te pourtant correctement de cette fa&ccedil;on, l'Explorer Internet MS 4 interpr&egrave;te par contre plus conform&eacute;ment aux attentes; l&agrave; il faut travailler avec <code>nombres.length-1</code>). Par les mentions tous les &eacute;l&eacute;ments depuis l'&eacute;l&eacute;ment <code>i</code> jusqu'au dernier &eacute;l&eacute;ment sont extraits. &Eacute;tant donn&eacute; que <code>i</code> est incr&eacute;ment&eacute; &agrave; chaque passage de boucle, il y aura dans l'exemple de moins en moins de chiffres extraits, &agrave; savoir toujours les derniers du tableau.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>La m&eacute;thode <code>slice()</code> g&eacute;n&egrave;re diverses r&eacute;f&eacute;rences sur les tableaux qui lui sont transmis. Si dans les tableaux &agrave; concat&eacute;ner, un objet est sauvegard&eacute;, alors une esp&egrave;ce de pointeur sera sauvegard&eacute; dans le tableau venant d'&ecirc;tre cr&eacute;&eacute;. Ce qui signifie que si cet objet est modifi&eacute;, le tableau cr&eacute;&eacute; par la m&eacute;thode <code>slice()</code> est &eacute;galement modifi&eacute;. Si pourtant des nombres et des cha&icirc;nes de caract&egrave;res sont contenus dans les tableaux concat&eacute;n&eacute;s, une copie de ces valeurs est cr&eacute;&eacute;e. Des modifications ult&eacute;rieures n'auront alors aucune influence sur le tableau cr&eacute;&eacute; par la m&eacute;thode <code>slice()</code>.<br>
+Dans sa fa&ccedil;on de r&eacute;f&eacute;rencer, la m&eacute;thode <code>slice()</code> se comporte exactement comme la m&eacute;thode <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"><a href="#concat"><b>concat()</b></a>.</p>
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="splice">splice()</a></h2>
+
+<p>Ajoute un ou plusieurs nouveaux &eacute;l&eacute;ments dans un tableau et cela &agrave; un certain endroit choisi. &Eacute;crase en le faisant des &eacute;l&eacute;ments existants. Attend les param&egrave;tres suivants:<br>
+<b>1.</b> <i>index d&eacute;part</i> = num&eacute;ro d'index dans le tableau auquel le ou les nouveaux &eacute;l&eacute;ments doivent &ecirc;tre ins&eacute;r&eacute;s.<br>
+<b>2.</b> <i>nombre</i> = nombre d'&eacute;l&eacute;ments &agrave; ins&eacute;rer.<br>
+<b>3.[4...]</b> <i>&eacute;l&eacute;ment[s]</i> = nouveaux &eacute;l&eacute;ments.<br>
+Le troisi&egrave;me et les param&egrave;tres suivants sont facultatifs. En ne mentionnant que les deux premiers param&egrave;tres des &eacute;l&eacute;ments vides seront ins&eacute;r&eacute;s.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_splice.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+ var nombres = new Array(1,2,3);
+ nombres.splice(1,3,4,5,6);
+ alert(nombres.join(&quot;,&quot;));
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple d&eacute;finit un tableau <code>nombres</code>, comprenant 3 &eacute;l&eacute;ments avec les nombres 1 &agrave; 3. Ensuite, la m&eacute;thode <code>splice()</code> est appliqu&eacute;e, et ce de la fa&ccedil;on suivante: au num&eacute;ro d'index 1 (donc au deuxi&egrave;me chiffre du tableau) 3 nouveaux &eacute;l&eacute;ments sont ins&eacute;r&eacute;s - &agrave; savoir les &eacute;l&eacute;ments avec les valeurs 4, 5 et 6. Les &eacute;l&eacute;ments pr&eacute;c&eacute;dents avec les valeurs 2 et 3 sont &eacute;cras&eacute;s avec les valeurs 4 et 5. L'&eacute;l&eacute;ment avec la valeur 6 est ajout&eacute;. &Agrave; l'issue, le tableau contient donc 4 &eacute;l&eacute;ments avec les valeurs suivantes: 1,4,5,6.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js11.gif" width="30" height="30" border="0" alt="JavaScript 1.1"><img src="../../src/netsc3.gif" width="30" height="30" border="0" alt="Netscape 3.0"><img src="../../src/msie4.gif" width="30" height="30" border="0" alt="MS IE 4.0"> <a class="an" name="sort">sort()</a></h2>
+
+<p>Trie les &eacute;l&eacute;ments d'un tableau. Si vous ne transmettez aucun param&egrave;tre, le tri se fait alphab&eacute;tiquement, les valeurs num&eacute;riques sont transform&eacute;es automatiquement en cha&icirc;nes de caract&egrave;res, et tri&eacute;es en tant que telles. De ce fait le nombre 13, par exemple, est plac&eacute; avant le nombre 7, parce qu'alphab&eacute;tiquement &quot;13&quot;, comme cha&icirc;ne de caract&egrave;res, vient avant 7. Si vous voulez trier des valeurs num&eacute;riques, vous pouvez d&eacute;finir une fonction de comparaison et transmettre son nom comme param&egrave;tre.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_sort.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+function tri_nombres(a,b)
+{ return a-b; }
+
+var noms = new Array(&quot;Th�r�se&quot;,&quot;No�mie&quot;,&quot;Carole&quot;,&quot;S�verine&quot;);
+noms.sort();
+
+var nombres = new Array(27,2,10,4);
+nombres.sort(tri_nombres);
+
+var sortie_noms = noms.join(&quot;,&quot;);
+var sortie_nombres = nombres.join(&quot;,&quot;);
+document.write(&quot;Noms tri�s: &quot; + sortie_noms + &quot;&lt;br&gt;&quot;);
+document.write(&quot;Nombres tri�s: &quot; + sortie_nombres);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple montre comment trier des cha&icirc;nes de caract&egrave;res et des valeurs num&eacute;riques. Dans l'exemple est d&eacute;fini un tableau <code>noms</code> dont les &eacute;l&eacute;ments repr&eacute;sentent des cha&icirc;nes de caract&egrave;res. Pour trier un tel tableau, il suffit simplement d'appliquer la m&eacute;thode <code>sort()</code> sur le tableau. Les &eacute;l&eacute;ments du tableau sont alors tri&eacute;s &agrave; nouveau alphab&eacute;tiquement. Pour trier des nombres vous avez besoin d'une simple fonction de comparaison. &Agrave; cet effet, vous pouvez utiliser la fonction <code>tri_nombres()</code> d&eacute;finie dans l'exemple. L'exemple d&eacute;finit un tableau <code>nombres</code> et applique la m&eacute;thode <code>sort()</code> sur ce tableau en transmettant comme param&egrave;tre le nom de la fonction <code>tri_nombres</code>. Ainsi les &eacute;l&eacute;ments du tableau sont tri&eacute;s dans l'ordre num&eacute;rique.<br>
+La fonction <code>tri_nombres()</code> r&eacute;git comment deux &eacute;l&eacute;ments doivent &ecirc;tre tri&eacute;s. Elle poss&egrave;de les param&egrave;tres <code>a</code> et  <code>b</code>. Pendant le processus de tri, la fonction est appel&eacute;e avec respectivement deux &eacute;l&eacute;ments du tableau. La valeur retourn&eacute;e est un nombre qui peut &ecirc;tre plus petit, plus grand ou &eacute;gal &agrave; 0. Ce nombre r&eacute;sulte de la diff&eacute;rence entre les deux param&egrave;tres. Si la valeur renvoy&eacute;e par <code>tri_nombres()</code> est plus grande que 0, alors cela signifie que le param&egrave;tre <code>a</code> a un index plus &eacute;lev&eacute; que le param&egrave;tre <code>b</code>. Dans l'ordre du tri, <code>b</code> vient ainsi avant <code>a</code>. Si la valeur renvoy&eacute;e par <code>tri_nombres()</code> est plus petite que 0, alors cela signifieque le param&egrave;tre <code>a</code> a un index plus bas que le param&egrave;tre <code>b</code>. Dans l'ordre de tri, <code>a </code> vient ainsi avant <code>b</code>. Si la valeur retourn&eacute;e est  0 , alors les deux &eacute;l&eacute;ments sont &eacute;gaux et leur ordre n'a pas besoin d'&ecirc;tre modifi&eacute;.<br>
+Si vous d&eacute;sirez un tri inverse, appliquez apr&egrave;s la m&eacute;thode <code>sort()</code> la m&eacute;thode  <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#reverse"><b>reverse()</b></a>.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/js12.gif" width="30" height="30" border="0" alt="JavaScript 1.2"><img src="../../src/netsc4.gif" width="30" height="30" border="0" alt="Netscape 4.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x"> <a class="an" name="unshift">unshift()</a></h2>
+
+<p>Ins&egrave;re au d&eacute;but d'un tableau un ou plusieurs nouveaux &eacute;l&eacute;ments. Attend comme param&egrave;tre les &eacute;l&eacute;ments &agrave; ins&eacute;rer. Retourne le nouveau nombre d'&eacute;l&eacute;ments du tableau.</p>
+
+<h3 class="xmp">Exemple:</h3>
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/array_unshift.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;Test&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;!--
+var nombres = new Array(5,6,7,8,9);
+var nouveau_nombre = nombres.unshift(1,2,3,4);
+alert(nouveau_nombre);
+alert(nombres.join(&quot;,&quot;));
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+<p>L'exemple d&eacute;finit un tableau <code>nombres</code> avec 5 &eacute;l&eacute;ments, &agrave; savoir les nombres de 5 &agrave; 9. Ensuite sont ajout&eacute;s 4 nouveaux chiffres au d&eacute;but du tableau &agrave; l'aide de la m&eacute;thode <code>unshift()</code> &agrave; savoir les chiffres du 1 &agrave; 4. La valeur renvoy&eacute;e par l'op&eacute;ration est sauvegard&eacute;e dans la variable <code>nouveau_nombre</code>. Pour le contr&ocirc;le est sortie ensuite d'abord la valeur de <code>nouveau_nombre</code> et ensuite le nouveau tableau complet. Le nombre d'&eacute;l&eacute;ments est maintenant de 9 et le tableau comprend les &eacute;l&eacute;ments 1,2,3,4,5,6,7,8,9 .</p>
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="boolean.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="boolean.htm"><b>Boolean</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="location.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="location.htm"><b>location</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>JavaScript/DOM</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&eacute;f&eacute;rence objet</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: XML/DTDs / R&egrave;gles pour les fichiers XML / Arborescence et n&#339;uds d'un fichier XML</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Comment les fichiers XML doivent &ecirc;tre compris et repr&eacute;sent&eacute;s en tant qu'arborescence et quelle signification ont les termes &quot;n&#339;uds&quot; et &quot;jeux de n&#339;uds&quot; dans ce contexte">
+<meta name="keywords"       content="SELFHTML, XML, arborescence, n&#339;uds, jeu de n&#339;uds">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/xml/regles/arborescence.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // XML/DTDs == ../index.htm // R&egrave;gles pour les fichiers XML == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>XML/DTDs</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&egrave;gles pour les fichiers XML</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Arborescence et n&#339;uds d'un fichier XML</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#arborescence"><b>L'arborescence des documents XML</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#noeuds_jeux_noeuds"><b>N&#339;uds et jeux de n&#339;uds dans l'arborescence</b></a><br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="arborescence">L'arborescence des documents XML</a></h2>
+
+<p>Un document conforme &agrave; XML est constitu&eacute; d'&eacute;l&eacute;ments, d'attributs, de leurs affectations de valeur et du contenu des &eacute;l&eacute;ments qui peut &ecirc;tre constitu&eacute; de texte ou d'&eacute;l&eacute;ments subordonn&eacute;s, comprenant eux-m&ecirc;mes &agrave; leur tour des attributs avec affectations de valeur et du contenu. Il y a des &eacute;l&eacute;ments avec ou sans attributs, dans lesquels beaucoup d'autres &eacute;l&eacute;ments peuvent &ecirc;tre plac&eacute;s et ceux dans lesquels seul du texte peut &ecirc;tre plac&eacute; et m&ecirc;me des &eacute;l&eacute;ments vides qui peuvent ne pas avoir de contenu. La structure qui se cr&eacute;e avec ces composantes et leurs r&egrave;gles de cr&eacute;ation peut &ecirc;tre comprise comme une arborescence.</p>
+
+<h3 class="xmp"><a name="exemple">Exemple de code (XML):</a></h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;films&gt;
+ &lt;film regie=&quot;Tom Tykwer&quot; titre=&quot;Cours, Lola cours&quot;&gt;
+  &lt;description&gt;
+    &lt;nom type=&quot;f&quot;&gt;Lola&lt;/nom&gt; court pour  &lt;nom type=&quot;m&quot;&gt;Manni&lt;/nom&gt;, qui a �gar� 100000 Mark
+    et qui n'a que 20 minutes pour restituer l'argent.
+  &lt;/description&gt;
+ &lt;/film&gt;
+&lt;/films&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Repr&eacute;sentation en arborescence:</h3>
+
+<p><img src="arborescence.gif" width="279" height="269" border="0" alt="exemple de code en arborescence"></p>
+
+<p>Au lieu de parler ici d'&quot;arborescence&quot;, on pourrait &eacute;galement comparer avec une structure de r&eacute;pertoires et de fichiers.</p>
+
+<h3 class="xpl">Cons&eacute;quences pour le traitement des donn&eacute;es:</h3>
+
+<p>La structure de donn&eacute;es d'un fichier XML peut non seulement &ecirc;tre repr&eacute;sent&eacute;e exactement comme une structure de r&eacute;pertoires et de fichiers, elle est aussi manipul&eacute;e de fa&ccedil;on tr&egrave;s semblable par le logiciel qui la traite.</p>
+
+<p>Un <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../intro.htm#parser"><b>analyseur syntaxique XML</b></a> travaille un fichier XML en suivant la hi&eacute;rarchie qui r&eacute;sulte de l'arborescence des donn&eacute;es. Chaque &eacute;l&eacute;ment, chaque attribut, chaque affectation de valeur &agrave; un attribut, chaque contenu de caract&egrave;res d'un &eacute;l&eacute;ment devient une partie constitutive distincte de l'arborescence. Chacune de ces parties constitutives peut &ecirc;tre adress&eacute;e s&eacute;par&eacute;ment.</p>
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;
+</td></tr></table>
+<h2 class="Sh2"><a class="an" name="noeuds_jeux_noeuds">N&#339;uds et jeux de n&#339;uds dans l'arborescence</a></h2>
+
+<p>Pour pouvoir discuter correctement des parties constitutives d'une arborescence XML, il y a les deux termes <b>n&#339;uds</b> et <b>jeu de n&#339;uds</b>. Les deux termes &eacute;clairent l'arborescence sous des angles diff&eacute;rents.</p>
+
+<h3 class="xpl">N&#339;uds</h3>
+
+<p>Quand on parle de n&#339;uds, on entend les parties qui constituent l'arborescence.<br>
+Chaque document XML commence avec un  <b>n&#339;ud-racine</b>. Celui-ci n'a pourtant aucune fonction concr&egrave;te, mais il n'est que l'&quot;origine&quot; abstraite des donn&eacute;es. Ce n'est que l'&eacute;l&eacute;ment qui lui est imm&eacute;diatement subordonn&eacute; dans l'arborescence qui a une fonction concr&egrave;te : &agrave; savoir l'&eacute;l&eacute;ment document, donc l'&eacute;l&eacute;ment ext&eacute;rieur qui englobe la totalit&eacute; du reste du contenu. Dans l' <img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut">&nbsp;<a href="#exemple"><b>exemple</b></a> ci-dessus il s'agit de l'&eacute;l&eacute;ment <code>films</code>. Ce n&#339;ud sup&eacute;rieur sous le n&#339;ud racine abstrait a dans l'exemple un n&#339;ud-enfant du nom de <code>film</code>. En consid&eacute;rant le n&#339;ud  <code>film</code>,  on peut dire que le n&#339;ud <code>films</code> est le <b>n&#339;ud-parent</b>. Le n&#339;ud  <code>film</code> a trois n&#339;uds subordonn&eacute;s &agrave; savoir les attributs <code>regie</code> et <code>titre</code> ainsi que l'&eacute;l&eacute;ment <code>description</code>. Dans la pratique en XML, les attributs d'un &eacute;l&eacute;ment sont cependant class&eacute;s diff&eacute;remment que le contenu de l'&eacute;l&eacute;ment. Pour les n&#339;uds-attributs, on parle de <b>n&#339;uds associ&eacute;s</b>, pour le contenu par contre de <b>n&#339;uds-enfants</b>. Cette petite diff&eacute;rence est prise en consid&eacute;ration dans l'illustration ci-dessus.</p>
+
+<p>Un attribut comme <code>regie</code> a lui m&ecirc;me son propre n&#339;ud enfant, &agrave; savoir l'affectation de valeur <code>Tom Tykwer</code>. Chacune des parties constituantes pouvant &ecirc;tre repr&eacute;sent&eacute;e dans l'arborescence est donc un n&#339;ud.</p>
+
+<h3 class="xpl">Jeux de n&#339;uds</h3>
+
+<p>Quand on parle de jeux de n&#339;uds, on pense par rapport aux chemins qui m&egrave;nent aux diff&eacute;rents n&#339;uds.<br>
+Pour adresser les diff&eacute;rents n&#339;uds, on peut mentionner le chemin qui y m&egrave;ne tout &agrave; fait comme dans une structure de r&eacute;pertoires, sous-r&eacute;pertoires et fichiers. Ainsi dans l'exemple, le premier &eacute;l&eacute;ment <code>nom</code> plac&eacute;, qui est &eacute;galement un  nom, le chemin <code>/films/film/description</code>. Le deuxi&egrave;me &eacute;l&eacute;ment <code>nom</code> plac&eacute; a &agrave; vrai dire le m&ecirc;me chemin exactement comme le reste du texte qui forme le contenu de l'&eacute;l&eacute;ment  <code>description</code>. Si donc on se place du point de vue d'un chemin dans l'arborescence, il y a dans ce chemin pas de, plusieurs ou un seul n&#339;ud. Ce nombre  a priori ind&eacute;termin&eacute; de n&#339;uds dans un chemin d&eacute;termin&eacute;, est d&eacute;sign&eacute; par le terme jeu de n&#339;uds.</p>
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="espaces_nom.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="espaces_nom.htm"><b>Espaces de nommage XML</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="conception.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="conception.htm"><b>Conformit&eacute; validit&eacute; et int&eacute;gralit&eacute; d'un fichier XML</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>XML/DTDs</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>R&egrave;gles pour les fichiers XML</b></a></td>
+</tr>
+</table>
+
+<p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>

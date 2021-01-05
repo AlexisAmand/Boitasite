@@ -1,0 +1,117 @@
+<html><head><title>Test</title>
+<script language="JScript" type="text/jscript">
+<!--
+function rechercher() {
+ var enregistrements = 1000;
+ document.all.tableau_affiche.style.display = "none";
+ var expression_recherche = "";
+ var terme_recherche = 0;
+ if(document.saisie.cherche_allemand.value != "") {
+   expression_recherche = expression_recherche + "allemand = " + document.saisie.cherche_allemand.value;
+   terme_recherche++;
+ }
+ if(document.saisie.cherche_anglais.value != "") {
+   if(terme_recherche > 0)
+     expression_recherche = expression_recherche + " & anglais = " + document.saisie.cherche_anglais.value;
+   else
+     expression_recherche = expression_recherche + "anglais = " + document.saisie.cherche_anglais.value;
+   terme_recherche++;
+ }
+ if(document.saisie.cherche_francais.value != "") {
+   if(terme_recherche > 0)
+     expression_recherche = expression_recherche + " & francais = " + document.saisie.cherche_francais.value;
+   else
+     expression_recherche = expression_recherche + "francais = " + document.saisie.cherche_francais.value;
+   terme_recherche++;
+ }
+ if(document.saisie.cherche_italien.value != "") {
+   if(terme_recherche > 0)
+     expression_recherche = expression_recherche + " & italien = " + document.saisie.cherche_italien.value;
+   else
+     expression_recherche = expression_recherche + "italien = " + document.saisie.cherche_italien.value;
+   terme_recherche++;
+ }
+ if(document.saisie.cherche_espagnol.value != "") {
+   if(terme_recherche > 0)
+     expression_recherche = expression_recherche + " & espagnol = " + document.saisie.cherche_espagnol.value;
+   else
+     expression_recherche = expression_recherche + "espagnol = " + document.saisie.cherche_espagnol.value;
+   terme_recherche++;
+ }
+ document.all.termes.object.filter = expression_recherche;
+ document.all.termes.Reset();
+ document.all.tableau_affiche.dataSrc = "#termes";
+ if(document.all.termes.recordset.recordCount < enregistrements) {
+   document.all.tableau_affiche.dataPageSize = termes.recordset.recordCount;
+   document.all.occurrence.innerText = termes.recordset.recordCount + " occurrence(s) !";
+   document.all.tableau_affiche.style.display = "block";
+ }
+ else
+   document.all.occurrence.innerText = "0 occurrence!";
+}
+//-->
+</script>
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body>
+<object id="termes" classid="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83">
+ <param name="DataURL" value="dico.txt">
+ <param name="UseHeader" value="true">
+ <param name="filter" value="">
+ <param name="FieldDelim" value=";">
+</object>
+
+<p>La base de donn&eacute;es o&ugrave; s'effectuent les recherches contient 1000 enregistrements. Recherchez des termes dans une pou plusieurs langues. Pour la recherche dans plusieurs langues les saisies seront reli&eacute;es avec l'op&eacute;rateur logique ET. Vous pouvez &eacute;galement utiliser le caract&egrave;re de ramplacement <b>*</b> pour des expressions partielles. Recherchez par exemple dans le champ (allemand) apr&egrave;s <b>Arbeits*</b> ou dans le champ  (italien) apr&egrave;s <b>*ore</b> ou dans le champ (anglais) apr&egrave;s <b>*computer</b>, ou dans le champ (francais) apr&egrave;s <b>ordinateur*</b>.</p>
+
+<form name="saisie" action="">
+Recherche:<br>
+<input name="cherche_allemand" type="text" width="40"> (allemand)<br>
+<input name="cherche_anglais" type="text" width="40"> (anglais)<br>
+<input name="cherche_francais" type="text" width="40"> (francais)<br>
+<input name="cherche_italien" type="text" width="40"> (italien)<br>
+<input name="cherche_espagnol" type="text" width="40"> (espagnol)<br>
+<input type="button" style="width:150px; height:25px;" value="lancer la recherche" onClick="rechercher()">
+</form>
+
+<table border="1" cellpadding="1" cellspacing="0"><tr><td>
+<table width="100%">
+<tr>
+<td valign="top" colspan="5">
+<span id="occurrence" style="color:#0000CC; font-weight:bold;"> </span>
+</td>
+</tr>
+<tr>
+<td bgcolor="#EEEEEE" valign="top" width="20%"><b>allemand :</b></td>
+<td bgcolor="#EEEEEE" valign="top" width="20%"><b>anglais :</b></td>
+<td bgcolor="#EEEEEE" valign="top" width="20%"><b>francais :</b></td>
+<td bgcolor="#EEEEEE" valign="top" width="20%"><b>italien :</b></td>
+<td bgcolor="#EEEEEE" valign="top" width="20%"><b>espagnol :</b></td>
+</tr>
+</table>
+<table id="tableau_affiche" style="display:none" width="100%">
+<tr>
+<td bgcolor="#FFFFE0" valign="top" width="20%"><span datafld="allemand"></span></td>
+<td bgcolor="#FFFFE0" valign="top" width="20%"><span datafld="anglais"></span></td>
+<td bgcolor="#FFFFE0" valign="top" width="20%"><span datafld="francais"></span></td>
+<td bgcolor="#FFFFE0" valign="top" width="20%"><span datafld="italien"></span></td>
+<td bgcolor="#FFFFE0" valign="top" width="20%"><span datafld="espagnol"></span></td>
+</tr>
+</table>
+</td></tr></table>
+</body>
+</html>
+

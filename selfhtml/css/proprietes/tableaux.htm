@@ -1,0 +1,392 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SELFHTML: Feuilles de style CSS / Propri&eacute;t&eacute;s CSS / Formatage de tableaux</title>
+<link rel="stylesheet" type="text/css" href="../../src/selfhtml.css">
+<meta name="description"    content="Quelles possibilit&eacute;s CSS existent pour mettre des tableaux HTML en forme.">
+<meta name="keywords"       content="SELFHTML, CSS, feuilles de style CSS Cascading Stylesheets, HTML, propri&eacute;t&eacute;s CSS, tableaux, bordure de tableau, cellules de tableau, quadrillage, mod&egrave;le de bordure, caption-side, table-layout, border-collapse, border-spacing, empty-cells, speak-header">
+<meta name="author"         content="Stefan M&uuml;nz, selfhtml@teamone.de">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="DC.Publisher"   content="Serge Fran&ccedil;ois, selfhtml@selfhtml.com.fr">
+<meta name="DC.Date"        content="2003-01-27T08:00+00:00">
+<meta name="DC.Identifier"  content="http://selfhtml.selfhtml.com.fr/css/proprietes/tableaux.htm">
+<meta name="DC.Language"    content="fr">
+<meta name="DC.Rights"      content="../../editorial/copyright.htm">
+<meta name="DC.Date.Create" content="2003-01-27T08:00+00:00">
+<meta name="SELF.Version"   content="1">
+<meta name="SELF.Pagetype"  content="Information">
+<meta name="SELF.Path"      content="SELFHTML == ../../index.htm // Feuilles de style CSS == ../index.htm // Propri&eacute;t&eacute;s CSS == index.htm">
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.boitasite.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#AA5522" vlink="#772200" alink="#000000">
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="top"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>Feuilles de style CSS</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Propri&eacute;t&eacute;s CSS</b></a></td>
+</tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEEE" class="doc" width="110"><img src="../../src/logo.gif" width="106" height="109" border="0" alt="SELFHTML"></td>
+<td bgcolor="#EEEEEE" class="doc" valign="bottom" width="100%"><h2>Formatage de tableaux</h2>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" valign="top" align="center">
+<img src="../../src/docx.gif" width="30" height="20" vspace="6" border="0" alt="Page d'information: vue d'ensemble">
+</td>
+<td bgcolor="#FFFFFF" valign="top" nowrap>
+<p>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#generalites"><b>G&eacute;n&eacute;ralit&eacute;s sur le formatage de tableaux</b></a><br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#caption_side"><b>caption-side</b></a> (Position d'un titre de tableau)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#table_layout"><b>table-layout</b></a> (largeurs fixe/variable)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#border_collapse"><b>border-collapse</b></a> (mod&egrave;le de bordure)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#border_spacing"><b>border-spacing</b></a> (Espace entre les bordures dans un tableau avec quadrillage)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#empty_cells"><b>empty-cells</b></a> (Affichage ou non-affichage de cellules vides)<br>
+<img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas">&nbsp;<a href="#speak_header"><b>speak-header</b></a> (Mode de soutien de la  sortie vocale de tableau)<br>
+</p>
+</td>
+</tr><tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;<a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr>
+</table>
+
+
+
+<h2 class="Sh2"><a class="an" name="generalites">G&eacute;n&eacute;ralit&eacute;s sur le formatage de tableaux</a></h2>
+
+<p>Ce n'est que depuis CSS 2.0 que les tableaux sont trait&eacute;s &agrave; part et qu'ils disposent de leurs propres propri&eacute;t&eacute;s CSS. Cependant, il y a aussi une quantit&eacute; de propri&eacute;t&eacute;s de CSS 1.0, qui peuvent &ecirc;tre utilis&eacute;es sur les tableaux, colonnes et rang&eacute;es. Sur les &eacute;l&eacute;ments HTML comme <code>table</code>, <code>tr</code>, <code>colgroup</code>, <code>col</code>, <code>thead</code>, <code>tbody</code>, <code>tfoot</code>, <code>th</code> et <code>td</code>, les formatages suivants peuvent &ecirc;tre employ&eacute;s:</p>
+
+<p>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="police.htm"><b>Formatage de police</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="alignement.htm"><b>Alignement et contr&ocirc;le de paragraphe</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="espaceinterieur.htm"><b>Espaces int&eacute;rieurs</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="cadres.htm"><b>Bordures</b></a><br>
+<img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="arriereplan.htm"><b>Couleurs et images d'arri&egrave;re-plan</b></a><br>
+</p>
+
+<p>Avant tout pour les bordures, les propri&eacute;t&eacute;s CSS habituelles ne suffisent pas &agrave; elles seules pour satisfaire aux exigences du quadrillage d'un tableau. C'est pourquoi CSS 2.0 offre la possibilit&eacute; de distinguer deux types de bordure. Par ce biais, il peut &ecirc;tre communiqu&eacute; au navigateur comment il doit traiter les bordures ext&eacute;rieures de deux cellules mitoyennes d'un tableau.</p>
+
+<p>Pour les mentions concernant la largeur et la hauteur de colonnes ou de rang&eacute;es de tableau les propri&eacute;t&eacute;s CSS <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="positionnement.htm#width"><b>width</b></a> et <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="positionnement.htm#height"><b>height</b></a> sont certes appropri&eacute;es, pourtant il est quelquefois vraiment souhaitable, que des mentions de largeur et de hauteur  soient trait&eacute;es dans chaque cas m&ecirc;me s'il a lieu en priorit&eacute; sur le contenu des cellules. Cette mention est maintenant r&eacute;glable pour les tableaux avec CSS 2.0.</p>
+
+<p>D'autres propri&eacute;t&eacute;s sp&eacute;cifiques aux tableaux r&eacute;gissent des mentions qui sont &eacute;galement possibles en HTML sous la forme d'attributs. Les attributs correspondants sont pourtant class&eacute;s &quot;en cours d'abandon&quot; en HTML 4.0, &agrave; savoir non-d&eacute;sir&eacute;s &agrave; l'avenir. &Agrave; la place, les propri&eacute;t&eacute;s CSS d&eacute;crites ici doivent &ecirc;tre employ&eacute;es.</p>
+
+<p>&Eacute;galement importante en relation avec des tableaux, la propri&eacute;t&eacute; CSS d&eacute;crite &agrave; un autre endroit et apparue avec CSS 2.0  <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="positionnement.htm#display"><b>display</b></a>. Gr&acirc;ce &agrave; elle, il est possible d'appliquer des propri&eacute;t&eacute;s de tableaux &agrave; d'autres &eacute;l&eacute;ments que des tableaux. Cela peut certes para&icirc;tre singulier pour HTML mais CSS est aussi un langage de style possible pour la repr&eacute;sentation  de donn&eacute;es XML. Et &eacute;tant donn&eacute; qu'il n'existe aucune possibilit&eacute; en XML de marquer un &eacute;l&eacute;ment avec des propri&eacute;t&eacute;s s&eacute;mantiques comme  &quot;cellule de tableau&quot; ou bien &quot;rang&eacute;e de tableau&quot;, cela doit &ecirc;tre pris en charge par le langage de style qui affiche ces donn&eacute;es.</p>
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0">&nbsp;<a class="an" name="caption_side">caption-side (Position d'un titre de tableau)</a></h2>
+
+<p>Vous pouvez d&eacute;finir un titre de tableau pour des tableaux en HTML avec l'&eacute;l&eacute;ment HTML  <code>caption</code>. Avec la mention de feuille de style d&eacute;crite ici vous pouvez fixer la position du titre.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/caption_side.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;caption-side&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;table border=&quot;1&quot;&gt;
+&lt;caption style=&quot;caption-side:bottom&quot;&gt;Associations&lt;/caption&gt;
+&lt;tr&gt;
+&lt;th&gt;France&lt;/th&gt;&lt;th&gt;Belgique&lt;/th&gt;&lt;th&gt;Suisse&lt;/th&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td&gt;quatre-vingts&lt;/td&gt;&lt;td&gt;octante&lt;/td&gt;&lt;td&gt;huitante&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td&gt;Serpilli&amp;egrave;re&lt;/td&gt;&lt;td&gt;Wassingue&lt;/td&gt;&lt;td&gt;Panosse&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>caption-side:</code> vous pouvez sp&eacute;cifier la position du titre du tableau. Les mentons suivantes sont permises:</p>
+
+<p>
+<code>top</code> = en haut du tableau.<br>
+<code>bottom</code> = sous le tableau.<br>
+<code>left</code> = sous le tableau align&eacute; &agrave; gauche.<br>
+<code>right</code> = sous le tableau align&eacute; &agrave; droite.<br>
+</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Cette propri&eacute;t&eacute; n'est pas encore interpr&eacute;t&eacute;e par l'Explorer Internet dans sa version 5.x.</p>
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x">&nbsp;<a class="an" name="table_layout">table-layout (largeurs fixe/variable)</a></h2>
+
+<p>Avec cette possibilit&eacute; vous pouvez d&eacute;terminer comment le navigateur doit interpr&eacute;ter les mentions de largeur du tableau et des colonnes, que vous avez mentionn&eacute;es avec la propri&eacute;t&eacute; CSS <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="positionnement.htm#width"><b>width</b></a>. Ceci a l'avantage d'acc&eacute;l&eacute;rer l'affichage de grands tableaux, &eacute;tant donn&eacute; que le navigateur n'est plus oblig&eacute; de lire d'abord le contenu de tout le tableau pour en d&eacute;duire la largeur effective du tableau.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/table_layout.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;table-layout&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;table border=&quot;1&quot; style=&quot;table-layout:fixed&quot;&gt;
+&lt;colgroup span=&quot;3&quot; style=&quot;&quot;&gt;&lt;/colgroup&gt;
+&lt;tr&gt;
+&lt;td style=&quot;width:100px&quot;&gt;123456789012345678901234567890123456789012345678901234567890&lt;/td&gt;
+&lt;td style=&quot;width:200px&quot;&gt;123456789012345678901234567890123456789012345678901234567890&lt;/td&gt;
+&lt;td style=&quot;width:300px&quot;&gt;123456789012345678901234567890123456789012345678901234567890&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>table-layout:</code>vous influencez l'affichage du tableau pour les mentions de largeur. Les mentions suivantes sont permises:</p>
+
+<p>
+<code>fixed</code> = Les mentions de largeur priment sur le contenu des cellules.<br>
+<code>auto</code> = Le contenu des cellules prime sur les mentions de largeur (par d&eacute;faut).<br>
+</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Netscape 6.x interpr&egrave;te bien cette propri&eacute;t&eacute; tout en ayant des probl&egrave;mes sur la repr&eacute;sentation. Une affectation <code>width</code> &agrave; l'&eacute;l&eacute;ment <code>table</code>  l'amenait &agrave; massacrer l'affichage et il ignorait l'exemple ci-dessus avec l'affectation <code>width</code> &agrave; diff&eacute;rentes cellules pour fixer ainsi la largeur du tableau.</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/msie5x.gif" width="30" height="30" border="0" alt="MS IE 5.x">&nbsp;<a class="an" name="border_collapse">border-collapse (mod&egrave;le de bordure)</a></h2>
+
+<p>Avec cette propri&eacute;t&eacute;, vous pouvez d&eacute;terminer si les diff&eacute;rentes bordures de cellules de tableau doivent co&iuml;ncider ou non.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/border_collapse.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;border-collapse&lt;/title&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;
+&lt;th colspan=&quot;3&quot;&gt;R&amp;eacute;glage normal&lt;/th&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td style=&quot;border:medium solid blue&quot;&gt;maison&lt;/td&gt;
+&lt;td style=&quot;border:medium dashed blue&quot;&gt;auto&lt;/td&gt;
+&lt;td style=&quot;border:medium dotted blue&quot;&gt;bateau&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;table border=&quot;0&quot; style=&quot;border-collapse:collapse&quot;&gt;&lt;tr&gt;
+&lt;th colspan=&quot;3&quot;&gt;R&amp;eacute;glage sp&amp;eacute;cial (collapse)&lt;/th&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td style=&quot;border:medium solid blue&quot;&gt;maison&lt;/td&gt;
+&lt;td style=&quot;border:medium dashed blue&quot;&gt;auto&lt;/td&gt;
+&lt;td style=&quot;border:medium dotted blue&quot;&gt;bateau&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>border-collapse:</code> vous influencez la fa&ccedil;on de r&eacute;agir des bordures distinctes de cellules mitoyennes de tableau. Les mentions suivantes sont permises:</p>
+
+<p>
+<code>separate</code> = les diff&eacute;rentes bordures de cellules de tableau ne co&iuml;ncident pas.<br>
+<code>collapse</code> = les diff&eacute;rentes bordures de cellules de tableau  co&iuml;ncident.<br>
+</p>
+
+<p>Avec la mention <code>collapse</code> peuvent survenir des conflits entre les formatages de bordure de diff&eacute;rentes cellules. Les bordures, qui doivent avoir priorit&eacute; dans tous les cas et chevaucher la bordure limite des deux cellules mitoyennes doivent &agrave; cet effet recevoir la mention CSS <code>border-style:hidden</code>. Les bordures qui dans tous les cas doivent c&eacute;der la priorit&eacute; et &ecirc;tre chevauch&eacute;es par la bordure limite commune de la cellule voisine doivent recevoir la mention CSS <code>border-style:none</code>. Si aucune des cellules n'a re&ccedil;u la mention <code>border-style:hidden</code> mais que l'une d'entre elles a re&ccedil;u la mention <code>border-style:none</code>, La mention de largeur (<code>border-width</code>) de la bordure d&eacute;cide, quel formatage a priorit&eacute; pour la bordure commune. Les bordures les plus larges ont alors priorit&eacute;. Au cas o&ugrave; m&ecirc;me la mention de largeur ne r&eacute;sout pas le conflit, &eacute;tant donn&eacute; que les mentions de largeur sont identiques, alors c'est le type de bordure qui d&eacute;cide dans l'ordre suivant (<code>border-style:</code>): <code>double, solid, dashed, dotted, ridge, outset, groove, inset</code>.</p>
+
+<p>L'illustration suivante explique le rapport:</p>
+
+<p><img src="modelecadres.gif" width="258" height="122" border="0" alt="modeles de bordure"></p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>Netscape 6.(1) n'interpr&egrave;te pas encore cette mention.</p>
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0">&nbsp;<a class="an" name="border_spacing">border-spacing (Espace entre les bordures dans un tableau avec quadrillage)</a></h2>
+
+<p>Avec cette propri&eacute;t&eacute; vous fixez l'espace entre les bordures dans un tableau avec quadrillage.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/border_spacing.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;border-spacing&lt;/title&gt;
+&lt;style&gt;
+td { border:thin solid blue; }
+&lt;/style&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;table style=&quot;border:thin solid red; border-spacing:10px&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;Maison&lt;/td&gt;
+&lt;td&gt;Auto&lt;/td&gt;
+&lt;td&gt;Bateau&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>border-spacing:</code> vous pouvez fixer pour un &eacute;l&eacute;ment <code>table</code> l'espace s&eacute;parant les bordures de cellules les unes des autres. Une <img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information">&nbsp;<a href="../formats/affectationvaleur.htm#numeriques"><b>mention num&eacute;rique</b></a> est permise.</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>L'Explorer Internet 5.x n'interpr&egrave;te pas encore cette mention.</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0"><img src="../../src/netsc6.gif" width="30" height="30" border="0" alt="Netscape 6.0">&nbsp;<a class="an" name="empty_cells">empty-cells (Affichage ou non-affichage de cellules vides)</a></h2>
+
+<p>Avec cette propri&eacute;t&eacute; vous pouvez fixer si des cellules vides de tableau avec quadrillage doivent recevoir une bordure ou non.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<p><img src="../../src/docf.gif" width="15" height="10" border="0" alt="D&eacute;monstration - nouvelle fen&ecirc;tre">&nbsp;<a href="affichage/empty_cells.htm" target="_blank"><b>Exemple d'affichage: aper&ccedil;u</b></a></p>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;html&gt;&lt;head&gt;&lt;title&gt;empty-cells&lt;/title&gt;
+&lt;style&gt;
+td { border:1px solid black; }
+&lt;/style&gt;
+&lt;/head&gt;&lt;body bgcolor=&quot;FFFFFF&quot; text=&quot;#000000&quot;&gt;
+
+&lt;h2&gt;Tableau 1&lt;/h2&gt;
+&lt;table style=&quot;border:1px solid black; empty-cells:show&quot;&gt;&lt;tr&gt;
+&lt;td&gt;contenu&lt;/td&gt;&lt;td&gt;contenu&lt;/td&gt;&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;h2&gt;Tableau 2&lt;/h2&gt;
+&lt;table style=&quot;border:1px solid black; empty-cells:hide&quot;&gt;&lt;tr&gt;
+&lt;td&gt;contenu&lt;/td&gt;&lt;td&gt;contenu&lt;/td&gt;&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;/body&gt;&lt;/html&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>empty-cells:</code> vous fixez si les bordures de cellules vides doivent &ecirc;tre affich&eacute;es ou non. Les mentions suivantes sont permises:</p>
+
+<p>
+<code>show</code> = Les bordures de cellule des cellules vides sont affich&eacute;es.<br>
+<code>collapse</code> = L'affichage des bordures de cellule de cellules vides est emp&ecirc;ch&eacute; (r&eacute;glage par d&eacute;faut).<br>
+</p>
+
+<h3 class="inf">Attention:</h3>
+
+<p>L'Explorer Internet 5.x n'interpr&egrave;te pas encore cette mention.</p>
+
+
+
+
+
+
+
+
+<table bgcolor="#EEEEEE" class="doc" width="100%"><tr><td>
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a><a href="#bottom"><img src="../../src/bas.gif" width="14" height="10" border="0" alt="vers le bas"></a>&#160;</td></tr></table>
+<h2 class="Sh2"><img src="../../src/css20.gif" width="30" height="30" border="0" alt="CSS 2.0">&nbsp;<a class="an" name="speak_header">speak-header (Mode de soutien de la  sortie vocale de tableau)</a></h2>
+
+<p>Quand un tableau HTML n'est pas affich&eacute; &agrave; l'&eacute;cran ni imprim&eacute; mais lu par une voix ou un syst&egrave;me de sortie vocale (par exemple pour des non-voyants), le probl&egrave;me se pose qu'un espace en deux dimensions doit &ecirc;tre lu dans le temps en une dimension. Avec la mention d&eacute;crite ici vous pouvez d&eacute;cider pour
+ce cas si le contenu des cellules d'ent&ecirc;te doit &ecirc;tre reproduit pour chacune des cellules de donn&eacute;es ou si le contenu des cellules d'ent&ecirc;te ne doit &ecirc;tre lu qu'une seule fois.</p>
+
+<h3 class="xmp">Exemple:</h3>
+
+<table width="100%" cellpadding="10"><tr><td class="xmpcode" bgcolor="#FFFFE0"><pre>
+&lt;table border=&quot;1&quot;&gt;
+ &lt;tr&gt;
+  &lt;th style=&quot;speak-header-cell:always&quot;&gt;cellule d'ent�te 1&lt;/th&gt;
+  &lt;th style=&quot;speak-header-cell:once&quot;&gt;cellule d'ent�te 2&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;cellule de donn&amp;eacute;es 1&lt;/td&gt;
+  &lt;td&gt;cellule de donn&amp;eacute;es 2&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td&gt;cellule de donn&amp;eacute;es 3&lt;/td&gt;
+  &lt;td&gt;cellule de donn&amp;eacute;es 4&lt;/td&gt;
+ &lt;/tr&gt;
+&lt;/table&gt;
+</pre></td></tr></table>
+
+<h3 class="xpl">Explication:</h3>
+
+<p>Avec <code>speak-header-cell:</code> vous pouvez sp&eacute;cifier comment le contenu des cellules d'ent&ecirc;te doit &ecirc;tre reproduit. L'exemple ci-dessus fait en sorte que la cellule d'ent&ecirc;te 1 soit r&eacute;p&eacute;t&eacute;e avant chacune des cellules de donn&eacute;es 1 et 3, tandis que la cellule d'ent&ecirc;te 2  n'est sortie qu'une fois. Les mentions suivantes sont possibles:</p>
+
+<p>
+<code>always</code> = r&eacute;p&eacute;ter le contenu de la cellule d'ent&ecirc;te avant chacune de ses cellules de donn&eacute;es.<br>
+<code>once</code> = reproduire une seule fois le contenu de la cellule d'ent&ecirc;te (r&eacute;glage normal).<br>
+</p>
+
+
+
+
+
+
+
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">
+&#160;<a href="#top"><img src="../../src/haut.gif" width="14" height="10" border="0" alt="vers le haut"></a>
+</td></tr>
+<tr><td bgcolor="#EEEEEE" class="doc" align="right"><a href="pseudoformats.htm"><img src="../../src/suivant.gif" width="10" height="10" border="0" hspace="10" alt="page suivante"></a></td>
+<td bgcolor="#FFFFFF"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="pseudoformats.htm"><b>Pseudo-formats</b></a>
+</td></tr>
+<tr>
+<td bgcolor="#EEEEEE" class="doc" align="right"><a href="listes.htm"><img src="../../src/precedent.gif" width="10" height="10" border="0" hspace="10" alt="page pr&eacute;c&eacute;dente"></a></td>
+<td bgcolor="#FFFFFF" width="100%"><img src="../../src/doc.gif" width="15" height="10" border="0" alt="Autre page d'information"> <a href="listes.htm"><b>Formatage de listes</b></a>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#EEEEEE" class="doc">&#160;</td></tr>
+</table><table cellpadding="4" cellspacing="0" border="0" width="100%">
+<tr>
+<td bgcolor="#FFEEDD" class="nav"><a class="an" name="bottom"><img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"></a> <a href="../../index.htm"><b>SELFHTML</b></a>/<a href="../../navigation/index.htm" target="_parent">Aides &agrave; la navigation</a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="../index.htm"><b>Feuilles de style CSS</b></a> <img src="../../src/refchap.gif" width="16" height="13" border="0" alt="Renvoie au chapitre d'origine"> <a href="index.htm"><b>Propri&eacute;t&eacute;s CSS</b></a></td>
+</tr>
+</table>
+
+ <p>&copy; 2001 Stefan M&uuml;nz / &copy; 2003 Traduction <img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:13405@free.fr">Serge Fran&ccedil;ois, 13405@free.fr</a><br><img src="../../src/courriel.gif" width="15" height="10" border="0" alt="Adresse &eacute;lectronique">&nbsp;<a href="mailto:selfhtml@selfhtml.com.fr">selfhtml@selfhtml.com.fr</a></p>
+
+
+
+</body>
+</html>
