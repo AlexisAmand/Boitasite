@@ -206,7 +206,7 @@
                 Apprendre le HTML (CCIM)</a></li>
                 <li><a href="pdf/html/apprendre-html-zeros.pdf" title="Cours de HTML du site des zéros" target="_blank">
                 Apprendre HTML pour les zéros</a></li>
-                <li><a href="selfhtml/index.htm" title=" ">
+                <li><a href="selfhtml/index.htm" title="traduction française de SELFHTML 8.0 (réaliser soi-même des fichiers HTML)">
                 SELFHTML 8.0 (réaliser soi-même des fichiers HTML)</li>
                
             </ul>
