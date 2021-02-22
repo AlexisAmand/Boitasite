@@ -74,7 +74,7 @@
                     <li class="nav-item m-2"><a class="nav-link" href="seo.php" title="Référencement de site web à Valenciennes">SEO</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="to8.php" title="Retrogaming sur le TO8 de Thomson">Retrogaming</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="legasp.php">Le Gasp</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li> 
                 </ul> 
                 </div>

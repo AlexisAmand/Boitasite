@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>PHPSimul - Création de jeu par navigateur - développement web et SEO à Valenciennes</title>
-    <meta name="description" content="PHPSimul est un moteur de jeux multijoueurs par navigateur. Le script PHPSimul vous permettra de créer un jeu de simulation, de gestion, ou de stratégie, dans la lignée d'autres jeux comme Ogame ou Travian.">
+    <title> | Alexis AMAND - Développeur PHP/Web et Webmaster à Valenciennes</title>
+    <meta name="description" content=" ">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -14,9 +14,6 @@
     <!-- CSS perso -->
     <link rel="stylesheet" href="css/style.min.css">
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
-
-    <!-- Fancybox -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
     <script type="text/javascript" src="tarteaucitron/tarteaucitron.js"></script>
 
@@ -76,7 +73,7 @@
                     <li class="nav-item m-2"><a class="nav-link" href="webmaster.php" title="Création et audit de site web à Valenciennes">Création de sites</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="seo.php" title="Référencement de site web à Valenciennes">SEO</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="to8.php">Retrogaming</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="to8.php" title="Retrogaming sur le TO8 de Thomson">Retrogaming</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="legasp.php">Le Gasp</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li> 
                 </ul> 
@@ -89,52 +86,40 @@
 
     <section class="container">
 
-        <article class="row d-flex justify-content-center ligne-dotted-top pb-5">
+        <article class="row d-flex justify-content-center ligne-dotted-top">
 
-        <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
-            <h1 class="text-center">#devweb : Envie de <span>créer votre</span> jeu web ?</h1>
-        </div>
+            <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
+                <h1 class="text-center">Le <span>Gasp</span></h1>
+            </div>
 
-        <div class="col-12">
+            <div class="col-12">
 
-        <p class="text-justify">Il y a quelques années, en 2006, naissait PHPSimul, un script en PHP/SQL réalisé par une petite équipe de développeurs amateurs menée par Sébastien CAPARROS. Il vous permettait de créer un jeu par navigateur comme le sont <a href="http://www.ogame.fr/">OGame</a>, <a href="http://www.lesroyaumes.com/">Les Royaumes Renaissants</a> ou <a href="http://www.travian.fr/">Travian</a>.  PHPSimul était un CMS qui se distinguait des autres par une très grande flexibilité. Vous aviez par exemple la possibilité de créer un jeu « sur-mesure », en y intégrant très facilement vos propres races, vos propres technologies. Vous pouviez créer un jeu où les aliens affrontent les prédators, un autre où les schtroumpfs partent à la conquête de l’univers en utilisant des champignons intergalactiques.</p>
-        <p class="text-justify">Enfin bref... Je pense que vous voyez où je veux en venir. En attendant, je vous propose des captures d'écrans de PHPSimul que vous pouvez agrandir avec un clic.</p>
+            <h5>A propos du jeu</h5>
 
-        <div class="row d-flex justify-content-center">
+            <p class="text-justify">Il y a quelques mois, j'ai découvert un petit listing dans Basic publié dans le n°38 de Jeux et Stratégie d'avril/mai 1985. Il s'agit d'un petit jeu de puzzle qui est un mélange de Reverso et d'Othello. Vous avez un plateau de jeu avec 16 pions bicolores formant un carré de 4 x 4. Le but est de retourner toutes les pions en suivant une règle : Lorsque vous choisissez un pion, ses 8 voisins changent de couleur sauf lui. Quelques pages plus tard, le magazine adaptait le jeu en Basic. Rien d'extraordinaire, aujourd'hui on appellerait ça un jeu en "mode console".</p>
 
-            <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                <a href="img/phpsimul/capture001.jpg" data-fancybox data-caption=" ">
-                <img src="img/phpsimul/capture001.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du cms de création de jeux web PHPSimul"></a>
-            </figure>
+            <div class="row d-flex justify-content-center">
 
-            <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                <a href="img/phpsimul/capture002.jpg" data-fancybox data-caption=" ">
-                <img src="img/phpsimul/capture002.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du cms de création de jeux web PHPSimul"></a>
-            </figure>
+                <figure class="figure">
+                    <a href="thegasp/images/thegasp-05.jpg" data-fancybox data-caption=" ">
+                    <img src="thegasp/images/thegasp-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                </figure>
 
-        </div>
+            </div>
 
-        <div class="row d-flex justify-content-center">
+            <p class="text-justify">Dans ma version, celle que je propose ici, les 16 pions sont remplacés par des cartes, mais le principe est toujours le même : lorsque vous pointez une carte, ses 8 voisines sont retournées sauf elle. Serez-vous capable de les retourner toutes ?</p>
 
-            <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                <a href="img/phpsimul/capture003.jpg" data-fancybox data-caption=" ">
-                <img src="img/phpsimul/capture003.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du cms de création de jeux web PHPSimul"></a>
-            </figure>
+            <h5>Comment jouer ?</h5>
 
-            <figure class="figure col-9 col-sm-5 col-md-3 m-3">
-                <a href="img/phpsimul/capture004.jpg" data-fancybox data-caption=" ">
-                <img src="img/phpsimul/capture004.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="capture d'écran du cms de création de jeux web PHPSimul"></a>
-            </figure>
+            <p class="text-justify">Pour l'instant, il existe deux versions du jeu. La première a été développée en javascript et est jouable en ligne gratuitement à cette adresse :<p>
 
-        </div>
-   
-        <p class="text-justify">Malheureusement, PHPSimul s’est endormi avec la version 1.3 qui contenait un livre d’or, un forum, un chat, un panneau d’administration, mais aussi de nombreuses fautes d’orthographe :-) et quelques failles de sécurité. Si vous êtes curieux, vous pouvez essayer PHPSimul 1.3 en le téléchargeant gratuitement avec le lien suivant, mais soyez prudent. Je vous conseille de d'abord l'installer en local avec Wampserver ou EasyPHP. Pour rendre PHPSimul fonctionnel, il faut supprimer 3 fichiers : backup_v1.3.sql, backup_v1.3.php et systeme/config.php.</p>
+            <a href="http://thegasp.genealexis.fr/">http://thegasp.genealexis.fr/</a>
 
-        <p class="text-justify">J’ai oublié de vous préciser que <strong>PHPSimul est Open Source</strong>, ce qui signifie qu'il est gratuit, et que vous pouvez le modifier autant que vous le souhaitez. </p>
-        
-        <p class="text-center"><a class="btn btn-primary" href="fichiers/phpsimul-1-3.zip" role="button" title="Lien pour télécharger la version 1.3 de PHPSimul">Télécharger PHPSimul version 1.3</a></p>
+            <p class="text-justify">La seconde version est jouable via un petit logiciel développé en vbnet que vous pouvez télécharger gratuitement en cliquant sur le bouton bleu ci-dessous.</p>
 
-        </div>
+            <a class="btn btn-primary" href="#" role="button">Télécharger</a>
+
+            </div>
 
         </article>
 
@@ -181,8 +166,11 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
-    <!-- JS de Fancybox -->
-    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script>
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script> 
 
     <?php include('include/matomo.inc'); ?>
 

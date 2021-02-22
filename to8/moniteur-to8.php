@@ -78,7 +78,7 @@
                 <li class="nav-item m-2"><a class="nav-link" href="../seo.php" title="Référencement de site web à Valenciennes">SEO</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../tutoriels.php">Tutos</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../to8.php">Retrogaming</a></li> 
-                <li class="nav-item m-2"><a class="nav-link" href="http://thegasp.genealexis.fr">Le Gasp</a></li> 
+                <li class="nav-item m-2"><a class="nav-link" href="../legasp.php">Le Gasp</a></li> 
                 <li class="nav-item m-2"><a class="nav-link" href="../contacts.php">Contact</a></li> 
             </ul> 
             </div>
@@ -103,61 +103,61 @@
           <figure class="figure col-lg-4 col-sm-6 text-center">
             <a href="images/docs/manuel-monitor-01.jpg" data-fancybox data-caption="Page 1 du manuel du moniteur du TO8.">
             <img src="images/docs/thumbs/manuel-monitor-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="scan de la documentation concernant le moniteur Thomson du TO8"/></a>
-            <figcaption class="figure-caption text-center">Page 1 du manuel du moniteur du TO8.</figcaption>
+            <figcaption class="figure-caption text-center">Page 1 du manuel du moniteur du TO8.<br />(source : collection privée)</figcaption>
           </figure>
       
           <figure class="figure col-lg-4 col-sm-6 text-center">
             <a href="images/docs/manuel-monitor-02.jpg" data-fancybox data-caption="Page 2 du manuel du moniteur du TO8.">
             <img src="images/docs/thumbs/manuel-monitor-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="scan de la documentation concernant le moniteur Thomson du TO8"/></a>
-            <figcaption class="figure-caption text-center">Page 2 du manuel du moniteur du TO8.</figcaption>
+            <figcaption class="figure-caption text-center">Page 2 du manuel du moniteur du TO8.<br />(source : collection privée)</figcaption>
           </figure>
 
           <figure class="figure col-lg-4 col-sm-6 text-center">
             <a href="images/docs/manuel-monitor-03.jpg" data-fancybox data-caption="Page 3 du manuel du moniteur du TO8.">
             <img src="images/docs/thumbs/manuel-monitor-03.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="scan de la documentation concernant le moniteur Thomson du TO8"/></a>
-            <figcaption class="figure-caption text-center">Page 3 du manuel du moniteur du TO8.</figcaption>
+            <figcaption class="figure-caption text-center">Page 3 du manuel du moniteur du TO8.<br />(source : collection privée)</figcaption>
           </figure>
 
           <figure class="figure col-lg-4 col-sm-6 text-center">
             <a href="images/docs/manuel-monitor-04.jpg" data-fancybox data-caption="Page 4 du manuel du moniteur du TO8.">
             <img src="images/docs/thumbs/manuel-monitor-04.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="scan de la documentation concernant le moniteur Thomson du TO8"/></a>
-            <figcaption class="figure-caption text-center">Page 4 du manuel du moniteur du TO8.</figcaption>
+            <figcaption class="figure-caption text-center">Page 4 du manuel du moniteur du TO8.<br />(source : collection privée)</figcaption>
           </figure>
 
           <figure class="figure col-lg-4 col-sm-6 text-center">
             <a href="images/docs/manuel-monitor-05.jpg" data-fancybox data-caption="Page 5 du manuel du moniteur du TO8.">
             <img src="images/docs/thumbs/manuel-monitor-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="scan de la documentation concernant le moniteur Thomson du TO8"/></a>
-            <figcaption class="figure-caption text-center">Page 5 du manuel du moniteur du TO8.</figcaption>
+            <figcaption class="figure-caption text-center">Page 5 du manuel du moniteur du TO8.<br />(source : collection privée)</figcaption>
           </figure>
 
           <figure class="figure col-lg-4 col-sm-6 text-center">
             <a href="images/docs/manuel-monitor-06.jpg" data-fancybox data-caption="Page 6 du manuel du moniteur du TO8.">
             <img src="images/docs/thumbs/manuel-monitor-06.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="scan de la documentation concernant le moniteur Thomson du TO8"/></a>
-            <figcaption class="figure-caption text-center">Page 6 du manuel du moniteur du TO8.</figcaption>
+            <figcaption class="figure-caption text-center">Page 6 du manuel du moniteur du TO8.<br />(source : collection privée)</figcaption>
           </figure>
 
           <figure class="figure col-lg-4 col-sm-6 text-center">
             <a href="images/docs/manuel-monitor-07.jpg" data-fancybox data-caption="Page 7 du manuel du moniteur du TO8.">
             <img src="images/docs/thumbs/manuel-monitor-07.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="scan de la documentation concernant le moniteur Thomson du TO8"/></a>
-            <figcaption class="figure-caption text-center">Page 7 du manuel du moniteur du TO8.</figcaption>
+            <figcaption class="figure-caption text-center">Page 7 du manuel du moniteur du TO8.<br />(source : collection privée)</figcaption>
           </figure>
 
           <figure class="figure col-lg-4 col-sm-6 text-center">
             <a href="images/docs/manuel-monitor-08.jpg" data-fancybox data-caption="Page 8 du manuel du moniteur du TO8.">
             <img src="images/docs/thumbs/manuel-monitor-08.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="scan de la documentation concernant le moniteur Thomson du TO8"/></a>
-            <figcaption class="figure-caption text-center">Page 8 du manuel du moniteur du TO8.</figcaption>
+            <figcaption class="figure-caption text-center">Page 8 du manuel du moniteur du TO8.<br />(source : collection privée)</figcaption>
           </figure>
 
           <figure class="figure col-lg-4 col-sm-6 text-center">
             <a href="images/docs/manuel-monitor-09.jpg" data-fancybox data-caption="Page 9 du manuel du moniteur du TO8.">
             <img src="images/docs/thumbs/manuel-monitor-09.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="scan de la documentation concernant le moniteur Thomson du TO8"/></a>
-            <figcaption class="figure-caption text-center">Page 9 du manuel du moniteur du TO8.</figcaption>
+            <figcaption class="figure-caption text-center">Page 9 du manuel du moniteur du TO8.<br />(source : collection privée)</figcaption>
           </figure>
 
           <figure class="figure col-lg-4 col-sm-6 text-center">
             <a href="images/docs/manuel-monitor-10.jpg" data-fancybox data-caption="Page 10 du manuel du moniteur du TO8.">
             <img src="images/docs/thumbs/manuel-monitor-10.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="scan de la documentation concernant le moniteur Thomson du TO8"/></a>
-            <figcaption class="figure-caption text-center">Page 10 du manuel du moniteur du TO8.</figcaption>
+            <figcaption class="figure-caption text-center">Page 10 du manuel du moniteur du TO8.<br />(source : collection privée)</figcaption>
           </figure>
 
         </div>
