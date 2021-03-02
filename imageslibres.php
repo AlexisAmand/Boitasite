@@ -143,7 +143,7 @@
             
             <h5 class="mt-5">Freepick</h5>
 
-            <p class="text-justify">Freepik est une plateforme en ligne dédiée au partage d'images vectorielles, de photographies de stock, d'illustrations et de PSD sous un modèle Freemium. Le site prétend avoir plus de 5 millions de ressources graphiques et plus de 100 millions de téléchargements par mois. Les contenus que les utilisateurs peuvent trouver sont soit créés par les designers exclusifs de la société Freepik, soit mis en ligne par des contributeurs du monde entier. Ils y a toutefois quelques points négatifs. Par exemple, ils demandent souvent de mettre un lien comme source de l'image, et ce n'est pas toujours évident à gérer dans un article ou sur une charte graphique. De plus, certaines images sont accéssible uniquement via un compte premium payant.</p> 
+            <p class="text-justify">Freepik est une plateforme en ligne dédiée au partage d'images vectorielles, de photographies de stock, d'illustrations et de PSD sous un modèle Freemium. Le site prétend avoir plus de 5 millions de ressources graphiques et plus de 100 millions de téléchargements par mois. Les contenus que les utilisateurs peuvent trouver sont soit créés par les designers exclusifs de la société Freepik, soit mis en ligne par des contributeurs du monde entier. Il y a toutefois quelques points négatifs. Par exemple, ils demandent souvent de mettre un lien comme source de l'image, et ce n'est pas toujours évident à gérer dans un article ou sur une charte graphique. De plus, certaines images sont accessibles uniquement via un compte premium payant.</p> 
 
             <div class="row d-flex justify-content-center">
 
@@ -163,7 +163,7 @@
 
             <h5 class="mt-5">Pexels</h5>
 
-            <p class="text-justify">Pexels fournit des photos de stock de haute qualité et totalement gratuites sous licence Pexels: Toutes les photos et vidéos sur Pexels sont gratuites, aucune attribution n'est requise (mais toujours appréciée) et enfin vous pouvez modifier les photos que vous avez trouvé.</p>
+            <p class="text-justify">Pexels fournit des photos de stock de haute qualité et totalement gratuites sous licence Pexels: Toutes les photos et vidéos sur Pexels sont gratuites, aucune attribution n'est requise (mais toujours appréciée) et enfin vous pouvez modifier les photos que vous avez trouvées.</p>
 
             <div class="row d-flex justify-content-center">
 
