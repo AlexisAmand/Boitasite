@@ -255,6 +255,9 @@
                     <li><a href="to8/pdf/js-42-page-60.pdf" title="Le jeu Le temple de Quauhli dans un article de presse paru dans la presse en 1986">Le Temple de Quauhli</a>
                     &nbsp;(Jeux & Stratégie n°42 - Décembre 1986)</li>
 
+                    <li><a href="to8/pdf/tilt-41.pdf" title=" ">Les Dieux de la Glisse - Savoie 92</a>
+                    &nbsp;(Tilt n°41 - avril 1987)</li>
+
                     <li><a href="to8/pdf/js-42-page-75.pdf" title="Le jeu Les Passagers du Vent dans un article de presse paru dans la presse en 1986">Les Passagers du Vent</a>
                     &nbsp;(Jeux & Stratégie n°42 - Décembre 1986)</li>
 
