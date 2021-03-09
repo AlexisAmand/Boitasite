@@ -303,6 +303,9 @@
                     <li><a href="to8/pdf/js-46-page-86-87.pdf" title="Le jeu TNT dans un article de presse paru dans la presse en 1987">TNT</a>
                     &nbsp;(Jeux & Stratégie n°46 - Août/Septembre 1987)</li>
 
+                    <li><a href="to8/pdf/tilt-36.pdf" title="Le jeu TNT dans un article de presse paru dans la presse en 1986">TNT</a>
+                    &nbsp;(Tilt n°36 - novembre 1986)</li>
+
                     <li><a href="to8/pdf/teo-14-p45.pdf" title="Le jeu X-Ray dans un article de presse paru dans la presse en 1987">X-Ray</a>
                     &nbsp;(Teo n°14 - Mai 1987)</li>
                 </ul>
