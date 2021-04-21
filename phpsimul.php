@@ -134,6 +134,9 @@
         
         <p class="text-center"><a class="btn btn-primary" href="fichiers/phpsimul-1-3.zip" role="button" title="Lien pour télécharger la version 1.3 de PHPSimul">Télécharger PHPSimul version 1.3</a></p>
 
+        <p class="text-center mt-5">Le code est également disponible sur mon GitHub:<br />
+        <a href="https://github.com/AlexisAmand/PHPSimul">https://github.com/AlexisAmand/PHPSimul</a></p>
+        
         </div>
 
         </article>
