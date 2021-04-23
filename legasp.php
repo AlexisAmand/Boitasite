@@ -94,6 +94,14 @@
 
             <div class="col-12">
 
+            <h5>Comment jouer ?</h5>
+
+            <p class="text-justify">Le Gasp est jouable en ligne, via votre navigateur préféré, simplement en cliquant sur ce bouton :<br/>
+
+            <div class="col-12 my-3 text-center">
+                <a href="http://thegasp.genealexis.fr/" class="btn btn-primary">Jouer !</a>
+            </div>
+
             <h5>A propos du jeu</h5>
 
             <p class="text-justify">Il y a quelques mois, j'ai découvert un petit listing dans Basic publié dans le n°38 de Jeux et Stratégie d'avril/mai 1985. Il s'agit d'un petit jeu de puzzle qui est un mélange de Reverso et d'Othello. Vous avez un plateau de jeu avec 16 pions bicolores formant un carré de 4 x 4. Le but est de retourner toutes les pions en suivant une règle : Lorsque vous choisissez un pion, ses 8 voisins changent de couleur sauf lui. Quelques pages plus tard, le magazine adaptait le jeu en Basic. Rien d'extraordinaire, aujourd'hui on appellerait ça un jeu en "mode console".</p>
@@ -107,17 +115,7 @@
 
             </div>
 
-            <p class="text-justify">Dans ma version, celle que je propose ici, les 16 pions sont remplacés par des cartes, mais le principe est toujours le même : lorsque vous pointez une carte, ses 8 voisines sont retournées sauf elle. Serez-vous capable de les retourner toutes ?</p>
-
-            <h5>Comment jouer ?</h5>
-
-            <p class="text-justify">Pour l'instant, il existe deux versions du jeu. La première a été développée en javascript et est jouable en ligne gratuitement à cette adresse :<p>
-
-            <a href="http://thegasp.genealexis.fr/">http://thegasp.genealexis.fr/</a>
-
-            <p class="text-justify">La seconde version est jouable via un petit logiciel développé en vbnet que vous pouvez télécharger gratuitement en cliquant sur le bouton bleu ci-dessous.</p>
-
-            <a class="btn btn-primary" href="#" role="button">Télécharger</a>
+            <p class="text-justify">Dans ma version, celle que je propose ci-dessus, les 16 pions sont remplacés par des cartes, mais le principe est toujours le même : lorsque vous pointez une carte, ses 8 voisines sont retournées sauf elle. Serez-vous capable de les retourner toutes ?</p>
 
             </div>
 
