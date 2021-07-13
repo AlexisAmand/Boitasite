@@ -152,11 +152,11 @@
 
         <div class="col-md-6 p-3">
             <div class="media">
-                <a href="https://fr.tipeee.com/genealexis" title="Publiged, un projet de CMS dédié à la Généalogie">
+                <a href="https://publiged.boitasite.com" title="Publiged, un projet de CMS dédié à la Généalogie">
                 <img src="img/publiged.jpg" alt="dossier bleu dessiné aux crayons de couleurs" class="icones"></a>
                 <div class="media-body">
                     <h5>PubliGED</h5>
-                    <p class="text-justify">PubliGED est un projet de création d'un CMS dédié à la Généalogie. Actuellement en financement participatif sur Tipeee, il a pour but de permettre aux utilisateurs de créer publier facilement leur généalogie via leur propre site web. <a href="https://fr.tipeee.com/genealexis" title="projet de création d'un cms dédié à la publication d'une généalogie">[En savoir plus...]</a></p>
+                    <p class="text-justify">PubliGED est un projet de création d'un CMS dédié à la Généalogie. Actuellement en financement participatif sur Tipeee, il a pour but de permettre aux utilisateurs de créer publier facilement leur généalogie via leur propre site web. <a href="https://publiged.boitasite.com" title="projet de création d'un cms dédié à la publication d'une généalogie">[En savoir plus...]</a></p>
                 </div>
             </div>
         </div>

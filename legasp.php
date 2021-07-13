@@ -14,7 +14,6 @@
     <!-- CSS perso -->
     <link rel="stylesheet" href="css/style.min.css">
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
-
     <script type="text/javascript" src="tarteaucitron/tarteaucitron.js"></script>
 
     <script type="text/javascript">
@@ -53,7 +52,6 @@
     "mandatory": true, /* Show a message about mandatory cookies */
     });
     </script>
-
 </head>
 
 <body>
@@ -89,7 +87,7 @@
         <article class="row d-flex justify-content-center ligne-dotted-top">
 
             <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
-                <h1 class="text-center">Le <span>Gasp</span></h1>
+                <h1 class="text-center">#jeu : Le <span>Gasp</span></h1>
             </div>
 
             <div class="col-12">
