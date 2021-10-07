@@ -145,18 +145,18 @@
                 <img src="img/thegasp.jpg" alt="dossier jaune dessiné aux crayons de couleurs" class="icones"></a>
                 <div class="media-body">
                     <h5>Le Gasp</h5>
-                    <p class="text-justify">Le Gasp est un petit jeu développé en JavaScript. Il s'agit d'une adaption d'un listing paru dans la presse spécialisée dans les années 80. Saurez-vous retourner toutes les cartes ? <a href="http://thegasp.genealexis.fr" title="Jeu de cartes en ligne jouable en solo">[En savoir plus...]</a></p>
+                    <p class="text-justify">Le Gasp est un petit jeu développé en JavaScript. Il s'agit d'une adaptation d'un listing paru dans la presse spécialisée dans les années 80. Saurez-vous retourner toutes les cartes ? <a href="http://thegasp.genealexis.fr" title="Jeu de cartes en ligne jouable en solo">[En savoir plus...]</a></p>
                 </div>
             </div>
         </div>
 
         <div class="col-md-6 p-3">
             <div class="media">
-                <a href="https://publiged.boitasite.com" title="Publiged, un projet de CMS dédié à la Généalogie">
+                <a href="https://publiged.com" title="Publiged, un projet de CMS dédié à la Généalogie">
                 <img src="img/publiged.jpg" alt="dossier bleu dessiné aux crayons de couleurs" class="icones"></a>
                 <div class="media-body">
                     <h5>PubliGED</h5>
-                    <p class="text-justify">PubliGED est un projet de création d'un CMS dédié à la Généalogie. Actuellement en financement participatif sur Tipeee, il a pour but de permettre aux utilisateurs de créer publier facilement leur généalogie via leur propre site web. <a href="https://publiged.boitasite.com" title="projet de création d'un cms dédié à la publication d'une généalogie">[En savoir plus...]</a></p>
+                    <p class="text-justify">PubliGED est un projet de création d'un CMS dédié à la Généalogie. Actuellement en financement participatif sur Tipeee, il a pour but de permettre aux utilisateurs de créer et publier facilement leur généalogie via leur propre site web. <a href="https://publiged.com" title="projet de création d'un cms dédié à la publication d'une généalogie">[En savoir plus...]</a></p>
                 </div>
             </div>
         </div>
