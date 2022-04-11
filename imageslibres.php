@@ -101,9 +101,9 @@
 
             <p class="text-justify">C’est pourquoi je vous propose sur cette page une petite liste des banques d'images que j’utilise dans le cadre de mon boulot de développeur web. Elles proposent pour la plupart du contenu « libre de droit », ce qui signifie, pour faire simple, que l’auteur autorise n’importe qui à utiliser sa création gratuitement et sans rien d'autre en retour.</p>
 
-            <h5 class="mt-5">Creative Commons</h5>
+            <h5 class="mt-5">Openverse (ex Creative Commons)</h5>
 
-            <p class="text-justify">Search Creative Commons est une banque d'images provenant de sources aussi variées que Wikipedia Commons, Flickr, des musées ou encore des instituts. À l'heure où j'écris ces lignes, le site compte une base de pas moins de 500 millions d'images que vous pouvez trier en fonction de la source, des conditions de réutilisation, par type ou encore par taille.</p>
+            <p class="text-justify">Openverse est une banque d'images provenant de sources aussi variées que Wikipedia Commons, Flickr, des musées ou encore des instituts. À l'heure où j'écris ces lignes, le site compte une base de pas moins de 500 millions d'images que vous pouvez trier en fonction de la source, des conditions de réutilisation, par type ou encore par taille.</p>
 
             <div class="row d-flex justify-content-center">
 
