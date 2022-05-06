@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title> | Alexis AMAND - Développeur PHP/Web et Webmaster à Valenciennes</title>
-    <meta name="description" content=" ">
+    <title> Projets liés au gamedev | Alexis AMAND - Développeur PHP/Web et Webmaster à Valenciennes</title>
+    <meta name="description" content="Quelques projets de création de jeux.">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="css/style.min.css">
     <link href="https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here" rel="stylesheet">
     <script type="text/javascript" src="tarteaucitron/tarteaucitron.js"></script>
+
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
     <script type="text/javascript">
     tarteaucitron.init({
@@ -72,7 +75,7 @@
                     <li class="nav-item m-2"><a class="nav-link" href="seo.php" title="Référencement de site web à Valenciennes">SEO</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="to8.php" title="Retrogaming sur le TO8 de Thomson">Retrogaming</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="legasp.php">Le Gasp</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="jeux.php">Jeux</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li> 
                 </ul> 
                 </div>
@@ -87,20 +90,35 @@
         <article class="row d-flex justify-content-center ligne-dotted-top">
 
             <div class="col-12 py-5 mb-3 ligne-dotted-bottom">
-                <h1 class="text-center">#jeu : Le <span>Gasp</span></h1>
+                <h1 class="text-center">#gamedev : Les <span>jeux</span></h1>
             </div>
 
             <div class="col-12">
 
-            <h5>Comment jouer ?</h5>
+            <h5 class="my-3">The Little King</h5>
 
-            <p class="text-justify">Le Gasp est jouable en ligne, via votre navigateur préféré, simplement en cliquant sur ce bouton :<br/>
+            <p class="text-justify">Il était une fois, Tugdual, un petit roi, dans un petit royaume. Il n'est pas bien riche, et faire payer des impots à ses sujets le rend très malheureux et très triste, mais les caisses de l'Etat étaient de plus en plus vide. Un jour, il a entendu parler d'un trésor qui était caché dans un mystérieux marais. L'aventure allait commencer.</p>
 
-            <div class="col-12 my-3 text-center">
-                <a href="http://thegasp.genealexis.fr/" class="btn btn-primary">Jouer !</a>
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure">
+                    <a href="images/game2d/game2d-01.jpg" data-fancybox data-caption=" ">
+                    <img src="images/game2d/mini-game2d-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                </figure>
+
             </div>
 
-            <h5>A propos du jeu</h5>
+            <p class="text-justify">Ce jeu n'est pas vraiment un jeu, mais juste un essai, afin de me permettre d'apprendre à utiliser Unity. Il s'agit d'un jeu de plateforme où vous devez récupérer toutes les pièces pour ouvrir la porte du niveau suivant. Dans le futur, j'imagine plus de niveaux, et l'histoire serait celle d'un héros qui se réveille amnésique, il a tout oublié. Le but du jeu serait de l'aider à retrouver des morceaux de sa mémoire et de sa vie en parlant aux différents PNJ qu'il rencontre dans les niveaux, le tout en ramassant des pièces pour accumuler les points et débloquer des succés.</p>
+
+            <p class="text-justify">Si vous avez envie de tester, cette "démo" est disponible gratuitement sur <a href="https://alexisamand.itch.io/the-little-king">le site itch.io</a>.</p>
+
+            <div class="row d-flex justify-content-center">  
+            
+                <iframe frameborder="0" src="https://itch.io/embed/1493295?linkback=true" width="552" height="167"><a href="https://alexisamand.itch.io/the-little-king">The Little King by Alexis Amand</a></iframe>
+
+            </div> 
+
+            <h5 class="mt-5 mb-3">Le Gasp</h5>
 
             <p class="text-justify">Il y a quelques mois, j'ai découvert un petit listing dans Basic publié dans le n°38 de Jeux et Stratégie d'avril/mai 1985. Il s'agit d'un petit jeu de puzzle qui est un mélange de Reverso et d'Othello. Vous avez un plateau de jeu avec 16 pions bicolores formant un carré de 4 x 4. Le but est de retourner toutes les pions en suivant une règle : Lorsque vous choisissez un pion, ses 8 voisins changent de couleur sauf lui. Quelques pages plus tard, le magazine adaptait le jeu en Basic. Rien d'extraordinaire, aujourd'hui on appellerait ça un jeu en "mode console".</p>
 
@@ -113,7 +131,26 @@
 
             </div>
 
-            <p class="text-justify">Dans ma version, celle que je propose ci-dessus, les 16 pions sont remplacés par des cartes, mais le principe est toujours le même : lorsque vous pointez une carte, ses 8 voisines sont retournées sauf elle. Serez-vous capable de les retourner toutes ?</p>
+            <p class="text-justify">Dans ma version, celle que je propose ci-dessus, les 16 pions sont remplacés par des cartes, mais le principe est toujours le même : lorsque vous pointez une carte, ses 8 voisines sont retournées sauf elle. Serez-vous capable de toutes les retourner ?</p>
+
+            <div class="row d-flex justify-content-center">
+
+                <figure class="figure">
+                    <a href="images/gasp/gasp-01.jpg" data-fancybox data-caption=" ">
+                    <img src="images/gasp/mini-gasp-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                </figure>
+
+            </div>
+
+            <p class="text-justify">Le Gasp est disponible dans une version jouable en ligne, via votre navigateur préféré, simplement en vous rendant sur <a href="http://thegasp.genealexis.fr/">le site officiel du projet</a>. Le jeu est aussi disponible dans une version jouable hors ligne, via une application que j'ai développé il y a quelques mois, et que vous pouvez téléchargement gratuitement via: <a href="https://alexisamand.itch.io/le-gasp">le site itch.io</a>.</p>
+
+            <div class="row d-flex justify-content-center">    
+
+                <iframe frameborder="0" src="https://itch.io/embed/1383660?linkback=true" width="552" height="167"><a href="https://alexisamand.itch.io/le-gasp">The Gasp by Alexis Amand</a></iframe>
+
+            </div>
+
+              
 
             </div>
 
@@ -145,7 +182,7 @@
 
             <div class="col-12">
 
-                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="http://cv.genealexis.fr/" title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
+                <p class="text-center mt-4">© 2020-2022 - Site propulsé sur le net par <a href="/index.php">boitasite.com</a><br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="http://cv.genealexis.fr/" title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
                 </p>
 
             </div>
@@ -161,6 +198,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <!-- JS de Fancybox -->
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
     <script>
     $(function () {

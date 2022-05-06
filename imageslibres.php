@@ -77,7 +77,7 @@
                     <li class="nav-item m-2"><a class="nav-link" href="seo.php" title="Référencement de site web à Valenciennes">SEO</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="tutoriels.php">Tutos</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="to8.php">Retrogaming</a></li> 
-                    <li class="nav-item m-2"><a class="nav-link" href="legasp.php">Le Gasp</a></li> 
+                    <li class="nav-item m-2"><a class="nav-link" href="jeux.php">Jeux</a></li> 
                     <li class="nav-item m-2"><a class="nav-link" href="contacts.php">Contact</a></li> 
                 </ul> 
                 </div>
@@ -271,7 +271,7 @@
 
             <div class="col-12">
 
-                <p class="text-center mt-4">© 2020 - Alexis AMAND<br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="http://cv.genealexis.fr/" title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
+                <p class="text-center mt-4">© 2020-2022 - Site propulsé sur le net par <a href="/index.php">boitasite.com</a><br />Site hébergé par <a href="https://www.amen.fr/" title="Site de l'hébergeur Amen France">Amen France</a> - <a href="mentions-legales.php" title="lien vers les mentions légales du site">Mentions légales</a> - <a href="http://cv.genealexis.fr/" title="lien vers le CV en ligne de Alexis AMAND">Mon CV</a>
                 </p>
 
             </div>
