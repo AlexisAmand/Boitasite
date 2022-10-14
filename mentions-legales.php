@@ -95,12 +95,8 @@
             <div class="col-12">
 
             <h5 class="mt-5">Editeur du site</h5>
-            
-                <p>BOITASITE<br />Valenciennes (Nord)<br />SIRET : 517 501 235 000 17</p>
-
-            <h5 class="mt-5">Création du site</h5>
-                
-                <p>BOITASITE<br />Valenciennes (Nord)<br />SIRET : 517 501 235 000 17</p>
+         
+                <p>Alexis AMAND - EI<br />Valenciennes (Nord)<br />SIRET : 517 501 235 000 17</p>
 
             <h5 class="mt-5">Hébergeur du site</h5>
             
