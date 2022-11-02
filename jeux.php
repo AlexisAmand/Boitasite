@@ -95,64 +95,62 @@
 
             <div class="col-12">
 
-            <h5 class="my-3">The Little King</h5>
-
-            <p class="text-justify">Il était une fois, Tugdual, un petit roi, dans un petit royaume. Il n'est pas bien riche, et faire payer des impots à ses sujets le rend très malheureux et très triste, mais les caisses de l'Etat étaient de plus en plus vide. Un jour, il a entendu parler d'un trésor qui était caché dans un mystérieux marais. L'aventure allait commencer.</p>
-
-            <div class="row d-flex justify-content-center">
-
-                <figure class="figure">
-                    <a href="images/game2d/game2d-01.jpg" data-fancybox data-caption=" ">
-                    <img src="images/game2d/mini-game2d-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
-                </figure>
-
-            </div>
-
-            <p class="text-justify">Ce jeu n'est pas vraiment un jeu, mais juste un essai, afin de me permettre d'apprendre à utiliser Unity. Il s'agit d'un jeu de plateforme où vous devez récupérer toutes les pièces pour ouvrir la porte du niveau suivant. Dans le futur, j'imagine plus de niveaux, et l'histoire serait celle d'un héros qui se réveille amnésique, il a tout oublié. Le but du jeu serait de l'aider à retrouver des morceaux de sa mémoire et de sa vie en parlant aux différents PNJ qu'il rencontre dans les niveaux, le tout en ramassant des pièces pour accumuler les points et débloquer des succés.</p>
-
-            <p class="text-justify">Si vous avez envie de tester, cette "démo" est disponible gratuitement sur <a href="https://alexisamand.itch.io/the-little-king">le site itch.io</a>.</p>
-
-            <div class="row d-flex justify-content-center">  
-            
-                <iframe frameborder="0" src="https://itch.io/embed/1493295?linkback=true" width="552" height="167"><a href="https://alexisamand.itch.io/the-little-king">The Little King by Alexis Amand</a></iframe>
-
-            </div> 
-
             <h5 class="mt-5 mb-3">Le Gasp</h5>
 
-            <p class="text-justify">Il y a quelques mois, j'ai découvert un petit listing dans Basic publié dans le n°38 de Jeux et Stratégie d'avril/mai 1985. Il s'agit d'un petit jeu de puzzle qui est un mélange de Reverso et d'Othello. Vous avez un plateau de jeu avec 16 pions bicolores formant un carré de 4 x 4. Le but est de retourner toutes les pions en suivant une règle : Lorsque vous choisissez un pion, ses 8 voisins changent de couleur sauf lui. Quelques pages plus tard, le magazine adaptait le jeu en Basic. Rien d'extraordinaire, aujourd'hui on appellerait ça un jeu en "mode console".</p>
+                <p class="text-justify">Il y a quelques mois, j'ai découvert un petit listing dans Basic publié dans le n°38 de Jeux et Stratégie d'avril/mai 1985. Il s'agit d'un petit jeu de puzzle qui est un mélange de Reverso et d'Othello. Vous avez un plateau de jeu avec 16 pions bicolores formant un carré de 4 x 4. Le but est de retourner toutes les pions en suivant une règle : Lorsque vous choisissez un pion, ses 8 voisins changent de couleur sauf lui. Quelques pages plus tard, le magazine adaptait le jeu en Basic. Rien d'extraordinaire, aujourd'hui on appellerait ça un jeu en "mode console".</p>
 
-            <div class="row d-flex justify-content-center">
+                <div class="row d-flex justify-content-center">
 
-                <figure class="figure">
-                    <a href="thegasp/images/thegasp-05.jpg" data-fancybox data-caption=" ">
-                    <img src="thegasp/images/thegasp-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
-                </figure>
+                    <figure class="figure">
+                        <a href="thegasp/images/thegasp-05.jpg" data-fancybox data-caption=" ">
+                        <img src="thegasp/images/thegasp-05.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    </figure>
 
-            </div>
+                </div>
 
-            <p class="text-justify">Dans ma version, celle que je propose ci-dessus, les 16 pions sont remplacés par des cartes, mais le principe est toujours le même : lorsque vous pointez une carte, ses 8 voisines sont retournées sauf elle. Serez-vous capable de toutes les retourner ?</p>
+                <p class="text-justify">Dans ma version, celle que je propose ci-dessus, les 16 pions sont remplacés par des cartes, mais le principe est toujours le même : lorsque vous pointez une carte, ses 8 voisines sont retournées sauf elle. Serez-vous capable de toutes les retourner ?</p>
 
-            <div class="row d-flex justify-content-center">
+                <div class="row d-flex justify-content-center">
 
-                <figure class="figure">
-                    <a href="images/gasp/gasp-01.jpg" data-fancybox data-caption=" ">
-                    <img src="images/gasp/mini-gasp-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
-                </figure>
+                    <figure class="figure">
+                        <a href="images/gasp/gasp-01.jpg" data-fancybox data-caption=" ">
+                        <img src="images/gasp/mini-gasp-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    </figure>
 
-            </div>
+                </div>
 
-            <p class="text-justify">Le Gasp est disponible dans une version jouable en ligne, via votre navigateur préféré, simplement en vous rendant sur <a href="http://thegasp.genealexis.fr/">le site officiel du projet</a>. Le jeu est aussi disponible dans une version jouable hors ligne, via une application que j'ai développé il y a quelques mois, et que vous pouvez téléchargement gratuitement via: <a href="https://alexisamand.itch.io/le-gasp">le site itch.io</a>.</p>
+                <p class="text-justify">Le Gasp est disponible dans une version jouable en ligne, via votre navigateur préféré, simplement en vous rendant sur <a href="http://thegasp.genealexis.fr/">le site officiel du projet</a>. Le jeu est aussi disponible dans une version jouable hors ligne, via une application que j'ai développé il y a quelques mois, et que vous pouvez téléchargement gratuitement via: <a href="https://alexisamand.itch.io/le-gasp">le site itch.io</a>.</p>
 
-            <div class="row d-flex justify-content-center">    
+                <div class="row d-flex justify-content-center">    
 
-                <iframe frameborder="0" src="https://itch.io/embed/1383660?linkback=true" width="552" height="167"><a href="https://alexisamand.itch.io/le-gasp">The Gasp by Alexis Amand</a></iframe>
+                    <iframe frameborder="0" src="https://itch.io/embed/1383660?linkback=true" width="552" height="167"><a href="https://alexisamand.itch.io/le-gasp">The Gasp by Alexis Amand</a></iframe>
 
-            </div>
+                </div>
 
-              
+            <h5 class="my-3">The Little King</h5>
 
-            </div>
+                <p class="text-justify">Il était une fois, Tugdual, un petit roi, dans un petit royaume. Il n'est pas bien riche, et faire payer des impots à ses sujets le rend très malheureux et très triste, mais les caisses de l'Etat étaient de plus en plus vide. Un jour, il a entendu parler d'un trésor qui était caché dans un mystérieux marais. L'aventure allait commencer.</p>
+
+                <div class="row d-flex justify-content-center">
+
+                    <figure class="figure">
+                        <a href="images/game2d/game2d-01.jpg" data-fancybox data-caption=" ">
+                        <img src="images/game2d/mini-game2d-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt=" "></a>
+                    </figure>
+
+                </div>
+
+                <p class="text-justify">Ce jeu n'est pas vraiment un jeu, mais juste un essai, afin de me permettre d'apprendre à utiliser Unity. Il s'agit d'un jeu de plateforme où vous devez récupérer toutes les pièces pour ouvrir la porte du niveau suivant. Dans le futur, j'imagine plus de niveaux, et l'histoire serait celle d'un héros qui se réveille amnésique, il a tout oublié. Le but du jeu serait de l'aider à retrouver des morceaux de sa mémoire et de sa vie en parlant aux différents PNJ qu'il rencontre dans les niveaux, le tout en ramassant des pièces pour accumuler les points et débloquer des succés.</p>
+
+                <p class="text-justify">Si vous avez envie de tester, cette "démo" est disponible gratuitement sur <a href="https://alexisamand.itch.io/the-little-king">le site itch.io</a>.</p>
+
+                <div class="row d-flex justify-content-center">  
+
+                    <iframe frameborder="0" src="https://itch.io/embed/1493295?linkback=true" width="552" height="167"><a href="https://alexisamand.itch.io/the-little-king">The Little King by Alexis Amand</a></iframe>
+
+                </div> 
+
+        </div>
 
         </article>
 
