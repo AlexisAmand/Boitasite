@@ -14,11 +14,11 @@
         <div class="col-md-4">
           <h5>Liens utiles</h5>
           <ul class="list-unstyled">            
-            <li><a href="index.php#presentation" aria-label="Présentation d'Alexis Amand">Qui suis-je ?</a></li>         
-            <li><a href="index.php#services" aria-label="Services d'Alexis Amand">Services</a></li>
+            <li><a href="presentation.php" aria-label="Présentation d'Alexis Amand">Qui suis-je ?</a></li>         
+            <li><a href="services.php" aria-label="Services d'Alexis Amand">Services</a></li>
             <li><a href="https://lexisio.boitasite.com" aria-label="Services de redaction web">Rédaction web</a></li>
-            <li><a href="index.php#portfolio" aria-label="Portfolio d'Alexis Amand">Portfolio</a></li>
-            <li><a href="tarifs.php" aria-label="Tarifs d'Alexis Amand">Tarifs</a></li>
+            <li><a href="portfolio.php" aria-label="Portfolio d'Alexis Amand">Portfolio</a></li>
+            <li><a href="faq.php">Questions Fréquentes</a></li>
             <li><a href="mentions-legales.php" aria-label="mentions légales d'Alexis Amand">Mentions légales</a></li>
           </ul>
         </div>
@@ -54,3 +54,47 @@
   
     </div>
   </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Boitasite",
+    "url": "https://www.boitasite.com/",
+    "logo": "https://www.boitasite.com/img/logo.png",
+    "description": "Création de sites Internet vitrines pour TPE, indépendants et associations.",
+    "priceRange": "€€",
+    "telephone": "+33 6 62 63 79 21",
+    "openingHours": "Mo-Fr 09:30-17:30",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Valenciennes",
+      "addressCountry": "FR"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/alexis-amand/",
+      "https://github.com/alexisAmand",
+      "https://twitter.com/alexisamand"
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Alexis Amand",
+      "jobTitle": "Développeur web et référent digital",
+      "url": "https://www.boitasite.com/",
+      "sameAs": [
+        "https://www.linkedin.com/in/alexis-amand/",
+        "https://github.com/alexisAmand",
+        "https://twitter.com/alexisamand"
+      ],
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Université de Valenciennes"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Valenciennes",
+        "addressCountry": "FR"
+      }
+    }
+  }
+  </script>

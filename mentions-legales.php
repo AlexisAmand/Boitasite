@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Mentions légales – Alexis Amand, site professionnel de rédaction</title>
+  <title>Mentions légales | Alexis AMAND</title>
   <meta name="description" content="Consultez les mentions légales du site Lexisio : éditeur, hébergeur, propriété intellectuelle, politique de confidentialité et responsabilités. Conformité avec la législation en vigueur.">
 
-  <!-- Canonical -->
+  <link rel="icon" href="/img/favicon.png">
   <link rel="canonical" href="https://lexisio.boitasite.com/memtions-legales.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
@@ -64,6 +64,7 @@
   <script src="js/animations.min.js"></script>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"  defer></script>
+
 </body>
 </html>
 
