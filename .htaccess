@@ -1,1 +1,14 @@
-ErrorDocument 404 https://www.boitasite.com/plan.php
+ErrorDocument 404 /404.php
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_USER_AGENT} ^facebookexternalhit [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Twitterbot
+RewriteRule ^.*$ - [L]
+</IfModule>
+
+Redirect 301 https://www.boitasite.com/to8.php https://t08.boitasite.com/index.php
+
+RedirectMatch 301 ^/to8/(.*)$ https://to8.boitasite.com/to8/$1
+
+
