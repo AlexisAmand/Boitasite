@@ -11,34 +11,6 @@
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
 
-  <style>
-
-    img {
-  max-height: 350px;
-  object-fit: contain;
-}
-
-@media (max-width: 768px) {
-  img {
-    max-height: 250px;
-    margin-bottom: 20px;
-  }
-}
-
-/* Par défaut width à 100% */
-.img-responsive-custom {
-  width: 100%;
-}
-
-/* À partir de md (min-width:768px), width à 75% */
-@media (min-width: 768px) {
-  .img-responsive-custom {
-    width: 75%;
-  }
-}
-
-</style>
-
 </head>
 <body>
 
@@ -46,7 +18,7 @@
 
   <section id="about-me" class="py-5 bg-white text-center">
     <div class="container">
-      <h2 class="display-5 my-5">Qui suis-je ?</h2>
+      <h1 class="display-5 my-5 h2">Qui suis-je ?</h1>
 
       <div class="row align-items-center justify-content-center">
         <div class="col-md-6 order-2 order-md-1 d-flex align-items-center">
@@ -69,8 +41,8 @@
           </div>
         </div>
 
-        <div class="col-md-4 order-1 order-md-2 text-center mb-4 mb-md-0">
-          <img src="/img/panda-01.jpg" class="img-fluid rounded shadow" alt="Panda travaillant sur un ordinateur">
+        <div class="col-md-4 order-1 order-md-2 text-center mb-4 mb-md-0" id="panda">
+          <img src="/img/panda-01.webp" loading="lazy" class="img-fluid shadow" alt="Illustration : un panda devant un ordinateur symbolisant le travail de rédaction" style="border-radius: 50% 20% / 10% 40%;">
         </div>
 
       </div>

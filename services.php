@@ -21,7 +21,7 @@
   <!-- Services -->
   <section id="services" class="bg-light py-5">
       <div class="container text-center">
-        <h2 class="display-5 my-5">Mes services web</h2>
+        <h1 class="display-5 my-5">Mes services web</h1>
       <div class="row">
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
@@ -64,7 +64,6 @@
     <div> 
   </section>
 
-
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
@@ -72,7 +71,6 @@
   <script src="js/animations.min.js"></script>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous" defer></script>
-
 
   <script>
 
