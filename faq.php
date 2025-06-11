@@ -60,6 +60,14 @@
           <div class="col">
             <div class="card h-100 border-0 card-postit">
               <div class="card-body card-body-faq">
+                <h3 class="card-title">Si je clique 1 000 fois par jour sur mon propre site, ça améliore mon référencement ?</h5>
+                <p class="card-text">Non, et Google risque même de vous mettre dans son coin « pas gentil ». L’algorithme est malin : il préfère des visiteurs sincères, venus pour vos contenus. Si vous voulez absolument cliquer beaucoup, jouez plutôt à un jeu de clics. J’ai quelques bons titres à conseiller.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 card-postit">
+              <div class="card-body card-body-faq">
                 <h3 class="card-title">Proposez-vous l’hébergement et le nom de domaine ?</h5>
                 <p class="card-text">Je vous conseille les meilleurs hébergeurs selon vos besoins, ou je peux gérer pour vous l’achat et la configuration du nom de domaine et de l’hébergement. Vous restez propriétaire de tout, en toute transparence.</p>
               </div>
@@ -100,6 +108,14 @@
           <div class="col">
             <div class="card h-100 border-0 card-postit">
               <div class="card-body card-body-faq">
+                <h3 class="card-title">Est-ce que je peux avoir un site en Comic Sans MS violet sur fond jaune fluo ?</h5>
+                <p class="card-text">Techniquement, oui. Esthétiquement, disons que c’est… audacieux. Votre site vous appartient, donc si vous rêvez d’un look “années 90 sous acide”, je peux vous aider à le réaliser. Mais je vous proposerai aussi des alternatives plus douces pour les rétines de vos visiteurs (et pour la mienne). Le web peut être libre… mais avec un minimum de goût, c’est encore mieux.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 border-0 card-postit">
+              <div class="card-body card-body-faq">
                 <h3 class="card-title">Travaillez-vous avec des associations ou des petites structures ?</h5>
                 <p class="card-text">Oui, c’est même une de mes spécialités. Je m’adapte aux contraintes des associations, indépendants, artisans ou TPE, en proposant des solutions accessibles, utiles et efficaces. Chaque projet mérite un site de qualité.</p>
               </div>
@@ -120,21 +136,7 @@
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous" defer></script>
 
-  <script>
-
-const colors = ['postit-yellow', 'postit-pink', 'postit-green', 'postit-blue'];
-
-document.querySelectorAll('.card-body-faq').forEach(el => {
-  // enlever la rotation initiale pour que hover remette à 0deg
-  el.style.transform = 'rotate(' + ((Math.random() * 10) - 5) + 'deg)';
-
-  // ajouter une couleur aléatoire
-  const color = colors[Math.floor(Math.random() * colors.length)];
-  el.classList.add(color);
-});
-
-  </script>
-
+  <script src="js/faq.min.js"></script>
 
 </body>
 </html>

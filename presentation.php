@@ -18,7 +18,7 @@
 
   <section id="about-me" class="py-5 bg-white text-center">
     <div class="container">
-      <h1 class="display-5 my-5 h2">Qui suis-je ?</h1>
+      <h1 class="my-5">Qui suis-je ?</h1>
 
       <div class="row align-items-center justify-content-center">
         <div class="col-md-6 order-2 order-md-1 d-flex align-items-center">
@@ -32,7 +32,7 @@
             </p>
 
             <p>
-              Curieux de nature, j’aime explorer de nouvelles technologies, imaginer des interfaces claires et accessibles, et raconter des histoires — que ce soit à travers un site web, un article ou un jeu vidéo indépendant.
+              Curieux de nature, j’aime explorer de nouvelles technologies, imaginer des interfaces claires et accessibles, et raconter des histoires — que ce soit <a href="services.php" title=" ">à travers un site web</a>, un article ou un jeu vidéo indépendant.
             </p>
 
             <p>

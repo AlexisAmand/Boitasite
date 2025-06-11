@@ -1,14 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container-fluid">
-        <img src="/img/logo.png" width="32" height="32" loading="lazy" class="d-inline-block align-text-top" alt="logo d'Alexis Amand">&nbsp;&nbsp;
-        <a class="navbar-brand" href="index.php">Alexis Amand</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+<nav class="navbar navbar-expand-lg bg-light fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.php">
+        <img src="/img/logo.png" alt="Logo" width="32" height="32" class="d-flex align-items-center">
+        <span>Alexis Amand</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
             <li class="nav-item">
             <a class="nav-link" href="presentation.php">Qui suis-je ?</a>
             </li>
@@ -24,7 +24,7 @@
             <li class="nav-item">
             <a class="nav-link" href="#contact">Contact</a>
             </li>
-        </ul>
-        </div>
+      </ul>
     </div>
+  </div>
 </nav>

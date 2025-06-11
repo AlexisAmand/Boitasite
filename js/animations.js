@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const titles = document.querySelectorAll('h2');
+  const titles = document.querySelectorAll('h1', 'h2');
 
   // Vérification de compatibilité
   if (!('IntersectionObserver' in window)) {

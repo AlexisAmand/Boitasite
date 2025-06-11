@@ -1,7 +1,7 @@
   <!-- Contact -->
   <section id="contact" class="py-5">
     <div class="container text-center">
-      <h2 class="display-5 mb-5 h2">Contactez-moi</h2>
+      <h2 class="mb-5">Contactez-moi</h2>
       <p>Pour toute demande de devis ou collaboration<br /> envoyez-moi un email à <strong><span id="email"></span></strong> ou contactez-moi au <span id="telephone">x</span>.</p>
     </div>
 
