@@ -114,3 +114,6 @@
 });
 
 </script>
+
+<div id="ecoindex-badge" data-theme="dark"></div>
+<script src="https://cdn.jsdelivr.net/gh/cnumr/ecoindex_badge@3/assets/js/ecoindex-badge.js" defer></script>

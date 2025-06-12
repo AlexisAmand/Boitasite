@@ -17,7 +17,10 @@
             </li>
             <li class="nav-item">
             <a class="nav-link" href="portfolio.php">Portfolio</a>
-            </li>    
+            </li>   
+            <li class="nav-item">
+            <a class="nav-link" href="ressources.php">Ressources</a>
+            </li>   
             <li class="nav-item">
             <a class="nav-link" href="faq.php" title="Questions fréquentes sur la création de site Internet">Questions fréquentes</a>
             </li>            
