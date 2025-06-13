@@ -18,6 +18,8 @@
           <a href="mailto:alexis.amand@boitasite.com" class="text-decoration-none">alexis.amand@boitasite.com</a><br>
           06 62 63 79 21
         </address>
+            <div id="ecoindex-badge" class="mt-2" data-theme="dark"></div>
+            <script src="https://cdn.jsdelivr.net/gh/cnumr/ecoindex_badge@3/assets/js/ecoindex-badge.js" defer></script>
       </div>
 
       <!-- Colonne liens -->
@@ -28,6 +30,7 @@
           <li><a href="services.php" class="text-decoration-none">Services</a></li>
           <li><a href="https://lexisio.boitasite.com" class="text-decoration-none">Rédaction web</a></li>
           <li><a href="portfolio.php" class="text-decoration-none">Portfolio</a></li>
+          <li><a href="ressources.php" class="text-decoration-none">Ressources</a></li>
           <li><a href="faq.php" class="text-decoration-none">FAQ</a></li>
           <li><a href="mentions-legales.php" class="text-decoration-none">Mentions légales</a></li>
         </ul>
@@ -115,5 +118,4 @@
 
 </script>
 
-<div id="ecoindex-badge" data-theme="dark"></div>
-<script src="https://cdn.jsdelivr.net/gh/cnumr/ecoindex_badge@3/assets/js/ecoindex-badge.js" defer></script>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/backtotop.inc.php'; ?>

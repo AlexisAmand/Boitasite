@@ -26,20 +26,71 @@
   <!-- Bootstrap Icons  -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css">
   
-  <!-- Matomo tracking -->
-<!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(["setExcludedReferrers", ["histoiresdepoilus.test\/"]]);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//matomo.boitasite.com/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Code -->
+  <script src="tarteaucitron/tarteaucitron.min.js"></script>
+
+  <script type="text/javascript">
+  tarteaucitron.init({
+  "privacyUrl": "", /* Url de la politique de confidentialité */
+    "bodyPosition": "top", /* top place le bandeau de consentement au début du code html, mieux pour l'accessibilité */
+
+  "hashtag": "#tarteaucitron", /* Hashtag qui permet d'ouvrir le panneau de contrôle  */
+  "cookieName": "tarteaucitron", /* Nom du cookie (uniquement lettres et chiffres) */
+
+  "orientation": "middle", /* Position de la bannière (top - bottom - popup - banner) */
+
+    "groupServices": true, /* Grouper les services par catégorie */
+    "showDetailsOnClick": true, /* Cliquer pour ouvrir la description */
+    "serviceDefaultState": "wait", /* Statut par défaut (true - wait - false) */
+                      
+  "showAlertSmall": false, /* Afficher la petite bannière en bas à droite */
+  "cookieslist": false, /* Afficher la liste des cookies */
+                      
+    "closePopup": true, /* Afficher un X pour fermer la bannière */
+
+    "showIcon": true, /* Afficher un cookie pour ouvrir le panneau */
+    //"iconSrc": "", /* Optionnel: URL ou image en base64 */
+    "iconPosition": "BottomLeft", /* Position de l'icons: (BottomRight - BottomLeft - TopRight - TopLeft) */
+
+  "adblocker": false, /* Afficher un message si un Adblocker est détecté */
+                      
+    "DenyAllCta" : true, /* Afficher le bouton Tout refuser */
+    "AcceptAllCta" : true, /* Afficher le bouton Tout accepter */
+    "highPrivacy": true, /* Attendre le consentement */
+    "alwaysNeedConsent": false, /* Demander le consentement même pour les services "Privacy by design" */
+                      
+  "handleBrowserDNTRequest": false, /* Refuser tout par défaut si Do Not Track est activé sur le navigateur */
+
+  "removeCredit": false, /* Retirer le lien de crédit vers tarteaucitron.io */
+  "moreInfoLink": true, /* Afficher le lien En savoir plus */
+
+    "useExternalCss": false, /* Mode expert : désactiver le chargement des fichiers .css tarteaucitron */
+    "useExternalJs": false, /* Mode expert : désactiver le chargement des fichiers .js tarteaucitron */
+
+  //"cookieDomain": ".my-multisite-domaine.fr", /* Optionnel: domaine principal pour partager le consentement avec des sous domaines */
+                    
+    "readmoreLink": "", /* Changer le lien En savoir plus par défaut */
+
+    "mandatory": true, /* Afficher un message pour l'utilisation de cookies obligatoires */
+    "mandatoryCta": false, /* Afficher un bouton pour les cookies obligatoires (déconseillé) */
+
+    //"customCloserId": "", /* Optionnel a11y: ID personnalisé pour ouvrir le panel */
+    
+    "googleConsentMode": true, /* Activer le Google Consent Mode v2 pour Google ads & GA4 */
+    "bingConsentMode": true, /* Activer le Bing Consent Mode pour Clarity & Bing Ads */
+    "softConsentMode": false, /* Soft consent mode (le consentement est requis pour charger les tags) */
+
+    "dataLayer": false, /* Envoyer un événement dans dataLayer avec le statut des services */
+    "serverSide": false, /* Server side seulement, les tags ne sont pas chargé côté client */
+    
+    "partnersList": true /* Afficher le détail du nombre de partenaires sur la bandeau */
+  });
+  </script>
+
+  <!-- Matomo via tarteaucitron.js -->
+
+  <script>
+  tarteaucitron.user.matomoId = '1';
+  (tarteaucitron.job = tarteaucitron.job || []).push('matomo');
+  </script>
+
+  <script>tarteaucitron.user.matomoHost = '//matomo.boitasite.com/';</script>

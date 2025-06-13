@@ -28,7 +28,7 @@
             <img src="/img/ascii.jpg" class="card-img-top" alt=" ">
             <div class="card-body">
               <h5 class="card-title mb-1">Les codes ASCII</h5>
-              <p class="card-text"><small class="text-body-secondary">Le 12 juin 2025</small></p>
+              <p class="card-text"><small class="text-body-secondary">Le 13 juin 2025</small></p>
               <p class="card-text">Découvrez comment les codes ASCII permettent de représenter des caractères et symboles essentiels dans l’informatique, et comment les utiliser dans vos projets web.</p>
             </div>
             <div class="card-footer ">
@@ -54,7 +54,7 @@
             <img src="/img/color-web.jpg" class="card-img-top" alt=" ">
             <div class="card-body">
               <h5 class="card-title mb-1">Les couleurs du web</h5>
-              <p class="card-text"><small class="text-body-secondary">Le 11 juin 2025</small></p>
+              <p class="card-text"><small class="text-body-secondary">Le 6 juin 2025</small></p>
               <p class="card-text">Apprenez à maîtriser les couleurs en CSS : noms, codes hex, RGB, et HSL. Choisissez vos couleurs facilement grâce à notre palette interactive et découvrez les nuances officielles reconnues par les navigateurs.</p>
             </div>
             <div class="card-footer">
@@ -73,22 +73,6 @@
   <script src="js/animations.min.js"></script>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous" defer></script>
-
-  <script>
-
-const colors = ['postit-yellow', 'postit-pink', 'postit-green', 'postit-blue'];
-
-document.querySelectorAll('.card-body-faq').forEach(el => {
-  // enlever la rotation initiale pour que hover remette à 0deg
-  el.style.transform = 'rotate(' + ((Math.random() * 10) - 5) + 'deg)';
-
-  // ajouter une couleur aléatoire
-  const color = colors[Math.floor(Math.random() * colors.length)];
-  el.classList.add(color);
-});
-
-  </script>
-
 
 </body>
 </html>
