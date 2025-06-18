@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const titles = document.querySelectorAll('h1', 'h2');
+  const titles = document.querySelectorAll('h1, h2:not(.outil-title)');
+
 
   // Vérification de compatibilité
   if (!('IntersectionObserver' in window)) {
@@ -25,3 +26,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   titles.forEach(title => observer.observe(title));
 });
+
+console.log("👋 Hello dev ! Tu regardes sous le capot ? Bienvenue dans l’atelier.");

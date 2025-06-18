@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Développeur web passionné basé à Lille | Alexis AMAND</title>
+  <title>Développeur web passionné basé à Valenciennes | Alexis AMAND</title>
   <meta name="description" content="Découvrez le parcours d’Alexis AMAND, développeur web et référent digital dans le Nord, passionné par le design, l’histoire et la création de projets web sur mesure.">
 
   <link rel="icon" href="/img/favicon.png">
@@ -23,21 +23,13 @@
       <div class="row align-items-center justify-content-center">
         <div class="col-md-6 order-2 order-md-1 d-flex align-items-center">
           <div class="w-100">
-            <p>
-              Je m'appelle Alexis AMAND, développeur web et référent digital basé dans le Nord. Passionné par l'histoire, la généalogie et le design web, je combine mes compétences techniques à une forte culture générale pour proposer des sites efficaces, bien référencés et agréables à utiliser.
-            </p>
+            <p>Je m'appelle Alexis AMAND, développeur web et référent digital basé dans le Nord. Passionné par l'histoire, la généalogie et le design web, je combine mes compétences techniques à une forte culture générale pour proposer des sites efficaces, bien référencés et agréables à utiliser.</p>
 
-            <p>
-              Diplômé en informatique et formé récemment au métier de référent digital, j’ai également une solide expérience en tant que correspondant de presse. Cette pluralité d’expériences me permet d’allier rigueur, sens de la narration et souci du détail dans chacun de mes projets.
-            </p>
+            <p>Diplômé en informatique et formé récemment au métier de référent digital, j’ai également une solide expérience en tant que correspondant de presse. Cette pluralité d’expériences me permet d’allier rigueur, sens de la narration et souci du détail dans chacun de mes projets.</p>
 
-            <p>
-              Curieux de nature, j’aime explorer de nouvelles technologies, imaginer des interfaces claires et accessibles, et raconter des histoires — que ce soit <a href="services.php" title=" ">à travers un site web</a>, un article ou un jeu vidéo indépendant.
-            </p>
+            <p>Curieux de nature, j’aime explorer de nouvelles technologies, imaginer des interfaces claires et accessibles, et <a href="https://lexisio.boitasite.com/index.php#portfolio" title=" ">raconter des histoires</a> — que ce soit <a href="services.php" title=" ">à travers un site web</a>, un article ou un jeu vidéo indépendant.</p>
 
-            <p>
-              N’hésitez pas à <a href="#contact">me contacter</a> si vous avez un projet web, une idée à creuser ou simplement envie d’échanger autour du numérique et de la création !
-            </p>
+            <p>N’hésitez pas à <a href="#contact">me contacter</a> si vous avez un projet web, une idée à creuser ou simplement envie d’échanger autour du numérique et de la création !</p>
           </div>
         </div>
 

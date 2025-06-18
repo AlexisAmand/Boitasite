@@ -42,7 +42,7 @@
             <div class="content">
               <h4>2024 – Transalley</h4>
               <p>Projet de site interactif pour une entreprise locale.</p>
-              <img src="img/capture-08.webp" class="card-img-top" alt=" " loading="lazy" width="640" height="360">
+              <img src="img/capture-08.webp" class="card-img-top" alt="Extrait d'un projet de carte en cours de création" loading="lazy" width="640" height="360">
               <p class="fst-italic text-muted">Projet archivé – site non disponible</p>
             </div>
           </div>
@@ -73,7 +73,7 @@
             <div class="content">
               <h4>2021 – Le Bock Trotter</h4>
               <p>Réalisation d'un site sur la cervalobélophilie.</p>
-              <img src="img/capture-07.webp" class="card-img-top" alt=" " loading="lazy" width="640" height="360">
+              <img src="img/capture-07.webp" class="card-img-top" alt="Site créé pour présenter une collection d'objet de brasserie" loading="lazy" width="640" height="360">
                 <a href="https://lebocktrotter.boitasite.com/" target="_blank" class="btn btn-sm btn-primary mt-2" role="button">
                   Voir le site
                 </a>             
@@ -122,21 +122,14 @@
             </div>
           </div>
 
-         
-
-
         </div>
       </div>
     </section>
 
-
-
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
-
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
 
   <script src="js/animations.min.js"></script>
-  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous" defer></script>
 
 </body>

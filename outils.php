@@ -1,0 +1,91 @@
+﻿
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Outils en ligne gratuits pour développeurs web | Alexis AMAND</title>
+  <meta name="description" content="Minifiez votre code, testez des fonctionnalités et optimisez vos pages grâce à nos outils gratuits pour développeurs et créateurs de sites web.">
+
+  <link rel="icon" href="/img/favicon.png">
+  <link rel="canonical" href="https://www.boitasite.com/outils.php">
+
+  <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
+
+  <style>
+    h2.outil-title {
+      font-size: 1.25rem;
+      font-family: "Roboto", sans-serif;
+      font-weight: 500;
+    }
+
+    h2.outil-title:first-letter {
+    color: #000000;
+    }
+      
+  </style>
+
+</head>
+<body>
+
+  <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/nav.inc.php'; ?>
+
+  <!-- Outils pratiques pour les développeurs -->
+  <section id="outils" class="bg-light py-5">
+      <div class="container text-center">
+        <h1 class="display-5 my-5">Boîte à outils web</h1>
+
+          <div class="row">
+            <div class="col-12 text-center mb-2">
+              <p class="lead">Bienvenue dans la boîte à outils web ! Ici, vous trouverez des utilitaires simples et efficaces pour améliorer la qualité, la vitesse et la compatibilité de vos projets web. Tous les outils sont gratuits, en ligne, et sans inscription.</p>
+            </div> 
+          <div> 
+
+          <div class="row">
+
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card h-100 d-flex flex-column">
+                <img src="/img/minifieur-css.jpg" class="card-img-top" alt=" " width="960" height="540">
+                <div class="card-body">
+                  <h2 class="card-title mb-1 outil-title">Minifier votre CSS</h2>
+                  <p class="card-text">Collez votre code CSS, minifiez-le d’un clic, et copiez le résultat. Pratique pour alléger vos fichiers !</p>
+                </div>
+                <div class="card-footer ">
+                  <a href="outils/minifier-css.php" class="btn btn-primary" title=" ">Minifier !</a>
+                </div>
+              </div>
+            </div>     
+
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card h-100 d-flex flex-column">
+                <img src="/img/minifieur-js.jpg" class="card-img-top" alt=" "  width="960" height="540">
+                <div class="card-body">
+                  <h2 class="card-title mb-1 outil-title">Minifier votre JS</h2>
+                  <p class="card-text">Collez votre code JS, minifiez-le d’un clic, et copiez le résultat. Pratique pour alléger vos fichiers !</p>
+                </div>
+                <div class="card-footer ">
+                  <a href="outils/minifier-js.php" class="btn btn-primary" title=" ">Minifier !</a>
+                </div>
+              </div>
+            </div>  
+
+          </div>
+          
+      </div>
+  </section>
+
+- Minifieur HTML (prochain outil ?)
+- Convertisseur de couleurs (hex ⇄ rgb)
+- Générateur de box-shadow
+- Prévisualisateur de typographie Google Fonts
+- générateur de meta (title, description, auteur, truc utf-8...)
+
+  <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
+  <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
+
+  <script src="js/animations.min.js"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous" defer></script>
+
+</body>
+</html>

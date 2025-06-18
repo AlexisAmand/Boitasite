@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <title>Mentions légales – Alexis Amand, site professionnel de rédaction</title>
+  <title>Mentions légales – Alexis Amand, site professionnel de rédaction</title>
   <meta name="description" content="Consultez les mentions légales du site Lexisio : éditeur, hébergeur, propriété intellectuelle, politique de confidentialité et responsabilités. Conformité avec la législation en vigueur.">
 
   <link rel="icon" href="/img/favicon.png">
@@ -28,7 +28,6 @@
               <p><strong>Hébergeur :</strong> AMEN SASU<br>
               <strong>Adresse :</strong> 12-14, Rond Point des Champs Elysées 75008 Paris.<br>
               <strong>RCS :</strong> 421 527 797 000 11</p>
-
 
               <h3 class="mt-5">Éditeur du site</h3>
               <p><strong>Nom :</strong> Alexis Amand<br>

@@ -26,13 +26,13 @@
       <div class="col-md-4">
         <h5 class="text-uppercase mb-3">Liens utiles</h5>
         <ul class="list-unstyled">
-          <li><a href="presentation.php" class="text-decoration-none">Qui suis-je ?</a></li>
-          <li><a href="services.php" class="text-decoration-none">Services</a></li>
+          <li><a href="/presentation.php" class="text-decoration-none">Qui suis-je ?</a></li>
+          <li><a href="/services.php" class="text-decoration-none">Services</a></li>
           <li><a href="https://lexisio.boitasite.com" class="text-decoration-none">Rédaction web</a></li>
-          <li><a href="portfolio.php" class="text-decoration-none">Portfolio</a></li>
-          <li><a href="ressources.php" class="text-decoration-none">Ressources</a></li>
-          <li><a href="faq.php" class="text-decoration-none">FAQ</a></li>
-          <li><a href="mentions-legales.php" class="text-decoration-none">Mentions légales</a></li>
+          <li><a href="/portfolio.php" class="text-decoration-none">Portfolio</a></li>
+          <li><a href="/ressources.php" class="text-decoration-none">Ressources</a></li>
+          <li><a href="/faq.php" class="text-decoration-none">FAQ</a></li>
+          <li><a href="/mentions-legales.php" class="text-decoration-none">Mentions légales</a></li>
         </ul>
       </div>
 
@@ -66,56 +66,54 @@
   </div>
 </footer>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Boitasite",
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Boitasite",
+  "url": "https://www.boitasite.com/",
+  "logo": "https://www.boitasite.com/img/logo.png",
+  "description": "Création de sites Internet vitrines pour TPE, indépendants et associations.",
+  "priceRange": "€€",
+  "telephone": "+33 6 62 63 79 21",
+  "openingHours": "Mo-Fr 09:30-17:30",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Valenciennes",
+    "addressCountry": "FR"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/alexis-amand/",
+    "https://github.com/alexisAmand",
+    "https://twitter.com/alexisamand"
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "Alexis Amand",
+    "jobTitle": "Développeur web et référent digital",
     "url": "https://www.boitasite.com/",
-    "logo": "https://www.boitasite.com/img/logo.png",
-    "description": "Création de sites Internet vitrines pour TPE, indépendants et associations.",
-    "priceRange": "€€",
-    "telephone": "+33 6 62 63 79 21",
-    "openingHours": "Mo-Fr 09:30-17:30",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Valenciennes",
-      "addressCountry": "FR"
-    },
     "sameAs": [
       "https://www.linkedin.com/in/alexis-amand/",
       "https://github.com/alexisAmand",
       "https://twitter.com/alexisamand"
     ],
-    "founder": {
-      "@type": "Person",
-      "name": "Alexis Amand",
-      "jobTitle": "Développeur web et référent digital",
-      "url": "https://www.boitasite.com/",
-      "sameAs": [
-        "https://www.linkedin.com/in/alexis-amand/",
-        "https://github.com/alexisAmand",
-        "https://twitter.com/alexisamand"
-      ],
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Université de Valenciennes"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Valenciennes",
-        "addressCountry": "FR"
-      }
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Université de Valenciennes"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Valenciennes",
+      "addressCountry": "FR"
     }
   }
-  </script>
+}
+</script>
 
-  <script>
-
-    document.querySelectorAll('footer a').forEach(a => {
-  a.addEventListener('mouseenter', () => console.log('hover sur un lien footer'));
+<script>
+document.querySelectorAll('footer a').forEach(a => {
+a.addEventListener('mouseenter', () => console.log('hover sur un lien footer'));
 });
-
 </script>
 
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/backtotop.inc.php'; ?>

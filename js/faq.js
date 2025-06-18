@@ -8,3 +8,5 @@ document.querySelectorAll('.card-body-faq').forEach(el => {
   const color = colors[Math.floor(Math.random() * colors.length)];
   el.classList.add(color);
 });
+
+console.log("👋 Hello dev ! Tu regardes sous le capot ? Bienvenue dans l’atelier.");

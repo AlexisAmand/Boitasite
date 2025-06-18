@@ -4,8 +4,51 @@ $hover-blue: #4fc3f7;
 $postit-yellow: #fff9b1;
 $postit-green: #a6e275;
 $postit-blue: #a0c4ff;
+$white-sale: #dee2e6;
+$white: white;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+@media (max-width: 768px) {
+  img {
+    margin-bottom: 20px;
+  }
+
+  .img-responsive-custom {
+    width: 75%;
+  }
+
+  .timeline::before {
+    left: 8px;
+  }
+ 
+  .timeline-item,
+  .timeline-item.left,
+  .timeline-item.right {
+    width: 100%;
+    padding-left: 2rem;
+    text-align: left;
+  }
+
+  .timeline-item .content::after {
+    left: -0.5rem !important;
+    right: auto !important;
+    border: 8px solid transparent;
+    border-right-color: $background-color;
+  }
+
+  .timeline-item.left::after,
+  .timeline-item.right::after {
+    content: "";
+    position: absolute;
+    top: 50%; /* milieu vertical */
+    left: 6px; /* décale vers la gauche */
+    width: 25px;
+    height: 4px;
+    background-color: $white-sale;
+    transform: translateY(-50%);
+  }
+}
 
 body {
   font-family: "Roboto", sans-serif;
@@ -14,7 +57,7 @@ body {
 .hero-section {
   background: url('../img/web02.jpg') no-repeat center center;
   background-size: cover;
-  color: white;
+  color: $white;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -55,7 +98,7 @@ body {
 
 .hero-section-petit {
   background: url('../img/web02.jpg') no-repeat center center;
-  color: white;
+  color: $white;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -95,6 +138,13 @@ h1, h2, h3 {
   color: #6c757d;
 }
 
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
 .navbar-brand span {
   font-family: "Dancing Script", cursive;
   font-optical-sizing: auto;
@@ -111,17 +161,39 @@ h1, h2, h3 {
   color: $secondary-color;
 }
 
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
 
 @media (max-width: 768px) {
     .navbar-brand img {
         margin-bottom: 0px;
     }
 }
+
+/* Permettre au container-fluid de wrap et éviter le débordement */
+.navbar .container-fluid {
+  flex-wrap: wrap;
+}
+
+/* Limiter la taille du texte dans la navbar-brand pour éviter le débordement */
+@media (max-width: 406px) {
+  .navbar-brand span {
+    font-size: 1em;          /* Réduction de taille du texte */
+    max-width: 120px;        /* Largeur max pour éviter débordement */
+    white-space: nowrap;     /* empêcher les retours à la ligne */
+    overflow: hidden;        
+    text-overflow: ellipsis; /* couper avec "..." si trop long */
+  }
+
+  /* Plus d’espace réduit sur les liens */
+  .navbar-nav {
+    flex-wrap: wrap;
+  }
+
+  .navbar-nav .nav-item {
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+  }
+}
+
 
 /* --- pied de page --- */
 
@@ -130,12 +202,12 @@ color: $background-color;
 }
 
 footer a {
-  color: white;
+  color: $white;
 }
 
 footer a i {
   display: inline-block; 
-  color: white;
+  color: $white;
   transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
@@ -148,25 +220,14 @@ footer a:hover i {
   color: $hover-blue;
 }
 
+  /* Pour les images dans les cartes */
+
 .card-img-top {
     width: 100%;
     height: auto;
 }
 
-/*
-h1, h2 {
-  opacity: 0;
-  transform: translateX(-100%);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-h1, h2.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-*/
-
-h2 {
+h2:not(.outil-title) {
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 1s ease, transform 1s ease;
@@ -193,7 +254,7 @@ section h3:first-letter {
   color: $secondary-color
 }
 
-.btn {
+.btn-primary {
   background-color: $secondary-color;
 }
 
@@ -286,47 +347,6 @@ section a:hover {
   z-index: 10;
 }
 
-  /* Style pour que les cartes aient une largeur fixe selon la taille d'écran */
-  .carousel-item > .row {
-    display: flex;
-  }
-  .carousel-item .col {
-    flex: 0 0 100%; /* Par défaut 1 carte */
-    max-width: 100%;
-  }
-  @media (min-width: 768px) {
-    .carousel-item .col {
-      flex: 0 0 33.3333%; /* 3 cartes par slide sur tablette+ */
-      max-width: 33.3333%;
-    }
-  }
-  /* Pour les images dans les cartes */
-  .card-img-top {
-    max-width: 100%;
-    height: auto;
-  }
-  /* Positionnement flèches à l’extérieur */
-  .carousel-control-prev,
-  .carousel-control-next {
-    width: 3rem;
-    height: 3rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.5);
-    border-radius: 50%;
-  }
-  .carousel-control-prev {
-    left: -3.5rem; /* à gauche, hors du carrousel */
-  }
-  .carousel-control-next {
-    right: -3.5rem; /* à droite, hors du carrousel */
-  }
-  /* Flèches blanches plus visibles */
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-    filter: invert(1);
-  }
-
 #panda img {
   transition: transform 0.3s ease;
 }
@@ -334,16 +354,9 @@ section a:hover {
   transform: scale(1.03) rotate(-1deg);
 }
 
-    img {
+img {
   max-height: 350px;
   object-fit: contain;
-}
-
-@media (max-width: 768px) {
-  img {
-    max-height: 250px;
-    margin-bottom: 20px;
-  }
 }
 
 /* Par défaut width à 100% */
@@ -351,15 +364,7 @@ section a:hover {
   width: 100%;
 }
 
-/* À partir de md (min-width:768px), width à 75% */
-@media (min-width: 768px) {
-  .img-responsive-custom {
-    width: 75%;
-  }
-}
-
-
-    .timeline {
+.timeline {
   position: relative;
   padding: 2rem 0;
   margin-left: 2rem;
@@ -372,7 +377,7 @@ section a:hover {
   bottom: 0;
   left: 50%;
   width: 4px;
-  background: #dee2e6;
+  background: $white-sale;
   transform: translateX(-50%);
 }
 
@@ -434,28 +439,6 @@ section a:hover {
   border-right-color: $background-color;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .timeline::before {
-    left: 8px;
-  }
-
-  .timeline-item,
-  .timeline-item.left,
-  .timeline-item.right {
-    width: 100%;
-    padding-left: 2rem;
-    text-align: left;
-  }
-
-  .timeline-item .content::after {
-    left: -0.5rem !important;
-    right: auto !important;
-    border: 8px solid transparent;
-    border-right-color: $background-color;
-  }
-}
-
 .timeline-item.left::after {
   content: "";
   position: absolute;
@@ -463,7 +446,7 @@ section a:hover {
   right: 0px; /* décale vers la droite */
   width: 32px; /* longueur du trait */
   height: 4px; /* épaisseur */
-  background-color: #dee2e6;
+  background-color: $white-sale;
   transform: translateY(-50%); /* centre le trait */
 }
 
@@ -474,34 +457,8 @@ section a:hover {
   left: 0px; /* décale vers la gauche */
   width: 32px;
   height: 4px;
-  background-color: #dee2e6;
+  background-color: $white-sale;
   transform: translateY(-50%);
-}
-
-@media (max-width: 768px) {
-  .timeline-item.left::after,
-  .timeline-item.right::after {
-      content: "";
-  position: absolute;
-  top: 50%; /* milieu vertical */
-  left: 6px; /* décale vers la gauche */
-  width: 25px;
-  height: 4px;
-  background-color: #dee2e6;
-  transform: translateY(-50%);
-  }
-}
-
-    img {
-  max-height: 350px;
-  object-fit: contain;
-}
-
-@media (max-width: 768px) {
-  img {
-    max-height: 250px;
-    margin-bottom: 20px;
-  }
 }
 
 /* Par défaut width à 100% */
@@ -509,26 +466,11 @@ section a:hover {
   width: 100%;
 }
 
-/* À partir de md (min-width:768px), width à 75% */
-@media (min-width: 768px) {
-  .img-responsive-custom {
-    width: 75%;
-  }
-}
-
 section h1, section h2{
  font-size: 3rem;
  font-weight: 300;
  line-height: 1.2;
 }
-
-/*
-img {
-  width: 100%;      
-  height: auto;        
-  object-fit: contain;
-}
-  */
 
 .text-justify {
   text-align: justify;
@@ -558,5 +500,3 @@ img {
 #backToTop svg {
   display: block;
 }
-
-

@@ -2,13 +2,16 @@ ErrorDocument 404 /404.php
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
+
+# Bots sociaux (Facebook / Twitter)
 RewriteCond %{HTTP_USER_AGENT} ^facebookexternalhit [OR]
 RewriteCond %{HTTP_USER_AGENT} ^Twitterbot
 RewriteRule ^.*$ - [L]
+
+# Suppression des dossiers obsolètes
+RewriteRule ^pdf/ - [G]
+RewriteRule ^selfhtml/ - [G]
 </IfModule>
 
-Redirect 301 https://www.boitasite.com/to8.php https://t08.boitasite.com/index.php
-
-RedirectMatch 301 ^/to8/(.*)$ https://to8.boitasite.com/to8/$1
-
-
+# Redirection permanente
+Redirect 301 /to8.php https://t08.boitasite.com/index.php

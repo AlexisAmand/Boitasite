@@ -13,3 +13,5 @@ document.getElementById("backToTop").addEventListener("click", function() {
     behavior: "smooth"
   });
 });
+
+console.log("👋 Hello dev ! Tu regardes sous le capot ? Bienvenue dans l’atelier.");

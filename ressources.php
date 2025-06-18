@@ -25,7 +25,7 @@
       <div class="row">
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
-            <img src="/img/ascii.jpg" class="card-img-top" alt=" ">
+            <img src="/img/ascii.jpg" class="card-img-top" alt="Illustration pour le guide sur les codes ASCII" width="1024" height="683">
             <div class="card-body">
               <h5 class="card-title mb-1">Les codes ASCII</h5>
               <p class="card-text"><small class="text-body-secondary">Le 13 juin 2025</small></p>
@@ -38,7 +38,7 @@
         </div>     
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
-            <img src="/img/seo.jpg" class="card-img-top" alt=" ">
+            <img src="/img/seo.jpg" class="card-img-top" alt="Illustration pour le guide sur le référencement naturel" width="1025" height="683">
             <div class="card-body">
               <h5 class="card-title mb-1">Référencement naturel (SEO)</h5>
               <p class="card-text"><small class="text-body-secondary">Le 12 juin 2025</small></p>
@@ -51,7 +51,7 @@
         </div>
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
-            <img src="/img/color-web.jpg" class="card-img-top" alt=" ">
+            <img src="/img/color-web.jpg" class="card-img-top" alt="Illustration pour le guide sur les couleurs du web" width="1024" height="684">
             <div class="card-body">
               <h5 class="card-title mb-1">Les couleurs du web</h5>
               <p class="card-text"><small class="text-body-secondary">Le 6 juin 2025</small></p>
@@ -67,11 +67,9 @@
   </section>
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
-
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
 
-  <script src="js/animations.min.js"></script>
-  
+  <script src="js/animations.min.js"></script> 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous" defer></script>
 
 </body>

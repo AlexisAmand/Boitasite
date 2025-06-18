@@ -14,16 +14,10 @@
     var tel01 = '06.62.';
     var tel02 = '63.79.21';
     var tel = tel01 + tel02;
+    var telLink = `<a href="tel:${tel.replace(/\./g, '')}">${tel}</a>`;
 
-var telLink = `<a href="tel:${tel.replace(/\./g, '')}">${tel}</a>`;
-
-document.getElementById('telephone').innerHTML = telLink;
-
-
+    document.getElementById('telephone').innerHTML = telLink;
     document.getElementById('email').innerHTML = link;
-
-
-
     </script>
 
   </section>
