@@ -1,4 +1,5 @@
 ErrorDocument 404 /404.php
+ErrorDocument 410 /410.php
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
@@ -13,5 +14,10 @@ RewriteRule ^pdf/ - [G]
 RewriteRule ^selfhtml/ - [G]
 </IfModule>
 
-# Redirection permanente
-Redirect 301 /to8.php https://t08.boitasite.com/index.php
+# Redirection permanente du fichier to8.php
+Redirect 301 /to8.php https://to8.boitasite.com/index.php
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} ^/to8
+RewriteRule ^.*$ https://to8.boitasite.com/ [R=301,L]

@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Portfolio de projets web réalisés à Valenciennes et dans le Nord | Alexis AMAND</title>
-  <meta name="description" content="Parcourez mes réalisations de sites web. Projets menés à Valenciennes et dans toute la région Hauts-de-France.">
+  <title>Portfolio de projets web réalisés dans le Nord | Alexis AMAND</title>
+  <meta name="description" content="Découvrez mon portfolio de sites web créés pour PME, associations et indépendants dans le Nord. Projets sur mesure et optimisés SEO.">
 
   <link rel="icon" href="/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/portfolio.php">
@@ -32,7 +32,7 @@
           <div class="timeline-item left">
             <div class="content">
               <h4>2024 – Les Rôlistes</h4>
-              <p>Projet de site sous WordPress pour une association de joueurs.</p>
+              <p>Projet de site internet sous WordPress pour une association de joueurs.</p>
               <img src="img/capture-05.webp" class="card-img-top" alt="Extrait d’un projet web associatif en cours de création" loading="lazy" width="640" height="360">
               <p class="fst-italic text-muted">Projet archivé – site non disponible</p>
             </div>
@@ -41,7 +41,7 @@
           <div class="timeline-item right">
             <div class="content">
               <h4>2024 – Transalley</h4>
-              <p>Projet de site interactif pour une entreprise locale.</p>
+              <p>Projet de site web interactif pour une entreprise locale.</p>
               <img src="img/capture-08.webp" class="card-img-top" alt="Extrait d'un projet de carte en cours de création" loading="lazy" width="640" height="360">
               <p class="fst-italic text-muted">Projet archivé – site non disponible</p>
             </div>
@@ -50,7 +50,7 @@
           <div class="timeline-item left">
             <div class="content">
               <h4>2024 – Histoires de Poilus</h4>
-              <p>Création d'un site sur la Première Guerre Mondiale.</p>
+              <p>Création d'un site internet sur la Première Guerre Mondiale.</p>
               <img src="img/capture-06.webp" class="card-img-top" alt="Site historique sur la Grande Guerre, créé par Alexis AMAND" loading="lazy" width="640" height="360">
                 <a href="https://histoiresdepoilus.boitasite.com" target="_blank" class="btn btn-sm btn-primary mt-2" role="button">
                   Voir le site
@@ -72,7 +72,7 @@
           <div class="timeline-item left">
             <div class="content">
               <h4>2021 – Le Bock Trotter</h4>
-              <p>Réalisation d'un site sur la cervalobélophilie.</p>
+              <p>Réalisation d'un site web sur la cervalobélophilie.</p>
               <img src="img/capture-07.webp" class="card-img-top" alt="Site créé pour présenter une collection d'objet de brasserie" loading="lazy" width="640" height="360">
                 <a href="https://lebocktrotter.boitasite.com/" target="_blank" class="btn btn-sm btn-primary mt-2" role="button">
                   Voir le site
@@ -83,7 +83,7 @@
           <div class="timeline-item right">
             <div class="content">
               <h4>2020 – Trans-Médiation</h4>
-              <p>Site pour une entreprise axée sur la transmission d'entreprises.</p>
+              <p>Site web pour une entreprise axée sur la transmission d'entreprises.</p>
               <img src="img/capture-02.webp" class="card-img-top" alt="Site vitrine conçu pour l’entreprise Trans-Médiation" loading="lazy" width="640" height="360">
               <p class="fst-italic text-muted">Projet archivé – site non disponible</p>
             </div>
@@ -114,7 +114,7 @@
           <div class="timeline-item left">
             <div class="content">
               <h4>2013 – CPIE Bocage de l'Avesnois</h4>
-              <p>Réalisation du site "Quelle Nature Chez Vous ?"</p>
+              <p>Réalisation du site internet de la campagne "Quelle Nature Chez Vous ?"</p>
               <img src="img/capture-04.webp" class="card-img-top" alt="Site vitrine réalisé pour une association locale" loading="lazy" width="640" height="360">           
                 <a href="https://web.archive.org/web/20130620004957/http://quellenaturechezvous.eu/" target="_blank" class="btn btn-sm btn-primary mt-2" role="button">
                   Voir la version archivée 

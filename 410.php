@@ -68,7 +68,7 @@
 </head>
 <body>
   <div class="error-container">
-    <div class="error-code">404</div>
+    <div class="error-code">410</div>
     <div class="error-message">Oups ! La page que vous cherchez a définitivement pris la poudre d’escampette.</div>
     <div class="error-fun">Mais ne vous inquiétez pas, tout va bien ici, on garde le sourire ! 😊</div>
     <a href="https://boitasite.com/" class="btn-custom">Retour à l'accueil</a>
