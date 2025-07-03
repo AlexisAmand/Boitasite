@@ -14,22 +14,58 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <style>
+ <style>
     textarea {
       width: 100%;
-      height: 200px;
       font-family: monospace;
       font-size: 14px;
-      margin-bottom: 15px;
+      /* margin-bottom: 15px; */
     }
     #result-stats {
       margin-top: 10px;
       font-weight: bold;
     }
+    .btn {
+      width:136px;
+    }
     .btn i {
       margin-right: 0.4em;
       vertical-align: middle;
     }
+
+    /* Forcer label à prendre la hauteur du textarea */
+    .input-group-text {
+      display: flex;
+      align-items: center;
+      /* Optionnel : padding vertical plus grand si textarea est très haut */
+      padding-top: 0.375rem;  
+      padding-bottom: 0.375rem;
+    }
+
+    /* Et textarea prend toute la hauteur possible */
+    textarea.form-control {
+      resize: vertical; /* autorise le redimensionnement vertical */
+      min-height: 4rem; /* ou la hauteur souhaitée */
+    }
+
+    .input-group-text,
+textarea.form-control {
+  min-height: 175px;
+}
+
+@media (max-width: 576px) {
+  .input-group-text {
+    flex-basis: 40%; /* plus large sur mobile */
+    min-width: 120px;
+  }
+}
+
+.input-group-text {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
   </style>
 
 </head>
@@ -51,31 +87,39 @@
       </div> 
 
       <div class="col-12">
-    
-        <div class="my-3">
-          <label for="input-css" class="form-label">Collez votre CSS ici :</label>
-          <textarea class="form-control" id="input-css" rows="3" placeholder="Exemple : body { color: red; }"></textarea>
+
+        <div class="input-group my-3 align-items-stretch">
+          <label for="input-css" class="input-group-text col-form-label col-2 justify-content-center">Collez votre CSS ici</label>
+          <textarea class="form-control col" id="input-css" placeholder="Ex : body { color: red; }" rows="4"></textarea>
         </div>
 
-        <button id="minify-btn" class="btn btn-success">
-          <i class="bi bi-arrow-down-circle"></i> Minifier
-        </button>
+        <div class="text-end">
 
-        <button id="copy-btn" class="btn btn-outline-secondary">
-          <i class="bi bi-clipboard"></i> Copier
-        </button>
+          <button id="minify-btn" class="btn btn-success">
+            <i class="bi bi-arrow-down-circle"></i> Minifier
+          </button>
 
-        <button id="reset-btn" class="btn btn-primary">
-          <i class="bi bi-arrow-counterclockwise"></i> Reset
-        </button>
+          <button id="reset-btn" class="btn btn-primary">
+            <i class="bi bi-arrow-counterclockwise"></i> Reset
+          </button>
 
-        <button id="download-btn" class="btn btn-info">
-          <i class="bi bi-download"></i> Télécharger
-        </button>
+        </div>
 
-        <div class="my-3">
-          <label for="output-css" class="form-label">CSS minifié :</label>
-          <textarea class="form-control" id="output-css" rows="3" readonly></textarea>
+        <div class="input-group my-3 align-items-stretch">
+          <label for="output-css" class="input-group-text col-form-label col-2 justify-content-center"> minifié</label>
+          <textarea class="form-control col" id="output-css" rows="4"></textarea>
+        </div>
+
+        <div class="text-end">
+
+          <button id="copy-btn" class="btn btn-success">
+            <i class="bi bi-clipboard"></i> Copier
+          </button>
+
+          <button id="download-btn" class="btn btn-primary">
+            <i class="bi bi-download"></i> Télécharger
+          </button>
+
         </div>
 
         <div id="result-stats"></div>

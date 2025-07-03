@@ -6,4 +6,4 @@
   </svg>
 </button>
 
-<script src="js/backtotop.min.js"></script>
+<script src="/js/backtotop.min.js"></script>

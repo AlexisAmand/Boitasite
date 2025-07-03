@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Mentions légales – Alexis Amand, site professionnel de rédaction</title>
-  <meta name="description" content="Consultez les mentions légales du site Lexisio : éditeur, hébergeur, propriété intellectuelle, politique de confidentialité et responsabilités. Conformité avec la législation en vigueur.">
+  <title>Mentions légales | Alexis AMAND - Création de sites web à Valenciennes</title>
+  <meta name="description" content="Consultez les mentions légales du site : éditeur, hébergeur, propriété intellectuelle, politique de confidentialité et responsabilités. Conformité avec la législation en vigueur.">
 
   <link rel="icon" href="/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/mentions-legales.php">

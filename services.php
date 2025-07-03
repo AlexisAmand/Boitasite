@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Services de développement web et référencement à Valenciennes | Alexis AMAND</title>
-  <meta name="description" content="Découvrez mes services personnalisés de développement web, référencement SEO et accompagnement digital, pour booster votre présence en ligne dans la région lilloise.">
+  <title>Développement web et référencement à Valenciennes | Alexis AMAND</title>
+  <meta name="description" content="Création de sites internet à Valenciennes, près de Lille. Services de développement web, référencement SEO et accompagnement digital. booster votre présence en ligne dans le Valenciennois.">
 
   <link rel="icon" href="/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/services.php">

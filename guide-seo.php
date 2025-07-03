@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Faire ses premiers pas dans le référencement naturel | développement web et SEO à Valenciennes</title>
+    <title>Faire ses premiers pas dans le référencement naturel | création de sites web à Valenciennes</title>
     <meta name="description" content="Guide facile de SEO destiné aux webmasteurs qui font leurs premiers pas dans le domaine du référencement naturel de sites">
 
     <link rel="icon" href="/img/favicon.png">

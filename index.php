@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Développeur web et référent digital à Valenciennes | Alexis AMAND</title>
-  <meta name="description" content="Développeur web et référent digital basé à Valenciennes, Alexis AMAND vous accompagne pour créer des sites performants, bien référencés et adaptés à vos besoins dans le Nord.">
-
+ <title>Création de site internet à Valenciennes | Alexis AMAND</title>
+ <meta name="description" content="Création de sites internet à Valenciennes, dans le Nord. Sites WordPress sur mesure, adaptés à vos besoins et optimisés pour le référencement naturel.">
+ 
   <link rel="icon" href="/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/index.php">
 
@@ -24,8 +24,8 @@
   <header class="hero-section">
     <div class="container hero-overlay">
       <h1  class="display-4">Création de sites web à Valenciennes</h1>
-      <p class="lead">Un site efficace, beau et bien référencé, conçu sur mesure pour votre activité</p>
-      <a href="services.php" class="btn btn-secondary btn-lg">Découvrez mes services</a>
+      <p class="lead">Un site efficace et bien référencé, conçu sur mesure pour votre activité</p>
+      <a href="services.php" class="btn btn-secondary btn-lg" title="Voir la liste complète de mes services de création de sites web">Découvrez mes services</a>
     </div>
   </header>
 

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Comment mettre un code ASCII dans une page web ? - développement web et SEO à Valenciennes</title>
+    <title>Comment mettre un code ASCII dans une page web ? | Alexis AMAND - Création de sites web à Valenciennes</title>
     <meta name="description" content="Découvrez comment insérer facilement des codes ASCII dans vos pages web HTML. Tutoriel clair pour débutants et développeurs.">
 
     <link rel="icon" href="/img/favicon.png">

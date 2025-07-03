@@ -61,7 +61,7 @@ document.getElementById('minify-btn').addEventListener('click', () => {
   });
 });
 
-document.getElementById('reset-btn').addEventListener('click', () => {
+  document.getElementById('reset-btn').addEventListener('click', () => {
   document.getElementById('input-js').value = '';
   document.getElementById('output-js').value = '';
   document.getElementById('result-stats').textContent = '';

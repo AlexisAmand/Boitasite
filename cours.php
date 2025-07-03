@@ -6,7 +6,7 @@
   <title>Formations et MOOC en ligne recommandés | Alexis AMAND</title>
   <meta name="description" content="Découvrez une sélection de formations en ligne et MOOC pour développer vos compétences, avec des liens affiliés vers Udemy et d'autres plateformes." />
   <link rel="icon" href="/img/favicon.png" />
-  <link rel="canonical" href="https://www.boitasite.com/cours-en-ligne.php" />
+  <link rel="canonical" href="https://www.boitasite.com/cours.php" />
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
 </head>
 <body>

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Questions fréquentes sur le développement web et le référencement à Valenciennes | Alexis AMAND</title>
+  <title>Questions fréquentes sur la création des sites web | Alexis AMAND - Développeur web à Valenciennes</title>
   <meta name="description" content="Retrouvez les réponses aux questions courantes sur mes prestations de développement web et référencement SEO à Valenciennes et dans le Nord.">
 
   <link rel="icon" href="/img/favicon.png">

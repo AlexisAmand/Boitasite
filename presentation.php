@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Développeur web passionné basé à Valenciennes | Alexis AMAND</title>
-  <meta name="description" content="Découvrez le parcours d’Alexis AMAND, développeur web et référent digital dans le Nord, passionné par le design, l’histoire et la création de projets web sur mesure.">
+  <title>Développeur web à Valenciennes | Alexis AMAND</title>
+  <meta name="description" content="Découvrez le parcours d’Alexis AMAND, développeur web et référent digital à Valenciennes. La création de projets web sur mesure.">
 
   <link rel="icon" href="/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/presentation.php">

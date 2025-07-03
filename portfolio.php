@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Portfolio de projets web réalisés à Valenciennes et dans le Nord | Alexis AMAND</title>
-  <meta name="description" content="Parcourez mes réalisations en développement web et design digital, issues de projets menés à Valenciennes et dans toute la région Hauts-de-France.">
+  <meta name="description" content="Parcourez mes réalisations de sites web. Projets menés à Valenciennes et dans toute la région Hauts-de-France.">
 
   <link rel="icon" href="/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/portfolio.php">

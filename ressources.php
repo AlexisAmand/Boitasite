@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Services de développement web et référencement à Valenciennes | Alexis AMAND</title>
+  <title>Ressources en ligne | Alexis AMAND - Création de sites web à Valenciennes</title>
   <meta name="description" content="Découvrez mes services personnalisés de développement web, référencement SEO et accompagnement digital, pour booster votre présence en ligne dans la région lilloise.">
 
   <link rel="icon" href="/img/favicon.png">
-  <link rel="canonical" href="https://www.boitasite.com/services.php">
+  <link rel="canonical" href="https://www.boitasite.com/ressources.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
 

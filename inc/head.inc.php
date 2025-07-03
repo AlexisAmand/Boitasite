@@ -26,8 +26,8 @@
   <!-- Bootstrap Icons  -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css">
   
-  <script src="tarteaucitron/tarteaucitron.min.js"></script>
-  <script src="tarteaucitron/tarteausetup.min.js"></script>
+  <script src="/tarteaucitron/tarteaucitron.min.js"></script>
+  <script src="/tarteaucitron/tarteausetup.min.js"></script>
 
   <!-- Matomo via tarteaucitron.js -->
 

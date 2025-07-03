@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Liste complète des codes couleur HTML | Alexis AMAND - Développement Web & SEO à Valenciennes</title>
+    <title>Liste complète des codes couleur HTML | Alexis AMAND - Création de sites web à Valenciennes</title>
     <meta name="description" content="Découvrez la liste complète des codes couleurs hexadécimaux HTML pour créer facilement vos pages web. Ressource essentielle pour développeurs et webdesigners.">
 
     <link rel="icon" href="/img/favicon.png">

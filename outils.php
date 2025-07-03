@@ -46,7 +46,7 @@
 
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card h-100 d-flex flex-column">
-                <img src="/img/minifieur-css.jpg" class="card-img-top" alt=" " width="960" height="540">
+                <img src="/img/minifieur-css.webp" class="card-img-top" alt=" " width="960" height="540">
                 <div class="card-body">
                   <h2 class="card-title mb-1 outil-title">Minifier votre CSS</h2>
                   <p class="card-text">Collez votre code CSS, minifiez-le d’un clic, et copiez le résultat. Pratique pour alléger vos fichiers !</p>
@@ -59,13 +59,26 @@
 
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card h-100 d-flex flex-column">
-                <img src="/img/minifieur-js.jpg" class="card-img-top" alt=" "  width="960" height="540">
+                <img src="/img/minifieur-js.webp" class="card-img-top" alt=" "  width="960" height="540">
                 <div class="card-body">
                   <h2 class="card-title mb-1 outil-title">Minifier votre JS</h2>
                   <p class="card-text">Collez votre code JS, minifiez-le d’un clic, et copiez le résultat. Pratique pour alléger vos fichiers !</p>
                 </div>
                 <div class="card-footer ">
-                  <a href="outils/minifier-js.php" class="btn btn-primary" title=" ">Minifier !</a>
+                  <button href="outils/minifier-js.php" class="btn btn-primary" title=" "  disabled>Bientôt !</button>
+                </div>
+              </div>
+            </div>  
+
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card h-100 d-flex flex-column">
+                <img src="/img/github.webp" class="card-img-top" alt=" "  width="960" height="540">
+                <div class="card-body">
+                  <h2 class="card-title mb-1 outil-title">Générateur de message de commit</h2>
+                  <p class="card-text">Quand plus rien ne compile, il vous reste un seul recours.</p>
+                </div>
+                <div class="card-footer ">
+                  <a href="outils/commit-generator.php" class="btn btn-primary" title=" ">Générer !</a>
                 </div>
               </div>
             </div>  
@@ -74,12 +87,6 @@
           
       </div>
   </section>
-
-- Minifieur HTML (prochain outil ?)
-- Convertisseur de couleurs (hex ⇄ rgb)
-- Générateur de box-shadow
-- Prévisualisateur de typographie Google Fonts
-- générateur de meta (title, description, auteur, truc utf-8...)
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
