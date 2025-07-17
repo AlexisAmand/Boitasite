@@ -13,6 +13,24 @@
 
   	<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
 
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <style>       
+    pre {
+        background-color: #1e1e1e;       /* fond sombre */
+        color: #d4d4d4;                  /* texte clair */
+        padding: 1rem;
+        border-radius: 8px;
+        font-family: 'Fira Code', Consolas, Monaco, 'Courier New', monospace;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        overflow-x: auto;                /* scroll horizontal si nécessaire */
+        box-shadow: inset 0 0 10px #000000aa;
+        user-select: text;
+        white-space: pre-wrap;           /* pour que le texte puisse aussi à la ligne */
+    }
+    </style>
+
 </head>
 
 <body>
@@ -87,6 +105,17 @@
 
         <p class="text-justify">Le html affiche les titres avec des balises allant de h1 (la plus importante) à h6 (la moins importante).</p>
 
+       <pre> 
+        <code class="language-html">
+            &lt;h1&gt;
+            &lt;h2&gt;
+            &lt;h3&gt;
+            &lt;h4&gt;
+            &lt;h5&gt;
+            &lt;h6&gt;
+            </code>
+       </pre>
+
         <div class="row d-flex justify-content-center">
             <figure class="figure">
                 <img src="img/tuto-seo/seo-balise-hx.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="exemple des balises HX pour créer différents niveaux de titres dans un code source en html">
@@ -152,11 +181,23 @@
 
 </section>
 
+  <section id="dico" class="py-5 bg-white">
+    <div class="container">
+      <h2 class="my-5 text-center">Bibliographie</h2>
+      <div id="bibliographie" class="row gx-3 gy-4"></div>
+    </div>
+  </section>
+
+  <script src="../js/biblio-seo.min.js"></script>
+
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
 
   <script src="js/animations.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
 
 </body>
 </html>

@@ -25,6 +25,19 @@
       <div class="row">
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
+            <img src="/img/html.jpg" class="card-img-top" alt=" " width="1024" height="683">
+            <div class="card-body">
+              <h5 class="card-title mb-1">Lexique du HTML</h5>
+              <p class="card-text"><small class="text-body-secondary">Le 17 juillet 2025</small></p>
+              <p class="card-text">Découvrez un lexique complet des balises HTML avec leurs attributs et usages, idéal pour débutants comme développeurs confirmés.</p>
+            </div>
+            <div class="card-footer ">
+              <a href="tutos/lexique-balises-html.php" title=" ">En savoir plus</a>
+            </div>
+          </div>
+        </div> 
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card h-100 d-flex flex-column">
             <img src="/img/ascii.jpg" class="card-img-top" alt="Illustration pour le guide sur les codes ASCII" width="1024" height="683">
             <div class="card-body">
               <h5 class="card-title mb-1">Les codes ASCII</h5>

@@ -13,15 +13,17 @@
 
   	<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
 
+	<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
 </head>
 
 <body>
 
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/nav.inc.php'; ?>
 
-<section id="portfolio-timeline" class="py-5 bg-light text-center">
+<section id="codes" class="py-5 bg-white">
 	<div class="container">
-		<h1 class="my-5">Les couleurs du web</h1>
+		<h1 class="my-5 text-center">Les couleurs du web</h1>
 
 		<article class="row">
 			<div class="col-12">
@@ -35,7 +37,7 @@
 					color : #FF0000;<br />
 					color : rgb(255,0,0);<br />
 					</code>
-					
+
 					<p class="text-justify mt-5">Il y a quelques années, l'arrivée de CSS3 a permis au webdesigner d'intégrer à sa couleur des notions de teinte, de luminosité, de saturation ou encore d'opacité. La notation ressemble assez à celle de tout à l'heure: hsl(teinte, saturation, luminosité).</p>
 					
 					<code>
@@ -964,6 +966,9 @@
 
   <script src="js/animations.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
 
 </body>
 </html>
