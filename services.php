@@ -33,8 +33,8 @@
       <div class="row">
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
+            <img src="/img/redaction-web.webp" class="card-img-top" alt=" " width="1024" height="683">
             <div class="card-body">
-              <div class="services-icon mb-3">&#x1F4DD;</div>
               <h5 class="card-title mb-4">Rédaction Web</h5>
               <p class="card-text">Création de contenus optimisés SEO pour votre site internet, blog ou réseaux sociaux. Articles de blog, pages de site, fiches produits…<br /><br />J’écris avec des mots-clés pertinents pour améliorer votre visibilité sur Google.</p>
             </div>
@@ -45,8 +45,8 @@
         </div>
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
+            <img src="/img/web02.webp" class="card-img-top" alt=" " width="1024" height="683">
             <div class="card-body">
-              <div class="services-icon mb-3">&#x1F50D;</div>
               <h5 class="card-title mb-4">Création de sites web</h5>
               <p class="card-text">Site vitrine, blog ou site professionnel : je conçois un site adapté à vos besoins, moderne, responsive, rapide et facile à prendre en main.<br /><br />Du design à la mise en ligne, je vous accompagne à chaque étape pour un résultat sur mesure.</p>
             </div>
@@ -55,8 +55,8 @@
         </div>       
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
+            <img src="/img/seo.webp" class="card-img-top" alt=" " width="1024" height="683">
             <div class="card-body">
-              <div class="services-icon mb-3">&#x1F4BE;</div>
               <h5 class="card-title mb-4">Référencement naturel (SEO)</h5>
               <p class="card-text">Audit technique, optimisation des balises, structure de contenu, maillage interne… <br /><br />Je vous aide à améliorer la visibilité de votre site sur les moteurs de recherche, pour attirer un trafic qualifié et durable.</p>
             </div>
