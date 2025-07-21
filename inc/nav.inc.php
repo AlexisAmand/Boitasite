@@ -25,7 +25,7 @@
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="/ressources.php">Ressources et guides</a></li>
           <li><a class="dropdown-item" href="/outils.php">Outils web</a></li>
-          <li><a class="dropdown-item" href="/librairie.php">Livres</a></li>
+          <li><a class="dropdown-item" href="/librairie.php">Librairie</a></li>
         </ul>
       </li>  
         <li class="nav-item">

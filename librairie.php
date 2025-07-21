@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
 
-  <title>Livres HTML, CSS, JavaScript et SEO – Recommandations pour apprendre</title>
-  <meta name="description" content="Découvrez ma sélection de livres pour apprendre le développement web, HTML, CSS, JavaScript, et le SEO. Des ouvrages pour débutants et avancés, avec liens affiliés.">
+  <title>Livres HTML, CSS, JavaScript et SEO – Recommandations de livres pour apprendre</title>
+  <meta name="description" content="Découvrez ma sélection de livres pour apprendre le développement web, HTML, CSS, JavaScript et SEO. Des ouvrages pour débutants et avancés, avec liens affiliés, guides pratiques et conseils d'experts.">
   
   <link rel="icon" href="/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/boutique.php">
@@ -45,16 +45,23 @@
 
       <h1 class="display-5 my-5">Mes recommandations de lecture</h1>
 
+      <div class="row">
+        <div class="col-12 text-center mb-2">
+          <p class="lead">Vous cherchez les meilleurs livres pour progresser en web, HTML, CSS, JavaScript ou SEO ? Voici mes recommandations personnelles, sélectionnées avec soin pour vous aider à aller plus loin. Chaque ouvrage est un coup de cœur ou un incontournable.</p>
+        </div> 
+      <div> 
+
+      
+
       <div id="filtres-tags" class="mb-4"></div>
-    
-        <div class="row">
-          <div class="col-12">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4" id="bibliographie"></div>
-          </div>
-        </div>
+        
+      <div class="row gx-3 gy-4" id="bibliographie">
+
+      </div>
         
     </div>
   </section>
+
 
   <script>
 let tousLesLivres = [];
@@ -64,7 +71,7 @@ function afficherBooks(livres) {
   container.innerHTML = '';
   livres.forEach(book => {
     const card = document.createElement('div');
-    card.className = 'col';
+    card.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
     
     const tagsHTML = book.tags ? book.tags.map(tag => `
       <span class="badge badge-outline-primary me-1 mb-1 tag-badge" data-tag="${tag}" style="cursor:pointer;">${tag}</span>
