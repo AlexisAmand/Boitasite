@@ -14,12 +14,20 @@
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
 
 </head>
-<body>
+<body class="bg-light">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/nav.inc.php'; ?>
 
-    <section id="portfolio-timeline" class="py-5 bg-light text-center">
+    <section id="portfolio-timeline" class="text-center">
       <div class="container">
+
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/index.php">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Mon portfolio</li>
+          </ol>
+        </nav>
+
         <h1 class="display-5 my-5">Mon portfolio</h1>
         
           <div class="row">

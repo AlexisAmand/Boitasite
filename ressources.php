@@ -14,14 +14,23 @@
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
 
 </head>
-<body>
+<body class="bg-light">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/nav.inc.php'; ?>
 
   <!-- Services -->
-  <section id="services" class="bg-light py-5">
+  <section id="services">
       <div class="container text-center">
-        <h1 class="display-5 my-5">Ressources et guides</h1>
+
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/index.php">Accueil</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Ressources et guides</li>
+        </ol>
+      </nav>
+
+      <h1 class="display-5 my-5">Ressources et guides</h1>
+
       <div class="row">
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">

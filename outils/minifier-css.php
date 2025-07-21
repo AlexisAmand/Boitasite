@@ -14,69 +14,76 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
- <style>
-    textarea {
-      width: 100%;
-      font-family: monospace;
-      font-size: 14px;
-      /* margin-bottom: 15px; */
-    }
-    #result-stats {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    .btn {
-      width:136px;
-    }
-    .btn i {
-      margin-right: 0.4em;
-      vertical-align: middle;
-    }
-
-    /* Forcer label à prendre la hauteur du textarea */
-    .input-group-text {
-      display: flex;
-      align-items: center;
-      /* Optionnel : padding vertical plus grand si textarea est très haut */
-      padding-top: 0.375rem;  
-      padding-bottom: 0.375rem;
-    }
-
-    /* Et textarea prend toute la hauteur possible */
-    textarea.form-control {
-      resize: vertical; /* autorise le redimensionnement vertical */
-      min-height: 4rem; /* ou la hauteur souhaitée */
-    }
-
-    .input-group-text,
-textarea.form-control {
-  min-height: 175px;
-}
-
-@media (max-width: 576px) {
-  .input-group-text {
-    flex-basis: 40%; /* plus large sur mobile */
-    min-width: 120px;
+  <style>
+  textarea {
+    width: 100%;
+    font-family: monospace;
+    font-size: 14px;
   }
-}
+  
+  #result-stats {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .btn {
+    width:136px;
+  }
+  
+  .btn i {
+    margin-right: 0.4em;
+    vertical-align: middle;
+  }
 
-.input-group-text {
-  white-space: normal;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
+  .input-group-text {
+    display: flex;
+    align-items: center;
+    padding-top: 0.375rem;  
+    padding-bottom: 0.375rem;
+  }
+
+  textarea.form-control {
+    resize: vertical;
+    min-height: 4rem; 
+  }
+
+  .input-group-text,
+    textarea.form-control {
+    min-height: 175px;
+  }
+
+  @media (max-width: 576px) {
+    .input-group-text {
+      flex-basis: 40%; /* plus large sur mobile */
+      min-width: 120px;
+    }
+  }
+
+  .input-group-text {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
 
   </style>
 
 </head>
-<body>
+<body class="bg-light">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/nav.inc.php'; ?>
 
   <!-- Minifier votre CSS -->
 
-<section id="services" class="bg-light py-5">
+<section id="services">
   <div class="container">
+
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/index.php">Accueil</a></li>
+        <li class="breadcrumb-item"><a href="/outils.php">Outils web</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Minifieur de CSS</li>
+      </ol>
+    </nav>
     
     <h1 class="display-5 my-5 text-center">Minifier votre CSS</h1>
 
@@ -94,15 +101,12 @@ textarea.form-control {
         </div>
 
         <div class="text-end">
-
           <button id="minify-btn" class="btn btn-success">
             <i class="bi bi-arrow-down-circle"></i> Minifier
           </button>
-
           <button id="reset-btn" class="btn btn-primary">
             <i class="bi bi-arrow-counterclockwise"></i> Reset
           </button>
-
         </div>
 
         <div class="input-group my-3 align-items-stretch">
@@ -111,15 +115,12 @@ textarea.form-control {
         </div>
 
         <div class="text-end">
-
           <button id="copy-btn" class="btn btn-success">
             <i class="bi bi-clipboard"></i> Copier
           </button>
-
           <button id="download-btn" class="btn btn-primary">
             <i class="bi bi-download"></i> Télécharger
           </button>
-
         </div>
 
         <div id="result-stats"></div>
@@ -133,12 +134,11 @@ textarea.form-control {
 
 <script src="../js/minifier-css.min.js"></script> 
 
+<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
 
-  <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
-  <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
-
-  <script src="../js/animations.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous" defer></script>
+<script src="../js/animations.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous" defer></script>
 
 </body>
 </html>

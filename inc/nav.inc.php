@@ -9,31 +9,31 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-            <a class="nav-link" href="/presentation.php">A propos</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/services.php">Services</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/portfolio.php">Portfolio</a>
-            </li>   
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Ressources
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/ressources.php">Guides pratiques</a></li>
-              <li><a class="dropdown-item" href="/outils.php">Outils web</a></li>
-              <li><a class="dropdown-item" href="/librairie.php">Livres</a></li>
-            </ul>
-          </li>  
-            <li class="nav-item">
-            <a class="nav-link" href="/faq.php" title="Questions fréquentes sur la création de site Internet">FAQ</a>
-            </li>            
-            <li class="nav-item">
-            <a class="nav-link" href="/index.php#contact">Contact</a>
-            </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/presentation.php">A propos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/services.php">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/portfolio.php">Portfolio</a>
+        </li>   
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Ressources
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/ressources.php">Ressources et guides</a></li>
+          <li><a class="dropdown-item" href="/outils.php">Outils web</a></li>
+          <li><a class="dropdown-item" href="/librairie.php">Livres</a></li>
+        </ul>
+      </li>  
+        <li class="nav-item">
+        <a class="nav-link" href="/faq.php" title="Questions fréquentes sur la création de site Internet">FAQ</a>
+        </li>            
+        <li class="nav-item">
+        <a class="nav-link" href="/index.php#contact">Contact</a>
+        </li>
       </ul>
     </div>
   </div>

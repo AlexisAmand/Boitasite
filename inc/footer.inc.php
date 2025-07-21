@@ -10,8 +10,6 @@
 
       <!-- Colonne contact -->
       <div class="col-md-4 d-flex flex-column justify-content-center align-items-center text-center mb-4 mb-md-0">
-        <!-- Logo (optionnel) -->
-        <!-- <img src="img/logo-blanc.png" alt="Logo Boitasite" width="80" class="mb-3"> -->
         <address>
           <strong>Alexis Amand</strong><br>
           Création de sites web à Valenciennes<br>

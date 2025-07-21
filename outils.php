@@ -27,13 +27,21 @@
   </style>
 
 </head>
-<body>
+<body class="bg-light">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/nav.inc.php'; ?>
 
   <!-- Outils pratiques pour les développeurs -->
-  <section id="outils" class="bg-light py-5">
+  <section id="outils">
       <div class="container text-center">
+
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/index.php">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Outils</li>
+          </ol>
+        </nav>
+
         <h1 class="display-5 my-5">Boîte à outils web</h1>
 
           <div class="row">

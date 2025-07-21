@@ -13,7 +13,7 @@ https://www.boitasite.com
 * Apache 2.4.58
 * phpMyAdmin 5.2.2
 * Windows 11
-* Visual Studio Code 1.101
+* Visual Studio Code 1.102
 * PHP 8.0.30
 * MariaDB 10.4.32
 
@@ -21,6 +21,7 @@ https://www.boitasite.com
 
 * Bootstrap 5.3.5 (via npm)
 * tarteaucitron 1.21.0 (via npm)
+* prismjs 1.29 (via CDN)
 
 et Matomo 5.2.2 pour les stats !
 

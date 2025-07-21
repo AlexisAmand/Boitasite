@@ -13,14 +13,32 @@
 
   	<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
 
+    <style>
+      .card-img-top {
+    height: 250px;
+    object-fit: contain;
+    background-color: #f0f0f0;
+    width: 100%;
+    }
+    </style>
+
 </head>
 
-<body>
+<body class="bg-light">
 
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/nav.inc.php'; ?>    
 
-<section id="portfolio-timeline" class="py-5 bg-light text-center">
+<section id="portfolio-timeline" class="text-center">
     <div class="container">
+
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/index.php">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="/ressources.php">Ressources et guides</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Les codes ASCII</li>
+            </ol>
+        </nav>
+
         <h1 class="my-5">Les codes ASCII</h1>
 
         <article class="row">
@@ -404,6 +422,15 @@
     </div> 
 
 </section>
+
+<section id="dico" class="py-5">
+    <div class="container">
+      <h2 class="my-5 text-center">Bibliographie</h2>
+      <div id="bibliographie" class="row gx-3 gy-4"></div>
+    </div>
+  </section>
+
+  <script src="../js/biblio-ascii.min.js"></script>
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>

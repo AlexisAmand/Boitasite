@@ -13,12 +13,20 @@
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
 
 </head>
-<body>
+<body class="bg-light">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/nav.inc.php'; ?>
 
-  <section id="mentions-legales" class="py-5 bg-light text-center">
+  <section id="mentions-legales" class="text-center">
     <div class="container ">
+
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/index.php">Accueil</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Mentions légales</li>
+        </ol>
+      </nav>
+
       <h1 class="display-5 my-5">Mentions légales</h1>
 
       <div class="row align-items-center justify-content-center">

@@ -26,17 +26,23 @@
   font-weight:500;
 }
 
-  </style>
+</style>
 
 </head>
-<body>
+<body class="bg-light">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/nav.inc.php'; ?>
 
-  
-
-  <section id="about-me" class="py-5 bg-white text-center">
+  <section id="about-me" class="text-center">
     <div class="container">
+
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/index.php">Accueil</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Mes recommandations de lecture</li>
+        </ol>
+      </nav>
+
       <h1 class="display-5 my-5">Mes recommandations de lecture</h1>
 
       <div id="filtres-tags" class="mb-4"></div>
@@ -122,14 +128,26 @@ function afficherFiltresTags(livres) {
 }
 
 Promise.all([
+  fetch('tutos/json/biblio-ascii.json').then(r => r.json()),
+  fetch('tutos/json/biblio-color.json').then(r => r.json()),
   fetch('tutos/json/biblio-html.json').then(r => r.json()),
   fetch('tutos/json/biblio-seo.json').then(r => r.json())
 ])
-.then(([htmlBooks, seoBooks]) => {
-  tousLesLivres = [...htmlBooks, ...seoBooks];
+.then(([asciiBooks, asciiColor, htmlBooks, seoBooks]) => {
+  tousLesLivres = [...asciiBooks, ...asciiColor, ...htmlBooks, ...seoBooks];
+
+  // AJOUT ICI
+  const titresVus = new Set();
+  tousLesLivres = tousLesLivres.filter(book => {
+    if (titresVus.has(book.title)) return false;
+    titresVus.add(book.title);
+    return true;
+  });
+
   afficherBooks(tousLesLivres);
   afficherFiltresTags(tousLesLivres);
 })
+
 .catch(err => console.error("Erreur de chargement :", err));
 </script>
 

@@ -16,45 +16,53 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
-    #dice {
-      font-size: 5rem;
-      cursor: pointer;
-      user-select: none;
-      transition: transform 0.4s ease;
-      margin-bottom: 1rem;
-      display: inline-block;
-    }
-    #commit-message {
-      width: 100%;
-      max-width: 480px;
-      font-size: 1.2rem;
-      resize: none;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    #copy-btn {
-      max-width: 480px;
-      width: 100%;
-    }
+  #dice {
+    font-size: 5rem;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.4s ease;
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
 
-    .commit-tool {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem; /* espace entre les éléments */
-}
+  #commit-message {
+    width: 100%;
+    max-width: 480px;
+    font-size: 1.2rem;
+    resize: none;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  #copy-btn {
+    max-width: 480px;
+    width: 100%;
+  }
+
+  .commit-tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* espace entre les éléments */
+  }
 
   </style>
 
 </head>
-<body>
+<body class="bg-light">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/nav.inc.php'; ?>
 
-  <!-- Minifier votre CSS -->
-
-<section id="services" class="bg-light py-5">
+<section id="services">
   <div class="container">
+
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/index.php">Accueil</a></li>
+        <li class="breadcrumb-item"><a href="/outils.php">Outils web</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Générateur de message de commit</li>
+      </ol>
+    </nav>
     
     <h1 class="display-5 my-5 text-center">Générateur de message de commit</h1>
 

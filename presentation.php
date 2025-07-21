@@ -12,12 +12,20 @@
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
 
 </head>
-<body>
+<body class="bg-light">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/nav.inc.php'; ?>
 
-  <section id="about-me" class="py-5 bg-white text-center">
+  <section id="about-me" class="py-5 text-center">
     <div class="container">
+
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/index.php">Accueil</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Présentation</li>
+        </ol>
+      </nav>
+
       <h1 class="my-5">Qui suis-je ?</h1>
 
       <div class="row align-items-center justify-content-center">

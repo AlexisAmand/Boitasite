@@ -25,17 +25,17 @@ foreach ($balises as $b) {
   <!-- CSS spécifique lexique -->
   <style>
   pre {
-    background-color: #1e1e1e;       /* fond sombre */
-    color: #d4d4d4;                  /* texte clair */
+    background-color: #1e1e1e;       
+    color: #d4d4d4;                 
     padding: 1rem;
     border-radius: 8px;
     font-family: 'Fira Code', Consolas, Monaco, 'Courier New', monospace;
     font-size: 0.9rem;
     line-height: 1.4;
-    overflow-x: auto;                /* scroll horizontal si nécessaire */
+    overflow-x: auto;           
     box-shadow: inset 0 0 10px #000000aa;
     user-select: text;
-    white-space: pre-wrap;           /* pour que le texte puisse aussi à la ligne */
+    white-space: pre-wrap;         
   }
 
  table { 
@@ -79,17 +79,26 @@ foreach ($balises as $b) {
   .card-img-top {
     height: 250px;
     object-fit: contain;
-    background-color: #f0f0f0; /* un fond neutre pour les bandes */
+    background-color: #f0f0f0;
     width: 100%;
   }
   </style>
 </head>
-<body>
+<body class="bg-light">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/nav.inc.php'; ?>
 
-  <section id="dico" class="py-5 bg-white">
+  <section id="dico">
     <div class="container">
+
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/index.php">Accueil</a></li>
+          <li class="breadcrumb-item"><a href="/ressources.php">Ressources et guides</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Lexique du HTML</li>
+        </ol>
+      </nav>
+
       <h1 class="my-5 text-center">Lexique des balises HTML</h1>
 
       <button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSommaire" aria-controls="offcanvasSommaire">
@@ -152,7 +161,7 @@ foreach ($balises as $b) {
     </div>
   </section>
 
-  <section id="dico" class="py-5 bg-white">
+  <section id="dico" class="py-5">
     <div class="container">
       <h2 class="my-5 text-center">Bibliographie</h2>
       <div id="bibliographie" class="row gx-3 gy-4"></div>
