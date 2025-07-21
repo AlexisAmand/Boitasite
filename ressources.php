@@ -34,10 +34,10 @@
       <div class="row">
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
-            <img src="/img/html.jpg" class="card-img-top" alt=" " width="1024" height="683">
+            <img src="/img/html.webp" class="card-img-top" alt=" " width="1024" height="683">
             <div class="card-body">
               <h5 class="card-title mb-1">Lexique du HTML</h5>
-              <p class="card-text"><small class="text-body-secondary">Le 17 juillet 2025</small></p>
+              <p class="card-text"><small class="text-body-secondary">Le 21 juillet 2025</small></p>
               <p class="card-text">Découvrez un lexique complet des balises HTML avec leurs attributs et usages, idéal pour débutants comme développeurs confirmés.</p>
             </div>
             <div class="card-footer ">
@@ -47,7 +47,7 @@
         </div> 
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
-            <img src="/img/ascii.jpg" class="card-img-top" alt="Illustration pour le guide sur les codes ASCII" width="1024" height="683">
+            <img src="/img/ascii.webp" class="card-img-top" alt="Illustration pour le guide sur les codes ASCII" width="1024" height="683">
             <div class="card-body">
               <h5 class="card-title mb-1">Les codes ASCII</h5>
               <p class="card-text"><small class="text-body-secondary">Le 13 juin 2025</small></p>
@@ -60,7 +60,7 @@
         </div>     
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
-            <img src="/img/seo.jpg" class="card-img-top" alt="Illustration pour le guide sur le référencement naturel" width="1025" height="683">
+            <img src="/img/seo.webp" class="card-img-top" alt="Illustration pour le guide sur le référencement naturel" width="1025" height="683">
             <div class="card-body">
               <h5 class="card-title mb-1">Référencement naturel (SEO)</h5>
               <p class="card-text"><small class="text-body-secondary">Le 12 juin 2025</small></p>
@@ -73,7 +73,7 @@
         </div>
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
-            <img src="/img/color-web.jpg" class="card-img-top" alt="Illustration pour le guide sur les couleurs du web" width="1024" height="684">
+            <img src="/img/color-web.webp" class="card-img-top" alt="Illustration pour le guide sur les couleurs du web" width="1024" height="684">
             <div class="card-body">
               <h5 class="card-title mb-1">Les couleurs du web</h5>
               <p class="card-text"><small class="text-body-secondary">Le 6 juin 2025</small></p>

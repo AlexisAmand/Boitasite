@@ -46,7 +46,7 @@
 
         <div class="row d-flex justify-content-center">
             <figure class="figure">
-                <img src="img/tuto-seo/guide-seo-01.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation la balise <title> dans un onglet de navigateur">
+                <img src="img/tuto-seo/guide-seo-01.webp" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation la balise <title> dans un onglet de navigateur">
                 <figcaption class="figure-caption text-right">Un titre dans un onglet de navigateur</figcaption>
             </figure>
         </div>
@@ -55,7 +55,7 @@
 
         <div class="row d-flex justify-content-center">
             <figure class="figure">
-                <img src="img/tuto-seo/seo-meta-title.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation la balise <title> dans les resultats de recherche">
+                <img src="img/tuto-seo/seo-meta-title.webp" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation la balise <title> dans les resultats de recherche">
                 <figcaption class="figure-caption text-right">Exemple de balise &lt;title&gt;</figcaption>
             </figure>
         </div>
@@ -70,7 +70,7 @@
 
         <div class="row d-flex justify-content-center">
             <figure class="figure">
-                <img src="img/tuto-seo/guide-seo-02.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation la balise meta description dans les resultats de recherche">
+                <img src="img/tuto-seo/guide-seo-02.webp" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation la balise meta description dans les resultats de recherche">
                 <figcaption class="figure-caption text-right">La balise &lt;meta&gt; et Google</figcaption>
             </figure>
         </div>
@@ -79,7 +79,7 @@
 
         <div class="row d-flex justify-content-center">
             <figure class="figure">
-                <img src="img/tuto-seo/seo-meta-desc.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="exemple de balise meta description dans un code source en html">
+                <img src="img/tuto-seo/seo-meta-desc.webp" class="figure-img img-fluid rounded img-thumbnail" alt="exemple de balise meta description dans un code source en html">
                 <figcaption class="figure-caption text-right">Exemple de balise &lt;meta&gt;</figcaption>
             </figure>
         </div>
@@ -98,7 +98,7 @@
 
         <div class="row d-flex justify-content-center">
             <figure class="figure">
-                <img src="img/tuto-seo/seo-balise-hx.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="exemple des balises HX pour créer différents niveaux de titres dans un code source en html">
+                <img src="img/tuto-seo/seo-balise-hx.webp" class="figure-img img-fluid rounded img-thumbnail" alt="exemple des balises HX pour créer différents niveaux de titres dans un code source en html">
                 <figcaption class="figure-caption text-right">Le code pour les balises &lt;h1&gt; à &lt;h6&gt;</figcaption>
             </figure>
         </div>
@@ -109,7 +109,7 @@
 
         <div class="row d-flex justify-content-center">
             <figure class="figure">
-                <img src="img/tuto-seo/seo-balise-img.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation de l'attribut alt sur une image dans un code source en html">
+                <img src="img/tuto-seo/seo-balise-img.webp" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation de l'attribut alt sur une image dans un code source en html">
                 <figcaption class="figure-caption text-right">L'attribut alt avec une image</figcaption>
             </figure>
         </div>
@@ -124,7 +124,7 @@
 
         <div class="row d-flex justify-content-center">
             <figure class="figure">
-                <img src="img/tuto-seo/seo-balise-a.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation de l'attribut title sur un lien hypertexte dans un code source en html">
+                <img src="img/tuto-seo/seo-balise-a.webp" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation de l'attribut title sur un lien hypertexte dans un code source en html">
                 <figcaption class="figure-caption text-right">L'attribut title avec une lien</figcaption>
             </figure>
         </div>
@@ -135,7 +135,7 @@
 
         <div class="row d-flex justify-content-center">
             <figure class="figure">
-                <img src="img/tuto-seo/seo-balise-strong.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation des balises <strong> dans un code source en html">
+                <img src="img/tuto-seo/seo-balise-strong.webp" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation des balises <strong> dans un code source en html">
                 <figcaption class="figure-caption text-right">La balise &lt;strong&gt;</figcaption>
             </figure>
         </div>
@@ -144,7 +144,7 @@
 
         <div class="row d-flex justify-content-center">
             <figure class="figure">
-                <img src="img/tuto-seo/seo-balise-em.jpg" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation de la balise <em> dans un code source en html">
+                <img src="img/tuto-seo/seo-balise-em.webp" class="figure-img img-fluid rounded img-thumbnail" alt="exemple d'utilisation de la balise <em> dans un code source en html">
                 <figcaption class="figure-caption text-right">La balise &lt;em&gt;</figcaption>
             </figure>
         </div>

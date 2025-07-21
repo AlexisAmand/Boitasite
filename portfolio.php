@@ -70,7 +70,7 @@
             <div class="content">
               <h4>2022 – The Little King</h4>
               <p>Hors-Sujet : Création d'un petit jeu sous Unity.</p>
-              <img src="img/capture-10.jpg" class="card-img-top" alt="Site historique sur la Grande Guerre, créé par Alexis AMAND" loading="lazy" width="640" height="360">
+              <img src="img/capture-10.webp" class="card-img-top" alt="Site historique sur la Grande Guerre, créé par Alexis AMAND" loading="lazy" width="640" height="360">
                 <a href="https://alexisamand.itch.io/the-little-king" target="_blank" class="btn btn-sm btn-primary mt-2" role="button">
                   Voir sur itch.io
                 </a>

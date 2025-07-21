@@ -59,7 +59,7 @@
         </div>
 
         <div class="col-md-4 order-1 order-md-2 text-center mb-4 mb-md-0" id="panda">
-          <img src="/img/panda-01.jpg" class="img-fluid shadow" alt="Illustration : un panda devant un ordinateur symbolisant le travail de rédaction" style="border-radius: 50% 20% / 10% 40%;">
+          <img src="/img/panda-01.webp" class="img-fluid shadow" alt="Illustration : un panda devant un ordinateur symbolisant le travail de rédaction" style="border-radius: 50% 20% / 10% 40%;">
         </div>
 
       </div>
