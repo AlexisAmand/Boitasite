@@ -16,7 +16,7 @@
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/nav.inc.php'; ?>
 
-  <section id="about-me" class="py-5 text-center">
+  <section id="about-me" class="text-center">
     <div class="container">
 
       <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
