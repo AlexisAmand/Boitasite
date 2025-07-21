@@ -1,7 +1,7 @@
   <meta name="author" content="Alexis AMAND">
   
   <!-- CSS local : chargé en différé si non critique -->
-  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="/css/style.css">
   <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
 
   <!-- Google Fonts avec preconnect -->
