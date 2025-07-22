@@ -60,7 +60,7 @@
     <div class="text-secondary small">
       © 2025 Alexis AMAND – Tous droits réservés.<br>
       Fait avec ❤️ dans les Hauts-de-France.<br>
-      Version 3.1.4 — Mis à jour le 21/07/2025
+      Version 3.1.7 — Mis à jour le 22/07/2025
     </div>
   </div>
 </footer>
@@ -107,12 +107,6 @@
     }
   }
 }
-</script>
-
-<script>
-document.querySelectorAll('footer a').forEach(a => {
-a.addEventListener('mouseenter', () => console.log('hover sur un lien footer'));
-});
 </script>
 
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/backtotop.inc.php'; ?>

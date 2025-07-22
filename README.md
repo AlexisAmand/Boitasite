@@ -20,11 +20,13 @@ https://www.boitasite.com
 
 #### Frameworks, librairies, etc.
 
+* npm 11.3.0
 * Bootstrap 5.3.7 (via npm)
 * Bootstrap icons 1.13.1 (via npm)
 * tarteaucitron 1.21.0 
 * prismjs 1.29 (via CDN)
 * vite 7.0.4 (via npm)
+* popperjs 2.11.8 (via npm)
 
 et Matomo 5.2.2 pour les stats !
 

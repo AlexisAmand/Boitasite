@@ -7,7 +7,7 @@
   <title>Minifiez ou compressez votre CSS en ligne – Gratuit, rapide, sans pub</title>
   <meta name="description" content="Outil gratuit pour minifier ou compresser votre code CSS en ligne. Réduisez la taille de vos fichiers CSS pour accélérer votre site web. Aucun téléchargement requis.">
 
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="icon" href="/dist/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/outils/minifier-css.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

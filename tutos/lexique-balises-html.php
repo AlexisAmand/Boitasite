@@ -15,7 +15,7 @@ foreach ($balises as $b) {
   <title>Lexique des balises HTML | Alexis AMAND</title>
   <meta name="description" content="Lexique des balises HTML avec exemples et attributs. Un outil simple pour développeurs web, débutants ou confirmés. Découvrez vite ce guide complet !">
 
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="icon" href="/dist/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/lexique-balises-html.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

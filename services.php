@@ -8,7 +8,7 @@
   <title>Développement web et référencement à Valenciennes | Alexis AMAND</title>
   <meta name="description" content="Création de sites internet à Valenciennes, près de Lille. Services de développement web, référencement SEO et accompagnement digital. booster votre présence en ligne dans le Valenciennois.">
 
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="icon" href="/dist/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/services.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

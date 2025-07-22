@@ -9,7 +9,7 @@
  <title>Création de site internet à Valenciennes | Alexis AMAND</title>
  <meta name="description" content="Création de sites internet à Valenciennes, dans le Nord. Sites WordPress sur mesure, adaptés à vos besoins et optimisés pour le référencement naturel.">
  
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="icon" href="/dist/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/index.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

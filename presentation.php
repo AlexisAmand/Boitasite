@@ -6,7 +6,7 @@
   <title>Développeur web à Valenciennes | Alexis AMAND</title>
   <meta name="description" content="Alexis AMAND, développeur web et référent digital à Valenciennes. Création de sites web sur mesure, optimisés SEO, adaptés à vos besoins.">
 
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="icon" href="/dist/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/presentation.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

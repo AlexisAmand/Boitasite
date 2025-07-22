@@ -7,7 +7,7 @@
   <title>Minifieur JavaScript en ligne – Réduisez votre code JS facilement</title>
   <meta name="description" content="Minifiez gratuitement votre code JavaScript en ligne. Supprimez les espaces, les commentaires et réduisez la taille de vos fichiers JS sans inscription. Rapide, simple et efficace.">
 
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="icon" href="/dist/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/outils/minifier-js.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

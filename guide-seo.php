@@ -8,7 +8,7 @@
     <title>Faire ses premiers pas dans le référencement naturel | création de sites web à Valenciennes</title>
     <meta name="description" content="Guide facile de SEO destiné aux webmasteurs qui font leurs premiers pas dans le domaine du référencement naturel de sites">
 
-    <link rel="icon" href="/img/favicon.png">
+    <link rel="icon" href="/dist/img/favicon.png">
   	<link rel="canonical" href="https://www.boitasite.com/guide-seo.php">
 
   	<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

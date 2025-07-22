@@ -6,7 +6,7 @@
   <title>Livres HTML, CSS, JavaScript et SEO – Recommandations de livres pour apprendre</title>
   <meta name="description" content="Découvrez ma sélection de livres pour apprendre le développement web, HTML, CSS, JavaScript et SEO. Des ouvrages pour débutants et avancés, avec liens affiliés, guides pratiques et conseils d'experts.">
   
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="icon" href="/dist/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/boutique.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

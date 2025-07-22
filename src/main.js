@@ -1,6 +1,7 @@
 
 import 'bootstrap';
 import './style.scss';
+// import './404.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 // animation des titres
@@ -55,6 +56,16 @@ document.getElementById("backToTop").addEventListener("click", function() {
 });
 
 console.log("👋 Hello dev ! Tu regardes sous le capot ? Bienvenue dans l’atelier.");
+
+// code du footer
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('footer a').forEach(a => {
+    a.addEventListener('mouseenter', () => {
+      console.log('hover sur un lien footer');
+    });
+  });
+});
 
 
 
