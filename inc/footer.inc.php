@@ -94,7 +94,7 @@
     "sameAs": [
       "https://www.linkedin.com/in/alexis-amand/",
       "https://github.com/alexisAmand",
-      "https://twitter.com/alexisamand"
+      "https://x.com/alexisamand"
     ],
     "alumniOf": {
       "@type": "EducationalOrganization",

@@ -168,7 +168,7 @@
     </div>
   </section>
 
-  <script src="../js/biblio-seo.min.js"></script>
+  <script src="/js/biblio-seo.min.js"></script>
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>

@@ -135,13 +135,14 @@ function afficherFiltresTags(livres) {
 }
 
 Promise.all([
+  fetch('tutos/json/biblio.json').then(r => r.json()),
   fetch('tutos/json/biblio-ascii.json').then(r => r.json()),
   fetch('tutos/json/biblio-color.json').then(r => r.json()),
   fetch('tutos/json/biblio-html.json').then(r => r.json()),
   fetch('tutos/json/biblio-seo.json').then(r => r.json())
 ])
-.then(([asciiBooks, asciiColor, htmlBooks, seoBooks]) => {
-  tousLesLivres = [...asciiBooks, ...asciiColor, ...htmlBooks, ...seoBooks];
+.then(([diversBooks, asciiBooks, asciiColor, htmlBooks, seoBooks]) => {
+  tousLesLivres = [...diversBooks, ...asciiBooks, ...asciiColor, ...htmlBooks, ...seoBooks];
 
   // AJOUT ICI
   const titresVus = new Set();
@@ -150,6 +151,8 @@ Promise.all([
     titresVus.add(book.title);
     return true;
   });
+
+  tousLesLivres.sort((a, b) => a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' }));
 
   afficherBooks(tousLesLivres);
   afficherFiltresTags(tousLesLivres);
