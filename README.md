@@ -16,12 +16,15 @@ https://www.boitasite.com
 * Visual Studio Code 1.102
 * PHP 8.0.30
 * MariaDB 10.4.32
+* Sass 1.89.2
 
-#### Frameworks et librairies
+#### Frameworks, librairies, etc.
 
-* Bootstrap 5.3.5 (via npm)
-* tarteaucitron 1.21.0 (via npm)
+* Bootstrap 5.3.7 (via npm)
+* Bootstrap icons 1.13.1 (via npm)
+* tarteaucitron 1.21.0 
 * prismjs 1.29 (via CDN)
+* vite 7.0.4 (via npm)
 
 et Matomo 5.2.2 pour les stats !
 

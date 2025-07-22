@@ -1,8 +1,38 @@
+  <?php
+  function vite_asset(string $entry): void {
+    static $manifest = null;
+    $manifestPath = $_SERVER['DOCUMENT_ROOT'] . '/dist/.vite/manifest.json';
+
+    if ($manifest === null) {
+        if (!file_exists($manifestPath)) {
+            throw new Exception("Fichier manifest.json introuvable : $manifestPath");
+        }
+        $manifest = json_decode(file_get_contents($manifestPath), true);
+    }
+
+    if (!isset($manifest[$entry])) {
+        throw new Exception("Entrée $entry introuvable dans manifest.json");
+    }
+
+    $asset = $manifest[$entry];
+
+    // CSS
+    if (isset($asset['css'])) {
+        foreach ($asset['css'] as $cssFile) {
+            echo '<link rel="stylesheet" href="/dist/' . $cssFile . '">' . PHP_EOL;
+        }
+    }
+
+    // JS
+    echo '<script type="module" src="/dist/' . $asset['file'] . '"></script>' . PHP_EOL;
+}
+?>
+  
   <meta name="author" content="Alexis AMAND">
   
-  <!-- CSS local : chargé en différé si non critique -->
-  <link rel="stylesheet" href="/css/style.css">
-  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  <?php
+  vite_asset('src/main.js');
+  ?>
 
   <!-- Google Fonts avec preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
