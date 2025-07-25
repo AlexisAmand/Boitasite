@@ -75,3 +75,7 @@ gtag('config', 'G-CV7N5LWNP6');
   </script>
 
   <script>tarteaucitron.user.matomoHost = '//matomo.boitasite.com/';</script>
+
+  <script>
+  (tarteaucitron.job = tarteaucitron.job || []).push('gcmanalyticsstorage');
+  </script>

@@ -60,7 +60,7 @@
     <div class="text-secondary small">
       © 2025 Alexis AMAND – Tous droits réservés.<br>
       Fait avec ❤️ dans les Hauts-de-France.<br>
-      Version 3.1.76 — Mis à jour le 25/07/2025
+      Version 3.1.104 — Mis à jour le 25/07/2025
     </div>
   </div>
 </footer>

@@ -41,12 +41,15 @@
       <p class="lead">Un site efficace et bien référencé, conçu sur mesure pour votre activité</p>
       <a href="services.php" class="btn btn-secondary btn-lg" title="Voir la liste complète de mes services de création de sites web">Découvrez mes services</a>
     </div>
+    <svg class="wave-bottom"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none" style="display:block; width: 100%; height: 60px; margin-bottom: -1px; transform: rotateX(180deg);">
+      <path fill="#ffffff" fill-opacity="1" d="M0,0L1440,0L1440,50C1222,100,945,100,720,50C495,0,268,0,0,50Z"></path>
+    </svg>
   </header>
 
   <section class="container my-5">
   <div class="row">
-    <div class="col-12 col-md-4 mb-4 text-center">
-      <i class="bi bi-laptop display-1 mb-3" style="color:#caa8a0;"></i>
+    <div class="col-12 col-md-4 mb-4 text-center" id="colorweb">
+      <i class="bi bi-laptop display-1 mb-3"></i>
       <h2 class="my-4 display-6">Sites web sur mesure</h2>
       <ul class="text-start">
         <li class="my-3">Blogs, sites vitrines, site de e-commerce.</li>
@@ -55,9 +58,9 @@
         <li class="my-3">Possibilité de contrat de maintenance pour garder votre site web en forme.</li>
       </ul>
     </div>
-    <div class="col-12 col-md-4 mb-4 text-center">
-      <i class="bi bi-bar-chart-line display-1 mb-3" style="color:#495e3b;"></i>
-      <h2 class="my-4 display-6">Référencement (SEO)</h2>
+    <div class="col-12 col-md-4 mb-4 text-center" id="colorseo">
+      <i class="bi bi-bar-chart-line display-1 mb-3"></i>
+      <h2 class="my-4 display-6">Référencement</h2>
       <ul class="text-start">
         <li class="my-3"><a href="guide-seo.php" title="Guide complet pour optimiser le référencement naturel">Optimisations SEO</a> de votre site web.</li>
         <li class="my-3">Audit de votre site pour faire le point sur son référencement.</li>
@@ -66,8 +69,8 @@
         <li class="my-3">Suivi et ajustements réguliers pour booster le trafic.</li>
       </ul>
     </div>
-    <div class="col-12 col-md-4 mb-4 text-center">
-      <i class="bi bi-pencil-square display-1 mb-3" style="color:#ced5f2;"></i>
+    <div class="col-12 col-md-4 mb-4 text-center" id="colorredac">
+      <i class="bi bi-pencil-square display-1 mb-3"></i>
       <h2 class="my-4 display-6">Rédaction web</h2>
       <ul class="text-start">
         <li class="my-3">Textes exclusifs selon vos consignes, avec contrôle du plagiat.</li>
