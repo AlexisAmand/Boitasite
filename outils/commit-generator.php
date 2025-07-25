@@ -8,7 +8,6 @@
 
   <meta name="description" content="En panne d'inspiration pour vos messages de commit ? Générez en un clic des messages clairs, techniques ou décalés. Utile, rapide, fun.">
 
-  <link rel="icon" href="/dist/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/outils/commit-generator.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

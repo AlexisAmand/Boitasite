@@ -8,7 +8,6 @@
   <title>Portfolio de projets web réalisés dans le Nord | Alexis AMAND</title>
   <meta name="description" content="Découvrez mon portfolio de sites web créés pour PME, associations et indépendants dans le Nord. Projets sur mesure et optimisés SEO.">
 
-  <link rel="icon" href="/dist/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/portfolio.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

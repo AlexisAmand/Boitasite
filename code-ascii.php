@@ -8,7 +8,6 @@
     <title>Comment mettre un code ASCII dans une page web ? | Alexis AMAND - Création de sites web à Valenciennes</title>
     <meta name="description" content="Découvrez comment insérer facilement des codes ASCII dans vos pages web HTML. Tutoriel clair pour débutants et développeurs.">
 
-    <link rel="icon" href="/dist/img/favicon.png">
   	<link rel="canonical" href="https://www.boitasite.com/code-ascii.php">
 
   	<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

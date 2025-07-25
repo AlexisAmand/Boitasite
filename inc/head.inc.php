@@ -1,3 +1,5 @@
+<link rel="icon" href="/dist/favicon.png" />
+
 <!-- Preconnect et preload Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

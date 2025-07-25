@@ -8,7 +8,6 @@
     <title>Liste complète des codes couleur HTML | Alexis AMAND - Création de sites web à Valenciennes</title>
     <meta name="description" content="Découvrez la liste complète des codes couleurs hexadécimaux HTML pour créer facilement vos pages web. Ressource essentielle pour développeurs et webdesigners.">
 
-    <link rel="icon" href="/dist/img/favicon.png">
   	<link rel="canonical" href="https://www.boitasite.com/codes-couleurs.php">
 
   	<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

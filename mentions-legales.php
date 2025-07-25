@@ -7,7 +7,6 @@
   <title>Mentions légales | Alexis AMAND - Création de sites web à Valenciennes</title>
   <meta name="description" content="Consultez les mentions légales du site : éditeur, hébergeur, propriété intellectuelle, politique de confidentialité et responsabilités. Conformité avec la législation en vigueur.">
 
-  <link rel="icon" href="/dist/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/mentions-legales.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

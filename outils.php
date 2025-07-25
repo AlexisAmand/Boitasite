@@ -8,7 +8,6 @@
   <title>Outils en ligne gratuits pour développeurs web | Alexis AMAND</title>
   <meta name="description" content="Minifiez votre code, testez des fonctionnalités et optimisez vos pages grâce à nos outils gratuits pour développeurs et créateurs de sites web.">
 
-  <link rel="icon" href="/dist/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/outils.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>

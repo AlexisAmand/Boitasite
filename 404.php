@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="icon" href="/img/favicon.png" />
+  <link rel="icon" href="/dist/favicon.png" />
   <style>
     body {
       background: linear-gradient(to right, #f8f9fa, #e9ecef);

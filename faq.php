@@ -8,7 +8,6 @@
   <title>Questions fréquentes sur la création des sites web | Alexis AMAND</title>
   <meta name="description" content="Vous avez des questions sur la création de sites web ou le référencement SEO à Valenciennes ? Retrouvez ici toutes les réponses pour mieux comprendre mes prestations et faire le bon choix.">
 
-  <link rel="icon" href="/dist/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/faq.php">
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
