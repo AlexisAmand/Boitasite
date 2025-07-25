@@ -14,7 +14,7 @@
           <strong>Alexis Amand</strong><br>
           Création de sites web à Valenciennes<br>
           <a href="mailto:alexis.amand@boitasite.com" class="text-decoration-none">alexis.amand@boitasite.com</a><br>
-          06 62 63 79 21
+          <i class="bi bi-telephone"></i>&nbsp06.62.63.79.21
         </address>
             <div id="ecoindex-badge" class="mt-2" data-theme="dark"></div>
             <script src="https://cdn.jsdelivr.net/gh/cnumr/ecoindex_badge@3/assets/js/ecoindex-badge.js" defer></script>
@@ -60,7 +60,7 @@
     <div class="text-secondary small">
       © 2025 Alexis AMAND – Tous droits réservés.<br>
       Fait avec ❤️ dans les Hauts-de-France.<br>
-      Version 3.1.7 — Mis à jour le 22/07/2025
+      Version 3.1.70 — Mis à jour le 25/07/2025
     </div>
   </div>
 </footer>

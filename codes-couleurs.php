@@ -16,11 +16,11 @@
 	<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
     <style>
-      .card-img-top {
-    height: 250px;
-    object-fit: contain;
-    background-color: #f0f0f0;
-    width: 100%;
+    .card-img-top {
+      height: 250px;
+      object-fit: contain;
+      background-color: #f0f0f0;
+      width: 100%;
     }
     </style>
 
@@ -990,8 +990,6 @@
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
-
-  <script src="js/animations.min.js"></script>
   
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>

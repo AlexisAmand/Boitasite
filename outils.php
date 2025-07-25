@@ -13,7 +13,7 @@
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
 
-  <style>
+  <!--style>
     h2.outil-title {
       font-size: 1.25rem;
       font-family: "Roboto", sans-serif;
@@ -22,9 +22,8 @@
 
     h2.outil-title:first-letter {
     color: #000000;
-    }
-      
-  </style>
+    }     
+  </style-->
 
 </head>
 <body class="bg-light">
@@ -54,39 +53,39 @@
 
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card h-100 d-flex flex-column">
-                <img src="/img/minifieur-css.webp" class="card-img-top" alt=" " width="960" height="540">
+                <img src="/img/minifieur-css.webp" class="card-img-top" alt="image qui montre quelques lignes de CSS" width="960" height="540">
                 <div class="card-body">
                   <h2 class="card-title mb-1 outil-title">Minifier votre CSS</h2>
                   <p class="card-text">Collez votre code CSS, minifiez-le d’un clic, et copiez le résultat. Pratique pour alléger vos fichiers !</p>
                 </div>
                 <div class="card-footer ">
-                  <a href="outils/minifier-css.php" class="btn btn-primary" title=" ">Minifier !</a>
+                  <a href="outils/minifier-css.php" class="btn btn-primary" title="Voir l'outil pour minifier le css">Minifier !</a>
                 </div>
               </div>
             </div>     
 
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card h-100 d-flex flex-column">
-                <img src="/img/minifieur-js.webp" class="card-img-top" alt=" "  width="960" height="540">
+                <img src="/img/minifieur-js.webp" class="card-img-top" alt="illustration pour le minifieur de JS"  width="960" height="540">
                 <div class="card-body">
                   <h2 class="card-title mb-1 outil-title">Minifier votre JS</h2>
                   <p class="card-text">Collez votre code JS, minifiez-le d’un clic, et copiez le résultat. Pratique pour alléger vos fichiers !</p>
                 </div>
                 <div class="card-footer ">
-                  <button href="outils/minifier-js.php" class="btn btn-primary" title=" "  disabled>Bientôt !</button>
+                  <button href="outils/minifier-js.php" class="btn btn-primary" title="Voir l'outil pour minifier le JavaScript"  disabled>Bientôt !</button>
                 </div>
               </div>
             </div>  
 
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card h-100 d-flex flex-column">
-                <img src="/img/github.webp" class="card-img-top" alt=" "  width="960" height="540">
+                <img src="/img/github.webp" class="card-img-top" alt="illustration pour le générateur de commit"  width="960" height="540">
                 <div class="card-body">
                   <h2 class="card-title mb-1 outil-title">Générateur de message de commit</h2>
                   <p class="card-text">Quand plus rien ne compile, il vous reste un seul recours.</p>
                 </div>
                 <div class="card-footer ">
-                  <a href="outils/commit-generator.php" class="btn btn-primary" title=" ">Générer !</a>
+                  <a href="outils/commit-generator.php" class="btn btn-primary" title="Générer un message de commit aléatoire">Générer !</a>
                 </div>
               </div>
             </div>  
@@ -98,8 +97,6 @@
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
-
-  <script src="js/animations.min.js"></script> 
 
 </body>
 </html>

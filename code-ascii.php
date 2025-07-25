@@ -14,11 +14,11 @@
   	<?php include $_SERVER['DOCUMENT_ROOT'].'/inc/head.inc.php'; ?>
 
     <style>
-      .card-img-top {
-    height: 250px;
-    object-fit: contain;
-    background-color: #f0f0f0;
-    width: 100%;
+    .card-img-top {
+      height: 250px;
+      object-fit: contain;
+      background-color: #f0f0f0;
+      width: 100%;
     }
     </style>
 
@@ -434,8 +434,6 @@
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
-
-  <script src="js/animations.min.js"></script>
 
 </body>
 </html>

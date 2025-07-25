@@ -130,7 +130,7 @@
 
           <h3>Pourquoi minifier son code JavaScript ?</h3>
 
-          <p class="text-justify">La minification JavaScript consiste à supprimer les espaces, les commentaires et les caractères inutiles d’un fichier .js, sans en altérer le fonctionnement. Cela permet de réduire la taille du fichier, accélérer le chargement des pages web et améliorer les performances globales du site. Un code plus léger signifie aussi une meilleure expérience utilisateur et un <a href="/guide-seo.php" title=" ">référencement (SEO)</a> légèrement favorisé par Google.</p>
+          <p class="text-justify">La minification JavaScript consiste à supprimer les espaces, les commentaires et les caractères inutiles d’un fichier .js, sans en altérer le fonctionnement. Cela permet de réduire la taille du fichier, accélérer le chargement des pages web et améliorer les performances globales du site. Un code plus léger signifie aussi une meilleure expérience utilisateur et un <a href="/guide-seo.php" title="Guide sur les notions de base du référencement naturel">référencement (SEO)</a> légèrement favorisé par Google.</p>
 
           <h3>Est-ce que ce minifieur JS garde mon code privé ?</h3>
 
@@ -141,13 +141,10 @@
     </div>
   </section>
 
-<script src="../js/minifier-js.min.js"></script> 
-
+  <script src="../js/minifier-js.min.js"></script> 
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
-
-  <script src="../js/animations.min.js"></script>
   
 </body>
 </html>

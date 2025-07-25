@@ -94,7 +94,7 @@
             <div class="card h-100 border-0 card-postit">
               <div class="card-body card-body-faq">
                 <h3 class="card-title">Rédigez-vous les textes du site ?</h3>
-                <p class="card-text">Oui, je propose un service de rédaction web, clair et optimisé pour <a href="guide-seo.php" title=" ">le SEO</a>. Vous n’avez pas besoin de tout écrire vous-même. Nous échangeons sur vos idées, vos valeurs, et je me charge de structurer et rédiger les contenus.</p>
+                <p class="card-text">Oui, je propose un service de rédaction web, clair et optimisé pour <a href="guide-seo.php" title="guide sur les pages du référencement naturel">le SEO</a>. Vous n’avez pas besoin de tout écrire vous-même. Nous échangeons sur vos idées, vos valeurs, et je me charge de structurer et rédiger les contenus.</p>
               </div>
             </div>
           </div>
@@ -138,8 +138,6 @@
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
-
-  <script src="js/animations.min.js"></script> 
 
   <script src="js/faq.min.js"></script>
 

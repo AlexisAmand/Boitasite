@@ -53,7 +53,5 @@
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
 
-  <script src="js/animations.min.js"></script>
-
 </body>
 </html>

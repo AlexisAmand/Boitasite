@@ -17,16 +17,15 @@
   object-fit: contain;
   background-color: #f0f0f0; /* un fond neutre pour les bandes */
   width: 100%;
-}
+  }
 
-.badge-outline-primary {
-  color: #555; /* couleur du texte */
-  background-color: transparent;
-  border: 1px solid #555;
-  font-weight:500;
-}
-
-</style>
+  .badge-outline-primary {
+    color: #555; /* couleur du texte */
+    background-color: transparent;
+    border: 1px solid #555;
+    font-weight:500;
+  }
+  </style>
 
 </head>
 <body class="bg-light">
@@ -161,11 +160,8 @@ Promise.all([
 .catch(err => console.error("Erreur de chargement :", err));
 </script>
 
-
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
-
-  <script src="js/animations.min.js"></script>
 
 </body>
 </html>

@@ -105,7 +105,7 @@ foreach ($balises as $b) {
         Ouvrir le sommaire des balises
       </button>
 
-      <p class="lead">Je vous propose les balises HTML que l’on utilise souvent lorsqu’<a href="../services.php" title=" ">on crée des pages web</a>. Pour chaque balise, je vous explique simplement à quoi elle sert, je vous montre un petit exemple pour que ce soit clair, et je vous liste ses attributs dans un tableau avec le nom, ce que ça fait, et un exemple d’utilisation. Que vous soyez débutant ou un peu plus calé, ce lexique est fait pour vous filer un coup de main rapide et pratique.</p>
+      <p class="lead">Je vous propose les balises HTML que l’on utilise souvent lorsqu’<a href="../services.php" title="Création de sites web à Valenciennes">on crée des pages web</a>. Pour chaque balise, je vous explique simplement à quoi elle sert, je vous montre un petit exemple pour que ce soit clair, et je vous liste ses attributs dans un tableau avec le nom, ce que ça fait, et un exemple d’utilisation. Que vous soyez débutant ou un peu plus calé, ce lexique est fait pour vous filer un coup de main rapide et pratique.</p>
 
       <?php foreach ($balises as $balise): ?>
         <article id="<?= htmlspecialchars($balise['tag']) ?>">
@@ -172,8 +172,6 @@ foreach ($balises as $b) {
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
-
-  <script src="../js/animations.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>

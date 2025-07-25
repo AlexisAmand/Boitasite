@@ -28,6 +28,16 @@
 }
 ?>
   
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CV7N5LWNP6"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-CV7N5LWNP6');
+</script>
+
   <meta name="author" content="Alexis AMAND">
   
   <?php
@@ -52,9 +62,6 @@
   <meta name="twitter:description" content="Création de sites web, SEO, refonte et accompagnement numérique. Pour les pros de Valenciennes et au-delà." />
   <meta name="twitter:image" content="https://www.boitasite.com/img/preview.jpg" />
 
-  <!-- Bootstrap Icons  -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css">
-  
   <script src="/tarteaucitron/tarteaucitron.min.js"></script>
   <script src="/tarteaucitron/tarteausetup.min.js"></script>
 

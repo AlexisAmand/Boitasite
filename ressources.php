@@ -34,14 +34,14 @@
       <div class="row">
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
-            <img src="/img/html.webp" class="card-img-top" alt=" " width="1024" height="683">
+            <img src="/img/html.webp" class="card-img-top" alt="illustration pour le lexique des balises HTML" width="1024" height="683">
             <div class="card-body">
               <h5 class="card-title mb-1">Lexique du HTML</h5>
               <p class="card-text"><small class="text-body-secondary">Le 21 juillet 2025</small></p>
               <p class="card-text">Découvrez un lexique complet des balises HTML avec leurs attributs et usages, idéal pour débutants comme développeurs confirmés.</p>
             </div>
             <div class="card-footer ">
-              <a href="tutos/lexique-balises-html.php" title=" ">En savoir plus</a>
+              <a href="tutos/lexique-balises-html.php" title="Voir le lexique des balises du HTML">En savoir plus</a>
             </div>
           </div>
         </div> 
@@ -90,8 +90,6 @@
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
-
-  <script src="js/animations.min.js"></script> 
   
 </body>
 </html>

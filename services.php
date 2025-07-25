@@ -33,19 +33,19 @@
       <div class="row">
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
-            <img src="/img/redaction-web.webp" class="card-img-top" alt=" " width="1024" height="683">
+            <img src="/img/redaction-web.webp" class="card-img-top" alt="illustration pour la rédaction web" width="1024" height="683">
             <div class="card-body">
               <h5 class="card-title mb-4">Rédaction Web</h5>
               <p class="card-text">Création de contenus optimisés SEO pour votre site internet, blog ou réseaux sociaux. Articles de blog, pages de site, fiches produits…<br /><br />J’écris avec des mots-clés pertinents pour améliorer votre visibilité sur Google.</p>
             </div>
             <div class="card-footer ">
-              <a href="https://lexisio.boitasite.com/index.php#services" title=" ">En savoir plus</a>
+              <a href="https://lexisio.boitasite.com/index.php#services" title="Service de rédaction web à Valenciennes">En savoir plus</a>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
-            <img src="/img/web02.webp" class="card-img-top" alt=" " width="1024" height="683">
+            <img src="/img/web02.webp" class="card-img-top" alt="illustration pour la création de site web" width="1024" height="683">
             <div class="card-body">
               <h5 class="card-title mb-4">Création de sites web</h5>
               <p class="card-text">Site vitrine, blog ou site professionnel : je conçois un site adapté à vos besoins, moderne, responsive, rapide et facile à prendre en main.<br /><br />Du design à la mise en ligne, je vous accompagne à chaque étape pour un résultat sur mesure.</p>
@@ -55,7 +55,7 @@
         </div>       
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 d-flex flex-column">
-            <img src="/img/seo.webp" class="card-img-top" alt=" " width="1024" height="683">
+            <img src="/img/seo.webp" class="card-img-top" alt="illustration pour le SEO" width="1024" height="683">
             <div class="card-body">
               <h5 class="card-title mb-4">Référencement naturel (SEO)</h5>
               <p class="card-text">Audit technique, optimisation des balises, structure de contenu, maillage interne… <br /><br />Je vous aide à améliorer la visibilité de votre site sur les moteurs de recherche, pour attirer un trafic qualifié et durable.</p>
@@ -74,8 +74,6 @@
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
-
-  <script src="js/animations.min.js"></script> 
   
 </body>
 </html>

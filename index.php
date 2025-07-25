@@ -6,8 +6,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <title>Création de site internet à Valenciennes | Alexis AMAND</title>
- <meta name="description" content="Création de sites internet à Valenciennes, dans le Nord. Sites WordPress sur mesure, adaptés à vos besoins et optimisés pour le référencement naturel.">
+  <title>Création de site internet à Valenciennes | Alexis AMAND</title>
+  <meta name="description" content="Création de sites internet à Valenciennes, dans le Nord. Sites WordPress sur mesure, adaptés à vos besoins et optimisés pour le référencement naturel.">
  
   <link rel="icon" href="/dist/img/favicon.png">
   <link rel="canonical" href="https://www.boitasite.com/index.php">
@@ -32,8 +32,6 @@
 
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/contact.inc.php'; ?>
   <?php include $_SERVER['DOCUMENT_ROOT'].'/inc/footer.inc.php'; ?>
-
-  <script src="js/animations.min.js"></script>  
   
 </body>
 </html>
