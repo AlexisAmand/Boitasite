@@ -1,3 +1,9 @@
+<!-- Preconnect et preload Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&family=Roboto:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+
   <?php
   function vite_asset(string $entry): void {
     static $manifest = null;
@@ -43,11 +49,6 @@ gtag('config', 'G-CV7N5LWNP6');
   <?php
   vite_asset('src/main.js');
   ?>
-
-  <!-- Google Fonts avec preconnect -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Développeur web indépendant à Valenciennes – Alexis Amand" />
